@@ -11,7 +11,9 @@ import SwiftUI
 struct EZMackerApp: App {
     var body: some Scene {
         WindowGroup {
-            MainContentView()
+            MainContentView().frame(minWidth: 100, minHeight: 700)
         }
+        .windowToolbarStyle(.unifiedCompact)
+        
     }
 }
