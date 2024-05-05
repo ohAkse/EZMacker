@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */; };
-		5F36B2192BE7AB3000E08935 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2182BE7AB3000E08935 /* ContentView.swift */; };
 		5F36B21B2BE7AB3100E08935 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F36B21A2BE7AB3100E08935 /* Assets.xcassets */; };
 		5F36B21E2BE7AB3100E08935 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F36B21D2BE7AB3100E08935 /* Preview Assets.xcassets */; };
 		5F36B2292BE7AB3100E08935 /* EZMackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2282BE7AB3100E08935 /* EZMackerTests.swift */; };
 		5F36B2332BE7AB3100E08935 /* EZMackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2322BE7AB3100E08935 /* EZMackerUITests.swift */; };
 		5F36B2352BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2342BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift */; };
+		5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2432BE7ACC000E08935 /* MainContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,6 @@
 /* Begin PBXFileReference section */
 		5F36B2132BE7AB3000E08935 /* EZMacker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZMacker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerApp.swift; sourceTree = "<group>"; };
-		5F36B2182BE7AB3000E08935 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5F36B21A2BE7AB3100E08935 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F36B21D2BE7AB3100E08935 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5F36B21F2BE7AB3100E08935 /* EZMacker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EZMacker.entitlements; sourceTree = "<group>"; };
@@ -45,6 +44,7 @@
 		5F36B22E2BE7AB3100E08935 /* EZMackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZMackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F36B2322BE7AB3100E08935 /* EZMackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerUITests.swift; sourceTree = "<group>"; };
 		5F36B2342BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5F36B2432BE7ACC000E08935 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */,
-				5F36B2182BE7AB3000E08935 /* ContentView.swift */,
+				5F36B2432BE7ACC000E08935 /* MainContentView.swift */,
 				5F36B21A2BE7AB3100E08935 /* Assets.xcassets */,
 				5F36B21F2BE7AB3100E08935 /* EZMacker.entitlements */,
 				5F36B21C2BE7AB3100E08935 /* Preview Content */,
@@ -259,8 +259,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F36B2192BE7AB3000E08935 /* ContentView.swift in Sources */,
 				5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */,
+				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
