@@ -1,0 +1,586 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */; };
+		5F36B2192BE7AB3000E08935 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2182BE7AB3000E08935 /* ContentView.swift */; };
+		5F36B21B2BE7AB3100E08935 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F36B21A2BE7AB3100E08935 /* Assets.xcassets */; };
+		5F36B21E2BE7AB3100E08935 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F36B21D2BE7AB3100E08935 /* Preview Assets.xcassets */; };
+		5F36B2292BE7AB3100E08935 /* EZMackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2282BE7AB3100E08935 /* EZMackerTests.swift */; };
+		5F36B2332BE7AB3100E08935 /* EZMackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2322BE7AB3100E08935 /* EZMackerUITests.swift */; };
+		5F36B2352BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2342BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5F36B2252BE7AB3100E08935 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F36B20B2BE7AB3000E08935 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F36B2122BE7AB3000E08935;
+			remoteInfo = EZMacker;
+		};
+		5F36B22F2BE7AB3100E08935 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F36B20B2BE7AB3000E08935 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F36B2122BE7AB3000E08935;
+			remoteInfo = EZMacker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5F36B2132BE7AB3000E08935 /* EZMacker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZMacker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerApp.swift; sourceTree = "<group>"; };
+		5F36B2182BE7AB3000E08935 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5F36B21A2BE7AB3100E08935 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5F36B21D2BE7AB3100E08935 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5F36B21F2BE7AB3100E08935 /* EZMacker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EZMacker.entitlements; sourceTree = "<group>"; };
+		5F36B2242BE7AB3100E08935 /* EZMackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZMackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F36B2282BE7AB3100E08935 /* EZMackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerTests.swift; sourceTree = "<group>"; };
+		5F36B22E2BE7AB3100E08935 /* EZMackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZMackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F36B2322BE7AB3100E08935 /* EZMackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerUITests.swift; sourceTree = "<group>"; };
+		5F36B2342BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5F36B2102BE7AB3000E08935 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F36B2212BE7AB3100E08935 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F36B22B2BE7AB3100E08935 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5F36B20A2BE7AB3000E08935 = {
+			isa = PBXGroup;
+			children = (
+				5F36B2152BE7AB3000E08935 /* EZMacker */,
+				5F36B2272BE7AB3100E08935 /* EZMackerTests */,
+				5F36B2312BE7AB3100E08935 /* EZMackerUITests */,
+				5F36B2142BE7AB3000E08935 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5F36B2142BE7AB3000E08935 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5F36B2132BE7AB3000E08935 /* EZMacker.app */,
+				5F36B2242BE7AB3100E08935 /* EZMackerTests.xctest */,
+				5F36B22E2BE7AB3100E08935 /* EZMackerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5F36B2152BE7AB3000E08935 /* EZMacker */ = {
+			isa = PBXGroup;
+			children = (
+				5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */,
+				5F36B2182BE7AB3000E08935 /* ContentView.swift */,
+				5F36B21A2BE7AB3100E08935 /* Assets.xcassets */,
+				5F36B21F2BE7AB3100E08935 /* EZMacker.entitlements */,
+				5F36B21C2BE7AB3100E08935 /* Preview Content */,
+			);
+			path = EZMacker;
+			sourceTree = "<group>";
+		};
+		5F36B21C2BE7AB3100E08935 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				5F36B21D2BE7AB3100E08935 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5F36B2272BE7AB3100E08935 /* EZMackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				5F36B2282BE7AB3100E08935 /* EZMackerTests.swift */,
+			);
+			path = EZMackerTests;
+			sourceTree = "<group>";
+		};
+		5F36B2312BE7AB3100E08935 /* EZMackerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5F36B2322BE7AB3100E08935 /* EZMackerUITests.swift */,
+				5F36B2342BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift */,
+			);
+			path = EZMackerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5F36B2122BE7AB3000E08935 /* EZMacker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F36B2382BE7AB3100E08935 /* Build configuration list for PBXNativeTarget "EZMacker" */;
+			buildPhases = (
+				5F36B20F2BE7AB3000E08935 /* Sources */,
+				5F36B2102BE7AB3000E08935 /* Frameworks */,
+				5F36B2112BE7AB3000E08935 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EZMacker;
+			productName = EZMacker;
+			productReference = 5F36B2132BE7AB3000E08935 /* EZMacker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5F36B2232BE7AB3100E08935 /* EZMackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F36B23B2BE7AB3100E08935 /* Build configuration list for PBXNativeTarget "EZMackerTests" */;
+			buildPhases = (
+				5F36B2202BE7AB3100E08935 /* Sources */,
+				5F36B2212BE7AB3100E08935 /* Frameworks */,
+				5F36B2222BE7AB3100E08935 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F36B2262BE7AB3100E08935 /* PBXTargetDependency */,
+			);
+			name = EZMackerTests;
+			productName = EZMackerTests;
+			productReference = 5F36B2242BE7AB3100E08935 /* EZMackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5F36B22D2BE7AB3100E08935 /* EZMackerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F36B23E2BE7AB3100E08935 /* Build configuration list for PBXNativeTarget "EZMackerUITests" */;
+			buildPhases = (
+				5F36B22A2BE7AB3100E08935 /* Sources */,
+				5F36B22B2BE7AB3100E08935 /* Frameworks */,
+				5F36B22C2BE7AB3100E08935 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F36B2302BE7AB3100E08935 /* PBXTargetDependency */,
+			);
+			name = EZMackerUITests;
+			productName = EZMackerUITests;
+			productReference = 5F36B22E2BE7AB3100E08935 /* EZMackerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5F36B20B2BE7AB3000E08935 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					5F36B2122BE7AB3000E08935 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					5F36B2232BE7AB3100E08935 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 5F36B2122BE7AB3000E08935;
+					};
+					5F36B22D2BE7AB3100E08935 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 5F36B2122BE7AB3000E08935;
+					};
+				};
+			};
+			buildConfigurationList = 5F36B20E2BE7AB3000E08935 /* Build configuration list for PBXProject "EZMacker" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5F36B20A2BE7AB3000E08935;
+			productRefGroup = 5F36B2142BE7AB3000E08935 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5F36B2122BE7AB3000E08935 /* EZMacker */,
+				5F36B2232BE7AB3100E08935 /* EZMackerTests */,
+				5F36B22D2BE7AB3100E08935 /* EZMackerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5F36B2112BE7AB3000E08935 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F36B21E2BE7AB3100E08935 /* Preview Assets.xcassets in Resources */,
+				5F36B21B2BE7AB3100E08935 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F36B2222BE7AB3100E08935 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F36B22C2BE7AB3100E08935 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5F36B20F2BE7AB3000E08935 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F36B2192BE7AB3000E08935 /* ContentView.swift in Sources */,
+				5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F36B2202BE7AB3100E08935 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F36B2292BE7AB3100E08935 /* EZMackerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F36B22A2BE7AB3100E08935 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F36B2352BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift in Sources */,
+				5F36B2332BE7AB3100E08935 /* EZMackerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5F36B2262BE7AB3100E08935 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F36B2122BE7AB3000E08935 /* EZMacker */;
+			targetProxy = 5F36B2252BE7AB3100E08935 /* PBXContainerItemProxy */;
+		};
+		5F36B2302BE7AB3100E08935 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F36B2122BE7AB3000E08935 /* EZMacker */;
+			targetProxy = 5F36B22F2BE7AB3100E08935 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5F36B2362BE7AB3100E08935 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5F36B2372BE7AB3100E08935 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		5F36B2392BE7AB3100E08935 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EZMacker/EZMacker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EZMacker/Preview Content\"";
+				DEVELOPMENT_TEAM = C9QJLU3JB2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-.EZMacker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5F36B23A2BE7AB3100E08935 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EZMacker/EZMacker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EZMacker/Preview Content\"";
+				DEVELOPMENT_TEAM = C9QJLU3JB2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-.EZMacker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		5F36B23C2BE7AB3100E08935 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C9QJLU3JB2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-.EZMackerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EZMacker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EZMacker";
+			};
+			name = Debug;
+		};
+		5F36B23D2BE7AB3100E08935 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C9QJLU3JB2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-.EZMackerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EZMacker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EZMacker";
+			};
+			name = Release;
+		};
+		5F36B23F2BE7AB3100E08935 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C9QJLU3JB2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-.EZMackerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = EZMacker;
+			};
+			name = Debug;
+		};
+		5F36B2402BE7AB3100E08935 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C9QJLU3JB2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-.EZMackerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = EZMacker;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5F36B20E2BE7AB3000E08935 /* Build configuration list for PBXProject "EZMacker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F36B2362BE7AB3100E08935 /* Debug */,
+				5F36B2372BE7AB3100E08935 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F36B2382BE7AB3100E08935 /* Build configuration list for PBXNativeTarget "EZMacker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F36B2392BE7AB3100E08935 /* Debug */,
+				5F36B23A2BE7AB3100E08935 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F36B23B2BE7AB3100E08935 /* Build configuration list for PBXNativeTarget "EZMackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F36B23C2BE7AB3100E08935 /* Debug */,
+				5F36B23D2BE7AB3100E08935 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F36B23E2BE7AB3100E08935 /* Build configuration list for PBXNativeTarget "EZMackerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F36B23F2BE7AB3100E08935 /* Debug */,
+				5F36B2402BE7AB3100E08935 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5F36B20B2BE7AB3000E08935 /* Project object */;
+}
