@@ -26,7 +26,7 @@
 		5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5E12BE7C586004509BC /* CategoryType.swift */; };
 		5F70D5E52BE7C82D004509BC /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5E42BE7C82D004509BC /* CustomFont.swift */; };
 		5F70D5E72BE7C8D5004509BC /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5E62BE7C8D5004509BC /* ColorType.swift */; };
-		5F70D5EB2BE7CAF1004509BC /* FontSizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5EA2BE7CAF1004509BC /* FontSizeType.swift */; };
+		5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +70,7 @@
 		5F70D5E12BE7C586004509BC /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		5F70D5E42BE7C82D004509BC /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		5F70D5E62BE7C8D5004509BC /* ColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
-		5F70D5EA2BE7CAF1004509BC /* FontSizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FontSizeType.swift; path = ../../../../../segassdc/Downloads/FontSizeType.swift; sourceTree = "<group>"; };
+		5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +121,6 @@
 		5F36B2152BE7AB3000E08935 /* EZMacker */ = {
 			isa = PBXGroup;
 			children = (
-				5F36B2482BE7B1AE00E08935 /* Configuration */,
 				5F36B2472BE7B1A600E08935 /* ViewModel */,
 				5F36B2462BE7B19E00E08935 /* View */,
 				5F36B2452BE7B19500E08935 /* Service */,
@@ -191,13 +190,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		5F36B2482BE7B1AE00E08935 /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Configuration;
-			sourceTree = "<group>";
-		};
 		5F36B24C2BE7B25600E08935 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,7 +203,7 @@
 			children = (
 				5F70D5E12BE7C586004509BC /* CategoryType.swift */,
 				5F70D5E62BE7C8D5004509BC /* ColorType.swift */,
-				5F70D5EA2BE7CAF1004509BC /* FontSizeType.swift */,
+				5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -355,10 +347,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F36B2592BE7B60000E08935 /* SmartBatteryView.swift in Sources */,
-				5F70D5EB2BE7CAF1004509BC /* FontSizeType.swift in Sources */,
 				5F70D5E72BE7C8D5004509BC /* ColorType.swift in Sources */,
 				5F70D5DB2BE7BDC7004509BC /* SmartFileViewModel.swift in Sources */,
 				5F36B25E2BE7B68400E08935 /* ColorSchemeToolbarView.swift in Sources */,
+				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
 				5F70D5E52BE7C82D004509BC /* CustomFont.swift in Sources */,
 				5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */,
 				5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */,
