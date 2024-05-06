@@ -6,16 +6,26 @@
 //
 
 import SwiftUI
-
 struct MainContentView: View {
+    @State private var selectionValue = CategoryType.smartBattery
+    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme = AppStorageKey.colorSchme.byDefault
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationSplitView {
+            CategoryView(selectionValue: $selectionValue)
+                .frame(width: 200)
+                
+        } detail: {
+            switch selectionValue {
+            case .smartBattery:
+                SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService()))
+            case .smartFile:
+                SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService()))
+            }
         }
-        .padding()
+        .toolbar(id: ToolbarKey.MainToolbar.name) {
+            ColorSchemeToolbarView()
+        }
+        .preferredColorScheme(colorScheme == ColorSchemeMode.Dark.title ? .dark : .light)
     }
 }
 
