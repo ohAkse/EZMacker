@@ -8,6 +8,8 @@
 import SwiftUI
 struct SmartFileView: View {
     @ObservedObject var smartFileViewModel: SmartFileViewModel
+    @State private var toast: Toast?
+
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -21,5 +23,6 @@ struct SmartFileView: View {
 }
 
 #Preview {
-    SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService()))
+    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService()))
+    
 }

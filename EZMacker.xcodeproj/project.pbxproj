@@ -28,6 +28,10 @@
 		5F6D4E6A2BE88AD9004B94F8 /* ToolbarKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E692BE88AD9004B94F8 /* ToolbarKey.swift */; };
 		5F6D4E6C2BE88CC6004B94F8 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E6B2BE88CC6004B94F8 /* ThemeColor.swift */; };
 		5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E6D2BE88CE1004B94F8 /* ColorSchemeMode.swift */; };
+		5F6D4E732BE8A262004B94F8 /* Extension + View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E722BE8A262004B94F8 /* Extension + View.swift */; };
+		5F6D4E762BE8A2A4004B94F8 /* ToastStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E752BE8A2A4004B94F8 /* ToastStyle.swift */; };
+		5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E782BE8A2DA004B94F8 /* ToastView.swift */; };
+		5F6D4E7C2BE8A328004B94F8 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E7B2BE8A328004B94F8 /* Toast.swift */; };
 		5F70D5DB2BE7BDC7004509BC /* SmartFileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5DA2BE7BDC7004509BC /* SmartFileViewModel.swift */; };
 		5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5DC2BE7BDE0004509BC /* SmartBatteryViewModel.swift */; };
 		5F70D5DF2BE7BE26004509BC /* AppSmartFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5DE2BE7BE26004509BC /* AppSmartFileService.swift */; };
@@ -56,7 +60,7 @@
 /* Begin PBXFileReference section */
 		5F36B2132BE7AB3000E08935 /* EZMacker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZMacker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerApp.swift; sourceTree = "<group>"; };
-		5F36B21A2BE7AB3100E08935 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5F36B21A2BE7AB3100E08935 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = EZMacker/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		5F36B21D2BE7AB3100E08935 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5F36B21F2BE7AB3100E08935 /* EZMacker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EZMacker.entitlements; sourceTree = "<group>"; };
 		5F36B2242BE7AB3100E08935 /* EZMackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZMackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +83,10 @@
 		5F6D4E692BE88AD9004B94F8 /* ToolbarKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarKey.swift; sourceTree = "<group>"; };
 		5F6D4E6B2BE88CC6004B94F8 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		5F6D4E6D2BE88CE1004B94F8 /* ColorSchemeMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeMode.swift; sourceTree = "<group>"; };
+		5F6D4E722BE8A262004B94F8 /* Extension + View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + View.swift"; sourceTree = "<group>"; };
+		5F6D4E752BE8A2A4004B94F8 /* ToastStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStyle.swift; sourceTree = "<group>"; };
+		5F6D4E782BE8A2DA004B94F8 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		5F6D4E7B2BE8A328004B94F8 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		5F70D5DA2BE7BDC7004509BC /* SmartFileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileViewModel.swift; sourceTree = "<group>"; };
 		5F70D5DC2BE7BDE0004509BC /* SmartBatteryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartBatteryViewModel.swift; sourceTree = "<group>"; };
 		5F70D5DE2BE7BE26004509BC /* AppSmartFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartFileService.swift; sourceTree = "<group>"; };
@@ -188,6 +196,7 @@
 		5F36B2462BE7B19E00E08935 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5F6D4E712BE8A243004B94F8 /* Toast */,
 				5F70D5E32BE7C810004509BC /* Custom */,
 				5F70D5E02BE7C576004509BC /* Enum */,
 				5F36B2562BE7B45600E08935 /* CategoryView.swift */,
@@ -260,8 +269,35 @@
 			isa = PBXGroup;
 			children = (
 				5F6D4E672BE88A03004B94F8 /* Date + Extension.swift */,
+				5F6D4E722BE8A262004B94F8 /* Extension + View.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		5F6D4E712BE8A243004B94F8 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				5F6D4E7A2BE8A312004B94F8 /* Model */,
+				5F6D4E742BE8A28A004B94F8 /* Enum */,
+				5F6D4E782BE8A2DA004B94F8 /* ToastView.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		5F6D4E742BE8A28A004B94F8 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				5F6D4E752BE8A2A4004B94F8 /* ToastStyle.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		5F6D4E7A2BE8A312004B94F8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5F6D4E7B2BE8A328004B94F8 /* Toast.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		5F70D5E02BE7C576004509BC /* Enum */ = {
@@ -415,10 +451,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F6D4E762BE8A2A4004B94F8 /* ToastStyle.swift in Sources */,
 				5F6D4E652BE889BB004B94F8 /* Logger.swift in Sources */,
 				5F36B2592BE7B60000E08935 /* SmartBatteryView.swift in Sources */,
 				5F6D4E682BE88A03004B94F8 /* Date + Extension.swift in Sources */,
 				5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */,
+				5F6D4E732BE8A262004B94F8 /* Extension + View.swift in Sources */,
 				5F70D5DB2BE7BDC7004509BC /* SmartFileViewModel.swift in Sources */,
 				5F36B25E2BE7B68400E08935 /* ColorSchemeToolbarView.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
@@ -429,10 +467,12 @@
 				5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */,
 				5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */,
 				5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */,
+				5F6D4E7C2BE8A328004B94F8 /* Toast.swift in Sources */,
 				5F6D4E5A2BE87C7E004B94F8 /* CustomImage.swift in Sources */,
 				5F70D5DF2BE7BE26004509BC /* AppSmartFileService.swift in Sources */,
 				5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */,
 				5F6D4E6C2BE88CC6004B94F8 /* ThemeColor.swift in Sources */,
+				5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */,
 				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,
 				5F36B2572BE7B45600E08935 /* CategoryView.swift in Sources */,
 				5F36B25B2BE7B60900E08935 /* SmartFileView.swift in Sources */,

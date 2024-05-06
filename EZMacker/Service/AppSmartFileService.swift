@@ -12,6 +12,6 @@ protocol AppSmartFileProvidable {
 
 struct AppSmartFileService: AppSmartFileProvidable {
     func getFileList() {
-        Logger.writeLog(.error, message: "AppSmartFileService getFileList called")
+        Logger.writeLog(.info, message: "AppSmartFileService getFileList called")
     }
 }

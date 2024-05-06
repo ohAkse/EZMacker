@@ -14,6 +14,8 @@ struct CategoryView: View {
                 categoryRow(for: .smartBattery)
                 categoryRow(for: .smartFile)
             }
+            .customText(fontSize: FontSizeType.small.size, isBold: false)
+            .frame(minHeight: 40)
         }
     }
     private func categoryRow(for category: CategoryType) -> some View {
@@ -24,6 +26,7 @@ struct CategoryView: View {
                  .customText(fontSize: FontSizeType.small.size, isBold: false)
          }
          .padding(.leading, 5)
+         .frame(minHeight: 20)
          .tag(category)
      }
 }

@@ -13,6 +13,7 @@ struct MainContentView: View {
         NavigationSplitView {
             CategoryView(selectionValue: $selectionValue)
                 .frame(width: 200)
+                
         } detail: {
             switch selectionValue {
             case .smartBattery:
