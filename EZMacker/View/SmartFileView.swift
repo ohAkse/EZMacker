@@ -8,20 +8,12 @@
 import SwiftUI
 struct SmartFileView: View {
     @ObservedObject var smartFileViewModel: SmartFileViewModel
-    @Environment(\.colorScheme) var colorScheme
-    private var textColor: Color {
-        return colorScheme == .light ? ThemeColor.lightBlack.color : ThemeColor.lightWhite.color
-    }
-    private var imageForegroundColor: Color {
-        return colorScheme == .light ? ThemeColor.lightGreen.color : ThemeColor.lightBlue.color
-    }
     var body: some View {
         VStack {
             Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(imageForegroundColor)
+                .customImage(imageScale: .large)
             Text(CategoryType.smartFile.title)
-                .customText(textColor: textColor, fontSize: FontSizeType.small.size)
+                .customText(fontSize: FontSizeType.small.size, isBold: false)
         }
         .navigationTitle(CategoryType.smartFile.title)
         .padding()
