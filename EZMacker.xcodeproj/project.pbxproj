@@ -38,6 +38,9 @@
 		5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5E12BE7C586004509BC /* CategoryType.swift */; };
 		5F70D5E52BE7C82D004509BC /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5E42BE7C82D004509BC /* CustomFont.swift */; };
 		5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */; };
+		5FEE27C12BE8DB0500847761 /* KeyboardModifierFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C02BE8DB0500847761 /* KeyboardModifierFlag.swift */; };
+		5FEE27C32BE8DB1900847761 /* KeyboardCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C22BE8DB1900847761 /* KeyboardCharacter.swift */; };
+		5FEE27C52BE8DC4800847761 /* KeyboardShortCutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C42BE8DC4800847761 /* KeyboardShortCutHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +96,9 @@
 		5F70D5E12BE7C586004509BC /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		5F70D5E42BE7C82D004509BC /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeType.swift; sourceTree = "<group>"; };
+		5FEE27C02BE8DB0500847761 /* KeyboardModifierFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardModifierFlag.swift; sourceTree = "<group>"; };
+		5FEE27C22BE8DB1900847761 /* KeyboardCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCharacter.swift; sourceTree = "<group>"; };
+		5FEE27C42BE8DC4800847761 /* KeyboardShortCutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortCutHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,7 @@
 		5F36B2152BE7AB3000E08935 /* EZMacker */ = {
 			isa = PBXGroup;
 			children = (
+				5FEE27BD2BE8DA9400847761 /* Configuration */,
 				5F6D4E662BE889EC004B94F8 /* Extension */,
 				5F6D4E632BE88994004B94F8 /* Util */,
 				5F6D4E5B2BE881BD004B94F8 /* Storage */,
@@ -321,6 +328,32 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		5FEE27BD2BE8DA9400847761 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				5FEE27BE2BE8DA9C00847761 /* KeyboardShortcut */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		5FEE27BE2BE8DA9C00847761 /* KeyboardShortcut */ = {
+			isa = PBXGroup;
+			children = (
+				5FEE27BF2BE8DAF200847761 /* Enum */,
+				5FEE27C42BE8DC4800847761 /* KeyboardShortCutHandler.swift */,
+			);
+			path = KeyboardShortcut;
+			sourceTree = "<group>";
+		};
+		5FEE27BF2BE8DAF200847761 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				5FEE27C02BE8DB0500847761 /* KeyboardModifierFlag.swift */,
+				5FEE27C22BE8DB1900847761 /* KeyboardCharacter.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -460,12 +493,15 @@
 				5F70D5DB2BE7BDC7004509BC /* SmartFileViewModel.swift in Sources */,
 				5F36B25E2BE7B68400E08935 /* ColorSchemeToolbarView.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
+				5FEE27C52BE8DC4800847761 /* KeyboardShortCutHandler.swift in Sources */,
 				5F6D4E622BE888D9004B94F8 /* UserDefaultManager.swift in Sources */,
+				5FEE27C12BE8DB0500847761 /* KeyboardModifierFlag.swift in Sources */,
 				5F70D5E52BE7C82D004509BC /* CustomFont.swift in Sources */,
 				5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeMode.swift in Sources */,
 				5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */,
 				5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */,
 				5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */,
+				5FEE27C32BE8DB1900847761 /* KeyboardCharacter.swift in Sources */,
 				5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */,
 				5F6D4E7C2BE8A328004B94F8 /* Toast.swift in Sources */,
 				5F6D4E5A2BE87C7E004B94F8 /* CustomImage.swift in Sources */,
