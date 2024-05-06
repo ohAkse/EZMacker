@@ -20,8 +20,14 @@ struct SmartBatteryView: View {
                 .onTapGesture {
                     toast = Toast(type: .success, title: "테스트", message: "테스트 메시지 입니다")
                 }
-            Text(CategoryType.smartBattery.title)
+            if smartBatteryViewModel.isCharging {
+                Text("충전중")
                 .customText(fontSize: FontSizeType.small.size, isBold: false)
+            } else {
+                Text("충전아님")
+                .customText(fontSize: FontSizeType.small.size, isBold: false)
+            }
+            
         }
         .navigationTitle(CategoryType.smartBattery.title)
         .padding()
