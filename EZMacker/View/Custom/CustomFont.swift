@@ -7,17 +7,31 @@
 
 import SwiftUI
 struct CustomTextModifier: ViewModifier {
-    var textColor: Color
+    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String  = AppStorageKey.colorSchme.byDefault
     var fontSize: CGFloat
+    var isBold: Bool
     
     func body(content: Content) -> some View {
         content.font(.system(size: fontSize))
-            .foregroundColor(textColor)
+            .foregroundColor(textColorForTheme())
+    }
+
+    private func textColorForTheme() -> Color {
+        switch colorScheme {
+        case ColorSchemeMode.Light.title:
+            return ThemeColor.lightBlack.color
+        case ColorSchemeMode.Dark.title:
+            return ThemeColor.lightWhite.color
+        default:
+            Logger.fatalErrorMessage("colorSchme is Empty")
+            return Color.clear
+        }
     }
 }
 
 extension View {
-    func customText(textColor: Color, fontSize: CGFloat) -> some View {
-        modifier(CustomTextModifier(textColor: textColor, fontSize: fontSize))
+    func customText(fontSize: CGFloat, isBold: Bool) -> some View {
+        modifier(CustomTextModifier(fontSize: fontSize, isBold: isBold))
     }
 }
+

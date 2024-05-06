@@ -13,14 +13,13 @@ struct ColorSchemeToolbarView: CustomizableToolbarContent {
     
     var body: some CustomizableToolbarContent {
         if isShowChooseColorScheme {
-            ToolbarItem(id: "ColorSchemePicker", placement: .primaryAction) {
+            ToolbarItem(id: ToolbarKey.ColorSchemePicker.name, placement: .primaryAction) {
                 HStack(spacing: 0) {
-                    ColorSchemeButtonView(buttonTitle: "Light", newColorSchemeValueToOnTap: "light")
-                    
-                    ColorSchemeButtonView(buttonTitle: "Dark", newColorSchemeValueToOnTap: "dark")
+                    ColorSchemeButtonView(buttonTitle: ColorSchemeMode.Light.title, buttonTag: ColorSchemeMode.Light.tag)
+                    ColorSchemeButtonView(buttonTitle: ColorSchemeMode.Dark.title, buttonTag: ColorSchemeMode.Dark.tag )
                     
                 }
-                .padding(1)
+                .padding(3)
                 .overlay {
                     Capsule()
                         .stroke(.blue, lineWidth: 1)
@@ -29,18 +28,14 @@ struct ColorSchemeToolbarView: CustomizableToolbarContent {
             }
         }
         
-        ToolbarItem(id: "ColorSchemeButton", placement: .primaryAction) {
+        ToolbarItem(id: ToolbarKey.ColorSchemeButton.name, placement: .primaryAction) {
             Button {
                 withAnimation(.linear) {
                     isShowChooseColorScheme.toggle()
-                    if rotateDegree == 0 {
-                        rotateDegree = -180
-                    } else {
-                        rotateDegree = 0
-                    }
+                    rotateDegree = rotateDegree == 0 ? -180 : 0
                 }
             } label: {
-                Image(systemName: "circle.righthalf.filled")
+                Image(systemName: ToolbarImage.colorSchemeButton.systemName)
                     .rotationEffect(.degrees(Double(rotateDegree)))
                     .animation(.linear(duration: 0.2), value: rotateDegree)
             }
@@ -48,21 +43,15 @@ struct ColorSchemeToolbarView: CustomizableToolbarContent {
     }
 }
 struct ColorSchemeButtonView: View {
-    @Environment(\.colorScheme) var colorScheme
-    
-    @AppStorage("preferredColorScheme") var preferredColorScheme = ""
+    @AppStorage(AppStorageKey.colorSchme.name) var selectedColorScheme = AppStorageKey.colorSchme.byDefault
     
     let buttonTitle: String
-    let newColorSchemeValueToOnTap: String
+    let buttonTag: Int
     
     var body: some View {
         Button {
-            if newColorSchemeValueToOnTap == "light" {
-                NSApplication.shared.appearance = NSAppearance(named: .aqua)
-            } else if newColorSchemeValueToOnTap == "dark" {
-                NSApplication.shared.appearance = NSAppearance(named: .darkAqua)
-            }
-            preferredColorScheme = newColorSchemeValueToOnTap
+            NSApplication.shared.appearance = buttonTag == ColorSchemeMode.Light.tag ? NSAppearance(named: .aqua) : NSAppearance(named: .darkAqua)
+            selectedColorScheme = buttonTag == 0 ? ColorSchemeMode.Light.title : ColorSchemeMode.Dark.title
         } label: {
             Text(buttonTitle)
         }

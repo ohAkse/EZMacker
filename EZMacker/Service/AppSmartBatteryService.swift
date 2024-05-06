@@ -13,7 +13,7 @@ protocol AppSmartBatteryRegistryProvidable {
 
 struct AppSmartBatteryService: AppSmartBatteryRegistryProvidable {
     func getRegistry(forKey key: AppSmartBatteryKeyType) -> Any? {
-        print("AppSmartBatteryService getRegistry called")
+        Logger.writeLog(.info, message: "AppSmartBatteryService getRegistry called")
         return nil
     }
 }
