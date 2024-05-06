@@ -2,7 +2,7 @@
 //  SmartBatteryView.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/5/24.
+//  Created by 박유경 on 5/6/24.
 //
 
 import SwiftUI
@@ -32,3 +32,4 @@ struct SmartBatteryView: View {
 #Preview {
     SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService()))
 }
+

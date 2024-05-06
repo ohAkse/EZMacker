@@ -16,10 +16,6 @@
 		5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2432BE7ACC000E08935 /* MainContentView.swift */; };
 		5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */; };
 		5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */; };
-		5F36B2572BE7B45600E08935 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2562BE7B45600E08935 /* CategoryView.swift */; };
-		5F36B2592BE7B60000E08935 /* SmartBatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2582BE7B60000E08935 /* SmartBatteryView.swift */; };
-		5F36B25B2BE7B60900E08935 /* SmartFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B25A2BE7B60900E08935 /* SmartFileView.swift */; };
-		5F36B25E2BE7B68400E08935 /* ColorSchemeToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B25D2BE7B68400E08935 /* ColorSchemeToolbarView.swift */; };
 		5F6D4E5A2BE87C7E004B94F8 /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E592BE87C7E004B94F8 /* CustomImage.swift */; };
 		5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E5F2BE88213004B94F8 /* AppStorageKey.swift */; };
 		5F6D4E622BE888D9004B94F8 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E612BE888D9004B94F8 /* UserDefaultManager.swift */; };
@@ -41,6 +37,10 @@
 		5FEE27C12BE8DB0500847761 /* KeyboardModifierFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C02BE8DB0500847761 /* KeyboardModifierFlag.swift */; };
 		5FEE27C32BE8DB1900847761 /* KeyboardCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C22BE8DB1900847761 /* KeyboardCharacter.swift */; };
 		5FEE27C52BE8DC4800847761 /* KeyboardShortCutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C42BE8DC4800847761 /* KeyboardShortCutHandler.swift */; };
+		5FEE27C82BE9015400847761 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C72BE9015400847761 /* CategoryView.swift */; };
+		5FEE27CB2BE9018800847761 /* SmartFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27CA2BE9018800847761 /* SmartFileView.swift */; };
+		5FEE27CD2BE901A000847761 /* SmartBatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27CC2BE901A000847761 /* SmartBatteryView.swift */; };
+		5FEE27CF2BE901D900847761 /* ColorSchemeToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27CE2BE901D900847761 /* ColorSchemeToolbarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,10 +74,6 @@
 		5F36B2432BE7ACC000E08935 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 		5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryService.swift; sourceTree = "<group>"; };
 		5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryKeyType.swift; sourceTree = "<group>"; };
-		5F36B2562BE7B45600E08935 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
-		5F36B2582BE7B60000E08935 /* SmartBatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartBatteryView.swift; sourceTree = "<group>"; };
-		5F36B25A2BE7B60900E08935 /* SmartFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileView.swift; sourceTree = "<group>"; };
-		5F36B25D2BE7B68400E08935 /* ColorSchemeToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeToolbarView.swift; sourceTree = "<group>"; };
 		5F6D4E592BE87C7E004B94F8 /* CustomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
 		5F6D4E5F2BE88213004B94F8 /* AppStorageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageKey.swift; sourceTree = "<group>"; };
 		5F6D4E612BE888D9004B94F8 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
@@ -99,6 +95,10 @@
 		5FEE27C02BE8DB0500847761 /* KeyboardModifierFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardModifierFlag.swift; sourceTree = "<group>"; };
 		5FEE27C22BE8DB1900847761 /* KeyboardCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCharacter.swift; sourceTree = "<group>"; };
 		5FEE27C42BE8DC4800847761 /* KeyboardShortCutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortCutHandler.swift; sourceTree = "<group>"; };
+		5FEE27C72BE9015400847761 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		5FEE27CA2BE9018800847761 /* SmartFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileView.swift; sourceTree = "<group>"; };
+		5FEE27CC2BE901A000847761 /* SmartBatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartBatteryView.swift; sourceTree = "<group>"; };
+		5FEE27CE2BE901D900847761 /* ColorSchemeToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeToolbarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,13 +203,10 @@
 		5F36B2462BE7B19E00E08935 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5FEE27C62BE9012900847761 /* NavigationSplit */,
 				5F6D4E712BE8A243004B94F8 /* Toast */,
 				5F70D5E32BE7C810004509BC /* Custom */,
 				5F70D5E02BE7C576004509BC /* Enum */,
-				5F36B2562BE7B45600E08935 /* CategoryView.swift */,
-				5F36B25A2BE7B60900E08935 /* SmartFileView.swift */,
-				5F36B2582BE7B60000E08935 /* SmartBatteryView.swift */,
-				5F36B25D2BE7B68400E08935 /* ColorSchemeToolbarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -354,6 +351,25 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		5FEE27C62BE9012900847761 /* NavigationSplit */ = {
+			isa = PBXGroup;
+			children = (
+				5FEE27C92BE9017C00847761 /* Detail */,
+				5FEE27C72BE9015400847761 /* CategoryView.swift */,
+				5FEE27CE2BE901D900847761 /* ColorSchemeToolbarView.swift */,
+			);
+			path = NavigationSplit;
+			sourceTree = "<group>";
+		};
+		5FEE27C92BE9017C00847761 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5FEE27CA2BE9018800847761 /* SmartFileView.swift */,
+				5FEE27CC2BE901A000847761 /* SmartBatteryView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -486,22 +502,24 @@
 			files = (
 				5F6D4E762BE8A2A4004B94F8 /* ToastStyle.swift in Sources */,
 				5F6D4E652BE889BB004B94F8 /* Logger.swift in Sources */,
-				5F36B2592BE7B60000E08935 /* SmartBatteryView.swift in Sources */,
 				5F6D4E682BE88A03004B94F8 /* Date + Extension.swift in Sources */,
 				5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */,
 				5F6D4E732BE8A262004B94F8 /* Extension + View.swift in Sources */,
 				5F70D5DB2BE7BDC7004509BC /* SmartFileViewModel.swift in Sources */,
-				5F36B25E2BE7B68400E08935 /* ColorSchemeToolbarView.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
 				5FEE27C52BE8DC4800847761 /* KeyboardShortCutHandler.swift in Sources */,
 				5F6D4E622BE888D9004B94F8 /* UserDefaultManager.swift in Sources */,
 				5FEE27C12BE8DB0500847761 /* KeyboardModifierFlag.swift in Sources */,
 				5F70D5E52BE7C82D004509BC /* CustomFont.swift in Sources */,
 				5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeMode.swift in Sources */,
+				5FEE27CD2BE901A000847761 /* SmartBatteryView.swift in Sources */,
+				5FEE27C82BE9015400847761 /* CategoryView.swift in Sources */,
+				5FEE27CF2BE901D900847761 /* ColorSchemeToolbarView.swift in Sources */,
 				5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */,
 				5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */,
 				5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */,
 				5FEE27C32BE8DB1900847761 /* KeyboardCharacter.swift in Sources */,
+				5FEE27CB2BE9018800847761 /* SmartFileView.swift in Sources */,
 				5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */,
 				5F6D4E7C2BE8A328004B94F8 /* Toast.swift in Sources */,
 				5F6D4E5A2BE87C7E004B94F8 /* CustomImage.swift in Sources */,
@@ -510,8 +528,6 @@
 				5F6D4E6C2BE88CC6004B94F8 /* ThemeColor.swift in Sources */,
 				5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */,
 				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,
-				5F36B2572BE7B45600E08935 /* CategoryView.swift in Sources */,
-				5F36B25B2BE7B60900E08935 /* SmartFileView.swift in Sources */,
 				5F6D4E6A2BE88AD9004B94F8 /* ToolbarKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
