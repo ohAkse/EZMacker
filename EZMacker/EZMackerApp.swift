@@ -15,6 +15,7 @@ struct EZMackerApp: App {
             MainContentView().frame(minWidth: 100, minHeight: 700)
         }
         .windowToolbarStyle(.unifiedCompact)
+        .commandsRemoved() // 나중에 필요한 커맨드 추가할것.
     }
 }
 
