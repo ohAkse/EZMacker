@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F2DD1892BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */; };
 		5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */; };
 		5F36B21B2BE7AB3100E08935 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F36B21A2BE7AB3100E08935 /* Assets.xcassets */; };
 		5F36B21E2BE7AB3100E08935 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F36B21D2BE7AB3100E08935 /* Preview Assets.xcassets */; };
@@ -34,6 +35,9 @@
 		5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5E12BE7C586004509BC /* CategoryType.swift */; };
 		5F70D5E52BE7C82D004509BC /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5E42BE7C82D004509BC /* CustomFont.swift */; };
 		5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */; };
+		5FD0313A2BEA5E8D009A8169 /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD031392BEA5E8D009A8169 /* Int + Extension.swift */; };
+		5FD73D3B2BEB9A99007A7A85 /* InfoRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD73D3A2BEB9A99007A7A85 /* InfoRectangleView.swift */; };
+		5FD73D3D2BEB9B24007A7A85 /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD73D3C2BEB9B24007A7A85 /* BatteryView.swift */; };
 		5FEE27C12BE8DB0500847761 /* KeyboardModifierFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C02BE8DB0500847761 /* KeyboardModifierFlag.swift */; };
 		5FEE27C32BE8DB1900847761 /* KeyboardCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C22BE8DB1900847761 /* KeyboardCharacter.swift */; };
 		5FEE27C52BE8DC4800847761 /* KeyboardShortCutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C42BE8DC4800847761 /* KeyboardShortCutHandler.swift */; };
@@ -61,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryPowerSourceType.swift; sourceTree = "<group>"; };
 		5F36B2132BE7AB3000E08935 /* EZMacker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZMacker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerApp.swift; sourceTree = "<group>"; };
 		5F36B21A2BE7AB3100E08935 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = EZMacker/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -92,6 +97,9 @@
 		5F70D5E12BE7C586004509BC /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		5F70D5E42BE7C82D004509BC /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeType.swift; sourceTree = "<group>"; };
+		5FD031392BEA5E8D009A8169 /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
+		5FD73D3A2BEB9A99007A7A85 /* InfoRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRectangleView.swift; sourceTree = "<group>"; };
+		5FD73D3C2BEB9B24007A7A85 /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
 		5FEE27C02BE8DB0500847761 /* KeyboardModifierFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardModifierFlag.swift; sourceTree = "<group>"; };
 		5FEE27C22BE8DB1900847761 /* KeyboardCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCharacter.swift; sourceTree = "<group>"; };
 		5FEE27C42BE8DC4800847761 /* KeyboardShortCutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortCutHandler.swift; sourceTree = "<group>"; };
@@ -224,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */,
+				5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -274,6 +283,7 @@
 			children = (
 				5F6D4E672BE88A03004B94F8 /* Date + Extension.swift */,
 				5F6D4E722BE8A262004B94F8 /* Extension + View.swift */,
+				5FD031392BEA5E8D009A8169 /* Int + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -321,6 +331,8 @@
 			children = (
 				5F70D5E42BE7C82D004509BC /* CustomFont.swift */,
 				5F6D4E592BE87C7E004B94F8 /* CustomImage.swift */,
+				5FD73D3A2BEB9A99007A7A85 /* InfoRectangleView.swift */,
+				5FD73D3C2BEB9B24007A7A85 /* BatteryView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -502,6 +514,8 @@
 			files = (
 				5F6D4E762BE8A2A4004B94F8 /* ToastStyle.swift in Sources */,
 				5F6D4E652BE889BB004B94F8 /* Logger.swift in Sources */,
+				5FD73D3D2BEB9B24007A7A85 /* BatteryView.swift in Sources */,
+				5FD0313A2BEA5E8D009A8169 /* Int + Extension.swift in Sources */,
 				5F6D4E682BE88A03004B94F8 /* Date + Extension.swift in Sources */,
 				5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */,
 				5F6D4E732BE8A262004B94F8 /* Extension + View.swift in Sources */,
@@ -515,6 +529,7 @@
 				5FEE27CD2BE901A000847761 /* SmartBatteryView.swift in Sources */,
 				5FEE27C82BE9015400847761 /* CategoryView.swift in Sources */,
 				5FEE27CF2BE901D900847761 /* ColorSchemeToolbarView.swift in Sources */,
+				5F2DD1892BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift in Sources */,
 				5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */,
 				5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */,
 				5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */,
@@ -528,6 +543,7 @@
 				5F6D4E6C2BE88CC6004B94F8 /* ThemeColor.swift in Sources */,
 				5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */,
 				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,
+				5FD73D3B2BEB9A99007A7A85 /* InfoRectangleView.swift in Sources */,
 				5F6D4E6A2BE88AD9004B94F8 /* ToolbarKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,7 +13,7 @@ struct SmartFileView: View {
     var body: some View {
         VStack {
             Image(systemName: "globe")
-                .customImage(imageScale: .large)
+                .customImage(imageScale: .large, width:20, height: 20)
             Text(CategoryType.smartFile.title)
                 .customText(fontSize: FontSizeType.small.size, isBold: false)
         }

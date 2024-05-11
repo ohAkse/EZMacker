@@ -1,28 +1,24 @@
-//
-//  MainContentView.swift
-//  EZMacker
-//
-//  Created by 박유경 on 5/5/24.
-//
-
 import SwiftUI
+
 struct MainContentView: View {
     @AppStorage(AppStorageKey.colorSchme.name) var colorScheme = AppStorageKey.colorSchme.byDefault
     @State private var selectionValue = CategoryType.smartBattery
-    @State private var isShowChooseColorScheme = false 
+    @State private var isShowChooseColorScheme = false
     @State private var rotateDegree = 0
     
     var body: some View {
         NavigationSplitView {
             CategoryView(selectionValue: $selectionValue)
-                .frame(width: 200)
+                .frame(minWidth: 200)
                 
         } detail: {
-            switch selectionValue {
-            case .smartBattery:
-                SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService()))
-            case .smartFile:
-                SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService()))
+            GeometryReader { geo in 
+                switch selectionValue {
+                case .smartBattery:
+                    SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService()))
+                case .smartFile:
+                    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService()))
+                }
             }
         }
         .toolbar(id: ToolbarKey.MainToolbar.name) {
@@ -56,9 +52,4 @@ struct MainContentView: View {
         }
         .preferredColorScheme(colorScheme == ColorSchemeMode.Dark.title ? .dark : .light)
     }
-}
-
-
-#Preview {
-    MainContentView()
 }

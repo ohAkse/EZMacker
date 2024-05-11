@@ -10,9 +10,11 @@ import IOKit.ps
 import Combine
 protocol AppSmartBatteryRegistryProvidable {
     func getRegistry(forKey key: AppSmartBatteryKeyType) -> Future<Any?, Never>
+    func getPowerSourceValue<T>(for key: AppSmartBatteryPowerSourceType, defaultValue: T)  -> Future<T, Never>
 }
 
 struct AppSmartBatteryService: AppSmartBatteryRegistryProvidable {
+
     let service = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceNameMatching("AppleSmartBattery"))
 
     func getRegistry(forKey key: AppSmartBatteryKeyType) -> Future<Any?, Never> {
@@ -24,5 +26,22 @@ struct AppSmartBatteryService: AppSmartBatteryRegistryProvidable {
             promise(.success(result))
         }
     }
+    func getPowerSourceValue<T>(for key: AppSmartBatteryPowerSourceType, defaultValue: T) -> Future<T, Never> {
+        return Future<T, Never> { promise in
+            let psInfo = IOPSCopyPowerSourcesInfo().takeRetainedValue()
+            let psList = IOPSCopyPowerSourcesList(psInfo).takeRetainedValue() as [CFTypeRef]
+            
+            var powerSouceInfo: T = defaultValue
+            
+            for ps in psList {
+                if let psDesc = IOPSGetPowerSourceDescription(psInfo, ps).takeUnretainedValue() as? [String: Any],
+                   let timeValue = psDesc[key.ioRegistryKey] as? T {
+                    powerSouceInfo = timeValue
+                    promise(.success(powerSouceInfo))
+                    return
+                }
+            }
+            promise(.success(powerSouceInfo))
+        }
+    }
 }
-
