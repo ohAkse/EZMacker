@@ -22,7 +22,10 @@ class SmartBatteryViewModel: ObservableObject {
     @Published var cycleCount = 0
     @Published var maxCapacity = 0
     @Published var healthState = ""
-    @Published var avgTimeToEmpty = 0
+    @Published var batteryMaxCapacity = 0
+    @Published var designedCapacity = 0
+    @Published var batteryCellDisconnectCount = 0
+    
     
     
     private var appSmartBatteryService: AppSmartBatteryRegistryProvidable
@@ -62,17 +65,26 @@ class SmartBatteryViewModel: ObservableObject {
             .assign(to: \.currentBatteryCapacity, on: self)
             .store(in: &cancellables)
                 
-        appSmartBatteryService.getRegistry(forKey: .AvgTimeToEmpty)
+        appSmartBatteryService.getRegistry(forKey: .AppleRawMaxCapacity)
             .compactMap { $0 as? Int }
-            .assign(to: \.avgTimeToEmpty, on: self)
+            .assign(to: \.batteryMaxCapacity, on: self)
             .store(in: &cancellables)
-        
         
         appSmartBatteryService.getPowerSourceValue(for: .batteryHealth, defaultValue: "")
             .assign(to: \.healthState, on: self)
             .store(in: &cancellables)
 
-
+        appSmartBatteryService.getRegistry(forKey: .DesignCapacity)
+            .compactMap { $0 as? Int }
+            .assign(to: \.designedCapacity, on: self)
+            .store(in: &cancellables)
+        
+  
+        appSmartBatteryService.getRegistry(forKey: .BatteryCellDisconnectCount)
+            .compactMap { $0 as? Int }
+            .assign(to: \.batteryCellDisconnectCount, on: self)
+            .store(in: &cancellables)
+        
         Publishers.CombineLatest(appSmartBatteryService.getPowerSourceValue(for: .remainingTime, defaultValue: 0), appSmartBatteryService.getPowerSourceValue(for: .chargingTime, defaultValue: 0))
             .sink { [weak self] remainingTime, chargingTime in
                 self?.remainingTime = remainingTime

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InfoRectangleView: View {
+struct InfoRectangleImageWithTextView: View {
     @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
     let imageName: String
     let title: String
@@ -30,7 +30,6 @@ struct InfoRectangleView: View {
                         .padding(.bottom, 5)
                     Text(info)
                 }
-                //.background(Color.red)
                 .lineLimit(1)
                 .font(.system(size: 30))
                 .minimumScaleFactor(0.5)
@@ -57,10 +56,12 @@ struct InfoRectangleView: View {
         }
     }
 }
+#if DEBUG
 struct InfoRectangleView_Preview: PreviewProvider {
     static var previews: some View {
-        InfoRectangleView(imageName: "thermometer.medium", title: "타잍 ", info: "내용", widthScale:0.3, heightScale:0.7)
+        InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "타잍 ", info: "내용", widthScale:0.3, heightScale:0.7)
     }
 }
+#endif
 
 

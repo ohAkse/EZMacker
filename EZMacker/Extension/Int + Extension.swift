@@ -32,4 +32,8 @@ extension Int {
     func toCapacityPerent() -> String {
         return String(self) + "%"
     }
+    
+    func tomAH() -> String {
+        return String(self) + "(mAH)"
+    }
 }
