@@ -42,6 +42,8 @@ struct InfoRectangleImageWithTextView: View {
             }
         }
         .padding(.vertical)
+        .shadow(radius: 5)
+        
     }
     
     private func cardColorForTheme() -> Color {

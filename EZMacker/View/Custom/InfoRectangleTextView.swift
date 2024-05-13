@@ -19,10 +19,10 @@ struct InfoRectangleTextView: View {
             Text(content)
                 .font(.system(size: FontSizeType.large.size))
                 .foregroundStyle(colorForHealthState(healthState: content))
-                Spacer()
+            Spacer()
         }
         .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: 90)
         .background {
             RoundedRectangle(cornerRadius: 15)
                 .foregroundColor(cardColorForTheme())

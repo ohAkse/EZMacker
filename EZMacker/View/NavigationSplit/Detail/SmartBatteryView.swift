@@ -53,24 +53,81 @@ struct SmartBatteryView: View {
                 }
                 .frame(width: geo.size.width * 0.95, height: geo.size.height * 0.2)
                 .background(.yellow)
-                
-                HStack(spacing: 20){
-                    HStack {
-                        Image(systemName: "globe")
-                            .resizable()
-                            .frame(width: geo.size.width * 0.47, height: geo.size.height * 0.4)
-                            .background(Color.red)
-                            .onTapGesture {
-                                toast = Toast(type: .success, title: "테스트", message: "테스트 메시지 입니다")
+                //TODO: 로직 추가할것
+                HStack(alignment:.center ,spacing:0){
+                    VStack(alignment: .leading, spacing:5) {
+                        Text("배터리 관련 설정")
+                        Spacer(minLength: 5)
+                        
+                        HStack {
+                            Text("어댑터 정보")
+                            TextField("어댑터 정보", text: .constant(""))
+                                .padding(5)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.black, lineWidth: 1)
+                                )
+                                .frame(maxWidth: .infinity)
+                        }
+                        Spacer(minLength: 10)
+                        HStack {
+                            Text("어댑터 정보")
+                            TextField("어댑터 정보", text: .constant(""))
+                                .padding(5)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.black, lineWidth: 1)
+                                )
+                                //.frame(maxWidth: .infinity)
+                        }
+                        Spacer(minLength: 5)
+                        HStack {
+                            Text("어댑터 정보")
+                            TextField("어댑터 정보", text: .constant(""))
+                                .padding(5)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.black, lineWidth: 1)
+                                )
+                                .frame(maxWidth: .infinity)
+                        }
+                        Spacer(minLength: 5)
+                        
+                        
+                        VStack(alignment: .trailing) {
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    // 취소 버튼을 클릭했을 때 수행되는 로직 추가
+                                }) {
+                                    Text("취소")
+                                        .padding()
+                                        .foregroundStyle(Color.red)
+                                        .cornerRadius(10)
+                                }
+                                
+                                Button(action: {
+                                    // 확인 버튼을 클릭했을 때 수행되는 로직 추가
+                                }) {
+                                    Text("확인")
+                                        .padding()
+                                        .foregroundStyle(Color.yellow)
+                                        .cornerRadius(10)
+                                }
+                                
                             }
-                    }
-                    
+                        }
+                        Spacer(minLength: 5)
+                    }.frame(width: geo.size.width * 0.47, height: geo.size.height * 0.4)
+                    .padding(.trailing, 20)
                     VStack(spacing: 0) {
-                        InfoRectangleTextView(header: "배터리 상태", content: smartBatteryViewModel.healthState)
-                            .frame(height: geo.size.height * 0.21)
                         Spacer()
+                        InfoRectangleTextView(header: "배터리 상태", content: smartBatteryViewModel.healthState)
+                            .frame(height: geo.size.height * 0.17)
+                        Spacer(minLength: 30)
                         InfoRectangleTextView(header: "베터리셀 끊김 횟수", content: "\(smartBatteryViewModel.batteryCellDisconnectCount)")
-                            .frame(height: geo.size.height * 0.21)
+                            .frame(height: geo.size.height * 0.17)
+                        Spacer()
                     }.frame(width: geo.size.width * 0.46)
                 }
                 

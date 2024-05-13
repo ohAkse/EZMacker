@@ -21,7 +21,7 @@ class SmartBatteryViewModel: ObservableObject {
     @Published var chargingTime = 0
     @Published var cycleCount = 0
     @Published var maxCapacity = 0
-    @Published var healthState = ""
+    @Published var healthState = "계산중.."
     @Published var batteryMaxCapacity = 0
     @Published var designedCapacity = 0
     @Published var batteryCellDisconnectCount = 0
