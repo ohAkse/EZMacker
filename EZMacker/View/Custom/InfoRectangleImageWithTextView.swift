@@ -22,16 +22,18 @@ struct InfoRectangleImageWithTextView: View {
                     .scaledToFit()
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(Color.red, Color.blue)
-                    .frame(width: geo.size.width * widthScale, height: geo.size.height * heightScale)
-                
+                    .padding(20)
+                Spacer()
                 VStack(alignment: .center) {
                     Text(title)
                         .bold()
                         .padding(.bottom, 5)
+                        .font(.system(size: 30))
                     Text(info)
+                        .foregroundStyle(colorForHealthState(healthState: info))
+                        .font(.system(size: 20))
                 }
                 .lineLimit(1)
-                .font(.system(size: 30))
                 .minimumScaleFactor(0.5)
                 .frame(maxWidth: .infinity)
             }
@@ -44,6 +46,19 @@ struct InfoRectangleImageWithTextView: View {
         .padding(.vertical)
         .shadow(radius: 5)
         
+    }
+    
+    func colorForHealthState(healthState: String) -> Color {
+        switch healthState {
+        case "Good":
+            return ThemeColor.lightGreen.color
+        case "Normal":
+            return ThemeColor.lightYellow.color
+        case "Bad":
+            return ThemeColor.lightRed.color
+        default:
+            return ThemeColor.lightBlack.color
+        }
     }
     
     private func cardColorForTheme() -> Color {

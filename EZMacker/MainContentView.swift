@@ -18,6 +18,8 @@ struct MainContentView: View {
                     SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService()))
                 case .smartFile:
                     SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService()))
+                case .notificationAlarm:
+                    NotificationAlarmView(notificationAlarmViewModel: NotificationAlarmViewModel())
                 }
             }
         }
@@ -50,6 +52,7 @@ struct MainContentView: View {
                 }
             }
         }
+        
         .preferredColorScheme(colorScheme == ColorSchemeMode.Dark.title ? .dark : .light)
     }
 }

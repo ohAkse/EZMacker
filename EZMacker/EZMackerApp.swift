@@ -13,7 +13,7 @@ struct EZMackerApp: App {
     var body: some Scene {
         WindowGroup {
             MainContentView()
-                .frame(minWidth: 780, minHeight: 500)
+                .frame(minWidth: 780, minHeight: 750)
         }
         .windowToolbarStyle(.unifiedCompact)
     }

@@ -17,6 +17,12 @@ struct CategoryView: View {
             }
             .customText(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
+            
+            Section(CategorySectionType.settingSection.title) {
+                categoryRow(for: .notificationAlarm)
+            }
+            .customText(fontSize: FontSizeType.small.size, isBold: false)
+            .frame(minHeight: 40)
         }
     }
     private func categoryRow(for category: CategoryType) -> some View {

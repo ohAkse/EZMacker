@@ -55,89 +55,33 @@ struct SmartBatteryView: View {
                 .background(.yellow)
                 //TODO: 로직 추가할것
                 HStack(alignment:.center ,spacing:0){
-                    VStack(alignment: .leading, spacing:5) {
-                        Text("배터리 관련 설정")
-                        Spacer(minLength: 5)
-                        
-                        HStack {
-                            Text("어댑터 정보")
-                            TextField("어댑터 정보", text: .constant(""))
-                                .padding(5)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.black, lineWidth: 1)
-                                )
-                                .frame(maxWidth: .infinity)
-                        }
-                        Spacer(minLength: 10)
-                        HStack {
-                            Text("어댑터 정보")
-                            TextField("어댑터 정보", text: .constant(""))
-                                .padding(5)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.black, lineWidth: 1)
-                                )
-                                //.frame(maxWidth: .infinity)
-                        }
-                        Spacer(minLength: 5)
-                        HStack {
-                            Text("어댑터 정보")
-                            TextField("어댑터 정보", text: .constant(""))
-                                .padding(5)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.black, lineWidth: 1)
-                                )
-                                .frame(maxWidth: .infinity)
-                        }
-                        Spacer(minLength: 5)
-                        
-                        
-                        VStack(alignment: .trailing) {
-                            HStack {
-                                Spacer()
-                                Button(action: {
-                                    // 취소 버튼을 클릭했을 때 수행되는 로직 추가
-                                }) {
-                                    Text("취소")
-                                        .padding()
-                                        .foregroundStyle(Color.red)
-                                        .cornerRadius(10)
-                                }
-                                
-                                Button(action: {
-                                    // 확인 버튼을 클릭했을 때 수행되는 로직 추가
-                                }) {
-                                    Text("확인")
-                                        .padding()
-                                        .foregroundStyle(Color.yellow)
-                                        .cornerRadius(10)
-                                }
-                                
-                            }
-                        }
-                        Spacer(minLength: 5)
-                    }.frame(width: geo.size.width * 0.47, height: geo.size.height * 0.4)
-                    .padding(.trailing, 20)
                     VStack(spacing: 0) {
                         Spacer()
-                        InfoRectangleTextView(header: "배터리 상태", content: smartBatteryViewModel.healthState)
-                            .frame(height: geo.size.height * 0.17)
-                        Spacer(minLength: 30)
-                        InfoRectangleTextView(header: "베터리셀 끊김 횟수", content: "\(smartBatteryViewModel.batteryCellDisconnectCount)")
-                            .frame(height: geo.size.height * 0.17)
+                        InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "어댑터를 꽂으면 정보가 나와요", info: "",widthScale:0.2, heightScale:1)
+                            .frame(height:geo.size.height * 0.4)
                         Spacer()
-                    }.frame(width: geo.size.width * 0.46)
+                    }.frame(width: geo.size.width * 0.47)
+                    .padding(.trailing, 20)
+                    VStack(spacing: 0) {
+                        InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "배터리", info: smartBatteryViewModel.healthState,widthScale:0.2, heightScale:0.5)
+                            .frame(height:geo.size.height * 0.2)
+                        InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "베터리셀 끊김 횟수", info: "\(smartBatteryViewModel.batteryCellDisconnectCount)",widthScale:0.2, heightScale:0.5)
+                            .frame(height:geo.size.height * 0.2)
+                        
+                    }.frame(width: geo.size.width * 0.47)
                 }
                 
                 BatteryView(batteryLevel: smartBatteryViewModel.currentBatteryCapacity)
                     .frame(width: geo.size.width * 0.95, height: 50)
                 HStack(spacing: 30) {
                     InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "사이클 수", info: "\(smartBatteryViewModel.cycleCount)",widthScale:0.2, heightScale:1)
+                        .frame(height:geo.size.height * 0.2)
                     InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "온도", info: smartBatteryViewModel.temperature.toDegree(),widthScale:0.2, heightScale:1)
+                        .frame(height:geo.size.height * 0.2)
                     InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "배터리 용량", info: smartBatteryViewModel.batteryMaxCapacity.tomAH(),widthScale:0.2, heightScale:1)
+                        .frame(height:geo.size.height * 0.2)
                     InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "설계 용량", info: smartBatteryViewModel.designedCapacity.tomAH(),widthScale:0.2, heightScale:1)
+                        .frame(height:geo.size.height * 0.2)
                 }.frame(width: geo.size.width * 0.95)
                 Spacer()
             }
