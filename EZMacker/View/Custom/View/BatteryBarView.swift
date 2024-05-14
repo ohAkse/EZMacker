@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BatteryView: View {
+struct BatteryBarView: View {
     @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
     let batteryLevel: Int
     
@@ -37,7 +37,6 @@ struct BatteryView: View {
             Logger.fatalErrorMessage("colorSchme is Empty")
             return [.clear, .clear]
         }
-        
     }
     
     private func gradientColors() -> [Color] {
@@ -53,8 +52,3 @@ struct BatteryView: View {
     }
 }
 
-
-
-#Preview {
-    BatteryView(batteryLevel: 75)
-}

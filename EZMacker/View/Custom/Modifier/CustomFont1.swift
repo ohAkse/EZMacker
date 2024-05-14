@@ -10,7 +10,7 @@ struct CustomTextModifier: ViewModifier {
     @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String  = AppStorageKey.colorSchme.byDefault
     var fontSize: CGFloat
     var isBold: Bool
-    
+
     func body(content: Content) -> some View {
         content.font(.system(size: fontSize))
             .foregroundColor(textColorForTheme())
@@ -30,7 +30,7 @@ struct CustomTextModifier: ViewModifier {
 }
 
 extension View {
-    func customText(fontSize: CGFloat, isBold: Bool) -> some View {
+    func customFont1(fontSize: CGFloat, isBold: Bool) -> some View {
         modifier(CustomTextModifier(fontSize: fontSize, isBold: isBold))
     }
 }

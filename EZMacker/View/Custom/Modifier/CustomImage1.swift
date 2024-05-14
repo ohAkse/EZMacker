@@ -32,7 +32,7 @@ struct CustomImageModifier: ViewModifier {
 }
 
 extension View {
-    func customImage(imageScale: Image.Scale, width: CGFloat, height: CGFloat) -> some View {
+    func customImage1(imageScale: Image.Scale, width: CGFloat, height: CGFloat) -> some View {
         modifier(CustomImageModifier(imageScale: imageScale, width: width, height: height))
     }
 }
@@ -90,7 +90,7 @@ struct CustomHStackWithCircularBorderModifier: ViewModifier {
                     .resizable()
                     .frame(width: imageWidth, height: imageHeight)
                 Text(labelText)
-                    .customText(fontSize: FontSizeType.large.size, isBold: false)
+                    .customFont1(fontSize: FontSizeType.large.size, isBold: false)
             }
         }
         .background(Color.red) // 기본 배경 추가

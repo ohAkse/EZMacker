@@ -1,13 +1,13 @@
 //
-//  InfoRectangleView.swift
+//  InfoRectangleHImageTextView.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/8/24.
+//  Created by 박유경 on 5/14/24.
 //
 
 import SwiftUI
 
-struct InfoRectangleImageWithTextView: View {
+struct InfoRectangleHImageTextView: View {
     @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
     @State private var isAnimated = false
     let imageName: String
@@ -85,11 +85,12 @@ struct InfoRectangleImageWithTextView: View {
     }
 }
 #if DEBUG
-struct InfoRectangleView_Preview: PreviewProvider {
+struct InfoRectangleHImageTextView_PreView: PreviewProvider {
     static var previews: some View {
-        InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "타잍 ", info: "내용", widthScale:0.3, heightScale:0.7)
+        InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "타잍 ", info: "내용", widthScale:0.3, heightScale:0.7)
     }
 }
 #endif
+
 
 

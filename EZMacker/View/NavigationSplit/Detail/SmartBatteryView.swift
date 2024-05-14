@@ -15,7 +15,7 @@ struct SmartBatteryView: View {
                         if smartBatteryViewModel.currentBatteryCapacity == 100 {
                             VStack(alignment:.leading, spacing: 0) {
                                 HStack(spacing:0) {
-                                    InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "충전 완료! ", info: "", widthScale:0.3, heightScale:0.7)
+                                    InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "충전 완료! ", info: "", widthScale:0.3, heightScale:0.7)
                                 }
                                 .frame(height:geo.size.height * 0.2)
                             }.frame(width: geo.size.width * 0.2, height:geo.size.height * 0.2)
@@ -23,13 +23,13 @@ struct SmartBatteryView: View {
                             if smartBatteryViewModel.isCharging {
                                 VStack(alignment:.leading, spacing: 0) {
                                     HStack(spacing:0) {
-                                        InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "완충까지 ", info: smartBatteryViewModel.chargingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
+                                        InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "완충까지 ", info: smartBatteryViewModel.chargingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
                                     }.frame(height:geo.size.height * 0.2)
                                 }.frame(width: geo.size.width * 0.2, height:geo.size.height * 0.2)
                             } else {
                                 VStack(alignment:.leading, spacing: 0) {
                                     HStack {
-                                        InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "종료까지", info: smartBatteryViewModel.remainingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
+                                        InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "종료까지", info: smartBatteryViewModel.remainingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
                                     }.frame(height:geo.size.height * 0.2)
                                 }.frame(width: geo.size.width * 0.2, height:geo.size.height * 0.15)
                             }
@@ -44,7 +44,7 @@ struct SmartBatteryView: View {
                                     .frame(width: 25, height: 25)
                                     .background(Color.clear)
                                 Text("계산까지 약 1분 소요")
-                                    .customText(fontSize: FontSizeType.small.size, isBold: true)
+                                    .customFont1(fontSize: FontSizeType.small.size, isBold: true)
                                     .frame(minWidth: 100, maxWidth: 250)
                                     .padding(.top, 5)
                                     .lineLimit(2)
@@ -57,104 +57,47 @@ struct SmartBatteryView: View {
                 }
                 .frame(width: geo.size.width * 0.95, height: geo.size.height * 0.2)
                 .background(.yellow)
-                //TODO: 로직 추가할것
-                
-                if !smartBatteryViewModel.isAdapterConnected {
+                if smartBatteryViewModel.isAdapterConnected {
                     HStack {
                         if isAdapterAnimated {
                             VStack {
-                                Image(systemName: "globe")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundStyle(Color.red, Color.blue)
-                                    .background(Color.clear)
+                                CustomImage(systemName: "globe")
                             }.frame(width: geo.size.width * 0.2)
                         }
-                        
                         VStack(spacing:0){
                             Spacer()
                             if isAdapterAnimated {
-                                HStack {
-                                    Text("어댑터명:")
-                                        .font(.system(size: 30))
-                                        .foregroundStyle(ThemeColor.lightBlack.color)
-                                    
-                                    Text("어댑터명")
-                                        .font(.system(size: 30))
-                                        .foregroundStyle(ThemeColor.lightBlack.color)
-                                }
+                                InfoElipseHImageView(title: "어댑터1", content: "어댑터1")
                             }
                             Spacer()
                             if isAdapterAnimated {
-                                HStack {
-                                    Text("어댑터명:")
-                                        .font(.system(size: 30))
-                                        .foregroundStyle(ThemeColor.lightBlack.color)
-                                    
-                                    Text("어댑터명")
-                                        .font(.system(size: 30))
-                                        .foregroundStyle(ThemeColor.lightBlack.color)
-                                }
+                                InfoElipseHImageView(title: "어댑터1", content: "내용2")
                             }
                             Spacer()
                             if isAdapterAnimated {
-                                HStack {
-                                    Text("어댑터명:")
-                                        .font(.system(size: 30))
-                                        .foregroundStyle(ThemeColor.lightBlack.color)
-                                    
-                                    Text("어댑터명")
-                                        .font(.system(size: 30))
-                                        .foregroundStyle(ThemeColor.lightBlack.color)
-                                }
+                                InfoElipseHImageView(title: "어댑터1", content: "내용2")
                             }
                             Spacer()
                         }
                         .frame(width: geo.size.width * 0.37)
                         .background {
                             RoundedRectangle(cornerRadius: 15)
-                            
                         }
                         .foregroundColor(ThemeColor.lightGray.color)
                         
                         VStack(spacing: 0) {
                             Spacer()
                             if isAdapterAnimated {
-                                HStack {
-                                    Text("어댑터명:")
-                                        .font(.system(size: 30))
-                                        .foregroundStyle(ThemeColor.lightBlack.color)
-                                    
-                                    Text("어댑터명")
-                                        .font(.system(size: 30))
-                                        .foregroundStyle(ThemeColor.lightBlack.color)
-                                }
-                                
+                                InfoElipseHImageView(title: "어댑터1", content: "내용2")
                             }
                             Spacer()
                             if isAdapterAnimated {
-                                HStack {
-                                    Text("어댑터명:")
-                                        .font(.system(size: 30))
-                                        .foregroundStyle(ThemeColor.lightBlack.color)
-                                    
-                                    Text("어댑터명")
-                                        .font(.system(size: 30))
-                                        .foregroundStyle(ThemeColor.lightBlack.color)
-                                }
+                                InfoElipseHImageView(title: "어댑터1", content: "내용2")
                             }
                             Spacer()
                             
                             if isAdapterAnimated {
-                                HStack {
-                                    Text("어댑터명:")
-                                        .font(.system(size: 30))
-                                        .foregroundStyle(ThemeColor.lightBlack.color)
-                                    
-                                    Text("어댑터명")
-                                        .font(.system(size: 30))
-                                        .foregroundStyle(ThemeColor.lightBlack.color)
-                                }
+                                InfoElipseHImageView(title: "어댑터1", content: "내용2")
                             }
                             Spacer()
                         }
@@ -167,30 +110,21 @@ struct SmartBatteryView: View {
                         Spacer()
                     }
                     .frame(width:geo.size.width * 0.95)
-//                    .onAppear{
-//                        withAnimation(.default) {
-//                            isAdapterAnimated.toggle()
-//                        }
-//                    }
-//                    .onDisappear {
-//                        withAnimation(.default) {
-//                            isAdapterAnimated.toggle()
-//                        }
-//                    }
+                    
                 } else {
                     HStack(alignment:.center ,spacing:0){
                         VStack(spacing: 0) {
                             Spacer()
-                            InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "어댑터를 꽂으면 정보가 나와요", info: "",widthScale:0.2, heightScale:1)
+                            InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "어댑터를 꽂으면 정보가 나와요", info: "",widthScale:0.2, heightScale:1)
                                 .frame(height:geo.size.height * 0.4)
                             Spacer()
                         }.frame(width: geo.size.width * 0.47)
                             .padding(.trailing, 20)
                         
                         VStack(spacing: 0) {
-                            InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "배터리", info: smartBatteryViewModel.healthState,widthScale:0.2, heightScale:0.5)
+                            InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "배터리", info: smartBatteryViewModel.healthState,widthScale:0.2, heightScale:0.5)
                                 .frame(height:geo.size.height * 0.2)
-                            InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "베터리셀 끊김 횟수", info: "\(smartBatteryViewModel.batteryCellDisconnectCount)",widthScale:0.2, heightScale:0.5)
+                            InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "베터리셀 끊김 횟수", info: "\(smartBatteryViewModel.batteryCellDisconnectCount)",widthScale:0.2, heightScale:0.5)
                                 .frame(height:geo.size.height * 0.2)
                         }
                         .frame(width: geo.size.width * 0.46)
@@ -209,16 +143,16 @@ struct SmartBatteryView: View {
                 }
                 
                 
-                BatteryView(batteryLevel: smartBatteryViewModel.currentBatteryCapacity)
+                BatteryBarView(batteryLevel: smartBatteryViewModel.currentBatteryCapacity)
                     .frame(width: geo.size.width * 0.95, height: 50)
                 HStack(spacing: 30) {
-                    InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "사이클 수", info: "\(smartBatteryViewModel.cycleCount)",widthScale:0.2, heightScale:1)
+                    InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "사이클 수", info: "\(smartBatteryViewModel.cycleCount)",widthScale:0.2, heightScale:1)
                         .frame(height:geo.size.height * 0.2)
-                    InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "온도", info: smartBatteryViewModel.temperature.toDegree(),widthScale:0.2, heightScale:1)
+                    InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "온도", info: smartBatteryViewModel.temperature.toDegree(),widthScale:0.2, heightScale:1)
                         .frame(height:geo.size.height * 0.2)
-                    InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "배터리 용량", info: smartBatteryViewModel.batteryMaxCapacity.tomAH(),widthScale:0.2, heightScale:1)
+                    InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "배터리 용량", info: smartBatteryViewModel.batteryMaxCapacity.tomAH(),widthScale:0.2, heightScale:1)
                         .frame(height:geo.size.height * 0.2)
-                    InfoRectangleImageWithTextView(imageName: "thermometer.medium", title: "설계 용량", info: smartBatteryViewModel.designedCapacity.tomAH(),widthScale:0.2, heightScale:1)
+                    InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "설계 용량", info: smartBatteryViewModel.designedCapacity.tomAH(),widthScale:0.2, heightScale:1)
                         .frame(height:geo.size.height * 0.2)
                 }.frame(width: geo.size.width * 0.95)
                 Spacer()

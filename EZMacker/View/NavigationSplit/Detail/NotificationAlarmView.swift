@@ -13,7 +13,7 @@ struct NotificationAlarmView: View {
     var body: some View {
         VStack {
             Text(CategoryType.notificationAlarm.title)
-                .customText(fontSize: FontSizeType.small.size, isBold: false)
+                .customFont1(fontSize: FontSizeType.small.size, isBold: false)
         }
         .navigationTitle(CategoryType.notificationAlarm.title)
         .padding()
