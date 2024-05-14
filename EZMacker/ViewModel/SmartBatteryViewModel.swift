@@ -5,7 +5,7 @@
 //  Created by 박유경 on 5/5/24.
 //
 import Combine
-import Foundation
+import SwiftUI
 
 class SmartBatteryViewModel: ObservableObject {
     
@@ -21,10 +21,12 @@ class SmartBatteryViewModel: ObservableObject {
     @Published var chargingTime = 0
     @Published var cycleCount = 0
     @Published var maxCapacity = 0
-    @Published var healthState = "계산중.."
+    @Published var healthState = ""
     @Published var batteryMaxCapacity = 0
     @Published var designedCapacity = 0
     @Published var batteryCellDisconnectCount = 0
+    
+    @Published var isAdapterConnected = false
     
     
     
@@ -59,12 +61,12 @@ class SmartBatteryViewModel: ObservableObject {
             .compactMap { $0 as? Int }
             .assign(to: \.cycleCount, on: self)
             .store(in: &cancellables)
-
+        
         appSmartBatteryService.getRegistry(forKey: .CurrentCapacity)
             .compactMap { $0 as? Int }
             .assign(to: \.currentBatteryCapacity, on: self)
             .store(in: &cancellables)
-                
+        
         appSmartBatteryService.getRegistry(forKey: .AppleRawMaxCapacity)
             .compactMap { $0 as? Int }
             .assign(to: \.batteryMaxCapacity, on: self)
@@ -73,16 +75,30 @@ class SmartBatteryViewModel: ObservableObject {
         appSmartBatteryService.getPowerSourceValue(for: .batteryHealth, defaultValue: "")
             .assign(to: \.healthState, on: self)
             .store(in: &cancellables)
-
+        
         appSmartBatteryService.getRegistry(forKey: .DesignCapacity)
             .compactMap { $0 as? Int }
             .assign(to: \.designedCapacity, on: self)
             .store(in: &cancellables)
         
-  
+        
         appSmartBatteryService.getRegistry(forKey: .BatteryCellDisconnectCount)
             .compactMap { $0 as? Int }
             .assign(to: \.batteryCellDisconnectCount, on: self)
+            .store(in: &cancellables)
+        
+        
+        appSmartBatteryService.getRegistry(forKey: .AdapterDetails)
+            .sink { [weak self] data in
+                guard let self = self else { return }
+                if let unwrappedData = data as? [String: Any], let familyCode = unwrappedData["FamilyCode"] as? Int {
+                    if familyCode == 0 {
+                        self.isAdapterConnected = false
+                    } else {
+                        self.isAdapterConnected = true
+                    }
+                }
+            }
             .store(in: &cancellables)
         
         Publishers.CombineLatest(appSmartBatteryService.getPowerSourceValue(for: .remainingTime, defaultValue: 0), appSmartBatteryService.getPowerSourceValue(for: .chargingTime, defaultValue: 0))

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InfoRectangleImageWithTextView: View {
     @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
+    @State private var isAnimated = false
     let imageName: String
     let title: String
     let info: String
@@ -23,17 +24,27 @@ struct InfoRectangleImageWithTextView: View {
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(Color.red, Color.blue)
                     .padding(20)
+                    .animation(.easeIn(duration: 3),value:isAnimated)
                 Spacer()
                 VStack(alignment: .center) {
-                    Text(title)
-                        .bold()
-                        .padding(.bottom, 5)
-                        .font(.system(size: 30))
-                    Text(info)
-                        .foregroundStyle(colorForHealthState(healthState: info))
-                        .font(.system(size: 20))
+                    if isAnimated {
+                        Text(title)
+                            .bold()
+                            .padding(.bottom, 5)
+                            .font(.system(size: 30))
+
+                        Text(info)
+                            .foregroundStyle(colorForHealthState(healthState: info))
+                            .font(.system(size: 20))
+                    }
+                }
+                .onAppear{
+                    withAnimation(.easeIn(duration: 0.1)) {
+                        isAnimated.toggle()
+                    }
                 }
                 .lineLimit(1)
+
                 .minimumScaleFactor(0.5)
                 .frame(maxWidth: .infinity)
             }
