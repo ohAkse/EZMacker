@@ -8,10 +8,16 @@
 import Foundation
 
 extension Int {
+    func toBun() -> String {
+        if self == 0 {return "계산중.."}
+        return String(self) + "번"
+        
+    }
+    
     func toHourMinute() -> String {
-        if self == 65535 {
-            return "계산중 .."
-        }
+        if self == 0 || self == 65535 {return "계산중.."}
+        
+
         let hours = self / 60
         let minutes = self % 60
         
@@ -26,14 +32,18 @@ extension Int {
         }
     }
     func toDegree() -> String {
+        if self == 0 {return "계산중.."}
+        
         let degree = Double(self) / 100.0
         return String(format: "%.2f도", degree)
     }
     func toCapacityPerent() -> String {
+        if self == 0 {return "계산중.."}
         return String(self) + "%"
     }
     
     func tomAH() -> String {
+        if self == 0 {return "계산중.."}
         return String(self) + "(mAH)"
     }
 }

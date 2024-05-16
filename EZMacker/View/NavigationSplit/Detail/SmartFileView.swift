@@ -13,9 +13,9 @@ struct SmartFileView: View {
     var body: some View {
         VStack {
             Image(systemName: "globe")
-                .customImage1(imageScale: .large, width:20, height: 20)
+                .customNormalImage(imageScale: .large, width:20, height: 20)
             Text(CategoryType.smartFile.title)
-                .customFont1(fontSize: FontSizeType.small.size, isBold: false)
+                .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
         }
         .navigationTitle(CategoryType.smartFile.title)
         .padding()

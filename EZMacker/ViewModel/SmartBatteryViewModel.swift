@@ -16,7 +16,7 @@ class SmartBatteryViewModel: ObservableObject {
     }
     @Published var isCharging = false
     @Published var temperature = 0
-    @Published var currentBatteryCapacity = 0
+    @Published var currentBatteryCapacity = 0.0
     @Published var remainingTime = 0
     @Published var chargingTime = 0
     @Published var cycleCount = 0
@@ -36,6 +36,8 @@ class SmartBatteryViewModel: ObservableObject {
     
     init(appSmartBatteryService: AppSmartBatteryService) {
         self.appSmartBatteryService = appSmartBatteryService
+        
+        requestBatteryStatus() 
         
         timer = Timer.publish(every: 1, on: .current, in: .default)
             .autoconnect()
@@ -64,6 +66,7 @@ class SmartBatteryViewModel: ObservableObject {
         
         appSmartBatteryService.getRegistry(forKey: .CurrentCapacity)
             .compactMap { $0 as? Int }
+            .map { Double($0) / 100.0 }
             .assign(to: \.currentBatteryCapacity, on: self)
             .store(in: &cancellables)
         
@@ -105,8 +108,6 @@ class SmartBatteryViewModel: ObservableObject {
             .sink { [weak self] remainingTime, chargingTime in
                 self?.remainingTime = remainingTime
                 self?.chargingTime = chargingTime
-                print(remainingTime)
-                print(chargingTime)
             }
             .store(in: &cancellables)
     }

@@ -27,24 +27,28 @@ struct InfoRectangleHImageTextView: View {
                     .animation(.easeIn(duration: 3),value:isAnimated)
                 Spacer()
                 VStack(alignment: .center) {
-                    if isAnimated {
+                    
                         Text(title)
                             .bold()
                             .padding(.bottom, 5)
                             .font(.system(size: 30))
-
+                    if isAnimated {
                         Text(info)
                             .foregroundStyle(colorForHealthState(healthState: info))
                             .font(.system(size: 20))
                     }
                 }
                 .onAppear{
-                    withAnimation(.easeIn(duration: 0.1)) {
+                    withAnimation(.easeIn(duration: 0.5)) {
+                        isAnimated.toggle()
+                    }
+                }
+                .onDisappear{
+                    withAnimation(.easeIn(duration: 0.2)) {
                         isAnimated.toggle()
                     }
                 }
                 .lineLimit(1)
-
                 .minimumScaleFactor(0.5)
                 .frame(maxWidth: .infinity)
             }
@@ -60,6 +64,7 @@ struct InfoRectangleHImageTextView: View {
     }
     
     func colorForHealthState(healthState: String) -> Color {
+        
         switch healthState {
         case "Good":
             return ThemeColor.lightGreen.color

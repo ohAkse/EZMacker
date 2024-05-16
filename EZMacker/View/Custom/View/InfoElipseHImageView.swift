@@ -12,21 +12,33 @@ struct InfoElipseHImageView: View {
     let size: CGFloat = FontSizeType.large.size
     let title: String
     let content: String
-    
+    @State var isAdapterAnimated = false
     var body: some View {
+        
         HStack {
-            CustomTitle(title: title)
-            Spacer()
-            HStack {
-                CustomContent(content: content)
+            if isAdapterAnimated{
+                CustomTitle(title: title)
+                Spacer()
+                HStack {
+                    CustomContent(content: content)
+                }
+                .padding(.trailing, 10)
+                Spacer()
             }
-            .padding(.trailing, 10)
-            Spacer()
         }
         .background(ThemeColor.lightBlue.color.opacity(0.7))
         .clipShape(.ellipse)
         .border(getBorderColor(), width: 2)
-        
+        .onAppear{
+            withAnimation(.spring(duration: 0.2)) {
+                isAdapterAnimated.toggle()
+            }
+        }
+        .onDisappear{
+            withAnimation(.interactiveSpring(duration: 0.2)) {
+                isAdapterAnimated.toggle()
+           }
+        }
     }
     private func getBorderColor() -> Color {
         switch colorScheme {

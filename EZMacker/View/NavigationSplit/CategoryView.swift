@@ -15,22 +15,22 @@ struct CategoryView: View {
                 categoryRow(for: .smartBattery)
                 categoryRow(for: .smartFile)
             }
-            .customFont1(fontSize: FontSizeType.small.size, isBold: false)
+            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
             
             Section(CategorySectionType.settingSection.title) {
                 categoryRow(for: .notificationAlarm)
             }
-            .customFont1(fontSize: FontSizeType.small.size, isBold: false)
+            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
         }
     }
     private func categoryRow(for category: CategoryType) -> some View {
          return HStack {
              Image(systemName: category.imageName)
-                 .customImage1(imageScale: .large, width:20, height: 20)
+                 .customNormalImage(imageScale: .large, width:20, height: 20)
              Text(category.title)
-                 .customFont1(fontSize: FontSizeType.small.size, isBold: false)
+                 .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
          }
          .padding(.leading, 5)
          .frame(minHeight: 20)
