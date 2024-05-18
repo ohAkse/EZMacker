@@ -17,10 +17,15 @@ struct BatteryBarView: View {
         GeometryReader { geo in
             ZStack(alignment: .leading) {
                 HStack(spacing: 0) {
-                    Image(systemName: getBatteryImageName())
-                        .resizable()
-                        .frame(width: 70, height: 60)
-                        .foregroundStyle(batteryImageColors()[0], batteryImageColors()[1])
+                    if isAdapterConnected {
+                        WGifView(gifName: "battery_charging_animation", imageSize: CGSize(width: 50, height: 50))
+                        .frame(width: 70, height: 70)
+                    } else {
+                        Image(systemName: getBatteryImageName())
+                            .resizable()
+                            .frame(width: 70, height: 70)
+                            .foregroundStyle(batteryImageColors()[0], batteryImageColors()[1])
+                    }
                     ZStack(alignment: .center) {
                         RoundedRectangle(cornerRadius: 2)
                             .fill(LinearGradient(gradient: Gradient(colors: gradientColors()), startPoint: .leading, endPoint: .trailing))
@@ -64,23 +69,10 @@ struct BatteryBarView: View {
             }
         }
     }
+    
     //TODO: 충전용 gif이미지 구현하는방법..?
     private func getBatteryImageName() -> String {
-        switch batteryLevel {
-        case 1:
-            return  "battery.100percent"
-        case 0.75...0.99:
-            return  "battery.75percent"
-        case 0.5...0.74:
-            return  "battery.50percent"
-        case 0.25...0.49:
-            return  "battery.25percent"
-        case 0...0.24:
-            return "battery.0percent"
-        default:
-            Logger.fatalErrorMessage("Unknown Battery Level")
-        }
-        return ""
+        return "battery.100percent"
     }
     
     private func batteryImageColors() -> [Color] {

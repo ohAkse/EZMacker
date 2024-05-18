@@ -30,7 +30,7 @@ class SmartBatteryViewModel: ObservableObject {
     //어댑터 관련 설정값들
     @Published var adapterInfo: [AdapterDetails]?
     @Published var isAdapterConnected = false
-    @Published var isAdapterJsonDecodeSuccess = false
+    @Published var adapterConnectionSuccess :AdapterConnectStatus = .none
     
     private var appSmartBatteryService: AppSmartBatteryRegistryProvidable
     private var timer: AnyCancellable?
@@ -100,12 +100,12 @@ class SmartBatteryViewModel: ObservableObject {
         appSmartBatteryService.getRegistry(forKey: .AppleRawAdapterDetails)
             .tryMap { value -> Data in
                 guard let value = value else {
-                    throw AdapterError.dataNotFound
+                    throw AdapterConnectStatus.dataNotFound
                 }
                 return try JSONSerialization.data(withJSONObject: value, options: [])
             }
             .decode(type: [AdapterDetails].self, decoder: JSONDecoder())
-            .mapError { error -> AdapterError in
+            .mapError { error -> AdapterConnectStatus in
                 switch error {
                 case is DecodingError:
                     return .decodingFailed
@@ -118,13 +118,13 @@ class SmartBatteryViewModel: ObservableObject {
                 receiveCompletion: { completion in
                     if case .failure(let error) = completion {
                         Logger.writeLog(.info, message: "Failed to fetch or decode data: \(error)")
-                        self.isAdapterJsonDecodeSuccess = false
+                        self.adapterConnectionSuccess = .decodingFailed
                     }
                 },
                 receiveValue: { [weak self] adapterDetails in
                     self?.isAdapterConnected = adapterDetails.count == 0 ?  false : true
                     self?.adapterInfo = adapterDetails
-                    self?.isAdapterJsonDecodeSuccess = true
+                    self?.adapterConnectionSuccess = .processing
                 }
             )
             .store(in: &cancellables)

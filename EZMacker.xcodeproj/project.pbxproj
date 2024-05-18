@@ -16,6 +16,9 @@
 		5F1012B62BF3A12A00589C9B /* CustomNormalTextFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012B52BF3A12A00589C9B /* CustomNormalTextFont.swift */; };
 		5F1012B82BF3A16D00589C9B /* CustomNormalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012B72BF3A16D00589C9B /* CustomNormalImage.swift */; };
 		5F1A919F2BF861040078F4F8 /* AdapterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A919E2BF861040078F4F8 /* AdapterDetails.swift */; };
+		5F1A91AB2BF8DA7B0078F4F8 /* WGifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A91AA2BF8DA7B0078F4F8 /* WGifView.swift */; };
+		5F1A91B12BF8E48F0078F4F8 /* battery_charging_animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */; };
+		5F1A91B52BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F1A91B42BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif */; };
 		5F2DD1892BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */; };
 		5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */; };
 		5F36B21B2BE7AB3100E08935 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F36B21A2BE7AB3100E08935 /* Assets.xcassets */; };
@@ -81,6 +84,9 @@
 		5F1012B52BF3A12A00589C9B /* CustomNormalTextFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNormalTextFont.swift; sourceTree = "<group>"; };
 		5F1012B72BF3A16D00589C9B /* CustomNormalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNormalImage.swift; sourceTree = "<group>"; };
 		5F1A919E2BF861040078F4F8 /* AdapterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterDetails.swift; sourceTree = "<group>"; };
+		5F1A91AA2BF8DA7B0078F4F8 /* WGifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WGifView.swift; sourceTree = "<group>"; };
+		5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = battery_charging_animation.gif; sourceTree = "<group>"; };
+		5F1A91B42BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = battery_adapter_plugin_animation.gif; sourceTree = "<group>"; };
 		5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryPowerSourceType.swift; sourceTree = "<group>"; };
 		5F36B2132BE7AB3000E08935 /* EZMacker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZMacker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerApp.swift; sourceTree = "<group>"; };
@@ -185,6 +191,31 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5F1A91A32BF8D8C30078F4F8 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5F1A91A42BF8D8CA0078F4F8 /* Gif */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		5F1A91A42BF8D8CA0078F4F8 /* Gif */ = {
+			isa = PBXGroup;
+			children = (
+				5F1A91B42BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif */,
+				5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */,
+			);
+			path = Gif;
+			sourceTree = "<group>";
+		};
+		5F1A91A72BF8D93E0078F4F8 /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				5F1A91AA2BF8DA7B0078F4F8 /* WGifView.swift */,
+			);
+			path = Wrapper;
+			sourceTree = "<group>";
+		};
 		5F36B20A2BE7AB3000E08935 = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +239,8 @@
 		5F36B2152BE7AB3000E08935 /* EZMacker */ = {
 			isa = PBXGroup;
 			children = (
+				5F1A91A72BF8D93E0078F4F8 /* Wrapper */,
+				5F1A91A32BF8D8C30078F4F8 /* Resource */,
 				5FEE27BD2BE8DA9400847761 /* Configuration */,
 				5F6D4E662BE889EC004B94F8 /* Extension */,
 				5F6D4E632BE88994004B94F8 /* Util */,
@@ -539,6 +572,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F1A91B52BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif in Resources */,
+				5F1A91B12BF8E48F0078F4F8 /* battery_charging_animation.gif in Resources */,
 				5F36B21E2BE7AB3100E08935 /* Preview Assets.xcassets in Resources */,
 				5F36B21B2BE7AB3100E08935 /* Assets.xcassets in Resources */,
 			);
@@ -567,6 +602,7 @@
 			files = (
 				5F6D4E762BE8A2A4004B94F8 /* ToastStyle.swift in Sources */,
 				5F6D4E652BE889BB004B94F8 /* Logger.swift in Sources */,
+				5F1A91AB2BF8DA7B0078F4F8 /* WGifView.swift in Sources */,
 				5FD0313A2BEA5E8D009A8169 /* Int + Extension.swift in Sources */,
 				5F1012AE2BF399F600589C9B /* CustomContent.swift in Sources */,
 				5F6D4E682BE88A03004B94F8 /* Date + Extension.swift in Sources */,

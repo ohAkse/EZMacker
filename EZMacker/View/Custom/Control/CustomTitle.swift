@@ -22,7 +22,6 @@ struct CustomTitle: View {
             .background(getHeaderFontStyles()[1])
             .clipShape(.capsule(style: .circular))
             .shadow(radius: 5)
-        
     }
     private func getHeaderFontStyles() -> [Color] {
         switch colorScheme {

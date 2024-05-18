@@ -53,10 +53,10 @@ struct SmartBatteryView: View {
                 
                 if smartBatteryViewModel.isAdapterConnected {
                     HStack {
-                        
                         if let adapterInfo = smartBatteryViewModel.adapterInfo?.first {
                             if isAdapterAnimated {
                                 VStack {
+
                                     CustomImage(systemName: "battery_adapter", isSystemName: false)
                                     CustomContent(content: adapterInfo.Name)
                                 }
@@ -107,7 +107,7 @@ struct SmartBatteryView: View {
                     }
                 }
                 else {
-                    if !smartBatteryViewModel.isAdapterJsonDecodeSuccess {
+                    if smartBatteryViewModel.adapterConnectionSuccess == .decodingFailed  {
                         HStack(alignment:.center ,spacing:0){
                             VStack(spacing: 0) {
                                 Spacer()
@@ -116,17 +116,19 @@ struct SmartBatteryView: View {
                                 Spacer()
                             }
                         }
-                        .frame(width:geo.size.width * 0.95, height: geo.size.height * 0.4)
+                        .frame(width:geo.size.width * 0.94, height: geo.size.height * 0.4)
                     }
                     else {
                         HStack(alignment:.center ,spacing:0){
-                            VStack(spacing: 0) {
-                                Spacer()
-                                InfoRectangleHImageTextView(imageName: "battery_adapter", isSystem: false,title: "어댑터를 꽂으면 정보가 나와요", info: "",widthScale:0.2, heightScale:1)
-                                    .frame(height:geo.size.height * 0.4)
-                                Spacer()
+
+                            VStack(alignment: .center) {
+                                WGifView(gifName: "battery_adapter_plugin_animation", imageSize: CGSize(width: 50, height: 50))
+                                Spacer(minLength: 10)
+                                Text("어댑터를 꽃으면 정보가 나와요!")
+                                    .customNormalTextFont(fontSize: FontSizeType.large.size, isBold: true)
+                                    .shadow(radius: 5)
+                                    
                             }.frame(width: geo.size.width * 0.46)
-                                .padding(.trailing, 20)
                             
                             VStack(spacing: 0) {
                                 InfoRectangleHImageTextView(imageName: "battery_status",isSystem: false, title: "배터리 상태", info: smartBatteryViewModel.healthState == "" ? "계산중.." : smartBatteryViewModel.healthState,widthScale:0.2, heightScale:0.5)
@@ -149,6 +151,7 @@ struct SmartBatteryView: View {
                         }
                     }
                 }
+                
                 BatteryBarView(batteryLevel: smartBatteryViewModel.currentBatteryCapacity == 0.0 ? 1.0 : smartBatteryViewModel.currentBatteryCapacity, isAdapterConnected: $smartBatteryViewModel.isAdapterConnected)
                     .frame(width: geo.size.width * 0.95, height: 50)
                 HStack(spacing: 30) {
