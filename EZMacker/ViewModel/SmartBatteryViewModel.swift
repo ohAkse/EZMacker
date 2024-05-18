@@ -14,6 +14,7 @@ class SmartBatteryViewModel: ObservableObject {
         cancellables.removeAll()
         print("SmartBatteryViewModel deinit Called")
     }
+    //배터리 관련 설정값들
     @Published var isCharging = false
     @Published var temperature = 0
     @Published var currentBatteryCapacity = 0.0
@@ -26,9 +27,10 @@ class SmartBatteryViewModel: ObservableObject {
     @Published var designedCapacity = 0
     @Published var batteryCellDisconnectCount = 0
     
+    //어댑터 관련 설정값들
+    @Published var adapterInfo: [AdapterDetails]?
     @Published var isAdapterConnected = false
-    
-    
+    @Published var isAdapterJsonDecodeSucce = false
     
     private var appSmartBatteryService: AppSmartBatteryRegistryProvidable
     private var timer: AnyCancellable?
@@ -37,7 +39,7 @@ class SmartBatteryViewModel: ObservableObject {
     init(appSmartBatteryService: AppSmartBatteryService) {
         self.appSmartBatteryService = appSmartBatteryService
         
-        requestBatteryStatus() 
+        requestBatteryStatus()
         
         timer = Timer.publish(every: 1, on: .current, in: .default)
             .autoconnect()
@@ -91,24 +93,43 @@ class SmartBatteryViewModel: ObservableObject {
             .store(in: &cancellables)
         
         
-        appSmartBatteryService.getRegistry(forKey: .AdapterDetails)
-            .sink { [weak self] data in
-                guard let self = self else { return }
-                if let unwrappedData = data as? [String: Any], let familyCode = unwrappedData["FamilyCode"] as? Int {
-                    if familyCode == 0 {
-                        self.isAdapterConnected = false
-                    } else {
-                        self.isAdapterConnected = true
-                    }
-                }
-            }
-            .store(in: &cancellables)
-        
         Publishers.CombineLatest(appSmartBatteryService.getPowerSourceValue(for: .remainingTime, defaultValue: 0), appSmartBatteryService.getPowerSourceValue(for: .chargingTime, defaultValue: 0))
             .sink { [weak self] remainingTime, chargingTime in
                 self?.remainingTime = remainingTime
                 self?.chargingTime = chargingTime
             }
+            .store(in: &cancellables)
+        
+        appSmartBatteryService.getRegistry(forKey: .AppleRawAdapterDetails)
+            .tryMap { value -> Data in
+                guard let value = value else {
+                    throw AdapterError.dataNotFound
+                }
+                return try JSONSerialization.data(withJSONObject: value, options: [])
+            }
+            .decode(type: [AdapterDetails].self, decoder: JSONDecoder())
+            .mapError { error -> AdapterError in
+                switch error {
+                case is DecodingError:
+                    return .decodingFailed
+                default:
+                    return .unknown(error)
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure(let error) = completion {
+                        Logger.writeLog(.info, message: "Failed to fetch or decode data: \(error)")
+                        self.isAdapterJsonDecodeSucce = false
+                    }
+                    self.isAdapterJsonDecodeSucce = true
+                },
+                receiveValue: { [weak self] adapterDetails in
+                    self?.isAdapterConnected = adapterDetails.count == 0 ?  false : true
+                    self?.adapterInfo = adapterDetails
+                }
+            )
             .store(in: &cancellables)
     }
 }

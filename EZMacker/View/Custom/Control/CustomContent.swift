@@ -15,14 +15,15 @@ struct CustomContent: View {
         Text(content)
             .font(.system(size: FontSizeType.large.size))
             .foregroundColor(getContentFontStyles())
+            .shadow(radius: 5)
         
     }
     private func getContentFontStyles() -> Color {
         switch colorScheme {
         case ColorSchemeMode.Light.title:
-            return ThemeColor.lightWhite.color
+            return ThemeColor.lightBlack.color
         case ColorSchemeMode.Dark.title:
-            return ThemeColor.lightBlue.color
+            return ThemeColor.lightWhite.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return .clear

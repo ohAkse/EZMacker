@@ -13,12 +13,15 @@ struct CustomTitle: View {
     
     var body: some View {
         Text(title)
-            .font(.system(size: FontSizeType.superLarge.size))
+            .frame(width: 150, height: 50)
+            .font(.system(size: FontSizeType.medium.size))
             .fontWeight(.bold)
+            .fixedSize(horizontal: false, vertical: true)
             .padding()
             .foregroundColor(getHeaderFontStyles()[0])
             .background(getHeaderFontStyles()[1])
             .clipShape(.capsule(style: .circular))
+            .shadow(radius: 5)
         
     }
     private func getHeaderFontStyles() -> [Color] {

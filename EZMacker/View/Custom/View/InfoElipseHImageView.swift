@@ -14,15 +14,12 @@ struct InfoElipseHImageView: View {
     let content: String
     @State var isAdapterAnimated = false
     var body: some View {
-        
         HStack {
-            if isAdapterAnimated{
+            if isAdapterAnimated {
                 CustomTitle(title: title)
                 Spacer()
-                HStack {
-                    CustomContent(content: content)
-                }
-                .padding(.trailing, 10)
+                CustomContent(content: content)
+                    .padding(.trailing, 10)
                 Spacer()
             }
         }

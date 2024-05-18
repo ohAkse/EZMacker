@@ -11,29 +11,19 @@ struct SmartBatteryView: View {
             VStack(spacing: 20) {
                 HStack(alignment: .top, spacing: 0) {
                     HStack {
-                        if smartBatteryViewModel.currentBatteryCapacity == 100 {
-                            VStack(alignment:.leading, spacing: 0) {
-                                HStack(spacing:0) {
-                                    InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "충전 완료! ", info: "", widthScale:0.3, heightScale:0.7)
-                                }
-                                .frame(height:geo.size.height * 0.2)
-                            }.frame(width: geo.size.width * 0.2, height:geo.size.height * 0.2)
-                        } else {
-                            if smartBatteryViewModel.isCharging {
-                                VStack(alignment:.leading, spacing: 0) {
-                                    HStack(spacing:0) {
-                                        InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "완충까지 ", info: smartBatteryViewModel.chargingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
-                                    }.frame(height:geo.size.height * 0.2)
-                                }.frame(width: geo.size.width * 0.2, height:geo.size.height * 0.2)
+                        VStack(alignment:.leading, spacing:0) {
+                            if smartBatteryViewModel.currentBatteryCapacity == 100 {
+                                InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "충전 완료! ", info: "", widthScale:0.3, heightScale:0.7)
                             } else {
-                                VStack(alignment:.leading, spacing: 0) {
-                                    HStack {
-                                        InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "종료까지", info: smartBatteryViewModel.remainingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
-                                    }.frame(height:geo.size.height * 0.2)
-                                }.frame(width: geo.size.width * 0.2, height:geo.size.height * 0.15)
+                                if smartBatteryViewModel.isCharging {
+                                    InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "완충까지 ", info: smartBatteryViewModel.chargingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
+                                } else  {
+                                    InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "종료까지", info: smartBatteryViewModel.remainingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
+                                }
                             }
+                            
                         }
-                        
+                        .frame(width: geo.size.width * 0.2, height:geo.size.height * 0.2)
                         Spacer()
                         VStack(alignment: .trailing, spacing: 10) {
                             HStack(alignment: .top, spacing: 0) {
@@ -63,18 +53,25 @@ struct SmartBatteryView: View {
                     HStack {
                         if isAdapterAnimated {
                             VStack {
-                                CustomImage(systemName: "globe")
-                            }.frame(width: geo.size.width * 0.2)
+                                CustomImage(systemName: "battery_adapter", isSystemName: false)
+                                if let adapterInfo = smartBatteryViewModel.adapterInfo?.first {
+                                    CustomContent(content: adapterInfo.Name)
+                                }
+                                
+                            }
+                            .frame(width: geo.size.width * 0.2)
+                            .padding(.bottom, 5)
                             VStack(spacing:0){
                                 Spacer()
-                                InfoElipseHImageView(title: "어댑터1", content: "내용1")
-                                Spacer()
-                                InfoElipseHImageView(title: "어댑터1", content: "내용2")
-                                Spacer()
-                                InfoElipseHImageView(title: "어댑터1", content: "내용2")
-                                Spacer()
+                                if let adapterInfo = smartBatteryViewModel.adapterInfo?.first {
+                                    InfoElipseHImageView(title: "AdapterID", content: "\(adapterInfo.AdapterID)")
+                                    Spacer()
+                                    InfoElipseHImageView(title: "Model ID", content: "\(adapterInfo.Model)")
+                                    Spacer()
+                                    InfoElipseHImageView(title: "FwVersion", content: "\(adapterInfo.FwVersion)")
+                                    Spacer()
+                                }
                             }
-                            .frame(width: geo.size.width * 0.37)
                             .background {
                                 RoundedRectangle(cornerRadius: 15)
                             }
@@ -82,12 +79,14 @@ struct SmartBatteryView: View {
                             
                             VStack(spacing: 0) {
                                 Spacer()
-                                InfoElipseHImageView(title: "어댑터1", content: "내용2")
-                                Spacer()
-                                InfoElipseHImageView(title: "어댑터1", content: "내용2")
-                                Spacer()
-                                InfoElipseHImageView(title: "어댑터1", content: "내용2")
-                                Spacer()
+                                if let adapterInfo = smartBatteryViewModel.adapterInfo?.first {
+                                    InfoElipseHImageView(title: "Manufacturer", content: "\(adapterInfo.Manufacturer)")
+                                    Spacer()
+                                    InfoElipseHImageView(title: "Watts", content: "\(adapterInfo.Watts)")
+                                    Spacer()
+                                    InfoElipseHImageView(title: "HwVersion", content: "\(adapterInfo.HwVersion)")
+                                    Spacer()
+                                }
                             }
                             .frame(width: geo.size.width * 0.37)
                             .background {
@@ -106,7 +105,7 @@ struct SmartBatteryView: View {
                     .onDisappear{
                         withAnimation(.easeOut(duration: 1)) {
                             isAdapterAnimated.toggle()
-                       }
+                        }
                     }
                     
                 } else {
@@ -136,7 +135,7 @@ struct SmartBatteryView: View {
                     .onDisappear{
                         withAnimation(.default) {
                             isAdapterAnimated.toggle()
-                       }
+                        }
                     }
                 }
                 BatteryBarView(batteryLevel: smartBatteryViewModel.currentBatteryCapacity == 0.0 ? 1.0 : smartBatteryViewModel.currentBatteryCapacity, isAdapterConnected: $smartBatteryViewModel.isAdapterConnected)
