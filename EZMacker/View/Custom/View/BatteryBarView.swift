@@ -64,39 +64,21 @@ struct BatteryBarView: View {
             }
         }
     }
-//TODO: 배터리 충전용 이미지 4개 구할것.
+    //TODO: 충전용 gif이미지 구현하는방법..?
     private func getBatteryImageName() -> String {
-        if isAdapterConnected {
-            return  "battery.100.bolt"
-//            switch batteryLevel {
-//            case 1:
-//                return  "battery.100.bolt"
-//            case 0.75...0.99:
-//                return  "battery.75"
-//            case 0.5...0.74:
-//                return  "battery.50"
-//            case 0.25...0.49:
-//                return  "battery.100"
-//            case 0...0.24:
-//                return "battery.0"
-//            default:
-//                Logger.fatalErrorMessage("Unknown Battery Level")
-//            }
-        } else {
-            switch batteryLevel {
-            case 1:
-                return  "battery.100percent"
-            case 0.75...0.99:
-                return  "battery.75percent"
-            case 0.5...0.74:
-                return  "battery.50percent"
-            case 0.25...0.49:
-                return  "battery.25percent"
-            case 0...0.24:
-                return "battery.0percent"
-            default:
-                Logger.fatalErrorMessage("Unknown Battery Level")
-            }
+        switch batteryLevel {
+        case 1:
+            return  "battery.100percent"
+        case 0.75...0.99:
+            return  "battery.75percent"
+        case 0.5...0.74:
+            return  "battery.50percent"
+        case 0.25...0.49:
+            return  "battery.25percent"
+        case 0...0.24:
+            return "battery.0percent"
+        default:
+            Logger.fatalErrorMessage("Unknown Battery Level")
         }
         return ""
     }
@@ -114,21 +96,24 @@ struct BatteryBarView: View {
     }
     
     private func gradientColors() -> [Color] {
-        switch colorScheme {
-        case ColorSchemeMode.Light.title:
-            return [.blue.opacity(0.7), .blue.opacity(0.99)]
-        case ColorSchemeMode.Dark.title:
-            return [.green.opacity(0.5), .green.opacity(0.99)]
+        switch batteryLevel {
+        case 1:
+            return [ThemeColor.lightBlue.color.opacity(0.7), ThemeColor.lightBlue.color.opacity(0.99)]
+        case 0.66...0.99:
+            return [ThemeColor.lightGreen.color.opacity(0.7), ThemeColor.lightGreen.color.opacity(0.99)]
+        case 0.33...0.65:
+            return [ThemeColor.lightYellow.color.opacity(0.7), ThemeColor.lightYellow.color.opacity(0.99)]
+        case 0.01...0.32:
+            return [ThemeColor.lightRed.color.opacity(0.7), ThemeColor.lightRed.color.opacity(0.99)]
         default:
-            Logger.fatalErrorMessage("colorSchme is Empty")
-            return [.clear, .clear]
+            Logger.fatalErrorMessage("Unknown Battery Level")
         }
+        return [.clear, .clear]
     }
 }
 
 #if DEBUG
-struct BatteryBarView_Preview
-: PreviewProvider {
+struct BatteryBarView_Preview: PreviewProvider {
     static var previews: some View {
         @State var isCharging: Bool = false
         HStack {

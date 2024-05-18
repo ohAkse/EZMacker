@@ -11,18 +11,20 @@ struct InfoRectangleHImageTextView: View {
     @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
     @State private var isAnimated = false
     let imageName: String
+    let isSystem: Bool
     let title: String
     let info: String
     let widthScale: CGFloat
     let heightScale: CGFloat
+    
     var body: some View {
         GeometryReader { geo in
             HStack(alignment:.center, spacing: 5) {
-                Image(systemName: imageName)
+                    getImage()
                     .resizable()
                     .scaledToFit()
                     .symbolRenderingMode(.palette)
-                    .foregroundStyle(Color.red, Color.blue)
+                    .foregroundStyle(getImageForegroundStyle()[0], getImageForegroundStyle()[1])
                     .padding(20)
                     .animation(.easeIn(duration: 3),value:isAnimated)
                 Spacer()
@@ -62,9 +64,24 @@ struct InfoRectangleHImageTextView: View {
         .shadow(radius: 5)
         
     }
+    private func getImage() -> Image {
+        return isSystem ? Image(systemName: imageName) : Image(imageName)
+    }
     
-    func colorForHealthState(healthState: String) -> Color {
-        
+    
+    private func getImageForegroundStyle() -> [Color] {
+        switch colorScheme {
+        case ColorSchemeMode.Light.title:
+            return [ThemeColor.lightGreen.color, ThemeColor.lightGray.color]
+        case ColorSchemeMode.Dark.title:
+            return [.yellow, .green]
+        default:
+            Logger.fatalErrorMessage("colorSchme is Empty")
+            return [.clear, .clear]
+        }
+    }
+    
+    private func colorForHealthState(healthState: String) -> Color {
         switch healthState {
         case "Good":
             return ThemeColor.lightGreen.color
@@ -92,7 +109,7 @@ struct InfoRectangleHImageTextView: View {
 #if DEBUG
 struct InfoRectangleHImageTextView_PreView: PreviewProvider {
     static var previews: some View {
-        InfoRectangleHImageTextView(imageName: "thermometer.medium", title: "타잍 ", info: "내용", widthScale:0.3, heightScale:0.7)
+        InfoRectangleHImageTextView(imageName: "thermometer.medium",isSystem:false, title: "타잍 ", info: "내용", widthScale:0.3, heightScale:0.7)
     }
 }
 #endif

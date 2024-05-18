@@ -13,7 +13,7 @@ struct CustomTitle: View {
     
     var body: some View {
         Text(title)
-            .frame(width: 150, height: 50)
+            .frame(width: 120, height: 50)
             .font(.system(size: FontSizeType.medium.size))
             .fontWeight(.bold)
             .fixedSize(horizontal: false, vertical: true)

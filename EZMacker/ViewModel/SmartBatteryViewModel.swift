@@ -30,7 +30,7 @@ class SmartBatteryViewModel: ObservableObject {
     //어댑터 관련 설정값들
     @Published var adapterInfo: [AdapterDetails]?
     @Published var isAdapterConnected = false
-    @Published var isAdapterJsonDecodeSucce = false
+    @Published var isAdapterJsonDecodeSuccess = false
     
     private var appSmartBatteryService: AppSmartBatteryRegistryProvidable
     private var timer: AnyCancellable?
@@ -85,13 +85,10 @@ class SmartBatteryViewModel: ObservableObject {
             .compactMap { $0 as? Int }
             .assign(to: \.designedCapacity, on: self)
             .store(in: &cancellables)
-        
-        
         appSmartBatteryService.getRegistry(forKey: .BatteryCellDisconnectCount)
             .compactMap { $0 as? Int }
             .assign(to: \.batteryCellDisconnectCount, on: self)
             .store(in: &cancellables)
-        
         
         Publishers.CombineLatest(appSmartBatteryService.getPowerSourceValue(for: .remainingTime, defaultValue: 0), appSmartBatteryService.getPowerSourceValue(for: .chargingTime, defaultValue: 0))
             .sink { [weak self] remainingTime, chargingTime in
@@ -121,13 +118,13 @@ class SmartBatteryViewModel: ObservableObject {
                 receiveCompletion: { completion in
                     if case .failure(let error) = completion {
                         Logger.writeLog(.info, message: "Failed to fetch or decode data: \(error)")
-                        self.isAdapterJsonDecodeSucce = false
+                        self.isAdapterJsonDecodeSuccess = false
                     }
-                    self.isAdapterJsonDecodeSucce = true
                 },
                 receiveValue: { [weak self] adapterDetails in
                     self?.isAdapterConnected = adapterDetails.count == 0 ?  false : true
                     self?.adapterInfo = adapterDetails
+                    self?.isAdapterJsonDecodeSuccess = true
                 }
             )
             .store(in: &cancellables)
