@@ -26,7 +26,7 @@ struct SmartBatteryView: View {
                             
                         }
                         .onReceive(smartBatteryViewModel.$isAdapterConnected) { _ in
-                            toast = Toast(type: .info, title: "정보", message: "배터리 종료/충전 시간계산까지 최대 1분정도 소요됩니다.", duration: 6)
+                            toast = Toast(type: .info, title: "정보", message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 5분이 소요됩니다.", duration: 10)
                         }
                         .frame(width: geo.size.width * 0.2, height:geo.size.height * 0.2)
                         Spacer()
@@ -79,7 +79,7 @@ struct SmartBatteryView: View {
                                     Spacer()
                                     InfoElipseHImageView(title: "제조사", content: "\(adapterInfo.Manufacturer)")
                                     Spacer()
-                                    InfoElipseHImageView(title: "와츠", content: "\(adapterInfo.Watts)")
+                                    InfoElipseHImageView(title: "와츠", content: "\(adapterInfo.Watts)" + "W")
                                     Spacer()
                                     InfoElipseHImageView(title: "하드웨어버전", content: "\(adapterInfo.HwVersion)")
                                     Spacer()
@@ -201,15 +201,6 @@ extension SmartBatteryView {
         }
         return ""
     }
-    
-    
-//    func openSystemPreferences() {
-//        guard let url = URL(string: SystemSettingPreference.batterySave.pathString) else {
-//            return
-//        }
-//        NSWorkspace.shared.open(url)
-//    }
-    
 }
 
 struct SmartBatteryView_Previews: PreviewProvider {

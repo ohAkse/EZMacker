@@ -171,18 +171,30 @@ class SmartBatteryViewModel: ObservableObject {
                     }
                 },
                 receiveValue: { [weak self] adapterDetails in
-                    
+                    guard let self = self else {return }
                     let adapterConnected = adapterDetails.count == 0 ?  false : true
-                    if self?.isAdapterConnected != adapterConnected {
-                        self?.isAdapterConnected = adapterConnected
+                    if isAdapterConnected != adapterConnected {
+                        isAdapterConnected = adapterConnected
                     }
-                    self?.adapterInfo = adapterDetails
-                    self?.adapterConnectionSuccess = .processing
+                    adapterInfo = adapterDetails
+                    adapterConnectionSuccess = .processing
                 }
             )
             .store(in: &cancellables)
         
         //PowerSource
+        
+        appSmartBatteryService.getPowerSourceValue(for: .batteryHealth, defaultValue:"")
+            .subscribe(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newValue in
+                guard let self = self else { return }
+                if self.healthState != newValue {
+                    self.healthState = newValue
+                }
+            }
+            .store(in: &cancellables)
+        
         
         appSmartBatteryService.getRegistry(forKey: .BatteryCellDisconnectCount)
             .subscribe(on: DispatchQueue.global())
@@ -200,11 +212,9 @@ class SmartBatteryViewModel: ObservableObject {
             guard let self = self else { return }
             if self.remainingTime != remainingTime {
                 self.remainingTime = remainingTime
-                Logger.writeLog(.info, message: "\(self.remainingTime)")
             }
             if self.chargingTime != chargingTime {
                 self.chargingTime = chargingTime
-                Logger.writeLog(.info, message: "\(self.chargingTime)")
             }
         }
         .store(in: &cancellables)
