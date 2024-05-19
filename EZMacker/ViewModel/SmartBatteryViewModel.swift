@@ -14,7 +14,7 @@ class SmartBatteryViewModel: ObservableObject {
     deinit {
         timer?.cancel()
         cancellables.removeAll()
-        print("SmartBatteryViewModel deinit Called")
+        Logger.writeLog(.info, message: "SmartBatteryViewModel deinit Called")
     }
 
     

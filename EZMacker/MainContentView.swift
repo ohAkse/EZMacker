@@ -10,16 +10,24 @@ struct MainContentView: View {
         NavigationSplitView {
             CategoryView(selectionValue: $selectionValue)
                 .frame(minWidth: 200)
+                .contentShape(Rectangle()) 
+            
                 
         } detail: {
             GeometryReader { geo in 
-                switch selectionValue {
-                case .smartBattery:
-                    SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(), systemPreferenceService: SystemPreferenceService()))
-                case .smartFile:
-                    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
-                case .notificationAlarm:
-                    NotificationAlarmView(notificationAlarmViewModel: NotificationAlarmViewModel())
+                if selectionValue == .smartFile || selectionValue == .notificationAlarm {
+                    EmptyView()
+                } else {
+                    GeometryReader { geo in
+                        switch selectionValue {
+                        case .smartBattery:
+                            SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(), systemPreferenceService: SystemPreferenceService()))
+                        case .smartWifi:
+                            SmartWifiView(smartWifiViewModel: SmartWifiViewModel(appSmartWifiService: AppSmartWifiService(), systemPreferenceService: SystemPreferenceService()))
+                        default:
+                            EmptyView()
+                        }
+                    }
                 }
             }
         }

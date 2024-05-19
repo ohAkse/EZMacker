@@ -10,7 +10,7 @@ class SmartFileViewModel: ObservableObject {
     private let appSmartFileSerivce: AppSmartFileProvidable
     private let systemPreferenceService: SystemPreferenceAccessible
     deinit {
-        print("SmartFileViewModel deinit Called")
+        Logger.writeLog(.info, message: "SmartFileViewModel deinit Called")
     }
     
     init(appSmartFileService: AppSmartFileProvidable, systemPreferenceService: SystemPreferenceAccessible) {
