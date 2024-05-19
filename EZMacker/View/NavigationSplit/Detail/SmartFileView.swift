@@ -22,6 +22,6 @@ struct SmartFileView: View {
     }
 }
 #Preview {
-    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService()))
+    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
     
 }

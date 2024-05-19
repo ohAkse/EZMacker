@@ -38,7 +38,7 @@ struct SmartBatteryView: View {
                                     .frame(width: 30, height: 30)
                                     .background(Color.clear)
                                     .onTapGesture {
-                                        openSystemPreferences()
+                                        smartBatteryViewModel.openSettingWindow(settingPath: SystemPreference.batterySave.pathString)
                                     }
                             }
                             .padding(.trailing, 10)
@@ -166,7 +166,7 @@ struct SmartBatteryView: View {
                         .frame(height:geo.size.height * 0.2)
                 }
                 .frame(width: geo.size.width * 0.95)
-                .padding(.top, 20)       
+                .padding(.top, 20)
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -203,17 +203,17 @@ extension SmartBatteryView {
     }
     
     
-    func openSystemPreferences() {
-        guard let url = URL(string: SystemSettingPreference.batterySave.pathString) else {
-            return
-        }
-        NSWorkspace.shared.open(url)
-    }
+//    func openSystemPreferences() {
+//        guard let url = URL(string: SystemSettingPreference.batterySave.pathString) else {
+//            return
+//        }
+//        NSWorkspace.shared.open(url)
+//    }
     
 }
 
 struct SmartBatteryView_Previews: PreviewProvider {
     static var previews: some View {
-        SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService())).frame(width: 1500,height:1000)
+        SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(), systemPreferenceService: SystemPreferenceService())).frame(width: 1500,height:1000)
     }
 }

@@ -7,7 +7,9 @@
 
 import Foundation
 //https://stackoverflow.com/questions/52751941/how-to-launch-system-preferences-to-a-specific-preference-pane-using-bundle-iden
-enum SystemSettingPreference: String{
+
+
+enum SystemPreference: String{
     case batterySave, network, blueTooth, wifi
     
     var pathString: String {

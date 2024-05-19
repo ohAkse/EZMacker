@@ -7,6 +7,8 @@
 import Combine
 import SwiftUI
 
+
+
 class SmartBatteryViewModel: ObservableObject {
     
     deinit {
@@ -14,6 +16,8 @@ class SmartBatteryViewModel: ObservableObject {
         cancellables.removeAll()
         print("SmartBatteryViewModel deinit Called")
     }
+
+    
     //배터리 관련 설정값들
     @Published var isCharging = false
     @Published var temperature = 0
@@ -33,13 +37,15 @@ class SmartBatteryViewModel: ObservableObject {
     @Published var adapterConnectionSuccess :AdapterConnectStatus = .none
     
     
+    //일반 설정값들
+    private var systemPreferenceService: SystemPreferenceAccessible
     private var appSmartBatteryService: AppSmartBatteryRegistryProvidable
     private var timer: AnyCancellable?
     private var cancellables = Set<AnyCancellable>()
     
-    init(appSmartBatteryService: AppSmartBatteryService) {
+    init(appSmartBatteryService: AppSmartBatteryRegistryProvidable, systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartBatteryService = appSmartBatteryService
-        
+        self.systemPreferenceService =  systemPreferenceService
         requestBatteryStatus()
         
         timer = Timer.publish(every: 1, on: .current, in: .common)
@@ -202,6 +208,9 @@ class SmartBatteryViewModel: ObservableObject {
             }
         }
         .store(in: &cancellables)
-        
+    }
+    
+    func openSettingWindow(settingPath: String) {
+        systemPreferenceService.openSystemPreferences(systemPath: settingPath)
     }
 }
