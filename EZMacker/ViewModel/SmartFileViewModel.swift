@@ -8,9 +8,13 @@
 import Foundation
 class SmartFileViewModel: ObservableObject {
     private let appSmartFileSerivce: AppSmartFileProvidable
+    private let systemPreferenceService: SystemPreferenceAccessible
+    deinit {
+        print("SmartFileViewModel deinit Called")
+    }
     
-    init(appSmartFileService: AppSmartFileProvidable) {
+    init(appSmartFileService: AppSmartFileProvidable, systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartFileSerivce = appSmartFileService
-        appSmartFileService.getFileList()
+        self.systemPreferenceService = systemPreferenceService
     }
 }

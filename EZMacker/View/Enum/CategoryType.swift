@@ -7,11 +7,12 @@
 
 import Foundation
 enum CategoryType: CaseIterable {
-    case smartBattery, smartFile
+    case smartBattery, smartFile, notificationAlarm
     var title: String {
         switch self {
         case .smartBattery: return "스마트 배터리"
         case .smartFile: return "스마트 파일"
+        case .notificationAlarm: return "알람 메시지"
         }
     }
     
@@ -19,20 +20,23 @@ enum CategoryType: CaseIterable {
         switch self {
         case .smartBattery: return "bolt.square.fill"
         case .smartFile: return "square.inset.filled"
+        case .notificationAlarm: return "square.inset.filled"
         }
     }
 }
 
 enum CategorySectionType {
-    case categoryMainSection
+    case categoryMainSection, settingSection
     var title: String {
         switch self {
-        case .categoryMainSection: return "메인 카테고리"
+        case .categoryMainSection: return "My Mac"
+        case .settingSection: return "환경 설정"
         }
     }
     var imageName: String {
         switch self {
         case .categoryMainSection: return "bolt.square.fill"
+        case .settingSection: return "bolt.square.fill"
         }
     }
 }

@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F1012A12BF3832400589C9B /* BatteryBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012A02BF3832400589C9B /* BatteryBarView.swift */; };
+		5F1012A62BF3844300589C9B /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012A52BF3844300589C9B /* CustomImage.swift */; };
+		5F1012A82BF3997E00589C9B /* InfoElipseHImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012A72BF3997E00589C9B /* InfoElipseHImageView.swift */; };
+		5F1012AC2BF399ED00589C9B /* CustomTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012AB2BF399ED00589C9B /* CustomTitle.swift */; };
+		5F1012AE2BF399F600589C9B /* CustomContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012AD2BF399F600589C9B /* CustomContent.swift */; };
+		5F1012B22BF39EBD00589C9B /* InfoRectangleHImageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012B12BF39EBD00589C9B /* InfoRectangleHImageTextView.swift */; };
+		5F1012B62BF3A12A00589C9B /* CustomNormalTextFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012B52BF3A12A00589C9B /* CustomNormalTextFont.swift */; };
+		5F1012B82BF3A16D00589C9B /* CustomNormalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012B72BF3A16D00589C9B /* CustomNormalImage.swift */; };
+		5F1A919F2BF861040078F4F8 /* AdapterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A919E2BF861040078F4F8 /* AdapterDetails.swift */; };
+		5F1A91AB2BF8DA7B0078F4F8 /* WGifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A91AA2BF8DA7B0078F4F8 /* WGifView.swift */; };
+		5F1A91B12BF8E48F0078F4F8 /* battery_charging_animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */; };
+		5F1A91B52BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F1A91B42BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif */; };
+		5F2DD1892BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */; };
 		5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */; };
 		5F36B21B2BE7AB3100E08935 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F36B21A2BE7AB3100E08935 /* Assets.xcassets */; };
 		5F36B21E2BE7AB3100E08935 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F36B21D2BE7AB3100E08935 /* Preview Assets.xcassets */; };
@@ -16,11 +29,6 @@
 		5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2432BE7ACC000E08935 /* MainContentView.swift */; };
 		5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */; };
 		5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */; };
-		5F36B2572BE7B45600E08935 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2562BE7B45600E08935 /* CategoryView.swift */; };
-		5F36B2592BE7B60000E08935 /* SmartBatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2582BE7B60000E08935 /* SmartBatteryView.swift */; };
-		5F36B25B2BE7B60900E08935 /* SmartFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B25A2BE7B60900E08935 /* SmartFileView.swift */; };
-		5F36B25E2BE7B68400E08935 /* ColorSchemeToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B25D2BE7B68400E08935 /* ColorSchemeToolbarView.swift */; };
-		5F6D4E5A2BE87C7E004B94F8 /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E592BE87C7E004B94F8 /* CustomImage.swift */; };
 		5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E5F2BE88213004B94F8 /* AppStorageKey.swift */; };
 		5F6D4E622BE888D9004B94F8 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E612BE888D9004B94F8 /* UserDefaultManager.swift */; };
 		5F6D4E652BE889BB004B94F8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E642BE889BB004B94F8 /* Logger.swift */; };
@@ -36,8 +44,20 @@
 		5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5DC2BE7BDE0004509BC /* SmartBatteryViewModel.swift */; };
 		5F70D5DF2BE7BE26004509BC /* AppSmartFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5DE2BE7BE26004509BC /* AppSmartFileService.swift */; };
 		5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5E12BE7C586004509BC /* CategoryType.swift */; };
-		5F70D5E52BE7C82D004509BC /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5E42BE7C82D004509BC /* CustomFont.swift */; };
 		5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */; };
+		5F97C36D2BF9C04600B0DC56 /* global_loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F97C36C2BF9C04600B0DC56 /* global_loading.gif */; };
+		5F97C3762BF9D25000B0DC56 /* SettingPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */; };
+		5F97C3782BF9DAFE00B0DC56 /* SystemPreferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3772BF9DAFE00B0DC56 /* SystemPreferenceService.swift */; };
+		5FCC8B982BF2344400BCCFF3 /* NotificationAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B972BF2344400BCCFF3 /* NotificationAlarmView.swift */; };
+		5FCC8B9A2BF2345300BCCFF3 /* NotificationAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B992BF2345300BCCFF3 /* NotificationAlarmViewModel.swift */; };
+		5FD0313A2BEA5E8D009A8169 /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD031392BEA5E8D009A8169 /* Int + Extension.swift */; };
+		5FEE27C12BE8DB0500847761 /* KeyboardModifierFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C02BE8DB0500847761 /* KeyboardModifierFlag.swift */; };
+		5FEE27C32BE8DB1900847761 /* KeyboardCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C22BE8DB1900847761 /* KeyboardCharacter.swift */; };
+		5FEE27C52BE8DC4800847761 /* KeyboardShortCutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C42BE8DC4800847761 /* KeyboardShortCutHandler.swift */; };
+		5FEE27C82BE9015400847761 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C72BE9015400847761 /* CategoryView.swift */; };
+		5FEE27CB2BE9018800847761 /* SmartFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27CA2BE9018800847761 /* SmartFileView.swift */; };
+		5FEE27CD2BE901A000847761 /* SmartBatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27CC2BE901A000847761 /* SmartBatteryView.swift */; };
+		5FEE27CF2BE901D900847761 /* ColorSchemeToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27CE2BE901D900847761 /* ColorSchemeToolbarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +78,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F1012A02BF3832400589C9B /* BatteryBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryBarView.swift; sourceTree = "<group>"; };
+		5F1012A52BF3844300589C9B /* CustomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
+		5F1012A72BF3997E00589C9B /* InfoElipseHImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoElipseHImageView.swift; sourceTree = "<group>"; };
+		5F1012AB2BF399ED00589C9B /* CustomTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitle.swift; sourceTree = "<group>"; };
+		5F1012AD2BF399F600589C9B /* CustomContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContent.swift; sourceTree = "<group>"; };
+		5F1012B12BF39EBD00589C9B /* InfoRectangleHImageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRectangleHImageTextView.swift; sourceTree = "<group>"; };
+		5F1012B52BF3A12A00589C9B /* CustomNormalTextFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNormalTextFont.swift; sourceTree = "<group>"; };
+		5F1012B72BF3A16D00589C9B /* CustomNormalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNormalImage.swift; sourceTree = "<group>"; };
+		5F1A919E2BF861040078F4F8 /* AdapterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterDetails.swift; sourceTree = "<group>"; };
+		5F1A91AA2BF8DA7B0078F4F8 /* WGifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WGifView.swift; sourceTree = "<group>"; };
+		5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = battery_charging_animation.gif; sourceTree = "<group>"; };
+		5F1A91B42BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = battery_adapter_plugin_animation.gif; sourceTree = "<group>"; };
+		5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryPowerSourceType.swift; sourceTree = "<group>"; };
 		5F36B2132BE7AB3000E08935 /* EZMacker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZMacker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerApp.swift; sourceTree = "<group>"; };
 		5F36B21A2BE7AB3100E08935 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = EZMacker/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -71,11 +104,6 @@
 		5F36B2432BE7ACC000E08935 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 		5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryService.swift; sourceTree = "<group>"; };
 		5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryKeyType.swift; sourceTree = "<group>"; };
-		5F36B2562BE7B45600E08935 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
-		5F36B2582BE7B60000E08935 /* SmartBatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartBatteryView.swift; sourceTree = "<group>"; };
-		5F36B25A2BE7B60900E08935 /* SmartFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileView.swift; sourceTree = "<group>"; };
-		5F36B25D2BE7B68400E08935 /* ColorSchemeToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeToolbarView.swift; sourceTree = "<group>"; };
-		5F6D4E592BE87C7E004B94F8 /* CustomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
 		5F6D4E5F2BE88213004B94F8 /* AppStorageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageKey.swift; sourceTree = "<group>"; };
 		5F6D4E612BE888D9004B94F8 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		5F6D4E642BE889BB004B94F8 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -91,8 +119,20 @@
 		5F70D5DC2BE7BDE0004509BC /* SmartBatteryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartBatteryViewModel.swift; sourceTree = "<group>"; };
 		5F70D5DE2BE7BE26004509BC /* AppSmartFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartFileService.swift; sourceTree = "<group>"; };
 		5F70D5E12BE7C586004509BC /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
-		5F70D5E42BE7C82D004509BC /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeType.swift; sourceTree = "<group>"; };
+		5F97C36C2BF9C04600B0DC56 /* global_loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = global_loading.gif; sourceTree = "<group>"; };
+		5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPreference.swift; sourceTree = "<group>"; };
+		5F97C3772BF9DAFE00B0DC56 /* SystemPreferenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPreferenceService.swift; sourceTree = "<group>"; };
+		5FCC8B972BF2344400BCCFF3 /* NotificationAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAlarmView.swift; sourceTree = "<group>"; };
+		5FCC8B992BF2345300BCCFF3 /* NotificationAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAlarmViewModel.swift; sourceTree = "<group>"; };
+		5FD031392BEA5E8D009A8169 /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
+		5FEE27C02BE8DB0500847761 /* KeyboardModifierFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardModifierFlag.swift; sourceTree = "<group>"; };
+		5FEE27C22BE8DB1900847761 /* KeyboardCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCharacter.swift; sourceTree = "<group>"; };
+		5FEE27C42BE8DC4800847761 /* KeyboardShortCutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortCutHandler.swift; sourceTree = "<group>"; };
+		5FEE27C72BE9015400847761 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		5FEE27CA2BE9018800847761 /* SmartFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileView.swift; sourceTree = "<group>"; };
+		5FEE27CC2BE901A000847761 /* SmartBatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartBatteryView.swift; sourceTree = "<group>"; };
+		5FEE27CE2BE901D900847761 /* ColorSchemeToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeToolbarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +160,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F1012962BF3825D00589C9B /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				5F1012B52BF3A12A00589C9B /* CustomNormalTextFont.swift */,
+				5F1012B72BF3A16D00589C9B /* CustomNormalImage.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
+		5F1012972BF3826A00589C9B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5F1012A02BF3832400589C9B /* BatteryBarView.swift */,
+				5F1012A72BF3997E00589C9B /* InfoElipseHImageView.swift */,
+				5F1012B12BF39EBD00589C9B /* InfoRectangleHImageTextView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5F1012A22BF3842200589C9B /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				5F1012A52BF3844300589C9B /* CustomImage.swift */,
+				5F1012AB2BF399ED00589C9B /* CustomTitle.swift */,
+				5F1012AD2BF399F600589C9B /* CustomContent.swift */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		5F1A919D2BF860F50078F4F8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5F1A919E2BF861040078F4F8 /* AdapterDetails.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5F1A91A32BF8D8C30078F4F8 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5F1A91A42BF8D8CA0078F4F8 /* Gif */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		5F1A91A42BF8D8CA0078F4F8 /* Gif */ = {
+			isa = PBXGroup;
+			children = (
+				5F97C36C2BF9C04600B0DC56 /* global_loading.gif */,
+				5F1A91B42BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif */,
+				5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */,
+			);
+			path = Gif;
+			sourceTree = "<group>";
+		};
+		5F1A91A72BF8D93E0078F4F8 /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				5F1A91AA2BF8DA7B0078F4F8 /* WGifView.swift */,
+			);
+			path = Wrapper;
+			sourceTree = "<group>";
+		};
 		5F36B20A2BE7AB3000E08935 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +246,9 @@
 		5F36B2152BE7AB3000E08935 /* EZMacker */ = {
 			isa = PBXGroup;
 			children = (
+				5F1A91A72BF8D93E0078F4F8 /* Wrapper */,
+				5F1A91A32BF8D8C30078F4F8 /* Resource */,
+				5FEE27BD2BE8DA9400847761 /* Configuration */,
 				5F6D4E662BE889EC004B94F8 /* Extension */,
 				5F6D4E632BE88994004B94F8 /* Util */,
 				5F6D4E5B2BE881BD004B94F8 /* Storage */,
@@ -196,13 +302,10 @@
 		5F36B2462BE7B19E00E08935 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5FEE27C62BE9012900847761 /* NavigationSplit */,
 				5F6D4E712BE8A243004B94F8 /* Toast */,
 				5F70D5E32BE7C810004509BC /* Custom */,
 				5F70D5E02BE7C576004509BC /* Enum */,
-				5F36B2562BE7B45600E08935 /* CategoryView.swift */,
-				5F36B25A2BE7B60900E08935 /* SmartFileView.swift */,
-				5F36B2582BE7B60000E08935 /* SmartBatteryView.swift */,
-				5F36B25D2BE7B68400E08935 /* ColorSchemeToolbarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -210,8 +313,10 @@
 		5F36B2472BE7B1A600E08935 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				5F1A919D2BF860F50078F4F8 /* Model */,
 				5F70D5DA2BE7BDC7004509BC /* SmartFileViewModel.swift */,
 				5F70D5DC2BE7BDE0004509BC /* SmartBatteryViewModel.swift */,
+				5FCC8B992BF2345300BCCFF3 /* NotificationAlarmViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -220,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */,
+				5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -270,6 +376,7 @@
 			children = (
 				5F6D4E672BE88A03004B94F8 /* Date + Extension.swift */,
 				5F6D4E722BE8A262004B94F8 /* Extension + View.swift */,
+				5FD031392BEA5E8D009A8169 /* Int + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -315,10 +422,75 @@
 		5F70D5E32BE7C810004509BC /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				5F70D5E42BE7C82D004509BC /* CustomFont.swift */,
-				5F6D4E592BE87C7E004B94F8 /* CustomImage.swift */,
+				5F1012A22BF3842200589C9B /* Control */,
+				5F1012972BF3826A00589C9B /* View */,
+				5F1012962BF3825D00589C9B /* Modifier */,
 			);
 			path = Custom;
+			sourceTree = "<group>";
+		};
+		5F97C3722BF9D20F00B0DC56 /* SystemPreference */ = {
+			isa = PBXGroup;
+			children = (
+				5F97C3742BF9D23400B0DC56 /* Enum */,
+				5F97C3772BF9DAFE00B0DC56 /* SystemPreferenceService.swift */,
+			);
+			path = SystemPreference;
+			sourceTree = "<group>";
+		};
+		5F97C3742BF9D23400B0DC56 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		5FEE27BD2BE8DA9400847761 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				5F97C3722BF9D20F00B0DC56 /* SystemPreference */,
+				5FEE27BE2BE8DA9C00847761 /* KeyboardShortcut */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		5FEE27BE2BE8DA9C00847761 /* KeyboardShortcut */ = {
+			isa = PBXGroup;
+			children = (
+				5FEE27BF2BE8DAF200847761 /* Enum */,
+				5FEE27C42BE8DC4800847761 /* KeyboardShortCutHandler.swift */,
+			);
+			path = KeyboardShortcut;
+			sourceTree = "<group>";
+		};
+		5FEE27BF2BE8DAF200847761 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				5FEE27C02BE8DB0500847761 /* KeyboardModifierFlag.swift */,
+				5FEE27C22BE8DB1900847761 /* KeyboardCharacter.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		5FEE27C62BE9012900847761 /* NavigationSplit */ = {
+			isa = PBXGroup;
+			children = (
+				5FEE27C92BE9017C00847761 /* Detail */,
+				5FEE27C72BE9015400847761 /* CategoryView.swift */,
+				5FEE27CE2BE901D900847761 /* ColorSchemeToolbarView.swift */,
+			);
+			path = NavigationSplit;
+			sourceTree = "<group>";
+		};
+		5FEE27C92BE9017C00847761 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5FEE27CA2BE9018800847761 /* SmartFileView.swift */,
+				5FEE27CC2BE901A000847761 /* SmartBatteryView.swift */,
+				5FCC8B972BF2344400BCCFF3 /* NotificationAlarmView.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,8 +597,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F1A91B52BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif in Resources */,
+				5F1A91B12BF8E48F0078F4F8 /* battery_charging_animation.gif in Resources */,
 				5F36B21E2BE7AB3100E08935 /* Preview Assets.xcassets in Resources */,
 				5F36B21B2BE7AB3100E08935 /* Assets.xcassets in Resources */,
+				5F97C36D2BF9C04600B0DC56 /* global_loading.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,29 +628,46 @@
 			files = (
 				5F6D4E762BE8A2A4004B94F8 /* ToastStyle.swift in Sources */,
 				5F6D4E652BE889BB004B94F8 /* Logger.swift in Sources */,
-				5F36B2592BE7B60000E08935 /* SmartBatteryView.swift in Sources */,
+				5F1A91AB2BF8DA7B0078F4F8 /* WGifView.swift in Sources */,
+				5FD0313A2BEA5E8D009A8169 /* Int + Extension.swift in Sources */,
+				5F1012AE2BF399F600589C9B /* CustomContent.swift in Sources */,
+				5F97C3782BF9DAFE00B0DC56 /* SystemPreferenceService.swift in Sources */,
 				5F6D4E682BE88A03004B94F8 /* Date + Extension.swift in Sources */,
 				5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */,
 				5F6D4E732BE8A262004B94F8 /* Extension + View.swift in Sources */,
 				5F70D5DB2BE7BDC7004509BC /* SmartFileViewModel.swift in Sources */,
-				5F36B25E2BE7B68400E08935 /* ColorSchemeToolbarView.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
+				5FEE27C52BE8DC4800847761 /* KeyboardShortCutHandler.swift in Sources */,
+				5F1012B62BF3A12A00589C9B /* CustomNormalTextFont.swift in Sources */,
+				5F1012A12BF3832400589C9B /* BatteryBarView.swift in Sources */,
+				5F1012B22BF39EBD00589C9B /* InfoRectangleHImageTextView.swift in Sources */,
 				5F6D4E622BE888D9004B94F8 /* UserDefaultManager.swift in Sources */,
-				5F70D5E52BE7C82D004509BC /* CustomFont.swift in Sources */,
+				5FEE27C12BE8DB0500847761 /* KeyboardModifierFlag.swift in Sources */,
 				5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeMode.swift in Sources */,
+				5FCC8B9A2BF2345300BCCFF3 /* NotificationAlarmViewModel.swift in Sources */,
+				5FEE27CD2BE901A000847761 /* SmartBatteryView.swift in Sources */,
+				5FEE27C82BE9015400847761 /* CategoryView.swift in Sources */,
+				5F1012A62BF3844300589C9B /* CustomImage.swift in Sources */,
+				5F1012AC2BF399ED00589C9B /* CustomTitle.swift in Sources */,
+				5F97C3762BF9D25000B0DC56 /* SettingPreference.swift in Sources */,
+				5FEE27CF2BE901D900847761 /* ColorSchemeToolbarView.swift in Sources */,
+				5F2DD1892BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift in Sources */,
 				5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */,
 				5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */,
 				5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */,
+				5FEE27C32BE8DB1900847761 /* KeyboardCharacter.swift in Sources */,
+				5FEE27CB2BE9018800847761 /* SmartFileView.swift in Sources */,
+				5F1012A82BF3997E00589C9B /* InfoElipseHImageView.swift in Sources */,
+				5F1012B82BF3A16D00589C9B /* CustomNormalImage.swift in Sources */,
 				5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */,
 				5F6D4E7C2BE8A328004B94F8 /* Toast.swift in Sources */,
-				5F6D4E5A2BE87C7E004B94F8 /* CustomImage.swift in Sources */,
 				5F70D5DF2BE7BE26004509BC /* AppSmartFileService.swift in Sources */,
 				5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */,
 				5F6D4E6C2BE88CC6004B94F8 /* ThemeColor.swift in Sources */,
 				5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */,
 				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,
-				5F36B2572BE7B45600E08935 /* CategoryView.swift in Sources */,
-				5F36B25B2BE7B60900E08935 /* SmartFileView.swift in Sources */,
+				5FCC8B982BF2344400BCCFF3 /* NotificationAlarmView.swift in Sources */,
+				5F1A919F2BF861040078F4F8 /* AdapterDetails.swift in Sources */,
 				5F6D4E6A2BE88AD9004B94F8 /* ToolbarKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -637,12 +829,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = EZMacker/EZMacker.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EZMacker/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = C9QJLU3JB2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -667,12 +860,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = EZMacker/EZMacker.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EZMacker/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = C9QJLU3JB2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
