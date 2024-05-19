@@ -12,10 +12,12 @@ struct EZMackerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
-            MainContentView().frame(minWidth: 100, minHeight: 700)
+            MainContentView()
+                .frame(minWidth: 1100, minHeight: 730)
         }
         .windowToolbarStyle(.unifiedCompact)
-        .commandsRemoved() // 나중에 필요한 커맨드 추가할것.
+        
+        
     }
 }
 

@@ -1,16 +1,19 @@
 //
-//  CustomImage.swift
+//  CustomNormalImage.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/6/24.
+//  Created by 박유경 on 5/14/24.
 //
 
 import SwiftUI
-struct CustomImageModifier: ViewModifier {
+struct CustomNormalImageModifier: ViewModifier {
     @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String  = AppStorageKey.colorSchme.byDefault
     var imageScale: Image.Scale
+    var width: CGFloat
+    var height: CGFloat
     func body(content: Content) -> some View {
         content
+            .frame(width: width, height: height)
             .imageScale(imageScale)
             .foregroundColor(imageColorForTheme())
     }
@@ -29,7 +32,10 @@ struct CustomImageModifier: ViewModifier {
 }
 
 extension View {
-    func customImage(imageScale: Image.Scale) -> some View {
-        modifier(CustomImageModifier(imageScale: imageScale))
+    func customNormalImage(imageScale: Image.Scale, width: CGFloat, height: CGFloat) -> some View {
+        modifier(CustomNormalImageModifier(imageScale: imageScale, width: width, height: height))
     }
 }
+
+
+

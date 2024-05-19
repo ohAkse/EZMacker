@@ -1,16 +1,16 @@
 //
-//  CustomFont.swift
+//  CustomNormalTextFont.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/5/24.
+//  Created by 박유경 on 5/14/24.
 //
 
 import SwiftUI
-struct CustomTextModifier: ViewModifier {
+struct CustomNormalTextModifier: ViewModifier {
     @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String  = AppStorageKey.colorSchme.byDefault
     var fontSize: CGFloat
     var isBold: Bool
-    
+
     func body(content: Content) -> some View {
         content.font(.system(size: fontSize))
             .foregroundColor(textColorForTheme())
@@ -30,8 +30,8 @@ struct CustomTextModifier: ViewModifier {
 }
 
 extension View {
-    func customText(fontSize: CGFloat, isBold: Bool) -> some View {
-        modifier(CustomTextModifier(fontSize: fontSize, isBold: isBold))
+    func customNormalTextFont(fontSize: CGFloat, isBold: Bool) -> some View {
+        modifier(CustomNormalTextModifier(fontSize: fontSize, isBold: isBold))
     }
 }
 
