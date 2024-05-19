@@ -21,9 +21,9 @@ struct MainContentView: View {
                     GeometryReader { geo in
                         switch selectionValue {
                         case .smartBattery:
-                            SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(), systemPreferenceService: SystemPreferenceService()))
+                            SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), systemPreferenceService: SystemPreferenceService()))
                         case .smartWifi:
-                            SmartWifiView(smartWifiViewModel: SmartWifiViewModel(appSmartWifiService: AppSmartWifiService(), systemPreferenceService: SystemPreferenceService()))
+                            SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService()))
                         default:
                             EmptyView()
                         }

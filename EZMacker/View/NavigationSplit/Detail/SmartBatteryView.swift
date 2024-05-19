@@ -1,9 +1,9 @@
 import SwiftUI
 
-struct SmartBatteryView: View {
+struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
     //ObservedObject는 갱신하면 파괴후 다시 생성하면서 타이머 돌린게 바로 업데이트 안됨
     @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
-    @StateObject var smartBatteryViewModel: SmartBatteryViewModel
+    @StateObject var smartBatteryViewModel: SmartBatteryViewModel<ProvidableType>
     @State private var toast: Toast?
     @State private var isAdapterAnimated = false
     
@@ -205,6 +205,7 @@ extension SmartBatteryView {
 
 struct SmartBatteryView_Previews: PreviewProvider {
     static var previews: some View {
-        SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(), systemPreferenceService: SystemPreferenceService())).frame(width: 1500,height:1000)
+        SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), systemPreferenceService: SystemPreferenceService()))
+            .frame(width: 1500,height:1000)
     }
 }

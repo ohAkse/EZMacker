@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
-struct SmartWifiView: View {
-    @ObservedObject var smartWifiViewModel: SmartWifiViewModel
 
+
+struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
+    @ObservedObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>
+    init(smartWifiViewModel: SmartWifiViewModel<ProvidableType>) {
+        self.smartWifiViewModel = smartWifiViewModel
+    }
     var body: some View {
         VStack {
             Text(CategoryType.smartWifi.title)

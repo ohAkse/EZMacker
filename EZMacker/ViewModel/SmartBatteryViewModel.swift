@@ -9,7 +9,7 @@ import SwiftUI
 
 
 
-class SmartBatteryViewModel: ObservableObject {
+class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: ObservableObject {
     
     deinit {
         timer?.cancel()
@@ -39,11 +39,11 @@ class SmartBatteryViewModel: ObservableObject {
     
     //일반 설정값들
     private var systemPreferenceService: SystemPreferenceAccessible
-    private var appSmartBatteryService: AppSmartBatteryRegistryProvidable
+    private var appSmartBatteryService: ProvidableType
     private var timer: AnyCancellable?
     private var cancellables = Set<AnyCancellable>()
     
-    init(appSmartBatteryService: AppSmartBatteryRegistryProvidable, systemPreferenceService: SystemPreferenceAccessible) {
+    init(appSmartBatteryService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartBatteryService = appSmartBatteryService
         self.systemPreferenceService =  systemPreferenceService
         requestBatteryStatus()

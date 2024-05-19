@@ -52,6 +52,7 @@
 		5F97C3802BFA0F6300B0DC56 /* AppSmartWifiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C37F2BFA0F6300B0DC56 /* AppSmartWifiService.swift */; };
 		5F97C3822BFA132E00B0DC56 /* SmartWifiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3812BFA132E00B0DC56 /* SmartWifiView.swift */; };
 		5F97C3842BFA133A00B0DC56 /* SmartWifiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3832BFA133A00B0DC56 /* SmartWifiViewModel.swift */; };
+		5F97C3862BFA208600B0DC56 /* AppSmartServiceProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3852BFA208600B0DC56 /* AppSmartServiceProvidable.swift */; };
 		5FCC8B982BF2344400BCCFF3 /* NotificationAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B972BF2344400BCCFF3 /* NotificationAlarmView.swift */; };
 		5FCC8B9A2BF2345300BCCFF3 /* NotificationAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B992BF2345300BCCFF3 /* NotificationAlarmViewModel.swift */; };
 		5FD0313A2BEA5E8D009A8169 /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD031392BEA5E8D009A8169 /* Int + Extension.swift */; };
@@ -131,6 +132,7 @@
 		5F97C37F2BFA0F6300B0DC56 /* AppSmartWifiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartWifiService.swift; sourceTree = "<group>"; };
 		5F97C3812BFA132E00B0DC56 /* SmartWifiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWifiView.swift; sourceTree = "<group>"; };
 		5F97C3832BFA133A00B0DC56 /* SmartWifiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWifiViewModel.swift; sourceTree = "<group>"; };
+		5F97C3852BFA208600B0DC56 /* AppSmartServiceProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartServiceProvidable.swift; sourceTree = "<group>"; };
 		5FCC8B972BF2344400BCCFF3 /* NotificationAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAlarmView.swift; sourceTree = "<group>"; };
 		5FCC8B992BF2345300BCCFF3 /* NotificationAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAlarmViewModel.swift; sourceTree = "<group>"; };
 		5FD031392BEA5E8D009A8169 /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */,
 				5F70D5DE2BE7BE26004509BC /* AppSmartFileService.swift */,
 				5F97C37F2BFA0F6300B0DC56 /* AppSmartWifiService.swift */,
+				5F97C3852BFA208600B0DC56 /* AppSmartServiceProvidable.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */,
 				5F6D4E732BE8A262004B94F8 /* Extension + View.swift in Sources */,
 				5F70D5DB2BE7BDC7004509BC /* SmartFileViewModel.swift in Sources */,
+				5F97C3862BFA208600B0DC56 /* AppSmartServiceProvidable.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
 				5FEE27C52BE8DC4800847761 /* KeyboardShortCutHandler.swift in Sources */,
 				5F1012B62BF3A12A00589C9B /* CustomNormalTextFont.swift in Sources */,

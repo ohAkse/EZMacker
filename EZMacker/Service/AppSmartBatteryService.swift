@@ -8,16 +8,23 @@
 import Foundation
 import IOKit.ps
 import Combine
-protocol AppSmartBatteryRegistryProvidable {
-    func getRegistry(forKey key: AppSmartBatteryKeyType) -> Future<Any?, Never>
+
+protocol AppSmartBatteryRegistryProvidable: AppSmartServiceProvidable {
+    typealias batteryKey = AppSmartBatteryKeyType
+    func getRegistry(forKey key: batteryKey) -> Future<Any?, Never>
     func getPowerSourceValue<T>(for key: AppSmartBatteryPowerSourceType, defaultValue: T)  -> Future<T, Never>
 }
 
+
 struct AppSmartBatteryService: AppSmartBatteryRegistryProvidable {
+    var serviceKey: String
+    var service: io_object_t
+    init(serviceKey: String) {
+        self.serviceKey = serviceKey
+        self.service = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceNameMatching(serviceKey))
+    }
 
-    let service = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceNameMatching("AppleSmartBattery"))
-
-    func getRegistry(forKey key: AppSmartBatteryKeyType) -> Future<Any?, Never> {
+    func getRegistry(forKey key: batteryKey) -> Future<Any?, Never> {
         return Future<Any?, Never> { promise in
             guard let result = IORegistryEntryCreateCFProperty(service, key.rawValue as CFString?, nil, 0)?.takeRetainedValue() else {
                 Logger.fatalErrorMessage("CFProerty is null")
