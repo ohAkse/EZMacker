@@ -16,6 +16,8 @@ struct EZMackerApp: App {
                 .frame(minWidth: 1100, minHeight: 730)
         }
         .windowToolbarStyle(.unifiedCompact)
+        
+        
     }
 }
 
