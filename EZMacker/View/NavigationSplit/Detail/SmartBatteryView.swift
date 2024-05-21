@@ -1,9 +1,9 @@
 import SwiftUI
 
-struct SmartBatteryView: View {
+struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
     //ObservedObject는 갱신하면 파괴후 다시 생성하면서 타이머 돌린게 바로 업데이트 안됨
     @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
-    @StateObject var smartBatteryViewModel: SmartBatteryViewModel
+    @StateObject var smartBatteryViewModel: SmartBatteryViewModel<ProvidableType>
     @State private var toast: Toast?
     @State private var isAdapterAnimated = false
     
@@ -18,7 +18,9 @@ struct SmartBatteryView: View {
                                     InfoRectangleHImageTextView(imageName: "battery_cell", isSystem: false, title: "충전 완료! ", info: "", widthScale:0.3, heightScale:0.7)
                                 }
                                 else {
-                                    InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지 ", info: smartBatteryViewModel.chargingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
+                                    if smartBatteryViewModel.chargingTime == -1 {
+                                        InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지 ", info: smartBatteryViewModel.remainingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
+                                    }
                                 }
                             } else {
                                 InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지 ", info: smartBatteryViewModel.remainingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
@@ -169,6 +171,14 @@ struct SmartBatteryView: View {
                 .padding(.top, 20)
                 Spacer()
             }
+            .onAppear {
+                smartBatteryViewModel.requestStaticBatteryInfo()
+                smartBatteryViewModel.startConnectTimer()
+                smartBatteryViewModel.checkAdapterConnectionStatus()
+            }
+            .onDisappear {
+                smartBatteryViewModel.stopConnectTimer()
+            }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationTitle(CategoryType.smartBattery.title)
             .padding(.top, 25)
@@ -205,6 +215,7 @@ extension SmartBatteryView {
 
 struct SmartBatteryView_Previews: PreviewProvider {
     static var previews: some View {
-        SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(), systemPreferenceService: SystemPreferenceService())).frame(width: 1500,height:1000)
+        SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), systemPreferenceService: SystemPreferenceService()))
+            .frame(width: 1500,height:1000)
     }
 }

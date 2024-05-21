@@ -9,7 +9,7 @@ import Foundation
 class NotificationAlarmViewModel: ObservableObject {
     
     deinit {
-        print("NotificationAlarmViewModel deinit Called")
+        Logger.writeLog(.info, message: "NotificationAlarmViewModel deinit Called")
     }
     
     init() {
