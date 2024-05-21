@@ -44,20 +44,12 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     }
     //충전기 Off시 배터리 정보만 나타내는 함수
     private func requestBatteryInfo() {
-        Publishers.CombineLatest4(
-            appSmartBatteryService.getPowerSourceValue(for: .remainingTime, defaultValue: 0),
-            appSmartBatteryService.getPowerSourceValue(for: .chargingTime, defaultValue: 0),
-            appSmartBatteryService.getPowerSourceValue(for: .batteryHealth, defaultValue:""),
+         Publishers.CombineLatest(
+            appSmartBatteryService.getPowerSourceValue(for: .batteryHealth, defaultValue: ""),
             appSmartBatteryService.getRegistry(forKey: .BatteryCellDisconnectCount).compactMap { $0 as? Int }
         )
-        .sink { [weak self] remainingTime, chargingTime, healthState, batteryCellDisconnectCount in
+        .sink { [weak self] healthState, batteryCellDisconnectCount in
             guard let self = self else { return }
-            if self.remainingTime != remainingTime {
-                self.remainingTime = remainingTime
-            }
-            if self.chargingTime != chargingTime {
-                self.chargingTime = chargingTime
-            }
             if self.healthState != healthState {
                 self.healthState = healthState
             }
@@ -65,13 +57,12 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
                 self.batteryCellDisconnectCount = batteryCellDisconnectCount
             }
         }
-        .store(in: &cancellables)
-    }
+        .store(in: &cancellables)    }
 }
 extension SmartBatteryViewModel {
     func startConnectTimer() {
         
-        timer = Timer.publish(every: 0.3, on: .current, in: .default)
+        timer = Timer.publish(every: 1, on: .current, in: .default)
             .autoconnect()
             .sink { [weak self] _ in
                 self?.checkAdapterConnectionStatus()
@@ -112,26 +103,47 @@ extension SmartBatteryViewModel {
     }
     //어댑터 연결상태에 따라 정보가 변하는 함수
     func checkAdapterConnectionStatus() {
-        Publishers.CombineLatest(
-            appSmartBatteryService.getRegistry(forKey: .IsCharging)
-                .subscribe(on: DispatchQueue.global())
-                .compactMap { $0 as? Bool },
-            appSmartBatteryService.getRegistry(forKey: .CurrentCapacity)
-                .subscribe(on: DispatchQueue.global())
-                .compactMap { $0 as? Int }
-                .map { Double($0) / 100.0 }
+        Publishers.Zip(
+            appSmartBatteryService.getRegistry(forKey: .TimeRemaining).compactMap { $0 as? Int },
+            appSmartBatteryService.getPowerSourceValue(for: .chargingTime, defaultValue: 0)
         )
-        .receive(on: DispatchQueue.main)
-        .sink { [weak self] isCharging, currentBatteryCapacity in
+        .sink { [weak self] remainingTime, chargingTime in
             guard let self = self else { return }
-            if self.isCharging != isCharging {
-                self.isCharging = isCharging
+            if self.remainingTime != remainingTime {
+                self.remainingTime = remainingTime
             }
-            if self.currentBatteryCapacity != currentBatteryCapacity {
-                self.currentBatteryCapacity = currentBatteryCapacity
+            if self.chargingTime != chargingTime {
+                self.chargingTime = chargingTime
             }
+            Logger.writeLog(.info, message: "charging \(chargingTime)")
+            Logger.writeLog(.info, message: "remaing \(remainingTime)")
         }
         .store(in: &cancellables)
+    
+        
+        appSmartBatteryService.getRegistry(forKey: .IsCharging)
+             .subscribe(on: DispatchQueue.global())
+             .compactMap { $0 as? Bool }
+             .receive(on: DispatchQueue.main)
+             .sink { [weak self] isCharging in
+                 guard let self = self else { return }
+                  if self.isCharging != isCharging {
+                      self.isCharging = isCharging
+                  }
+             }
+             .store(in: &cancellables)
+        appSmartBatteryService.getRegistry(forKey: .CurrentCapacity)
+             .subscribe(on: DispatchQueue.global())
+             .compactMap { $0 as? Int }
+             .map { Double($0) / 100.0 }
+             .receive(on: DispatchQueue.main)
+             .sink { [weak self] currentCapacity in
+                 guard let self = self else { return }
+                 if self.currentBatteryCapacity != currentCapacity {
+                     self.currentBatteryCapacity = currentCapacity
+                 }
+             }
+             .store(in: &cancellables)
         
         appSmartBatteryService.getRegistry(forKey: .AppleRawAdapterDetails)
             .subscribe(on: DispatchQueue.global())

@@ -18,7 +18,9 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                                     InfoRectangleHImageTextView(imageName: "battery_cell", isSystem: false, title: "충전 완료! ", info: "", widthScale:0.3, heightScale:0.7)
                                 }
                                 else {
-                                    InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지 ", info: smartBatteryViewModel.chargingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
+                                    if smartBatteryViewModel.chargingTime == -1 {
+                                        InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지 ", info: smartBatteryViewModel.remainingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
+                                    }
                                 }
                             } else {
                                 InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지 ", info: smartBatteryViewModel.remainingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
@@ -170,9 +172,9 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 Spacer()
             }
             .onAppear {
-                smartBatteryViewModel.checkAdapterConnectionStatus()
                 smartBatteryViewModel.requestStaticBatteryInfo()
                 smartBatteryViewModel.startConnectTimer()
+                smartBatteryViewModel.checkAdapterConnectionStatus()
             }
             .onDisappear {
                 smartBatteryViewModel.stopConnectTimer()
