@@ -169,6 +169,14 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 .padding(.top, 20)
                 Spacer()
             }
+            .onAppear {
+                smartBatteryViewModel.checkAdapterConnectionStatus()
+                smartBatteryViewModel.requestStaticBatteryInfo()
+                smartBatteryViewModel.startConnectTimer()
+            }
+            .onDisappear {
+                smartBatteryViewModel.stopConnectTimer()
+            }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationTitle(CategoryType.smartBattery.title)
             .padding(.top, 25)
