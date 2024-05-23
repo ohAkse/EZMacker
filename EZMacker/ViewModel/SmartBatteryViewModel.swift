@@ -133,7 +133,7 @@ extension SmartBatteryViewModel {
                       return nil
                   }
                   return ChargeData(vacVoltageLimit: vacVoltageLimit,
-                                    chargingCurrent: 800,
+                                    chargingCurrent: 700,
                                     timeChargingThermallyLimited: timeChargingThermallyLimited,
                                     chargerStatus: chargerStatus,
                                     chargingVoltage: chargingVoltage,
@@ -145,9 +145,10 @@ extension SmartBatteryViewModel {
               .sink { [weak self] chargeData in
                   guard let self = self else { return }
                   self.chargeData.append(chargeData)
-                  if self.chargeData.count > 10 {
+                  if self.chargeData.count > 6 {
                       self.chargeData.removeFirst()
                   }
+                  
               }
               .store(in: &cancellables)
         
@@ -159,8 +160,6 @@ extension SmartBatteryViewModel {
             guard let self = self else { return }
             self.remainingTime = remainingTime
             self.chargingTime = chargingTime
-//            Logger.writeLog(.info, message: "charging -> \(chargingTime)")
-//            Logger.writeLog(.info, message: "remainingTime -> \(remainingTime)")
         }
         .store(in: &cancellables)
     
