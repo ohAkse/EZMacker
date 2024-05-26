@@ -231,6 +231,7 @@
 		5F1A91A32BF8D8C30078F4F8 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				5F36B21A2BE7AB3100E08935 /* Assets.xcassets */,
 				5F1A91A42BF8D8CA0078F4F8 /* Gif */,
 			);
 			path = Resource;
@@ -288,9 +289,6 @@
 				5F36B2472BE7B1A600E08935 /* ViewModel */,
 				5F36B2462BE7B19E00E08935 /* View */,
 				5F36B2452BE7B19500E08935 /* Service */,
-				5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */,
-				5F36B2432BE7ACC000E08935 /* MainContentView.swift */,
-				5F36B21A2BE7AB3100E08935 /* Assets.xcassets */,
 				5F36B21F2BE7AB3100E08935 /* EZMacker.entitlements */,
 				5F36B21C2BE7AB3100E08935 /* Preview Content */,
 			);
@@ -490,6 +488,8 @@
 		5FEE27BD2BE8DA9400847761 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				5F36B2432BE7ACC000E08935 /* MainContentView.swift */,
+				5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */,
 				5F97C3722BF9D20F00B0DC56 /* SystemPreference */,
 				5FEE27BE2BE8DA9C00847761 /* KeyboardShortcut */,
 			);
