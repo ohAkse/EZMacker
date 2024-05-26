@@ -12,6 +12,7 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     deinit {
         Logger.writeLog(.info, message: "SmartBatteryViewModel deinit Called")
     }
+    
     //배터리 관련 설정값들
     @Published var isCharging = false
     @Published var temperature = 0
@@ -41,7 +42,6 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     init(appSmartBatteryService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartBatteryService = appSmartBatteryService
         self.systemPreferenceService =  systemPreferenceService
-        
         
     }
     //충전기 Off시 배터리 정보만 나타내는 함수
@@ -169,7 +169,7 @@ extension SmartBatteryViewModel {
              .receive(on: DispatchQueue.main)
              .sink { [weak self] currentCapacity in
                  guard let self = self else { return }
-                 if self.currentBatteryCapacity != currentCapacity {
+                 if self.currentBatteryCapacity != currentCapacity  {
                      self.currentBatteryCapacity = currentCapacity
                  }
              }
@@ -186,8 +186,6 @@ extension SmartBatteryViewModel {
             .decode(type: [AdapterDetails].self, decoder: JSONDecoder())
             .mapError { error -> AdapterConnectStatus in
                 switch error {
-                case is DecodingError:
-                    return .decodingFailed
                 default:
                     return .unknown(error)
                 }

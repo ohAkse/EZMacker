@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InfoElipseHImageView: View {
-    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
+    @EnvironmentObject var colorScheme: ColorSchemeViewModel
     let size: CGFloat = FontSizeType.large.size
     let title: String
     let content: String
@@ -38,7 +38,7 @@ struct InfoElipseHImageView: View {
         }
     }
     private func getBorderColor() -> Color {
-        switch colorScheme {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
             return ThemeColor.lightGray.color
         case ColorSchemeMode.Dark.title:
@@ -50,7 +50,7 @@ struct InfoElipseHImageView: View {
     }
     
     private func cardColorForTheme() -> Color {
-        switch colorScheme {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
             return ThemeColor.lightGray.color
         case ColorSchemeMode.Dark.title:

@@ -10,14 +10,14 @@ import SwiftUI
 @main
 struct EZMackerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject private var colorSchemeViewModel = ColorSchemeViewModel()
     var body: some Scene {
         WindowGroup {
             MainContentView()
                 .frame(minWidth: 1100, minHeight: 730)
         }
+        .environmentObject(colorSchemeViewModel)
         .windowToolbarStyle(.unifiedCompact)
-        
-        
     }
 }
 

@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @ObservedObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>
     init(smartWifiViewModel: SmartWifiViewModel<ProvidableType>) {
         self.smartWifiViewModel = smartWifiViewModel
@@ -18,7 +19,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             Text(CategoryType.smartWifi.title)
                 .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
         }
-        .navigationTitle(CategoryType.notificationAlarm.title)
+        .navigationTitle(CategoryType.smartWifi.title)
         .padding()
     }
 }

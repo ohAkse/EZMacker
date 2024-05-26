@@ -7,7 +7,7 @@
 
 import SwiftUI
 struct CustomNormalImageModifier: ViewModifier {
-    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String  = AppStorageKey.colorSchme.byDefault
+    @EnvironmentObject var colorScheme: ColorSchemeViewModel
     var imageScale: Image.Scale
     var width: CGFloat
     var height: CGFloat
@@ -19,7 +19,7 @@ struct CustomNormalImageModifier: ViewModifier {
     }
     
     private func imageColorForTheme() -> Color {
-        switch colorScheme {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
             return ThemeColor.lightBlue.color
         case ColorSchemeMode.Dark.title:

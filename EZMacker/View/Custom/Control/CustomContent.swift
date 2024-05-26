@@ -7,7 +7,7 @@
 
 import SwiftUI
 struct CustomContent: View {
-    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
+    @EnvironmentObject var colorScheme: ColorSchemeViewModel
     let size: CGFloat = FontSizeType.large.size
     let content: String
     
@@ -19,7 +19,7 @@ struct CustomContent: View {
         
     }
     private func getContentFontStyles() -> Color {
-        switch colorScheme {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
             return ThemeColor.lightBlack.color
         case ColorSchemeMode.Dark.title:
