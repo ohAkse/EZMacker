@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct InfoRectangleHImageTextView: View {
-    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
+    
+    @EnvironmentObject var colorScheme: ColorSchemeViewModel
     @State private var isAnimated = false
     let imageName: String
     let isSystem: Bool
@@ -22,12 +23,12 @@ struct InfoRectangleHImageTextView: View {
             HStack(alignment:.center, spacing: 5) {
                     getImage()
                     .resizable()
-                    .scaledToFit()
+                    .aspectRatio(contentMode: .fit)
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(getImageForegroundStyle()[0], getImageForegroundStyle()[1])
                     .padding(20)
                     .animation(.easeIn(duration: 3),value:isAnimated)
-                Spacer()
+                Spacer(minLength: 5)
                 VStack(alignment: .center) {
                     
                         Text(title)
@@ -67,10 +68,9 @@ struct InfoRectangleHImageTextView: View {
     private func getImage() -> Image {
         return isSystem ? Image(systemName: imageName) : Image(imageName)
     }
-    
-    
+
     private func getImageForegroundStyle() -> [Color] {
-        switch colorScheme {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
             return [ThemeColor.lightGreen.color, ThemeColor.lightGray.color]
         case ColorSchemeMode.Dark.title:
@@ -95,7 +95,7 @@ struct InfoRectangleHImageTextView: View {
     }
     
     private func cardColorForTheme() -> Color {
-        switch colorScheme {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
             return ThemeColor.lightGray.color
         case ColorSchemeMode.Dark.title:

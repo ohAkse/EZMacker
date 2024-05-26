@@ -7,7 +7,7 @@
 
 import SwiftUI
 struct CustomTitle: View {
-    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
+    @EnvironmentObject var colorScheme: ColorSchemeViewModel
     let size: CGFloat = FontSizeType.large.size
     let title: String
     
@@ -26,7 +26,7 @@ struct CustomTitle: View {
             .shadow(radius: 5)
     }
     private func getHeaderFontStyles() -> [Color] {
-        switch colorScheme {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
             return [ThemeColor.lightGray.color, ThemeColor.lightBlack.color]
         case ColorSchemeMode.Dark.title:

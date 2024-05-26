@@ -1,16 +1,15 @@
 //
-//  BatteryView.swift
+//  InfoBatteryBarView.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/8/24.
+//  Created by 박유경 on 5/26/24.
 //
 
 import SwiftUI
-
-struct BatteryBarView: View {
-    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
+struct InfoBatteryBarView: View {
+    @EnvironmentObject var colorScheme: ColorSchemeViewModel
     @State var isUpdateAnimated  = false
-    let batteryLevel: Double
+    @Binding var batteryLevel: Double
     @Binding var isAdapterConnected : Bool
     
     var body: some View {
@@ -76,11 +75,11 @@ struct BatteryBarView: View {
     }
     
     private func batteryImageColors() -> [Color] {
-        switch colorScheme {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
-            return [.blue, .yellow]
+            return [ThemeColor.lightGreen.color, ThemeColor.lightGray.color]
         case ColorSchemeMode.Dark.title:
-            return [.yellow, .green]
+            return [ThemeColor.lightBlue.color, ThemeColor.lightGray.color]
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return [.clear, .clear]
@@ -95,7 +94,7 @@ struct BatteryBarView: View {
             return [ThemeColor.lightGreen.color.opacity(0.7), ThemeColor.lightGreen.color.opacity(0.99)]
         case 0.33...0.65:
             return [ThemeColor.lightYellow.color.opacity(0.7), ThemeColor.lightYellow.color.opacity(0.99)]
-        case 0.01...0.32:
+        case 0.0...0.32:
             return [ThemeColor.lightRed.color.opacity(0.7), ThemeColor.lightRed.color.opacity(0.99)]
         default:
             Logger.fatalErrorMessage("Unknown Battery Level")
@@ -105,14 +104,14 @@ struct BatteryBarView: View {
 }
 
 #if DEBUG
-struct BatteryBarView_Preview: PreviewProvider {
+struct InfoBatteryBarView_Preview: PreviewProvider {
     static var previews: some View {
         @State var isCharging: Bool = false
+        @State var battery: Double = 0.75
         HStack {
-            BatteryBarView(batteryLevel: 0.75, isAdapterConnected: $isCharging)
+            InfoBatteryBarView(batteryLevel: $battery, isAdapterConnected: $isCharging)
         }
     }
 }
 #endif
-
 

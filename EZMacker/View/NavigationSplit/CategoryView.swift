@@ -14,19 +14,26 @@ struct CategoryView: View {
         List(selection: $selectionValue) {
             Section(CategorySectionType.categoryMainSection.title) {
                 categoryRow(for: .smartBattery)
-                
+                categoryRow(for: .smartWifi)
                 categoryRow(for: .smartFile)
                 
             }
             .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
-
             .frame(minHeight: 40)
             
             Section(CategorySectionType.settingSection.title) {
-                categoryRow(for: .notificationAlarm)
+                categoryRow(for: .smartNotificationAlarm)
             }
             .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
+        }
+        .onChange(of: selectionValue) { oldState, newState in
+            if newState == .smartFile || newState == .smartWifi {
+                showAlert = true
+            }
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("정보"), message: Text("준비중입니다."), dismissButton: .default(Text("확인")))
         }
     }
     
@@ -37,14 +44,6 @@ struct CategoryView: View {
             Text(category.title)
                 .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
 
-        }
-        .onTapGesture {
-            if category == .smartFile || category == .notificationAlarm{
-                showAlert = true
-            }
-        }
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("정보"), message: Text("준비중입니다."), dismissButton: .default(Text("OK")))
         }
         .padding(.leading, 5)
         .frame(minHeight: 20)
