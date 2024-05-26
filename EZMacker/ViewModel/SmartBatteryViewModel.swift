@@ -194,7 +194,6 @@ extension SmartBatteryViewModel {
                 receiveCompletion: { completion in
                     if case .failure(_) = completion {
                         self.adapterConnectionSuccess = .decodingFailed
-                        print("ZZ")
                     }
                 },
                 receiveValue: { [weak self] adapterDetails in

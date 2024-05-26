@@ -46,4 +46,10 @@ extension Int {
         if self == 0 {return "계산중.."}
         return String(self) + "(mAH)"
     }
+    //SwiftUI에서는 기본적으로 문자열이 숫자일때 ,로찍혀서 나오는듯
+    func toNumber() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
+    }
 }

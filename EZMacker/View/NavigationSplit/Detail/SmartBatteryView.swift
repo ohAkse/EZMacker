@@ -31,18 +31,21 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                             }
                         }
                         .frame(width: geo.size.width * 0.2, height:geo.size.height * 0.2)
+                        
                         Spacer()
                         HStack(alignment: .top) {
                             VStack(alignment: .trailing) {
                                 Text("Max V")
                                     .lineLimit(1)
+                                    .fixedSize()
                                 Spacer()
                                 Text("Min V")
                                     .lineLimit(1)
+                                    .fixedSize()
                             }
                             .offset(x: 20)
                             .padding(.vertical)
-                            .frame(width: 40)
+                            
                             
                             InfoGridHMonitoringView(chargeData: $smartBatteryViewModel.chargeData)
                                 .padding()
