@@ -46,7 +46,7 @@ struct InfoGridHMonitoringView: View {
                         .stroke(Color.red, lineWidth: 2)
                         if isAdapterConnect {
                             if let lastChargeData = chargeData.last, lastChargeData.notChargingReason != 0 {
-                                Text("ErrorCode: \(lastChargeData.notChargingReason)")
+                                Text("ErrorCode: \(lastChargeData.notChargingReason.toNumber())")
                                     .foregroundColor(Color.gray)
                                     .font(.system(size: 20, weight: .bold))
                                     .padding()

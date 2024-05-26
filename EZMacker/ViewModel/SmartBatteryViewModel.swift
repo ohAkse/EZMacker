@@ -12,6 +12,7 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     deinit {
         Logger.writeLog(.info, message: "SmartBatteryViewModel deinit Called")
     }
+    
     //배터리 관련 설정값들
     @Published var isCharging = false
     @Published var temperature = 0

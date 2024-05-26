@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomImage: View {
-    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
+    @EnvironmentObject var colorScheme: ColorSchemeViewModel
     let systemName: String
     let isSystemName: Bool
     var body: some View {
@@ -30,7 +30,7 @@ struct CustomImage: View {
     }
     
     private func getImageForegroundStyle() -> [Color] {
-        switch colorScheme {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
             return [.gray, .blue]
         case ColorSchemeMode.Dark.title:
@@ -41,7 +41,7 @@ struct CustomImage: View {
         }
     }
     private func getImageBackground() -> Color {
-        switch colorScheme {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
             return ThemeColor.lightWhite.color
         case ColorSchemeMode.Dark.title:

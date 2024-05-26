@@ -5,7 +5,10 @@
 //  Created by 박유경 on 5/13/24.
 //
 
-import Foundation
+
+import SwiftUI
+
+
 class SmartNotificationAlarmViewModel: ObservableObject {
     
     deinit {

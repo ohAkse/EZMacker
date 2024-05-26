@@ -28,7 +28,7 @@ struct CategoryView: View {
             .frame(minHeight: 40)
         }
         .onChange(of: selectionValue) { oldState, newState in
-            if newState == .smartFile {
+            if newState == .smartFile || newState == .smartWifi {
                 showAlert = true
             }
         }

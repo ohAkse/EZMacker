@@ -32,6 +32,7 @@
 		5F3FF02E2C02BBFA00E3246C /* AppSmartProcessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF02D2C02BBFA00E3246C /* AppSmartProcessInfo.swift */; };
 		5F3FF0302C02BE9800E3246C /* ChargeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF02F2C02BE9800E3246C /* ChargeData.swift */; };
 		5F3FF0322C02C6AE00E3246C /* InfoBatteryBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF0312C02C6AE00E3246C /* InfoBatteryBarView.swift */; };
+		5F3FF0342C02EE8600E3246C /* ColorSchemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF0332C02EE8600E3246C /* ColorSchemeViewModel.swift */; };
 		5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E5F2BE88213004B94F8 /* AppStorageKey.swift */; };
 		5F6D4E622BE888D9004B94F8 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E612BE888D9004B94F8 /* UserDefaultManager.swift */; };
 		5F6D4E652BE889BB004B94F8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E642BE889BB004B94F8 /* Logger.swift */; };
@@ -116,6 +117,7 @@
 		5F3FF02D2C02BBFA00E3246C /* AppSmartProcessInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartProcessInfo.swift; sourceTree = "<group>"; };
 		5F3FF02F2C02BE9800E3246C /* ChargeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeData.swift; sourceTree = "<group>"; };
 		5F3FF0312C02C6AE00E3246C /* InfoBatteryBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBatteryBarView.swift; sourceTree = "<group>"; };
+		5F3FF0332C02EE8600E3246C /* ColorSchemeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeViewModel.swift; sourceTree = "<group>"; };
 		5F6D4E5F2BE88213004B94F8 /* AppStorageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageKey.swift; sourceTree = "<group>"; };
 		5F6D4E612BE888D9004B94F8 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		5F6D4E642BE889BB004B94F8 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				5F70D5DC2BE7BDE0004509BC /* SmartBatteryViewModel.swift */,
 				5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */,
 				5F97C3832BFA133A00B0DC56 /* SmartWifiViewModel.swift */,
+				5F3FF0332C02EE8600E3246C /* ColorSchemeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				5F3FF02E2C02BBFA00E3246C /* AppSmartProcessInfo.swift in Sources */,
 				5F1012A82BF3997E00589C9B /* InfoElipseHImageView.swift in Sources */,
 				5F1012B82BF3A16D00589C9B /* CustomNormalImage.swift in Sources */,
+				5F3FF0342C02EE8600E3246C /* ColorSchemeViewModel.swift in Sources */,
 				5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */,
 				5FDB4BC82BFE5578002B1370 /* InfoGridHMonitoringView.swift in Sources */,
 				5F6D4E7C2BE8A328004B94F8 /* Toast.swift in Sources */,

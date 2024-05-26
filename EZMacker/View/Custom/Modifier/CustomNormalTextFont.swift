@@ -7,7 +7,7 @@
 
 import SwiftUI
 struct CustomNormalTextModifier: ViewModifier {
-    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String  = AppStorageKey.colorSchme.byDefault
+    @EnvironmentObject var colorScheme: ColorSchemeViewModel
     var fontSize: CGFloat
     var isBold: Bool
 
@@ -17,7 +17,7 @@ struct CustomNormalTextModifier: ViewModifier {
     }
 
     private func textColorForTheme() -> Color {
-        switch colorScheme {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
             return ThemeColor.lightBlack.color
         case ColorSchemeMode.Dark.title:

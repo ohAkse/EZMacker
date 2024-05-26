@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
-    //ObservedObject는 갱신하면 파괴후 다시 생성하면서 타이머 돌린게 바로 업데이트 안됨
-    
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @StateObject var smartBatteryViewModel: SmartBatteryViewModel<ProvidableType>
     @State private var toast: Toast?
     @State private var isAdapterAnimated = false
@@ -15,13 +14,16 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                             if smartBatteryViewModel.isAdapterConnected  {
                                 if smartBatteryViewModel.currentBatteryCapacity * 100 == 100 {
                                     InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: "충전완료", widthScale:0.3, heightScale:0.7)
+                                        .environmentObject(colorSchemeViewModel)
                                 }
                                 else {
                                     InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지 ", info: smartBatteryViewModel.chargingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
+                                        .environmentObject(colorSchemeViewModel)
                                 }
                             } else {
                                 if smartBatteryViewModel.chargingTime <= 1  {
                                     InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지 ", info: smartBatteryViewModel.remainingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
+                                        .environmentObject(colorSchemeViewModel)
                                 }
                             }
                         }
@@ -152,8 +154,10 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                             VStack(spacing: 0) {
                                 InfoRectangleHImageTextView(imageName: "battery_status",isSystem: false, title: "배터리 상태", info: smartBatteryViewModel.healthState == "" ? "계산중.." : smartBatteryViewModel.healthState,widthScale:0.2, heightScale:0.5)
                                     .frame(height:geo.size.height * 0.2)
+                                    .environmentObject(colorSchemeViewModel)
                                 InfoRectangleHImageTextView(imageName: "battery_cell",isSystem: false, title: "베터리셀 끊김 횟수", info: "\(smartBatteryViewModel.batteryCellDisconnectCount)",widthScale:0.2, heightScale:0.5)
                                     .frame(height:geo.size.height * 0.2)
+                                    .environmentObject(colorSchemeViewModel)
                             }
 
                         }
@@ -176,12 +180,16 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 HStack(spacing: 30) {
                     InfoRectangleHImageTextView(imageName: "battery_recycle",isSystem: false, title: "사이클 수", info: smartBatteryViewModel.cycleCount.toBun(),widthScale:0.2, heightScale:1)
                         .frame(height:geo.size.height * 0.2)
+                        .environmentObject(colorSchemeViewModel)
                     InfoRectangleHImageTextView(imageName: "battery_thermometer", isSystem: false, title: "온도", info: smartBatteryViewModel.temperature.toDegree(),widthScale:0.2, heightScale:1)
                         .frame(height:geo.size.height * 0.2)
+                        .environmentObject(colorSchemeViewModel)
                     InfoRectangleHImageTextView(imageName: "battery_currentCapa", isSystem: false, title: "배터리 용량", info: smartBatteryViewModel.batteryMaxCapacity.tomAH(),widthScale:0.2, heightScale:1)
                         .frame(height:geo.size.height * 0.2)
+                        .environmentObject(colorSchemeViewModel)
                     InfoRectangleHImageTextView(imageName: "battery_designdCapa", isSystem: false, title: "설계 용량", info: smartBatteryViewModel.designedCapacity.tomAH(),widthScale:0.2, heightScale:1)
                         .frame(height:geo.size.height * 0.2)
+                        .environmentObject(colorSchemeViewModel)
                 }
                 .padding(.top, 20)
                 Spacer()

@@ -7,7 +7,7 @@
 
 import SwiftUI
 struct InfoBatteryBarView: View {
-    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
+    @EnvironmentObject var colorScheme: ColorSchemeViewModel
     @State var isUpdateAnimated  = false
     @Binding var batteryLevel: Double
     @Binding var isAdapterConnected : Bool
@@ -75,7 +75,7 @@ struct InfoBatteryBarView: View {
     }
     
     private func batteryImageColors() -> [Color] {
-        switch colorScheme {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
             return [.blue, .yellow]
         case ColorSchemeMode.Dark.title:

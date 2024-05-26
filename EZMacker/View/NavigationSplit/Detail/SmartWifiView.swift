@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @ObservedObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>
     init(smartWifiViewModel: SmartWifiViewModel<ProvidableType>) {
         self.smartWifiViewModel = smartWifiViewModel

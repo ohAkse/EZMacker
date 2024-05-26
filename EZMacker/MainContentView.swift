@@ -1,68 +1,62 @@
 import SwiftUI
 
 struct MainContentView: View {
-    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme = AppStorageKey.colorSchme.byDefault
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @State private var selectionValue = CategoryType.smartBattery
-    @State private var isShowChooseColorScheme = false
-    @State private var rotateDegree = 0
-    
+
     var body: some View {
         NavigationSplitView {
             CategoryView(selectionValue: $selectionValue)
                 .frame(minWidth: 200)
                 .contentShape(Rectangle())
         } detail: {
-            if  selectionValue == .smartFile {
+            if selectionValue == .smartFile {
                 EmptyView()
             } else {
                 switch selectionValue {
                 case .smartBattery:
                     SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), systemPreferenceService: SystemPreferenceService()))
-                case .smartWifi:
-                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService()))
-                /* 추후 제공
-                case .smartFile:
-                    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
-                */
+                        .environmentObject(colorSchemeViewModel)
+//                case .smartWifi:
+//                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService()))
+//                        .environmentObject(colorSchemeViewModel)
+                    
+//                case .smartFile:
+//                    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
+//                        .environmentObject(colorSchemeViewModel)
                 case .smartNotificationAlarm:
                     SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel())
+                        .environmentObject(colorSchemeViewModel)
                 default:
                     EmptyView()
                 }
-                
             }
-            
         }
         .toolbar(id: ToolbarKey.MainToolbar.name) {
             ToolbarItem(id: ToolbarKey.ColorSchemePicker.name, placement: .primaryAction) {
                 HStack(spacing: 0) {
                     ColorSchemeToolbarView(buttonTitle: ColorSchemeMode.Light.title, buttonTag: ColorSchemeMode.Light.tag)
-                    ColorSchemeToolbarView(buttonTitle: ColorSchemeMode.Dark.title, buttonTag: ColorSchemeMode.Dark.tag )
-                    
+                    ColorSchemeToolbarView(buttonTitle: ColorSchemeMode.Dark.title, buttonTag: ColorSchemeMode.Dark.tag)
                 }
                 .padding(3)
                 .overlay {
                     Capsule()
                         .stroke(.blue, lineWidth: 1)
                 }
-                .opacity(isShowChooseColorScheme ? 1 : 0)
-                .animation(.linear(duration: 0.2), value: rotateDegree)
+                .opacity(colorSchemeViewModel.isShowChooseColorScheme ? 1 : 0)
+                .animation(.linear(duration: 0.2), value: colorSchemeViewModel.rotateDegree)
             }
             
             ToolbarItem(id: ToolbarKey.ColorSchemeButton.name, placement: .primaryAction) {
                 Button {
-                    withAnimation(.linear) {
-                        isShowChooseColorScheme.toggle()
-                        rotateDegree = rotateDegree == 0 ? -180 : 0
-                    }
+                    colorSchemeViewModel.toggleColorScheme()
                 } label: {
                     Image(systemName: ToolbarImage.colorSchemeButton.systemName)
-                        .rotationEffect(.degrees(Double(rotateDegree)))
-                        .animation(.linear(duration: 0.2), value: rotateDegree)
+                        .rotationEffect(.degrees(colorSchemeViewModel.rotateDegree))
+                        .animation(.linear(duration: 0.2), value: colorSchemeViewModel.rotateDegree)
                 }
             }
         }
-        
-        .preferredColorScheme(colorScheme == ColorSchemeMode.Dark.title ? .dark : .light)
+        .preferredColorScheme(colorSchemeViewModel.colorScheme == ColorSchemeMode.Dark.title ? .dark : .light)
     }
 }
