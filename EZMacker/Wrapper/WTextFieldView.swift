@@ -52,10 +52,10 @@ struct WTextField: NSViewRepresentable {
     func makeNSView(context: Context) -> NSTextField {
         let textField = NSTextField()
         textField.delegate = context.coordinator
-        textField.isBordered = true
+        textField.layer?.cornerRadius = 8
         textField.alignment = .left
         textField.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
-        textField.placeholderString = "Enter a value between 0 and 100"
+        textField.placeholderString = "0과 100 사이에 숫자를 입력하세요."
         return textField
     }
 

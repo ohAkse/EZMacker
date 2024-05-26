@@ -77,9 +77,9 @@ struct InfoBatteryBarView: View {
     private func batteryImageColors() -> [Color] {
         switch colorScheme.getColorScheme() {
         case ColorSchemeMode.Light.title:
-            return [.blue, .yellow]
+            return [ThemeColor.lightGreen.color, ThemeColor.lightGray.color]
         case ColorSchemeMode.Dark.title:
-            return [.yellow, .green]
+            return [ThemeColor.lightBlue.color, ThemeColor.lightGray.color]
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return [.clear, .clear]

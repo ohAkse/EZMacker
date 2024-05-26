@@ -18,7 +18,6 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     @Published var isCharging = false
     @Published var temperature = 0
     @Published var currentBatteryCapacity = 0.0
-    
     @Published var remainingTime = 0
     @Published var chargingTime = 0
     @Published var cycleCount = 0
@@ -235,7 +234,7 @@ extension SmartBatteryViewModel {
         if let isBattryCurrentMessageMode: Bool = appSettingService.loadConfig(.isBattryCurrentMessageMode) {
             if isBattryCurrentMessageMode {
                 if let batteryPercentage: String = appSettingService.loadConfig(.batteryPercentage) {
-                    let batteryDobulePercentage = Double(batteryPercentage)! / 100
+                    let batteryDobulePercentage = Double(batteryPercentage) ?? 0 / 100
                     if batteryDobulePercentage <= currentBatteryCapacity {
                         if !isSent {
                             AppNotificationManager.shared.sendNotification(title: "충전 안내", subtitle: "설정하신 배터리 충전이 완료되었습니다.")
