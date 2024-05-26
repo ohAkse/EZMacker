@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class NotificationAlarmViewModel: ObservableObject {
+class SmartNotificationAlarmViewModel: ObservableObject {
     
     deinit {
         Logger.writeLog(.info, message: "NotificationAlarmViewModel deinit Called")

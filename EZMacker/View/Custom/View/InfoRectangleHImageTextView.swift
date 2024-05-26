@@ -22,12 +22,12 @@ struct InfoRectangleHImageTextView: View {
             HStack(alignment:.center, spacing: 5) {
                     getImage()
                     .resizable()
-                    .scaledToFit()
+                    .aspectRatio(contentMode: .fit)
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(getImageForegroundStyle()[0], getImageForegroundStyle()[1])
                     .padding(20)
                     .animation(.easeIn(duration: 3),value:isAnimated)
-                Spacer()
+                Spacer(minLength: 5)
                 VStack(alignment: .center) {
                     
                         Text(title)
@@ -67,8 +67,7 @@ struct InfoRectangleHImageTextView: View {
     private func getImage() -> Image {
         return isSystem ? Image(systemName: imageName) : Image(imageName)
     }
-    
-    
+
     private func getImageForegroundStyle() -> [Color] {
         switch colorScheme {
         case ColorSchemeMode.Light.title:

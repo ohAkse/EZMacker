@@ -19,22 +19,21 @@ struct CategoryView: View {
                 
             }
             .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
-
             .frame(minHeight: 40)
             
             Section(CategorySectionType.settingSection.title) {
-                categoryRow(for: .notificationAlarm)
+                categoryRow(for: .smartNotificationAlarm)
             }
             .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
         }
         .onChange(of: selectionValue) { oldState, newState in
-            if newState == .smartFile || newState == .notificationAlarm {
+            if newState == .smartFile {
                 showAlert = true
             }
         }
         .alert(isPresented: $showAlert) {
-            Alert(title: Text("정보"), message: Text("준비중입니다."), dismissButton: .default(Text("OK")))
+            Alert(title: Text("정보"), message: Text("준비중입니다."), dismissButton: .default(Text("확인")))
         }
     }
     

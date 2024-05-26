@@ -6,16 +6,16 @@
 //
 
 import SwiftUI
-struct NotificationAlarmView: View {
-    @ObservedObject var notificationAlarmViewModel: NotificationAlarmViewModel
+struct SmartNotificationAlarmView: View {
+    @ObservedObject var smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel
     @State private var toast: Toast?
 
     var body: some View {
         VStack {
-            Text(CategoryType.notificationAlarm.title)
+            Text(CategoryType.smartNotificationAlarm.title)
                 .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
         }
-        .navigationTitle(CategoryType.notificationAlarm.title)
+        .navigationTitle(CategoryType.smartFile.title)
         .padding()
     }
 }

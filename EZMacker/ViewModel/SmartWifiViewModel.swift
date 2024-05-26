@@ -7,7 +7,6 @@
 
 import Foundation
 class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: ObservableObject {
-    //private let smartWifiService: AppSmartWifiServiceProvidable
     private let smartWifiService: ProvidableType
     private let systemPreferenceService: SystemPreferenceAccessible
     deinit {

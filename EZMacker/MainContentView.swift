@@ -10,26 +10,28 @@ struct MainContentView: View {
         NavigationSplitView {
             CategoryView(selectionValue: $selectionValue)
                 .frame(minWidth: 200)
-                .contentShape(Rectangle()) 
-            
-                
+                .contentShape(Rectangle())
         } detail: {
-            GeometryReader { geo in 
-                if selectionValue == .smartFile || selectionValue == .notificationAlarm {
+            if  selectionValue == .smartFile {
+                EmptyView()
+            } else {
+                switch selectionValue {
+                case .smartBattery:
+                    SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), systemPreferenceService: SystemPreferenceService()))
+                case .smartWifi:
+                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService()))
+                /* 추후 제공
+                case .smartFile:
+                    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
+                */
+                case .smartNotificationAlarm:
+                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel())
+                default:
                     EmptyView()
-                } else {
-                    GeometryReader { geo in
-                        switch selectionValue {
-                        case .smartBattery:
-                            SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), systemPreferenceService: SystemPreferenceService()))
-                        case .smartWifi:
-                            SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService()))
-                        default:
-                            EmptyView()
-                        }
-                    }
                 }
+                
             }
+            
         }
         .toolbar(id: ToolbarKey.MainToolbar.name) {
             ToolbarItem(id: ToolbarKey.ColorSchemePicker.name, placement: .primaryAction) {

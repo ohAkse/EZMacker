@@ -42,7 +42,6 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
         self.appSmartBatteryService = appSmartBatteryService
         self.systemPreferenceService =  systemPreferenceService
         
-        
     }
     //충전기 Off시 배터리 정보만 나타내는 함수
     private func requestBatteryInfo() {
@@ -169,7 +168,7 @@ extension SmartBatteryViewModel {
              .receive(on: DispatchQueue.main)
              .sink { [weak self] currentCapacity in
                  guard let self = self else { return }
-                 if self.currentBatteryCapacity != currentCapacity {
+                 if self.currentBatteryCapacity != currentCapacity  {
                      self.currentBatteryCapacity = currentCapacity
                  }
              }
@@ -186,8 +185,6 @@ extension SmartBatteryViewModel {
             .decode(type: [AdapterDetails].self, decoder: JSONDecoder())
             .mapError { error -> AdapterConnectStatus in
                 switch error {
-                case is DecodingError:
-                    return .decodingFailed
                 default:
                     return .unknown(error)
                 }
@@ -197,6 +194,7 @@ extension SmartBatteryViewModel {
                 receiveCompletion: { completion in
                     if case .failure(_) = completion {
                         self.adapterConnectionSuccess = .decodingFailed
+                        print("ZZ")
                     }
                 },
                 receiveValue: { [weak self] adapterDetails in
