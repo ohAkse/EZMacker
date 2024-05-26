@@ -4,7 +4,7 @@ import SwiftUI
 
 struct InfoGridHMonitoringView: View {
     @Binding var chargeData: [ChargeData]
-    
+    @Binding var isAdapterConnect: Bool
     var body: some View {
         GeometryReader { geometry in
             HStack{
@@ -44,14 +44,18 @@ struct InfoGridHMonitoringView: View {
                             }
                         }
                         .stroke(Color.red, lineWidth: 2)
-                    }
-                    
-                    if let firstError = chargeData.first(where: { $0.notChargingReason != 0 }) {
-                        Text("ErrorCode: \(firstError.notChargingReason.toNumber())")
-                            .foregroundColor(Color.gray)
-                            .font(.system(size: 20, weight: .bold))
-                            .padding()
-                            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                        if isAdapterConnect {
+                            if let lastChargeData = chargeData.last, lastChargeData.notChargingReason != 0 {
+                                Text("ErrorCode: \(lastChargeData.notChargingReason)")
+                                    .foregroundColor(Color.gray)
+                                    .font(.system(size: 20, weight: .bold))
+                                    .padding()
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                            } else {
+                                Text("")
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                            }
+                        }
                     }
                 }
                 Spacer()

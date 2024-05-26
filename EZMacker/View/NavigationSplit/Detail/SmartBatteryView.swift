@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
     //ObservedObject는 갱신하면 파괴후 다시 생성하면서 타이머 돌린게 바로 업데이트 안됨
-    @AppStorage(AppStorageKey.colorSchme.name) var colorScheme: String = AppStorageKey.colorSchme.byDefault
+    
     @StateObject var smartBatteryViewModel: SmartBatteryViewModel<ProvidableType>
     @State private var toast: Toast?
     @State private var isAdapterAnimated = false
@@ -47,7 +47,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                             .padding(.vertical)
                             
                             
-                            InfoGridHMonitoringView(chargeData: $smartBatteryViewModel.chargeData)
+                            InfoGridHMonitoringView(chargeData: $smartBatteryViewModel.chargeData, isAdapterConnect: $smartBatteryViewModel.isAdapterConnected)
                                 .padding()
                                 .frame(width: geo.size.width * 0.72)
                             VStack(alignment: .leading, spacing: 0) {
