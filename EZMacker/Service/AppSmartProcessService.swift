@@ -20,7 +20,6 @@ class AppSmartProcessService: AppSmartProcessProvidable {
     let CPUUsageLock = NSLock()
 
     init() {
-        // obtaining numCPUs
         let mibKeys: [Int32] = [ CTL_HW, HW_NCPU ]
         var numCPUs: uint = 0
         mibKeys.withUnsafeBufferPointer() { mib in
@@ -31,7 +30,8 @@ class AppSmartProcessService: AppSmartProcessProvidable {
             }
         }
         self.numCPUs = numCPUs
-
+    }
+    func checkProcessUpdateInfo() {
         processUpdateInfo()
         sleep(1)
         processUpdateInfo()
@@ -45,7 +45,6 @@ class AppSmartProcessService: AppSmartProcessProvidable {
             return
         }
 
-        // Two variables to calculate sum of all cores
         var totalInUse: Int32 = 0
         var totalTotal: Int32 = 0
 

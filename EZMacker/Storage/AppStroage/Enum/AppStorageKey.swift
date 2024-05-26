@@ -9,17 +9,35 @@ import Foundation
 
 enum AppStorageKey: String, Hashable {
     case colorSchme
+    case isBatteryWarningMode
+    case batteryPercentage
+    case appExitMode
     
-    var name:String {
+    var name: String {
         switch self {
-            case .colorSchme:
+        case .colorSchme:
             return "colorSchme"
+        case .isBatteryWarningMode:
+            return "isBatteryWarningMode"
+        case .batteryPercentage:
+            return "batteryPercentage"
+        case .appExitMode:
+            return "selectedOption"
         }
     }
-    var byDefault:String {
+    
+    var byDefault: Any {
         switch self {
         case .colorSchme:
             return "Light"
+        case .isBatteryWarningMode:
+            return false
+        case .batteryPercentage:
+            return "0"
+        case .appExitMode:
+            return "unused"
         }
     }
 }
+
+

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainContentView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @State private var selectionValue = CategoryType.smartBattery
+    @State private var selectionValue = CategoryType.smartNotificationAlarm
 
     var body: some View {
         NavigationSplitView {
@@ -25,7 +25,7 @@ struct MainContentView: View {
 //                    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
 //                        .environmentObject(colorSchemeViewModel)
                 case .smartNotificationAlarm:
-                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel())
+                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService()))
                         .environmentObject(colorSchemeViewModel)
                 default:
                     EmptyView()
