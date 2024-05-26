@@ -39,8 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     func requestNotificationAuthorization() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            if granted {
-            } else {
+            if !granted {
                 DispatchQueue.main.async {
                     AppAlertManager.shared.showNotificationPermissionDeniedAlert(systemPath: SystemPreference.noti.pathString)
                 }
