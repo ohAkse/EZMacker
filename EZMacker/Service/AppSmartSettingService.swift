@@ -16,9 +16,7 @@ protocol AppSmartSettingProvidable {
 
 class AppSmartSettingsService: AppSmartSettingProvidable {
     @AppStorage(AppStorageKey.isBatteryWarningMode.name) var isBatteryWarningMode: Bool = AppStorageKey.isBatteryWarningMode.byDefault as! Bool
-    @AppStorage(AppStorageKey.isBattryCurrentMessageMode.name) var isBatteryCurrentMessageMode: Bool = AppStorageKey.isBatteryWarningMode.byDefault as! Bool
-    
-    
+    @AppStorage(AppStorageKey.isBattryCurrentMessageMode.name) var isBatteryCurrentMessageMode: Bool = AppStorageKey.isBattryCurrentMessageMode.byDefault as! Bool
     @AppStorage(AppStorageKey.batteryPercentage.name) var batteryPercentage: String = AppStorageKey.batteryPercentage.byDefault as! String
     @AppStorage(AppStorageKey.appExitMode.name) private var selectedOptionRaw: String = AppStorageKey.appExitMode.byDefault as! String
     

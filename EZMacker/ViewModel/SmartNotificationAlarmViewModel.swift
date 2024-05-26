@@ -35,7 +35,6 @@ class SmartNotificationAlarmViewModel: ObservableObject {
         if let isBattryCurrentMessageMode: Bool = appSettingService.loadConfig(.isBattryCurrentMessageMode) {
              self.isBattryCurrentMessageMode = isBattryCurrentMessageMode
          }
-        
          if let batteryPercentage: String = appSettingService.loadConfig(.batteryPercentage) {
              self.batteryPercentage = batteryPercentage
          }
