@@ -10,7 +10,7 @@ import Foundation
 
 
 enum SystemPreference: String{
-    case batterySave, network, blueTooth, wifi
+    case batterySave, network, blueTooth, wifi, noti
     
     var pathString: String {
         if #available(macOS 12, *) {
@@ -19,6 +19,7 @@ enum SystemPreference: String{
             case .network: return "x-apple.systempreferences:com.apple.Network-Settings.extension"
             case .blueTooth: return "x-apple.systempreferences:com.apple.BluetoothSettings"
             case .wifi: return "x-apple.systempreferences:com.apple.wifi-settings-extension"
+            case .noti: return "x-apple.systempreferences:com.apple.Notifications-Settings.extension"
             }
         }
     }

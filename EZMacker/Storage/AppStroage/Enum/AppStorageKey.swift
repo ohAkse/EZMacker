@@ -10,6 +10,7 @@ import Foundation
 enum AppStorageKey: String, Hashable {
     case colorSchme
     case isBatteryWarningMode
+    case isBattryCurrentMessageMode
     case batteryPercentage
     case appExitMode
     
@@ -19,6 +20,8 @@ enum AppStorageKey: String, Hashable {
             return "colorSchme"
         case .isBatteryWarningMode:
             return "isBatteryWarningMode"
+        case .isBattryCurrentMessageMode:
+            return "isBattryCurrentMessageMode"
         case .batteryPercentage:
             return "batteryPercentage"
         case .appExitMode:
@@ -31,6 +34,8 @@ enum AppStorageKey: String, Hashable {
         case .colorSchme:
             return "Light"
         case .isBatteryWarningMode:
+            return false
+        case .isBattryCurrentMessageMode:
             return false
         case .batteryPercentage:
             return "0"

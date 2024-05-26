@@ -6,9 +6,19 @@
 //
 
 import SwiftUI
+protocol AppSmartSettingProvidable {
+    func saveConfig<T>(_ key: AppStorageKey, value: T)
+    func loadConfig<T>(_ key: AppStorageKey) -> T?
+}
 
-class AppSmartSettingsService {
+
+
+
+class AppSmartSettingsService: AppSmartSettingProvidable {
     @AppStorage(AppStorageKey.isBatteryWarningMode.name) var isBatteryWarningMode: Bool = AppStorageKey.isBatteryWarningMode.byDefault as! Bool
+    @AppStorage(AppStorageKey.isBattryCurrentMessageMode.name) var isBatteryCurrentMessageMode: Bool = AppStorageKey.isBatteryWarningMode.byDefault as! Bool
+    
+    
     @AppStorage(AppStorageKey.batteryPercentage.name) var batteryPercentage: String = AppStorageKey.batteryPercentage.byDefault as! String
     @AppStorage(AppStorageKey.appExitMode.name) private var selectedOptionRaw: String = AppStorageKey.appExitMode.byDefault as! String
     
@@ -27,6 +37,10 @@ class AppSmartSettingsService {
             if let value = value as? Bool {
                 isBatteryWarningMode = value
             }
+        case .isBattryCurrentMessageMode:
+            if let value = value as? Bool {
+                isBatteryCurrentMessageMode = value
+            }
         case .batteryPercentage:
             if let value = value as? String {
                 batteryPercentage = value
@@ -42,7 +56,7 @@ class AppSmartSettingsService {
     
     func loadConfig<T>(_ key: AppStorageKey) -> T? {
         switch key {
-        case .isBatteryWarningMode:
+        case .isBatteryWarningMode, .isBattryCurrentMessageMode:
             return isBatteryWarningMode as? T
         case .batteryPercentage:
             return batteryPercentage as? T

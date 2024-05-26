@@ -7,6 +7,7 @@
 import Combine
 import SwiftUI
 
+
 class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: ObservableObject {
     
     deinit {
@@ -36,17 +37,23 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     //일반 설정값들
     private var systemPreferenceService: SystemPreferenceAccessible
     private var appSmartBatteryService: ProvidableType
+    private var appSettingService: AppSmartSettingProvidable
+    private var appProcessService: AppSmartProcessProvidable
+    private var appChargingErrorCounrt = 0
+    private var isSent = false
     private var timer: AnyCancellable?
     private var cancellables = Set<AnyCancellable>()
     
-    init(appSmartBatteryService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible) {
+    init(appSmartBatteryService: ProvidableType,appSettingService:AppSmartSettingProvidable,appProcessService: AppSmartProcessProvidable,   systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartBatteryService = appSmartBatteryService
+        self.appSettingService = appSettingService
+        self.appProcessService = appProcessService
         self.systemPreferenceService =  systemPreferenceService
         
     }
     //충전기 Off시 배터리 정보만 나타내는 함수
     private func requestBatteryInfo() {
-         Publishers.CombineLatest(
+        Publishers.CombineLatest(
             appSmartBatteryService.getPowerSourceValue(for: .batteryHealth, defaultValue: ""),
             appSmartBatteryService.getRegistry(forKey: .BatteryCellDisconnectCount).compactMap { $0 as? Int }
         )
@@ -101,43 +108,45 @@ extension SmartBatteryViewModel {
             }
         }
         .store(in: &cancellables)
-
+        
     }
     //어댑터 연결상태에 따라 정보가 변하는 함수
     func checkAdapterConnectionStatus() {
+        checkSettingConfig()
         
         appSmartBatteryService.getRegistry(forKey: .ChargerData)
-              .subscribe(on: DispatchQueue.global())
-              .compactMap { $0 as? [String: Any] }
-              .compactMap { dict -> ChargeData? in
-                  guard let vacVoltageLimit = dict["VacVoltageLimit"] as? Int,
-                        let chargingCurrent = dict["ChargingCurrent"] as? CGFloat,
-                        let timeChargingThermallyLimited = dict["TimeChargingThermallyLimited"] as? Int,
-                        let chargerStatus = dict["ChargerStatus"] as? Data,
-                        let chargingVoltage = dict["ChargingVoltage"] as? CGFloat,
-                        let chargerInhibitReason = dict["ChargerInhibitReason"] as? Int,
-                        let chargerID = dict["ChargerID"] as? Int,
-                        let notChargingReason = dict["NotChargingReason"] as? Int else {
-                      return nil
-                  }
-                  return ChargeData(vacVoltageLimit: vacVoltageLimit,
-                                    chargingCurrent: chargingCurrent,
-                                    timeChargingThermallyLimited: timeChargingThermallyLimited,
-                                    chargerStatus: chargerStatus,
-                                    chargingVoltage: chargingVoltage,
-                                    chargerInhibitReason: chargerInhibitReason,
-                                    chargerID: chargerID,
-                                    notChargingReason: notChargingReason)
-              }
-              .receive(on: DispatchQueue.main)
-              .sink { [weak self] charge in
-                  guard let self = self else { return }
-                  if chargeData.count > 5 {
-                      self.chargeData.removeAll()
-                  }
-                  chargeData.append(charge)
-              }
-              .store(in: &cancellables)
+            .subscribe(on: DispatchQueue.global())
+            .compactMap { $0 as? [String: Any] }
+            .compactMap { dict -> ChargeData? in
+                guard let vacVoltageLimit = dict["VacVoltageLimit"] as? Int,
+                      let chargingCurrent = dict["ChargingCurrent"] as? CGFloat,
+                      let timeChargingThermallyLimited = dict["TimeChargingThermallyLimited"] as? Int,
+                      let chargerStatus = dict["ChargerStatus"] as? Data,
+                      let chargingVoltage = dict["ChargingVoltage"] as? CGFloat,
+                      let chargerInhibitReason = dict["ChargerInhibitReason"] as? Int,
+                      let chargerID = dict["ChargerID"] as? Int,
+                      let notChargingReason = dict["NotChargingReason"] as? Int else {
+                    return nil
+                }
+                return ChargeData(vacVoltageLimit: vacVoltageLimit,
+                                  chargingCurrent: chargingCurrent,
+                                  timeChargingThermallyLimited: timeChargingThermallyLimited,
+                                  chargerStatus: chargerStatus,
+                                  chargingVoltage: chargingVoltage,
+                                  chargerInhibitReason: chargerInhibitReason,
+                                  chargerID: chargerID,
+                                  notChargingReason: notChargingReason)
+            }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] charge in
+                guard let self = self else { return }
+                if chargeData.count > 5 {
+                    self.chargeData.removeAll()
+                }
+                chargeData.append(charge)
+                appChargingErrorCounrt += 1
+            }
+            .store(in: &cancellables)
         
         Publishers.Zip(
             appSmartBatteryService.getRegistry(forKey: .TimeRemaining).compactMap { $0 as? Int },
@@ -149,31 +158,31 @@ extension SmartBatteryViewModel {
             self.chargingTime = chargingTime
         }
         .store(in: &cancellables)
-    
+        
         
         appSmartBatteryService.getRegistry(forKey: .IsCharging)
-             .subscribe(on: DispatchQueue.global())
-             .compactMap { $0 as? Bool }
-             .receive(on: DispatchQueue.main)
-             .sink { [weak self] isCharging in
-                 guard let self = self else { return }
-                  if self.isCharging != isCharging {
-                      self.isCharging = isCharging
-                  }
-             }
-             .store(in: &cancellables)
+            .subscribe(on: DispatchQueue.global())
+            .compactMap { $0 as? Bool }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isCharging in
+                guard let self = self else { return }
+                if self.isCharging != isCharging {
+                    self.isCharging = isCharging
+                }
+            }
+            .store(in: &cancellables)
         appSmartBatteryService.getRegistry(forKey: .CurrentCapacity)
-             .subscribe(on: DispatchQueue.global())
-             .compactMap { $0 as? Int }
-             .map { Double($0) / 100.0 }
-             .receive(on: DispatchQueue.main)
-             .sink { [weak self] currentCapacity in
-                 guard let self = self else { return }
-                 if self.currentBatteryCapacity != currentCapacity  {
-                     self.currentBatteryCapacity = currentCapacity
-                 }
-             }
-             .store(in: &cancellables)
+            .subscribe(on: DispatchQueue.global())
+            .compactMap { $0 as? Int }
+            .map { Double($0) / 100.0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] currentCapacity in
+                guard let self = self else { return }
+                if self.currentBatteryCapacity != currentCapacity  {
+                    self.currentBatteryCapacity = currentCapacity
+                }
+            }
+            .store(in: &cancellables)
         
         appSmartBatteryService.getRegistry(forKey: .AppleRawAdapterDetails)
             .subscribe(on: DispatchQueue.global())
@@ -214,9 +223,42 @@ extension SmartBatteryViewModel {
             )
             .store(in: &cancellables)
     }
+    func checkSettingConfig() {
+        if let isBatteryWarningMode: Bool = appSettingService.loadConfig(.isBatteryWarningMode) {
+            if isBatteryWarningMode {
+                if let lastChargeData = chargeData.last, lastChargeData.notChargingReason != 0, appChargingErrorCounrt == 30 {
+                    AppNotificationManager.shared.sendNotification(title: "배터리 오류 발생", subtitle: "errorCode: \(lastChargeData.notChargingReason)")
+                    appChargingErrorCounrt = 0
+                }
+            }
+        }
+        if let isBattryCurrentMessageMode: Bool = appSettingService.loadConfig(.isBattryCurrentMessageMode) {
+            if isBattryCurrentMessageMode {
+                if let batteryPercentage: String = appSettingService.loadConfig(.batteryPercentage) {
+                    let batteryDobulePercentage = Double(batteryPercentage)! / 100
+                    if batteryDobulePercentage <= currentBatteryCapacity {
+                        if !isSent {
+                            AppNotificationManager.shared.sendNotification(title: "충전 안내", subtitle: "설정하신 배터리 충전이 완료되었습니다.")
+                        }
+                        isSent = true
+                    }
+                }
+            }
+        }
+        
+        if let selectedExitOption: String = appSettingService.loadConfig(.appExitMode) {
+            if selectedExitOption != "사용안함" {
+                if let batteryLevel = Int.extractNumericPart(from: selectedExitOption) {
+                    if Int(appProcessService.getTotalPercenatage()) > batteryLevel {
+                        AppNotificationManager.shared.sendNotification(title: "종료 안내", subtitle: "CPU가 높아 앱을 종료합니다.")
+                        NSApplication.shared.terminate(nil)
+                    }
+                }
+            }
+        }
+    }
     func openSettingWindow(settingPath: String) {
         systemPreferenceService.openSystemPreferences(systemPath: settingPath)
     }
 }
-
 

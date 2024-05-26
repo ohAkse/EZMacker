@@ -52,4 +52,13 @@ extension Int {
         formatter.numberStyle = .none
         return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
     }
+    
+    static func extractNumericPart(from option: String) -> Int? {
+        let pattern = #"\d+"# 
+        if let range = option.range(of: pattern, options: .regularExpression) {
+            let numericPart = option[range]
+            return Int(numericPart)
+        }
+        return nil
+    }
 }

@@ -28,7 +28,7 @@ struct SmartNotificationAlarmView: View {
                     
                     VStack(alignment: .leading, spacing: 10) {
                         HStack {
-                            Text("배터리 비율 (0-100%)")
+                            Text("배터리 상태 (0-100%)")
                             WTextField(text: $smartNotificationAlarmViewModel.batteryPercentage)
                                 .padding(5)
                                 .background(Color.white)
@@ -39,6 +39,14 @@ struct SmartNotificationAlarmView: View {
                         .cornerRadius(8)
                         .padding(.horizontal, 20)
                     }
+                    
+                    Toggle(isOn: $smartNotificationAlarmViewModel.isBattryCurrentMessageMode) {
+                        Text("배터리 상태 설정된 값이 완료됐을 시 알람 울리기")
+                    }
+                    .toggleStyle(CheckboxToggleStyle())
+                    .padding()
+                    .cornerRadius(8)
+                    .padding(.horizontal, 20)
                     
                     Spacer()
                     

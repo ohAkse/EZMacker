@@ -9,6 +9,8 @@ import Foundation
 
 protocol AppSmartProcessProvidable {
     func processUpdateInfo()
+    func checkProcessUpdateInfo()
+    func getTotalPercenatage() -> Float
 }
 
 class AppSmartProcessService: AppSmartProcessProvidable {
@@ -16,7 +18,9 @@ class AppSmartProcessService: AppSmartProcessProvidable {
     var prevCpuInfo: processor_info_array_t?
     var numCpuInfo: mach_msg_type_number_t = 0
     var numPrevCpuInfo: mach_msg_type_number_t = 0
+    var totalUsagePercentage: Float = 0
     let numCPUs: uint
+
     let CPUUsageLock = NSLock()
 
     init() {
@@ -36,12 +40,15 @@ class AppSmartProcessService: AppSmartProcessProvidable {
         sleep(1)
         processUpdateInfo()
     }
+    func getTotalPercenatage()-> Float {
+        return totalUsagePercentage
+    }
 
     func processUpdateInfo() {
         var numCPUsU: natural_t = 0
         let err: kern_return_t = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &numCPUsU, &cpuInfo, &numCpuInfo);
         guard err == KERN_SUCCESS else {
-            print("Error host_processor_info!")
+            Logger.writeLog(.error, message: "Error host_processor_info!")
             return
         }
 
@@ -81,8 +88,8 @@ class AppSmartProcessService: AppSmartProcessProvidable {
             vm_deallocate(mach_task_self_, vm_address_t(bitPattern: prevCpuInfo), vm_size_t(prevCpuInfoSize))
             
             // I print sum of all cores percentage.
-            let totalUsagePercentage = Float(totalInUse) / Float(totalTotal) * 100
-            print(String(format: "Total CPU Usage: %.2f%%", totalUsagePercentage))
+            totalUsagePercentage = Float(totalInUse) / Float(totalTotal) * 100
+            Logger.writeLog(.info, message: String(format: "Total CPU Usage: %.2f%%", totalUsagePercentage))
         }
 
         prevCpuInfo = cpuInfo
