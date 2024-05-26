@@ -15,7 +15,7 @@ struct MainContentView: View {
             } else {
                 switch selectionValue {
                 case .smartBattery:
-                    SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), systemPreferenceService: SystemPreferenceService()))
+                    SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"),appSettingService: AppSmartSettingsService(),appProcessService: AppSmartProcessService(), systemPreferenceService: SystemPreferenceService()))
                         .environmentObject(colorSchemeViewModel)
 //                case .smartWifi:
 //                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService()))
@@ -25,7 +25,7 @@ struct MainContentView: View {
 //                    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
 //                        .environmentObject(colorSchemeViewModel)
                 case .smartNotificationAlarm:
-                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel())
+                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService()))
                         .environmentObject(colorSchemeViewModel)
                 default:
                     EmptyView()

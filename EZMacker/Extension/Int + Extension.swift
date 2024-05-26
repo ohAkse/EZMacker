@@ -15,7 +15,7 @@ extension Int {
     }
     
     func toHourMinute() -> String {
-         if self == 0 || self == -1 || self == 65535 {return "계산중.."}
+        if self == 0 || self == -1 || self == 65535 {return "계산중.."}
         
 
         let hours = self / 60
@@ -51,5 +51,14 @@ extension Int {
         let formatter = NumberFormatter()
         formatter.numberStyle = .none
         return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
+    }
+    
+    static func extractNumericPart(from option: String) -> Int? {
+        let pattern = #"\d+"# 
+        if let range = option.range(of: pattern, options: .regularExpression) {
+            let numericPart = option[range]
+            return Int(numericPart)
+        }
+        return nil
     }
 }

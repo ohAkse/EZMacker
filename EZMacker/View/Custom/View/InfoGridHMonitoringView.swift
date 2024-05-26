@@ -1,6 +1,8 @@
+
+
+
+
 import SwiftUI
-
-
 
 struct InfoGridHMonitoringView: View {
     @Binding var chargeData: [ChargeData]
