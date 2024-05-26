@@ -6,7 +6,6 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     @StateObject var smartBatteryViewModel: SmartBatteryViewModel<ProvidableType>
     @State private var toast: Toast?
     @State private var isAdapterAnimated = false
-    
     var body: some View {
         GeometryReader { geo in
             VStack(spacing: 10) {
@@ -15,38 +14,55 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                         VStack(alignment:.leading, spacing:0) {
                             if smartBatteryViewModel.isAdapterConnected  {
                                 if smartBatteryViewModel.currentBatteryCapacity * 100 == 100 {
-                                    InfoRectangleHImageTextView(imageName: "battery_cell", isSystem: false, title: "충전 완료! ", info: "", widthScale:0.3, heightScale:0.7)
+                                    InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: "충전완료", widthScale:0.3, heightScale:0.7)
+                                    
                                 }
                                 else {
-                                    if smartBatteryViewModel.chargingTime == -1 {
-                                        InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지 ", info: smartBatteryViewModel.remainingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
-                                    }
+                                    InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지 ", info: smartBatteryViewModel.chargingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
                                 }
                             } else {
-                                InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지 ", info: smartBatteryViewModel.remainingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
+                                if smartBatteryViewModel.chargingTime <= 1  {
+                                    InfoRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지 ", info: smartBatteryViewModel.remainingTime.toHourMinute(), widthScale:0.3, heightScale:0.7)
+                                }
                             }
-                            
                         }
-                        .onReceive(smartBatteryViewModel.$isAdapterConnected) { _ in
-                            toast = Toast(type: .info, title: "정보", message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 5분이 소요됩니다.", duration: 10)
+                        .onReceive(smartBatteryViewModel.$isAdapterConnected) { isConnected in
+                            if isConnected {
+                                toast = Toast(type: .info, title: "정보", message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 5분이 소요됩니다.", duration: 10)
+                            }
                         }
                         .frame(width: geo.size.width * 0.2, height:geo.size.height * 0.2)
                         Spacer()
-                        VStack(alignment: .trailing, spacing: 0) {
-                            HStack(alignment: .top, spacing: 0) {
-                                Spacer(minLength: 0)
-                                Image("battery_setting")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                    .background(Color.clear)
-                                    .onTapGesture {
-                                        smartBatteryViewModel.openSettingWindow(settingPath: SystemPreference.batterySave.pathString)
-                                    }
+                        HStack(alignment: .top) {
+                            VStack(alignment: .trailing) {
+                                Text("Max V")
+                                    .lineLimit(1)
+                                Spacer()
+                                Text("Min V")
+                                    .lineLimit(1)
                             }
-                            .padding(.trailing, 10)
-                            Spacer()
+                            .offset(x: 20)
+                            .padding(.vertical)
+                            .frame(width: 40)
+                            
+                            InfoGridHMonitoringView(chargeData: $smartBatteryViewModel.chargeData)
+                                .padding()
+                                .frame(width: geo.size.width * 0.72)
+                            VStack(alignment: .leading, spacing: 0) {
+                                HStack(alignment: .top, spacing: 0) {
+                                    Spacer(minLength: 0)
+                                    Image("battery_setting")
+                                        .resizable()
+                                        .frame(width: 25, height: 25)
+                                        .background(Color.clear)
+                                        .onTapGesture {
+                                            smartBatteryViewModel.openSettingWindow(settingPath: SystemPreference.batterySave.pathString)
+                                        }
+                                }
+                                .offset(x: -40,y: -20)
+                            }
                         }
-                        
+                        .frame(width: geo.size.width * 0.72)
                     }
                 }
                 .frame(width: geo.size.width * 0.95, height: geo.size.height * 0.2)
@@ -131,7 +147,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                                     .customNormalTextFont(fontSize: FontSizeType.large.size, isBold: true)
                                     .shadow(radius: 5)
                                 
-                            }.frame(width: geo.size.width * 0.46)
+                            }.frame(width: geo.size.width * 0.48)
                             
                             VStack(spacing: 0) {
                                 InfoRectangleHImageTextView(imageName: "battery_status",isSystem: false, title: "배터리 상태", info: smartBatteryViewModel.healthState == "" ? "계산중.." : smartBatteryViewModel.healthState,widthScale:0.2, heightScale:0.5)
@@ -191,7 +207,7 @@ extension SmartBatteryView {
     private func getBatteryImageName() -> String {
         if smartBatteryViewModel.isAdapterConnected {
             if smartBatteryViewModel.currentBatteryCapacity == 1 {
-                return "battery_full.charge"
+                return "battery_full_charge"
             } else {
                 return "battery_charging"
             }
@@ -213,9 +229,9 @@ extension SmartBatteryView {
     }
 }
 
-struct SmartBatteryView_Previews: PreviewProvider {
-    static var previews: some View {
-        SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), systemPreferenceService: SystemPreferenceService()))
-            .frame(width: 1500,height:1000)
-    }
-}
+//struct SmartBatteryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), systemPreferenceService: SystemPreferenceService()))
+//            .frame(width: 1500,height:1000)
+//    }
+//}

@@ -7,8 +7,6 @@
 import Combine
 import SwiftUI
 
-
-
 class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: ObservableObject {
     
     deinit {
@@ -18,6 +16,7 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     @Published var isCharging = false
     @Published var temperature = 0
     @Published var currentBatteryCapacity = 0.0
+    
     @Published var remainingTime = 0
     @Published var chargingTime = 0
     @Published var cycleCount = 0
@@ -26,6 +25,7 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     @Published var batteryMaxCapacity = 0
     @Published var designedCapacity = 0
     @Published var batteryCellDisconnectCount = 0
+    @Published var chargeData: [ChargeData] = []
     
     //어댑터 관련 설정값들
     @Published var adapterInfo: [AdapterDetails]?
@@ -41,6 +41,8 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     init(appSmartBatteryService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartBatteryService = appSmartBatteryService
         self.systemPreferenceService =  systemPreferenceService
+        
+        
     }
     //충전기 Off시 배터리 정보만 나타내는 함수
     private func requestBatteryInfo() {
@@ -62,7 +64,7 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
 extension SmartBatteryViewModel {
     func startConnectTimer() {
         
-        timer = Timer.publish(every: 1, on: .current, in: .default)
+        timer = Timer.publish(every: 3, on: .current, in: .default)
             .autoconnect()
             .sink { [weak self] _ in
                 self?.checkAdapterConnectionStatus()
@@ -103,20 +105,48 @@ extension SmartBatteryViewModel {
     }
     //어댑터 연결상태에 따라 정보가 변하는 함수
     func checkAdapterConnectionStatus() {
+        
+        appSmartBatteryService.getRegistry(forKey: .ChargerData)
+              .subscribe(on: DispatchQueue.global())
+              .compactMap { $0 as? [String: Any] }
+              .compactMap { dict -> ChargeData? in
+                  guard let vacVoltageLimit = dict["VacVoltageLimit"] as? Int,
+                        let chargingCurrent = dict["ChargingCurrent"] as? CGFloat,
+                        let timeChargingThermallyLimited = dict["TimeChargingThermallyLimited"] as? Int,
+                        let chargerStatus = dict["ChargerStatus"] as? Data,
+                        let chargingVoltage = dict["ChargingVoltage"] as? CGFloat,
+                        let chargerInhibitReason = dict["ChargerInhibitReason"] as? Int,
+                        let chargerID = dict["ChargerID"] as? Int,
+                        let notChargingReason = dict["NotChargingReason"] as? Int else {
+                      return nil
+                  }
+                  return ChargeData(vacVoltageLimit: vacVoltageLimit,
+                                    chargingCurrent: chargingCurrent,
+                                    timeChargingThermallyLimited: timeChargingThermallyLimited,
+                                    chargerStatus: chargerStatus,
+                                    chargingVoltage: chargingVoltage,
+                                    chargerInhibitReason: chargerInhibitReason,
+                                    chargerID: chargerID,
+                                    notChargingReason: notChargingReason)
+              }
+              .receive(on: DispatchQueue.main)
+              .sink { [weak self] charge in
+                  guard let self = self else { return }
+                  if chargeData.count > 5 {
+                      self.chargeData.removeAll()
+                  }
+                  chargeData.append(charge)
+              }
+              .store(in: &cancellables)
+        
         Publishers.Zip(
             appSmartBatteryService.getRegistry(forKey: .TimeRemaining).compactMap { $0 as? Int },
             appSmartBatteryService.getPowerSourceValue(for: .chargingTime, defaultValue: 0)
         )
         .sink { [weak self] remainingTime, chargingTime in
             guard let self = self else { return }
-            if self.remainingTime != remainingTime {
-                self.remainingTime = remainingTime
-            }
-            if self.chargingTime != chargingTime {
-                self.chargingTime = chargingTime
-            }
-            Logger.writeLog(.info, message: "charging \(chargingTime)")
-            Logger.writeLog(.info, message: "remaing \(remainingTime)")
+            self.remainingTime = remainingTime
+            self.chargingTime = chargingTime
         }
         .store(in: &cancellables)
     
@@ -189,5 +219,65 @@ extension SmartBatteryViewModel {
     func openSettingWindow(settingPath: String) {
         systemPreferenceService.openSystemPreferences(systemPath: settingPath)
     }
+}
+
+
+extension SmartBatteryViewModel {
+//    func runShellCommand(_ command: String) -> String? {
+//        let process = Process()
+//        process.launchPath = "/bin/bash"
+//        process.arguments = ["-c", command]
+//
+//        let pipe = Pipe()
+//        process.standardOutput = pipe
+//        process.standardError = pipe
+//
+//        let fileHandle = pipe.fileHandleForReading
+//        process.launch()
+//
+//        let data = fileHandle.readDataToEndOfFile()
+//        process.waitUntilExit()
+//
+//        let output = String(data: data, encoding: .utf8)
+//        return output
+//    }
+//
+//    func getHighCpuProcesses() -> [(pid: String, name: String, cpu: String)] {
+//        guard let output = runShellCommand("ps aux | sort -nrk 3 | head -10") else {
+//            return []
+//        }
+//
+//        var processes: [(pid: String, name: String, cpu: String)] = []
+//        let lines = output.split(separator: "\n").dropFirst()
+//
+//        for line in lines {
+//            let columns = line.split(separator: " ", omittingEmptySubsequences: true)
+//            if columns.count >= 11 {
+//                let pid = String(columns[1])
+//                let cpu = String(columns[2])
+//                let name = columns[10...].joined(separator: " ")
+//                processes.append((pid: pid, name: name, cpu: cpu))
+//            }
+//        }
+//
+//        return processes
+//    }
+//
+//    func hostCPULoadInfo() -> host_cpu_load_info? {
+//        let HOST_CPU_LOAD_INFO_COUNT = MemoryLayout<host_cpu_load_info>.stride/MemoryLayout<integer_t>.stride
+//        var size = mach_msg_type_number_t(HOST_CPU_LOAD_INFO_COUNT)
+//        var cpuLoadInfo = host_cpu_load_info()
+//
+//        let result = withUnsafeMutablePointer(to: &cpuLoadInfo) {
+//            $0.withMemoryRebound(to: integer_t.self, capacity: HOST_CPU_LOAD_INFO_COUNT) {
+//                host_statistics(mach_host_self(), HOST_CPU_LOAD_INFO, $0, &size)
+//            }
+//        }
+//        if result != KERN_SUCCESS{
+//            print("Error  - \(#file): \(#function) - kern_result_t = \(result)")
+//            return nil
+//        }
+//        return cpuLoadInfo
+//    }
 }
 
