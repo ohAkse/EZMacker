@@ -54,7 +54,9 @@ class AppSmartSettingsService: AppSmartSettingProvidable {
     
     func loadConfig<T>(_ key: AppStorageKey) -> T? {
         switch key {
-        case .isBatteryWarningMode, .isBattryCurrentMessageMode:
+        case .isBattryCurrentMessageMode:
+            return isBatteryCurrentMessageMode as? T
+        case .isBatteryWarningMode:
             return isBatteryWarningMode as? T
         case .batteryPercentage:
             return batteryPercentage as? T
