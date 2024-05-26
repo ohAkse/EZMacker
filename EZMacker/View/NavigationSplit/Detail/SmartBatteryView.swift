@@ -65,7 +65,6 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                         .frame(width: geo.size.width * 0.72)
                     }
                 }
-                
                 .frame(width: geo.size.width * 0.95, height: geo.size.height * 0.2)
                 
                 

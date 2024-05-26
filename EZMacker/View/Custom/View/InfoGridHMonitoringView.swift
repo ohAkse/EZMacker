@@ -49,26 +49,3 @@ struct InfoGridHMonitoringView: View {
     }
 }
 
-//#if DEBUG
-//struct InfoGridHMonitoringView_Previews: PreviewProvider {
-//    @State static var previewData: [ChargeData] = [
-//         ChargeData(vacVoltageLimit: 4325, chargingCurrent: 600, timeChargingThermallyLimited: 33, chargerStatus: Data(), chargingVoltage: 3.7, chargerInhibitReason: 0, chargerID: 13, notChargingReason: 222),
-//         ChargeData(vacVoltageLimit: 4325, chargingCurrent: 600, timeChargingThermallyLimited: 33, chargerStatus: Data(), chargingVoltage: 3.8, chargerInhibitReason: 0, chargerID: 13, notChargingReason: 222),
-//         ChargeData(vacVoltageLimit: 4325, chargingCurrent: 600, timeChargingThermallyLimited: 33, chargerStatus: Data(), chargingVoltage: 3.9, chargerInhibitReason: 0, chargerID: 13, notChargingReason: 222),
-//         ChargeData(vacVoltageLimit: 4325, chargingCurrent: 600, timeChargingThermallyLimited: 33, chargerStatus: Data(), chargingVoltage: 4.0, chargerInhibitReason: 0, chargerID: 13, notChargingReason: 222),
-//         ChargeData(vacVoltageLimit: 4325, chargingCurrent: 600, timeChargingThermallyLimited: 33, chargerStatus: Data(), chargingVoltage: 3.6, chargerInhibitReason: 0, chargerID: 13, notChargingReason: 222),
-//         ChargeData(vacVoltageLimit: 4325, chargingCurrent: 600, timeChargingThermallyLimited: 33, chargerStatus: Data(), chargingVoltage: 3.7, chargerInhibitReason: 0, chargerID: 13, notChargingReason: 222),
-//         ChargeData(vacVoltageLimit: 4325, chargingCurrent: 600, timeChargingThermallyLimited: 33, chargerStatus: Data(), chargingVoltage: 3.9, chargerInhibitReason: 0, chargerID: 13, notChargingReason: 222),
-//         ChargeData(vacVoltageLimit: 4325, chargingCurrent: 600, timeChargingThermallyLimited: 33, chargerStatus: Data(), chargingVoltage: 4.1, chargerInhibitReason: 0, chargerID: 13, notChargingReason: 222),
-//         ChargeData(vacVoltageLimit: 4325, chargingCurrent: 600, timeChargingThermallyLimited: 33, chargerStatus: Data(), chargingVoltage: 3.8, chargerInhibitReason: 0, chargerID: 13, notChargingReason: 222),
-//         ChargeData(vacVoltageLimit: 4325, chargingCurrent: 600, timeChargingThermallyLimited: 33, chargerStatus: Data(), chargingVoltage: 3.7, chargerInhibitReason: 0, chargerID: 13, notChargingReason: 222)
-//     ]
-//
-//
-//    static var previews: some View {
-//        InfoGridHMonitoringView(chargeData: $previewData)
-//            .padding()
-//            .frame(width: 300, height: 200)
-//    }
-//}
-//#endif
