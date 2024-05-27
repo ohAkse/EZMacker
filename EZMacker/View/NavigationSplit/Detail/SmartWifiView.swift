@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @ObservedObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>
@@ -18,6 +17,10 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
         VStack {
             Text(CategoryType.smartWifi.title)
                 .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+        }
+        .onAppear {
+            smartWifiViewModel.requestWifiInfo()
+            smartWifiViewModel.requestCoreWLanWifiInfo()
         }
         .navigationTitle(CategoryType.smartWifi.title)
         .padding()

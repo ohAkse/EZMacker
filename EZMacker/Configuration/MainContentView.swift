@@ -1,8 +1,8 @@
 import SwiftUI
-
+import CoreWLAN
 struct MainContentView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @State private var selectionValue = CategoryType.smartBattery
+    @State private var selectionValue = CategoryType.smartWifi
 
     var body: some View {
         NavigationSplitView {
@@ -18,7 +18,7 @@ struct MainContentView: View {
                     SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"),appSettingService: AppSmartSettingsService(),appProcessService: AppSmartProcessService(), systemPreferenceService: SystemPreferenceService()))
                         .environmentObject(colorSchemeViewModel)
                 case .smartWifi:
-                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService()))
+                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared())))
                         .environmentObject(colorSchemeViewModel)
                     
 //                case .smartFile:

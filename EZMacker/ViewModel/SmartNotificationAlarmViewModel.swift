@@ -21,7 +21,7 @@ class SmartNotificationAlarmViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     deinit {
-        Logger.writeLog(.info, message: "NotificationAlarmViewModel deinit Called")
+        Logger.writeLog(.debug, message: "NotificationAlarmViewModel deinit Called")
     }
     init(appSettingService: AppSmartSettingsService, appProcessService: AppSmartProcessProvidable ) {
         self.appSettingService = appSettingService

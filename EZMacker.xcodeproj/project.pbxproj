@@ -28,6 +28,13 @@
 		5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2432BE7ACC000E08935 /* MainContentView.swift */; };
 		5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */; };
 		5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */; };
+		5F3DBE052C04ABE900B5C0DE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F3DBE032C04A33000B5C0DE /* Info.plist */; };
+		5F3DBE062C04AC0500B5C0DE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F3DBE032C04A33000B5C0DE /* Info.plist */; };
+		5F3DBE072C04AC0500B5C0DE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F3DBE032C04A33000B5C0DE /* Info.plist */; };
+		5F3DBE092C04B18700B5C0DE /* AppCoreWLanWifiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE082C04B18700B5C0DE /* AppCoreWLanWifiService.swift */; };
+		5F3DBE0D2C04B3E300B5C0DE /* AppCoreWLanError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE0C2C04B3E300B5C0DE /* AppCoreWLanError.swift */; };
+		5F3DBE112C04BBCA00B5C0DE /* Double + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE102C04BBCA00B5C0DE /* Double + Extension.swift */; };
+		5F3DBE132C04BC8800B5C0DE /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE122C04BC8800B5C0DE /* View + Extension.swift */; };
 		5F3FF02A2C02BB5500E3246C /* AppSmartProcessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF0292C02BB5500E3246C /* AppSmartProcessService.swift */; };
 		5F3FF02E2C02BBFA00E3246C /* AppSmartProcessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF02D2C02BBFA00E3246C /* AppSmartProcessInfo.swift */; };
 		5F3FF0302C02BE9800E3246C /* ChargeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF02F2C02BE9800E3246C /* ChargeData.swift */; };
@@ -44,7 +51,6 @@
 		5F6D4E6A2BE88AD9004B94F8 /* ToolbarKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E692BE88AD9004B94F8 /* ToolbarKey.swift */; };
 		5F6D4E6C2BE88CC6004B94F8 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E6B2BE88CC6004B94F8 /* ThemeColor.swift */; };
 		5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E6D2BE88CE1004B94F8 /* ColorSchemeMode.swift */; };
-		5F6D4E732BE8A262004B94F8 /* Extension + View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E722BE8A262004B94F8 /* Extension + View.swift */; };
 		5F6D4E762BE8A2A4004B94F8 /* ToastStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E752BE8A2A4004B94F8 /* ToastStyle.swift */; };
 		5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E782BE8A2DA004B94F8 /* ToastView.swift */; };
 		5F6D4E7C2BE8A328004B94F8 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E7B2BE8A328004B94F8 /* Toast.swift */; };
@@ -117,6 +123,11 @@
 		5F36B2432BE7ACC000E08935 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 		5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryService.swift; sourceTree = "<group>"; };
 		5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryKeyType.swift; sourceTree = "<group>"; };
+		5F3DBE032C04A33000B5C0DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5F3DBE082C04B18700B5C0DE /* AppCoreWLanWifiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoreWLanWifiService.swift; sourceTree = "<group>"; };
+		5F3DBE0C2C04B3E300B5C0DE /* AppCoreWLanError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoreWLanError.swift; sourceTree = "<group>"; };
+		5F3DBE102C04BBCA00B5C0DE /* Double + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension.swift"; sourceTree = "<group>"; };
+		5F3DBE122C04BC8800B5C0DE /* View + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
 		5F3FF0292C02BB5500E3246C /* AppSmartProcessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartProcessService.swift; sourceTree = "<group>"; };
 		5F3FF02D2C02BBFA00E3246C /* AppSmartProcessInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartProcessInfo.swift; sourceTree = "<group>"; };
 		5F3FF02F2C02BE9800E3246C /* ChargeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeData.swift; sourceTree = "<group>"; };
@@ -133,7 +144,6 @@
 		5F6D4E692BE88AD9004B94F8 /* ToolbarKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarKey.swift; sourceTree = "<group>"; };
 		5F6D4E6B2BE88CC6004B94F8 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		5F6D4E6D2BE88CE1004B94F8 /* ColorSchemeMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeMode.swift; sourceTree = "<group>"; };
-		5F6D4E722BE8A262004B94F8 /* Extension + View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + View.swift"; sourceTree = "<group>"; };
 		5F6D4E752BE8A2A4004B94F8 /* ToastStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStyle.swift; sourceTree = "<group>"; };
 		5F6D4E782BE8A2DA004B94F8 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		5F6D4E7B2BE8A328004B94F8 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
@@ -279,6 +289,7 @@
 		5F36B2152BE7AB3000E08935 /* EZMacker */ = {
 			isa = PBXGroup;
 			children = (
+				5F3DBE032C04A33000B5C0DE /* Info.plist */,
 				5F3FF03B2C03382B00E3246C /* Message */,
 				5F1A91A72BF8D93E0078F4F8 /* Wrapper */,
 				5F1A91A32BF8D8C30078F4F8 /* Resource */,
@@ -330,6 +341,7 @@
 				5F97C3852BFA208600B0DC56 /* AppSmartServiceProvidable.swift */,
 				5F3FF0292C02BB5500E3246C /* AppSmartProcessService.swift */,
 				5F3FF0352C0303AC00E3246C /* AppSmartSettingService.swift */,
+				5F3DBE082C04B18700B5C0DE /* AppCoreWLanWifiService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -365,6 +377,7 @@
 				5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */,
 				5F97C37D2BFA0F2C00B0DC56 /* AppBCMWLanSkywalkInterfaceType.swift */,
 				5F3FF02D2C02BBFA00E3246C /* AppSmartProcessInfo.swift */,
+				5F3DBE0C2C04B3E300B5C0DE /* AppCoreWLanError.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -414,8 +427,9 @@
 			isa = PBXGroup;
 			children = (
 				5F6D4E672BE88A03004B94F8 /* Date + Extension.swift */,
-				5F6D4E722BE8A262004B94F8 /* Extension + View.swift */,
 				5FD031392BEA5E8D009A8169 /* Int + Extension.swift */,
+				5F3DBE102C04BBCA00B5C0DE /* Double + Extension.swift */,
+				5F3DBE122C04BC8800B5C0DE /* View + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -641,6 +655,7 @@
 			files = (
 				5F1A91B52BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif in Resources */,
 				5F1A91B12BF8E48F0078F4F8 /* battery_charging_animation.gif in Resources */,
+				5F3DBE052C04ABE900B5C0DE /* Info.plist in Resources */,
 				5F36B21E2BE7AB3100E08935 /* Preview Assets.xcassets in Resources */,
 				5F36B21B2BE7AB3100E08935 /* Assets.xcassets in Resources */,
 				5F97C36D2BF9C04600B0DC56 /* global_loading.gif in Resources */,
@@ -651,6 +666,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F3DBE062C04AC0500B5C0DE /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +674,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F3DBE072C04AC0500B5C0DE /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,15 +695,17 @@
 				5F97C3782BF9DAFE00B0DC56 /* SystemPreferenceService.swift in Sources */,
 				5F6D4E682BE88A03004B94F8 /* Date + Extension.swift in Sources */,
 				5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */,
+				5F3DBE112C04BBCA00B5C0DE /* Double + Extension.swift in Sources */,
 				5F3FF02A2C02BB5500E3246C /* AppSmartProcessService.swift in Sources */,
-				5F6D4E732BE8A262004B94F8 /* Extension + View.swift in Sources */,
 				5F70D5DB2BE7BDC7004509BC /* SmartFileViewModel.swift in Sources */,
 				5F97C3862BFA208600B0DC56 /* AppSmartServiceProvidable.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
 				5FEE27C52BE8DC4800847761 /* KeyboardShortCutHandler.swift in Sources */,
 				5F1012B62BF3A12A00589C9B /* CustomNormalTextFont.swift in Sources */,
+				5F3DBE0D2C04B3E300B5C0DE /* AppCoreWLanError.swift in Sources */,
 				5F1012B22BF39EBD00589C9B /* InfoRectangleHImageTextView.swift in Sources */,
 				5FEE27C12BE8DB0500847761 /* KeyboardModifierFlag.swift in Sources */,
+				5F3DBE132C04BC8800B5C0DE /* View + Extension.swift in Sources */,
 				5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeMode.swift in Sources */,
 				5F97C3802BFA0F6300B0DC56 /* AppSmartWifiService.swift in Sources */,
 				5FCC8B9A2BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift in Sources */,
@@ -709,6 +728,7 @@
 				5FEE27C32BE8DB1900847761 /* KeyboardCharacter.swift in Sources */,
 				5FEE27CB2BE9018800847761 /* SmartFileView.swift in Sources */,
 				5F97C3842BFA133A00B0DC56 /* SmartWifiViewModel.swift in Sources */,
+				5F3DBE092C04B18700B5C0DE /* AppCoreWLanWifiService.swift in Sources */,
 				5F3FF02E2C02BBFA00E3246C /* AppSmartProcessInfo.swift in Sources */,
 				5F1012A82BF3997E00589C9B /* InfoElipseHImageView.swift in Sources */,
 				5F1012B82BF3A16D00589C9B /* CustomNormalImage.swift in Sources */,
@@ -886,23 +906,27 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = EZMacker/EZMacker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EZMacker/Preview Content\"";
-				DEVELOPMENT_TEAM = C9QJLU3JB2;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = C9QJLU3JB2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EZMacker/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocationUsageDescription = "와이파이 접근권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "와이파이 접근권한이 필요합니다.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-.EZMacker";
+				PRODUCT_BUNDLE_IDENTIFIER = ezmacker.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -917,23 +941,27 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = EZMacker/EZMacker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EZMacker/Preview Content\"";
-				DEVELOPMENT_TEAM = C9QJLU3JB2;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = C9QJLU3JB2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EZMacker/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocationUsageDescription = "와이파이 접근권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "와이파이 접근권한이 필요합니다.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-.EZMacker";
+				PRODUCT_BUNDLE_IDENTIFIER = ezmacker.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1021,7 +1049,7 @@
 				5F36B2372BE7AB3100E08935 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		5F36B2382BE7AB3100E08935 /* Build configuration list for PBXNativeTarget "EZMacker" */ = {
 			isa = XCConfigurationList;
@@ -1030,7 +1058,7 @@
 				5F36B23A2BE7AB3100E08935 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		5F36B23B2BE7AB3100E08935 /* Build configuration list for PBXNativeTarget "EZMackerTests" */ = {
 			isa = XCConfigurationList;
@@ -1039,7 +1067,7 @@
 				5F36B23D2BE7AB3100E08935 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		5F36B23E2BE7AB3100E08935 /* Build configuration list for PBXNativeTarget "EZMackerUITests" */ = {
 			isa = XCConfigurationList;
@@ -1048,7 +1076,7 @@
 				5F36B2402BE7AB3100E08935 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

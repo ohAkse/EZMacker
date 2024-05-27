@@ -11,7 +11,7 @@ import SwiftUI
 class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: ObservableObject {
     
     deinit {
-        Logger.writeLog(.info, message: "SmartBatteryViewModel deinit Called")
+        Logger.writeLog(.debug, message: "SmartBatteryViewModel deinit Called")
     }
     
     //배터리 관련 설정값들
