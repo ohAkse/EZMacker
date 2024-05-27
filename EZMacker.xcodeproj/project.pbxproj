@@ -28,13 +28,11 @@
 		5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2432BE7ACC000E08935 /* MainContentView.swift */; };
 		5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */; };
 		5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */; };
-		5F3DBE052C04ABE900B5C0DE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F3DBE032C04A33000B5C0DE /* Info.plist */; };
-		5F3DBE062C04AC0500B5C0DE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F3DBE032C04A33000B5C0DE /* Info.plist */; };
-		5F3DBE072C04AC0500B5C0DE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F3DBE032C04A33000B5C0DE /* Info.plist */; };
 		5F3DBE092C04B18700B5C0DE /* AppCoreWLanWifiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE082C04B18700B5C0DE /* AppCoreWLanWifiService.swift */; };
 		5F3DBE0D2C04B3E300B5C0DE /* AppCoreWLanError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE0C2C04B3E300B5C0DE /* AppCoreWLanError.swift */; };
 		5F3DBE112C04BBCA00B5C0DE /* Double + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE102C04BBCA00B5C0DE /* Double + Extension.swift */; };
 		5F3DBE132C04BC8800B5C0DE /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE122C04BC8800B5C0DE /* View + Extension.swift */; };
+		5F3DBE152C04C0C600B5C0DE /* CommandToolRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE142C04C0C600B5C0DE /* CommandToolRunner.swift */; };
 		5F3FF02A2C02BB5500E3246C /* AppSmartProcessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF0292C02BB5500E3246C /* AppSmartProcessService.swift */; };
 		5F3FF02E2C02BBFA00E3246C /* AppSmartProcessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF02D2C02BBFA00E3246C /* AppSmartProcessInfo.swift */; };
 		5F3FF0302C02BE9800E3246C /* ChargeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF02F2C02BE9800E3246C /* ChargeData.swift */; };
@@ -128,6 +126,7 @@
 		5F3DBE0C2C04B3E300B5C0DE /* AppCoreWLanError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoreWLanError.swift; sourceTree = "<group>"; };
 		5F3DBE102C04BBCA00B5C0DE /* Double + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension.swift"; sourceTree = "<group>"; };
 		5F3DBE122C04BC8800B5C0DE /* View + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
+		5F3DBE142C04C0C600B5C0DE /* CommandToolRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandToolRunner.swift; sourceTree = "<group>"; };
 		5F3FF0292C02BB5500E3246C /* AppSmartProcessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartProcessService.swift; sourceTree = "<group>"; };
 		5F3FF02D2C02BBFA00E3246C /* AppSmartProcessInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartProcessInfo.swift; sourceTree = "<group>"; };
 		5F3FF02F2C02BE9800E3246C /* ChargeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeData.swift; sourceTree = "<group>"; };
@@ -419,6 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				5F6D4E642BE889BB004B94F8 /* Logger.swift */,
+				5F3DBE142C04C0C600B5C0DE /* CommandToolRunner.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -655,7 +655,6 @@
 			files = (
 				5F1A91B52BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif in Resources */,
 				5F1A91B12BF8E48F0078F4F8 /* battery_charging_animation.gif in Resources */,
-				5F3DBE052C04ABE900B5C0DE /* Info.plist in Resources */,
 				5F36B21E2BE7AB3100E08935 /* Preview Assets.xcassets in Resources */,
 				5F36B21B2BE7AB3100E08935 /* Assets.xcassets in Resources */,
 				5F97C36D2BF9C04600B0DC56 /* global_loading.gif in Resources */,
@@ -666,7 +665,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F3DBE062C04AC0500B5C0DE /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,7 +672,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F3DBE072C04AC0500B5C0DE /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +695,7 @@
 				5F3DBE112C04BBCA00B5C0DE /* Double + Extension.swift in Sources */,
 				5F3FF02A2C02BB5500E3246C /* AppSmartProcessService.swift in Sources */,
 				5F70D5DB2BE7BDC7004509BC /* SmartFileViewModel.swift in Sources */,
+				5F3DBE152C04C0C600B5C0DE /* CommandToolRunner.swift in Sources */,
 				5F97C3862BFA208600B0DC56 /* AppSmartServiceProvidable.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
 				5FEE27C52BE8DC4800847761 /* KeyboardShortCutHandler.swift in Sources */,
