@@ -43,6 +43,7 @@
 		5F3FF03A2C032D8F00E3246C /* BatteryWithExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF0392C032D8F00E3246C /* BatteryWithExit.swift */; };
 		5F3FF03D2C03384100E3246C /* AppNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF03C2C03384100E3246C /* AppNotificationCenter.swift */; };
 		5F3FF03F2C03392000E3246C /* AppAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF03E2C03392000E3246C /* AppAlertManager.swift */; };
+		5F498F322C06096000C69F06 /* InfoArcIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F498F312C06096000C69F06 /* InfoArcIndicatorView.swift */; };
 		5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E5F2BE88213004B94F8 /* AppStorageKey.swift */; };
 		5F6D4E652BE889BB004B94F8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E642BE889BB004B94F8 /* Logger.swift */; };
 		5F6D4E682BE88A03004B94F8 /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E672BE88A03004B94F8 /* Date + Extension.swift */; };
@@ -137,6 +138,7 @@
 		5F3FF0392C032D8F00E3246C /* BatteryWithExit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryWithExit.swift; sourceTree = "<group>"; };
 		5F3FF03C2C03384100E3246C /* AppNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotificationCenter.swift; sourceTree = "<group>"; };
 		5F3FF03E2C03392000E3246C /* AppAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAlertManager.swift; sourceTree = "<group>"; };
+		5F498F312C06096000C69F06 /* InfoArcIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoArcIndicatorView.swift; sourceTree = "<group>"; };
 		5F6D4E5F2BE88213004B94F8 /* AppStorageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageKey.swift; sourceTree = "<group>"; };
 		5F6D4E642BE889BB004B94F8 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		5F6D4E672BE88A03004B94F8 /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				5F1012B12BF39EBD00589C9B /* InfoRectangleHImageTextView.swift */,
 				5FDB4BC72BFE5578002B1370 /* InfoGridHMonitoringView.swift */,
 				5F3FF0312C02C6AE00E3246C /* InfoBatteryBarView.swift */,
+				5F498F312C06096000C69F06 /* InfoArcIndicatorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -735,6 +738,7 @@
 				5FDB4BC82BFE5578002B1370 /* InfoGridHMonitoringView.swift in Sources */,
 				5F6D4E7C2BE8A328004B94F8 /* Toast.swift in Sources */,
 				5F70D5DF2BE7BE26004509BC /* AppSmartFileService.swift in Sources */,
+				5F498F322C06096000C69F06 /* InfoArcIndicatorView.swift in Sources */,
 				5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */,
 				5F6D4E6C2BE88CC6004B94F8 /* ThemeColor.swift in Sources */,
 				5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */,

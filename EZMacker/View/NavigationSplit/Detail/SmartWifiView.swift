@@ -1,28 +1,29 @@
-//
-//  SmartWifiView.swift
-//  EZMacker
-//
-//  Created by 박유경 on 5/19/24.
-//
-
 import SwiftUI
 
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @ObservedObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>
+    
     init(smartWifiViewModel: SmartWifiViewModel<ProvidableType>) {
         self.smartWifiViewModel = smartWifiViewModel
     }
+    
     var body: some View {
-        VStack {
-            Text(CategoryType.smartWifi.title)
-                .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+        GeometryReader { geo in
+            HStack {
+                VStack() {
+                    InfoArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
+                        .frame(width: geo.size.width/3, height: geo.size.width/5)
+
+                }
+                Spacer()
+            }
+            .onAppear {
+                smartWifiViewModel.requestWifiInfo()
+                smartWifiViewModel.requestCoreWLanWifiInfo()
+            }
         }
-        .onAppear {
-            smartWifiViewModel.requestWifiInfo()
-            smartWifiViewModel.requestCoreWLanWifiInfo()
-        }
-        .navigationTitle(CategoryType.smartWifi.title)
-        .padding()
+        .padding(40)
     }
 }
+

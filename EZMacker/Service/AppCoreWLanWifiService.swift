@@ -8,7 +8,7 @@
 import CoreWLAN
 import Combine
 protocol AppCoreWLANWifiProvidable {
-    func getSignalStrength() -> Future<String, AppCoreWLanError>
+    func getSignalStrength() -> Future<Int, AppCoreWLanError>
     func getMbpsRate()-> Future<String, AppCoreWLanError>
 }
 
@@ -22,28 +22,13 @@ class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
         self.interface = wifiClient.interface()
     }
 
-    func getSignalStrength() -> Future<String, AppCoreWLanError> {
-        return Future<String, AppCoreWLanError> { promise in
+    func getSignalStrength() -> Future<Int, AppCoreWLanError> {
+        return Future<Int, AppCoreWLanError> { promise in
             guard let signalStrength = self.interface?.rssiValue() else {
                 promise(.failure(.unableToFetchSignalStrength))
                 return
             }
-            let description: String
-            switch signalStrength {
-            case -30..<0:
-                description = "매우 강한 신호"
-            case -67..<(-30):
-                description = "강한 신호"
-            case -70..<(-67):
-                description = "양호한 신호"
-            case -80..<(-70):
-                description = "약한 신호"
-            case ..<(-80):
-                description = "매우 약한 신호"
-            default:
-                description = "알 수 없는 신호 강도"
-            }
-            promise(.success(description))
+            promise(.success(signalStrength))
         }
     }
     func getMbpsRate()-> Future<String, AppCoreWLanError> {

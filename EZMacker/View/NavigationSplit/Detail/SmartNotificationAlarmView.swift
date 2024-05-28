@@ -31,7 +31,6 @@ struct SmartNotificationAlarmView: View {
                             Text("배터리 상태 (0-100%)")
                             WTextField(text: $smartNotificationAlarmViewModel.batteryPercentage)
                                 .padding(5)
-
                         }
                         
                         .padding()

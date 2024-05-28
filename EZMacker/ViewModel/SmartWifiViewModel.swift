@@ -32,7 +32,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     @Published var locale = ""
     
     //CoreWLan
-    @Published var currentWifiStrength = ""
+    @Published var currentWifiStrength = 0
     @Published var currentTransmitRate = ""
     
     private var cancellables = Set<AnyCancellable>()
@@ -84,7 +84,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
             }, receiveValue: { [weak self] currentWifiStrength in
                 guard let self = self else { return }
                 self.currentWifiStrength = currentWifiStrength
-                Logger.writeLog(.info, message: currentWifiStrength)
+                Logger.writeLog(.info, message: "\(currentWifiStrength)")
             })
             .store(in: &cancellables)
         
