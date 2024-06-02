@@ -12,25 +12,24 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
         GeometryReader { geo in
             VStack{
                 HStack(alignment:. top, spacing:0) {
-                    Spacer(minLength: 10)
+  
                     InfoArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
                         .frame(width: geo.size.width * 0.3, height: geo.size.height/4)
                         .environmentObject(colorSchemeViewModel)
-                    Spacer(minLength: 10)
-                    InfoArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
-                        .frame(width: geo.size.width * 0.3, height: geo.size.height/4)
+                    Spacer(minLength: 5)
+                    InfoChannelInfoView(channelBandwidth: $smartWifiViewModel.channelBandwidth, channelFrequency: $smartWifiViewModel.channelFrequency, channel: $smartWifiViewModel.channel)
+                          .frame(width: geo.size.width * 0.3, height: geo.size.height / 4)
+                          .environmentObject(colorSchemeViewModel)
+                    Spacer(minLength: 5)
+                    InfoSSidInfoView(band: $smartWifiViewModel.band, ssID: $smartWifiViewModel.ssID, locale: $smartWifiViewModel.locale)
+                        .frame(width: geo.size.width * 0.3, height: geo.size.height / 4)
                         .environmentObject(colorSchemeViewModel)
-                    Spacer(minLength: 10)
-                    InfoArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
-                        .frame(width: geo.size.width * 0.3, height: geo.size.height/4)
-                        .environmentObject(colorSchemeViewModel)
-                    Spacer(minLength: 10)
                 }
-                HStack(alignment: .center, spacing:0 ) {
-                    Rectangle()
-                        .frame(width: geo.size.width * 0.95,  height: geo.size.height * 0.7)
-                        .customBackgroundColor()
-                }
+                HStack(alignment: .top, spacing: 0) {
+                      InfoWifiMainInfoView()
+                        .frame(width: geo.size.width  , height: geo.size.height * 0.7)
+                          .environmentObject(colorSchemeViewModel)
+                  }
                 .padding(.top, 20)
             }
             .onAppear {
@@ -42,8 +41,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                 smartWifiViewModel.stopWifiTimer()
             }
         }
-
-        .padding(20)
+        .padding(30)
     }
 }
 

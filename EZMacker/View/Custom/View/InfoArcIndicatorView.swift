@@ -6,14 +6,26 @@ struct InfoArcIndicatorView: View {
     @State var wifiPower: String = ""
     var body: some View {
         GeometryReader { geo in
-            VStack(spacing:10) {
+            VStack(spacing:0) {
+                HStack {
+                    Image(systemName: "wifi")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 24, height: 24)
+                    Text("신호 세기")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+                .padding([.leading, .top], 10)
                 ZStack(alignment:.center) {
                     ArcShape(percentage: 1.0)
                         .stroke(
                             Color.gray.opacity(0.2),
                             style: StrokeStyle(lineWidth: 20, lineCap: .round)
                         )
-                        .aspectRatio(5 / 3, contentMode: .fit)
+                        .aspectRatio(5 / 2.5, contentMode: .fit)
+                        .padding(20)
                     
                     ArcShape(percentage: getFillPercentage())
                         .stroke(
@@ -25,27 +37,17 @@ struct InfoArcIndicatorView: View {
                             ),
                             style: StrokeStyle(lineWidth: 20, lineCap: .round)
                         )
-                        .aspectRatio(5 / 3, contentMode: .fit)
+                        .aspectRatio(5 / 2.5, contentMode: .fit)
+                        .padding(20)
                     VStack() {
                         Text("\(getWifiStrength())")
-                            .customNormalTextFont(fontSize: FontSizeType.superLarge.size, isBold: true)
+                            .customNormalTextFont(fontSize: FontSizeType.large.size, isBold: true)
                         Spacer(minLength: 5)
                         Text("\(wifiStrength)")
-                            .customNormalTextFont(fontSize: FontSizeType.large.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
                             .fontWeight(.bold)
                         Spacer(minLength: 5)
-                        
-                        HStack(alignment:.center, spacing: 0) {
-                            Spacer(minLength: 0)
-                            Text("-80")
-                                .foregroundColor(.gray)
-                            Spacer(minLength: 180)
-                            Text("0")
-                                .foregroundColor(.gray)
-                            Spacer(minLength: 0)
-                        }
-                        .frame(minWidth: 240)
-                        
+                    
                     }
                     .frame(height: geo.size.height * 0.01, alignment: .top)
                 }
@@ -53,27 +55,28 @@ struct InfoArcIndicatorView: View {
                 Spacer(minLength: 5)
             }
             .customBackgroundColor()
-            .frame(minWidth: 250, maxWidth: 700,  minHeight:150,  maxHeight: 200)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
-    private func getWifiStrength()-> String {
+    private func getWifiStrength() -> String {
         let description: String
         switch wifiStrength {
         case -30..<0:
-            description = "매우 강한 신호"
+            description = "최상"
         case -50..<(-30):
-            description = "강한 신호"
+            description = "좋음"
         case -70..<(-50):
-            description = "양호한 신호"
+            description = "중간"
         case -80..<(-70):
-            description = "약한 신호"
+            description = "약함"
         case ..<(-80):
-            description = "매우 약한 신호"
+            description = "매우 약함"
         default:
-            description = "계산중"
+            description = "계산중.."
         }
         return description
     }
+
     
     private func getFillPercentage() -> Double {
         return min(max(Double(wifiStrength + 100) / 100.0, 0.0), 1.0)

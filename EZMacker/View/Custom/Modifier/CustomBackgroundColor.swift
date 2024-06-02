@@ -17,6 +17,7 @@ struct CustomBackgroundModifier: ViewModifier {
                 RoundedRectangle(cornerRadius: 15)
                     .foregroundColor(cardColorForTheme())
             )
+            .cornerRadius(10)
     }
     private func cardColorForTheme() -> Color {
         switch colorScheme.getColorScheme() {
