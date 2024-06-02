@@ -11,6 +11,7 @@ import SwiftUI
 class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: ObservableObject {
     
     deinit {
+        stopConnectTimer()
         Logger.writeLog(.debug, message: "SmartBatteryViewModel deinit Called")
     }
     

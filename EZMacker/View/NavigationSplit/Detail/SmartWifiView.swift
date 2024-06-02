@@ -10,20 +10,40 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     
     var body: some View {
         GeometryReader { geo in
-            HStack {
-                VStack() {
+            VStack{
+                HStack(alignment:. top, spacing:0) {
+                    Spacer(minLength: 10)
                     InfoArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
-                        .frame(width: geo.size.width/3, height: geo.size.width/5)
-
+                        .frame(width: geo.size.width * 0.3, height: geo.size.height/4)
+                        .environmentObject(colorSchemeViewModel)
+                    Spacer(minLength: 10)
+                    InfoArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
+                        .frame(width: geo.size.width * 0.3, height: geo.size.height/4)
+                        .environmentObject(colorSchemeViewModel)
+                    Spacer(minLength: 10)
+                    InfoArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
+                        .frame(width: geo.size.width * 0.3, height: geo.size.height/4)
+                        .environmentObject(colorSchemeViewModel)
+                    Spacer(minLength: 10)
                 }
-                Spacer()
+                HStack(alignment: .center, spacing:0 ) {
+                    Rectangle()
+                        .frame(width: geo.size.width * 0.95,  height: geo.size.height * 0.7)
+                        .customBackgroundColor()
+                }
+                .padding(.top, 20)
             }
             .onAppear {
                 smartWifiViewModel.requestWifiInfo()
                 smartWifiViewModel.requestCoreWLanWifiInfo()
+                smartWifiViewModel.startWifiTimer()
+            }
+            .onDisappear() {
+                smartWifiViewModel.stopWifiTimer()
             }
         }
-        .padding(40)
+
+        .padding(20)
     }
 }
 

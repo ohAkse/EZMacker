@@ -10,25 +10,27 @@ struct MainContentView: View {
                 .frame(minWidth: 200)
                 .contentShape(Rectangle())
         } detail: {
-            if selectionValue == .smartFile {
-                EmptyView()
-            } else {
-                switch selectionValue {
-                case .smartBattery:
-                    SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"),appSettingService: AppSmartSettingsService(),appProcessService: AppSmartProcessService(), systemPreferenceService: SystemPreferenceService()))
-                        .environmentObject(colorSchemeViewModel)
-                case .smartWifi:
-                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared())))
-                        .environmentObject(colorSchemeViewModel)
-                    
-//                case .smartFile:
-//                    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
-//                        .environmentObject(colorSchemeViewModel)
-                case .smartNotificationAlarm:
-                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService()))
-                        .environmentObject(colorSchemeViewModel)
-                default:
+            GeometryReader { geometry in
+                if selectionValue == .smartFile {
                     EmptyView()
+                } else {
+                    switch selectionValue {
+                    case .smartBattery:
+                        SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"),appSettingService: AppSmartSettingsService(),appProcessService: AppSmartProcessService(), systemPreferenceService: SystemPreferenceService()))
+                            .environmentObject(colorSchemeViewModel)
+                    case .smartWifi:
+                        SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared())))
+                            .environmentObject(colorSchemeViewModel)
+                        
+                        //                case .smartFile:
+                        //                    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
+                        //                        .environmentObject(colorSchemeViewModel)
+                    case .smartNotificationAlarm:
+                        SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService()))
+                            .environmentObject(colorSchemeViewModel)
+                    default:
+                        EmptyView()
+                    }
                 }
             }
         }

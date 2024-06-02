@@ -66,6 +66,7 @@
 		5F97C3822BFA132E00B0DC56 /* SmartWifiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3812BFA132E00B0DC56 /* SmartWifiView.swift */; };
 		5F97C3842BFA133A00B0DC56 /* SmartWifiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3832BFA133A00B0DC56 /* SmartWifiViewModel.swift */; };
 		5F97C3862BFA208600B0DC56 /* AppSmartServiceProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3852BFA208600B0DC56 /* AppSmartServiceProvidable.swift */; };
+		5FC42EEB2C0892C100C5244B /* CustomBackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC42EEA2C0892C100C5244B /* CustomBackgroundColor.swift */; };
 		5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */; };
 		5FCC8B9A2BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */; };
 		5FD0313A2BEA5E8D009A8169 /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD031392BEA5E8D009A8169 /* Int + Extension.swift */; };
@@ -161,6 +162,7 @@
 		5F97C3812BFA132E00B0DC56 /* SmartWifiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWifiView.swift; sourceTree = "<group>"; };
 		5F97C3832BFA133A00B0DC56 /* SmartWifiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWifiViewModel.swift; sourceTree = "<group>"; };
 		5F97C3852BFA208600B0DC56 /* AppSmartServiceProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartServiceProvidable.swift; sourceTree = "<group>"; };
+		5FC42EEA2C0892C100C5244B /* CustomBackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackgroundColor.swift; sourceTree = "<group>"; };
 		5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartNotificationAlarmView.swift; sourceTree = "<group>"; };
 		5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartNotificationAlarmViewModel.swift; sourceTree = "<group>"; };
 		5FD031392BEA5E8D009A8169 /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			children = (
 				5F1012B52BF3A12A00589C9B /* CustomNormalTextFont.swift */,
 				5F1012B72BF3A16D00589C9B /* CustomNormalImage.swift */,
+				5FC42EEA2C0892C100C5244B /* CustomBackgroundColor.swift */,
 			);
 			path = Modifier;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FC42EEB2C0892C100C5244B /* CustomBackgroundColor.swift in Sources */,
 				5F6D4E762BE8A2A4004B94F8 /* ToastStyle.swift in Sources */,
 				5F3FF03A2C032D8F00E3246C /* BatteryWithExit.swift in Sources */,
 				5F6D4E652BE889BB004B94F8 /* Logger.swift in Sources */,
