@@ -2,17 +2,12 @@ import SwiftUI
 
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @ObservedObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>
-    
-    init(smartWifiViewModel: SmartWifiViewModel<ProvidableType>) {
-        self.smartWifiViewModel = smartWifiViewModel
-    }
+    @StateObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>
     
     var body: some View {
         GeometryReader { geo in
             VStack{
                 HStack(alignment:. top, spacing:0) {
-  
                     InfoArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
                         .frame(width: geo.size.width * 0.3, height: geo.size.height/4)
                         .environmentObject(colorSchemeViewModel)
@@ -21,20 +16,26 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                           .frame(width: geo.size.width * 0.3, height: geo.size.height / 4)
                           .environmentObject(colorSchemeViewModel)
                     Spacer(minLength: 5)
-                    InfoSSidInfoView(band: $smartWifiViewModel.band, ssID: $smartWifiViewModel.ssID, locale: $smartWifiViewModel.locale)
+                    InfoWifiDetailView(band: $smartWifiViewModel.band, hardwareAddress: $smartWifiViewModel.currentHardwareAddress, locale: $smartWifiViewModel.locale)
                         .frame(width: geo.size.width * 0.3, height: geo.size.height / 4)
                         .environmentObject(colorSchemeViewModel)
                 }
                 HStack(alignment: .top, spacing: 0) {
-                      InfoWifiMainInfoView()
+                    InfoWifiMainInfoView(ssid: $smartWifiViewModel.ssID, wifiLists: $smartWifiViewModel.currentScanningWifiDataList, onRefresh: {
+                        Task {
+                            await smartWifiViewModel.requestCoreWLanWifiInfo()
+                        }
+                        })
                         .frame(width: geo.size.width  , height: geo.size.height * 0.7)
-                          .environmentObject(colorSchemeViewModel)
+                        .environmentObject(colorSchemeViewModel)
+                        .task {
+                            await smartWifiViewModel.requestCoreWLanWifiInfo()
+                        }
                   }
                 .padding(.top, 20)
             }
             .onAppear {
                 smartWifiViewModel.requestWifiInfo()
-                smartWifiViewModel.requestCoreWLanWifiInfo()
                 smartWifiViewModel.startWifiTimer()
             }
             .onDisappear() {

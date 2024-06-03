@@ -21,7 +21,3 @@ struct SmartFileView: View {
         .padding()
     }
 }
-#Preview {
-    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
-    
-}

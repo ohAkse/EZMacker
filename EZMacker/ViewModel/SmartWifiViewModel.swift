@@ -34,6 +34,8 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     //CoreWLan
     @Published var currentWifiStrength = 0
     @Published var currentTransmitRate = ""
+    @Published var currentHardwareAddress = ""
+    @Published var currentScanningWifiDataList : [ScaningWifiData] = []
     
     //private variables
     private var timerCancellable: AnyCancellable?
@@ -65,14 +67,10 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
             self.band = band
             self.ssID = ssID
             self.locale = locale
-            
-            Logger.writeLog(.info, message: band)
-            Logger.writeLog(.info, message: ssID)
-            Logger.writeLog(.info, message: locale)
         }
         .store(in: &cancellables)
     }
-    func requestCoreWLanWifiInfo() {
+    func requestCoreWLanWifiInfo() async {
         appCoreWLanWifiService.getMbpsRate()
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
@@ -86,7 +84,40 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
             }, receiveValue: { [weak self] currentTransmitRate in
                 guard let self = self else { return }
                 self.currentTransmitRate = currentTransmitRate
-                Logger.writeLog(.info, message: currentTransmitRate)
+            })
+            .store(in: &cancellables)
+        
+        appCoreWLanWifiService.getHardwareAddress()
+            .subscribe(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    Logger.writeLog(.error, message: error.localizedDescription)
+                }
+            }, receiveValue: { [weak self] hardwareAddress in
+                guard let self = self else { return }
+                self.currentHardwareAddress = hardwareAddress
+            })
+            .store(in: &cancellables)
+
+        
+        appCoreWLanWifiService.getWifiLists()
+            .subscribe(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    Logger.writeLog(.error, message: error.localizedDescription)
+                }
+            }, receiveValue: { [weak self] wifiLists in
+                guard let self = self else { return }
+                self.currentScanningWifiDataList = wifiLists
+                print(wifiLists)
             })
             .store(in: &cancellables)
     }
@@ -124,7 +155,6 @@ extension SmartWifiViewModel {
             }, receiveValue: { [weak self] currentWifiStrength in
                 guard let self = self else { return }
                 self.currentWifiStrength = currentWifiStrength
-                Logger.writeLog(.info, message: "\(currentWifiStrength)")
             })
             .store(in: &cancellables)
     }

@@ -35,7 +35,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDe
         NSApp.setActivationPolicy(.regular)
         window = NSApp.windows.first
         window.delegate = self
-        
         requestNotificationAuthorization()
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
             let modifierFlag = ModifierFlag(event.modifierFlags)
@@ -55,4 +54,3 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDe
         }
     }
 }
-

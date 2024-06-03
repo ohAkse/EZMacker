@@ -1,16 +1,16 @@
 //
-//  InfoSSidInfoView.swift
+//  InfoWifiDetailView.swift
 //  EZMacker
 //
-//  Created by 박유경 on 6/2/24.
+//  Created by 박유경 on 6/3/24.
 //
 
 import SwiftUI
 
-struct InfoSSidInfoView: View {
+struct InfoWifiDetailView: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
     @Binding var band: String
-    @Binding var ssID: String
+    @Binding var hardwareAddress: String
     @Binding var locale: String
     var body: some View {
         GeometryReader { geo in
@@ -40,10 +40,10 @@ struct InfoSSidInfoView: View {
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
-                        Text("SSID:")
+                        Text("Mac:")
                             .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
                         Spacer()
-                        Text("\(ssID)")
+                        Text("\(hardwareAddress)")
                             .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
                     }
                     .padding(.horizontal, 20)

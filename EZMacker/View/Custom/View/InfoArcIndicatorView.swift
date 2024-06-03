@@ -43,7 +43,7 @@ struct InfoArcIndicatorView: View {
                         Text("\(getWifiStrength())")
                             .customNormalTextFont(fontSize: FontSizeType.large.size, isBold: true)
                         Spacer(minLength: 5)
-                        Text("\(wifiStrength)")
+                        Text("\(wifiStrength)dBm")
                             .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
                             .fontWeight(.bold)
                         Spacer(minLength: 5)
