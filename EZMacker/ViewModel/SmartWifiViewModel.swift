@@ -104,7 +104,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
             .store(in: &cancellables)
 
         
-        appCoreWLanWifiService.getWifiLists()
+        appCoreWLanWifiService.getWifiLists(attempts: 4)
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
@@ -112,6 +112,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
                 case .finished:
                     break
                 case .failure(let error):
+                    //에러일시 로딩바 멈추기
                     Logger.writeLog(.error, message: error.localizedDescription)
                 }
             }, receiveValue: { [weak self] wifiLists in
@@ -138,6 +139,8 @@ extension SmartWifiViewModel {
     func stopWifiTimer() {
         timerCancellable?.cancel()
     }
+    
+
 }
 
 extension SmartWifiViewModel {
@@ -158,4 +161,13 @@ extension SmartWifiViewModel {
             })
             .store(in: &cancellables)
     }
+    
+    func connectWifi(ssid: String, password: String = "") {
+        //Logger.writeLog(.info, message: "Selected SSID -> \(ssid)")
+        appCoreWLanWifiService.connectToNetwork(ssid: ssid, password: password, completion: { [weak self] ssid, error in
+
+        })
+    }
+    
+  
 }

@@ -27,6 +27,8 @@
 		5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2432BE7ACC000E08935 /* MainContentView.swift */; };
 		5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */; };
 		5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */; };
+		5F36C0862C17E55C0031C0E3 /* AppWifiKeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36C0852C17E55C0031C0E3 /* AppWifiKeyChainService.swift */; };
+		5F36C0892C17ECE00031C0E3 /* AlertModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36C0882C17ECE00031C0E3 /* AlertModalView.swift */; };
 		5F3DBE092C04B18700B5C0DE /* AppCoreWLanWifiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE082C04B18700B5C0DE /* AppCoreWLanWifiService.swift */; };
 		5F3DBE0D2C04B3E300B5C0DE /* AppCoreWLanError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE0C2C04B3E300B5C0DE /* AppCoreWLanError.swift */; };
 		5F3DBE112C04BBCA00B5C0DE /* Double + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE102C04BBCA00B5C0DE /* Double + Extension.swift */; };
@@ -127,6 +129,8 @@
 		5F36B2432BE7ACC000E08935 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 		5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryService.swift; sourceTree = "<group>"; };
 		5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryKeyType.swift; sourceTree = "<group>"; };
+		5F36C0852C17E55C0031C0E3 /* AppWifiKeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWifiKeyChainService.swift; sourceTree = "<group>"; };
+		5F36C0882C17ECE00031C0E3 /* AlertModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalView.swift; sourceTree = "<group>"; };
 		5F3DBE032C04A33000B5C0DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5F3DBE082C04B18700B5C0DE /* AppCoreWLanWifiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoreWLanWifiService.swift; sourceTree = "<group>"; };
 		5F3DBE0C2C04B3E300B5C0DE /* AppCoreWLanError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoreWLanError.swift; sourceTree = "<group>"; };
@@ -360,6 +364,7 @@
 				5F3FF0292C02BB5500E3246C /* AppSmartProcessService.swift */,
 				5F3FF0352C0303AC00E3246C /* AppSmartSettingService.swift */,
 				5F3DBE082C04B18700B5C0DE /* AppCoreWLanWifiService.swift */,
+				5F36C0852C17E55C0031C0E3 /* AppWifiKeyChainService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 		5F36B2462BE7B19E00E08935 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5F36C0872C17ECD40031C0E3 /* Alert */,
 				5FEE27C62BE9012900847761 /* NavigationSplit */,
 				5F6D4E712BE8A243004B94F8 /* Toast */,
 				5F70D5E32BE7C810004509BC /* Custom */,
@@ -399,6 +405,14 @@
 				5F3DBE0C2C04B3E300B5C0DE /* AppCoreWLanError.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		5F36C0872C17ECD40031C0E3 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				5F36C0882C17ECE00031C0E3 /* AlertModalView.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		5F3FF03B2C03382B00E3246C /* Message */ = {
@@ -723,6 +737,7 @@
 				5F6D4E682BE88A03004B94F8 /* Date + Extension.swift in Sources */,
 				5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */,
 				5F3DBE112C04BBCA00B5C0DE /* Double + Extension.swift in Sources */,
+				5F36C0862C17E55C0031C0E3 /* AppWifiKeyChainService.swift in Sources */,
 				5F3FF02A2C02BB5500E3246C /* AppSmartProcessService.swift in Sources */,
 				5F70D5DB2BE7BDC7004509BC /* SmartFileViewModel.swift in Sources */,
 				5F3DBE152C04C0C600B5C0DE /* CommandToolRunner.swift in Sources */,
@@ -731,6 +746,7 @@
 				5F69D28E2C0DECCA00F318ED /* BatteryWithExit.swift in Sources */,
 				5FEE27C52BE8DC4800847761 /* KeyboardShortCutHandler.swift in Sources */,
 				5F1012B62BF3A12A00589C9B /* CustomNormalTextFont.swift in Sources */,
+				5F36C0892C17ECE00031C0E3 /* AlertModalView.swift in Sources */,
 				5F3DBE0D2C04B3E300B5C0DE /* AppCoreWLanError.swift in Sources */,
 				5F1012B22BF39EBD00589C9B /* InfoRectangleHImageTextView.swift in Sources */,
 				5FEE27C12BE8DB0500847761 /* KeyboardModifierFlag.swift in Sources */,
