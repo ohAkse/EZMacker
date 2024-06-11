@@ -36,13 +36,12 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     @Published var currentTransmitRate = ""
     @Published var currentHardwareAddress = ""
     @Published var currentScanningWifiDataList : [ScaningWifiData] = []
-    
+    @Published var wifiRequestStatus : AppCoreWLanStatus = .none
     //private variables
     private var timerCancellable: AnyCancellable?
-    
     private var cancellables = Set<AnyCancellable>()
     
-
+    
     func requestWifiInfo() {
         Publishers.Zip3(
             appSmartWifiService.getRegistry(forKey: .IO80211Channel).compactMap { $0 as? Int },
@@ -102,7 +101,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
                 self.currentHardwareAddress = hardwareAddress
             })
             .store(in: &cancellables)
-
+        
         
         appCoreWLanWifiService.getWifiLists(attempts: 4)
             .subscribe(on: DispatchQueue.global())
@@ -113,7 +112,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
                     break
                 case .failure(let error):
                     //에러일시 로딩바 멈추기
-                    Logger.writeLog(.error, message: error.localizedDescription)
+                    Logger.writeLog(.error, message: error.errorName)
                 }
             }, receiveValue: { [weak self] wifiLists in
                 guard let self = self else { return }
@@ -140,7 +139,7 @@ extension SmartWifiViewModel {
         timerCancellable?.cancel()
     }
     
-
+    
 }
 
 extension SmartWifiViewModel {
@@ -162,12 +161,25 @@ extension SmartWifiViewModel {
             .store(in: &cancellables)
     }
     
-    func connectWifi(ssid: String, password: String = "") {
-        //Logger.writeLog(.info, message: "Selected SSID -> \(ssid)")
-        appCoreWLanWifiService.connectToNetwork(ssid: ssid, password: password, completion: { [weak self] ssid, error in
-
-        })
+    func connectWifi(ssid: String, password: String) {
+        appCoreWLanWifiService.connectToNetwork(ssid: ssid, password: password)
+            .subscribe(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                guard let self = self else { return }
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    wifiRequestStatus = error
+                    Logger.writeLog(.error, message: error.localizedDescription)
+                }
+            }, receiveValue: { [weak self] isSwitchWifiSuccess in
+                guard let self = self else { return }
+                if isSwitchWifiSuccess {
+                    wifiRequestStatus = .success
+                }
+            })
+            .store(in: &cancellables)
     }
-    
-  
 }

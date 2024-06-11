@@ -17,7 +17,7 @@ struct InfoBatteryBarView: View {
             ZStack(alignment: .leading) {
                 HStack(spacing: 0) {
                     if isAdapterConnected {
-                        WGifView(gifName: "battery_charging_animation", imageSize: CGSize(width: 50, height: 50))
+                        GifRepresentableView(gifName: "battery_charging_animation", imageSize: CGSize(width: 50, height: 50))
                         .frame(width: 70, height: 70)
                     } else {
                         Image(systemName: getBatteryImageName())

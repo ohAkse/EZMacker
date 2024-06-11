@@ -10,12 +10,11 @@ import Combine
 import Security
 
 protocol AppCoreWLANWifiProvidable {
-    func getSignalStrength() -> Future<Int, AppCoreWLanError>
-    func getMbpsRate()-> Future<String, AppCoreWLanError>
-    func getHardwareAddress()-> Future<String, AppCoreWLanError>
-    func getWifiLists(attempts: Int ) -> Future<[ScaningWifiData], AppCoreWLanError>
-    func connectToNetwork(ssid: String, password: String, completion: @escaping (Bool, AppCoreWLanError) -> Void)
-    func autoConnectToNetwork(ssid: String, completion: @escaping (Bool, AppCoreWLanError) -> Void)
+    func getSignalStrength() -> Future<Int, AppCoreWLanStatus>
+    func getMbpsRate()-> Future<String, AppCoreWLanStatus>
+    func getHardwareAddress()-> Future<String, AppCoreWLanStatus>
+    func getWifiLists(attempts: Int ) -> Future<[ScaningWifiData], AppCoreWLanStatus>
+    func connectToNetwork(ssid: String, password: String)  -> Future<Bool, AppCoreWLanStatus>
 }
 
 class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
@@ -30,8 +29,8 @@ class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
         self.wifyKeyChainService = wifyKeyChainService
     }
 
-    func getSignalStrength() -> Future<Int, AppCoreWLanError> {
-        return Future<Int, AppCoreWLanError> { promise in
+    func getSignalStrength() -> Future<Int, AppCoreWLanStatus> {
+        return Future<Int, AppCoreWLanStatus> { promise in
             guard let signalStrength = self.interface?.rssiValue() else {
                 promise(.failure(.unableToFetchSignalStrength))
                 return
@@ -39,8 +38,8 @@ class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             promise(.success(signalStrength))
         }
     }
-    func getMbpsRate()-> Future<String, AppCoreWLanError> {
-        return Future<String, AppCoreWLanError> { promise in
+    func getMbpsRate()-> Future<String, AppCoreWLanStatus> {
+        return Future<String, AppCoreWLanStatus> { promise in
             guard let transmitRate = self.interface?.transmitRate() else {
                 promise(.failure(.unableToFetchSignalStrength))
                 return
@@ -49,8 +48,8 @@ class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
         }
     }
     
-    func getHardwareAddress() -> Future<String, AppCoreWLanError> {
-        return Future<String, AppCoreWLanError> { promise in
+    func getHardwareAddress() -> Future<String, AppCoreWLanStatus> {
+        return Future<String, AppCoreWLanStatus> { promise in
             guard let transmitRate = self.interface?.hardwareAddress() else {
                 promise(.failure(.unableToFetchSignalStrength))
                 return
@@ -59,13 +58,13 @@ class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
         }
     }
     
-    func getWifiLists(attempts: Int ) -> Future<[ScaningWifiData], AppCoreWLanError> {
-        return Future<[ScaningWifiData], AppCoreWLanError> { promise in
+    func getWifiLists(attempts: Int ) -> Future<[ScaningWifiData], AppCoreWLanStatus> {
+        return Future<[ScaningWifiData], AppCoreWLanStatus> { promise in
             self.scanWifiLists(attempts: attempts, promise: promise)
         }
     }
     
-    private func scanWifiLists(attempts: Int, promise: @escaping (Result<[ScaningWifiData], AppCoreWLanError>) -> Void) {
+    private func scanWifiLists(attempts: Int, promise: @escaping (Result<[ScaningWifiData], AppCoreWLanStatus>) -> Void) {
         if attempts <= 1 {
             promise(.failure(.scanningFailed))
         }
@@ -92,35 +91,31 @@ class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             if attempts > 1 {
                 self.scanWifiLists(attempts: attempts - 1, promise: promise)
             } else {
-                Logger.writeLog(.error, message: AppCoreWLanError.scanningFailed.errorName)
+                Logger.writeLog(.error, message: AppCoreWLanStatus.scanningFailed.errorName)
                 promise(.failure(.scanningFailed))
             }
         }
     }
-    
-    func connectToNetwork(ssid: String, password: String, completion: @escaping (Bool, AppCoreWLanError) -> Void) {
-        do {
-            guard let network = networkList.first(where: { $0.ssid == ssid }) else {
-                 completion(false, .notFoundSSID)
-                 return
-             }
-            Logger.writeLog(.info, message: "\(network.ssid)")
-            try interface?.associate(to: network, password: password)
-            if (wifyKeyChainService.savePassword(service: "com.myapp.wifi", account: network.ssid!, password: password)) {
-                Logger.writeLog(.info, message: "접속성공")
-                completion(true, .success)
-            } else {
-                completion(false, .savePasswordFailed)
-                Logger.writeLog(.info, message: "접속실패")
+    func connectToNetwork(ssid: String, password: String) -> Future<Bool, AppCoreWLanStatus> {
+        return Future { [weak self] promise in
+            guard let self = self else { return }
+            do {
+                guard let network = networkList.first(where: { $0.ssid == ssid }) else {
+                    Logger.writeLog(.error, message: "네트워크를 찾을 수 없음: \(ssid)")
+                    promise(.failure(.notFoundSSID))
+                    return
+                }
+                DispatchQueue.global().asyncAfter(deadline: .now() + 1.0) {
+                    do {
+                        Logger.writeLog(.info, message: "network -> \(network) password ->\(password)")
+                        try self.interface?.associate(to: network, password: password)
+                        promise(.success(true)) // 연결 성공 시
+                    } catch {
+                        Logger.writeLog(.error, message: "알 수 없는 오류 발생: \(error.localizedDescription)")
+                        promise(.failure(.unknownError(error: error.localizedDescription)))
+                    }
+                }  
             }
-        } catch {
-            Logger.writeLog(.error, message: error.localizedDescription)
-            completion(false, .unknownError(error: error.localizedDescription))
         }
     }
-    
-    func autoConnectToNetwork(ssid: String, completion: @escaping (Bool, AppCoreWLanError) -> Void) {
-        
-    }
-
 }

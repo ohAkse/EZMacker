@@ -27,6 +27,7 @@ class AppWifiKeyChainService: AppWifiKeyChainProvidable {
         SecItemDelete(query as CFDictionary)
         
         let status = SecItemAdd(query as CFDictionary, nil)
+         Logger.writeLog(.info, message: "savePassword Success? -> \(status == errSecSuccess)")
         return status == errSecSuccess
     }
     

@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum AppCoreWLanError: Error {
+enum AppCoreWLanStatus: Error, Equatable {
+    case none
     case success
     case unableToFetchSignalStrength
     case scanningFailed
@@ -18,7 +19,7 @@ enum AppCoreWLanError: Error {
 
     var errorName: String {
         switch self {
-        case .success:
+        case .success, .none:
             return ""
         case .unableToFetchSignalStrength:
             return "신호세기를 알 수가 없습니다."
@@ -32,6 +33,23 @@ enum AppCoreWLanError: Error {
             return "와이파이 비밀번호를 찾을 수 없습니다."
         case .unknownError(let error):
             return "알 수 없는 에러: \(error)"
+        }
+    }
+    
+    static func ==(lhs: AppCoreWLanStatus, rhs: AppCoreWLanStatus) -> Bool {
+        switch (lhs, rhs) {
+        case (.none, .none),
+             (.success, .success),
+             (.unableToFetchSignalStrength, .unableToFetchSignalStrength),
+             (.scanningFailed, .scanningFailed),
+             (.savePasswordFailed, .savePasswordFailed),
+             (.notFoundSSID, .notFoundSSID),
+             (.notFoundPassword, .notFoundPassword):
+            return true
+        case (.unknownError(let lError), .unknownError(let rError)):
+            return lError == rError
+        default:
+            return false
         }
     }
 }

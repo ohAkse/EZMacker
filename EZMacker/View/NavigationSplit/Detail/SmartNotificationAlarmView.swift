@@ -29,7 +29,7 @@ struct SmartNotificationAlarmView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         HStack {
                             Text("배터리 상태 (0-100%)")
-                            WTextField(text: $smartNotificationAlarmViewModel.batteryPercentage)
+                            TextFieldRepresentableView(text: $smartNotificationAlarmViewModel.batteryPercentage)
                                 .padding(5)
                         }
                         

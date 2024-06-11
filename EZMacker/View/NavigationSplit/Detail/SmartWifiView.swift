@@ -4,7 +4,7 @@ import CoreWLAN
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @StateObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>
-    @State private var isShowAlert = false
+    @State private var toast: Toast?
     var body: some View {
         GeometryReader { geo in
             VStack {
@@ -33,7 +33,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                         },
                         onWifiTap: { ssid, password in
                             Logger.writeLog(.info, message: "\(ssid), \(password)")
-                            smartWifiViewModel.connectWifi(ssid: ssid)
+                            smartWifiViewModel.connectWifi(ssid: ssid, password: password)
                         }
                     )
                     .frame(width: geo.size.width, height: geo.size.height * 0.7)
@@ -44,6 +44,11 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                 }
                 .padding(.top, 20)
             }
+            .onReceive(smartWifiViewModel.$wifiRequestStatus) { wifiStatus in
+                if wifiStatus != .success && wifiStatus != .none{
+                    toast = Toast(type: .error, title: "에러", message: "와이파이를 접속할수 없습니다.비밀번호를 확인해주세요.", duration: 10)
+                }
+            }
             .onAppear {
                 smartWifiViewModel.requestWifiInfo()
                 smartWifiViewModel.startWifiTimer()
@@ -52,6 +57,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                 smartWifiViewModel.stopWifiTimer()
             }
         }
+        .toastView(toast: $toast)
         .padding(30)
     }
 }
