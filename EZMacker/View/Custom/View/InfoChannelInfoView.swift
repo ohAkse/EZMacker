@@ -32,30 +32,30 @@ struct InfoChannelInfoView: View {
                     Spacer(minLength: 20)
                     HStack(spacing: 10) {
                         Text("대역폭:")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(channelBandwidth) MHz")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
                         Text("주파수:")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(channelFrequency) MHz")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
                         Text("채널:")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(channel)")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
                 }

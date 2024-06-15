@@ -3,7 +3,7 @@ import CoreWLAN
 struct MainContentView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @State private var selectionValue = CategoryType.smartWifi
-
+    
     var body: some View {
         NavigationSplitView {
             CategoryView(selectionValue: $selectionValue)
@@ -19,16 +19,14 @@ struct MainContentView: View {
                         SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"),appSettingService: AppSmartSettingsService(),appProcessService: AppSmartProcessService(), systemPreferenceService: SystemPreferenceService()))
                             .environmentObject(colorSchemeViewModel)
                     case .smartWifi:
-                        SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(),wifyKeyChainService: AppWifiKeyChainService())))
+                        SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(),wifyKeyChainService: AppWifiKeyChainService()), appSettingService: AppSmartSettingsService()))
                             .environmentObject(colorSchemeViewModel)
-                        //                case .smartFile:
-                        //                    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
-                        //                        .environmentObject(colorSchemeViewModel)
+                    case .smartFile:
+                        SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
+                            .environmentObject(colorSchemeViewModel)
                     case .smartNotificationAlarm:
                         SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService()))
                             .environmentObject(colorSchemeViewModel)
-                    default:
-                        EmptyView()
                     }
                 }
             }

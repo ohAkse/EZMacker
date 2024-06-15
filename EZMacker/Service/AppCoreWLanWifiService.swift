@@ -17,8 +17,7 @@ protocol AppCoreWLANWifiProvidable {
     func connectToNetwork(ssid: String, password: String)  -> Future<Bool, AppCoreWLanStatus>
 }
 
-class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
-    
+struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
     private var wifiClient: CWWiFiClient
     private var interface: CWInterface?
     private var wifyKeyChainService: AppWifiKeyChainService
@@ -65,7 +64,7 @@ class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
     }
     
     private func scanWifiLists(attempts: Int, promise: @escaping (Result<[ScaningWifiData], AppCoreWLanStatus>) -> Void) {
-        if attempts <= 1 {
+        if attempts < 1 {
             promise(.failure(.scanningFailed))
         }
         
@@ -75,9 +74,7 @@ class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
         }
         
         do {
-            networkList = try wifiInterface.scanForNetworks(withSSID: nil, includeHidden: false)
-            
-            let wifiInfoList = networkList.compactMap { network -> ScaningWifiData? in
+            let wifiInfoList = try wifiInterface.scanForNetworks(withSSID: nil, includeHidden: false).compactMap { network -> ScaningWifiData? in
                 guard let ssid = network.ssid else { return nil }
                 return ScaningWifiData(ssid: ssid, rssi: "\(network.rssiValue)")
             }.sorted { Int($0.rssi)! < Int($1.rssi)! }
@@ -97,8 +94,8 @@ class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
         }
     }
     func connectToNetwork(ssid: String, password: String) -> Future<Bool, AppCoreWLanStatus> {
-        return Future { [weak self] promise in
-            guard let self = self else { return }
+        return Future {  promise in
+            
             do {
                 guard let network = networkList.first(where: { $0.ssid == ssid }) else {
                     Logger.writeLog(.error, message: "네트워크를 찾을 수 없음: \(ssid)")

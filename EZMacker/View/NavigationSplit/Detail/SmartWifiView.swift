@@ -7,19 +7,20 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     @State private var toast: Toast?
     var body: some View {
         GeometryReader { geo in
-            VStack {
+            VStack(spacing: 10) {
                 HStack(alignment: .top, spacing: 0) {
                     InfoArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
-                        .frame(width: geo.size.width * 0.3, height: geo.size.height / 4)
+                        .frame(width: geo.size.width * 0.33, height: geo.size.height / 4)
                         .environmentObject(colorSchemeViewModel)
                     Spacer(minLength: 5)
                     InfoChannelInfoView(channelBandwidth: $smartWifiViewModel.channelBandwidth, channelFrequency: $smartWifiViewModel.channelFrequency, channel: $smartWifiViewModel.channel)
-                        .frame(width: geo.size.width * 0.3, height: geo.size.height / 4)
+                        .frame(width: geo.size.width * 0.33, height: geo.size.height / 4)
                         .environmentObject(colorSchemeViewModel)
                     Spacer(minLength: 5)
                     InfoWifiDetailView(band: $smartWifiViewModel.band, hardwareAddress: $smartWifiViewModel.currentHardwareAddress, locale: $smartWifiViewModel.locale)
-                        .frame(width: geo.size.width * 0.3, height: geo.size.height / 4)
+                        .frame(width: geo.size.width * 0.33, height: geo.size.height / 4)
                         .environmentObject(colorSchemeViewModel)
+                    Spacer(minLength: 5)
                 }
                 HStack(alignment: .top, spacing: 0) {
                     InfoWifiMainInfoView(
@@ -29,17 +30,27 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                         onRefresh: {
                             Task {
                                 await smartWifiViewModel.requestCoreWLanWifiInfo()
+                                let status = smartWifiViewModel.getWifiRequestStatus()
+                                if status == .scanningFailed {
+                                    toast = Toast(type: .error, title: "에러", message: "와이파이를 확인할 수 없습니다. 권한을 확인해주세요.", duration: 5)
+                                }
                             }
                         },
                         onWifiTap: { ssid, password in
-                            Logger.writeLog(.info, message: "\(ssid), \(password)")
                             smartWifiViewModel.connectWifi(ssid: ssid, password: password)
+                        },
+                        onFindBestWifi: {
+                            smartWifiViewModel.startSearchBestSSid()
                         }
                     )
-                    .frame(width: geo.size.width, height: geo.size.height * 0.7)
+                    .frame(width: geo.size.width , height: geo.size.height * 0.7)
                     .environmentObject(colorSchemeViewModel)
                     .task {
                         await smartWifiViewModel.requestCoreWLanWifiInfo()
+                        let status = smartWifiViewModel.getWifiRequestStatus()
+                        if status == .scanningFailed {
+                            toast = Toast(type: .error, title: "에러", message: "와이파이를 확인할 수 없습니다. 권한을 확인해주세요.", duration: 5)
+                        }
                     }
                 }
                 .padding(.top, 20)
@@ -57,8 +68,19 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                 smartWifiViewModel.stopWifiTimer()
             }
         }
-        .toastView(toast: $toast)
+        .sheet(isPresented: $smartWifiViewModel.showAlert) {
+            AlertOKCancleView(
+                isPresented: $smartWifiViewModel.showAlert,
+                title: "최적의 와이파이",
+                subtitle: "결과",
+                content: smartWifiViewModel.bestSSid
+            )
+        }
+
+        .navigationTitle(CategoryType.smartWifi.title)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(30)
+        .toastView(toast: $toast)
     }
 }
 
@@ -67,11 +89,12 @@ struct SmartWifiView_Previews: PreviewProvider {
     static var smartWifiService = AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface")
     static var systemPreferenceService = SystemPreferenceService()
     static var appCoreWLanWifiService = AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService())
-    
+    static var appSettingService = AppSmartSettingsService()
     @StateObject static var smartWifiViewModel = SmartWifiViewModel(
         appSmartWifiService: smartWifiService,
         systemPreferenceService: systemPreferenceService,
-        appCoreWLanWifiService: appCoreWLanWifiService
+        appCoreWLanWifiService: appCoreWLanWifiService,
+        appSettingService: appSettingService
     )
     
     static var previews: some View {

@@ -10,15 +10,17 @@ import SwiftUI
 import Combine
 
 class SmartNotificationAlarmViewModel: ObservableObject {
+    //Battery
     @Published var isBatteryWarningMode = false
     @Published var isBattryCurrentMessageMode = false
     @Published var batteryPercentage: String = ""
-    @Published var selectedOption = BatteryExitOption.normal
+    @Published var selectedAppExitOption = AppUsageExitOption.normal
     
+    //Wifi
+    @Published var selectedBestSSidOption = BestSSIDShowOption.alert
     
     private var appSettingService: AppSmartSettingProvidable
     private var appProcessService: AppSmartProcessProvidable
-    
     private var cancellables = Set<AnyCancellable>()
     deinit {
         Logger.writeLog(.debug, message: "NotificationAlarmViewModel deinit Called")
@@ -28,7 +30,6 @@ class SmartNotificationAlarmViewModel: ObservableObject {
         self.appProcessService = appProcessService
     }
     func loadConfig() {
-
         if let isBatteryWarningMode: Bool = appSettingService.loadConfig(.isBatteryWarningMode) {
              self.isBatteryWarningMode = isBatteryWarningMode
          }
@@ -38,8 +39,11 @@ class SmartNotificationAlarmViewModel: ObservableObject {
          if let batteryPercentage: String = appSettingService.loadConfig(.batteryPercentage) {
              self.batteryPercentage = batteryPercentage
          }
-         if let selectedOptionRaw: String = appSettingService.loadConfig(.appExitMode) {
-             self.selectedOption = BatteryExitOption(rawValue: selectedOptionRaw) ?? .unused
+         if let selectedExitMode: String = appSettingService.loadConfig(.appExitMode) {
+             self.selectedAppExitOption = AppUsageExitOption(rawValue: selectedExitMode) ?? .unused
+         }
+        if let selectedBestSSidMode: String = appSettingService.loadConfig(.bestSSidShowMode) {
+            self.selectedBestSSidOption = BestSSIDShowOption(rawValue: selectedBestSSidMode) ?? .alert
          }
     }
         
@@ -47,6 +51,7 @@ class SmartNotificationAlarmViewModel: ObservableObject {
         appSettingService.saveConfig(.isBatteryWarningMode, value: isBatteryWarningMode)
         appSettingService.saveConfig(.isBattryCurrentMessageMode, value: isBattryCurrentMessageMode)
         appSettingService.saveConfig(.batteryPercentage, value: batteryPercentage)
-        appSettingService.saveConfig(.appExitMode, value: selectedOption.value)
+        appSettingService.saveConfig(.appExitMode, value: selectedAppExitOption.value)
+        appSettingService.saveConfig(.bestSSidShowMode, value: selectedBestSSidOption.value)
     }
 }

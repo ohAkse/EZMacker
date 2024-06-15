@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AlertModalView: View {
+struct AlertTextFieldView: View {
     @Binding var textFieldValue: String
     @Binding var isPresented: Bool
     var ssid: String

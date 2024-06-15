@@ -31,30 +31,30 @@ struct InfoWifiDetailView: View {
                     Spacer(minLength: 20)
                     HStack(spacing: 10) {
                         Text("밴드:")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(band)")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
                         Text("Mac:")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(hardwareAddress)")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
                         Text("Locale:")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(locale)")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
                 }

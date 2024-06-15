@@ -14,8 +14,11 @@ struct InfoWifiMainInfoView: View {
     @State private var password: String = ""
     @State private var isShowingPasswordModal = false
     var appCoreWLanWifiService: AppCoreWLANWifiProvidable
-    var onRefresh: () -> Void?
+    var onRefresh: () -> Void
     var onWifiTap: (String, String) -> Void
+    var onFindBestWifi: () -> Void
+    @State private var toast: Toast?
+        
     
     var body: some View {
         VStack {
@@ -66,7 +69,7 @@ struct InfoWifiMainInfoView: View {
                         Spacer()
                     }
                     
-                    VStack(alignment: .center) {
+                    VStack {
                         Spacer()
                         HStack {
                             Spacer()
@@ -75,6 +78,18 @@ struct InfoWifiMainInfoView: View {
                             }) {
                                 Image(systemName: "rays")
                                     .resizable()
+                                    .frame(width: 15, height: 15)
+                                    .background(Color.clear)
+                                    .clipShape(Circle())
+                            }
+                            
+                            Button(action: {
+                                onFindBestWifi()
+                                toast = Toast(type: .info, title: "정보", message: "최적의 와이파이를 찾고 있습니다.")
+                            }) {
+                                Image(systemName: "opticid.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
                                     .frame(width: 15, height: 15)
                                     .background(Color.clear)
                                     .clipShape(Circle())
@@ -122,7 +137,7 @@ struct InfoWifiMainInfoView: View {
         .customBackgroundColor()
         .clipped()
         .sheet(isPresented: $isShowingPasswordModal) {
-            AlertModalView(
+            AlertTextFieldView(
                 textFieldValue: $password,
                 isPresented: $isShowingPasswordModal,
                 ssid: ssid,
@@ -133,7 +148,7 @@ struct InfoWifiMainInfoView: View {
                 }
             )
         }
-
+        .toastView(toast: $toast)
     }
     
     private func didTapWifiListWithAscending() {
@@ -151,11 +166,12 @@ struct InfoWifiMainInfoView_Previews: PreviewProvider {
     static var smartWifiService = AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface")
     static var systemPreferenceService = SystemPreferenceService()
     static var appCoreWLanWifiService = AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService())
-    
+    static var appSettingService = AppSmartSettingsService()
     @StateObject static var smartWifiViewModel = SmartWifiViewModel(
         appSmartWifiService: smartWifiService,
         systemPreferenceService: systemPreferenceService,
-        appCoreWLanWifiService: appCoreWLanWifiService
+        appCoreWLanWifiService: appCoreWLanWifiService,
+        appSettingService: appSettingService
     )
 
     @State static var ssid = "ABCD"
@@ -173,7 +189,8 @@ struct InfoWifiMainInfoView_Previews: PreviewProvider {
             wifiLists: $wifiLists,
             appCoreWLanWifiService: appCoreWLanWifiService,
             onRefresh: {},
-            onWifiTap: { _, _ in }
+            onWifiTap: { _, _ in },
+            onFindBestWifi: {}
         )
         .environmentObject(colorScheme)
         .environmentObject(smartWifiViewModel)

@@ -5,6 +5,7 @@
 //  Created by 박유경 on 5/27/24.
 //
 
+//https://ss64.com/mac/
 import Foundation
 struct CommandToolRunner {
     static let shared = CommandToolRunner()
