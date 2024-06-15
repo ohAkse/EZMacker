@@ -1,16 +1,14 @@
 //
-//  WGifView.swift
+//  GifRepresentableView.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/18/24.
+//  Created by 박유경 on 6/11/24.
 //
-
-
 
 import SwiftUI
 import AppKit
 
-struct WGifView: NSViewRepresentable {
+struct GifRepresentableView: NSViewRepresentable {
     let gifName: String
     let imageSize: CGSize
     
@@ -29,3 +27,4 @@ struct WGifView: NSViewRepresentable {
     func updateNSView(_ nsView: NSImageView, context: Context) {
     }
 }
+

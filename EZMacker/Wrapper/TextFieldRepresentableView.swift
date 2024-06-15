@@ -1,13 +1,20 @@
+//
+//  TextFieldRepresentableView.swift
+//  EZMacker
+//
+//  Created by 박유경 on 6/11/24.
+//
+
 import SwiftUI
 import AppKit
 
-struct WTextField: NSViewRepresentable {
+struct TextFieldRepresentableView: NSViewRepresentable {
     @Binding var text: String
     
     class Coordinator: NSObject, NSTextFieldDelegate {
-        var parent: WTextField
+        var parent: TextFieldRepresentableView
 
-        init(parent: WTextField) {
+        init(parent: TextFieldRepresentableView) {
             self.parent = parent
         }
 
@@ -50,12 +57,13 @@ struct WTextField: NSViewRepresentable {
     }
 
     func makeNSView(context: Context) -> NSTextField {
-        let textField = NSTextField()
-        textField.delegate = context.coordinator
-        textField.layer?.cornerRadius = 8
-        textField.alignment = .left
-        textField.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
-        textField.placeholderString = "0과 100 사이에 숫자를 입력하세요."
+        let textField = NSTextField().then {
+            $0.delegate = context.coordinator
+            $0.layer?.cornerRadius = 8
+            $0.alignment = .left
+            $0.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+            $0.placeholderString = "0과 100 사이에 숫자를 입력하세요."
+        }
         return textField
     }
 
@@ -63,3 +71,4 @@ struct WTextField: NSViewRepresentable {
         nsView.stringValue = text
     }
 }
+

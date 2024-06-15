@@ -7,11 +7,11 @@
 import Combine
 import SwiftUI
 
-
 class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: ObservableObject {
     
     deinit {
-        Logger.writeLog(.info, message: "SmartBatteryViewModel deinit Called")
+        stopConnectTimer()
+        Logger.writeLog(.debug, message: "SmartBatteryViewModel deinit Called")
     }
     
     //배터리 관련 설정값들
@@ -29,7 +29,7 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     @Published var chargeData: [ChargeData] = []
     
     //어댑터 관련 설정값들
-    @Published var adapterInfo: [AdapterDetails]?
+    @Published var adapterInfo: [AdapterData]?
     @Published var isAdapterConnected = false
     @Published var adapterConnectionSuccess :AdapterConnectStatus = .none
     
@@ -191,7 +191,7 @@ extension SmartBatteryViewModel {
                 }
                 return try JSONSerialization.data(withJSONObject: value, options: [])
             }
-            .decode(type: [AdapterDetails].self, decoder: JSONDecoder())
+            .decode(type: [AdapterData].self, decoder: JSONDecoder())
             .mapError { error -> AdapterConnectStatus in
                 switch error {
                 default:
@@ -234,7 +234,7 @@ extension SmartBatteryViewModel {
         if let isBattryCurrentMessageMode: Bool = appSettingService.loadConfig(.isBattryCurrentMessageMode) {
             if isBattryCurrentMessageMode {
                 if let batteryPercentage: String = appSettingService.loadConfig(.batteryPercentage) {
-                    let batteryDobulePercentage = Double(batteryPercentage) ?? 0 / 100
+                    let batteryDobulePercentage = (Double(batteryPercentage) ?? 0) / 100
                     if batteryDobulePercentage <= currentBatteryCapacity {
                         if !isSent {
                             AppNotificationManager.shared.sendNotification(title: "충전 안내", subtitle: "설정하신 배터리 충전이 완료되었습니다.")

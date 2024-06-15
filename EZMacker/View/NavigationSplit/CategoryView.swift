@@ -27,14 +27,14 @@ struct CategoryView: View {
             .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
         }
-        .onChange(of: selectionValue) { oldState, newState in
-            if newState == .smartFile || newState == .smartWifi {
-                showAlert = true
-            }
-        }
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("정보"), message: Text("준비중입니다."), dismissButton: .default(Text("확인")))
-        }
+//        .onChange(of: selectionValue) { oldState, newState in
+//            if newState == .smartFile {
+//                showAlert = true
+//            }
+//        }
+//        .alert(isPresented: $showAlert) {
+//            Alert(title: Text("정보"), message: Text("준비중입니다."), dismissButton: .default(Text("확인")))
+//        }
     }
     
     private func categoryRow(for category: CategoryType) -> some View {

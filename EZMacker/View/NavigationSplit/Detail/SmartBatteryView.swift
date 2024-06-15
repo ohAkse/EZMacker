@@ -128,7 +128,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                     if smartBatteryViewModel.adapterConnectionSuccess == .decodingFailed  {
                         HStack(alignment:.center ,spacing:0){
                             HStack(spacing: 0) {
-                                WGifView(gifName: "global_loading", imageSize: CGSize(width: geo.size.width * 0.4, height: geo.size.height * 0.4))
+                                GifRepresentableView(gifName: "global_loading", imageSize: CGSize(width: geo.size.width * 0.4, height: geo.size.height * 0.4))
                                     .frame(width:geo.size.width * 0.4, height: geo.size.height * 0.4)
                                 Spacer()
                                 Text("정보를 수집중입니다. 잠시만 기다려 주세요.")
@@ -143,7 +143,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                         HStack(alignment:.center ,spacing:0){
                             
                             VStack(alignment: .center) {
-                                WGifView(gifName: "battery_adapter_plugin_animation", imageSize: CGSize(width: 50, height: 50))
+                                GifRepresentableView(gifName: "battery_adapter_plugin_animation", imageSize: CGSize(width: 50, height: 50))
                                 Spacer(minLength: 10)
                                 Text("어댑터를 꽃으면 정보가 나와요!")
                                     .customNormalTextFont(fontSize: FontSizeType.large.size, isBold: true)

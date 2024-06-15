@@ -1,11 +1,11 @@
 //
-//  BatteryWithExit.swift
+//  AppUsageExitOption.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/26/24.
+//  Created by 박유경 on 6/16/24.
 //
 
-enum BatteryExitOption: String, CaseIterable {
+enum AppUsageExitOption: String, CaseIterable {
     case unused = "사용안함"
     case normal = "50%"
     case overuse = "90%"
