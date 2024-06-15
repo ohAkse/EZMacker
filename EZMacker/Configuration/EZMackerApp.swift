@@ -5,30 +5,36 @@
 //  Created by 박유경 on 5/5/24.
 //
 
+import Cocoa
 import SwiftUI
 import UserNotifications
+
 @main
 struct EZMackerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var colorSchemeViewModel = ColorSchemeViewModel()
+    
     var body: some Scene {
         WindowGroup {
             MainContentView()
                 .frame(minWidth: 1100, minHeight: 730)
+                .environmentObject(colorSchemeViewModel)
         }
-        .environmentObject(colorSchemeViewModel)
         .windowToolbarStyle(.unifiedCompact)
+        .windowResizability(.contentSize)
     }
 }
 
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDelegate {
     var window: NSWindow!
+    private var originalFrame: NSRect?
     var alertManager = AppAlertManager.shared
     let systemConfigService = SystemPreferenceService()
+    
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.regular)
         window = NSApp.windows.first
-        
+        window.delegate = self
         requestNotificationAuthorization()
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
             let modifierFlag = ModifierFlag(event.modifierFlags)
@@ -37,6 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return event
         }
     }
+
     func requestNotificationAuthorization() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if !granted {

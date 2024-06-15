@@ -11,21 +11,19 @@ protocol AppSmartSettingProvidable {
     func loadConfig<T>(_ key: AppStorageKey) -> T?
 }
 
-
-
-
-class AppSmartSettingsService: AppSmartSettingProvidable {
+struct AppSmartSettingsService: AppSmartSettingProvidable {
     @AppStorage(AppStorageKey.isBatteryWarningMode.name) var isBatteryWarningMode: Bool = AppStorageKey.isBatteryWarningMode.byDefault as! Bool
     @AppStorage(AppStorageKey.isBattryCurrentMessageMode.name) var isBatteryCurrentMessageMode: Bool = AppStorageKey.isBattryCurrentMessageMode.byDefault as! Bool
     @AppStorage(AppStorageKey.batteryPercentage.name) var batteryPercentage: String = AppStorageKey.batteryPercentage.byDefault as! String
-    @AppStorage(AppStorageKey.appExitMode.name) private var selectedOptionRaw: String = AppStorageKey.appExitMode.byDefault as! String
+    @AppStorage(AppStorageKey.appExitMode.name) private var selectedAppExitMode: String = AppStorageKey.appExitMode.byDefault as! String
+    @AppStorage(AppStorageKey.bestSSidShowMode.name) private var selectedBestSSidMode: String = AppStorageKey.bestSSidShowMode.byDefault as! String
     
-    var selectedOption: BatteryExitOption {
+    var selectedOption: AppUsageExitOption {
         get {
-            BatteryExitOption(rawValue: selectedOptionRaw) ?? .unused
+            AppUsageExitOption(rawValue: selectedAppExitMode) ?? .unused
         }
         set {
-            selectedOptionRaw = newValue.rawValue
+            selectedAppExitMode = newValue.rawValue
         }
     }
     
@@ -45,7 +43,11 @@ class AppSmartSettingsService: AppSmartSettingProvidable {
             }
         case .appExitMode:
             if let value = value as? String {
-                selectedOptionRaw = value
+                selectedAppExitMode = value
+            }
+        case .bestSSidShowMode:
+            if let value = value as? String {
+                selectedBestSSidMode = value
             }
         default:
             break
@@ -61,7 +63,9 @@ class AppSmartSettingsService: AppSmartSettingProvidable {
         case .batteryPercentage:
             return batteryPercentage as? T
         case .appExitMode:
-            return selectedOptionRaw as? T
+            return selectedAppExitMode as? T
+        case .bestSSidShowMode:
+            return selectedBestSSidMode as? T
         default:
             return nil
         }

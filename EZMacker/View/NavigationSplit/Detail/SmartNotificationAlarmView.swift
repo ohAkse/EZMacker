@@ -13,8 +13,8 @@ struct SmartNotificationAlarmView: View {
                         .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: true)
                         .padding(10)
                     
-                    Picker("CPU 과사용시 종료하기", selection: $smartNotificationAlarmViewModel.selectedOption) {
-                        ForEach(BatteryExitOption.allCases, id: \.self) { option in
+                    Picker("CPU 과사용시 종료하기", selection: $smartNotificationAlarmViewModel.selectedAppExitOption) {
+                        ForEach(AppUsageExitOption.allCases, id: \.self) { option in
                             Text(option.rawValue).tag(option)
                         }
                     }
@@ -29,11 +29,9 @@ struct SmartNotificationAlarmView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         HStack {
                             Text("배터리 상태 (0-100%)")
-                            WTextField(text: $smartNotificationAlarmViewModel.batteryPercentage)
+                            TextFieldRepresentableView(text: $smartNotificationAlarmViewModel.batteryPercentage)
                                 .padding(5)
-
                         }
-                        
                         .padding()
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(8)
@@ -68,7 +66,37 @@ struct SmartNotificationAlarmView: View {
                         .stroke(Color.gray, lineWidth: 1)
                 )
                 .padding(.horizontal, 20)
+                
+                Spacer()
+                
+                VStack(alignment: .leading, spacing:10) {
+                    Text("와이파이")
+                        .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: true)
+                        .padding(10)
+                        HStack {
+                            Picker("최적의 와이파이 발견 시 알림으로 표시하기", selection: $smartNotificationAlarmViewModel.selectedBestSSidOption) {
+                                ForEach(BestSSIDShowOption.allCases, id: \.self) { option in
+                                    Text(option.rawValue).tag(option)
+                                }
+                            }
+                        }
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(8)
+                        .padding(.horizontal, 20)
+                }
+                .padding(.trailing, 20)
+                .padding(.bottom, 20)
+                .background(Color.white)
+                .cornerRadius(12)
+                .shadow(radius: 5)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+                .padding(.horizontal, 20)
             }
+            
             HStack {
                 Spacer()
                 Button(action: {
