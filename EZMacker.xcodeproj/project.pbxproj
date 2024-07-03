@@ -14,6 +14,7 @@
 		5F1012B22BF39EBD00589C9B /* InfoRectangleHImageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012B12BF39EBD00589C9B /* InfoRectangleHImageTextView.swift */; };
 		5F1012B62BF3A12A00589C9B /* CustomNormalTextFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012B52BF3A12A00589C9B /* CustomNormalTextFont.swift */; };
 		5F1012B82BF3A16D00589C9B /* CustomNormalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012B72BF3A16D00589C9B /* CustomNormalImage.swift */; };
+		5F16A7DC2C358F07003EA0BE /* FileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F16A7DB2C358F07003EA0BE /* FileInfo.swift */; };
 		5F1A91B12BF8E48F0078F4F8 /* battery_charging_animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */; };
 		5F1A91B52BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F1A91B42BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif */; };
 		5F2DD1892BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */; };
@@ -115,6 +116,7 @@
 		5F1012B12BF39EBD00589C9B /* InfoRectangleHImageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRectangleHImageTextView.swift; sourceTree = "<group>"; };
 		5F1012B52BF3A12A00589C9B /* CustomNormalTextFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNormalTextFont.swift; sourceTree = "<group>"; };
 		5F1012B72BF3A16D00589C9B /* CustomNormalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNormalImage.swift; sourceTree = "<group>"; };
+		5F16A7DB2C358F07003EA0BE /* FileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInfo.swift; sourceTree = "<group>"; };
 		5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = battery_charging_animation.gif; sourceTree = "<group>"; };
 		5F1A91B42BF8ED8E0078F4F8 /* battery_adapter_plugin_animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = battery_adapter_plugin_animation.gif; sourceTree = "<group>"; };
 		5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryPowerSourceType.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				5F3FF02F2C02BE9800E3246C /* ChargeData.swift */,
 				5F69D2912C0DED4800F318ED /* AdapterData.swift */,
 				5F69D2932C0DEDA100F318ED /* ScanningWifiData.swift */,
+				5F16A7DB2C358F07003EA0BE /* FileInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -787,6 +790,7 @@
 				5F2DD1892BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift in Sources */,
 				5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */,
 				5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */,
+				5F16A7DC2C358F07003EA0BE /* FileInfo.swift in Sources */,
 				5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */,
 				5FEE27C32BE8DB1900847761 /* KeyboardCharacter.swift in Sources */,
 				5F9999B02C1DF0E000D38D59 /* AppUsageExitOption.swift in Sources */,
