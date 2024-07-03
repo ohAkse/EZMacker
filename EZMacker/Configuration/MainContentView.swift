@@ -2,7 +2,7 @@ import SwiftUI
 import CoreWLAN
 struct MainContentView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @State private var selectionValue = CategoryType.smartWifi
+    @State private var selectionValue = CategoryType.smartFile
     
     var body: some View {
         NavigationSplitView {
@@ -11,25 +11,22 @@ struct MainContentView: View {
                 .contentShape(Rectangle())
         } detail: {
             GeometryReader { geometry in
-                if selectionValue == .smartFile {
-                    EmptyView()
-                } else {
-                    switch selectionValue {
-                    case .smartBattery:
-                        SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"),appSettingService: AppSmartSettingsService(),appProcessService: AppSmartProcessService(), systemPreferenceService: SystemPreferenceService()))
-                            .environmentObject(colorSchemeViewModel)
-                    case .smartWifi:
-                        SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(),wifyKeyChainService: AppWifiKeyChainService()), appSettingService: AppSmartSettingsService()))
-                            .environmentObject(colorSchemeViewModel)
-                    case .smartFile:
-                        SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
-                            .environmentObject(colorSchemeViewModel)
-                    case .smartNotificationAlarm:
-                        SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService()))
-                            .environmentObject(colorSchemeViewModel)
-                    }
+                switch selectionValue {
+                case .smartBattery:
+                    SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"),appSettingService: AppSmartSettingsService(),appProcessService: AppSmartProcessService(), systemPreferenceService: SystemPreferenceService()))
+                        .environmentObject(colorSchemeViewModel)
+                case .smartWifi:
+                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(),wifyKeyChainService: AppWifiKeyChainService()), appSettingService: AppSmartSettingsService()))
+                        .environmentObject(colorSchemeViewModel)
+                case .smartFile:
+                    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
+                        .environmentObject(colorSchemeViewModel)
+                case .smartNotificationAlarm:
+                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService()))
+                        .environmentObject(colorSchemeViewModel)
                 }
             }
+            
         }
         .toolbar(id: ToolbarKey.MainToolbar.name) {
             ToolbarItem(id: ToolbarKey.ColorSchemePicker.name, placement: .primaryAction) {
