@@ -2,7 +2,7 @@ import SwiftUI
 import CoreWLAN
 struct MainContentView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @State private var selectionValue = CategoryType.smartFile
+    @State private var selectionValue = CategoryType.smartFileLocator
     
     var body: some View {
         NavigationSplitView {
@@ -18,9 +18,10 @@ struct MainContentView: View {
                 case .smartWifi:
                     SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(),wifyKeyChainService: AppWifiKeyChainService()), appSettingService: AppSmartSettingsService()))
                         .environmentObject(colorSchemeViewModel)
-                case .smartFile:
-                    SmartFileView(smartFileViewModel: SmartFileViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
-                        .environmentObject(colorSchemeViewModel)
+                case .smartFileLocator:
+                    SmartFileLocatorView(smartFileLocatorViewModel: SmartFileLocatorViewModel(appSmartFileService: AppSmartFileService(), systemPreferenceService: SystemPreferenceService()))
+                case .smartFileSearch:
+                    SmartFileSearchView(smartFileSearchViewModel: SmartFileSearchViewModel())
                 case .smartNotificationAlarm:
                     SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService()))
                         .environmentObject(colorSchemeViewModel)

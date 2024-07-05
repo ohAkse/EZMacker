@@ -14,9 +14,14 @@ struct CategoryView: View {
         List(selection: $selectionValue) {
             Section(CategorySectionType.categoryMainSection.title) {
                 categoryRow(for: .smartBattery)
-                categoryRow(for: .smartWifi)
-                categoryRow(for: .smartFile)
-                
+                categoryRow(for: .smartWifi)                
+            }
+            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+            .frame(minHeight: 40)
+
+            Section(CategorySectionType.categoryUtilitySection.title) {
+                categoryRow(for: .smartFileLocator)
+                categoryRow(for: .smartFileSearch)
             }
             .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
@@ -27,14 +32,6 @@ struct CategoryView: View {
             .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
         }
-//        .onChange(of: selectionValue) { oldState, newState in
-//            if newState == .smartFile {
-//                showAlert = true
-//            }
-//        }
-//        .alert(isPresented: $showAlert) {
-//            Alert(title: Text("정보"), message: Text("준비중입니다."), dismissButton: .default(Text("확인")))
-//        }
     }
     
     private func categoryRow(for category: CategoryType) -> some View {
