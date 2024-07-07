@@ -19,7 +19,7 @@ struct SmartFileLocatorView: View {
             VStack(spacing: 0) {
                 HStack {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
+                        HStack(spacing: 5) {
                             ForEach(smartFileLocatorViewModel.tabs, id: \.self) { tab in
                                 Button(action: {
                                     smartFileLocatorViewModel.selectedTab = tab
@@ -98,6 +98,12 @@ struct SmartFileLocatorView: View {
                         Spacer()
                         Text("우측 상단의 +버튼을 눌러 탭을 추가 후 하단 +추가 해보세요. 화면에 파일을 드래그 후 클릭하면 해당 경로의 파일이 자동으로 열립니다.")
                             .foregroundColor(.gray)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                    
+                        Text("*주의: 파일명을 변경하거나 데이터를 변경할 경우 위치 해 있던 파일이 삭제됩니다. 필요할 경우 삭제후 다시 등록해주세요")
+                            .foregroundColor(.red)
+                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: true)
+                            
                         Spacer()
                     }
                 }
@@ -124,6 +130,7 @@ struct SmartFileLocatorView: View {
     }
 }
 
+
 struct FileView: View {
     let id: UUID
     let fileInfo: FileInfo
@@ -138,6 +145,7 @@ struct FileView: View {
                 Button(action: onDelete) {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.red)
+                        .imageScale(.large)
                 }
                 .buttonStyle(PlainButtonStyle())
             }
@@ -146,19 +154,44 @@ struct FileView: View {
                 Image(nsImage: previewImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
+                    .frame(width: 100, height: 70)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
             } else {
                 Image(systemName: "doc.text")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
+                    .frame(width: 100, height: 70)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             
-            Text("파일 이름: \(fileInfo.fileName)")
+            Text(fileInfo.fileName.hasSuffix(".app") ? String(fileInfo.fileName.dropLast(4)) : fileInfo.fileName)
+                .font(.headline)
                 .lineLimit(1)
-            Text("크기: \(fileInfo.fileSize) bytes")
-            Text("타입: \(fileInfo.fileType)")
-                .lineLimit(1)
+                .padding(.top, 4)
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text("타입: \(fileInfo.fileType)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .lineLimit(1)
+                Text("크기: \(fileInfo.fileSize) bytes")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                if let modificationDate = fileInfo.modificationDate {
+                    Text("날짜: \(modificationDate.getFormattedDate())")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
+                } else {
+                    Text("수정 날짜: Not available")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
+                }
+            }
+            .padding(.top, 8)
+            
+            Spacer()
         }
         .padding()
         .background(isTargeted ? Color.blue.opacity(0.3) : Color.gray.opacity(0.2))
@@ -177,7 +210,7 @@ struct FileView: View {
         }
         .onTapGesture {
             if let fileURL = fileInfo.fileURL {
-                Logger.writeLog(.info, message: fileURL.path())
+                Logger.writeLog(.info, message: fileURL.path)
                 NSWorkspace.shared.open(fileURL)
             }
         }

@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Foundation
+import AppKit
 
 struct FileInfo: Codable {
     var fileName: String = ""
@@ -14,8 +16,9 @@ struct FileInfo: Codable {
     var fileURL: URL?
     var thumbNailData: Data?
     var securityScopeBookmark: Data?
-    var tab: String = "" 
-    
+    var tab: String = ""
+    var modificationDate: Date? 
+
     var thumbNail: NSImage? {
         get {
             guard let data = thumbNailData else { return nil }
@@ -25,19 +28,20 @@ struct FileInfo: Codable {
             thumbNailData = newValue?.tiffRepresentation
         }
     }
-    
+
     enum CodingKeys: String, CodingKey {
-        case fileName, fileSize, fileType, fileURL, thumbNailData, securityScopeBookmark, tab  // tab을 추가합니다.
+        case fileName, fileSize, fileType, fileURL, thumbNailData, securityScopeBookmark, tab, modificationDate
     }
-    
-    init(fileName: String = "", fileSize: UInt64 = 0, fileType: String = "", fileURL: URL? = nil, thumbNail: NSImage? = nil, tab: String = "") {
+
+    init(fileName: String = "", fileSize: UInt64 = 0, fileType: String = "", fileURL: URL? = nil, thumbNail: NSImage? = nil, tab: String = "", modificationDate: Date? = nil) {
         self.fileName = fileName
         self.fileSize = fileSize
         self.fileType = fileType
         self.fileURL = fileURL
         self.thumbNail = thumbNail
-        self.tab = tab  // 이 줄을 추가합니다.
+        self.tab = tab
+        self.modificationDate = modificationDate 
     }
-    
+
     static let empty = FileInfo()
 }

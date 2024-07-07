@@ -15,12 +15,10 @@ extension Date {
         return dateString
     }
     
-    func getCurrentChatTime() -> String {
+    func getFormattedDate() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "a h:mm"
-        formatter.amSymbol = "오전"
-        formatter.pmSymbol = "오후"
-        let dateString = formatter.string(from: self)
-        return dateString
+        formatter.dateFormat = "yy/MM/dd HH:mm"
+        formatter.timeZone = TimeZone.current // 로컬 시간대로 설정
+        return formatter.string(from: self)
     }
 }

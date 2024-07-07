@@ -62,6 +62,7 @@
 		5F6D4E762BE8A2A4004B94F8 /* ToastStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E752BE8A2A4004B94F8 /* ToastStyle.swift */; };
 		5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E782BE8A2DA004B94F8 /* ToastView.swift */; };
 		5F6D4E7C2BE8A328004B94F8 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E7B2BE8A328004B94F8 /* Toast.swift */; };
+		5F6FC8572C3A85F60034B55D /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6FC8562C3A85F60034B55D /* FileType.swift */; };
 		5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5DC2BE7BDE0004509BC /* SmartBatteryViewModel.swift */; };
 		5F70D5DF2BE7BE26004509BC /* AppSmartFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5DE2BE7BE26004509BC /* AppSmartFileService.swift */; };
 		5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5E12BE7C586004509BC /* CategoryType.swift */; };
@@ -171,6 +172,7 @@
 		5F6D4E752BE8A2A4004B94F8 /* ToastStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStyle.swift; sourceTree = "<group>"; };
 		5F6D4E782BE8A2DA004B94F8 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		5F6D4E7B2BE8A328004B94F8 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		5F6FC8562C3A85F60034B55D /* FileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileType.swift; sourceTree = "<group>"; };
 		5F70D5DC2BE7BDE0004509BC /* SmartBatteryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartBatteryViewModel.swift; sourceTree = "<group>"; };
 		5F70D5DE2BE7BE26004509BC /* AppSmartFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartFileService.swift; sourceTree = "<group>"; };
 		5F70D5E12BE7C586004509BC /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				5F69D2912C0DED4800F318ED /* AdapterData.swift */,
 				5F69D2932C0DEDA100F318ED /* ScanningWifiData.swift */,
 				5F16A7DB2C358F07003EA0BE /* FileInfo.swift */,
+				5F6FC8562C3A85F60034B55D /* FileType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -779,6 +782,7 @@
 				5F3DBE132C04BC8800B5C0DE /* View + Extension.swift in Sources */,
 				5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeMode.swift in Sources */,
 				5F97C3802BFA0F6300B0DC56 /* AppSmartWifiService.swift in Sources */,
+				5F6FC8572C3A85F60034B55D /* FileType.swift in Sources */,
 				5FCC8B9A2BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift in Sources */,
 				5FEE27CD2BE901A000847761 /* SmartBatteryView.swift in Sources */,
 				5FEE27C82BE9015400847761 /* CategoryView.swift in Sources */,

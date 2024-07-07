@@ -109,8 +109,8 @@ class SmartFileLocatorViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { _ in },
-                receiveValue: { [weak self] (fileName, fileSize, fileType, fileURL) in
-                    var updatedFileInfo = FileInfo(fileName: fileName, fileSize: fileSize, fileType: fileType, fileURL: fileURL, tab: tab)
+                receiveValue: { [weak self] (fileName, fileSize, fileType, fileURL, Date) in
+                    var updatedFileInfo = FileInfo(fileName: fileName, fileSize: fileSize, fileType: fileType, fileURL: fileURL, tab: tab, modificationDate: Date)
                     
                     if let bookmarkData = try? fileURL.bookmarkData(options: [], includingResourceValuesForKeys: nil, relativeTo: nil) {
                         updatedFileInfo.securityScopeBookmark = bookmarkData
@@ -149,7 +149,7 @@ class SmartFileLocatorViewModel: ObservableObject {
             let url = try URL(resolvingBookmarkData: bookmark, options: [], relativeTo: nil, bookmarkDataIsStale: &isStale)
             NSWorkspace.shared.open(url)
         } catch {
-            // 에러 발생 시 조용히 실패
+            Logger.writeLog(.info, message: error.localizedDescription)
         }
     }
 }

@@ -10,27 +10,37 @@ import SwiftUI
 import QuickLookThumbnailing
 
 protocol AppSmartFileProvidable {
-    func getFileInfo(fileUrl: URL) -> Future<(String, UInt64, String, URL), Error>
+    func getFileInfo(fileUrl: URL) -> Future<(String, UInt64, String, URL, Date?), Error>
     func getThumbnail(for url: URL) -> Future<NSImage, Error>
 }
 
 struct AppSmartFileService: AppSmartFileProvidable {
     
-    func getFileInfo(fileUrl: URL) -> Future<(String, UInt64, String, URL), Error> {
+    func getFileInfo(fileUrl: URL) -> Future<(String, UInt64, String, URL, Date?), Error> {
         return Future { promise in
             let fileManager = FileManager.default
             do {
                 let attributes = try fileManager.attributesOfItem(atPath: fileUrl.path)
                 let fileName = fileUrl.lastPathComponent
                 let fileSize = attributes[.size] as? UInt64 ?? 0
-                let fileType = attributes[.type] as? String ?? "Unknown"
-                promise(.success((fileName, fileSize, fileType, fileUrl)))
+                var fileType = FileType(type: attributes[.type] as? String ?? FileType.unknown.rawValue).name
+                
+                //TODO: 파일 실행 구조가 윈도우와 달라서 확인후 나중에 따로 처리할것.
+                if fileType == "폴더", fileUrl.pathExtension == "app" {
+                    fileType = "응용 프로그램"
+                }
+                
+                let modificationDate = attributes[.modificationDate] as? Date
+                
+                promise(.success((fileName, fileSize, fileType, fileUrl, modificationDate)))
+                
             } catch {
                 Logger.writeLog(.error, message: "Error reading file attributes: \(error.localizedDescription)")
                 promise(.failure(error))
             }
         }
     }
+
     
     func getThumbnail(for url: URL) -> Future<NSImage, Error> {
         return Future { promise in
