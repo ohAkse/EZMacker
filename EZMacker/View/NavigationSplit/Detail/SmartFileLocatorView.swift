@@ -177,6 +177,7 @@ struct FileView: View {
         }
         .onTapGesture {
             if let fileURL = fileInfo.fileURL {
+                Logger.writeLog(.info, message: fileURL.path())
                 NSWorkspace.shared.open(fileURL)
             }
         }
