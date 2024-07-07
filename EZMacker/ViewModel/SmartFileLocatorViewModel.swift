@@ -10,21 +10,47 @@ import QuickLookThumbnailing
 
 class SmartFileLocatorViewModel: ObservableObject {
     @Published var fileInfo: FileInfo = .empty
+    @Published var tabs: [String] = []
+    @Published var selectedTab: String?
+    @Published var fileViewsPerTab: [String: [UUID: FileInfo]] = [:]
     
     private let appSmartFileService: AppSmartFileProvidable
     private let systemPreferenceService: SystemPreferenceAccessible
     private var cancellables = Set<AnyCancellable>()
-    
-    deinit {
-        Logger.writeLog(.debug, message: "SmartFileViewModel deinit Called")
-    }
     
     init(appSmartFileService: AppSmartFileProvidable, systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartFileService = appSmartFileService
         self.systemPreferenceService = systemPreferenceService
     }
     
-    func setFileInfo(fileURL: URL) {
+    func addTab(_ tabName: String) {
+        if !tabs.contains(tabName) {
+            tabs.append(tabName)
+            selectedTab = tabName
+            fileViewsPerTab[tabName] = [:]
+        }
+    }
+    
+    func deleteTab(_ tab: String) {
+        if let index = tabs.firstIndex(of: tab) {
+            tabs.remove(at: index)
+            fileViewsPerTab.removeValue(forKey: tab)
+            if selectedTab == tab {
+                selectedTab = tabs.first
+            }
+        }
+    }
+    
+    func addFileView(for tab: String) {
+        let newID = UUID()
+        fileViewsPerTab[tab, default: [:]][newID] = FileInfo.empty
+    }
+    
+    func deleteFileView(id: UUID, from tab: String) {
+        fileViewsPerTab[tab]?.removeValue(forKey: id)
+    }
+    
+    func setFileInfo(fileURL: URL, for id: UUID, in tab: String) {
         appSmartFileService.getFileInfo(fileUrl: fileURL)
             .receive(on: DispatchQueue.main)
             .sink(
@@ -34,13 +60,16 @@ class SmartFileLocatorViewModel: ObservableObject {
                     }
                 },
                 receiveValue: { [weak self] (fileName, fileSize, fileType, fileURL) in
-                    self?.fileInfo.fileName = fileName
-                    self?.fileInfo.fileSize = fileSize
-                    self?.fileInfo.fileType = fileType
-                    self?.fileInfo.fileURL = fileURL
+                    var updatedFileInfo = FileInfo.empty
+                    updatedFileInfo.fileName = fileName
+                    updatedFileInfo.fileSize = fileSize
+                    updatedFileInfo.fileType = fileType
+                    updatedFileInfo.fileURL = fileURL
+                    self?.fileViewsPerTab[tab]?[id] = updatedFileInfo
                 }
             )
             .store(in: &cancellables)
+        
         appSmartFileService.getThumbnail(for: fileURL)
             .receive(on: DispatchQueue.main)
             .sink(
@@ -50,10 +79,9 @@ class SmartFileLocatorViewModel: ObservableObject {
                     }
                 },
                 receiveValue: { [weak self] image in
-                    self?.fileInfo.thumbNail = image
+                    self?.fileViewsPerTab[tab]?[id]?.thumbNail = image
                 }
             )
             .store(in: &cancellables)
     }
 }
-
