@@ -10,19 +10,19 @@ import SwiftUI
 import QuickLookThumbnailing
 
 protocol AppSmartFileProvidable {
-    func getFileInfo(fileUrl: URL) -> Future<(String, UInt64, String, URL, Date?), Error>
+    func getFileInfo(fileUrl: URL) -> Future<(String, Int64, String, URL, Date?), Error>
     func getThumbnail(for url: URL) -> Future<NSImage, Error>
 }
 
 struct AppSmartFileService: AppSmartFileProvidable {
     
-    func getFileInfo(fileUrl: URL) -> Future<(String, UInt64, String, URL, Date?), Error> {
+    func getFileInfo(fileUrl: URL) -> Future<(String, Int64, String, URL, Date?), Error> {
         return Future { promise in
             let fileManager = FileManager.default
             do {
                 let attributes = try fileManager.attributesOfItem(atPath: fileUrl.path)
                 let fileName = fileUrl.lastPathComponent
-                let fileSize = attributes[.size] as? UInt64 ?? 0
+                let fileSize = attributes[.size] as? Int64 ?? 0
                 var fileType = FileType(type: attributes[.type] as? String ?? FileType.unknown.rawValue).name
                 
                 //TODO: 파일 실행 구조가 윈도우와 달라서 확인후 나중에 따로 처리할것.

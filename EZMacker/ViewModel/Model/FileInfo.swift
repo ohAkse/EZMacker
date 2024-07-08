@@ -11,7 +11,7 @@ import AppKit
 
 struct FileInfo: Codable {
     var fileName: String = ""
-    var fileSize: UInt64 = 0
+    var fileSize: Int64 = 0
     var fileType: String = ""
     var fileURL: URL?
     var thumbNailData: Data?
@@ -33,7 +33,7 @@ struct FileInfo: Codable {
         case fileName, fileSize, fileType, fileURL, thumbNailData, securityScopeBookmark, tab, modificationDate
     }
 
-    init(fileName: String = "", fileSize: UInt64 = 0, fileType: String = "", fileURL: URL? = nil, thumbNail: NSImage? = nil, tab: String = "", modificationDate: Date? = nil) {
+    init(fileName: String = "", fileSize: Int64 = 0, fileType: String = "", fileURL: URL? = nil, thumbNail: NSImage? = nil, tab: String = "", modificationDate: Date? = nil) {
         self.fileName = fileName
         self.fileSize = fileSize
         self.fileType = fileType

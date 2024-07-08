@@ -100,7 +100,7 @@ struct SmartFileLocatorView: View {
                             .foregroundColor(.gray)
                             .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
                     
-                        Text("*주의: 파일명을 변경하거나 데이터를 변경할 경우 위치 해 있던 파일이 삭제됩니다. 필요할 경우 삭제후 다시 등록해주세요")
+                        Text("*주의: 파일명을 변경하거나 위치를 옮길 경우 바로가기 파일이 삭제됩니다.")
                             .foregroundColor(.red)
                             .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: true)
                             
