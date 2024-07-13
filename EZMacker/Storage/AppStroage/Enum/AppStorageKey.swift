@@ -12,8 +12,8 @@ enum AppStorageKey: String, Hashable {
     case isBatteryWarningMode
     case isBattryCurrentMessageMode
     case batteryPercentage
-    case appExitMode
     case bestSSidShowMode
+    case appExitMode
     
     var name: String {
         switch self {
