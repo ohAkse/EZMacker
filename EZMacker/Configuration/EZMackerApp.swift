@@ -25,7 +25,7 @@ struct EZMackerApp: App {
     }
 }
 
-class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDelegate, UNUserNotificationCenterDelegate {
     var window: NSWindow!
     private var originalFrame: NSRect?
     var alertManager = AppAlertManager.shared
@@ -33,6 +33,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDe
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.regular)
+        let center = UNUserNotificationCenter.current()
+            center.delegate = self
+        
         window = NSApp.windows.first
         window.delegate = self
         requestNotificationAuthorization()
@@ -44,6 +47,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDe
         }
     }
 
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
+        return [.banner, .sound]
+    }
     func requestNotificationAuthorization() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if !granted {

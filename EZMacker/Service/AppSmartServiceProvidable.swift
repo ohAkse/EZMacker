@@ -6,6 +6,7 @@
 //
 
 import Combine
+
 protocol AppSmartServiceProvidable {
     associatedtype KeyType
     var serviceKey: String { get }
