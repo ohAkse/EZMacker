@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SmartFileLocatorView: View {
-    @StateObject var smartFileLocatorViewModel: SmartFileLocatorViewModel
+    @ObservedObject var smartFileLocatorViewModel: SmartFileLocatorViewModel
     @State private var showingAlert = false
     @State private var showingErrorAlert = false
     @State private var newTabName = ""
@@ -48,9 +48,8 @@ struct SmartFileLocatorView: View {
                     }
                 }
             }
-            
+        
             Spacer()
-            
             addTabButton
         }
         .padding(.horizontal)
@@ -98,16 +97,20 @@ struct SmartFileLocatorView: View {
     
     private func fileGridView(for selectedTab: String) -> some View {
         ZStack(alignment: .bottomTrailing) {
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
-                    ForEach(Array(smartFileLocatorViewModel.fileViewsPerTab[selectedTab, default: [:]].keys), id: \.self) { id in
-                        FileView(id: id,
-                                 fileInfo: smartFileLocatorViewModel.fileViewsPerTab[selectedTab]?[id] ?? .empty,
-                                 onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
-                                 onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
+            if smartFileLocatorViewModel.fileViewsPerTab[selectedTab, default: [:]].isEmpty {
+                emptyStateView
+            } else {
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
+                        ForEach(Array(smartFileLocatorViewModel.fileViewsPerTab[selectedTab, default: [:]].keys), id: \.self) { id in
+                            FileView(id: id,
+                                     fileInfo: smartFileLocatorViewModel.fileViewsPerTab[selectedTab]?[id] ?? .empty,
+                                     onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
+                                     onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
+                        }
                     }
+                    .padding()
                 }
-                .padding()
             }
             
             addFileButton(for: selectedTab)
@@ -131,10 +134,14 @@ struct SmartFileLocatorView: View {
             Text("우측 상단의 +버튼을 눌러 탭을 추가 후 하단 +추가 해보세요. 화면에 파일을 드래그 후 클릭하면 해당 경로의 파일이 자동으로 열립니다.")
                 .foregroundColor(.gray)
                 .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                .multilineTextAlignment(.center)
+                .padding()
             
             Text("*주의: 파일명을 변경하거나 위치를 옮길 경우 바로가기 파일이 삭제됩니다.")
                 .foregroundColor(.red)
                 .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: true)
+                .multilineTextAlignment(.center)
+                .padding()
             
             Spacer()
         }

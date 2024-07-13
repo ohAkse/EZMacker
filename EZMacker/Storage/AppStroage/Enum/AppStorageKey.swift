@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+//savedSmartFileLocatorData
 enum AppStorageKey: String, Hashable {
     case colorSchme
     case isBatteryWarningMode
@@ -14,6 +14,7 @@ enum AppStorageKey: String, Hashable {
     case batteryPercentage
     case bestSSidShowMode
     case appExitMode
+    case fileLocatorData
     
     var name: String {
         switch self {
@@ -29,6 +30,8 @@ enum AppStorageKey: String, Hashable {
             return "batteryPercentage"
         case .appExitMode:
             return "appExitMode"
+        case .fileLocatorData:
+            return "fileLocatorData"
         }
     }
     
@@ -46,6 +49,9 @@ enum AppStorageKey: String, Hashable {
             return "0"
         case .appExitMode:
             return "unused"
+        case .fileLocatorData:
+            return Data()
+            
         }
     }
 }

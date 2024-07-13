@@ -8,48 +8,63 @@
 import Combine
 import SwiftUI
 
+struct SavedData: Codable {
+    var tabs: [String]
+    var fileViewsPerTab: [String: [UUID: FileInfo]]
+}
+
 class SmartFileLocatorViewModel: ObservableObject {
     @Published var tabs: [String] = []
     @Published var selectedTab: String?
     @Published var fileViewsPerTab: [String: [UUID: FileInfo]] = [:]
     
-    @AppStorage("savedTabs") private var savedTabs: Data = Data()
-    @AppStorage("savedFileViews") private var savedFileViews: Data = Data()
     
     private let appSmartFileService: AppSmartFileProvidable
-    private let appSmartFileMonitor : AppSmartFileMonitorable
+    private let appSmartFileMonitor: AppSmartFileMonitorable
+    private let appSettingService:AppSmartSettingProvidable
     private let systemPreferenceService: SystemPreferenceAccessible
     private var cancellables = Set<AnyCancellable>()
     
-     
-    init(appSmartFileService: AppSmartFileProvidable, appSmartFileMonitor: AppSmartFileMonitorable, systemPreferenceService: SystemPreferenceAccessible) {
+    init(appSmartFileService: AppSmartFileProvidable, appSmartFileMonitor: AppSmartFileMonitorable, appSmartSettingService: AppSmartSettingProvidable, systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartFileService = appSmartFileService
         self.appSmartFileMonitor = appSmartFileMonitor
+        self.appSettingService = appSmartSettingService
         self.systemPreferenceService = systemPreferenceService
         loadSavedData()
         setupFileMonitors()
     }
-    
     // MARK: - Data Management
     
+    deinit {
+        Logger.writeLog(.debug, message: "SmartFileLocatorViewModel deinit called")
+    }
+    
     private func loadSavedData() {
-        DispatchQueue.main.async {
-            self.tabs = self.decodeSavedData(from: self.savedTabs, defaultValue: [])
-            self.fileViewsPerTab = self.decodeSavedData(from: self.savedFileViews, defaultValue: [:])
-            self.selectedTab = self.tabs.first
-            self.restoreFileAccess()
+        if let savedData: Data = appSettingService.loadConfig(.fileLocatorData) {
+            do {
+                let decodedData = try JSONDecoder().decode(SavedData.self, from: savedData)
+                self.tabs = decodedData.tabs
+                self.fileViewsPerTab = decodedData.fileViewsPerTab
+                self.selectedTab = self.tabs.first
+                self.restoreFileAccess()
+            } catch {
+                print("Failed to decode saved data: \(error)")
+            }
+        }
+    }
+    
+    private func saveData() {
+        let dataToSave = SavedData(tabs: self.tabs, fileViewsPerTab: self.fileViewsPerTab)
+        do {
+            let encodedData = try JSONEncoder().encode(dataToSave)
+            appSettingService.saveConfig(.fileLocatorData, value: encodedData)
+        } catch {
+            print("Failed to encode data for saving: \(error)")
         }
     }
     
     private func decodeSavedData<T: Decodable>(from data: Data, defaultValue: T) -> T {
         (try? JSONDecoder().decode(T.self, from: data)) ?? defaultValue
-    }
-    
-    private func saveData() {
-        DispatchQueue.main.async {
-            self.savedTabs = try! JSONEncoder().encode(self.tabs)
-            self.savedFileViews = try! JSONEncoder().encode(self.fileViewsPerTab)
-        }
     }
     
     // MARK: - File Management
