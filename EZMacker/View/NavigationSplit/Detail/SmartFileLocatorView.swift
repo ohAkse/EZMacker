@@ -14,12 +14,12 @@ struct SmartFileLocatorView: View {
     @State private var newTabName = ""
     @State private var errorMessage = ""
     
-    var body: some View {
+var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 tabBar(height: geometry.size.height * 0.08)
                 
-                if let selectedTab = smartFileLocatorViewModel.selectedTab {
+                if let selectedTab = smartFileLocatorViewModel.savedData.selectedTab {
                     fileGridView(for: selectedTab)
                 } else {
                     emptyStateView
@@ -43,7 +43,7 @@ struct SmartFileLocatorView: View {
         HStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 5) {
-                    ForEach(smartFileLocatorViewModel.tabs, id: \.self) { tab in
+                    ForEach(smartFileLocatorViewModel.savedData.tabs, id: \.self) { tab in
                         tabButton(for: tab)
                     }
                 }
@@ -58,7 +58,7 @@ struct SmartFileLocatorView: View {
     }
     
     private func tabButton(for tab: String) -> some View {
-        Button(action: { smartFileLocatorViewModel.selectedTab = tab }) {
+        Button(action: { smartFileLocatorViewModel.savedData.selectedTab = tab }) {
             HStack {
                 Text(tab)
                 Spacer()
@@ -66,7 +66,7 @@ struct SmartFileLocatorView: View {
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(smartFileLocatorViewModel.selectedTab == tab ? Color.blue.opacity(0.2) : Color.clear)
+            .background(smartFileLocatorViewModel.savedData.selectedTab == tab ? Color.blue.opacity(0.2) : Color.clear)
             .cornerRadius(20)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
@@ -97,14 +97,14 @@ struct SmartFileLocatorView: View {
     
     private func fileGridView(for selectedTab: String) -> some View {
         ZStack(alignment: .bottomTrailing) {
-            if smartFileLocatorViewModel.fileViewsPerTab[selectedTab, default: [:]].isEmpty {
+            if smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].isEmpty {
                 emptyStateView
             } else {
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
-                        ForEach(Array(smartFileLocatorViewModel.fileViewsPerTab[selectedTab, default: [:]].keys), id: \.self) { id in
+                        ForEach(Array(smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].keys), id: \.self) { id in
                             FileView(id: id,
-                                     fileInfo: smartFileLocatorViewModel.fileViewsPerTab[selectedTab]?[id] ?? .empty,
+                                     fileInfo: smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab]?[id] ?? .empty,
                                      onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
                                      onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
                         }

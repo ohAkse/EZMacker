@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-
 protocol AppSmartWifiServiceProvidable: AppSmartServiceProvidable {
     typealias wifiKey = AppBCMWLanSkywalkInterfaceType
     func getRegistry(forKey key: wifiKey) -> Future<Any?, Never>

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+
 protocol AppSmartSettingProvidable {
     func saveConfig<T>(_ key: AppStorageKey, value: T)
     func loadConfig<T>(_ key: AppStorageKey) -> T?
