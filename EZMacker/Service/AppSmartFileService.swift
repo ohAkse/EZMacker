@@ -5,13 +5,57 @@
 //  Created by 박유경 on 5/5/24.
 //
 
-import Foundation
+import Combine
+import SwiftUI
+import QuickLookThumbnailing
+
 protocol AppSmartFileProvidable {
-    func getFileList()
+    func getFileInfo(fileUrl: URL) -> Future<(String, Int64, String, URL, Date?), Error>
+    func getThumbnail(for url: URL) -> Future<NSImage, Error>
 }
 
 struct AppSmartFileService: AppSmartFileProvidable {
-    func getFileList() {
-        Logger.writeLog(.info, message: "AppSmartFileService getFileList called")
+    
+    func getFileInfo(fileUrl: URL) -> Future<(String, Int64, String, URL, Date?), Error> {
+        return Future { promise in
+            let fileManager = FileManager.default
+            do {
+                let attributes = try fileManager.attributesOfItem(atPath: fileUrl.path)
+                let fileName = fileUrl.lastPathComponent
+                let fileSize = attributes[.size] as? Int64 ?? 0
+                var fileType = FileType(type: attributes[.type] as? String ?? FileType.unknown.rawValue).name
+                
+                //TODO: 파일 실행 구조가 윈도우와 달라서 확인후 나중에 따로 처리할것.
+                if fileType == "폴더", fileUrl.pathExtension == "app" {
+                    fileType = "응용 프로그램"
+                }
+                
+                let modificationDate = attributes[.modificationDate] as? Date
+                
+                promise(.success((fileName, fileSize, fileType, fileUrl, modificationDate)))
+                
+            } catch {
+                Logger.writeLog(.error, message: "Error reading file attributes: \(error.localizedDescription)")
+                promise(.failure(error))
+            }
+        }
+    }
+
+    
+    func getThumbnail(for url: URL) -> Future<NSImage, Error> {
+        return Future { promise in
+            let size = CGSize(width: 100, height: 100)
+            let request = QLThumbnailGenerator.Request(fileAt: url, size: size, scale: 1.0, representationTypes: .all)
+            
+            QLThumbnailGenerator.shared.generateBestRepresentation(for: request) { (thumbnail, error) in
+                if let error = error {
+                    promise(.failure(error))
+                } else if let nsImage = thumbnail?.nsImage {
+                    promise(.success(nsImage))
+                } else {
+                    promise(.failure(NSError(domain: "ThumbnailError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to generate thumbnail"])))
+                }
+            }
+        }
     }
 }
