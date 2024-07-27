@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-import Foundation
 import AppKit
 
-struct FileInfo: Codable {
+struct FileInfo: Codable, Identifiable {
+    var id = UUID()
     var fileName: String = ""
     var fileSize: Int64 = 0
     var fileType: String = ""
@@ -17,7 +17,7 @@ struct FileInfo: Codable {
     var thumbNailData: Data?
     var securityScopeBookmark: Data?
     var tab: String = ""
-    var modificationDate: Date? 
+    var modificationDate: Date?
 
     var thumbNail: NSImage? {
         get {
@@ -30,17 +30,18 @@ struct FileInfo: Codable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case fileName, fileSize, fileType, fileURL, thumbNailData, securityScopeBookmark, tab, modificationDate
+        case id, fileName, fileSize, fileType, fileURL, thumbNailData, securityScopeBookmark, tab, modificationDate
     }
 
     init(fileName: String = "", fileSize: Int64 = 0, fileType: String = "", fileURL: URL? = nil, thumbNail: NSImage? = nil, tab: String = "", modificationDate: Date? = nil) {
+        self.id = UUID()
         self.fileName = fileName
         self.fileSize = fileSize
         self.fileType = fileType
         self.fileURL = fileURL
         self.thumbNail = thumbNail
         self.tab = tab
-        self.modificationDate = modificationDate 
+        self.modificationDate = modificationDate
     }
 
     static let empty = FileInfo()

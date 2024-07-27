@@ -6,18 +6,47 @@
 //
 
 import Combine
-import QuickLookThumbnailing
+import Foundation
+import AppKit
 
 class SmartFileSearchViewModel: ObservableObject {
-    @Published var fileInfo: FileInfo = .empty
+    @Published var searchText: String = ""
+    @Published var searchResults: [FileInfo] = []
     
-    private var cancellables = Set<AnyCancellable>()
-    
-    deinit {
-        Logger.writeLog(.debug, message: "SmartFileViewModel deinit Called")
+    func search() {
+        CommandToolRunner.shared.runMDFind(searchText: searchText) { [weak self] output in
+            DispatchQueue.main.async {
+                if let output = output {
+                    self?.processSearchResults(output)
+                } else {
+                    self?.searchResults = []
+                }
+            }
+        }
     }
     
-    init() {
+    private func processSearchResults(_ output: String) {
+        let fileManager = FileManager.default
+        let paths = output.components(separatedBy: .newlines).filter { !$0.isEmpty }
+        
+        searchResults = paths.compactMap { path -> FileInfo? in
+            guard let attributes = try? fileManager.attributesOfItem(atPath: path) else { return nil }
+            
+            let fileURL = URL(fileURLWithPath: path)
+            let fileName = fileURL.lastPathComponent
+            let fileSize = (attributes[.size] as? NSNumber)?.int64Value ?? 0
+            let fileType = (attributes[.type] as? String) ?? ""
+            let modificationDate = attributes[.modificationDate] as? Date
+            
+            return FileInfo(fileName: fileName,
+                            fileSize: fileSize,
+                            fileType: fileType,
+                            fileURL: fileURL,
+                            modificationDate: modificationDate)
+        }
+    }
+    
+    func openInFinder(_ fileURL: URL) {
+        NSWorkspace.shared.activateFileViewerSelecting([fileURL])
     }
 }
-
