@@ -2,7 +2,7 @@ import SwiftUI
 import CoreWLAN
 struct MainContentView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @State private var selectionValue = CategoryType.smartFileLocator
+    @State private var selectionValue = CategoryType.smartFileSearch
     
     var body: some View {
         NavigationSplitView {
@@ -18,14 +18,14 @@ struct MainContentView: View {
                 case .smartWifi:
                     SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(),wifyKeyChainService: AppWifiKeyChainService()), appSettingService: AppSmartSettingsService()))
                         .environmentObject(colorSchemeViewModel)
+                case .smartNotificationAlarm:
+                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService()))
+                        .environmentObject(colorSchemeViewModel)
                 case .smartFileLocator:
                         SmartFileLocatorView(smartFileLocatorViewModel: SmartFileLocatorViewModel(appSmartFileService: AppSmartFileService(), appSmartFileMonitor: AppSmartFileMonitor(), appSmartSettingService: AppSmartSettingsService(), systemPreferenceService: SystemPreferenceService()))
                         .environmentObject(colorSchemeViewModel)
                 case .smartFileSearch:
                     SmartFileSearchView(smartFileSearchViewModel: SmartFileSearchViewModel())
-                case .smartNotificationAlarm:
-                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService()))
-                        .environmentObject(colorSchemeViewModel)
                 }
             }
             

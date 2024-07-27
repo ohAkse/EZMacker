@@ -32,14 +32,13 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     @Published var adapterInfo: [AdapterData]?
     @Published var isAdapterConnected = false
     @Published var adapterConnectionSuccess :AdapterConnectStatus = .none
-    
+    private var isSent = false
     //일반 설정값들
     private var systemPreferenceService: SystemPreferenceAccessible
     private var appSmartBatteryService: ProvidableType
     private var appSettingService: AppSmartSettingProvidable
     private var appProcessService: AppSmartProcessProvidable
     private var appChargingErrorCounrt = 0
-    private var isSent = false
     private var timer: AnyCancellable?
     private var cancellables = Set<AnyCancellable>()
     
@@ -48,7 +47,6 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
         self.appSettingService = appSettingService
         self.appProcessService = appProcessService
         self.systemPreferenceService =  systemPreferenceService
-        
     }
     //충전기 Off시 배터리 정보만 나타내는 함수
     private func requestBatteryInfo() {
