@@ -15,8 +15,6 @@ struct InfoRectangleHImageTextView: View {
     let isSystem: Bool
     let title: String
     let info: String
-    let widthScale: CGFloat
-    let heightScale: CGFloat
     
     var body: some View {
         GeometryReader { geo in
@@ -26,19 +24,18 @@ struct InfoRectangleHImageTextView: View {
                     .aspectRatio(contentMode: .fit)
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(getImageForegroundStyle()[0], getImageForegroundStyle()[1])
-                    .padding(20)
+                    .padding(10)
                     .animation(.easeIn(duration: 3),value:isAnimated)
                 Spacer(minLength: 5)
                 VStack(alignment: .center) {
-                    
                         Text(title)
                             .bold()
                             .padding(.bottom, 5)
-                            .font(.system(size: 30))
+                            .font(.system(size: 20))
                     if isAnimated {
                         Text(info)
                             .foregroundStyle(colorForHealthState(healthState: info))
-                            .font(.system(size: 20))
+                            .font(.system(size: 15))
                     }
                 }
                 .onAppear{
@@ -52,7 +49,7 @@ struct InfoRectangleHImageTextView: View {
                     }
                 }
                 .lineLimit(1)
-                .minimumScaleFactor(0.5)
+                .minimumScaleFactor(0.3)
                 .frame(maxWidth: .infinity)
             }
             .frame(maxWidth: .infinity , maxHeight: .infinity)
@@ -109,7 +106,7 @@ struct InfoRectangleHImageTextView: View {
 #if DEBUG
 struct InfoRectangleHImageTextView_PreView: PreviewProvider {
     static var previews: some View {
-        InfoRectangleHImageTextView(imageName: "thermometer.medium",isSystem:false, title: "타잍 ", info: "내용", widthScale:0.3, heightScale:0.7)
+        InfoRectangleHImageTextView(imageName: "thermometer.medium",isSystem:false, title: "타잍 ", info: "내용")
     }
 }
 #endif

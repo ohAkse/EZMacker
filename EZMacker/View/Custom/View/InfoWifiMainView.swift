@@ -56,6 +56,10 @@ struct InfoWifiMainInfoView: View {
                                 .background(Color.clear)
                                 .clipShape(Circle())
                         }
+                        .frame(width: 30, height: 30)
+                        .buttonStyle(PlainButtonStyle())
+                        .background(Color.white.opacity(0.4))
+                        .cornerRadius(12)
                         Spacer()
                         Button(action: {
                             didTapWifiListWithDescending()
@@ -66,6 +70,10 @@ struct InfoWifiMainInfoView: View {
                                 .background(Color.clear)
                                 .clipShape(Circle())
                         }
+                        .frame(width: 30, height: 30)
+                        .buttonStyle(PlainButtonStyle())
+                        .background(Color.white.opacity(0.4))
+                        .cornerRadius(12)
                         Spacer()
                     }
                     
@@ -82,6 +90,10 @@ struct InfoWifiMainInfoView: View {
                                     .background(Color.clear)
                                     .clipShape(Circle())
                             }
+                            .frame(width: 30, height: 30)
+                            .buttonStyle(PlainButtonStyle())
+                            .background(Color.gray.opacity(0.4))
+                            .cornerRadius(12)
                             
                             Button(action: {
                                 onFindBestWifi()
@@ -94,6 +106,10 @@ struct InfoWifiMainInfoView: View {
                                     .background(Color.clear)
                                     .clipShape(Circle())
                             }
+                            .frame(width: 30, height: 30)
+                            .buttonStyle(PlainButtonStyle())
+                            .background(Color.gray.opacity(0.4))
+                            .cornerRadius(12)
                         }
                         .padding([.trailing], 20)
                         
