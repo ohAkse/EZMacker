@@ -54,6 +54,9 @@
 		5F485A0D2C69AF7C00B32585 /* EZButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F485A0C2C69AF7C00B32585 /* EZButtonStyle.swift */; };
 		5F498F322C06096000C69F06 /* EZArcIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F498F312C06096000C69F06 /* EZArcIndicatorView.swift */; };
 		5F5E23442C6A0A7400CD329F /* EZAdaptiveImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E23432C6A0A7400CD329F /* EZAdaptiveImageView.swift */; };
+		5F5E23462C6A2E2200CD329F /* EZTabbarButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */; };
+		5F5E234A2C6A469600CD329F /* EZTabbarBackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E23492C6A469600CD329F /* EZTabbarBackgroundStyle.swift */; };
+		5F5E234C2C6A483A00CD329F /* EZTabbarGridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E234B2C6A483A00CD329F /* EZTabbarGridStyle.swift */; };
 		5F69D28B2C0DDA9D00F318ED /* EZWifiDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69D28A2C0DDA9D00F318ED /* EZWifiDetailView.swift */; };
 		5F69D2902C0DECE900F318ED /* AdapterConnectStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69D28F2C0DECE900F318ED /* AdapterConnectStatus.swift */; };
 		5F69D2922C0DED4800F318ED /* AdapterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69D2912C0DED4800F318ED /* AdapterData.swift */; };
@@ -172,6 +175,9 @@
 		5F485A0C2C69AF7C00B32585 /* EZButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZButtonStyle.swift; sourceTree = "<group>"; };
 		5F498F312C06096000C69F06 /* EZArcIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZArcIndicatorView.swift; sourceTree = "<group>"; };
 		5F5E23432C6A0A7400CD329F /* EZAdaptiveImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZAdaptiveImageView.swift; sourceTree = "<group>"; };
+		5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTabbarButtonStyle.swift; sourceTree = "<group>"; };
+		5F5E23492C6A469600CD329F /* EZTabbarBackgroundStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTabbarBackgroundStyle.swift; sourceTree = "<group>"; };
+		5F5E234B2C6A483A00CD329F /* EZTabbarGridStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTabbarGridStyle.swift; sourceTree = "<group>"; };
 		5F69D28A2C0DDA9D00F318ED /* EZWifiDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZWifiDetailView.swift; sourceTree = "<group>"; };
 		5F69D28F2C0DECE900F318ED /* AdapterConnectStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterConnectStatus.swift; sourceTree = "<group>"; };
 		5F69D2912C0DED4800F318ED /* AdapterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterData.swift; sourceTree = "<group>"; };
@@ -256,6 +262,9 @@
 				5F485A0A2C69AE8C00B32585 /* EZListRowStyle.swift */,
 				5F485A0C2C69AF7C00B32585 /* EZButtonStyle.swift */,
 				5F78156A2C69DF9F00DE5F39 /* EZInnerBackgroundStyle.swift */,
+				5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */,
+				5F5E23492C6A469600CD329F /* EZTabbarBackgroundStyle.swift */,
+				5F5E234B2C6A483A00CD329F /* EZTabbarGridStyle.swift */,
 			);
 			path = Modifier;
 			sourceTree = "<group>";
@@ -796,6 +805,7 @@
 				5F97C3782BF9DAFE00B0DC56 /* SystemPreferenceService.swift in Sources */,
 				5F6D4E682BE88A03004B94F8 /* Date + Extension.swift in Sources */,
 				5FDDCABD2C188189006A528A /* GifRepresentableView.swift in Sources */,
+				5F5E23462C6A2E2200CD329F /* EZTabbarButtonStyle.swift in Sources */,
 				5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */,
 				5F3DBE112C04BBCA00B5C0DE /* Double + Extension.swift in Sources */,
 				5F36C0862C17E55C0031C0E3 /* AppWifiKeyChainService.swift in Sources */,
@@ -853,6 +863,7 @@
 				5F3FF02E2C02BBFA00E3246C /* AppSmartProcessData.swift in Sources */,
 				5F1012A82BF3997E00589C9B /* EZElipseHImageView.swift in Sources */,
 				5F3FF0342C02EE8600E3246C /* ColorSchemeViewModel.swift in Sources */,
+				5F5E234C2C6A483A00CD329F /* EZTabbarGridStyle.swift in Sources */,
 				5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */,
 				5FDB4BC82BFE5578002B1370 /* EZGridHMonitoringView.swift in Sources */,
 				5F6D4E7C2BE8A328004B94F8 /* ToastData.swift in Sources */,
@@ -866,6 +877,7 @@
 				5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */,
 				5F72B7C82C42357B0060DEA0 /* FileLocatorData.swift in Sources */,
 				5F6D4E6C2BE88CC6004B94F8 /* ThemeColorType.swift in Sources */,
+				5F5E234A2C6A469600CD329F /* EZTabbarBackgroundStyle.swift in Sources */,
 				5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */,
 				5F3FF0302C02BE9800E3246C /* ChargeData.swift in Sources */,
 				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,

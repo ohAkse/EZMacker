@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct SmartFileLocatorView: View {
     @StateObject var smartFileLocatorViewModel: SmartFileLocatorViewModel
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
@@ -16,17 +17,29 @@ struct SmartFileLocatorView: View {
     @State private var errorMessage = ""
     
     var body: some View {
-        GeometryReader { geometry in
-            VStack(spacing: 16) {
-                tabBar(height: 45)
-                
-                if let selectedTab = smartFileLocatorViewModel.savedData.selectedTab {
-                    fileGridView(for: selectedTab)
-                        .ezBackgroundColorStyle()
-                } else {
-                    emptyStateView
-                        .ezBackgroundColorStyle()
+        ZStack {
+            ScrollView {
+                VStack(spacing: 0) {
+                    tabBar()
+                    if let selectedTab = smartFileLocatorViewModel.savedData.selectedTab {
+                        fileGridContent(for: selectedTab)
+                    }
                 }
+            }
+            .ezBackgroundColorStyle()
+            
+            if let selectedTab = smartFileLocatorViewModel.savedData.selectedTab {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        addFileButton(for: selectedTab)
+                    }
+                    .padding([.bottom, .trailing], 10)
+                }
+            } else {
+                Spacer()
+                emptyStateView
             }
         }
         .alert("새 탭", isPresented: $showingAlert, actions: {
@@ -43,44 +56,66 @@ struct SmartFileLocatorView: View {
         .padding(30)
         .environmentObject(colorSchemeViewModel)
     }
-    private func tabBar(height: CGFloat) -> some View {
-        HStack {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 5) {
+    
+    private func fileGridContent(for selectedTab: String) -> some View {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)], spacing: 10) {
+            ForEach(Array(smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].keys), id: \.self) { id in
+                FileView(id: id,
+                         fileInfo: smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab]?[id] ?? .empty,
+                         onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
+                         onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
+                .id(id)
+                .ezBackgroundColorStyle()
+                
+            }
+        }
+        .padding(10)
+    }
+    
+    
+    private func tabBar() -> some View {
+        ScrollView(.horizontal, showsIndicators: true) {
+            HStack(spacing: 5) {
+                if smartFileLocatorViewModel.savedData.tabs.isEmpty {
+                    Spacer().frame(height: 50)
+                } else {
                     ForEach(smartFileLocatorViewModel.savedData.tabs, id: \.self) { tab in
                         tabButton(for: tab)
                     }
+                    .frame(height: 50)
                 }
+                addTabButton
             }
-            
-            Spacer()
-            addTabButton
         }
-        .padding(.horizontal)
-        .frame(height: height)
-        .ezBackgroundColorStyle()
+        .frame(height: 60)
+        .ezTabbarBackgroundStyle()
     }
     
     private func tabButton(for tab: String) -> some View {
-        Button(action: { smartFileLocatorViewModel.savedData.selectedTab = tab }) {
-            HStack {
+        Button(action: {
+            smartFileLocatorViewModel.savedData.selectedTab = tab
+        }) {
+            HStack(spacing: 0) {
                 Text(tab)
-                Spacer()
+                    .lineLimit(1)
+                    .padding(.trailing, 10)
+                Spacer(minLength: 0)
                 deleteTabButton(for: tab)
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 8)
-            .background(smartFileLocatorViewModel.savedData.selectedTab == tab ? Color.blue.opacity(0.2) : Color.white)
-            .ezBackgroundColorStyle()
+            .padding(10)
+            .frame(width: 100, height: 40)
+            .contentShape(RoundedRectangle(cornerRadius: 10))
         }
-        .buttonStyle(PlainButtonStyle())
+        .ezTabbarButtonStyle()
     }
+    
     
     private func deleteTabButton(for tab: String) -> some View {
         Button(action: { smartFileLocatorViewModel.deleteTab(tab) }) {
             Image(systemName: "xmark.circle.fill")
+                .resizable()
+                .frame(width: 16, height: 16)
                 .foregroundColor(.red)
-                .font(.system(size: 12))
         }
         .buttonStyle(PlainButtonStyle())
     }
@@ -89,33 +124,28 @@ struct SmartFileLocatorView: View {
         Button(action: { showingAlert = true }) {
             Image(systemName: "plus.circle.fill")
                 .resizable()
-                .frame(width: 35, height: 35)
+                .frame(width: 30, height: 30)
                 .foregroundColor(.blue)
         }
         .buttonStyle(PlainButtonStyle())
     }
-  
+    
+    
     private func fileGridView(for selectedTab: String) -> some View {
         GeometryReader { geometry in
             ZStack(alignment: .bottomTrailing) {
-                if smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].isEmpty {
-                    emptyStateView
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                } else {
-                    ScrollView {
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)]) {
-                            ForEach(Array(smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].keys), id: \.self) { id in
-                                FileView(id: id,
-                                         fileInfo: smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab]?[id] ?? .empty,
-                                         onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
-                                         onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
-                                    .id(id)
-                            }
+                ScrollView(.vertical, showsIndicators: true) {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)]) {
+                        ForEach(Array(smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].keys), id: \.self) { id in
+                            FileView(id: id,
+                                     fileInfo: smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab]?[id] ?? .empty,
+                                     onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
+                                     onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
+                            .id(id)
                         }
                     }
-                    .scrollIndicators(.hidden)
-                    .padding(10)
                 }
+                .padding(10)
                 addFileButton(for: selectedTab)
             }
         }
@@ -126,12 +156,13 @@ struct SmartFileLocatorView: View {
         Button(action: { smartFileLocatorViewModel.addFileView(for: selectedTab) }) {
             Image(systemName: "plus.circle.fill")
                 .resizable()
-                .frame(width: 35, height: 35)
+                .frame(width: 30, height: 30)
                 .foregroundColor(.yellow)
         }
         .buttonStyle(PlainButtonStyle())
         .padding([.bottom, .trailing], 20)
     }
+    
     
     private var emptyStateView: some View {
         VStack {
@@ -147,7 +178,6 @@ struct SmartFileLocatorView: View {
                 .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(),fontSize: FontSizeType.small.size, isBold: true)
                 .multilineTextAlignment(.center)
                 .padding()
-            
             Spacer()
         }
     }
@@ -176,13 +206,13 @@ struct FileView: View {
     
     var body: some View {
         VStack {
-            deleteButton
+            deleteButton.padding([.top, .trailing], 3)
             filePreview
             fileDetails
         }
         .frame(width: 150, height: 180)
-        .padding(5)
-        .ezInnerBackgroundStyle()
+        .padding(2)
+        .ezTabbarGridStyle()
         .onDrop(of: [.fileURL], isTargeted: $isTargeted, perform: onDropFile)
         .onTapGesture(perform: openFile)
         .navigationTitle(CategoryType.smartFileLocator.title)
@@ -193,8 +223,9 @@ struct FileView: View {
             Spacer()
             Button(action: onDelete) {
                 Image(systemName: "xmark.circle.fill")
+                    .resizable()
+                    .frame(width: 16, height: 16)
                     .foregroundColor(.red)
-                    .imageScale(.large)
             }
             .buttonStyle(PlainButtonStyle())
         }
@@ -212,7 +243,7 @@ struct FileView: View {
                     .aspectRatio(contentMode: .fit)
             }
         }
-        .frame(width: 100, height: 70)
+        .frame(width: 100, height: 65)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
     
@@ -221,24 +252,24 @@ struct FileView: View {
             Text(fileInfo.fileName.isEmpty ? "등록 안됨" : fileInfo.fileName)
                 .font(.headline)
                 .lineLimit(1)
-                .padding(.top, 10)
+                .padding(.top, 3)
                 .frame(maxWidth: .infinity, alignment: .center)
             
             Text("타입: \(fileInfo.fileType.isEmpty ? "None" : fileInfo.fileType)")
-                .padding(.top, 5)
+                .padding([.top, .leading], 3)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .lineLimit(1)
                 .frame(maxWidth: .infinity, alignment: .leading)
-
+            
             Text("크기: \(fileInfo.fileSize) bytes")
-                .padding(.top, 5)
+                .padding([.top, .leading], 3)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .lineLimit(1)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text("날짜: \(fileInfo.modificationDate?.getFormattedDate() ?? "Not Updated")")
-                .padding(.top, 5)
+                .padding([.top, .leading], 3)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .lineLimit(1)

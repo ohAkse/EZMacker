@@ -24,7 +24,7 @@ struct EZBackgroundStyle: ViewModifier {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightBlue.color
+            return ThemeColorType.lightYellow.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return Color.clear

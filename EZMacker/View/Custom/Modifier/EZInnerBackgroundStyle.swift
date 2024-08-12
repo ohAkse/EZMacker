@@ -21,7 +21,7 @@ struct EZInnerBackgroundStyle: ViewModifier {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.white.color.opacity(0.5)
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightBlue.color.opacity(0.7)
+            return ThemeColorType.lightGray.color.opacity(0.7)
         default:
             Logger.fatalErrorMessage("colorScheme is Empty")
             return Color.primary  

@@ -27,8 +27,8 @@ struct EZMackerApp: App {
 
 class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDelegate, UNUserNotificationCenterDelegate {
     var window: NSWindow!
-    private var originalFrame: NSRect?
     var alertManager = AppAlertManager.shared
+    private var originalFrame: NSRect?
     let systemConfigService = SystemPreferenceService()
     
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -36,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDe
         let center = UNUserNotificationCenter.current().then {
             $0.delegate = self
         }
-        
+
         window = NSApp.windows.first
         window.delegate = self
         requestNotificationAuthorization()
