@@ -11,10 +11,20 @@ struct SmartFileSearchView: View {
     @StateObject var smartFileSearchViewModel: SmartFileSearchViewModel
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     
+    var body: some View {
+        VStack(spacing: 16) {
+            searchInputView
+            fileListView
+        }
+        .navigationTitle(CategoryType.smartFileSearch.title)
+        .padding(30)
+        
+    }
+    
     // 검색 입력 뷰
     private var searchInputView: some View {
         HStack {
-            TextField("검색어 입력", text: $smartFileSearchViewModel.searchText)
+            TextField("찾고자 하는 파일 이름을 검색하여 주세요.", text: $smartFileSearchViewModel.searchText)
                 .padding(.leading, 10)
                 .frame(height: 45)
                 .ezTextFieldStyle()
@@ -60,16 +70,5 @@ struct SmartFileSearchView: View {
             }
         }
         .ezListViewStyle()
-    }
-    
-    
-    var body: some View {
-        VStack(spacing: 16) {
-            searchInputView
-            fileListView
-        }
-        .navigationTitle(CategoryType.smartFileSearch.title)
-        .padding(30)
-        
     }
 }

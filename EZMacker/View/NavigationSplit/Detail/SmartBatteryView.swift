@@ -3,7 +3,7 @@ import SwiftUI
 struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @StateObject var smartBatteryViewModel: SmartBatteryViewModel<ProvidableType>
-    @State private var toast: Toast?
+    @State private var toast: ToastData?
     @State private var isAdapterAnimated = false
     
     var body: some View {
@@ -55,7 +55,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
         }
         .onReceive(smartBatteryViewModel.$isAdapterConnected) { isConnected in
             if isConnected {
-                toast = Toast(type: .info, title: "정보", message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 5분이 소요됩니다.", duration: 10)
+                toast = ToastData(type: .info, title: "정보", message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 5분이 소요됩니다.", duration: 10)
             }
         }
         .frame(width: geo.size.width * 0.2, height: geo.size.height * 0.2)
@@ -79,11 +79,12 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 EZGridHMonitoringView(chargeData: $smartBatteryViewModel.chargeData, isAdapterConnect: $smartBatteryViewModel.isAdapterConnected)
                     .padding(.vertical,20)
             }
-            
-            Image("battery_setting")
+            EZAdaptiveImageView(name: "battery_setting", systemName: false)
+                .renderingMode(.template)
                 .resizable()
-                .frame(width: 25, height: 25)
-                .background(Color.clear)
+                .scaledToFit()
+                .frame(width: 30, height: 30)
+                .tint(Color.blue)
                 .onTapGesture {
                     smartBatteryViewModel.openSettingWindow(settingPath: SystemPreference.batterySave.pathString)
                 }
@@ -225,3 +226,5 @@ extension SmartBatteryView {
         return ""
     }
 }
+
+

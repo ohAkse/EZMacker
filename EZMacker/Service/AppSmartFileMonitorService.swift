@@ -12,7 +12,7 @@ protocol AppSmartFileMonitorable {
     func stopMonitoring(id: UUID)
 }
 
-class AppSmartFileMonitor: AppSmartFileMonitorable {
+class AppSmartFileMonitorService: AppSmartFileMonitorable {
     
     private var fileMonitors: [UUID: DispatchSourceFileSystemObject] = [:]
     private let updateQueue = DispatchQueue(label: "ezMacker.com")

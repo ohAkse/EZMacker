@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct EZBackgroundStyle: ViewModifier {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     
     
     func body(content: Content) -> some View {
         content
             .background(
-                RoundedRectangle(cornerRadius: 15)
+                RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(cardColorForTheme())
             )
             .cornerRadius(10)
     }
     private func cardColorForTheme() -> Color {
-        switch colorScheme.getColorScheme() {
+        switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color
         case ColorSchemeModeType.Dark.title:

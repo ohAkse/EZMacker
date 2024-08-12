@@ -4,8 +4,41 @@ import CoreWLAN
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @StateObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>
-    @State private var toast: Toast?
+    @State private var toast: ToastData?
 
+    var body: some View {
+        GeometryReader { geo in
+            VStack(spacing: 0) {
+                wifiDetailView(geo: geo)
+                wifiMainInfoView(geo: geo)
+                    .padding(.top, 20)
+            }
+            .onReceive(smartWifiViewModel.$wifiRequestStatus) { wifiStatus in
+                if wifiStatus != .success && wifiStatus != .none {
+                    toast = ToastData(type: .error, title: "에러", message: "와이파이를 접속할 수 없습니다. 비밀번호를 확인해주세요.", duration: 10)
+                }
+            }
+            .onAppear {
+                smartWifiViewModel.requestWifiInfo()
+                smartWifiViewModel.startWifiTimer()
+            }
+            .onDisappear {
+                smartWifiViewModel.stopWifiTimer()
+            }
+        }
+        .sheet(isPresented: $smartWifiViewModel.showAlert) {
+            AlertOKCancleView(
+                isPresented: $smartWifiViewModel.showAlert,
+                title: "최적의 와이파이",
+                subtitle: "결과",
+                content: smartWifiViewModel.bestSSid
+            )
+        }
+        .navigationTitle(CategoryType.smartWifi.title)
+        .padding(30)
+        .toastView(toast: $toast)
+    }
+    
     // Wi-Fi 세부 정보 뷰
     private func wifiDetailView(geo: GeometryProxy) -> some View {
         HStack(spacing: 0) {
@@ -28,7 +61,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                 .frame(height: geo.size.height / 4)
                 .environmentObject(colorSchemeViewModel)
         }
-        .frame(width: geo.size.width)  // HStack의 전체 너비를 지정
+        .frame(width: geo.size.width)  
     }
 
     // Wi-Fi 메인 정보 뷰
@@ -43,7 +76,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                         await smartWifiViewModel.requestCoreWLanWifiInfo()
                         let status = smartWifiViewModel.getWifiRequestStatus()
                         if status == .scanningFailed {
-                            toast = Toast(type: .error, title: "에러", message: "와이파이를 확인할 수 없습니다. 권한을 확인해주세요.", duration: 5)
+                            toast = ToastData(type: .error, title: "에러", message: "와이파이를 확인할 수 없습니다. 권한을 확인해주세요.", duration: 5)
                         }
                     }
                 },
@@ -60,44 +93,10 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                 await smartWifiViewModel.requestCoreWLanWifiInfo()
                 let status = smartWifiViewModel.getWifiRequestStatus()
                 if status == .scanningFailed {
-                    toast = Toast(type: .error, title: "에러", message: "와이파이를 확인할 수 없습니다. 권한을 확인해주세요.", duration: 5)
+                    toast = ToastData(type: .error, title: "에러", message: "와이파이를 확인할 수 없습니다. 권한을 확인해주세요.", duration: 5)
                 }
             }
         }
-    }
-
-    var body: some View {
-        GeometryReader { geo in
-            VStack(spacing: 0) {
-                wifiDetailView(geo: geo)
-                wifiMainInfoView(geo: geo)
-                    .padding(.top, 20)
-            }
-            .onReceive(smartWifiViewModel.$wifiRequestStatus) { wifiStatus in
-                if wifiStatus != .success && wifiStatus != .none {
-                    toast = Toast(type: .error, title: "에러", message: "와이파이를 접속할 수 없습니다. 비밀번호를 확인해주세요.", duration: 10)
-                }
-            }
-            .onAppear {
-                smartWifiViewModel.requestWifiInfo()
-                smartWifiViewModel.startWifiTimer()
-            }
-            .onDisappear {
-                smartWifiViewModel.stopWifiTimer()
-            }
-        }
-        .sheet(isPresented: $smartWifiViewModel.showAlert) {
-            AlertOKCancleView(
-                isPresented: $smartWifiViewModel.showAlert,
-                title: "최적의 와이파이",
-                subtitle: "결과",
-                content: smartWifiViewModel.bestSSid
-            )
-        }
-        .navigationTitle(CategoryType.smartWifi.title)
-        //.frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(30)
-        .toastView(toast: $toast)
     }
 }
 

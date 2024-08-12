@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum ToastStyle {
+enum ToastType {
     case error
     case warning
     case success

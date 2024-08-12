@@ -8,23 +8,32 @@
 import SwiftUI
 
 struct EZListViewStyle: ViewModifier {
-    let backgroundColor: Color
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     
-    init(backgroundColor: Color = .white) {
-        self.backgroundColor = backgroundColor
-    }
+    
     
     func body(content: Content) -> some View {
         content
             .scrollContentBackground(.hidden)
             .listStyle(PlainListStyle())
-            .background(backgroundColor)
+            .background(backgroundColorForTheme())
             .cornerRadius(12)
+    }
+    
+    private func backgroundColorForTheme() -> Color {
+        switch colorSchemeViewModel.getColorScheme() {
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.lightGray.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.lightBlue.color
+        default:
+            return Color.clear
+        }
     }
 }
 
 extension View {
-    func ezListViewStyle(backgroundColor: Color = .white) -> some View {
-        self.modifier(EZListViewStyle(backgroundColor: backgroundColor))
+    func ezListViewStyle() -> some View {
+        self.modifier(EZListViewStyle())
     }
 }

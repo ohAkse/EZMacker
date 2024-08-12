@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ToastView: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
-    var type: ToastStyle
+    var type: ToastType
     var title: String
     var message: String
     var onCancelTapped: (() -> Void)
@@ -55,7 +55,7 @@ struct ToastView: View {
     }
 }
 struct ToastModifier: ViewModifier {
-    @Binding var toast: Toast?
+    @Binding var toast: ToastData?
     @State private var workItem: DispatchWorkItem?
     
     func body(content: Content) -> some View {

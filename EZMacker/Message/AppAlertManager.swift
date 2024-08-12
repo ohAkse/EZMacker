@@ -17,11 +17,12 @@ class AppAlertManager {
         primaryButtonTitle: String,
         secondaryButtonTitle: String
     ) {
-        let alert = NSAlert()
-        alert.messageText = title
-        alert.informativeText = message
-        alert.addButton(withTitle: primaryButtonTitle)
-        alert.addButton(withTitle: secondaryButtonTitle)
+        let alert = NSAlert().then {
+            $0.messageText = title
+            $0.informativeText = message
+            $0.addButton(withTitle: primaryButtonTitle)
+            $0.addButton(withTitle: secondaryButtonTitle)
+        }
         
         let response = alert.runModal()
         if response == .alertFirstButtonReturn {

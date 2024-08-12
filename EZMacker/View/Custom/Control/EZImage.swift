@@ -53,10 +53,10 @@ struct EZImage: View {
     }
 }
 
-#if DEBUG
-struct CustomImage_Preview: PreviewProvider {
-    static var previews: some View {
-        EZImage(systemName: "globe", isSystemName: true)
-    }
-}
-#endif
+//#if DEBUG
+//struct CustomImage_Preview: PreviewProvider {
+//    static var previews: some View {
+//        EZImage(systemName: "globe", isSystemName: true)
+//    }
+//}
+//#endif

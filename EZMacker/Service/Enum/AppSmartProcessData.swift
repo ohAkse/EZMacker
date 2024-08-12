@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct AppSmartProcessInfo {
+struct AppSmartProcessData {
     let pid: Int32
     let name: String
     let cpuUsage: Double

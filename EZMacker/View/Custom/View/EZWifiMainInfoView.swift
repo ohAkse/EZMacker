@@ -7,7 +7,7 @@ struct EZWifiMainInfoView: View {
     @Binding var wifiLists: [ScaningWifiData]
     @State private var password: String = ""
     @State private var isShowingPasswordModal = false
-    @State private var toast: Toast?
+    @State private var toast: ToastData?
     var appCoreWLanWifiService: AppCoreWLANWifiProvidable
     var onRefresh: () -> Void
     var onWifiTap: (String, String) -> Void
@@ -91,7 +91,7 @@ struct EZWifiMainInfoView: View {
                             
                             Button(action: {
                                 onFindBestWifi()
-                                toast = Toast(type: .info, title: "정보", message: "최적의 와이파이를 찾고 있습니다.")
+                                toast = ToastData(type: .info, title: "정보", message: "최적의 와이파이를 찾고 있습니다.")
                             }) {
                                 Image(systemName: "opticid.fill")
                                     .resizable()

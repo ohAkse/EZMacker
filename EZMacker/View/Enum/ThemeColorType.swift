@@ -8,6 +8,8 @@
 import SwiftUI
 
 enum ThemeColorType {
+    case white
+    case black
     case darkBlue
     case darkBrown
     case lightGray
@@ -20,6 +22,8 @@ enum ThemeColorType {
     
     var color: Color {
         switch self {
+        case .white: return Color(red: 255/255, green: 255/255, blue: 255/255)
+        case .black: return Color(red: 0/255, green: 0/255, blue: 0/255)
         case .darkBlue: return Color(red: 0/255, green: 102/255, blue: 153/255)
         case .darkBrown: return Color(red: 51/255, green: 0/255, blue: 0/255)
         case .lightGray: return Color(red: 227/255, green: 225/255, blue: 225/255)

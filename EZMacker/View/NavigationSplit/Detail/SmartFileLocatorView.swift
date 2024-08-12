@@ -58,7 +58,6 @@ struct SmartFileLocatorView: View {
         }
         .padding(.horizontal)
         .frame(height: height)
-        .background(Color.white)
         .ezBackgroundColorStyle()
     }
     
@@ -71,12 +70,8 @@ struct SmartFileLocatorView: View {
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(smartFileLocatorViewModel.savedData.selectedTab == tab ? Color.blue.opacity(0.2) : Color.clear)
-            .cornerRadius(20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.blue, lineWidth: 1)
-            )
+            .background(smartFileLocatorViewModel.savedData.selectedTab == tab ? Color.blue.opacity(0.2) : Color.white)
+            .ezBackgroundColorStyle()
         }
         .buttonStyle(PlainButtonStyle())
     }
@@ -99,28 +94,33 @@ struct SmartFileLocatorView: View {
         }
         .buttonStyle(PlainButtonStyle())
     }
-    
+  
     private func fileGridView(for selectedTab: String) -> some View {
-         ZStack(alignment: .bottomTrailing) {
-             if smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].isEmpty {
-                 emptyStateView
-             } else {
-                 ScrollView {
-                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 20)], spacing: 20) {
-                         ForEach(Array(smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].keys), id: \.self) { id in
-                             FileView(id: id,
-                                      fileInfo: smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab]?[id] ?? .empty,
-                                      onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
-                                      onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
-                                 .id(id)
-                         }
-                     }
-                 }
-                 .padding(10)
-             }
-             addFileButton(for: selectedTab)
-         }
-     }
+        GeometryReader { geometry in
+            ZStack(alignment: .bottomTrailing) {
+                if smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].isEmpty {
+                    emptyStateView
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)]) {
+                            ForEach(Array(smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].keys), id: \.self) { id in
+                                FileView(id: id,
+                                         fileInfo: smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab]?[id] ?? .empty,
+                                         onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
+                                         onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
+                                    .id(id)
+                            }
+                        }
+                    }
+                    .scrollIndicators(.hidden)
+                    .padding(10)
+                }
+                addFileButton(for: selectedTab)
+            }
+        }
+    }
+    
     
     private func addFileButton(for selectedTab: String) -> some View {
         Button(action: { smartFileLocatorViewModel.addFileView(for: selectedTab) }) {
@@ -171,6 +171,7 @@ struct FileView: View {
     let fileInfo: FileData
     let onDelete: () -> Void
     let onDrop: (URL) -> Void
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @State private var isTargeted: Bool = false
     
     var body: some View {
@@ -179,11 +180,10 @@ struct FileView: View {
             filePreview
             fileDetails
         }
-        .frame(width: 150, height: 200)
+        .frame(width: 150, height: 180)
         .padding(5)
-        .background(isTargeted ? Color.blue.opacity(0.3) : Color.gray.opacity(0.2))
-        .cornerRadius(12)
-        .onDrop(of: [.fileURL], isTargeted: $isTargeted, perform: handleDrop)
+        .ezInnerBackgroundStyle()
+        .onDrop(of: [.fileURL], isTargeted: $isTargeted, perform: onDropFile)
         .onTapGesture(perform: openFile)
         .navigationTitle(CategoryType.smartFileLocator.title)
     }
@@ -246,7 +246,7 @@ struct FileView: View {
         }
     }
     
-    private func handleDrop(providers: [NSItemProvider]) -> Bool {
+    private func onDropFile(providers: [NSItemProvider]) -> Bool {
         guard let provider = providers.first else { return false }
         provider.loadItem(forTypeIdentifier: "public.file-url", options: nil) { (urlData, error) in
             DispatchQueue.main.async {
