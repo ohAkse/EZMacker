@@ -1,13 +1,13 @@
 //
-//  CustomBackgroundColor.swift
+//  EZBackgroundColorStyle.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/30/24.
+//  Created by 박유경 on 8/12/24.
 //
 
 import SwiftUI
 
-struct CustomBackgroundModifier: ViewModifier {
+struct EZBackgroundStyle: ViewModifier {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
     
     
@@ -21,10 +21,10 @@ struct CustomBackgroundModifier: ViewModifier {
     }
     private func cardColorForTheme() -> Color {
         switch colorScheme.getColorScheme() {
-        case ColorSchemeMode.Light.title:
-            return ThemeColor.lightGray.color
-        case ColorSchemeMode.Dark.title:
-            return ThemeColor.lightBlue.color
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.lightGray.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.lightBlue.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return Color.clear
@@ -33,7 +33,7 @@ struct CustomBackgroundModifier: ViewModifier {
 }
 
 extension View {
-    func customBackgroundColor() -> some View {
-        modifier(CustomBackgroundModifier())
+    func ezBackgroundColorStyle() -> some View {
+        modifier(EZBackgroundStyle())
     }
 }

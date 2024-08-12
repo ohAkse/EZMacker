@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InfoRectangleHImageTextView: View {
+struct EZRectangleHImageTextView: View {
     
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
     @State private var isAnimated = false
@@ -25,7 +25,7 @@ struct InfoRectangleHImageTextView: View {
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(getImageForegroundStyle()[0], getImageForegroundStyle()[1])
                     .padding(10)
-                    .animation(.easeIn(duration: 3),value:isAnimated)
+                    .animation(.easeIn(duration: 3), value:isAnimated)
                 Spacer(minLength: 5)
                 VStack(alignment: .center) {
                         Text(title)
@@ -68,9 +68,9 @@ struct InfoRectangleHImageTextView: View {
 
     private func getImageForegroundStyle() -> [Color] {
         switch colorScheme.getColorScheme() {
-        case ColorSchemeMode.Light.title:
-            return [ThemeColor.lightGreen.color, ThemeColor.lightGray.color]
-        case ColorSchemeMode.Dark.title:
+        case ColorSchemeModeType.Light.title:
+            return [ThemeColorType.lightGreen.color, ThemeColorType.lightGray.color]
+        case ColorSchemeModeType.Dark.title:
             return [.yellow, .green]
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
@@ -81,35 +81,36 @@ struct InfoRectangleHImageTextView: View {
     private func colorForHealthState(healthState: String) -> Color {
         switch healthState {
         case "Good":
-            return ThemeColor.lightGreen.color
+            return ThemeColorType.lightGreen.color
         case "Normal":
-            return ThemeColor.lightYellow.color
+            return ThemeColorType.lightYellow.color
         case "Bad":
-            return ThemeColor.lightRed.color
+            return ThemeColorType.lightRed.color
         default:
-            return ThemeColor.lightBlack.color
+            return ThemeColorType.lightBlack.color
         }
     }
     
     private func cardColorForTheme() -> Color {
         switch colorScheme.getColorScheme() {
-        case ColorSchemeMode.Light.title:
-            return ThemeColor.lightGray.color
-        case ColorSchemeMode.Dark.title:
-            return ThemeColor.lightBlue.color
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.lightGray.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.lightBlue.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return Color.clear
         }
     }
 }
-#if DEBUG
-struct InfoRectangleHImageTextView_PreView: PreviewProvider {
-    static var previews: some View {
-        InfoRectangleHImageTextView(imageName: "thermometer.medium",isSystem:false, title: "타잍 ", info: "내용")
-    }
-}
-#endif
+
+//#if DEBUG
+//struct InfoRectangleHImageTextView_PreView: PreviewProvider {
+//    static var previews: some View {
+//        InfoRectangleHImageTextView(imageName: "thermometer.medium",isSystem:false, title: "타잍 ", info: "내용")
+//    }
+//}
+//#endif
 
 
 

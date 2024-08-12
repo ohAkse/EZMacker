@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ColorSchemeMode {
+enum ColorSchemeModeType {
     case Light, Dark
     
     var title: String {

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-enum ToolbarKey: String {
+enum ToolbarKeyType: String {
     case MainToolbar
     case ColorSchemeButton
     case ColorSchemePicker

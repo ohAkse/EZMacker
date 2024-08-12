@@ -26,15 +26,16 @@ struct MainContentView: View {
                         .environmentObject(colorSchemeViewModel)
                 case .smartFileSearch:
                     SmartFileSearchView(smartFileSearchViewModel: SmartFileSearchViewModel())
+                        .environmentObject(colorSchemeViewModel)
                 }
             }
             
         }
-        .toolbar(id: ToolbarKey.MainToolbar.name) {
-            ToolbarItem(id: ToolbarKey.ColorSchemePicker.name, placement: .primaryAction) {
+        .toolbar(id: ToolbarKeyType.MainToolbar.name) {
+            ToolbarItem(id: ToolbarKeyType.ColorSchemePicker.name, placement: .primaryAction) {
                 HStack(spacing: 0) {
-                    ColorSchemeToolbarView(buttonTitle: ColorSchemeMode.Light.title, buttonTag: ColorSchemeMode.Light.tag)
-                    ColorSchemeToolbarView(buttonTitle: ColorSchemeMode.Dark.title, buttonTag: ColorSchemeMode.Dark.tag)
+                    ColorSchemeToolbarView(buttonTitle: ColorSchemeModeType.Light.title, buttonTag: ColorSchemeModeType.Light.tag)
+                    ColorSchemeToolbarView(buttonTitle: ColorSchemeModeType.Dark.title, buttonTag: ColorSchemeModeType.Dark.tag)
                 }
                 .padding(3)
                 .overlay {
@@ -45,7 +46,7 @@ struct MainContentView: View {
                 .animation(.linear(duration: 0.2), value: colorSchemeViewModel.rotateDegree)
             }
             
-            ToolbarItem(id: ToolbarKey.ColorSchemeButton.name, placement: .primaryAction) {
+            ToolbarItem(id: ToolbarKeyType.ColorSchemeButton.name, placement: .primaryAction) {
                 Button {
                     colorSchemeViewModel.toggleColorScheme()
                 } label: {
@@ -55,6 +56,6 @@ struct MainContentView: View {
                 }
             }
         }
-        .preferredColorScheme(colorSchemeViewModel.colorScheme == ColorSchemeMode.Dark.title ? .dark : .light)
+        .preferredColorScheme(colorSchemeViewModel.colorScheme == ColorSchemeModeType.Dark.title ? .dark : .light)
     }
 }

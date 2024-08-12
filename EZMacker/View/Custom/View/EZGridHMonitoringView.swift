@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-struct InfoGridHMonitoringView: View {
+struct EZGridHMonitoringView: View {
     @Binding var chargeData: [ChargeData]
     @Binding var isAdapterConnect: Bool
     var body: some View {

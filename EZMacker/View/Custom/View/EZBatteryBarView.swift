@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-struct InfoBatteryBarView: View {
+struct EZBatteryBarView: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
     @State var isUpdateAnimated  = false
     @Binding var batteryLevel: Double
@@ -32,12 +32,12 @@ struct InfoBatteryBarView: View {
                             .padding(0)
                             .opacity(isUpdateAnimated ? 0.7 : 1.0)
                         Text("\(Int(batteryLevel * 100))%")
-                            .foregroundColor(ThemeColor.lightGray.color)
+                            .foregroundColor(ThemeColorType.lightGray.color)
                             .padding(.horizontal, 5)
                     }
                     
                     RoundedRectangle(cornerRadius: 2)
-                        .fill(ThemeColor.lightGray.color)
+                        .fill(ThemeColorType.lightGray.color)
                         .opacity(isUpdateAnimated ? 1.0 : 0.5)
                         .frame(width: max(0, geo.size.width * (1 - batteryLevel)), height: 60)
                         .padding(0)
@@ -76,10 +76,10 @@ struct InfoBatteryBarView: View {
     
     private func batteryImageColors() -> [Color] {
         switch colorScheme.getColorScheme() {
-        case ColorSchemeMode.Light.title:
-            return [ThemeColor.lightGreen.color, ThemeColor.lightGray.color]
-        case ColorSchemeMode.Dark.title:
-            return [ThemeColor.lightBlue.color, ThemeColor.lightGray.color]
+        case ColorSchemeModeType.Light.title:
+            return [ThemeColorType.lightGreen.color, ThemeColorType.lightGray.color]
+        case ColorSchemeModeType.Dark.title:
+            return [ThemeColorType.lightBlue.color, ThemeColorType.lightGray.color]
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return [.clear, .clear]
@@ -89,13 +89,13 @@ struct InfoBatteryBarView: View {
     private func gradientColors() -> [Color] {
         switch batteryLevel {
         case 1:
-            return [ThemeColor.lightBlue.color.opacity(0.7), ThemeColor.lightBlue.color.opacity(0.99)]
+            return [ThemeColorType.lightBlue.color.opacity(0.7), ThemeColorType.lightBlue.color.opacity(0.99)]
         case 0.66...0.99:
-            return [ThemeColor.lightGreen.color.opacity(0.7), ThemeColor.lightGreen.color.opacity(0.99)]
+            return [ThemeColorType.lightGreen.color.opacity(0.7), ThemeColorType.lightGreen.color.opacity(0.99)]
         case 0.33...0.65:
-            return [ThemeColor.lightYellow.color.opacity(0.7), ThemeColor.lightYellow.color.opacity(0.99)]
+            return [ThemeColorType.lightYellow.color.opacity(0.7), ThemeColorType.lightYellow.color.opacity(0.99)]
         case 0.0...0.32:
-            return [ThemeColor.lightRed.color.opacity(0.7), ThemeColor.lightRed.color.opacity(0.99)]
+            return [ThemeColorType.lightRed.color.opacity(0.7), ThemeColorType.lightRed.color.opacity(0.99)]
         default:
             Logger.fatalErrorMessage("Unknown Battery Level")
         }
@@ -103,15 +103,15 @@ struct InfoBatteryBarView: View {
     }
 }
 
-#if DEBUG
-struct InfoBatteryBarView_Preview: PreviewProvider {
-    static var previews: some View {
-        @State var isCharging: Bool = false
-        @State var battery: Double = 0.75
-        HStack {
-            InfoBatteryBarView(batteryLevel: $battery, isAdapterConnected: $isCharging)
-        }
-    }
-}
-#endif
+//#if DEBUG
+//struct InfoBatteryBarView_Preview: PreviewProvider {
+//    static var previews: some View {
+//        @State var isCharging: Bool = false
+//        @State var battery: Double = 0.75
+//        HStack {
+//            InfoBatteryBarView(batteryLevel: $battery, isAdapterConnected: $isCharging)
+//        }
+//    }
+//}
+//#endif
 

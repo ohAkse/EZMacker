@@ -13,8 +13,9 @@ protocol AppSmartFileMonitorable {
 }
 
 class AppSmartFileMonitor: AppSmartFileMonitorable {
+    
     private var fileMonitors: [UUID: DispatchSourceFileSystemObject] = [:]
-    private let updateQueue = DispatchQueue(label: "com.yourapp.fileUpdateQueue")
+    private let updateQueue = DispatchQueue(label: "ezMacker.com")
     private var pendingUpdates: [UUID: DispatchWorkItem] = [:]
 
     func startMonitoring(id: UUID, url: URL, changeHandler: @escaping (UUID, URL) -> Void) {

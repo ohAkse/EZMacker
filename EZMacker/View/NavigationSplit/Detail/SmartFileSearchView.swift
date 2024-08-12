@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SmartFileSearchView: View {
-    @ObservedObject var smartFileSearchViewModel: SmartFileSearchViewModel
+    @StateObject var smartFileSearchViewModel: SmartFileSearchViewModel
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     
     // 검색 입력 뷰
     private var searchInputView: some View {
@@ -16,17 +17,12 @@ struct SmartFileSearchView: View {
             TextField("검색어 입력", text: $smartFileSearchViewModel.searchText)
                 .padding(.leading, 10)
                 .frame(height: 45)
-                .textFieldStyle(PlainTextFieldStyle())
-                .background(Color.white)
-                .cornerRadius(12)
-                .overlay(RoundedRectangle(cornerRadius:  12).stroke(Color.clear))
+                .ezTextFieldStyle()
             Button("확인") {
                 smartFileSearchViewModel.search()
             }
-            .frame(width: 50, height: 45)
-            .buttonStyle(PlainButtonStyle())
-            .background(Color.blue)
-            .customBackgroundColor()
+            .frame(width: 55, height: 45)
+            .ezButtonStyle()
         }
         .cornerRadius(12)
     }
@@ -54,7 +50,7 @@ struct SmartFileSearchView: View {
                 .foregroundColor(.secondary)
             }
             .padding(5)
-            .listRowBackground(Color.white)
+            .ezListRowStyle()
             .contextMenu {
                 if let fileURL = fileInfo.fileURL {
                     Button("Finder에서 열기") {
@@ -63,10 +59,7 @@ struct SmartFileSearchView: View {
                 }
             }
         }
-        .scrollContentBackground(.hidden)
-        .listStyle(PlainListStyle())
-        .customBackgroundColor()
-        .cornerRadius(12)
+        .ezListViewStyle()
     }
     
     

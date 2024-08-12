@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-struct CustomTitle: View {
+struct EZTitle: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
     let size: CGFloat = FontSizeType.large.size
     let title: String
@@ -27,10 +27,10 @@ struct CustomTitle: View {
     }
     private func getHeaderFontStyles() -> [Color] {
         switch colorScheme.getColorScheme() {
-        case ColorSchemeMode.Light.title:
-            return [ThemeColor.lightGray.color, ThemeColor.lightBlack.color]
-        case ColorSchemeMode.Dark.title:
-            return [ThemeColor.lightBlack.color, ThemeColor.lightWhite.color]
+        case ColorSchemeModeType.Light.title:
+            return [ThemeColorType.lightGray.color, ThemeColorType.lightBlack.color]
+        case ColorSchemeModeType.Dark.title:
+            return [ThemeColorType.lightBlack.color, ThemeColorType.lightWhite.color]
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return [.clear, .clear]

@@ -9,21 +9,21 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     // Wi-Fi 세부 정보 뷰
     private func wifiDetailView(geo: GeometryProxy) -> some View {
         HStack(spacing: 0) {
-            InfoArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
+            EZArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
                 .environmentObject(colorSchemeViewModel)
             
             Spacer(minLength: 10)  
 
-            InfoChannelInfoView(channelBandwidth: $smartWifiViewModel.channelBandwidth, channelFrequency: $smartWifiViewModel.channelFrequency, channel: $smartWifiViewModel.channel)
+            EZChannelInfoView(channelBandwidth: $smartWifiViewModel.channelBandwidth, channelFrequency: $smartWifiViewModel.channelFrequency, channel: $smartWifiViewModel.channel)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
                 .environmentObject(colorSchemeViewModel)
             
             Spacer(minLength: 10)
 
-            InfoWifiDetailView(band: $smartWifiViewModel.band, hardwareAddress: $smartWifiViewModel.currentHardwareAddress, locale: $smartWifiViewModel.locale)
+            EZWifiDetailView(band: $smartWifiViewModel.band, hardwareAddress: $smartWifiViewModel.currentHardwareAddress, locale: $smartWifiViewModel.locale)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
                 .environmentObject(colorSchemeViewModel)
@@ -34,7 +34,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     // Wi-Fi 메인 정보 뷰
     private func wifiMainInfoView(geo: GeometryProxy) -> some View {
         HStack(alignment: .center, spacing: 0) {
-            InfoWifiMainInfoView(
+            EZWifiMainInfoView(
                 ssid: $smartWifiViewModel.ssID,
                 wifiLists: $smartWifiViewModel.currentScanningWifiDataList,
                 appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService()),
@@ -101,24 +101,25 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     }
 }
 
-struct SmartWifiView_Previews: PreviewProvider {
-    static var colorSchemeViewModel = ColorSchemeViewModel()
-    static var smartWifiService = AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface")
-    static var systemPreferenceService = SystemPreferenceService()
-    static var appCoreWLanWifiService = AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService())
-    static var appSettingService = AppSmartSettingsService()
-    @StateObject static var smartWifiViewModel = SmartWifiViewModel(
-        appSmartWifiService: smartWifiService,
-        systemPreferenceService: systemPreferenceService,
-        appCoreWLanWifiService: appCoreWLanWifiService,
-        appSettingService: appSettingService
-    )
-    
-    static var previews: some View {
-        SmartWifiView(smartWifiViewModel: smartWifiViewModel)
-            .environmentObject(colorSchemeViewModel)
-            .frame(width: 700, height: 1000)
-    }
-}
-
+//#if DEBUG
+//struct SmartWifiView_Previews: PreviewProvider {
+//    static var colorSchemeViewModel = ColorSchemeViewModel()
+//    static var smartWifiService = AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface")
+//    static var systemPreferenceService = SystemPreferenceService()
+//    static var appCoreWLanWifiService = AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService())
+//    static var appSettingService = AppSmartSettingsService()
+//    @StateObject static var smartWifiViewModel = SmartWifiViewModel(
+//        appSmartWifiService: smartWifiService,
+//        systemPreferenceService: systemPreferenceService,
+//        appCoreWLanWifiService: appCoreWLanWifiService,
+//        appSettingService: appSettingService
+//    )
+//    
+//    static var previews: some View {
+//        SmartWifiView(smartWifiViewModel: smartWifiViewModel)
+//            .environmentObject(colorSchemeViewModel)
+//            .frame(width: 700, height: 1000)
+//    }
+//}
+//#endif
 

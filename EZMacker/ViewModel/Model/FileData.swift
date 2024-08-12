@@ -8,7 +8,7 @@
 import SwiftUI
 import AppKit
 
-struct FileInfo: Codable, Identifiable {
+struct FileData: Codable, Identifiable {
     var id = UUID()
     var fileName: String = ""
     var fileSize: Int64 = 0
@@ -44,5 +44,5 @@ struct FileInfo: Codable, Identifiable {
         self.modificationDate = modificationDate
     }
 
-    static let empty = FileInfo()
+    static let empty = FileData()
 }

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-struct CustomContent: View {
+struct EZContent: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
     let size: CGFloat = FontSizeType.large.size
     let content: String
@@ -20,10 +20,10 @@ struct CustomContent: View {
     }
     private func getContentFontStyles() -> Color {
         switch colorScheme.getColorScheme() {
-        case ColorSchemeMode.Light.title:
-            return ThemeColor.lightBlack.color
-        case ColorSchemeMode.Dark.title:
-            return ThemeColor.lightWhite.color
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.lightBlack.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.lightWhite.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return .clear

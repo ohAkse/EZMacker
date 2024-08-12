@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct InfoArcIndicatorView: View {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+struct EZArcIndicatorView: View {
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @Binding var wifiStrength: Int
     @State var wifiPower: String = ""
     var body: some View {
@@ -41,10 +41,10 @@ struct InfoArcIndicatorView: View {
                         .padding(20)
                     VStack() {
                         Text("\(getWifiStrength())")
-                            .customNormalTextFont(fontSize: FontSizeType.large.size, isBold: true)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.large.size, isBold: true)
                         Spacer(minLength: 5)
                         Text("\(wifiStrength)dBm")
-                            .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.medium.size, isBold: true)
                             .fontWeight(.bold)
                         Spacer(minLength: 5)
                     
@@ -54,7 +54,7 @@ struct InfoArcIndicatorView: View {
                 .padding([.leading, .trailing], 15)
                 Spacer(minLength: 5)
             }
-            .customBackgroundColor()
+            .ezBackgroundColorStyle()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
@@ -83,11 +83,11 @@ struct InfoArcIndicatorView: View {
     }
     
     private func cardColorForTheme() -> Color {
-        switch colorScheme.getColorScheme() {
-        case ColorSchemeMode.Light.title:
-            return ThemeColor.lightGray.color
-        case ColorSchemeMode.Dark.title:
-            return ThemeColor.lightBlue.color
+        switch colorSchemeViewModel.getColorScheme() {
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.lightGray.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.lightBlue.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return Color.clear

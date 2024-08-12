@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InfoElipseHImageView: View {
+struct EZElipseHImageView: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
     let size: CGFloat = FontSizeType.large.size
     let title: String
@@ -16,14 +16,14 @@ struct InfoElipseHImageView: View {
     var body: some View {
         HStack {
             if isAdapterAnimated {
-                CustomTitle(title: title)
+                EZTitle(title: title)
                 Spacer()
-                CustomContent(content: content)
+                EZContent(content: content)
                     .padding(.trailing, 10)
                 Spacer()
             }
         }
-        .background(ThemeColor.lightBlue.color.opacity(0.7))
+        .background(ThemeColorType.lightBlue.color.opacity(0.7))
         .clipShape(.ellipse)
         .border(getBorderColor(), width: 2)
         .onAppear{
@@ -39,22 +39,22 @@ struct InfoElipseHImageView: View {
     }
     private func getBorderColor() -> Color {
         switch colorScheme.getColorScheme() {
-        case ColorSchemeMode.Light.title:
-            return ThemeColor.lightGray.color
-        case ColorSchemeMode.Dark.title:
-            return ThemeColor.lightGray.color
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.lightGray.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.lightGray.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
-            return ThemeColor.lightGray.color
+            return ThemeColorType.lightGray.color
         }
     }
     
     private func cardColorForTheme() -> Color {
         switch colorScheme.getColorScheme() {
-        case ColorSchemeMode.Light.title:
-            return ThemeColor.lightGray.color
-        case ColorSchemeMode.Dark.title:
-            return ThemeColor.lightBlue.color
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.lightGray.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.lightBlue.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return Color.clear
@@ -62,12 +62,12 @@ struct InfoElipseHImageView: View {
     }
 }
 
-#if DEBUG
-struct InfoElipseHImageView_Preview: PreviewProvider {
-    static var previews: some View {
-        HStack {
-            InfoElipseHImageView(title: "DD", content: "SS")
-        }
-    }
-}
-#endif
+//#if DEBUG
+//struct InfoElipseHImageView_Preview: PreviewProvider {
+//    static var previews: some View {
+//        HStack {
+//            InfoElipseHImageView(title: "DD", content: "SS")
+//        }
+//    }
+//}
+//#endif

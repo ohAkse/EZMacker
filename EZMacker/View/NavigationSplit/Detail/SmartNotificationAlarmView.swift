@@ -2,14 +2,14 @@ import SwiftUI
 
 struct SmartNotificationAlarmView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @ObservedObject var smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel
+    @StateObject var smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel
     @State private var toast: Toast?
     
     // 배터리 섹션 뷰
     private var batterySectionView: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("배터리")
-                .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: true)
+                .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.medium.size, isBold: true)
                 .padding(.top, 10)
             
             Picker("CPU 과사용시 종료하기", selection: $smartNotificationAlarmViewModel.selectedAppExitOption) {
@@ -58,7 +58,7 @@ struct SmartNotificationAlarmView: View {
     private var wifiSectionView: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("와이파이")
-                .customNormalTextFont(fontSize: FontSizeType.medium.size, isBold: true)
+                .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.medium.size, isBold: true)
                 .padding(.top, 10)
             
             HStack {
@@ -92,7 +92,7 @@ struct SmartNotificationAlarmView: View {
             }
             .buttonStyle(PlainButtonStyle())
             .background(Color.blue)
-            .customBackgroundColor()
+            .ezBackgroundColorStyle()
         }
         .padding(.top, 10)
     }
@@ -109,8 +109,9 @@ struct SmartNotificationAlarmView: View {
             smartNotificationAlarmViewModel.loadConfig()
         }
         .navigationTitle(CategoryType.smartNotificationAlarm.title)
-        .preferredColorScheme(colorSchemeViewModel.colorScheme == ColorSchemeMode.Dark.title ? .dark : .light)
+        .preferredColorScheme(colorSchemeViewModel.colorScheme == ColorSchemeModeType.Dark.title ? .dark : .light)
         .toastView(toast: $toast)
         .padding(30)
+        .environmentObject(colorSchemeViewModel)
     }
 }

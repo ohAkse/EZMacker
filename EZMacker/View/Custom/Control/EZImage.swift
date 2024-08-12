@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CustomImage: View {
+struct EZImage: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
     let systemName: String
     let isSystemName: Bool
@@ -31,9 +31,9 @@ struct CustomImage: View {
     
     private func getImageForegroundStyle() -> [Color] {
         switch colorScheme.getColorScheme() {
-        case ColorSchemeMode.Light.title:
+        case ColorSchemeModeType.Light.title:
             return [.gray, .blue]
-        case ColorSchemeMode.Dark.title:
+        case ColorSchemeModeType.Dark.title:
             return [.yellow, .green]
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
@@ -42,9 +42,9 @@ struct CustomImage: View {
     }
     private func getImageBackground() -> Color {
         switch colorScheme.getColorScheme() {
-        case ColorSchemeMode.Light.title:
-            return ThemeColor.lightWhite.color
-        case ColorSchemeMode.Dark.title:
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.lightWhite.color
+        case ColorSchemeModeType.Dark.title:
             return .clear
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
@@ -56,7 +56,7 @@ struct CustomImage: View {
 #if DEBUG
 struct CustomImage_Preview: PreviewProvider {
     static var previews: some View {
-        CustomImage(systemName: "globe", isSystemName: true)
+        EZImage(systemName: "globe", isSystemName: true)
     }
 }
 #endif

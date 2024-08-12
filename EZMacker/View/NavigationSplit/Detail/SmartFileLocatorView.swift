@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SmartFileLocatorView: View {
-    @ObservedObject var smartFileLocatorViewModel: SmartFileLocatorViewModel
+    @StateObject var smartFileLocatorViewModel: SmartFileLocatorViewModel
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @State private var showingAlert = false
     @State private var showingErrorAlert = false
     @State private var newTabName = ""
@@ -21,10 +22,10 @@ struct SmartFileLocatorView: View {
                 
                 if let selectedTab = smartFileLocatorViewModel.savedData.selectedTab {
                     fileGridView(for: selectedTab)
-                        .customBackgroundColor()
+                        .ezBackgroundColorStyle()
                 } else {
                     emptyStateView
-                        .customBackgroundColor()
+                        .ezBackgroundColorStyle()
                 }
             }
         }
@@ -40,6 +41,7 @@ struct SmartFileLocatorView: View {
         }
         .cornerRadius(12)
         .padding(30)
+        .environmentObject(colorSchemeViewModel)
     }
     private func tabBar(height: CGFloat) -> some View {
         HStack {
@@ -57,7 +59,7 @@ struct SmartFileLocatorView: View {
         .padding(.horizontal)
         .frame(height: height)
         .background(Color.white)
-        .customBackgroundColor()
+        .ezBackgroundColorStyle()
     }
     
     private func tabButton(for tab: String) -> some View {
@@ -99,25 +101,26 @@ struct SmartFileLocatorView: View {
     }
     
     private func fileGridView(for selectedTab: String) -> some View {
-        ZStack(alignment: .bottomTrailing) {
-            if smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].isEmpty {
-                emptyStateView
-            } else {
-                ScrollView {
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
-                        ForEach(Array(smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].keys), id: \.self) { id in
-                            FileView(id: id,
-                                     fileInfo: smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab]?[id] ?? .empty,
-                                     onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
-                                     onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
-                        }
-                    }
-                }
-                .padding(10)
-            }
-            addFileButton(for: selectedTab)
-        }
-    }
+         ZStack(alignment: .bottomTrailing) {
+             if smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].isEmpty {
+                 emptyStateView
+             } else {
+                 ScrollView {
+                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 20)], spacing: 20) {
+                         ForEach(Array(smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].keys), id: \.self) { id in
+                             FileView(id: id,
+                                      fileInfo: smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab]?[id] ?? .empty,
+                                      onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
+                                      onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
+                                 .id(id)
+                         }
+                     }
+                 }
+                 .padding(10)
+             }
+             addFileButton(for: selectedTab)
+         }
+     }
     
     private func addFileButton(for selectedTab: String) -> some View {
         Button(action: { smartFileLocatorViewModel.addFileView(for: selectedTab) }) {
@@ -135,13 +138,13 @@ struct SmartFileLocatorView: View {
             Spacer()
             Text("우측 상단의 +버튼을 눌러 탭을 추가 후 하단 +추가 해보세요. 화면에 파일을 드래그 후 클릭하면 해당 경로의 파일이 자동으로 열립니다.")
                 .foregroundColor(.gray)
-                .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(),fontSize: FontSizeType.small.size, isBold: false)
                 .multilineTextAlignment(.center)
                 .padding()
             
             Text("*주의: 파일명을 변경하거나 위치를 옮길 경우 바로가기 파일이 삭제됩니다.")
                 .foregroundColor(.red)
-                .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: true)
+                .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(),fontSize: FontSizeType.small.size, isBold: true)
                 .multilineTextAlignment(.center)
                 .padding()
             
@@ -165,7 +168,7 @@ struct SmartFileLocatorView: View {
 
 struct FileView: View {
     let id: UUID
-    let fileInfo: FileInfo
+    let fileInfo: FileData
     let onDelete: () -> Void
     let onDrop: (URL) -> Void
     @State private var isTargeted: Bool = false
@@ -176,6 +179,7 @@ struct FileView: View {
             filePreview
             fileDetails
         }
+        .frame(width: 150, height: 200)
         .padding(5)
         .background(isTargeted ? Color.blue.opacity(0.3) : Color.gray.opacity(0.2))
         .cornerRadius(12)

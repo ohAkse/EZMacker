@@ -1,23 +1,17 @@
-//
-//  InfoWifiMainView.swift
-//  EZMacker
-//
-//  Created by 박유경 on 6/2/24.
-//
-
 import SwiftUI
 import CoreWLAN
 
-struct InfoWifiMainInfoView: View {
+struct EZWifiMainInfoView: View {
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @Binding var ssid: String
     @Binding var wifiLists: [ScaningWifiData]
     @State private var password: String = ""
     @State private var isShowingPasswordModal = false
+    @State private var toast: Toast?
     var appCoreWLanWifiService: AppCoreWLANWifiProvidable
     var onRefresh: () -> Void
     var onWifiTap: (String, String) -> Void
     var onFindBestWifi: () -> Void
-    @State private var toast: Toast?
         
     
     var body: some View {
@@ -31,7 +25,7 @@ struct InfoWifiMainInfoView: View {
                         .fontWeight(.bold)
                     Spacer(minLength: 0)
                     Text("\(ssid)")
-                        .customNormalTextFont(fontSize: FontSizeType.large.size, isBold: true)
+                        .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.large.size, isBold: true)
                     Spacer()
                 }
                 .frame(width: 200, height: 300)
@@ -142,7 +136,7 @@ struct InfoWifiMainInfoView: View {
                         
                         .scrollContentBackground(.hidden)
                         .scrollClipDisabled(false)
-                        .customBackgroundColor()
+                        .ezBackgroundColorStyle()
                         .padding()
                         Spacer()
                     }
@@ -150,7 +144,7 @@ struct InfoWifiMainInfoView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .customBackgroundColor()
+        .ezBackgroundColorStyle()
         .clipped()
         .sheet(isPresented: $isShowingPasswordModal) {
             AlertTextFieldView(
@@ -176,45 +170,41 @@ struct InfoWifiMainInfoView: View {
     }
 }
 
-#if DEBUG
-struct InfoWifiMainInfoView_Previews: PreviewProvider {
-    static var colorScheme = ColorSchemeViewModel()
-    static var smartWifiService = AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface")
-    static var systemPreferenceService = SystemPreferenceService()
-    static var appCoreWLanWifiService = AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService())
-    static var appSettingService = AppSmartSettingsService()
-    @StateObject static var smartWifiViewModel = SmartWifiViewModel(
-        appSmartWifiService: smartWifiService,
-        systemPreferenceService: systemPreferenceService,
-        appCoreWLanWifiService: appCoreWLanWifiService,
-        appSettingService: appSettingService
-    )
-
-    @State static var ssid = "ABCD"
-    @State static var wifiLists = [
-        ScaningWifiData(ssid: "Network 1", rssi: "-70"),
-        ScaningWifiData(ssid: "Network  2", rssi: "-60"),
-        ScaningWifiData(ssid: "Network 3", rssi: "-80"),
-        ScaningWifiData(ssid: "Network 4", rssi: "-60"),
-        ScaningWifiData(ssid: "Network 5", rssi: "-80")
-    ]
-    
-    static var previews: some View {
-        InfoWifiMainInfoView(
-            ssid: $ssid,
-            wifiLists: $wifiLists,
-            appCoreWLanWifiService: appCoreWLanWifiService,
-            onRefresh: {},
-            onWifiTap: { _, _ in },
-            onFindBestWifi: {}
-        )
-        .environmentObject(colorScheme)
-        .environmentObject(smartWifiViewModel)
-        .frame(width: 700, height: 700)
-    }
-}
-#endif
-
-
-
-
+//#if DEBUG
+//struct InfoWifiMainInfoView_Previews: PreviewProvider {
+//    static var colorScheme = ColorSchemeViewModel()
+//    static var smartWifiService = AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface")
+//    static var systemPreferenceService = SystemPreferenceService()
+//    static var appCoreWLanWifiService = AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService())
+//    static var appSettingService = AppSmartSettingsService()
+//    @StateObject static var smartWifiViewModel = SmartWifiViewModel(
+//        appSmartWifiService: smartWifiService,
+//        systemPreferenceService: systemPreferenceService,
+//        appCoreWLanWifiService: appCoreWLanWifiService,
+//        appSettingService: appSettingService
+//    )
+//
+//    @State static var ssid = "ABCD"
+//    @State static var wifiLists = [
+//        ScaningWifiData(ssid: "Network 1", rssi: "-70"),
+//        ScaningWifiData(ssid: "Network  2", rssi: "-60"),
+//        ScaningWifiData(ssid: "Network 3", rssi: "-80"),
+//        ScaningWifiData(ssid: "Network 4", rssi: "-60"),
+//        ScaningWifiData(ssid: "Network 5", rssi: "-80")
+//    ]
+//
+//    static var previews: some View {
+//        InfoWifiMainInfoView(
+//            ssid: $ssid,
+//            wifiLists: $wifiLists,
+//            appCoreWLanWifiService: appCoreWLanWifiService,
+//            onRefresh: {},
+//            onWifiTap: { _, _ in },
+//            onFindBestWifi: {}
+//        )
+//        .environmentObject(colorScheme)
+//        .environmentObject(smartWifiViewModel)
+//        .frame(width: 700, height: 700)
+//    }
+//}
+//#endif

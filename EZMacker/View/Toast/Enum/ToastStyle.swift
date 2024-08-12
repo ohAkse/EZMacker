@@ -15,10 +15,10 @@ enum ToastStyle {
     
     var themeColor: Color {
         switch self {
-        case .error: return ThemeColor.lightRed.color
-        case .warning: return ThemeColor.lightYellow.color
-        case .info: return ThemeColor.lightGreen.color
-        case .success: return ThemeColor.lightBlue.color
+        case .error: return ThemeColorType.lightRed.color
+        case .warning: return ThemeColorType.lightYellow.color
+        case .info: return ThemeColorType.lightGreen.color
+        case .success: return ThemeColorType.lightBlue.color
         }
     }
     

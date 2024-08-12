@@ -1,12 +1,13 @@
 //
-//  CustomNormalImage.swift
+//  EZNormalImageStyle.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/14/24.
+//  Created by 박유경 on 8/12/24.
 //
 
 import SwiftUI
-struct CustomNormalImageModifier: ViewModifier {
+
+struct EZNormalImageStyle: ViewModifier {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
     var imageScale: Image.Scale
     var width: CGFloat
@@ -20,10 +21,10 @@ struct CustomNormalImageModifier: ViewModifier {
     
     private func imageColorForTheme() -> Color {
         switch colorScheme.getColorScheme() {
-        case ColorSchemeMode.Light.title:
-            return ThemeColor.lightBlue.color
-        case ColorSchemeMode.Dark.title:
-            return ThemeColor.lightGreen.color
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.lightBlue.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.lightGreen.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return Color.clear
@@ -32,10 +33,8 @@ struct CustomNormalImageModifier: ViewModifier {
 }
 
 extension View {
-    func customNormalImage(imageScale: Image.Scale, width: CGFloat, height: CGFloat) -> some View {
-        modifier(CustomNormalImageModifier(imageScale: imageScale, width: width, height: height))
+    func ezNormalImageStyle(imageScale: Image.Scale, width: CGFloat, height: CGFloat) -> some View {
+        modifier(EZNormalImageStyle(imageScale: imageScale, width: width, height: height))
     }
 }
-
-
 

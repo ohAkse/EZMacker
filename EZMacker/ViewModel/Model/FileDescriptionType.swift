@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FileType: String {
+enum FileDescriptionType: String {
     case regular = "NSFileTypeRegular"
     case directory = "NSFileTypeDirectory"
     case symbolicLink = "NSFileTypeSymbolicLink"
@@ -18,17 +18,17 @@ enum FileType: String {
     
     init(type: String) {
         switch type {
-        case FileType.regular.rawValue:
+        case FileDescriptionType.regular.rawValue:
             self = .regular
-        case FileType.directory.rawValue:
+        case FileDescriptionType.directory.rawValue:
             self = .directory
-        case FileType.symbolicLink.rawValue:
+        case FileDescriptionType.symbolicLink.rawValue:
             self = .symbolicLink
-        case FileType.socket.rawValue:
+        case FileDescriptionType.socket.rawValue:
             self = .socket
-        case FileType.characterSpecial.rawValue:
+        case FileDescriptionType.characterSpecial.rawValue:
             self = .characterSpecial
-        case FileType.blockSpecial.rawValue:
+        case FileDescriptionType.blockSpecial.rawValue:
             self = .blockSpecial
         default:
             self = .unknown

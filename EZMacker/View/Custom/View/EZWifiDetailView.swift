@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct InfoWifiDetailView: View {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+struct EZWifiDetailView: View {
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @Binding var band: String
     @Binding var hardwareAddress: String
     @Binding var locale: String
@@ -31,30 +31,30 @@ struct InfoWifiDetailView: View {
                     Spacer(minLength: 20)
                     HStack(spacing: 10) {
                         Text("밴드:")
-                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(band)")
-                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
                         Text("Mac:")
-                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(hardwareAddress)")
-                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
                         Text("Locale:")
-                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(locale)")
-                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
                 }
@@ -62,7 +62,7 @@ struct InfoWifiDetailView: View {
                 
                 Spacer(minLength: 5)
             }
-            .customBackgroundColor()
+            .ezBackgroundColorStyle()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }

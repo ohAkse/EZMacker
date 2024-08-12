@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct InfoChannelInfoView: View {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+struct EZChannelInfoView: View {
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @Binding var channelBandwidth: Int
     @Binding var channelFrequency: Int
     @Binding var channel: Int
@@ -32,30 +32,36 @@ struct InfoChannelInfoView: View {
                     Spacer(minLength: 20)
                     HStack(spacing: 10) {
                         Text("대역폭:")
-                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                            //.ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(channelBandwidth) MHz")
-                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                            //.ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
                         Text("주파수:")
-                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                            //.ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(channelFrequency) MHz")
-                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                            //.ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
                         Text("채널:")
-                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                            //.ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(channel)")
-                            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                            //.ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
                 }
@@ -63,7 +69,7 @@ struct InfoChannelInfoView: View {
                 
                 Spacer(minLength: 5)
             }
-            .customBackgroundColor()
+            .ezBackgroundColorStyle()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }

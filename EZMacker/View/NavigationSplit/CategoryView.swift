@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CategoryView: View {
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @Binding var selectionValue: CategoryType
     @State private var showAlert = false
     var body: some View {
@@ -16,20 +17,20 @@ struct CategoryView: View {
                 categoryRow(for: .smartBattery)
                 categoryRow(for: .smartWifi)                
             }
-            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
 
             Section(CategorySectionType.categoryUtilitySection.title) {
                 categoryRow(for: .smartFileLocator)
                 categoryRow(for: .smartFileSearch)
             }
-            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
             
             Section(CategorySectionType.settingSection.title) {
                 categoryRow(for: .smartNotificationAlarm)
             }
-            .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
         }
     }
@@ -37,9 +38,9 @@ struct CategoryView: View {
     private func categoryRow(for category: CategoryType) -> some View {
         return HStack {
             Image(systemName: category.imageName)
-                .customNormalImage(imageScale: .large, width:20, height: 20)
+                .ezNormalImageStyle(imageScale: .large, width:20, height: 20)
             Text(category.title)
-                .customNormalTextFont(fontSize: FontSizeType.small.size, isBold: false)
+                .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
 
         }
         .padding(.leading, 5)

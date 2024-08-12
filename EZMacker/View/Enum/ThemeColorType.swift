@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum ThemeColor {
+enum ThemeColorType {
     case darkBlue
     case darkBrown
     case lightGray

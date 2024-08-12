@@ -11,7 +11,7 @@ import AppKit
 
 class SmartFileSearchViewModel: ObservableObject {
     @Published var searchText: String = ""
-    @Published var searchResults: [FileInfo] = []
+    @Published var searchResults: [FileData] = []
     
     func search() {
         CommandToolRunner.shared.runMDFind(searchText: searchText) { [weak self] output in
@@ -29,7 +29,7 @@ class SmartFileSearchViewModel: ObservableObject {
         let fileManager = FileManager.default
         let paths = output.components(separatedBy: .newlines).filter { !$0.isEmpty }
         
-        searchResults = paths.compactMap { path -> FileInfo? in
+        searchResults = paths.compactMap { path -> FileData? in
             guard let attributes = try? fileManager.attributesOfItem(atPath: path) else { return nil }
             
             let fileURL = URL(fileURLWithPath: path)
@@ -38,7 +38,7 @@ class SmartFileSearchViewModel: ObservableObject {
             let fileType = (attributes[.type] as? String) ?? ""
             let modificationDate = attributes[.modificationDate] as? Date
             
-            return FileInfo(fileName: fileName,
+            return FileData(fileName: fileName,
                             fileSize: fileSize,
                             fileType: fileType,
                             fileURL: fileURL,
