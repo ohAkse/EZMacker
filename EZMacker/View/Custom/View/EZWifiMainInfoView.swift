@@ -12,12 +12,12 @@ struct EZWifiMainInfoView: View {
     var onRefresh: () -> Void
     var onWifiTap: (String, String) -> Void
     var onFindBestWifi: () -> Void
-        
+    
     
     var body: some View {
         VStack {
             HStack {
-                VStack {
+                VStack() {
                     Image(systemName: "wifi.router.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -29,7 +29,9 @@ struct EZWifiMainInfoView: View {
                     Spacer()
                 }
                 .frame(width: 200, height: 300)
-                .padding(40)
+                .padding([.leading, .trailing], 20)
+                .padding(.top, 60)
+                
                 Spacer()
                 if wifiLists.isEmpty {
                     HStack(alignment: .center) {
@@ -39,37 +41,20 @@ struct EZWifiMainInfoView: View {
                     }
                     Spacer()
                 } else {
-                    VStack {
+                    VStack(spacing:0) {
                         Spacer()
                         Button(action: {
                             didTapWifiListWithAscending()
-                        }) {
-                            Image(systemName: "arrowshape.up.fill")
-                                .resizable()
-                                .frame(width: 15, height: 15)
-                                .background(Color.clear)
-                                .clipShape(Circle())
-                        }
-                        .frame(width: 30, height: 30)
-                        .buttonStyle(PlainButtonStyle())
-                        .background(Color.white.opacity(0.4))
-                        .cornerRadius(12)
+                        }) {}
+                            .ezButtonImageStyle(imageName: "arrowshape.up.fill")
                         Spacer()
                         Button(action: {
                             didTapWifiListWithDescending()
-                        }) {
-                            Image(systemName: "arrowshape.down.fill")
-                                .resizable()
-                                .frame(width: 15, height: 15)
-                                .background(Color.clear)
-                                .clipShape(Circle())
-                        }
-                        .frame(width: 30, height: 30)
-                        .buttonStyle(PlainButtonStyle())
-                        .background(Color.white.opacity(0.4))
-                        .cornerRadius(12)
+                        }) {}
+                            .ezButtonImageStyle(imageName: "arrowshape.down.fill")
                         Spacer()
                     }
+                    .padding(.top, 20)
                     
                     VStack {
                         Spacer()
@@ -77,36 +62,17 @@ struct EZWifiMainInfoView: View {
                             Spacer()
                             Button(action: {
                                 onRefresh()
-                            }) {
-                                Image(systemName: "rays")
-                                    .resizable()
-                                    .frame(width: 15, height: 15)
-                                    .background(Color.clear)
-                                    .clipShape(Circle())
-                            }
-                            .frame(width: 30, height: 30)
-                            .buttonStyle(PlainButtonStyle())
-                            .background(Color.gray.opacity(0.4))
-                            .cornerRadius(12)
-                            
+                            }) {}
+                                .ezButtonImageStyle(imageName: "rays")
+                                .padding(.trailing, 5)
                             Button(action: {
                                 onFindBestWifi()
                                 toast = ToastData(type: .info, title: "정보", message: "최적의 와이파이를 찾고 있습니다.")
-                            }) {
-                                Image(systemName: "opticid.fill")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 15, height: 15)
-                                    .background(Color.clear)
-                                    .clipShape(Circle())
-                            }
-                            .frame(width: 30, height: 30)
-                            .buttonStyle(PlainButtonStyle())
-                            .background(Color.gray.opacity(0.4))
-                            .cornerRadius(12)
+                                
+                            }) {}
+                                .ezButtonImageStyle(imageName: "arrow.clockwise.circle")
                         }
-                        .padding([.trailing], 20)
-                        
+                        .padding([.trailing], 10)
                         List {
                             ForEach(wifiLists) { wifi in
                                 HStack {
@@ -127,19 +93,18 @@ struct EZWifiMainInfoView: View {
                                     isShowingPasswordModal = true
                                 }
                             }
-                            .listRowBackground(Color.clear)
+                            .ezListRowStyle()
                         }
                         .overlay(
-                            RoundedRectangle(cornerRadius: 8)
+                            RoundedRectangle(cornerRadius: 12)
                                 .stroke(Color.gray, lineWidth: 3)
                         )
-                        
                         .scrollContentBackground(.hidden)
                         .scrollClipDisabled(false)
                         .ezBackgroundColorStyle()
-                        .padding()
-                        Spacer()
+                        .padding(10)
                     }
+                    .ezListViewStyle()
                 }
             }
         }

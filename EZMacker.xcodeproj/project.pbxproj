@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F0F96732C6B67B800A70564 /* EZTextFieldWrapperStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F96722C6B67B800A70564 /* EZTextFieldWrapperStyle.swift */; };
 		5F1012A62BF3844300589C9B /* EZImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012A52BF3844300589C9B /* EZImage.swift */; };
 		5F1012A82BF3997E00589C9B /* EZElipseHImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012A72BF3997E00589C9B /* EZElipseHImageView.swift */; };
 		5F1012AC2BF399ED00589C9B /* EZTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012AB2BF399ED00589C9B /* EZTitle.swift */; };
@@ -53,7 +54,6 @@
 		5F485A0B2C69AE8C00B32585 /* EZListRowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F485A0A2C69AE8C00B32585 /* EZListRowStyle.swift */; };
 		5F485A0D2C69AF7C00B32585 /* EZButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F485A0C2C69AF7C00B32585 /* EZButtonStyle.swift */; };
 		5F498F322C06096000C69F06 /* EZArcIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F498F312C06096000C69F06 /* EZArcIndicatorView.swift */; };
-		5F5E23442C6A0A7400CD329F /* EZAdaptiveImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E23432C6A0A7400CD329F /* EZAdaptiveImageView.swift */; };
 		5F5E23462C6A2E2200CD329F /* EZTabbarButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */; };
 		5F5E234A2C6A469600CD329F /* EZTabbarBackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E23492C6A469600CD329F /* EZTabbarBackgroundStyle.swift */; };
 		5F5E234C2C6A483A00CD329F /* EZTabbarGridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E234B2C6A483A00CD329F /* EZTabbarGridStyle.swift */; };
@@ -96,6 +96,8 @@
 		5FDDCABB2C188152006A528A /* TextFieldRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDCABA2C188152006A528A /* TextFieldRepresentableView.swift */; };
 		5FDDCABD2C188189006A528A /* GifRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDCABC2C188189006A528A /* GifRepresentableView.swift */; };
 		5FDDCAC02C18834A006A528A /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDCABF2C18834A006A528A /* Then.swift */; };
+		5FDE1EE62C6B08E400E67FCE /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE1EE52C6B08E400E67FCE /* String + Extension.swift */; };
+		5FDE1EE82C6B0A1E00E67FCE /* EZButtonImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */; };
 		5FE7B8CE2C1DA5E300AA841E /* AlertOKCancleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE7B8CD2C1DA5E300AA841E /* AlertOKCancleView.swift */; };
 		5FEE27C12BE8DB0500847761 /* KeyboardModifierFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C02BE8DB0500847761 /* KeyboardModifierFlag.swift */; };
 		5FEE27C32BE8DB1900847761 /* KeyboardCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C22BE8DB1900847761 /* KeyboardCharacter.swift */; };
@@ -123,6 +125,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F0F96722C6B67B800A70564 /* EZTextFieldWrapperStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTextFieldWrapperStyle.swift; sourceTree = "<group>"; };
 		5F1012A52BF3844300589C9B /* EZImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZImage.swift; sourceTree = "<group>"; };
 		5F1012A72BF3997E00589C9B /* EZElipseHImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZElipseHImageView.swift; sourceTree = "<group>"; };
 		5F1012AB2BF399ED00589C9B /* EZTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTitle.swift; sourceTree = "<group>"; };
@@ -174,7 +177,6 @@
 		5F485A0A2C69AE8C00B32585 /* EZListRowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZListRowStyle.swift; sourceTree = "<group>"; };
 		5F485A0C2C69AF7C00B32585 /* EZButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZButtonStyle.swift; sourceTree = "<group>"; };
 		5F498F312C06096000C69F06 /* EZArcIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZArcIndicatorView.swift; sourceTree = "<group>"; };
-		5F5E23432C6A0A7400CD329F /* EZAdaptiveImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZAdaptiveImageView.swift; sourceTree = "<group>"; };
 		5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTabbarButtonStyle.swift; sourceTree = "<group>"; };
 		5F5E23492C6A469600CD329F /* EZTabbarBackgroundStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTabbarBackgroundStyle.swift; sourceTree = "<group>"; };
 		5F5E234B2C6A483A00CD329F /* EZTabbarGridStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTabbarGridStyle.swift; sourceTree = "<group>"; };
@@ -217,6 +219,8 @@
 		5FDDCABA2C188152006A528A /* TextFieldRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldRepresentableView.swift; sourceTree = "<group>"; };
 		5FDDCABC2C188189006A528A /* GifRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifRepresentableView.swift; sourceTree = "<group>"; };
 		5FDDCABF2C18834A006A528A /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
+		5FDE1EE52C6B08E400E67FCE /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZButtonImageStyle.swift; sourceTree = "<group>"; };
 		5FE7B8CD2C1DA5E300AA841E /* AlertOKCancleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOKCancleView.swift; sourceTree = "<group>"; };
 		5FEE27C02BE8DB0500847761 /* KeyboardModifierFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardModifierFlag.swift; sourceTree = "<group>"; };
 		5FEE27C22BE8DB1900847761 /* KeyboardCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCharacter.swift; sourceTree = "<group>"; };
@@ -265,6 +269,8 @@
 				5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */,
 				5F5E23492C6A469600CD329F /* EZTabbarBackgroundStyle.swift */,
 				5F5E234B2C6A483A00CD329F /* EZTabbarGridStyle.swift */,
+				5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */,
+				5F0F96722C6B67B800A70564 /* EZTextFieldWrapperStyle.swift */,
 			);
 			path = Modifier;
 			sourceTree = "<group>";
@@ -290,7 +296,6 @@
 				5F1012A52BF3844300589C9B /* EZImage.swift */,
 				5F1012AB2BF399ED00589C9B /* EZTitle.swift */,
 				5F1012AD2BF399F600589C9B /* EZContent.swift */,
-				5F5E23432C6A0A7400CD329F /* EZAdaptiveImageView.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -526,6 +531,7 @@
 				5FD031392BEA5E8D009A8169 /* Int + Extension.swift */,
 				5F3DBE102C04BBCA00B5C0DE /* Double + Extension.swift */,
 				5F3DBE122C04BC8800B5C0DE /* View + Extension.swift */,
+				5FDE1EE52C6B08E400E67FCE /* String + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -797,6 +803,7 @@
 			files = (
 				5F6D4E762BE8A2A4004B94F8 /* ToastType.swift in Sources */,
 				5F36041C2C3825B500C1B84B /* SmartFileSearchViewModel.swift in Sources */,
+				5FDE1EE82C6B0A1E00E67FCE /* EZButtonImageStyle.swift in Sources */,
 				5F6D4E652BE889BB004B94F8 /* Logger.swift in Sources */,
 				5FD0313A2BEA5E8D009A8169 /* Int + Extension.swift in Sources */,
 				5F69D28B2C0DDA9D00F318ED /* EZWifiDetailView.swift in Sources */,
@@ -812,6 +819,7 @@
 				5F3FF02A2C02BB5500E3246C /* AppSmartProcessService.swift in Sources */,
 				5F3DBE152C04C0C600B5C0DE /* CommandToolRunner.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
+				5F0F96732C6B67B800A70564 /* EZTextFieldWrapperStyle.swift in Sources */,
 				5F7815612C69CF9C00DE5F39 /* EZWifiMainInfoView.swift in Sources */,
 				5FEE27C52BE8DC4800847761 /* KeyboardShortCutHandler.swift in Sources */,
 				5F36C0892C17ECE00031C0E3 /* AlertTextFieldView.swift in Sources */,
@@ -853,7 +861,6 @@
 				5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */,
 				5FEE27C32BE8DB1900847761 /* KeyboardCharacter.swift in Sources */,
 				5F36041A2C38259400C1B84B /* SmartFileSearchView.swift in Sources */,
-				5F5E23442C6A0A7400CD329F /* EZAdaptiveImageView.swift in Sources */,
 				5F9999B02C1DF0E000D38D59 /* AppUsageExitOption.swift in Sources */,
 				5F97C3842BFA133A00B0DC56 /* SmartWifiViewModel.swift in Sources */,
 				5F7815652C69D3BD00DE5F39 /* AppSmartServiceProvidable.swift in Sources */,
@@ -881,6 +888,7 @@
 				5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */,
 				5F3FF0302C02BE9800E3246C /* ChargeData.swift in Sources */,
 				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,
+				5FDE1EE62C6B08E400E67FCE /* String + Extension.swift in Sources */,
 				5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */,
 				5F6D4E6A2BE88AD9004B94F8 /* ToolbarKeyType.swift in Sources */,
 			);

@@ -28,13 +28,12 @@ struct SmartFileSearchView: View {
                 .padding(.leading, 10)
                 .frame(height: 45)
                 .ezTextFieldStyle()
-            Button("확인") {
+            Button("검색") {
                 smartFileSearchViewModel.search()
             }
             .frame(width: 55, height: 45)
             .ezButtonStyle()
         }
-        .cornerRadius(12)
     }
     
     // 파일 정보 리스트 뷰

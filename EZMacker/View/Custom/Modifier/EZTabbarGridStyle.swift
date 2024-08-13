@@ -20,9 +20,9 @@ struct EZTabbarGridStyle: ViewModifier {
     private func backgroundColor() -> Color {
         switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
-            return ThemeColorType.lightGreen.color.opacity(0.1)
+            return ThemeColorType.white.color
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightRed.color.opacity(0.2) 
+            return ThemeColorType.darkBlue.color 
         default:
             Logger.fatalErrorMessage("colorScheme is Empty")
             return Color.primary

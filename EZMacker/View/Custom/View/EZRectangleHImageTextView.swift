@@ -15,6 +15,16 @@ struct EZRectangleHImageTextView: View {
     let isSystem: Bool
     let title: String
     let info: String
+    let isBatterStatus: Bool 
+    
+    
+    init(imageName: String, isSystem: Bool, title: String, info: String, isBatterStatus: Bool = false) {
+        self.imageName = imageName
+        self.isSystem = isSystem
+        self.title = title
+        self.info = info
+        self.isBatterStatus = isBatterStatus
+    }
     
     var body: some View {
         GeometryReader { geo in
@@ -23,7 +33,6 @@ struct EZRectangleHImageTextView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .symbolRenderingMode(.palette)
-                    .foregroundStyle(getImageForegroundStyle()[0], getImageForegroundStyle()[1])
                     .padding(10)
                     .animation(.easeIn(duration: 3), value:isAnimated)
                 Spacer(minLength: 5)
@@ -31,11 +40,18 @@ struct EZRectangleHImageTextView: View {
                         Text(title)
                             .bold()
                             .padding(.bottom, 5)
-                            .font(.system(size: 20))
+                            .foregroundStyle(titleTextColor())
+                            .font(.system(size: FontSizeType.large.size))
                     if isAnimated {
-                        Text(info)
-                            .foregroundStyle(colorForHealthState(healthState: info))
-                            .font(.system(size: 15))
+                        if isBatterStatus {
+                            Text(info)
+                                .foregroundStyle(colorForHealthState(healthState: info))
+                                .font(.system(size: FontSizeType.medium.size))
+                        } else {
+                            Text(info)
+                                .foregroundStyle(contentTextColor())
+                                .font(.system(size: FontSizeType.medium.size))
+                        }
                     }
                 }
                 .onAppear{
@@ -59,23 +75,9 @@ struct EZRectangleHImageTextView: View {
             }
         }
         .padding(.vertical)
-        .shadow(radius: 5)
-        
     }
     private func getImage() -> Image {
         return isSystem ? Image(systemName: imageName) : Image(imageName)
-    }
-
-    private func getImageForegroundStyle() -> [Color] {
-        switch colorScheme.getColorScheme() {
-        case ColorSchemeModeType.Light.title:
-            return [ThemeColorType.lightGreen.color, ThemeColorType.lightGray.color]
-        case ColorSchemeModeType.Dark.title:
-            return [.yellow, .green]
-        default:
-            Logger.fatalErrorMessage("colorSchme is Empty")
-            return [.clear, .clear]
-        }
     }
     
     private func colorForHealthState(healthState: String) -> Color {
@@ -91,12 +93,36 @@ struct EZRectangleHImageTextView: View {
         }
     }
     
+    private func titleTextColor() -> Color {
+        switch colorScheme.getColorScheme() {
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.black.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.lightGray.color
+        default:
+            Logger.fatalErrorMessage("colorSchme is Empty")
+            return Color.clear
+        }
+    }
+    
+    private func contentTextColor() -> Color {
+        switch colorScheme.getColorScheme() {
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.black.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.lightWhite.color
+        default:
+            Logger.fatalErrorMessage("colorSchme is Empty")
+            return Color.clear
+        }
+    }
+    
     private func cardColorForTheme() -> Color {
         switch colorScheme.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightBlue.color
+            return ThemeColorType.lightDark.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return Color.clear

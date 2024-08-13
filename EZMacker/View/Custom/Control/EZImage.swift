@@ -45,7 +45,7 @@ struct EZImage: View {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightWhite.color
         case ColorSchemeModeType.Dark.title:
-            return .clear
+            return ThemeColorType.lightGray.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return .clear

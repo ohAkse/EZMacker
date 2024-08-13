@@ -14,17 +14,17 @@ struct EZBackgroundStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .background(
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: 12)
                     .foregroundColor(cardColorForTheme())
             )
-            .cornerRadius(10)
+            .cornerRadius(12)
     }
     private func cardColorForTheme() -> Color {
         switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightYellow.color
+            return ThemeColorType.lightDark.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return Color.clear

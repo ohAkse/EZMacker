@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EZElipseHImageView: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
-    let size: CGFloat = FontSizeType.large.size
+    let size: CGFloat = FontSizeType.medium.size
     let title: String
     let content: String
     @State var isAdapterAnimated = false
@@ -23,9 +23,8 @@ struct EZElipseHImageView: View {
                 Spacer()
             }
         }
-        .background(ThemeColorType.lightBlue.color.opacity(0.7))
-        .clipShape(.ellipse)
-        .border(getBorderColor(), width: 2)
+        .background(cardColorForTheme())
+        .clipShape(.capsule)
         .onAppear{
             withAnimation(.spring(duration: 0.2)) {
                 isAdapterAnimated.toggle()
@@ -36,25 +35,15 @@ struct EZElipseHImageView: View {
                 isAdapterAnimated.toggle()
            }
         }
-    }
-    private func getBorderColor() -> Color {
-        switch colorScheme.getColorScheme() {
-        case ColorSchemeModeType.Light.title:
-            return ThemeColorType.lightGray.color
-        case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightGray.color
-        default:
-            Logger.fatalErrorMessage("colorSchme is Empty")
-            return ThemeColorType.lightGray.color
-        }
+        .padding(5)
     }
     
     private func cardColorForTheme() -> Color {
         switch colorScheme.getColorScheme() {
         case ColorSchemeModeType.Light.title:
-            return ThemeColorType.lightGray.color
+            return ThemeColorType.white.color
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightBlue.color
+            return ThemeColorType.softWhite.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return Color.clear
@@ -63,11 +52,10 @@ struct EZElipseHImageView: View {
 }
 
 //#if DEBUG
-//struct InfoElipseHImageView_Preview: PreviewProvider {
+//struct EZElipseHImageView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        HStack {
-//            InfoElipseHImageView(title: "DD", content: "SS")
-//        }
+//        EZElipseHImageView(title: "Title", content: "Content")
+//            .environmentObject(ColorSchemeViewModel())
 //    }
 //}
 //#endif

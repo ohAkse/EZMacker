@@ -33,7 +33,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     private func topSection(geo: GeometryProxy) -> some View {
         HStack(alignment: .top, spacing: 0) {
             chargingInfoView(geo: geo)
-            Spacer()
+            Spacer(minLength: 10)
             voltageInfoView(geo: geo)
         }
         .frame(height: geo.size.height * 0.2)
@@ -43,14 +43,12 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
             if smartBatteryViewModel.isAdapterConnected {
                 if smartBatteryViewModel.currentBatteryCapacity * 100 == 100 {
                     EZRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: "충전완료")
-                        .environmentObject(colorSchemeViewModel)
+                        
                 } else {
-                    EZRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지 ", info: smartBatteryViewModel.chargingTime.toHourMinute())
-                        .environmentObject(colorSchemeViewModel)
+                    EZRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: smartBatteryViewModel.chargingTime.toHourMinute())
                 }
             } else if smartBatteryViewModel.chargingTime <= 1 {
-                EZRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지 ", info: smartBatteryViewModel.remainingTime.toHourMinute())
-                    .environmentObject(colorSchemeViewModel)
+                EZRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지", info: smartBatteryViewModel.remainingTime.toHourMinute())
             }
         }
         .onReceive(smartBatteryViewModel.$isAdapterConnected) { isConnected in
@@ -58,7 +56,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 toast = ToastData(type: .info, title: "정보", message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 5분이 소요됩니다.", duration: 10)
             }
         }
-        .frame(width: geo.size.width * 0.2, height: geo.size.height * 0.2)
+        .frame(width: geo.size.width * 0.22, height: geo.size.height * 0.2)
     }
     
     private func voltageInfoView(geo: GeometryProxy) -> some View {
@@ -79,18 +77,16 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 EZGridHMonitoringView(chargeData: $smartBatteryViewModel.chargeData, isAdapterConnect: $smartBatteryViewModel.isAdapterConnected)
                     .padding(.vertical,20)
             }
-            EZAdaptiveImageView(name: "battery_setting", systemName: false)
-                .renderingMode(.template)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30, height: 30)
-                .tint(Color.blue)
-                .onTapGesture {
-                    smartBatteryViewModel.openSettingWindow(settingPath: SystemPreference.batterySave.pathString)
-                }
-                .offset(y: -20)
+            Button(action: {  smartBatteryViewModel.openSettingWindow(settingPath: SystemPreference.batterySave.pathString) }) {}
+                .ezButtonImageStyle(
+                    imageName: "gearshape.fill",
+                    imageSize: CGSize(width: 20, height: 20),
+                    lightModeBackgroundColor: .clear,
+                    darkModeBackgroundColor:  .clear
+                )
+                .offset(y: -15)
         }
-        .frame(width: geo.size.width * 0.72, height: geo.size.height * 0.2)
+        .frame(width: geo.size.width * 0.75)
     }
     
     private func adapterInfoSection(geo: GeometryProxy) -> some View {
@@ -112,38 +108,33 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                     EZImage(systemName: "battery_adapter", isSystemName: false)
                     EZContent(content: adapterInfo.Name)
                 }
+                .frame(width: geo.size.width * 0.3)
+                VStack(spacing: 0) {
+                    Spacer()
+                    EZElipseHImageView(title: "Adp ID", content: "\(adapterInfo.AdapterID)")
+                    Spacer()
+                    EZElipseHImageView(title: "Model ID", content: "\(adapterInfo.Model)")
+                    Spacer()
+                    EZElipseHImageView(title: "F/W Ver", content: "\(adapterInfo.FwVersion)")
+                    Spacer()
+                }
+                .ezBackgroundColorStyle()
+                .frame(width: geo.size.width * 0.33)
+                
+                Spacer(minLength: 5)
                 
                 VStack(spacing: 0) {
                     Spacer()
-                    EZElipseHImageView(title: "어댑터ID", content: "\(adapterInfo.AdapterID)")
+                    EZElipseHImageView(title: "Mfr.", content: "\(adapterInfo.Manufacturer)")
                     Spacer()
-                    EZElipseHImageView(title: "모델ID", content: "\(adapterInfo.Model)")
+                    EZElipseHImageView(title: "Watts", content: "\(adapterInfo.Watts)" + "W")
                     Spacer()
-                    EZElipseHImageView(title: "펌웨어버전", content: "\(adapterInfo.FwVersion)")
-                    Spacer()
-                }
-                .background {
-                    RoundedRectangle(cornerRadius: 15)
-                }
-                .frame(width: geo.size.width * 0.4)
-                .foregroundColor(ThemeColorType.lightGray.color)
-                
-                Spacer(minLength: 20)
-                
-                VStack(spacing: 0) {
-                    Spacer()
-                    EZElipseHImageView(title: "제조사", content: "\(adapterInfo.Manufacturer)")
-                    Spacer()
-                    EZElipseHImageView(title: "와츠", content: "\(adapterInfo.Watts)" + "W")
-                    Spacer()
-                    EZElipseHImageView(title: "하드웨어버전", content: "\(adapterInfo.HwVersion)")
+                    EZElipseHImageView(title: "H/W Ver", content: "\(adapterInfo.HwVersion)")
                     Spacer()
                 }
-                .frame(width: geo.size.width * 0.4)
-                .background {
-                    RoundedRectangle(cornerRadius: 15)
-                }
-                .foregroundColor(ThemeColorType.lightGray.color)
+
+                .frame(width: geo.size.width * 0.33)
+                .ezBackgroundColorStyle()
             }
         }
     }
@@ -170,12 +161,15 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                     }
                     .frame(width: geo.size.width * 0.5)
                     VStack(spacing: 0) {
-                        EZRectangleHImageTextView(imageName: "battery_status", isSystem: false, title: "배터리 상태", info: smartBatteryViewModel.healthState == "" ? "계산중.." : smartBatteryViewModel.healthState)
+                        EZRectangleHImageTextView(imageName: "battery_status",
+                                                  isSystem: false,
+                                                  title: "배터리 상태",
+                                                  info: smartBatteryViewModel.healthState == "" ? "계산중.." : smartBatteryViewModel.healthState,
+                                                  isBatterStatus: true)
                             .frame(height: geo.size.height * 0.2)
-                            .environmentObject(colorSchemeViewModel)
                         EZRectangleHImageTextView(imageName: "battery_cell", isSystem: false, title: "베터리셀 끊김 횟수", info: "\(smartBatteryViewModel.batteryCellDisconnectCount)")
                             .frame(height: geo.size.height * 0.2)
-                            .environmentObject(colorSchemeViewModel)
+
                     }
                 }
             }
@@ -186,16 +180,12 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
         HStack(spacing: 30) {
             EZRectangleHImageTextView(imageName: "battery_recycle", isSystem: false, title: "사이클 수", info: smartBatteryViewModel.cycleCount.toBun())
                 .frame(height: geo.size.height * 0.2)
-                .environmentObject(colorSchemeViewModel)
             EZRectangleHImageTextView(imageName: "battery_thermometer", isSystem: false, title: "온도", info: smartBatteryViewModel.temperature.toDegree())
                 .frame(height: geo.size.height * 0.2)
-                .environmentObject(colorSchemeViewModel)
             EZRectangleHImageTextView(imageName: "battery_currentCapa", isSystem: false, title: "배터리 용량", info: smartBatteryViewModel.batteryMaxCapacity.tomAH())
                 .frame(height: geo.size.height * 0.2)
-                .environmentObject(colorSchemeViewModel)
             EZRectangleHImageTextView(imageName: "battery_designdCapa", isSystem: false, title: "설계 용량", info: smartBatteryViewModel.designedCapacity.tomAH())
                 .frame(height: geo.size.height * 0.2)
-                .environmentObject(colorSchemeViewModel)
         }
         .padding(.top, 20)
     }

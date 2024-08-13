@@ -13,6 +13,10 @@ class SmartFileSearchViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var searchResults: [FileData] = []
     
+    deinit {
+        Logger.writeLog(.debug, message: "SmartFileSearchViewModel deinit Called")
+    }
+    
     func search() {
         CommandToolRunner.shared.runMDFind(searchText: searchText) { [weak self] output in
             DispatchQueue.main.async {

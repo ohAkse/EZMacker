@@ -5,10 +5,12 @@
 //  Created by 박유경 on 5/27/24.
 //
 
-//https://ss64.com/mac/
+
 import Foundation
 import AppKit
-
+//https://ss64.com/mac/
+// mdfind "kMDItemDisplayName == '*무제*'"
+// mdfind "kMDItemDisplayName == '*무제*'" -onlyin ~/Downloads
 //다운로드, 사진, 그림, 영화, 음악 등 기본적으로 제한
 struct CommandToolRunner {
     static let shared = CommandToolRunner()
@@ -29,7 +31,7 @@ struct CommandToolRunner {
         
         var results = [String]()
         let group = DispatchGroup()
-        let queue = DispatchQueue(label: "com.example.resultsQueue")
+        let queue = DispatchQueue(label: "ezMacker.com")
         
         for folderURL in folderURLs {
             group.enter()
@@ -38,11 +40,7 @@ struct CommandToolRunner {
             process.executableURL = URL(fileURLWithPath: "/usr/bin/mdfind")
             
             var query: String
-            if let fileType = fileType {
-                query = "kMDItemDisplayName == '*\(searchText)*'cd && kMDItemKind == '\(fileType)'cd"
-            } else {
-                query = "kMDItemDisplayName == '*\(searchText)*'cd"
-            }
+            query = "kMDItemDisplayName == '*\(searchText)*'cd"
             
             process.arguments = [query, "-onlyin", folderURL.path]
             

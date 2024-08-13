@@ -25,7 +25,7 @@ struct EZTextFieldStyle: ViewModifier {
             .cornerRadius(12)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(borderColorForTheme(), lineWidth: 1)
+                    .stroke(.clear, lineWidth: 1)
             )
     }
     
@@ -34,25 +34,13 @@ struct EZTextFieldStyle: ViewModifier {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightBlue.color
+            return ThemeColorType.lightDark.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return Color.clear
         }
     }
-    
-    private func borderColorForTheme() -> Color {
-        switch colorSchemeViewModel.getColorScheme() {
-        case ColorSchemeModeType.Light.title:
-            return ThemeColorType.lightGray.color
-        case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightBlue.color
-        default:
-            return Color.clear
-        }
-    }
     private func foregroundColorForTheme() -> Color {
-
         switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.black.color.opacity(0.7)

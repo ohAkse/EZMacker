@@ -7,6 +7,7 @@
 
 import Foundation
 enum FontSizeType {
+    case extrasmall
     case small
     case medium
     case large
@@ -14,6 +15,7 @@ enum FontSizeType {
     
     var size: CGFloat {
         switch self {
+        case .extrasmall: 12
         case .small: 15
         case .medium: 20
         case .large: 25

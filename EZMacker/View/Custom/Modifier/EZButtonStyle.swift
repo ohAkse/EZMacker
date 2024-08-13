@@ -8,36 +8,32 @@
 import SwiftUI
 
 struct EZButtonStyle: ButtonStyle {
-    @Environment(\.colorScheme) var colorScheme
-    let baseColor: Color
-    
-    init(baseColor: Color = .blue) {
-        self.baseColor = baseColor
-    }
-    
+    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
             .background(dynamicBackgroundColor)
-            .foregroundColor(.white)
+            .foregroundColor(.black)
             .cornerRadius(12)
-            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+            .scaleEffect(configuration.isPressed ? 0.98 : 1)
     }
     
     private var dynamicBackgroundColor: Color {
-        switch colorScheme {
-        case .light:
-            return baseColor.opacity(0.8)
-        case .dark:
-            return baseColor.opacity(0.6)
-        @unknown default:
-            return baseColor
+        switch colorSchemeViewModel.getColorScheme() {
+        case ColorSchemeModeType.Light.title:
+            return Color.blue
+        case ColorSchemeModeType.Dark.title:
+            return Color.orange
+        default:
+            Logger.fatalErrorMessage("colorScheme is Empty")
+            return Color.primary
         }
     }
 }
 
 extension View {
-    func ezButtonStyle(baseColor: Color = .blue) -> some View {
-        self.buttonStyle(EZButtonStyle(baseColor: baseColor))
+    func ezButtonStyle() -> some View {
+        self.buttonStyle(EZButtonStyle())
     }
 }

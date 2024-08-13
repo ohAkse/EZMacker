@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+
 struct EZContent: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
-    let size: CGFloat = FontSizeType.large.size
+    let size: CGFloat = FontSizeType.small.size
     let content: String
     
     var body: some View {

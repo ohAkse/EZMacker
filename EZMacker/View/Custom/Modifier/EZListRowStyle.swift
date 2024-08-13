@@ -18,9 +18,9 @@ struct EZListRowStyle: ViewModifier {
     private func backgroundColorForTheme() -> Color {
         switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
-            return ThemeColorType.lightGray.color.opacity(0.3)
+            return ThemeColorType.white.color
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightBlue.color.opacity(0.7)
+            return ThemeColorType.softGray.color
         default:
             return Color.clear
         }

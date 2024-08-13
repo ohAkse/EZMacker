@@ -18,9 +18,9 @@ struct EZTabbarBackgroundStyle: ViewModifier {
     private func backgroundColor() -> Color {
         switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
-            return ThemeColorType.lightGreen.color
+            return ThemeColorType.darkGray.color.opacity(0.8)
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightRed.color
+            return ThemeColorType.softGray.color
         default:
             Logger.fatalErrorMessage("colorScheme is Empty")
             return Color.primary

@@ -8,14 +8,14 @@
 import SwiftUI
 struct EZTitle: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
-    let size: CGFloat = FontSizeType.large.size
+    let size: CGFloat = FontSizeType.small.size
     let title: String
     
     
     var body: some View {
         Text(title)
-            .frame(width: 120, height: 50)
-            .font(.system(size: FontSizeType.medium.size))
+            .frame(width: 70, height: 50)
+            .font(.system(size: size))
             .fontWeight(.bold)
             .fixedSize(horizontal: false, vertical: true)
             .padding()
@@ -28,9 +28,9 @@ struct EZTitle: View {
     private func getHeaderFontStyles() -> [Color] {
         switch colorScheme.getColorScheme() {
         case ColorSchemeModeType.Light.title:
-            return [ThemeColorType.lightGray.color, ThemeColorType.lightBlack.color]
+            return [ThemeColorType.lightBlack.color, ThemeColorType.lightYellow.color]
         case ColorSchemeModeType.Dark.title:
-            return [ThemeColorType.lightBlack.color, ThemeColorType.lightWhite.color]
+            return [ThemeColorType.lightWhite.color, ThemeColorType.lightBlue.color]
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return [.clear, .clear]

@@ -18,10 +18,8 @@ struct SmartNotificationAlarmView: View {
             smartNotificationAlarmViewModel.loadConfig()
         }
         .navigationTitle(CategoryType.smartNotificationAlarm.title)
-        .preferredColorScheme(colorSchemeViewModel.colorScheme == ColorSchemeModeType.Dark.title ? .dark : .light)
         .toastView(toast: $toast)
         .padding(30)
-        .environmentObject(colorSchemeViewModel)
     }
     
     // 배터리 섹션 뷰
@@ -40,11 +38,11 @@ struct SmartNotificationAlarmView: View {
             .padding()
             .ezInnerBackgroundStyle()
             
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 16) {
                 HStack {
                     Text("배터리 상태 (0-100%)")
                     TextFieldRepresentableView(text: $smartNotificationAlarmViewModel.batteryPercentage)
-                        .padding(5)
+                        .ezTextFieldWrapperStyle() // 디폴트 스타일 비슷하게 따라함(통일성)
                 }
                 .padding()
                 .ezInnerBackgroundStyle()
@@ -84,7 +82,6 @@ struct SmartNotificationAlarmView: View {
             }
             .padding()
             .ezInnerBackgroundStyle()
-            .cornerRadius(8)
         }
         .padding()
         .ezBackgroundColorStyle()

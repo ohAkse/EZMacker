@@ -7,25 +7,24 @@
 
 import SwiftUI
 
-struct EZTabbarButtonStyle: ViewModifier {
+struct EZTabbarButtonStyle: ButtonStyle {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
 
-    func body(content: Content) -> some View {
-        content
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
             .buttonStyle(PlainButtonStyle())
-            .frame(width: 100)
-            .background(backgroundColor())
+            .background(dynamicBackgroundColor)
             .cornerRadius(12)
             .contentShape(RoundedRectangle(cornerRadius: 12))
-            .padding(5)
+            .scaleEffect(configuration.isPressed ? 0.98 : 1)
     }
     
-    private func backgroundColor() -> Color {
+    private var dynamicBackgroundColor: Color {
         switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
-            return ThemeColorType.lightBlue.color.opacity(0.8)
+            return ThemeColorType.white.color
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.darkBrown.color.opacity(0.7)
+            return ThemeColorType.darkBlue.color.opacity(0.7)
         default:
             Logger.fatalErrorMessage("colorScheme is Empty")
             return Color.primary
@@ -35,6 +34,7 @@ struct EZTabbarButtonStyle: ViewModifier {
 
 extension View {
     func ezTabbarButtonStyle() -> some View {
-        self.modifier(EZTabbarButtonStyle())
+        self.buttonStyle(EZTabbarButtonStyle())
     }
 }
+

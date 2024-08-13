@@ -25,7 +25,7 @@ struct EZListViewStyle: ViewModifier {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightBlue.color
+            return ThemeColorType.lightDark.color
         default:
             return Color.clear
         }
