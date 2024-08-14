@@ -15,7 +15,7 @@ struct ColorSchemeToolbarView: View {
     
     var body: some View {
         Button {
-            let scheme = buttonTag == 0 ? ColorSchemeMode.Light.title : ColorSchemeMode.Dark.title
+            let scheme = buttonTag == 0 ? ColorSchemeModeType.Light.title : ColorSchemeModeType.Dark.title
             colorSchemeViewModel.updateColorScheme(to: scheme)
         } label: {
             Text(buttonTitle)

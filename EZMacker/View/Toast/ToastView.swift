@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ToastView: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
-    var type: ToastStyle
+    var type: ToastType
     var title: String
     var message: String
     var onCancelTapped: (() -> Void)
@@ -22,11 +22,11 @@ struct ToastView: View {
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(colorScheme.getColorScheme() == ColorSchemeMode.Light.title ? ThemeColor.lightBlack.color : ThemeColor.lightBlack.color)
+                        .foregroundColor(colorScheme.getColorScheme() == ColorSchemeModeType.Light.title ? ThemeColorType.lightBlack.color : ThemeColorType.lightBlack.color)
                     
                     Text(message)
                         .font(.system(size: 12))
-                        .foregroundColor(colorScheme.getColorScheme() == ColorSchemeMode.Light.title ? ThemeColor.lightBlack.color : ThemeColor.lightBlack.color)
+                        .foregroundColor(colorScheme.getColorScheme() == ColorSchemeModeType.Light.title ? ThemeColorType.lightBlack.color : ThemeColorType.lightBlack.color)
                 }
                 
                 Spacer(minLength: 10)
@@ -55,7 +55,7 @@ struct ToastView: View {
     }
 }
 struct ToastModifier: ViewModifier {
-    @Binding var toast: Toast?
+    @Binding var toast: ToastData?
     @State private var workItem: DispatchWorkItem?
     
     func body(content: Content) -> some View {
@@ -64,7 +64,6 @@ struct ToastModifier: ViewModifier {
             .overlay(
                 ZStack {
                     mainToastView()
-                        .offset(y: -30)
                 }.animation(.spring(), value: toast)
             )
             .onChange(of: toast) {

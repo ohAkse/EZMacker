@@ -10,10 +10,11 @@ class AppNotificationManager {
     static let shared = AppNotificationManager()
 
     func sendNotification(title: String, subtitle: String) {
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.subtitle = subtitle
-        content.sound = UNNotificationSound.default
+        let content = UNMutableNotificationContent().then {
+            $0.title = title
+            $0.subtitle = subtitle
+            $0.sound = UNNotificationSound.default
+        }
 
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
 
