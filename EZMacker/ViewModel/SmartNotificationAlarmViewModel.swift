@@ -19,6 +19,9 @@ class SmartNotificationAlarmViewModel: ObservableObject {
     //Wifi
     @Published var selectedBestSSidOption = BestSSIDShowOption.alert
     
+    //File Locator
+    @Published var isFileChangeAlarmDisabled = false
+    
     private var appSettingService: AppSmartSettingProvidable
     private var appProcessService: AppSmartProcessProvidable
     private var cancellables = Set<AnyCancellable>()
@@ -32,7 +35,7 @@ class SmartNotificationAlarmViewModel: ObservableObject {
     func loadConfig() {
         if let isBatteryWarningMode: Bool = appSettingService.loadConfig(.isBatteryWarningMode) {
              self.isBatteryWarningMode = isBatteryWarningMode
-         }
+        }
         if let isBattryCurrentMessageMode: Bool = appSettingService.loadConfig(.isBattryCurrentMessageMode) {
              self.isBattryCurrentMessageMode = isBattryCurrentMessageMode
          }
@@ -45,6 +48,9 @@ class SmartNotificationAlarmViewModel: ObservableObject {
         if let selectedBestSSidMode: String = appSettingService.loadConfig(.bestSSidShowMode) {
             self.selectedBestSSidOption = BestSSIDShowOption(rawValue: selectedBestSSidMode) ?? .alert
          }
+        if let isFileChangeAlarmDisabled: Bool = appSettingService.loadConfig(.isFileChangeAlarmDisabled) {
+             self.isFileChangeAlarmDisabled = isFileChangeAlarmDisabled
+        }
     }
         
     func saveConfig() {
@@ -53,5 +59,6 @@ class SmartNotificationAlarmViewModel: ObservableObject {
         appSettingService.saveConfig(.batteryPercentage, value: batteryPercentage)
         appSettingService.saveConfig(.appExitMode, value: selectedAppExitOption.value)
         appSettingService.saveConfig(.bestSSidShowMode, value: selectedBestSSidOption.value)
+        appSettingService.saveConfig(.isFileChangeAlarmDisabled, value: isFileChangeAlarmDisabled)
     }
 }

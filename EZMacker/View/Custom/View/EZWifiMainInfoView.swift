@@ -8,6 +8,7 @@ struct EZWifiMainInfoView: View {
     @State private var password: String = ""
     @State private var isShowingPasswordModal = false
     @State private var toast: ToastData?
+    @State private var selectedSSid: String = ""
     var appCoreWLanWifiService: AppCoreWLANWifiProvidable
     var onRefresh: () -> Void
     var onWifiTap: (String, String) -> Void
@@ -25,7 +26,7 @@ struct EZWifiMainInfoView: View {
                         .fontWeight(.bold)
                     Spacer(minLength: 0)
                     Text("\(ssid)")
-                        .ezNormalTextStyle(fontSize: FontSizeType.large.size, isBold: true)
+                        .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                     Spacer()
                 }
                 .frame(width: 200, height: 300)
@@ -89,7 +90,7 @@ struct EZWifiMainInfoView: View {
                                 }
                                 .contentShape(Rectangle())
                                 .onTapGesture {
-                                    ssid = wifi.ssid
+                                    selectedSSid = wifi.ssid
                                     isShowingPasswordModal = true
                                 }
                             }
@@ -113,11 +114,13 @@ struct EZWifiMainInfoView: View {
             AlertTextFieldView(
                 textFieldValue: $password,
                 isPresented: $isShowingPasswordModal,
-                ssid: ssid,
+                ssid: selectedSSid,
                 title: "와이파이 접속",
                 subtitle: "비밀번호를 입력해주세요.",
                 onOk: {
-                    onWifiTap(ssid, password)
+                    Logger.writeLog(.info, message: selectedSSid)
+                    Logger.writeLog(.info, message: password)
+                    onWifiTap(selectedSSid, password)
                 }
             )
         }

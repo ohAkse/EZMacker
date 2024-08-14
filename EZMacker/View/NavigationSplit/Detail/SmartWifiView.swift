@@ -66,7 +66,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     private func wifiMainInfoView(geo: GeometryProxy) -> some View {
         HStack(alignment: .center, spacing: 0) {
             EZWifiMainInfoView(
-                ssid: $smartWifiViewModel.ssID,
+                ssid: $smartWifiViewModel.currentConnectedSSid,
                 wifiLists: $smartWifiViewModel.currentScanningWifiDataList,
                 appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService()),
                 onRefresh: {
@@ -85,7 +85,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                     smartWifiViewModel.startSearchBestSSid()
                 }
             )
-            .frame(width: geo.size.width , height: geo.size.height * 0.7)
+
             .task {
                 await smartWifiViewModel.requestCoreWLanWifiInfo()
                 let status = smartWifiViewModel.getWifiRequestStatus()
