@@ -21,10 +21,10 @@ enum CategoryType: CaseIterable {
     var imageName: String {
         switch self {
         case .smartBattery: return "bolt.square.fill"
-        case .smartFileSearch: return "square.inset.filled"
-        case .smartWifi: return "square.inset.filled"
-        case .smartFileLocator: return "square.inset.filled"
-        case .smartNotificationAlarm: return "square.inset.filled"
+        case .smartFileSearch: return "magnifyingglass.circle"
+        case .smartWifi: return "wifi"
+        case .smartFileLocator: return "square.grid.3x1.folder.fill.badge.plus"
+        case .smartNotificationAlarm: return "gearshape.fill"
         }
     }
 }

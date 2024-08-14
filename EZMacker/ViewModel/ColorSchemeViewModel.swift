@@ -18,7 +18,7 @@ class ColorSchemeViewModel: ObservableObject {
     
     func updateColorScheme(to scheme: String) {
         colorScheme = scheme
-        if scheme == ColorSchemeMode.Light.title {
+        if scheme == ColorSchemeModeType.Light.title {
             NSApplication.shared.appearance = NSAppearance(named: .aqua)
         } else {
             NSApplication.shared.appearance = NSAppearance(named: .darkAqua)

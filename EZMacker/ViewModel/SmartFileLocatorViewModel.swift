@@ -234,7 +234,7 @@ class SmartFileLocatorViewModel: ObservableObject {
     func addFileView(for tab: String) {
         DispatchQueue.main.async {
             let newID = UUID()
-            self.savedData.fileViewsPerTab[tab, default: [:]][newID] = FileInfo.empty
+            self.savedData.fileViewsPerTab[tab, default: [:]][newID] = FileData.empty
             self.saveData()
         }
     }
@@ -253,7 +253,7 @@ class SmartFileLocatorViewModel: ObservableObject {
         }
     }
 
-    func getFileInfo(for id: UUID, in tab: String) -> FileInfo? {
+    func getFileInfo(for id: UUID, in tab: String) -> FileData? {
         return savedData.fileViewsPerTab[tab]?[id]
     }
     

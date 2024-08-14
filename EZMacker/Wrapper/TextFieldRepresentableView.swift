@@ -55,15 +55,25 @@ struct TextFieldRepresentableView: NSViewRepresentable {
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
     }
-
     func makeNSView(context: Context) -> NSTextField {
         let textField = NSTextField().then {
             $0.delegate = context.coordinator
-            $0.layer?.cornerRadius = 8
+            $0.layer?.cornerRadius = 12
             $0.alignment = .left
-            $0.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+            $0.font = NSFont.systemFont(ofSize: 18) 
             $0.placeholderString = "0과 100 사이에 숫자를 입력하세요."
+            $0.isBezeled = false
+            $0.drawsBackground = false
+            $0.backgroundColor = .clear
+            $0.cell = TextFieldPaddingCell(textCell: "")
         }
+        
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            textField.heightAnchor.constraint(equalToConstant: 20),
+        ])
+        
+        
         return textField
     }
 
@@ -72,3 +82,9 @@ struct TextFieldRepresentableView: NSViewRepresentable {
     }
 }
 
+class TextFieldPaddingCell: NSTextFieldCell {
+    override func drawingRect(forBounds rect: NSRect) -> NSRect {
+        let paddingWidth: CGFloat = 8
+        return rect.insetBy(dx: paddingWidth, dy: 0)
+    }
+}
