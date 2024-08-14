@@ -45,7 +45,6 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             EZArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
-                .environmentObject(colorSchemeViewModel)
             
             Spacer(minLength: 10)  
 
@@ -59,7 +58,6 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             EZWifiDetailView(band: $smartWifiViewModel.band, hardwareAddress: $smartWifiViewModel.currentHardwareAddress, locale: $smartWifiViewModel.locale)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
-                .environmentObject(colorSchemeViewModel)
         }
         .frame(width: geo.size.width)  
     }
@@ -88,7 +86,6 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                 }
             )
             .frame(width: geo.size.width , height: geo.size.height * 0.7)
-            .environmentObject(colorSchemeViewModel)
             .task {
                 await smartWifiViewModel.requestCoreWLanWifiInfo()
                 let status = smartWifiViewModel.getWifiRequestStatus()

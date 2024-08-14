@@ -99,12 +99,10 @@ struct EZWifiMainInfoView: View {
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(Color.gray, lineWidth: 3)
                         )
-                        .scrollContentBackground(.hidden)
-                        .scrollClipDisabled(false)
                         .ezBackgroundColorStyle()
+                        .ezListViewStyle()
                         .padding(10)
                     }
-                    .ezListViewStyle()
                 }
             }
         }

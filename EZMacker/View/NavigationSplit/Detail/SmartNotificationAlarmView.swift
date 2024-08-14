@@ -8,7 +8,7 @@ struct SmartNotificationAlarmView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            ScrollView {
+            ScrollView(.vertical, showsIndicators: false) {
                 batterySectionView
                 wifiSectionView
             }
