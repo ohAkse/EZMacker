@@ -101,7 +101,7 @@ struct SmartFileLocatorView: View {
             HStack(spacing: 5) {
                 Text(tab)
                     .lineLimit(1)
-                    .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                    .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                 deleteTabButton(for: tab)
                     .padding(.trailing, 5)
             }
@@ -178,13 +178,13 @@ struct SmartFileLocatorView: View {
             Spacer()
             Text("우측 상단의 +버튼을 눌러 탭을 추가 후 하단 +추가 해보세요. 화면에 파일을 드래그 후 클릭하면 해당 경로의 파일이 자동으로 열립니다.")
                 .foregroundColor(.gray)
-                .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(),fontSize: FontSizeType.small.size, isBold: false)
+                .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                 .multilineTextAlignment(.center)
                 .padding()
             
             Text("*주의: 파일명을 변경하거나 위치를 옮길 경우 바로가기 파일이 삭제됩니다.")
                 .foregroundColor(.red)
-                .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(),fontSize: FontSizeType.small.size, isBold: true)
+                .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: true)
                 .multilineTextAlignment(.center)
                 .padding()
             Spacer()

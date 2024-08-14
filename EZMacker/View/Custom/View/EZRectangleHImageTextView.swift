@@ -32,6 +32,7 @@ struct EZRectangleHImageTextView: View {
                     getImage()
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.75)
                     .symbolRenderingMode(.palette)
                     .padding(10)
                     .animation(.easeIn(duration: 3), value:isAnimated)
@@ -55,23 +56,23 @@ struct EZRectangleHImageTextView: View {
                     }
                 }
                 .onAppear{
-                    withAnimation(.easeIn(duration: 0.5)) {
+                    withAnimation(.interactiveSpring(duration: 0.5)) {
                         isAnimated.toggle()
                     }
                 }
                 .onDisappear{
-                    withAnimation(.easeIn(duration: 0.2)) {
+                    withAnimation(.interactiveSpring(duration: 0.5)) {
                         isAnimated.toggle()
                     }
                 }
                 .lineLimit(1)
-                .minimumScaleFactor(0.3)
+                .minimumScaleFactor(0.7)
                 .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity , maxHeight: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(cardColorForTheme())
+                    .foregroundColor(foregroundColorForTheme())
             }
         }
         .padding(.vertical)
@@ -98,7 +99,7 @@ struct EZRectangleHImageTextView: View {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.black.color
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightGray.color
+            return ThemeColorType.lightWhite.color
         default:
             Logger.fatalErrorMessage("colorSchme is Empty")
             return Color.clear
@@ -117,7 +118,7 @@ struct EZRectangleHImageTextView: View {
         }
     }
     
-    private func cardColorForTheme() -> Color {
+    private func foregroundColorForTheme() -> Color {
         switch colorScheme.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color

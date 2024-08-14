@@ -32,36 +32,31 @@ struct EZChannelInfoView: View {
                     Spacer(minLength: 20)
                     HStack(spacing: 10) {
                         Text("대역폭:")
-                            //.ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                            
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(channelBandwidth) MHz")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
-                            //.ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
                         Text("주파수:")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
-                            //.ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(channelFrequency) MHz")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
-                            //.ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
                         Text("채널:")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
-                            //.ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(channel)")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
-                            //.ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
                 }

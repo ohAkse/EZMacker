@@ -50,7 +50,7 @@ struct EZGridHMonitoringView: View {
                             if let lastChargeData = chargeData.last, lastChargeData.notChargingReason != 0 {
                                 Text("ErrorCode: \(lastChargeData.notChargingReason.toNumber())")
                                     .foregroundColor(Color.gray)
-                                    .font(.system(size: 20, weight: .bold))
+                                    .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                                     .padding()
                                     .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                             } else {

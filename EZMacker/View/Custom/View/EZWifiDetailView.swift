@@ -31,30 +31,30 @@ struct EZWifiDetailView: View {
                     Spacer(minLength: 20)
                     HStack(spacing: 10) {
                         Text("밴드:")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(band)")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
                         Text("Mac:")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(hardwareAddress)")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
                         Text("Locale:")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(locale)")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                     }
                     .padding(.horizontal, 20)
                 }

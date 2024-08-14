@@ -2,7 +2,7 @@ import SwiftUI
 import CoreWLAN
 struct MainContentView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @State private var selectionValue = CategoryType.smartFileSearch
+    @State private var selectionValue = CategoryType.smartBattery
     
     var body: some View {
         NavigationSplitView {

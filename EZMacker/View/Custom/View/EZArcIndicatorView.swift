@@ -41,10 +41,10 @@ struct EZArcIndicatorView: View {
                         .padding(20)
                     VStack() {
                         Text("\(getWifiStrength())")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.large.size, isBold: true)
+                            .ezNormalTextStyle(fontSize: FontSizeType.large.size, isBold: true)
                         Spacer(minLength: 5)
                         Text("\(wifiStrength)dBm")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.medium.size, isBold: true)
+                            .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                             .fontWeight(.bold)
                         Spacer(minLength: 5)
                     
@@ -77,21 +77,8 @@ struct EZArcIndicatorView: View {
         return description
     }
 
-    
     private func getFillPercentage() -> Double {
         return min(max(Double(wifiStrength + 100) / 100.0, 0.0), 1.0)
-    }
-    
-    private func cardColorForTheme() -> Color {
-        switch colorSchemeViewModel.getColorScheme() {
-        case ColorSchemeModeType.Light.title:
-            return ThemeColorType.lightGray.color
-        case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.lightBlue.color
-        default:
-            Logger.fatalErrorMessage("colorSchme is Empty")
-            return Color.clear
-        }
     }
 }
 

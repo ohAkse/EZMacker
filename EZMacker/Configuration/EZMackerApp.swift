@@ -33,9 +33,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDe
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.regular)
-        let center = UNUserNotificationCenter.current().then {
-            $0.delegate = self
-        }
 
         window = NSApp.windows.first
         window.delegate = self

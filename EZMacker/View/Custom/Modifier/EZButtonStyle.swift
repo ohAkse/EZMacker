@@ -13,13 +13,13 @@ struct EZButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
-            .background(dynamicBackgroundColor)
+            .background(backgroundColorForTheme())
             .foregroundColor(.black)
             .cornerRadius(12)
             .scaleEffect(configuration.isPressed ? 0.98 : 1)
     }
     
-    private var dynamicBackgroundColor: Color {
+    private func backgroundColorForTheme() -> Color {
         switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return Color.blue

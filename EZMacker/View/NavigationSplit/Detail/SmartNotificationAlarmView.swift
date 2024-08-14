@@ -26,7 +26,7 @@ struct SmartNotificationAlarmView: View {
     private var batterySectionView: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("배터리")
-                .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.medium.size, isBold: true)
+                .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                 .padding(.top, 10)
             
             Picker("CPU 과사용시 종료하기", selection: $smartNotificationAlarmViewModel.selectedAppExitOption) {
@@ -70,7 +70,7 @@ struct SmartNotificationAlarmView: View {
     private var wifiSectionView: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("와이파이")
-                .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.medium.size, isBold: true)
+                .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                 .padding(.top, 10)
             
             HStack {

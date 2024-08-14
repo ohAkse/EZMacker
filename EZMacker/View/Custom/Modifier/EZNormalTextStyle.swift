@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EZNormalTextStyle: ViewModifier {
-    var colorSchemeMode: String
+    @EnvironmentObject var colorScheme: ColorSchemeViewModel
     var fontSize: CGFloat
     var isBold: Bool
 
@@ -19,20 +19,20 @@ struct EZNormalTextStyle: ViewModifier {
     }
 
     private func textColorForTheme() -> Color {
-        switch colorSchemeMode {
+        switch colorScheme.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightBlack.color
         case ColorSchemeModeType.Dark.title:
             return ThemeColorType.lightWhite.color
         default:
             Logger.fatalErrorMessage("colorScheme is Empty")
-            return Color.clear
+            return Color.primary
         }
     }
 }
 
 extension View {
-    func ezNormalTextStyle(colorSchemeMode: String, fontSize: CGFloat, isBold: Bool = false) -> some View {
-        modifier(EZNormalTextStyle(colorSchemeMode: colorSchemeMode, fontSize: fontSize, isBold: isBold))
+    func ezNormalTextStyle(fontSize: CGFloat, isBold: Bool = false) -> some View {
+        modifier(EZNormalTextStyle(fontSize: fontSize, isBold: isBold))
     }
 }

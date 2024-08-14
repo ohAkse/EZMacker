@@ -25,7 +25,7 @@ struct EZWifiMainInfoView: View {
                         .fontWeight(.bold)
                     Spacer(minLength: 0)
                     Text("\(ssid)")
-                        .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.large.size, isBold: true)
+                        .ezNormalTextStyle(fontSize: FontSizeType.large.size, isBold: true)
                     Spacer()
                 }
                 .frame(width: 200, height: 300)

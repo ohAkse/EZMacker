@@ -23,7 +23,7 @@ struct EZElipseHImageView: View {
                 Spacer()
             }
         }
-        .background(cardColorForTheme())
+        .background(backgroundColorForTheme())
         .clipShape(.capsule)
         .onAppear{
             withAnimation(.spring(duration: 0.2)) {
@@ -38,7 +38,7 @@ struct EZElipseHImageView: View {
         .padding(5)
     }
     
-    private func cardColorForTheme() -> Color {
+    private func backgroundColorForTheme() -> Color {
         switch colorScheme.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.white.color

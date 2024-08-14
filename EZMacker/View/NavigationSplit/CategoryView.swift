@@ -17,20 +17,20 @@ struct CategoryView: View {
                 categoryRow(for: .smartBattery)
                 categoryRow(for: .smartWifi)                
             }
-            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
 
             Section(CategorySectionType.categoryUtilitySection.title) {
                 categoryRow(for: .smartFileLocator)
                 categoryRow(for: .smartFileSearch)
             }
-            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
             
             Section(CategorySectionType.settingSection.title) {
                 categoryRow(for: .smartNotificationAlarm)
             }
-            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)
         }
     }
@@ -40,7 +40,7 @@ struct CategoryView: View {
             Image(systemName: category.imageName)
                 .ezNormalImageStyle(imageScale: .large, width:20, height: 20)
             Text(category.title)
-                .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.small.size, isBold: false)
+                .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
 
         }
         .padding(.leading, 5)

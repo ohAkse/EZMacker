@@ -13,13 +13,13 @@ struct EZTabbarButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .buttonStyle(PlainButtonStyle())
-            .background(dynamicBackgroundColor)
+            .background(dynamicBackgroundColor())
             .cornerRadius(12)
             .contentShape(RoundedRectangle(cornerRadius: 12))
             .scaleEffect(configuration.isPressed ? 0.98 : 1)
     }
     
-    private var dynamicBackgroundColor: Color {
+    private func dynamicBackgroundColor () -> Color {
         switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.white.color

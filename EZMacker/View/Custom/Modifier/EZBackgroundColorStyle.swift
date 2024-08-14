@@ -15,11 +15,11 @@ struct EZBackgroundStyle: ViewModifier {
         content
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .foregroundColor(cardColorForTheme())
+                    .foregroundColor(foregroundColorForTheme())
             )
             .cornerRadius(12)
     }
-    private func cardColorForTheme() -> Color {
+    private func foregroundColorForTheme() -> Color {
         switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color

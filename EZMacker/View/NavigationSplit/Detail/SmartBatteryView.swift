@@ -15,6 +15,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                     .frame(height: 50)
                     .padding(.top, 10)
                 bottomInfoSection(geo: geo)
+                    .padding(.top, 20)
             }
             .onAppear {
                 smartBatteryViewModel.requestStaticBatteryInfo()
@@ -132,7 +133,6 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                     EZElipseHImageView(title: "H/W Ver", content: "\(adapterInfo.HwVersion)")
                     Spacer()
                 }
-
                 .frame(width: geo.size.width * 0.33)
                 .ezBackgroundColorStyle()
             }
@@ -143,21 +143,21 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
         Group {
             if smartBatteryViewModel.adapterConnectionSuccess == .decodingFailed {
                 HStack(alignment: .center, spacing: 0) {
-                    GifRepresentableView(gifName: "global_loading", imageSize: CGSize(width: geo.size.width * 0.4, height: geo.size.height * 0.4))
-                        .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.4)
-                    Spacer()
+                    HStack(alignment: .center, spacing: 0) {
+                            ProgressView("")
+                            .scaleEffect(2.0)
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.4)
+                    }
+                    
                     Text("정보를 수집중입니다. 잠시만 기다려 주세요.")
-                        .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.large.size, isBold: true)
-                    Spacer()
+                        .ezNormalTextStyle(fontSize: FontSizeType.large.size, isBold: true)
+                        .padding(.leading, 10)
                 }
             } else {
                 HStack(alignment: .center, spacing: 0) {
                     VStack(alignment: .center) {
-                        GifRepresentableView(gifName: "battery_adapter_plugin_animation", imageSize: CGSize(width: 50, height: 50))
-                        Spacer(minLength: 10)
-                        Text("어댑터를 꽃으면 정보가 나와요!")
-                            .ezNormalTextStyle(colorSchemeMode: colorSchemeViewModel.getColorScheme(), fontSize: FontSizeType.large.size, isBold: true)
-                            .shadow(radius: 5)
+                        GifRepresentableView(gifName: "battery_connect_animation", imageSize: CGSize(width: 50, height: 40))
                     }
                     .frame(width: geo.size.width * 0.5)
                     VStack(spacing: 0) {
@@ -187,7 +187,6 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
             EZRectangleHImageTextView(imageName: "battery_designdCapa", isSystem: false, title: "설계 용량", info: smartBatteryViewModel.designedCapacity.tomAH())
                 .frame(height: geo.size.height * 0.2)
         }
-        .padding(.top, 20)
     }
 }
 

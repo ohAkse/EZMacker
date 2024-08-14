@@ -32,16 +32,16 @@ struct EZButtonImageStyle: ButtonStyle {
         }
         .aspectRatio(contentMode: .fit)
         .frame(width: imageSize.width, height: imageSize.height)
-        .foregroundColor(dynamicForegroundColor)
+        .foregroundColor(foregroundColorForTheme())
         .padding()
-        .background(dynamicBackgroundColor)
+        .background(backgroundColorForTheme())
         .frame(width: frameSize?.width, height: frameSize?.height)
         .cornerRadius(frameSize != nil ? min(frameSize!.width, frameSize!.height) / 4 : 0)
         .scaleEffect(configuration.isPressed ? 0.95 : 1)
         .buttonStyle(PlainButtonStyle())
     }
     
-    private var dynamicForegroundColor: Color {
+    private func foregroundColorForTheme() -> Color {
         switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return lightModeForegroundColor
@@ -53,7 +53,7 @@ struct EZButtonImageStyle: ButtonStyle {
         }
     }
 
-    private var dynamicBackgroundColor: Color? {
+    private func backgroundColorForTheme() ->  Color? {
         switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return lightModeBackgroundColor
