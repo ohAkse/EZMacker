@@ -14,7 +14,7 @@ protocol AppCoreWLANWifiProvidable {
     func getMbpsRate()-> Future<String, AppCoreWLanStatus>
     func getHardwareAddress()-> Future<String, AppCoreWLanStatus>
     func getWifiLists(attempts: Int ) -> Future<[ScaningWifiData], AppCoreWLanStatus>
-    func connectToNetwork(ssid: String, password: String)  -> Future<Bool, AppCoreWLanStatus>
+    func connectToNetwork(ssid: String, password: String) -> Future<(String, Bool), AppCoreWLanStatus>
 }
 
 struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
@@ -27,7 +27,7 @@ struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
         self.interface = wifiClient.interface()
         self.wifyKeyChainService = wifyKeyChainService
     }
-
+    
     func getSignalStrength() -> Future<Int, AppCoreWLanStatus> {
         return Future<Int, AppCoreWLanStatus> { promise in
             guard let signalStrength = self.interface?.rssiValue() else {
@@ -82,6 +82,7 @@ struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             if wifiInfoList.isEmpty && attempts > 1 {
                 self.scanWifiLists(attempts: attempts - 1, promise: promise)
             } else {
+                
                 promise(.success(wifiInfoList))
             }
         } catch {
@@ -93,25 +94,34 @@ struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             }
         }
     }
-    func connectToNetwork(ssid: String, password: String) -> Future<Bool, AppCoreWLanStatus> {
-        return Future {  promise in
-            
+    func connectToNetwork(ssid: String, password: String) -> Future<(String, Bool), AppCoreWLanStatus> {
+        return Future { promise in
+            guard let interface = self.interface else {
+                Logger.writeLog(.error, message: "WiFi 인터페이스를 찾을 수 없음")
+                promise(.failure(.unknownError(error: "WiFi 인터페이스를 찾을 수 없음")))
+                return
+            }
             do {
-                guard let network = networkList.first(where: { $0.ssid == ssid }) else {
+                let networks = try interface.scanForNetworks(withSSID: nil)
+                guard let network = networks.first(where: { $0.ssid == ssid }) else {
                     Logger.writeLog(.error, message: "네트워크를 찾을 수 없음: \(ssid)")
                     promise(.failure(.notFoundSSID))
                     return
                 }
+                
                 DispatchQueue.global().asyncAfter(deadline: .now() + 1.0) {
                     do {
-                        Logger.writeLog(.info, message: "network -> \(network) password ->\(password)")
-                        try self.interface?.associate(to: network, password: password)
-                        promise(.success(true)) // 연결 성공 시
+                        Logger.writeLog(.info, message: "네트워크 연결 시도: \(ssid)")
+                        try interface.associate(to: network, password: password)
+                        promise(.success((ssid, true)))
                     } catch {
-                        Logger.writeLog(.error, message: "알 수 없는 오류 발생: \(error.localizedDescription)")
-                        promise(.failure(.unknownError(error: error.localizedDescription)))
+                        Logger.writeLog(.error, message: "네트워크 연결 실패: \(error.localizedDescription)")
+                        promise(.failure(.unknownError(error: "네트워크 연결 실패: \(error.localizedDescription)")))
                     }
-                }  
+                }
+            } catch {
+                Logger.writeLog(.error, message: "네트워크 스캔 실패: \(error.localizedDescription)")
+                promise(.failure(.scanningFailed))
             }
         }
     }

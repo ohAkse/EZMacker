@@ -41,6 +41,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     @Published var currentTransmitRate = ""
     @Published var currentHardwareAddress = ""
     @Published var currentScanningWifiDataList: [ScaningWifiData] = []
+    @Published var currentConnectedSSid = ""
     @Published var wifiRequestStatus: AppCoreWLanStatus = .none
     @Published var bestSSid = ""
     @Published var showAlert = false
@@ -50,6 +51,8 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     private var timerCancellable: AnyCancellable?
     private var scanTimerCancellable: AnyCancellable?
     private var cancellables = Set<AnyCancellable>()
+    
+    private let timerMax = 10
     
     func requestWifiInfo() {
         Publishers.Zip3(
@@ -72,6 +75,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
         .sink { [weak self] band, ssID, locale in
             self?.band = band
             self?.ssID = ssID
+            self?.currentConnectedSSid = ssID
             self?.locale = locale
         }
         .store(in: &cancellables)
@@ -152,7 +156,6 @@ extension SmartWifiViewModel {
             })
             .store(in: &cancellables)
     }
-    
     func connectWifi(ssid: String, password: String) {
         appCoreWLanWifiService.connectToNetwork(ssid: ssid, password: password)
             .subscribe(on: DispatchQueue.global())
@@ -162,18 +165,24 @@ extension SmartWifiViewModel {
                     self?.wifiRequestStatus = error
                     Logger.writeLog(.error, message: error.localizedDescription)
                 }
-            }, receiveValue: { [weak self] isSwitchWifiSuccess in
+            }, receiveValue: { [weak self] result in
+                let (connectedSSID, isSwitchWifiSuccess) = result
                 if isSwitchWifiSuccess {
                     self?.wifiRequestStatus = .success
+                    self?.currentConnectedSSid = connectedSSID
+                    Logger.writeLog(.info, message: "Successfully connected to \(connectedSSID)")
+                } else {
+                    self?.wifiRequestStatus = .notFoundSSID
+                    Logger.writeLog(.error, message: "Failed to connect to \(ssid)")
                 }
             })
             .store(in: &cancellables)
     }
+
   
     func startSearchBestSSid()  {
         guard let bestSSidMode : String = appSettingService.loadConfig(.bestSSidShowMode)  else {return}
-        let currentSSidShowMode = BestSSIDShowOption(rawValue: bestSSidMode)
-        let timerMax = 10
+        let currentSSidShowMode = BestSSIDShow(rawValue: bestSSidMode)
         scanResults.removeAll()
         showAlert = false
         
@@ -205,13 +214,12 @@ extension SmartWifiViewModel {
             .collect()
             .sink(receiveCompletion: { [weak self] _ in
                 guard let self = self else { return }
-                bestSSid = self.scanResults.max(by: { Int($0.rssi)! < Int($1.rssi)! })?.ssid ?? "No SSID found"
-                Logger.writeLog(.info, message: "Best SSID: \(bestSSid)")
+                bestSSid = scanResults.max(by: { Int($0.rssi)! < Int($1.rssi)! })?.ssid ?? "No SSID found"
                 if currentSSidShowMode == .alert
                 {
-                    self.showAlert = true
+                    showAlert = true
                 } else {
-                    AppNotificationManager.shared.sendNotification(title: "알림", subtitle: "최적의 Wifi : \(bestSSid)")
+                    AppNotificationManager.shared.sendNotification(title: "알림", subtitle: "최적의 Wifi : \(self.bestSSid)")
                 }
                 scanResults.removeAll()
             }, receiveValue: { _ in })

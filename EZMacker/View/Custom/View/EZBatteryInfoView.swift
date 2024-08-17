@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EZRectangleHImageTextView: View {
+struct EZBatteryInfoView: View {
     
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
     @State private var isAnimated = false

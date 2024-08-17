@@ -31,8 +31,9 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     //어댑터 관련 설정값들
     @Published var adapterInfo: [AdapterData]?
     @Published var isAdapterConnected = false
-    @Published var adapterConnectionSuccess :AdapterConnectStatus = .none
-    private var isSent = false
+    @Published var adapterConnectionSuccess :AdapterConnect = .none
+    private var isSentBatteryCapacityAlarmMode = false
+    private var isSentBatteryChargingErorAlarmMode = false
     //일반 설정값들
     private var systemPreferenceService: SystemPreferenceAccessible
     private var appSmartBatteryService: ProvidableType
@@ -67,7 +68,6 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
 }
 extension SmartBatteryViewModel {
     func startConnectTimer() {
-        
         timer = Timer.publish(every: 3, on: .current, in: .default)
             .autoconnect()
             .sink { [weak self] _ in
@@ -138,7 +138,7 @@ extension SmartBatteryViewModel {
             .sink { [weak self] charge in
                 guard let self = self else { return }
                 if chargeData.count > 5 {
-                    self.chargeData.removeAll()
+                    chargeData.removeAll()
                 }
                 chargeData.append(charge)
                 appChargingErrorCounrt += 1
@@ -185,12 +185,12 @@ extension SmartBatteryViewModel {
             .subscribe(on: DispatchQueue.global())
             .tryMap { value -> Data in
                 guard let value = value else {
-                    throw AdapterConnectStatus.dataNotFound
+                    throw AdapterConnect.dataNotFound
                 }
                 return try JSONSerialization.data(withJSONObject: value, options: [])
             }
             .decode(type: [AdapterData].self, decoder: JSONDecoder())
-            .mapError { error -> AdapterConnectStatus in
+            .mapError { error -> AdapterConnect in
                 switch error {
                 default:
                     return .unknown(error)
@@ -223,9 +223,10 @@ extension SmartBatteryViewModel {
     func checkSettingConfig() {
         if let isBatteryWarningMode: Bool = appSettingService.loadConfig(.isBatteryWarningMode) {
             if isBatteryWarningMode {
-                if let lastChargeData = chargeData.last, lastChargeData.notChargingReason != 0, appChargingErrorCounrt == 30 {
+                if let lastChargeData = chargeData.last, lastChargeData.notChargingReason != 0,
+                    appChargingErrorCounrt >= 6  && !isSentBatteryChargingErorAlarmMode {
                     AppNotificationManager.shared.sendNotification(title: "배터리 오류 발생", subtitle: "errorCode: \(lastChargeData.notChargingReason)")
-                    appChargingErrorCounrt = 0
+                    isSentBatteryChargingErorAlarmMode = true
                 }
             }
         }
@@ -234,10 +235,10 @@ extension SmartBatteryViewModel {
                 if let batteryPercentage: String = appSettingService.loadConfig(.batteryPercentage) {
                     let batteryDobulePercentage = (Double(batteryPercentage) ?? 0) / 100
                     if batteryDobulePercentage <= currentBatteryCapacity {
-                        if !isSent {
+                        if !isSentBatteryCapacityAlarmMode {
                             AppNotificationManager.shared.sendNotification(title: "충전 안내", subtitle: "설정하신 배터리 충전이 완료되었습니다.")
                         }
-                        isSent = true
+                        isSentBatteryCapacityAlarmMode = true
                     }
                 }
             }

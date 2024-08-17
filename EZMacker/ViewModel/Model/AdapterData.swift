@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct AdapterData: Decodable {
     var AdapterID: Int
     var AdapterVoltage: Int

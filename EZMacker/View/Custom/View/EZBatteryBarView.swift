@@ -41,7 +41,7 @@ struct EZBatteryBarView: View {
                          .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: true)
                          .frame(maxWidth: .infinity, alignment: .center)
                  }
-                 .frame(height: 60)
+                 .frame(height: 50)
              }
              .frame(width: geo.size.width)
          }

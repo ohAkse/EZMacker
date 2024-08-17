@@ -1,10 +1,13 @@
-
-
-
+//
+//  EZGridMonitoringView.swift
+//  EZMacker
+//
+//  Created by 박유경 on 8/17/24.
+//
 
 import SwiftUI
 
-struct EZGridHMonitoringView: View {
+struct EZBatteryMonitoringView: View {
     @Binding var chargeData: [ChargeData]
     @Binding var isAdapterConnect: Bool
     var body: some View {
@@ -48,7 +51,7 @@ struct EZGridHMonitoringView: View {
                         .stroke(Color.red, lineWidth: 2)
                         if isAdapterConnect {
                             if let lastChargeData = chargeData.last, lastChargeData.notChargingReason != 0 {
-                                Text("ErrorCode: \(lastChargeData.notChargingReason.toNumber())")
+                                Text("No Charging: \(lastChargeData.notChargingReason.toNumber())")
                                     .foregroundColor(Color.gray)
                                     .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                                     .padding()

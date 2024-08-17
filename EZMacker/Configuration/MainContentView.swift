@@ -19,10 +19,10 @@ struct MainContentView: View {
                     SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(),wifyKeyChainService: AppWifiKeyChainService()), appSettingService: AppSmartSettingsService()))
                         .environmentObject(colorSchemeViewModel)
                 case .smartNotificationAlarm:
-                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService()))
+                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService(), batterySetting:BatterySetting(), wifiSetting: WifiSetting(), fileLocatorSetting: FileLocatorSetting()))
                         .environmentObject(colorSchemeViewModel)
                 case .smartFileLocator:
-                        SmartFileLocatorView(smartFileLocatorViewModel: SmartFileLocatorViewModel(appSmartFileService: AppSmartFileService(), appSmartFileMonitor: AppSmartFileMonitorService(), appSmartSettingService: AppSmartSettingsService(), systemPreferenceService: SystemPreferenceService()))
+                        SmartFileLocatorView(smartFileLocatorViewModel: SmartFileLocatorViewModel(appSmartFileService: AppSmartFileService(), appSmartFileMonitor: AppSmartFileMonitorService(), appSmartSettingService: AppSmartSettingsService()))
                         .environmentObject(colorSchemeViewModel)
                 case .smartFileSearch:
                     SmartFileSearchView(smartFileSearchViewModel: SmartFileSearchViewModel())

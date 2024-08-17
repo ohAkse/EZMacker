@@ -23,7 +23,7 @@ struct AppSmartFileService: AppSmartFileProvidable {
                 let attributes = try fileManager.attributesOfItem(atPath: fileUrl.path)
                 let fileName = fileUrl.lastPathComponent
                 let fileSize = attributes[.size] as? Int64 ?? 0
-                var fileType = FileDescriptionType(type: attributes[.type] as? String ?? FileDescriptionType.unknown.rawValue).name
+                var fileType = FileDescription(type: attributes[.type] as? String ?? FileDescription.unknown.rawValue).name
                 
                 //TODO: 파일 실행 구조가 윈도우와 달라서 확인후 나중에 따로 처리할것.
                 if fileType == "폴더", fileUrl.pathExtension == "app" {

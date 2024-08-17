@@ -1,13 +1,13 @@
 //
-//  InfoElipseHImageView.swift
+//  EZBatteryAdapterView.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/14/24.
+//  Created by 박유경 on 8/17/24.
 //
 
 import SwiftUI
 
-struct EZElipseHImageView: View {
+struct EZBatteryAdapterView: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
     let size: CGFloat = FontSizeType.medium.size
     let title: String

@@ -1,13 +1,21 @@
+//
+//  EZWifiMainView.swift
+//  EZMacker
+//
+//  Created by 박유경 on 8/17/24.
+//
+
 import SwiftUI
 import CoreWLAN
 
-struct EZWifiMainInfoView: View {
+struct EZWifiMainView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @Binding var ssid: String
     @Binding var wifiLists: [ScaningWifiData]
     @State private var password: String = ""
     @State private var isShowingPasswordModal = false
     @State private var toast: ToastData?
+    @State private var selectedSSid: String = ""
     var appCoreWLanWifiService: AppCoreWLANWifiProvidable
     var onRefresh: () -> Void
     var onWifiTap: (String, String) -> Void
@@ -25,7 +33,7 @@ struct EZWifiMainInfoView: View {
                         .fontWeight(.bold)
                     Spacer(minLength: 0)
                     Text("\(ssid)")
-                        .ezNormalTextStyle(fontSize: FontSizeType.large.size, isBold: true)
+                        .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                     Spacer()
                 }
                 .frame(width: 200, height: 300)
@@ -89,7 +97,7 @@ struct EZWifiMainInfoView: View {
                                 }
                                 .contentShape(Rectangle())
                                 .onTapGesture {
-                                    ssid = wifi.ssid
+                                    selectedSSid = wifi.ssid
                                     isShowingPasswordModal = true
                                 }
                             }
@@ -99,12 +107,10 @@ struct EZWifiMainInfoView: View {
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(Color.gray, lineWidth: 3)
                         )
-                        .scrollContentBackground(.hidden)
-                        .scrollClipDisabled(false)
                         .ezBackgroundColorStyle()
+                        .ezListViewStyle()
                         .padding(10)
                     }
-                    .ezListViewStyle()
                 }
             }
         }
@@ -115,11 +121,13 @@ struct EZWifiMainInfoView: View {
             AlertTextFieldView(
                 textFieldValue: $password,
                 isPresented: $isShowingPasswordModal,
-                ssid: ssid,
+                ssid: selectedSSid,
                 title: "와이파이 접속",
                 subtitle: "비밀번호를 입력해주세요.",
                 onOk: {
-                    onWifiTap(ssid, password)
+                    Logger.writeLog(.info, message: selectedSSid)
+                    Logger.writeLog(.info, message: password)
+                    onWifiTap(selectedSSid, password)
                 }
             )
         }
@@ -173,3 +181,4 @@ struct EZWifiMainInfoView: View {
 //    }
 //}
 //#endif
+

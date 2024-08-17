@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct ChargeData: Identifiable {
     var id = UUID()
     var vacVoltageLimit: Int
