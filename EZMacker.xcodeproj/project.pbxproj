@@ -84,6 +84,9 @@
 		5F7E0B692C70789B000C8C97 /* EZWifiStrengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B682C70789B000C8C97 /* EZWifiStrengthView.swift */; };
 		5F7E0B6B2C70790F000C8C97 /* EZBatteryAdapterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B6A2C70790F000C8C97 /* EZBatteryAdapterView.swift */; };
 		5F7E0B6D2C707E9B000C8C97 /* FileDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B6C2C707E9B000C8C97 /* FileDescription.swift */; };
+		5F7E0B702C70853C000C8C97 /* MDFindQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B6F2C70853C000C8C97 /* MDFindQuery.swift */; };
+		5F7E0B742C709CB6000C8C97 /* AppEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B732C709CB6000C8C97 /* AppEnviroment.swift */; };
+		5F7E0B772C709CC9000C8C97 /* EnviromentKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B762C709CC9000C8C97 /* EnviromentKey.swift */; };
 		5F97C3762BF9D25000B0DC56 /* SettingPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */; };
 		5F97C3782BF9DAFE00B0DC56 /* SystemPreferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3772BF9DAFE00B0DC56 /* SystemPreferenceService.swift */; };
 		5F97C37E2BFA0F2C00B0DC56 /* AppBCMWLanSkywalkInterfaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C37D2BFA0F2C00B0DC56 /* AppBCMWLanSkywalkInterfaceType.swift */; };
@@ -209,6 +212,9 @@
 		5F7E0B682C70789B000C8C97 /* EZWifiStrengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZWifiStrengthView.swift; sourceTree = "<group>"; };
 		5F7E0B6A2C70790F000C8C97 /* EZBatteryAdapterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZBatteryAdapterView.swift; sourceTree = "<group>"; };
 		5F7E0B6C2C707E9B000C8C97 /* FileDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDescription.swift; sourceTree = "<group>"; };
+		5F7E0B6F2C70853C000C8C97 /* MDFindQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDFindQuery.swift; sourceTree = "<group>"; };
+		5F7E0B732C709CB6000C8C97 /* AppEnviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnviroment.swift; sourceTree = "<group>"; };
+		5F7E0B762C709CC9000C8C97 /* EnviromentKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnviromentKey.swift; sourceTree = "<group>"; };
 		5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPreference.swift; sourceTree = "<group>"; };
 		5F97C3772BF9DAFE00B0DC56 /* SystemPreferenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPreferenceService.swift; sourceTree = "<group>"; };
 		5F97C37D2BFA0F2C00B0DC56 /* AppBCMWLanSkywalkInterfaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBCMWLanSkywalkInterfaceType.swift; sourceTree = "<group>"; };
@@ -524,6 +530,7 @@
 		5F6D4E632BE88994004B94F8 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				5F7E0B6E2C708531000C8C97 /* Enum */,
 				5F6D4E642BE889BB004B94F8 /* Logger.swift */,
 				5F3DBE142C04C0C600B5C0DE /* CommandToolRunner.swift */,
 			);
@@ -598,6 +605,31 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		5F7E0B6E2C708531000C8C97 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				5F7E0B6F2C70853C000C8C97 /* MDFindQuery.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		5F7E0B722C709CA4000C8C97 /* Enviroment */ = {
+			isa = PBXGroup;
+			children = (
+				5F7E0B752C709CBE000C8C97 /* Enum */,
+				5F7E0B732C709CB6000C8C97 /* AppEnviroment.swift */,
+			);
+			path = Enviroment;
+			sourceTree = "<group>";
+		};
+		5F7E0B752C709CBE000C8C97 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				5F7E0B762C709CC9000C8C97 /* EnviromentKey.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		5F97C3722BF9D20F00B0DC56 /* SystemPreference */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +658,7 @@
 		5FEE27BD2BE8DA9400847761 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				5F7E0B722C709CA4000C8C97 /* Enviroment */,
 				5F36B2432BE7ACC000E08935 /* MainContentView.swift */,
 				5F36B2162BE7AB3000E08935 /* EZMackerApp.swift */,
 				5F97C3722BF9D20F00B0DC56 /* SystemPreference */,
@@ -808,6 +841,7 @@
 			files = (
 				5F6D4E762BE8A2A4004B94F8 /* ToastType.swift in Sources */,
 				5F36041C2C3825B500C1B84B /* SmartFileSearchViewModel.swift in Sources */,
+				5F7E0B702C70853C000C8C97 /* MDFindQuery.swift in Sources */,
 				5FDE1EE82C6B0A1E00E67FCE /* EZButtonImageStyle.swift in Sources */,
 				5F6D4E652BE889BB004B94F8 /* Logger.swift in Sources */,
 				5FD0313A2BEA5E8D009A8169 /* Int + Extension.swift in Sources */,
@@ -835,6 +869,7 @@
 				5F485A092C69AD7D00B32585 /* EZTextFieldStyle.swift in Sources */,
 				5F1012B22BF39EBD00589C9B /* EZBatteryInfoView.swift in Sources */,
 				5F485A012C69ABDF00B32585 /* EZListViewStyle.swift in Sources */,
+				5F7E0B772C709CC9000C8C97 /* EnviromentKey.swift in Sources */,
 				5FEE27C12BE8DB0500847761 /* KeyboardModifierFlag.swift in Sources */,
 				5F69D2902C0DECE900F318ED /* AdapterConnect.swift in Sources */,
 				5F3DBE132C04BC8800B5C0DE /* View + Extension.swift in Sources */,
@@ -899,6 +934,7 @@
 				5FDE1EE62C6B08E400E67FCE /* String + Extension.swift in Sources */,
 				5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */,
 				5F6D4E6A2BE88AD9004B94F8 /* ToolbarKeyType.swift in Sources */,
+				5F7E0B742C709CB6000C8C97 /* AppEnviroment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,7 @@ struct FileData: Codable, Identifiable {
     var thumbNailData: Data?
     var securityScopeBookmark: Data?
     var tab: String = ""
+    var creationDate: Date?
     var modificationDate: Date?
 
     var thumbNail: NSImage? {
@@ -29,10 +30,10 @@ struct FileData: Codable, Identifiable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, fileName, fileSize, fileType, fileURL, thumbNailData, securityScopeBookmark, tab, modificationDate
+        case id, fileName, fileSize, fileType, fileURL, thumbNailData, securityScopeBookmark, tab, modificationDate, creationDate
     }
 
-    init(fileName: String = "", fileSize: Int64 = 0, fileType: String = "", fileURL: URL? = nil, thumbNail: NSImage? = nil, tab: String = "", modificationDate: Date? = nil) {
+    init(fileName: String = "", fileSize: Int64 = 0, fileType: String = "", fileURL: URL? = nil, thumbNail: NSImage? = nil, tab: String = "", modificationDate: Date? = nil, creationDate: Date? = nil) {
         self.id = UUID()
         self.fileName = fileName
         self.fileSize = fileSize
@@ -41,6 +42,7 @@ struct FileData: Codable, Identifiable {
         self.thumbNail = thumbNail
         self.tab = tab
         self.modificationDate = modificationDate
+        self.creationDate = creationDate
     }
 
     static let empty = FileData()
