@@ -182,8 +182,7 @@ extension SmartWifiViewModel {
   
     func startSearchBestSSid()  {
         guard let bestSSidMode : String = appSettingService.loadConfig(.bestSSidShowMode)  else {return}
-        let currentSSidShowMode = BestSSIDShowOption(rawValue: bestSSidMode)
-        //MARK: timerMax조정할것
+        let currentSSidShowMode = BestSSIDShow(rawValue: bestSSidMode)
         scanResults.removeAll()
         showAlert = false
         
@@ -216,12 +215,11 @@ extension SmartWifiViewModel {
             .sink(receiveCompletion: { [weak self] _ in
                 guard let self = self else { return }
                 bestSSid = scanResults.max(by: { Int($0.rssi)! < Int($1.rssi)! })?.ssid ?? "No SSID found"
-                Logger.writeLog(.info, message: "Best SSID: \(bestSSid)")
                 if currentSSidShowMode == .alert
                 {
                     showAlert = true
                 } else {
-                    AppNotificationManager.shared.sendNotification(title: "알림", subtitle: "최적의 Wifi : \(bestSSid)")
+                    AppNotificationManager.shared.sendNotification(title: "알림", subtitle: "최적의 Wifi : \(self.bestSSid)")
                 }
                 scanResults.removeAll()
             }, receiveValue: { _ in })

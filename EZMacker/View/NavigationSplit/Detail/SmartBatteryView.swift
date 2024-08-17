@@ -45,13 +45,13 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
         VStack(alignment: .leading, spacing: 0) {
             if smartBatteryViewModel.isAdapterConnected {
                 if smartBatteryViewModel.currentBatteryCapacity * 100 == 100 {
-                    EZRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: "충전완료")
+                    EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: "충전완료")
                         
                 } else {
-                    EZRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: smartBatteryViewModel.chargingTime.toHourMinute())
+                    EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: smartBatteryViewModel.chargingTime.toHourMinute())
                 }
             } else if smartBatteryViewModel.chargingTime <= 1 {
-                EZRectangleHImageTextView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지", info: smartBatteryViewModel.remainingTime.toHourMinute())
+                EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지", info: smartBatteryViewModel.remainingTime.toHourMinute())
             }
         }
         .onReceive(smartBatteryViewModel.$isAdapterConnected) { isConnected in
@@ -77,7 +77,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 .padding(.vertical,20)
                 .padding(.trailing, 10)
                 
-                EZGridHMonitoringView(chargeData: $smartBatteryViewModel.chargeData, isAdapterConnect: $smartBatteryViewModel.isAdapterConnected)
+                EZBatteryMonitoringView(chargeData: $smartBatteryViewModel.chargeData, isAdapterConnect: $smartBatteryViewModel.isAdapterConnected)
                     .padding(.vertical,20)
             }
             Button(action: {  smartBatteryViewModel.openSettingWindow(settingPath: SystemPreference.batterySave.pathString) }) {}
@@ -114,11 +114,11 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 .frame(width: geo.size.width * 0.3)
                 VStack(spacing: 0) {
                     Spacer()
-                    EZElipseHImageView(title: "Adp ID", content: "\(adapterInfo.AdapterID)")
+                    EZBatteryAdapterView(title: "Adp ID", content: "\(adapterInfo.AdapterID)")
                     Spacer()
-                    EZElipseHImageView(title: "Model ID", content: "\(adapterInfo.Model)")
+                    EZBatteryAdapterView(title: "Model ID", content: "\(adapterInfo.Model)")
                     Spacer()
-                    EZElipseHImageView(title: "F/W Ver", content: "\(adapterInfo.FwVersion)")
+                    EZBatteryAdapterView(title: "F/W Ver", content: "\(adapterInfo.FwVersion)")
                     Spacer()
                 }
                 .ezBackgroundColorStyle()
@@ -128,11 +128,11 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 
                 VStack(spacing: 0) {
                     Spacer()
-                    EZElipseHImageView(title: "Mfr.", content: "\(adapterInfo.Manufacturer)")
+                    EZBatteryAdapterView(title: "Mfr.", content: "\(adapterInfo.Manufacturer)")
                     Spacer()
-                    EZElipseHImageView(title: "Watts", content: "\(adapterInfo.Watts)" + "W")
+                    EZBatteryAdapterView(title: "Watts", content: "\(adapterInfo.Watts)" + "W")
                     Spacer()
-                    EZElipseHImageView(title: "H/W Ver", content: "\(adapterInfo.HwVersion)")
+                    EZBatteryAdapterView(title: "H/W Ver", content: "\(adapterInfo.HwVersion)")
                     Spacer()
                 }
                 .frame(width: geo.size.width * 0.33)
@@ -163,13 +163,13 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                     }
                     .frame(width: geo.size.width * 0.5)
                     VStack(spacing: 0) {
-                        EZRectangleHImageTextView(imageName: "battery_status",
+                        EZBatteryInfoView(imageName: "battery_status",
                                                   isSystem: false,
                                                   title: "배터리 상태",
                                                   info: smartBatteryViewModel.healthState == "" ? "계산중.." : smartBatteryViewModel.healthState,
                                                   isBatterStatus: true)
                             .frame(height: geo.size.height * 0.2)
-                        EZRectangleHImageTextView(imageName: "battery_cell", isSystem: false, title: "베터리셀 끊김 횟수", info: "\(smartBatteryViewModel.batteryCellDisconnectCount)")
+                        EZBatteryInfoView(imageName: "battery_cell", isSystem: false, title: "베터리셀 끊김 횟수", info: "\(smartBatteryViewModel.batteryCellDisconnectCount)")
                             .frame(height: geo.size.height * 0.2)
 
                     }
@@ -180,13 +180,13 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     
     private func bottomInfoSection(geo: GeometryProxy) -> some View {
         HStack(spacing: 30) {
-            EZRectangleHImageTextView(imageName: "battery_recycle", isSystem: false, title: "사이클 수", info: smartBatteryViewModel.cycleCount.toBun())
+            EZBatteryInfoView(imageName: "battery_recycle", isSystem: false, title: "사이클 수", info: smartBatteryViewModel.cycleCount.toBun())
                 .frame(height: geo.size.height * 0.2)
-            EZRectangleHImageTextView(imageName: "battery_thermometer", isSystem: false, title: "온도", info: smartBatteryViewModel.temperature.toDegree())
+            EZBatteryInfoView(imageName: "battery_thermometer", isSystem: false, title: "온도", info: smartBatteryViewModel.temperature.toDegree())
                 .frame(height: geo.size.height * 0.2)
-            EZRectangleHImageTextView(imageName: "battery_currentCapa", isSystem: false, title: "배터리 용량", info: smartBatteryViewModel.batteryMaxCapacity.tomAH())
+            EZBatteryInfoView(imageName: "battery_currentCapa", isSystem: false, title: "배터리 용량", info: smartBatteryViewModel.batteryMaxCapacity.tomAH())
                 .frame(height: geo.size.height * 0.2)
-            EZRectangleHImageTextView(imageName: "battery_designdCapa", isSystem: false, title: "설계 용량", info: smartBatteryViewModel.designedCapacity.tomAH())
+            EZBatteryInfoView(imageName: "battery_designdCapa", isSystem: false, title: "설계 용량", info: smartBatteryViewModel.designedCapacity.tomAH())
                 .frame(height: geo.size.height * 0.2)
         }
     }

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AppKit
 
 struct FileData: Codable, Identifiable {
     var id = UUID()

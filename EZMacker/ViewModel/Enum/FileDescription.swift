@@ -1,13 +1,11 @@
 //
-//  FileType.swift
+//  FileDescription.swift
 //  EZMacker
 //
-//  Created by 박유경 on 7/7/24.
+//  Created by 박유경 on 8/17/24.
 //
 
-import Foundation
-
-enum FileDescriptionType: String {
+enum FileDescription: String {
     case regular = "NSFileTypeRegular"
     case directory = "NSFileTypeDirectory"
     case symbolicLink = "NSFileTypeSymbolicLink"
@@ -18,17 +16,17 @@ enum FileDescriptionType: String {
     
     init(type: String) {
         switch type {
-        case FileDescriptionType.regular.rawValue:
+        case FileDescription.regular.rawValue:
             self = .regular
-        case FileDescriptionType.directory.rawValue:
+        case FileDescription.directory.rawValue:
             self = .directory
-        case FileDescriptionType.symbolicLink.rawValue:
+        case FileDescription.symbolicLink.rawValue:
             self = .symbolicLink
-        case FileDescriptionType.socket.rawValue:
+        case FileDescription.socket.rawValue:
             self = .socket
-        case FileDescriptionType.characterSpecial.rawValue:
+        case FileDescription.characterSpecial.rawValue:
             self = .characterSpecial
-        case FileDescriptionType.blockSpecial.rawValue:
+        case FileDescription.blockSpecial.rawValue:
             self = .blockSpecial
         default:
             self = .unknown
@@ -54,3 +52,4 @@ enum FileDescriptionType: String {
         }
     }
 }
+

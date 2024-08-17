@@ -42,13 +42,13 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     // Wi-Fi 세부 정보 뷰
     private func wifiDetailView(geo: GeometryProxy) -> some View {
         HStack(spacing: 0) {
-            EZArcIndicatorView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
+            EZWifiStrengthView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
             
             Spacer(minLength: 10)  
 
-            EZChannelInfoView(channelBandwidth: $smartWifiViewModel.channelBandwidth, channelFrequency: $smartWifiViewModel.channelFrequency, channel: $smartWifiViewModel.channel)
+            EZWifiChannelView(channelBandwidth: $smartWifiViewModel.channelBandwidth, channelFrequency: $smartWifiViewModel.channelFrequency, channel: $smartWifiViewModel.channel)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
                 .environmentObject(colorSchemeViewModel)
@@ -65,7 +65,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     // Wi-Fi 메인 정보 뷰
     private func wifiMainInfoView(geo: GeometryProxy) -> some View {
         HStack(alignment: .center, spacing: 0) {
-            EZWifiMainInfoView(
+            EZWifiMainView(
                 ssid: $smartWifiViewModel.currentConnectedSSid,
                 wifiLists: $smartWifiViewModel.currentScanningWifiDataList,
                 appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService()),
