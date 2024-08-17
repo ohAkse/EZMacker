@@ -8,14 +8,16 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     
     var body: some View {
         GeometryReader { geo in
-            VStack(spacing: 10) {
+            VStack(spacing: 0) {
+                Spacer(minLength: 20)
                 topSection(geo: geo)
+                Spacer(minLength: 40)
                 adapterInfoSection(geo: geo)
+                Spacer(minLength: 30)
                 EZBatteryBarView(batteryLevel: $smartBatteryViewModel.currentBatteryCapacity, isAdapterConnected: $smartBatteryViewModel.isAdapterConnected)
-                    .frame(height: 50)
-                    .padding(.top, 10)
+                Spacer(minLength: 15)
                 bottomInfoSection(geo: geo)
-                    .padding(.top, 20)
+                    .offset(y: 15)
             }
             .onAppear {
                 smartBatteryViewModel.requestStaticBatteryInfo()
@@ -34,7 +36,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     private func topSection(geo: GeometryProxy) -> some View {
         HStack(alignment: .top, spacing: 0) {
             chargingInfoView(geo: geo)
-            Spacer(minLength: 10)
+            Spacer(minLength: 0)
             voltageInfoView(geo: geo)
         }
         .frame(height: geo.size.height * 0.2)
@@ -54,10 +56,10 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
         }
         .onReceive(smartBatteryViewModel.$isAdapterConnected) { isConnected in
             if isConnected {
-                toast = ToastData(type: .info, title: "정보", message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 5분이 소요됩니다.", duration: 10)
+                toast = ToastData(type: .info, title: "정보", message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 약 3분정도 시간이 소요됩니다.", duration: 10)
             }
         }
-        .frame(width: geo.size.width * 0.22, height: geo.size.height * 0.2)
+        .frame(width: geo.size.width * 0.22, height: geo.size.height * 0.25)
     }
     
     private func voltageInfoView(geo: GeometryProxy) -> some View {
@@ -85,9 +87,9 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                     lightModeBackgroundColor: .clear,
                     darkModeBackgroundColor:  .clear
                 )
-                .offset(y: -15)
+                .offset(x: 5, y: -15)
         }
-        .frame(width: geo.size.width * 0.75)
+        .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.25)
     }
     
     private func adapterInfoSection(geo: GeometryProxy) -> some View {
@@ -98,7 +100,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 disconnectedAdapterInfo(geo: geo)
             }
         }
-        .frame(height: geo.size.height * 0.45)
+        .frame(height: geo.size.height * 0.4)
         .animation(.spring(), value: smartBatteryViewModel.isAdapterConnected)
     }
     

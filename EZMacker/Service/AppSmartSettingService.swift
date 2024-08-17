@@ -17,9 +17,9 @@ struct AppSmartSettingsService: AppSmartSettingProvidable {
     @AppStorage(AppStorageKey.isBattryCurrentMessageMode.name) var isBatteryCurrentMessageMode: Bool = AppStorageKey.isBattryCurrentMessageMode.byDefault as! Bool
     @AppStorage(AppStorageKey.batteryPercentage.name) var batteryPercentage: String = AppStorageKey.batteryPercentage.byDefault as! String
     @AppStorage(AppStorageKey.appExitMode.name) private var selectedAppExitMode: String = AppStorageKey.appExitMode.byDefault as! String
-    //나중에 처리할것
     @AppStorage(AppStorageKey.bestSSidShowMode.name) private var selectedBestSSidMode: String = AppStorageKey.bestSSidShowMode.byDefault as! String
     @AppStorage(AppStorageKey.fileLocatorData.name) private var smartFileLocatorData: Data = AppStorageKey.fileLocatorData.byDefault as! Data
+    @AppStorage(AppStorageKey.isFileChangeAlarmDisabled.name) var isFileChangeAlarmDisabled: Bool = AppStorageKey.isFileChangeAlarmDisabled.byDefault as! Bool
     
     
     var selectedOption: AppUsageExitOption {
@@ -57,6 +57,10 @@ struct AppSmartSettingsService: AppSmartSettingProvidable {
             if let value = value as? Data {
                 smartFileLocatorData = value
             }
+        case .isFileChangeAlarmDisabled:
+            if let value = value as? Bool {
+                isFileChangeAlarmDisabled = value
+            }
         default:
             break
         }
@@ -76,6 +80,8 @@ struct AppSmartSettingsService: AppSmartSettingProvidable {
             return selectedBestSSidMode as? T
         case .fileLocatorData:
               return smartFileLocatorData as? T
+        case .isFileChangeAlarmDisabled:
+            return isFileChangeAlarmDisabled as? T
         default:
             return nil
         }

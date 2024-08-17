@@ -12,8 +12,8 @@ struct EZListViewStyle: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .scrollContentBackground(.hidden)
             .listStyle(PlainListStyle())
+            .scrollIndicators(.hidden)
             .background(backgroundColorForTheme())
             .cornerRadius(12)
     }

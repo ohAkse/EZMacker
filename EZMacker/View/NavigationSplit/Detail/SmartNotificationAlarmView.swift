@@ -4,13 +4,14 @@ struct SmartNotificationAlarmView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @StateObject var smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel
     @State private var toast: ToastData?
-    
+    private let baseSpacing = 10.0
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            ScrollView {
+        VStack(alignment: .leading, spacing: baseSpacing) {
+            ScrollView(.vertical, showsIndicators: false) {
                 batterySectionView
                 wifiSectionView
+                fileLocatorView
             }
             saveButtonView
         }
@@ -24,7 +25,7 @@ struct SmartNotificationAlarmView: View {
     
     // 배터리 섹션 뷰
     private var batterySectionView: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: baseSpacing) {
             Text("배터리")
                 .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                 .padding(.top, 10)
@@ -38,7 +39,7 @@ struct SmartNotificationAlarmView: View {
             .padding()
             .ezInnerBackgroundStyle()
             
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: baseSpacing) {
                 HStack {
                     Text("배터리 상태 (0-100%)")
                     TextFieldRepresentableView(text: $smartNotificationAlarmViewModel.batteryPercentage)
@@ -68,17 +69,33 @@ struct SmartNotificationAlarmView: View {
     
     // 와이파이 섹션 뷰
     private var wifiSectionView: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("와이파이")
+        VStack(alignment: .leading, spacing: baseSpacing) {
+            Text("Wifi")
                 .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                 .padding(.top, 10)
-            
             HStack {
                 Picker("최적의 와이파이 발견 시 알림으로 표시하기", selection: $smartNotificationAlarmViewModel.selectedBestSSidOption) {
                     ForEach(BestSSIDShowOption.allCases, id: \.self) { option in
                         Text(option.rawValue).tag(option)
                     }
                 }
+            }
+            .padding()
+            .ezInnerBackgroundStyle()
+        }
+        .padding()
+        .ezBackgroundColorStyle()
+    }
+    
+    private var fileLocatorView: some View {
+        VStack(alignment: .leading, spacing: baseSpacing) {
+            Text("파일 로케이터")
+                .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
+                .padding(.top, 10)
+            HStack {
+                Toggle("파일 위치/이름 변경 시 알람 메세지 표시 안하기", isOn: $smartNotificationAlarmViewModel.isFileChangeAlarmDisabled)
+                    .toggleStyle(CheckboxToggleStyle())
+                Spacer()
             }
             .padding()
             .ezInnerBackgroundStyle()

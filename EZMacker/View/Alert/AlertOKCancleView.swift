@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlertOKCancleView: View {
     @Binding var isPresented: Bool
+    @EnvironmentObject var colorScheme: ColorSchemeViewModel
     var title: String
     var subtitle: String
     var content: String
@@ -34,22 +35,37 @@ struct AlertOKCancleView: View {
                 Button(action: {
                     isPresented = false
                 }) {
-                    Text("Cancel")
+                    Text("취소")
+                        .ezNormalTextStyle(fontSize: FontSizeType.extrasmall.size, isBold: false)
                 }
+                .frame(width: 60, height: 20)
                 Spacer()
                 Button(action: {
                     isPresented = false
                     onOk?()
                 }) {
-                    Text("OK")
+                    Text("확인")
+                        .ezNormalTextStyle(fontSize: FontSizeType.extrasmall.size, isBold: false)
                 }
+                .frame(width: 60, height: 20)
             }
-            .padding()
         }
         .padding()
-        .background(Color.white)
+        .background(backgroundColorForTheme())
         .cornerRadius(8)
         .shadow(radius: 10)
         .frame(width: 300)
+    }
+    
+    private func backgroundColorForTheme() -> Color {
+        switch colorScheme.getColorScheme() {
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.lightGray.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.lightDark.color
+        default:
+            Logger.fatalErrorMessage("colorSchme is Empty")
+            return Color.clear
+        }
     }
 }

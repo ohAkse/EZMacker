@@ -26,6 +26,7 @@ struct SmartFileLocatorView: View {
                     }
                 }
             }
+            .scrollIndicators(.hidden)
             .ezBackgroundColorStyle()
             
             if let selectedTab = smartFileLocatorViewModel.savedData.selectedTab {
@@ -89,8 +90,6 @@ struct SmartFileLocatorView: View {
                 addTabButton
             }
         }
-        .scrollContentBackground(.automatic)
-        .scrollClipDisabled(false)
         .frame(height: 60)
         .ezTabbarBackgroundStyle()
     }
@@ -141,7 +140,7 @@ struct SmartFileLocatorView: View {
     private func fileGridView(for selectedTab: String) -> some View {
         GeometryReader { geometry in
             ZStack(alignment: .bottomTrailing) {
-                ScrollView(.vertical, showsIndicators: true) {
+                ScrollView(.vertical, showsIndicators: false) {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)]) {
                         ForEach(Array(smartFileLocatorViewModel.savedData.fileViewsPerTab[selectedTab, default: [:]].keys), id: \.self) { id in
                             FileView(id: id,

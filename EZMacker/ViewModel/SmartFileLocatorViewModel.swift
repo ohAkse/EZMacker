@@ -14,14 +14,12 @@ class SmartFileLocatorViewModel: ObservableObject {
     private let appSmartFileService: AppSmartFileProvidable
     private let appSmartFileMonitor: AppSmartFileMonitorable
     private let appSettingService: AppSmartSettingProvidable
-    private let systemPreferenceService: SystemPreferenceAccessible
     private var cancellables = Set<AnyCancellable>()
     
-    init(appSmartFileService: AppSmartFileProvidable, appSmartFileMonitor: AppSmartFileMonitorable, appSmartSettingService: AppSmartSettingProvidable, systemPreferenceService: SystemPreferenceAccessible) {
+    init(appSmartFileService: AppSmartFileProvidable, appSmartFileMonitor: AppSmartFileMonitorable, appSmartSettingService: AppSmartSettingProvidable) {
         self.appSmartFileService = appSmartFileService
         self.appSmartFileMonitor = appSmartFileMonitor
         self.appSettingService = appSmartSettingService
-        self.systemPreferenceService = systemPreferenceService
         self.savedData = FileLocatorData(tabs: [], selectedTab: nil, fileViewsPerTab: [:])
         loadSavedData()
         setupFileMonitors()
@@ -124,16 +122,18 @@ class SmartFileLocatorViewModel: ObservableObject {
     
     private func handleFileDeletion(id: UUID, tab: String) {
         if let deletedFileName = savedData.fileViewsPerTab[tab]?[id]?.fileName {
-            AppNotificationManager.shared.sendNotification(
-                title: "파일 삭제",
-                subtitle: "\(deletedFileName) 파일이 삭제되었습니다."
-            )
+            guard let isFileChangeAlarmDisabled : Bool = appSettingService.loadConfig(.isFileChangeAlarmDisabled)  else {return}
+            if !isFileChangeAlarmDisabled {
+                AppNotificationManager.shared.sendNotification(
+                    title: "파일 삭제",
+                    subtitle: "\(deletedFileName) 파일이 삭제되었습니다."
+                )
+            }
         }
         
         DispatchQueue.main.async {
             self.savedData.fileViewsPerTab[tab]?.removeValue(forKey: id)
             self.appSmartFileMonitor.stopMonitoring(id: id)
-            
             self.saveData()
             self.objectWillChange.send()
         }

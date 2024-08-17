@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlertTextFieldView: View {
+    @EnvironmentObject var colorScheme: ColorSchemeViewModel
     @Binding var textFieldValue: String
     @Binding var isPresented: Bool
     var ssid: String
@@ -49,9 +50,21 @@ struct AlertTextFieldView: View {
             .padding()
         }
         .padding()
-        .background(Color.white)
+        .background(backgroundColorForTheme())
         .cornerRadius(8)
         .shadow(radius: 10)
         .frame(width: 300) 
+    }
+    
+    private func backgroundColorForTheme() -> Color {
+        switch colorScheme.getColorScheme() {
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.lightGray.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.lightDark.color
+        default:
+            Logger.fatalErrorMessage("colorSchme is Empty")
+            return Color.clear
+        }
     }
 }

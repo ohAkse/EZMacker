@@ -15,6 +15,7 @@ enum AppStorageKey: String, Hashable {
     case bestSSidShowMode
     case appExitMode
     case fileLocatorData
+    case isFileChangeAlarmDisabled
     
     var name: String {
         switch self {
@@ -32,6 +33,8 @@ enum AppStorageKey: String, Hashable {
             return "appExitMode"
         case .fileLocatorData:
             return "fileLocatorData"
+        case .isFileChangeAlarmDisabled:
+            return "isFileChangeAlarmDisabled"
         }
     }
     
@@ -51,6 +54,8 @@ enum AppStorageKey: String, Hashable {
             return "unused"
         case .fileLocatorData:
             return Data()
+        case .isFileChangeAlarmDisabled:
+            return false
             
         }
     }
