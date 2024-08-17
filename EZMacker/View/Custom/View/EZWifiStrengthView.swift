@@ -1,6 +1,13 @@
+//
+//  EZWifiStrengthView.swift
+//  EZMacker
+//
+//  Created by 박유경 on 8/17/24.
+//
+
 import SwiftUI
 
-struct EZArcIndicatorView: View {
+struct EZWifiStrengthView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @Binding var wifiStrength: Int
     @State var wifiPower: String = ""
@@ -105,3 +112,4 @@ struct ArcShape: Shape {
 //    }
 //}
 //#endif
+

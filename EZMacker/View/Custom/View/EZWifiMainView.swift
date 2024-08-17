@@ -1,7 +1,14 @@
+//
+//  EZWifiMainView.swift
+//  EZMacker
+//
+//  Created by 박유경 on 8/17/24.
+//
+
 import SwiftUI
 import CoreWLAN
 
-struct EZWifiMainInfoView: View {
+struct EZWifiMainView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @Binding var ssid: String
     @Binding var wifiLists: [ScaningWifiData]
@@ -174,3 +181,4 @@ struct EZWifiMainInfoView: View {
 //    }
 //}
 //#endif
+

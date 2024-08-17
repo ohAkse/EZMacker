@@ -11,7 +11,7 @@ protocol AppSmartSettingProvidable {
     func saveConfig<T>(_ key: AppStorageKey, value: T)
     func loadConfig<T>(_ key: AppStorageKey) -> T?
 }
-//TODO: 이 서비스는 앱에 관한 설정값들을 Save/Load하는부분으로써 밑에 키값(Wifi,FileLocator)저장값들은 따로 구분시킬것
+
 struct AppSmartSettingsService: AppSmartSettingProvidable {
     @AppStorage(AppStorageKey.isBatteryWarningMode.name) var isBatteryWarningMode: Bool = AppStorageKey.isBatteryWarningMode.byDefault as! Bool
     @AppStorage(AppStorageKey.isBattryCurrentMessageMode.name) var isBatteryCurrentMessageMode: Bool = AppStorageKey.isBattryCurrentMessageMode.byDefault as! Bool
@@ -21,69 +21,47 @@ struct AppSmartSettingsService: AppSmartSettingProvidable {
     @AppStorage(AppStorageKey.fileLocatorData.name) private var smartFileLocatorData: Data = AppStorageKey.fileLocatorData.byDefault as! Data
     @AppStorage(AppStorageKey.isFileChangeAlarmDisabled.name) var isFileChangeAlarmDisabled: Bool = AppStorageKey.isFileChangeAlarmDisabled.byDefault as! Bool
     
-    
-    var selectedOption: AppUsageExitOption {
-        get {
-            AppUsageExitOption(rawValue: selectedAppExitMode) ?? .unused
-        }
-        set {
-            selectedAppExitMode = newValue.rawValue
-        }
-    }
-    
     func saveConfig<T>(_ key: AppStorageKey, value: T) {
         switch key {
-        case .isBatteryWarningMode:
-            if let value = value as? Bool {
-                isBatteryWarningMode = value
+        case .isBatteryWarningMode, .isBattryCurrentMessageMode, .isFileChangeAlarmDisabled:
+            if let boolValue = value as? Bool {
+                switch key {
+                case .isBatteryWarningMode: isBatteryWarningMode = boolValue
+                case .isBattryCurrentMessageMode: isBatteryCurrentMessageMode = boolValue
+                case .isFileChangeAlarmDisabled: isFileChangeAlarmDisabled = boolValue
+                default:
+                    return
+                }
             }
-        case .isBattryCurrentMessageMode:
-            if let value = value as? Bool {
-                isBatteryCurrentMessageMode = value
-            }
-        case .batteryPercentage:
-            if let value = value as? String {
-                batteryPercentage = value
-            }
-        case .appExitMode:
-            if let value = value as? String {
-                selectedAppExitMode = value
-            }
-        case .bestSSidShowMode:
-            if let value = value as? String {
-                selectedBestSSidMode = value
+        case .batteryPercentage, .appExitMode, .bestSSidShowMode:
+            if let stringValue = value as? String {
+                switch key {
+                case .batteryPercentage: batteryPercentage = stringValue
+                case .appExitMode: selectedAppExitMode = stringValue
+                case .bestSSidShowMode: selectedBestSSidMode = stringValue
+                default:
+                    return
+                }
             }
         case .fileLocatorData:
-            if let value = value as? Data {
-                smartFileLocatorData = value
-            }
-        case .isFileChangeAlarmDisabled:
-            if let value = value as? Bool {
-                isFileChangeAlarmDisabled = value
+            if let dataValue = value as? Data {
+                smartFileLocatorData = dataValue
             }
         default:
-            break
+            return
         }
     }
     
     func loadConfig<T>(_ key: AppStorageKey) -> T? {
-        switch key {
-        case .isBattryCurrentMessageMode:
-            return isBatteryCurrentMessageMode as? T
-        case .isBatteryWarningMode:
-            return isBatteryWarningMode as? T
-        case .batteryPercentage:
-            return batteryPercentage as? T
-        case .appExitMode:
-            return selectedAppExitMode as? T
-        case .bestSSidShowMode:
-            return selectedBestSSidMode as? T
-        case .fileLocatorData:
-              return smartFileLocatorData as? T
-        case .isFileChangeAlarmDisabled:
-            return isFileChangeAlarmDisabled as? T
-        default:
-            return nil
-        }
+        let appStorageKey: [AppStorageKey: Any] = [
+            .isBatteryWarningMode: isBatteryWarningMode,
+            .isBattryCurrentMessageMode: isBatteryCurrentMessageMode,
+            .isFileChangeAlarmDisabled: isFileChangeAlarmDisabled,
+            .batteryPercentage: batteryPercentage,
+            .appExitMode: selectedAppExitMode,
+            .bestSSidShowMode: selectedBestSSidMode,
+            .fileLocatorData: smartFileLocatorData
+        ]
+        return appStorageKey[key] as? T
     }
 }

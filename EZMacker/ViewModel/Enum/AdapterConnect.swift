@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AdapterConnectStatus: Error, Equatable {
+enum AdapterConnect: Error, Equatable {
     case dataNotFound
     case serializationFailed
     case decodingFailed
@@ -40,7 +40,7 @@ enum AdapterConnectStatus: Error, Equatable {
             return error.localizedDescription
         }
     }
-    static func == (lhs: AdapterConnectStatus, rhs: AdapterConnectStatus) -> Bool {
+    static func == (lhs: AdapterConnect, rhs: AdapterConnect) -> Bool {
         switch (lhs, rhs) {
         case (.dataNotFound, .dataNotFound),
              (.serializationFailed, .serializationFailed),
