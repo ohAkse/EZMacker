@@ -50,7 +50,6 @@ class SmartFileSearchViewModel: ObservableObject {
     }
     
     func searchFileList() {
-        let queries: [MDFindQuery] = [.name(searchText)]
         var folderURLs: [URL] = []
         
         if AppEnvironment.shared.isSandboxed {
@@ -59,7 +58,7 @@ class SmartFileSearchViewModel: ObservableObject {
             folderURLs = getNonSandboxFolderURLs()
         }
         
-        let command = MDFindCommand.find(queries, folderURLs: folderURLs)
+        let command = MDFindCommand.find(.name(searchText), folderURLs: folderURLs)
         CommandToolRunner.shared.runCommand(command: command) { [weak self] result in
             if let result = result {
                 Logger.writeLog(.info, message: "mdfind output: \(result)")
@@ -77,9 +76,7 @@ class SmartFileSearchViewModel: ObservableObject {
             .picturesDirectory,
             .musicDirectory,
             .moviesDirectory,
-            
         ]
-        
         return sandboxFolders.compactMap {
             FileManager.default.urls(for: $0, in: .userDomainMask).first
         }
@@ -97,11 +94,9 @@ class SmartFileSearchViewModel: ObservableObject {
             .desktopDirectory,
             .userDirectory
         ]
-        
         folderURLs.append(contentsOf: allFolders.compactMap {
             FileManager.default.urls(for: $0, in: .allDomainsMask).first
         })
-        
         let userHomeDirectory = FileManager.default.homeDirectoryForCurrentUser.deletingLastPathComponent()
         folderURLs.append(userHomeDirectory)
         

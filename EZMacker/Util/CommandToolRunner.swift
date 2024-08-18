@@ -9,10 +9,10 @@
 import Foundation
 import AppKit
 //https://ss64.com/mac/
-// mdfind "kMDItemDisplayName == '*무제*'""/
+
 struct CommandToolRunner {
     static let shared = CommandToolRunner()
-    func runCommand(command: MDFindCommand, completion: @escaping (String?) -> Void) {
+    func runCommand<T: CoomandExecutable>(command: T, completion: @escaping (String?) -> Void) {
         let group = DispatchGroup()
         let queue = DispatchQueue(label: "ezMacker.com", attributes: .concurrent)
         let lock = NSLock()
@@ -44,7 +44,7 @@ struct CommandToolRunner {
                 do {
                     try process.run()
                 } catch {
-                    Logger.writeLog(.error, message: "mdfind error: \(error.localizedDescription)")
+                    Logger.writeLog(.error, message: "\(command.executableURL.lastPathComponent) error: \(error.localizedDescription)")
                     group.leave()
                 }
             }
