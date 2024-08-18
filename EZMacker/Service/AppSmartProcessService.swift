@@ -34,7 +34,22 @@ class AppSmartProcessService: AppSmartProcessProvidable {
             }
         }
         self.numCPUs = numCPUs
+        
+        //필요시 풀것
+        #if !PROFILE_INFO
+        getSoftwareProcessInfo()
+        #endif
     }
+    func getSoftwareProcessInfo() {
+        CommandToolRunner.shared.runCommand(command: MDProfileCommand.software) { result in
+            if let result = result {
+                Logger.writeLog(.info, message: "System Profiler output: \(result)")
+            } else {
+                Logger.writeLog(.error, message: "System Profiler command failed")
+            }
+        }
+    }
+    
     func checkProcessUpdateInfo() {
         processUpdateInfo()
         sleep(1)
