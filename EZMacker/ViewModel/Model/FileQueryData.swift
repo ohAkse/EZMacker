@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FileData: Codable, Identifiable {
+struct FileQueryData: Codable, Identifiable {
     var id = UUID()
     var fileName: String = ""
     var fileSize: Int64 = 0
@@ -45,5 +45,5 @@ struct FileData: Codable, Identifiable {
         self.creationDate = creationDate
     }
 
-    static let empty = FileData()
+    static let empty = FileQueryData()
 }

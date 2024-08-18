@@ -23,10 +23,15 @@ struct SmartFileSearchView: View {
     //MARK: 검색 입력 섹션
     private var fileSearchSectionView: some View {
         HStack {
-            TextField("찾고자 하는 파일 이름을 검색하여 주세요.", text: $smartFileSearchViewModel.searchText)
+            TextField("찾고자 하는 파일/폴더 이름을 검색 해보세요.", text: $smartFileSearchViewModel.searchText)
                 .padding(.leading, 10)
                 .frame(height: 45)
+                .foregroundColor(.secondary)
                 .ezTextFieldStyle()
+                .onSubmit {
+                    smartFileSearchViewModel.searchFileList()
+                }
+                .submitLabel(.search)
             Button("검색") {
                 [weak smartFileSearchViewModel] in
                 smartFileSearchViewModel?.searchFileList()
@@ -44,6 +49,7 @@ struct SmartFileSearchView: View {
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .ezListViewStyle()
+                
             } else {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("총 \(smartFileSearchViewModel.searchResults.count)개의 파일이 검색되었습니다.")
@@ -70,11 +76,11 @@ struct SmartFileSearchView: View {
                                 }
                                 Spacer()
                                 HStack(spacing: 8) {
-                                    if let modDate = fileInfo.modificationDate {
-                                        Text("수정일: \(modDate.getCurrentTime())")
-                                    }
                                     if let creationDate = fileInfo.creationDate {
                                         Text("생성일: \(creationDate.getCurrentTime())")
+                                    }
+                                    if let modDate = fileInfo.modificationDate {
+                                        Text("수정일: \(modDate.getCurrentTime())")
                                     }
                                 }
                             }
@@ -101,6 +107,14 @@ struct SmartFileSearchView: View {
                                 }
                                 Button("생성일 기준으로 내림차순 정렬") {
                                     smartFileSearchViewModel.sortByCreationDate(isAscending: false)
+                                }
+                            }
+                            Menu("검색타입순으로 정렬") {
+                                Button("폴더순으로 정렬") {
+                                    smartFileSearchViewModel.sortByType(folderFirst: true)
+                                }
+                                Button("파일순으로 정렬") {
+                                    smartFileSearchViewModel.sortByType(folderFirst: false)
                                 }
                             }
                         }

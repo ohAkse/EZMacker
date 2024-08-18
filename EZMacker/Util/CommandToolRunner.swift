@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 //https://ss64.com/mac/
-
+// mdfind "kMDItemDisplayName == '*무제*'""/
 struct CommandToolRunner {
     static let shared = CommandToolRunner()
     func runCommand(command: MDFindCommand, completion: @escaping (String?) -> Void) {
@@ -53,10 +53,8 @@ struct CommandToolRunner {
         group.notify(queue: .main) {
             let combinedResults = results.joined(separator: "\n")
             if !combinedResults.isEmpty {
-                Logger.writeLog(.info, message: "mdfind output: \(combinedResults)")
                 completion(combinedResults)
             } else {
-                Logger.writeLog(.info, message: "mdfind produced no output.")
                 completion(nil)
             }
         }
