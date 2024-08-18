@@ -26,17 +26,17 @@ struct SmartFileLocatorView: View {
                     }
                 }
             }
-            .scrollIndicators(.hidden)
+            .scrollIndicators(.automatic)
             .ezBackgroundColorStyle()
             
             if let selectedTab = smartFileLocatorViewModel.savedData.selectedTab {
                 VStack {
                     Spacer()
                     HStack {
-                        Spacer()
                         addFileButton(for: selectedTab)
+                        Spacer()
                     }
-                    .padding([.bottom, .trailing], 10)
+                    .padding([.bottom, .leading], 10)
                 }
             } else {
                 Spacer()
@@ -76,7 +76,7 @@ struct SmartFileLocatorView: View {
     
     private func tabBar() -> some View {
         ScrollView(.horizontal, showsIndicators: true) {
-            HStack(spacing: 5) {
+            HStack(spacing: 10) {
                 if smartFileLocatorViewModel.savedData.tabs.isEmpty {
                     Spacer().frame(height: 50)
                 } else {
@@ -84,11 +84,11 @@ struct SmartFileLocatorView: View {
                         tabButton(for: tab)
                     }
                     .frame(height: 50)
-                    .padding(.bottom, 5)
                     
                 }
                 addTabButton
             }
+            .contentShape(Rectangle())
         }
         .frame(height: 60)
         .ezTabbarBackgroundStyle()
@@ -97,18 +97,19 @@ struct SmartFileLocatorView: View {
         Button(action: {
             smartFileLocatorViewModel.savedData.selectedTab = tab
         }) {
-            HStack(spacing: 5) {
+            HStack(alignment:.center, spacing: 5) {
                 Text(tab)
                     .lineLimit(1)
                     .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 deleteTabButton(for: tab)
                     .padding(.trailing, 5)
             }
             .padding(10)
-            .frame(height: 40)
+            .frame(height: 30)
         }
         .ezTabbarButtonStyle()
-        .frame(width: tab.getActualButtonWidth(fontSize: FontSizeType.small.size, minimumWidth: 80))
+        .frame(minWidth: 50, maxWidth: 130)
         .padding(.leading, 10)
     }
     
