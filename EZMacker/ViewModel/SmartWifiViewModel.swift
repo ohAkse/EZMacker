@@ -33,7 +33,6 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     @Published var channelFrequency = 0
     @Published var channel = 0
     @Published var band = ""
-    @Published var ssID = ""
     @Published var locale = ""
     
     //CoreWLan
@@ -67,18 +66,27 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
         }
         .store(in: &cancellables)
         
-        Publishers.Zip3(
+        Publishers.Zip(
             appSmartWifiService.getRegistry(forKey: .IO80211Band).compactMap { $0 as? String },
-            appSmartWifiService.getRegistry(forKey: .IO80211SSID).compactMap { $0 as? String },
             appSmartWifiService.getRegistry(forKey: .IO80211Locale).compactMap { $0 as? String }
         )
-        .sink { [weak self] band, ssID, locale in
+        .sink { [weak self] band, locale in
             self?.band = band
-            self?.ssID = ssID
-            self?.currentConnectedSSid = ssID
             self?.locale = locale
         }
         .store(in: &cancellables)
+        
+        appCoreWLanWifiService.getCurrentSSID()
+            .subscribe(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    Logger.writeLog(.error, message: error.localizedDescription)
+                }
+            }, receiveValue: { [weak self] currentSSid in
+                self?.currentConnectedSSid = currentSSid
+            })
+            .store(in: &cancellables)
     }
     
     func requestCoreWLanWifiInfo() async {
