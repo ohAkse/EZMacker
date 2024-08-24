@@ -20,7 +20,7 @@ struct SmartFileSearchView: View {
         .navigationTitle(CategoryType.smartFileSearch.title)
         .padding(30)
     }
-    //MARK: 검색 입력 섹션
+    // MARK: 검색 입력 섹션
     private var fileSearchSectionView: some View {
         HStack {
             TextField("찾고자 하는 파일/폴더 이름을 검색 해보세요.", text: $smartFileSearchViewModel.searchText)
@@ -32,8 +32,7 @@ struct SmartFileSearchView: View {
                     smartFileSearchViewModel.searchFileList()
                 }
                 .submitLabel(.search)
-            Button("검색") {
-                [weak smartFileSearchViewModel] in
+            Button("검색") { [weak smartFileSearchViewModel] in
                 smartFileSearchViewModel?.searchFileList()
             }
             .frame(width: 55, height: 45)
@@ -41,7 +40,7 @@ struct SmartFileSearchView: View {
         }
     }
     
-    //MARK: 검색 결과창 섹션
+    // MARK: 검색 결과창 섹션
     private var fileResultSectionView: some View {
         Group {
             if smartFileSearchViewModel.searchResults.isEmpty {

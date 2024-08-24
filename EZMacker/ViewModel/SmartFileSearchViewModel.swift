@@ -75,7 +75,7 @@ class SmartFileSearchViewModel: ObservableObject {
             .downloadsDirectory,
             .picturesDirectory,
             .musicDirectory,
-            .moviesDirectory,
+            .moviesDirectory
         ]
         return sandboxFolders.compactMap {
             FileManager.default.urls(for: $0, in: .userDomainMask).first

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-//savedSmartFileLocatorData
+
 enum AppStorageKey: String, Hashable {
     case colorSchme
     case isBatteryWarningMode
@@ -60,5 +60,3 @@ enum AppStorageKey: String, Hashable {
         }
     }
 }
-
-

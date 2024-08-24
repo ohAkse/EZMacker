@@ -10,7 +10,6 @@ protocol SystemPreferenceAccessible {
     func openSystemPreferences(systemPath: String)
 }
 
-
 struct SystemPreferenceService: SystemPreferenceAccessible {
     func openSystemPreferences(systemPath: String) {
         guard let url = URL(string: systemPath) else {

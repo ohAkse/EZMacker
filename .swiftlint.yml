@@ -1,0 +1,38 @@
+disabled_rules:
+  - trailing_whitespace
+  - xctfail_message
+  - unused_optional_binding
+  - identifier_name
+type_body_length:
+  warning: 500
+  error: 700
+line_length:
+  warning: 450
+  error: 500
+function_body_length:
+  warning: 100
+  error: 120
+file_length:
+  warning: 800
+  error: 1000
+vertical_whitespace:
+  severity: error
+  max_empty_lines: 1
+large_tuple:
+  warning: 6
+  error: 8
+comment_spacing:
+  severity: error
+  requires_nospace_before_comment: false
+cyclomatic_complexity:
+  warning: 20
+  error: 30
+colon:
+  severity: error
+  apply_to_dictionaries: true
+multiple_closures_with_trailing_closure:
+  severity: error
+redundant_string_enum_value:
+  severity: error
+non_optional_string_data_conversion:
+  severity: error

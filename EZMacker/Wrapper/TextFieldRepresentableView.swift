@@ -31,7 +31,7 @@ struct TextFieldRepresentableView: NSViewRepresentable {
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textField.heightAnchor.constraint(equalToConstant: 24),
+            textField.heightAnchor.constraint(equalToConstant: 24)
         ])
         
         return textField

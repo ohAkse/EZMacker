@@ -12,4 +12,3 @@ protocol WifiSettingConfigurable {
 struct WifiSetting: WifiSettingConfigurable {
     var selectedBestSSIDOption: BestSSIDShow = .alert
 }
-

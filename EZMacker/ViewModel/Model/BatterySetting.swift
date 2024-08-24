@@ -18,4 +18,3 @@ struct BatterySetting: BatterySettingConfigurable {
     var batteryPercentage: String = ""
     var selectedAppExitOption: AppUsageExit = .normal
 }
-

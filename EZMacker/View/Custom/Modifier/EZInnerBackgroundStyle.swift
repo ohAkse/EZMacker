@@ -34,4 +34,3 @@ extension View {
         modifier(EZInnerBackgroundStyle())
     }
 }
-

@@ -10,11 +10,10 @@ import IOKit.ps
 import Combine
 
 protocol AppSmartBatteryRegistryProvidable: AppSmartServiceProvidable {
-    typealias batteryKey = AppSmartBatteryKeyType
-    func getRegistry(forKey key: batteryKey) -> Future<Any?, Never>
-    func getPowerSourceValue<T>(for key: AppSmartBatteryPowerSourceType, defaultValue: T)  -> Future<T, Never>
+    typealias BatteryKey = AppSmartBatteryKeyType
+    func getRegistry(forKey key: BatteryKey) -> Future<Any?, Never>
+    func getPowerSourceValue<T>(for key: AppSmartBatteryPowerSourceType, defaultValue: T) -> Future<T, Never>
 }
-
 
 struct AppSmartBatteryService: AppSmartBatteryRegistryProvidable {
     var serviceKey: String
@@ -24,7 +23,7 @@ struct AppSmartBatteryService: AppSmartBatteryRegistryProvidable {
         self.service = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceNameMatching(serviceKey))
     }
 
-    func getRegistry(forKey key: batteryKey) -> Future<Any?, Never> {
+    func getRegistry(forKey key: BatteryKey) -> Future<Any?, Never> {
         return Future<Any?, Never> { promise in
             guard let result = IORegistryEntryCreateCFProperty(service, key.rawValue as CFString?, nil, 0)?.takeRetainedValue() else {
                 Logger.fatalErrorMessage("CFProerty is null")

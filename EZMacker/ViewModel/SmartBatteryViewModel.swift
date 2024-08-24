@@ -14,7 +14,7 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
         Logger.writeLog(.debug, message: "SmartBatteryViewModel deinit Called")
     }
     
-    //배터리 관련 설정값들
+    // 배터리 관련 설정값들
     @Published var isCharging = false
     @Published var temperature = 0
     @Published var currentBatteryCapacity = 0.0
@@ -28,13 +28,13 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     @Published var batteryCellDisconnectCount = 0
     @Published var chargeData: [ChargeData] = []
     
-    //어댑터 관련 설정값들
+    // 어댑터 관련 설정값들
     @Published var adapterInfo: [AdapterData]?
     @Published var isAdapterConnected = false
-    @Published var adapterConnectionSuccess :AdapterConnect = .none
+    @Published var adapterConnectionSuccess: AdapterConnect = .none
     private var isSentBatteryCapacityAlarmMode = false
     private var isSentBatteryChargingErorAlarmMode = false
-    //일반 설정값들
+    // 일반 설정값들
     private var systemPreferenceService: SystemPreferenceAccessible
     private var appSmartBatteryService: ProvidableType
     private var appSettingService: AppSmartSettingProvidable
@@ -43,13 +43,13 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     private var timer: AnyCancellable?
     private var cancellables = Set<AnyCancellable>()
     
-    init(appSmartBatteryService: ProvidableType,appSettingService:AppSmartSettingProvidable,appProcessService: AppSmartProcessProvidable,   systemPreferenceService: SystemPreferenceAccessible) {
+    init(appSmartBatteryService: ProvidableType, appSettingService: AppSmartSettingProvidable, appProcessService: AppSmartProcessProvidable, systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartBatteryService = appSmartBatteryService
         self.appSettingService = appSettingService
         self.appProcessService = appProcessService
         self.systemPreferenceService =  systemPreferenceService
     }
-    //충전기 Off시 배터리 정보만 나타내는 함수
+    // 충전기 Off시 배터리 정보만 나타내는 함수
     private func requestBatteryInfo() {
         Publishers.CombineLatest(
             appSmartBatteryService.getPowerSourceValue(for: .batteryHealth, defaultValue: ""),
@@ -80,7 +80,7 @@ extension SmartBatteryViewModel {
         timer = nil
         cancellables.removeAll()
     }
-    //처음 로드되면 밑에 할당되는 배터리 정보
+    // 처음 로드되면 밑에 할당되는 배터리 정보
     func requestStaticBatteryInfo() {
         Publishers.CombineLatest4(
             appSmartBatteryService.getRegistry(forKey: .CycleCount).compactMap { $0 as? Int },
@@ -91,26 +91,17 @@ extension SmartBatteryViewModel {
         .receive(on: DispatchQueue.main)
         .sink { [weak self] cycleCount, temperature, designedCapacity, batteryMaxCapacity in
             guard let self = self else { return }
-            if self.cycleCount != cycleCount {
-                self.cycleCount = cycleCount
-            }
-            if self.temperature != temperature {
-                self.temperature = temperature
-            }
-            if self.designedCapacity != designedCapacity {
-                self.designedCapacity = designedCapacity
-            }
-            if self.batteryMaxCapacity != batteryMaxCapacity {
-                self.batteryMaxCapacity = batteryMaxCapacity
-            }
+            self.cycleCount = cycleCount
+            self.temperature = temperature
+            self.designedCapacity = designedCapacity
+            self.batteryMaxCapacity = batteryMaxCapacity
         }
         .store(in: &cancellables)
         
     }
-    //어댑터 연결상태에 따라 정보가 변하는 함수
+    // 어댑터 연결상태에 따라 정보가 변하는 함수
     func checkAdapterConnectionStatus() {
         checkSettingConfig()
-        
         appSmartBatteryService.getRegistry(forKey: .ChargerData)
             .subscribe(on: DispatchQueue.global())
             .compactMap { $0 as? [String: Any] }
@@ -144,7 +135,6 @@ extension SmartBatteryViewModel {
                 appChargingErrorCounrt += 1
             }
             .store(in: &cancellables)
-        
         Publishers.Zip(
             appSmartBatteryService.getRegistry(forKey: .TimeRemaining).compactMap { $0 as? Int },
             appSmartBatteryService.getPowerSourceValue(for: .chargingTime, defaultValue: 0)
@@ -155,17 +145,13 @@ extension SmartBatteryViewModel {
             self.chargingTime = chargingTime
         }
         .store(in: &cancellables)
-        
-        
         appSmartBatteryService.getRegistry(forKey: .IsCharging)
             .subscribe(on: DispatchQueue.global())
             .compactMap { $0 as? Bool }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isCharging in
                 guard let self = self else { return }
-                if self.isCharging != isCharging {
-                    self.isCharging = isCharging
-                }
+                self.isCharging = isCharging
             }
             .store(in: &cancellables)
         appSmartBatteryService.getRegistry(forKey: .CurrentCapacity)
@@ -175,12 +161,10 @@ extension SmartBatteryViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] currentCapacity in
                 guard let self = self else { return }
-                if self.currentBatteryCapacity != currentCapacity  {
-                    self.currentBatteryCapacity = currentCapacity
-                }
+                self.currentBatteryCapacity = currentCapacity
+
             }
             .store(in: &cancellables)
-        
         appSmartBatteryService.getRegistry(forKey: .AppleRawAdapterDetails)
             .subscribe(on: DispatchQueue.global())
             .tryMap { value -> Data in
@@ -199,7 +183,7 @@ extension SmartBatteryViewModel {
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { completion in
-                    if case .failure(_) = completion {
+                    if case .failure = completion {
                         self.adapterConnectionSuccess = .decodingFailed
                     }
                 },
@@ -210,10 +194,7 @@ extension SmartBatteryViewModel {
                     } else {
                         requestBatteryInfo()
                     }
-                    
-                    if isAdapterConnected != adapterConnected {
-                        isAdapterConnected = adapterConnected
-                    }
+                    isAdapterConnected = adapterConnected
                     adapterInfo = adapterDetails
                     adapterConnectionSuccess = .processing
                 }
@@ -259,4 +240,3 @@ extension SmartBatteryViewModel {
         systemPreferenceService.openSystemPreferences(systemPath: settingPath)
     }
 }
-

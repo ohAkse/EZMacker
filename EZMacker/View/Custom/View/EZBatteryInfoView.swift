@@ -17,7 +17,6 @@ struct EZBatteryInfoView: View {
     let info: String
     let isBatterStatus: Bool 
     
-    
     init(imageName: String, isSystem: Bool, title: String, info: String, isBatterStatus: Bool = false) {
         self.imageName = imageName
         self.isSystem = isSystem
@@ -28,14 +27,14 @@ struct EZBatteryInfoView: View {
     
     var body: some View {
         GeometryReader { geo in
-            HStack(alignment:.center, spacing: 5) {
+            HStack(alignment: .center, spacing: 5) {
                     getImage()
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.75)
                     .symbolRenderingMode(.palette)
                     .padding(10)
-                    .animation(.easeIn(duration: 3), value:isAnimated)
+                    .animation(.easeIn(duration: 3), value: isAnimated)
                 Spacer(minLength: 5)
                 VStack(alignment: .center) {
                         Text(title)
@@ -55,12 +54,12 @@ struct EZBatteryInfoView: View {
                         }
                     }
                 }
-                .onAppear{
+                .onAppear {
                     withAnimation(.interactiveSpring(duration: 0.5)) {
                         isAnimated.toggle()
                     }
                 }
-                .onDisappear{
+                .onDisappear {
                     withAnimation(.interactiveSpring(duration: 0.5)) {
                         isAnimated.toggle()
                     }
@@ -130,14 +129,3 @@ struct EZBatteryInfoView: View {
         }
     }
 }
-
-//#if DEBUG
-//struct InfoRectangleHImageTextView_PreView: PreviewProvider {
-//    static var previews: some View {
-//        InfoRectangleHImageTextView(imageName: "thermometer.medium",isSystem:false, title: "타잍 ", info: "내용")
-//    }
-//}
-//#endif
-
-
-

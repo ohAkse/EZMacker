@@ -31,4 +31,3 @@ struct AdapterData: Decodable {
         var MaxVoltage: Int
     }
 }
-

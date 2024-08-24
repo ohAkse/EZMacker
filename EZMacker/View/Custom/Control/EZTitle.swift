@@ -11,7 +11,6 @@ struct EZTitle: View {
     let size: CGFloat = FontSizeType.small.size
     let title: String
     
-    
     var body: some View {
         Text(title)
             .frame(width: 70, height: 50)

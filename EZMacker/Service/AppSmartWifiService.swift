@@ -9,10 +9,9 @@ import Foundation
 import Combine
 
 protocol AppSmartWifiServiceProvidable: AppSmartServiceProvidable {
-    typealias wifiKey = AppBCMWLanSkywalkInterfaceType
-    func getRegistry(forKey key: wifiKey) -> Future<Any?, Never>
+    typealias WifiKey = AppBCMWLanSkywalkInterfaceType
+    func getRegistry(forKey key: WifiKey) -> Future<Any?, Never>
 }
-
 
 struct AppSmartWifiService: AppSmartWifiServiceProvidable {
     var serviceKey: String
@@ -21,7 +20,7 @@ struct AppSmartWifiService: AppSmartWifiServiceProvidable {
         self.serviceKey = serviceKey
         self.service = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceNameMatching(serviceKey))
     }
-    func getRegistry(forKey key: wifiKey) -> Future<Any?, Never> {
+    func getRegistry(forKey key: WifiKey) -> Future<Any?, Never> {
         return Future<Any?, Never> { promise in
             guard let result = IORegistryEntryCreateCFProperty(service, key.rawValue as CFString?, nil, 0)?.takeRetainedValue() else {
                 Logger.fatalErrorMessage("CFProerty is null")

@@ -11,7 +11,7 @@ struct EZBatteryBarView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @State var isUpdateAnimated  = false
     @Binding var batteryLevel: Double
-    @Binding var isAdapterConnected : Bool
+    @Binding var isAdapterConnected: Bool
 
     var body: some View {
          GeometryReader { geo in
@@ -52,7 +52,7 @@ struct EZBatteryBarView: View {
                  }
              }
          }
-         .onChange(of: isAdapterConnected) { oldValue, newValue in
+         .onChange(of: isAdapterConnected) { _, newValue in
              if newValue {
                  withAnimation(.linear(duration: 1).repeatForever(autoreverses: true)) {
                      isUpdateAnimated = true
@@ -67,7 +67,6 @@ struct EZBatteryBarView: View {
          }
      }
     
-    //TODO: 충전용 gif이미지 구현하는방법..?
     private func getBatteryImageName() -> String {
         switch batteryLevel {
         case 1:
@@ -125,8 +124,8 @@ struct EZBatteryBarView: View {
     }
 }
 
-//#if DEBUG
-//struct InfoBatteryBarView_Preview: PreviewProvider {
+// #if DEBUG
+// struct InfoBatteryBarView_Preview: PreviewProvider {
 //    static var previews: some View {
 //        @State var isCharging: Bool = false
 //        @State var battery: Double = 0.75
@@ -134,6 +133,5 @@ struct EZBatteryBarView: View {
 //            InfoBatteryBarView(batteryLevel: $battery, isAdapterConnected: $isCharging)
 //        }
 //    }
-//}
-//#endif
-
+// }
+// #endif

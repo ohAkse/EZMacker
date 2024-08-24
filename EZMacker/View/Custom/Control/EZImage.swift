@@ -20,7 +20,7 @@ struct EZImage: View {
                     .foregroundStyle(getImageForegroundStyle()[0], getImageForegroundStyle()[1])
                     .background(Color.clear)
                     .padding(5)
-                    .frame(width:geo.size.width, height: geo.size.height)
+                    .frame(width: geo.size.width, height: geo.size.height)
             }
         }
     }
@@ -53,10 +53,10 @@ struct EZImage: View {
     }
 }
 
-//#if DEBUG
-//struct CustomImage_Preview: PreviewProvider {
+// #if DEBUG
+// struct CustomImage_Preview: PreviewProvider {
 //    static var previews: some View {
 //        EZImage(systemName: "globe", isSystemName: true)
 //    }
-//}
-//#endif
+// }
+// #endif
