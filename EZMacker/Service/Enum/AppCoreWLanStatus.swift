@@ -36,7 +36,7 @@ enum AppCoreWLanStatus: Error, Equatable {
         }
     }
     
-    static func ==(lhs: AppCoreWLanStatus, rhs: AppCoreWLanStatus) -> Bool {
+    static func == (lhs: AppCoreWLanStatus, rhs: AppCoreWLanStatus) -> Bool {
         switch (lhs, rhs) {
         case (.none, .none),
              (.success, .success),
@@ -53,4 +53,3 @@ enum AppCoreWLanStatus: Error, Equatable {
         }
     }
 }
-

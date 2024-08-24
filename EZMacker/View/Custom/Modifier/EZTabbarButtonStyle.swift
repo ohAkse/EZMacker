@@ -37,4 +37,3 @@ extension View {
         self.buttonStyle(EZTabbarButtonStyle())
     }
 }
-

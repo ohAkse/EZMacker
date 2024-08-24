@@ -25,7 +25,7 @@ struct AppSmartFileService: AppSmartFileProvidable {
                 let fileSize = attributes[.size] as? Int64 ?? 0
                 var fileType = FileDescription(type: attributes[.type] as? String ?? FileDescription.unknown.rawValue).name
                 
-                //TODO: 파일 실행 구조가 윈도우와 달라서 확인후 나중에 따로 처리할것.
+                // TODO: 파일 실행 구조가 윈도우와 달라서 확인후 나중에 따로 처리할것
                 if fileType == "폴더", fileUrl.pathExtension == "app" {
                     fileType = "응용 프로그램"
                 }
@@ -41,7 +41,6 @@ struct AppSmartFileService: AppSmartFileProvidable {
         }
     }
 
-    
     func getThumbnail(for url: URL) -> Future<NSImage, Error> {
         return Future { promise in
             let size = CGSize(width: 100, height: 100)

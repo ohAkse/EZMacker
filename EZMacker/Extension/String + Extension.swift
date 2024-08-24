@@ -13,7 +13,7 @@ extension String {
         let attributes = [NSAttributedString.Key.font: font]
         let size = (self as NSString).size(withAttributes: attributes)
         
-        return max(size.width , minimumWidth)
+        return max(size.width, minimumWidth)
     }
     
     func converFileType() -> String {
@@ -37,4 +37,3 @@ extension String {
         }
     }
 }
-

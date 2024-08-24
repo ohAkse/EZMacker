@@ -97,8 +97,8 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     }
 }
 
-//#if DEBUG
-//struct SmartWifiView_Previews: PreviewProvider {
+// #if DEBUG
+// struct SmartWifiView_Previews: PreviewProvider {
 //    static var colorSchemeViewModel = ColorSchemeViewModel()
 //    static var smartWifiService = AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface")
 //    static var systemPreferenceService = SystemPreferenceService()
@@ -116,6 +116,5 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
 //            .environmentObject(colorSchemeViewModel)
 //            .frame(width: 700, height: 1000)
 //    }
-//}
-//#endif
-
+// }
+// #endif

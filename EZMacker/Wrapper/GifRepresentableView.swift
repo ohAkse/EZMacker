@@ -27,4 +27,3 @@ struct GifRepresentableView: NSViewRepresentable {
     func updateNSView(_ nsView: NSImageView, context: Context) {
     }
 }
-

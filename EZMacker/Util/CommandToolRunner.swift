@@ -5,10 +5,9 @@
 //  Created by 박유경 on 5/27/24.
 //
 
-
 import Foundation
 import AppKit
-//https://ss64.com/mac/
+// https://ss64.com/mac/
 
 struct CommandToolRunner {
     static let shared = CommandToolRunner()
@@ -31,7 +30,9 @@ struct CommandToolRunner {
                 
                 $0.terminationHandler = { _ in
                     let data = pipe.fileHandleForReading.readDataToEndOfFile()
-                    if let output = String(data: data, encoding: .utf8), !output.isEmpty {
+                    let output = String(decoding: data, as: UTF8.self)
+                    
+                    if !output.isEmpty {
                         lock.lock()
                         results.append(output)
                         lock.unlock()

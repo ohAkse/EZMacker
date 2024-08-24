@@ -11,8 +11,8 @@ import Security
 
 protocol AppCoreWLANWifiProvidable {
     func getSignalStrength() -> Future<Int, AppCoreWLanStatus>
-    func getMbpsRate()-> Future<String, AppCoreWLanStatus>
-    func getHardwareAddress()-> Future<String, AppCoreWLanStatus>
+    func getMbpsRate() -> Future<String, AppCoreWLanStatus>
+    func getHardwareAddress() -> Future<String, AppCoreWLanStatus>
     func getWifiLists(attempts: Int ) -> Future<[ScaningWifiData], AppCoreWLanStatus>
     func connectToNetwork(ssid: String, password: String) -> Future<(String, Bool), AppCoreWLanStatus>
 }
@@ -37,7 +37,7 @@ struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             promise(.success(signalStrength))
         }
     }
-    func getMbpsRate()-> Future<String, AppCoreWLanStatus> {
+    func getMbpsRate() -> Future<String, AppCoreWLanStatus> {
         return Future<String, AppCoreWLanStatus> { promise in
             guard let transmitRate = self.interface?.transmitRate() else {
                 promise(.failure(.unableToFetchSignalStrength))

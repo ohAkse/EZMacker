@@ -17,7 +17,6 @@ extension Int {
     func toHourMinute() -> String {
         if self == 0 || self == -1 || self == 65535 {return "계산중.."}
         
-
         let hours = self / 60
         let minutes = self % 60
         
@@ -47,7 +46,7 @@ extension Int {
         return String(self) + "(mAH)"
     }
     
-    //SwiftUI에서는 기본적으로 문자열이 숫자일때 ,로찍혀서 나오는듯
+    // SwiftUI에서는 기본적으로 문자열이 숫자일때 , 로찍혀서 나오는듯
     func toNumber() -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .none

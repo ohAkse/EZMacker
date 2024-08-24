@@ -21,11 +21,10 @@ struct EZWifiMainView: View {
     var onWifiTap: (String, String) -> Void
     var onFindBestWifi: () -> Void
     
-    
     var body: some View {
         VStack {
             HStack {
-                VStack() {
+                VStack {
                     Image(systemName: "wifi.router.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -49,16 +48,16 @@ struct EZWifiMainView: View {
                     }
                     Spacer()
                 } else {
-                    VStack(spacing:0) {
+                    VStack(spacing: 0) {
                         Spacer()
                         Button(action: {
                             didTapWifiListWithAscending()
-                        }) {}
+                        }, label: {})
                             .ezButtonImageStyle(imageName: "arrowshape.up.fill")
                         Spacer()
                         Button(action: {
                             didTapWifiListWithDescending()
-                        }) {}
+                        }, label: {})
                             .ezButtonImageStyle(imageName: "arrowshape.down.fill")
                         Spacer()
                     }
@@ -70,14 +69,14 @@ struct EZWifiMainView: View {
                             Spacer()
                             Button(action: {
                                 onRefresh()
-                            }) {}
+                            }, label: {})
                                 .ezButtonImageStyle(imageName: "rays")
                                 .padding(.trailing, 5)
                             Button(action: {
                                 onFindBestWifi()
                                 toast = ToastData(type: .info, title: "정보", message: "최적의 와이파이를 찾고 있습니다.")
                                 
-                            }) {}
+                            }, label: {})
                                 .ezButtonImageStyle(imageName: "arrow.clockwise.circle")
                         }
                         .padding([.trailing], 10)
@@ -143,8 +142,8 @@ struct EZWifiMainView: View {
     }
 }
 
-//#if DEBUG
-//struct InfoWifiMainInfoView_Previews: PreviewProvider {
+// #if DEBUG
+// struct InfoWifiMainInfoView_Previews: PreviewProvider {
 //    static var colorScheme = ColorSchemeViewModel()
 //    static var smartWifiService = AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface")
 //    static var systemPreferenceService = SystemPreferenceService()
@@ -179,6 +178,5 @@ struct EZWifiMainView: View {
 //        .environmentObject(smartWifiViewModel)
 //        .frame(width: 700, height: 700)
 //    }
-//}
-//#endif
-
+// }
+// #endif

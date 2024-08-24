@@ -52,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDe
         completionHandler([.banner, .list, .sound])
     }
     func requestNotificationAuthorization() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
             if !granted {
                 DispatchQueue.main.async {
                     AppAlertManager.shared.showNotificationPermissionDeniedAlert(
