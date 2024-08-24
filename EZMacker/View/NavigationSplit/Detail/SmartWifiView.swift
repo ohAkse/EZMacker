@@ -42,20 +42,20 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     // Wi-Fi 세부 정보 뷰
     private func wifiDetailView(geo: GeometryProxy) -> some View {
         HStack(spacing: 0) {
-            EZWifiStrengthView(wifiStrength: $smartWifiViewModel.currentWifiStrength)
+            EZWifiStrengthView(wifiStrength: $smartWifiViewModel.wificonnectData.strength)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
             
             Spacer(minLength: 10)  
 
-            EZWifiChannelView(channelBandwidth: $smartWifiViewModel.channelBandwidth, channelFrequency: $smartWifiViewModel.channelFrequency, channel: $smartWifiViewModel.channel)
+            EZWifiChannelView(channelBandwidth: $smartWifiViewModel.radioChannelData.channelBandwidth, channelFrequency: $smartWifiViewModel.radioChannelData.channelFrequency, channel: $smartWifiViewModel.radioChannelData.channel)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
                 .environmentObject(colorSchemeViewModel)
             
             Spacer(minLength: 10)
 
-            EZWifiDetailView(band: $smartWifiViewModel.band, hardwareAddress: $smartWifiViewModel.currentHardwareAddress, locale: $smartWifiViewModel.locale)
+            EZWifiDetailView(band: $smartWifiViewModel.radioChannelData.band, hardwareAddress: $smartWifiViewModel.radioChannelData.macAddress, locale: $smartWifiViewModel.radioChannelData.locale)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
         }
@@ -66,8 +66,8 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     private func wifiMainInfoView(geo: GeometryProxy) -> some View {
         HStack(alignment: .center, spacing: 0) {
             EZWifiMainView(
-                ssid: $smartWifiViewModel.currentConnectedSSid,
-                wifiLists: $smartWifiViewModel.currentScanningWifiDataList,
+                ssid: $smartWifiViewModel.wificonnectData.connectedSSid,
+                wifiLists: $smartWifiViewModel.wificonnectData.scanningWifiList,
                 appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService()),
                 onRefresh: {
                     Task {

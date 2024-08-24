@@ -197,7 +197,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 .frame(height: geo.size.height * 0.2)
             EZBatteryInfoView(imageName: "battery_thermometer", isSystem: false, title: "온도", info: smartBatteryViewModel.temperature.toDegree())
                 .frame(height: geo.size.height * 0.2)
-            EZBatteryInfoView(imageName: "battery_currentCapa", isSystem: false, title: "배터리 용량", info: smartBatteryViewModel.batteryMaxCapacity.tomAH())
+            EZBatteryInfoView(imageName: "battery_currentCapa", isSystem: false, title: "현재 용량", info: smartBatteryViewModel.batteryMaxCapacity.tomAH())
                 .frame(height: geo.size.height * 0.2)
             EZBatteryInfoView(imageName: "battery_designdCapa", isSystem: false, title: "설계 용량", info: smartBatteryViewModel.designedCapacity.tomAH())
                 .frame(height: geo.size.height * 0.2)
