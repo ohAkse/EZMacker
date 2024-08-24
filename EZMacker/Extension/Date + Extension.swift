@@ -18,7 +18,7 @@ extension Date {
     func getFormattedDate() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yy/MM/dd HH:mm"
-        formatter.timeZone = TimeZone.current // 로컬 시간대로 설정
+        formatter.timeZone = TimeZone.current 
         return formatter.string(from: self)
     }
 }

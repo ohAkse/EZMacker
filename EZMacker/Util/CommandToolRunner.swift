@@ -9,70 +9,52 @@
 import Foundation
 import AppKit
 //https://ss64.com/mac/
-// mdfind "kMDItemDisplayName == '*무제*'"
-// mdfind "kMDItemDisplayName == '*무제*'" -onlyin ~/Downloads
-//다운로드, 사진, 그림, 영화, 음악 등 기본적으로 제한
+
 struct CommandToolRunner {
     static let shared = CommandToolRunner()
-    
-    func runMDFind(searchText: String, fileType: String? = nil, completion: @escaping (String?) -> Void) {
-        let fileManager = FileManager.default
-        
-        let accessibleFolders: [FileManager.SearchPathDirectory] = [
-              .downloadsDirectory,
-              .picturesDirectory,
-              .musicDirectory,
-              .moviesDirectory
-          ]
-        
-        let folderURLs = accessibleFolders.compactMap {
-            fileManager.urls(for: $0, in: .userDomainMask).first
-        }
-        
-        var results = [String]()
+    func runCommand<T: CoomandExecutable>(command: T, completion: @escaping (String?) -> Void) {
         let group = DispatchGroup()
-        let queue = DispatchQueue(label: "ezMacker.com")
+        let queue = DispatchQueue(label: "ezMacker.com", attributes: .concurrent)
+        let lock = NSLock()
+        var results = [String]()
         
-        for folderURL in folderURLs {
+        for arguments in command.argumentsList {
             group.enter()
             
-            let process = Process()
-            process.executableURL = URL(fileURLWithPath: "/usr/bin/mdfind")
-            
-            var query: String
-            query = "kMDItemDisplayName == '*\(searchText)*'cd"
-            
-            process.arguments = [query, "-onlyin", folderURL.path]
-            
-            let pipe = Pipe()
-            process.standardOutput = pipe
-            process.standardError = pipe
-            
-            process.terminationHandler = { _ in
-                let data = pipe.fileHandleForReading.readDataToEndOfFile()
-                if let output = String(data: data, encoding: .utf8), !output.isEmpty {
-                    queue.sync {
+            let process = Process().then {
+                $0.executableURL = command.executableURL
+                $0.arguments = arguments
+                
+                let pipe = Pipe()
+                $0.standardOutput = pipe
+                $0.standardError = pipe
+                
+                $0.terminationHandler = { _ in
+                    let data = pipe.fileHandleForReading.readDataToEndOfFile()
+                    if let output = String(data: data, encoding: .utf8), !output.isEmpty {
+                        lock.lock()
                         results.append(output)
+                        lock.unlock()
                     }
+                    group.leave()
                 }
-                group.leave()
             }
             
-            do {
-                try process.run()
-            } catch {
-                Logger.writeLog(.error, message: "mdfind error for \(folderURL.lastPathComponent): \(error.localizedDescription)")
-                group.leave()
+            queue.async {
+                do {
+                    try process.run()
+                } catch {
+                    Logger.writeLog(.error, message: "\(command.executableURL.lastPathComponent) error: \(error.localizedDescription)")
+                    group.leave()
+                }
             }
         }
         
         group.notify(queue: .main) {
             let combinedResults = results.joined(separator: "\n")
             if !combinedResults.isEmpty {
-                Logger.writeLog(.info, message: "mdfind output: \(combinedResults)")
                 completion(combinedResults)
             } else {
-                Logger.writeLog(.info, message: "mdfind produced no output.")
                 completion(nil)
             }
         }

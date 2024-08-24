@@ -206,7 +206,7 @@ struct SmartFileLocatorView: View {
 
 struct FileView: View {
     let id: UUID
-    let fileInfo: FileData
+    let fileInfo: FileQueryData
     let onDelete: () -> Void
     let onDrop: (URL) -> Void
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
