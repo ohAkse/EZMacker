@@ -40,7 +40,7 @@ struct EZWifiDetailView: View {
 
                     Spacer(minLength: 10)
                     HStack(spacing: 10) {
-                        Text("Mac:")
+                        Text("맥주소:")
                             .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
                         Spacer()
                         Text("\(hardwareAddress)")

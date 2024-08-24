@@ -12,4 +12,3 @@ protocol AppSmartServiceProvidable {
     var serviceKey: String { get }
     func getRegistry(forKey key: KeyType) -> Future<Any?, Never>
 }
-

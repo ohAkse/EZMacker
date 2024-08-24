@@ -36,16 +36,16 @@ struct AlertTextFieldView: View {
             HStack {
                 Button(action: {
                     isPresented = false
-                }) {
+                }, label: {
                     Text("Cancel")
-                }
+                })
                 Spacer()
                 Button(action: {
                     isPresented = false
                     onOk()
-                }) {
+                }, label: {
                     Text("OK")
-                }
+                })
             }
             .padding()
         }

@@ -13,7 +13,7 @@ struct AlertOKCancleView: View {
     var title: String
     var subtitle: String
     var content: String
-    var onOk: (() -> Void)? = nil
+    var onOk: (() -> Void)?
     
     var body: some View {
         VStack {
@@ -34,19 +34,19 @@ struct AlertOKCancleView: View {
             HStack {
                 Button(action: {
                     isPresented = false
-                }) {
+                }, label: {
                     Text("취소")
                         .ezNormalTextStyle(fontSize: FontSizeType.extrasmall.size, isBold: false)
-                }
+                })
                 .frame(width: 60, height: 20)
                 Spacer()
                 Button(action: {
                     isPresented = false
                     onOk?()
-                }) {
+                }, label: {
                     Text("확인")
                         .ezNormalTextStyle(fontSize: FontSizeType.extrasmall.size, isBold: false)
-                }
+                })
                 .frame(width: 60, height: 20)
             }
         }

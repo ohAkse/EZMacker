@@ -31,4 +31,3 @@ struct EZContent: View {
         }
     }
 }
-

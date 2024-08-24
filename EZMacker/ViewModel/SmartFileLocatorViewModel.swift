@@ -122,7 +122,7 @@ class SmartFileLocatorViewModel: ObservableObject {
     
     private func handleFileDeletion(id: UUID, tab: String) {
         if let deletedFileName = savedData.fileViewsPerTab[tab]?[id]?.fileName {
-            guard let isFileChangeAlarmDisabled : Bool = appSettingService.loadConfig(.isFileChangeAlarmDisabled)  else {return}
+            guard let isFileChangeAlarmDisabled: Bool = appSettingService.loadConfig(.isFileChangeAlarmDisabled)  else {return}
             if !isFileChangeAlarmDisabled {
                 AppNotificationManager.shared.sendNotification(
                     title: "파일 삭제",

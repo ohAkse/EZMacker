@@ -14,4 +14,3 @@ enum AppUsageExit: String, CaseIterable {
         return self.rawValue
     }
 }
-

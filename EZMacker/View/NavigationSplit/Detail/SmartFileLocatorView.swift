@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct SmartFileLocatorView: View {
     @StateObject var smartFileLocatorViewModel: SmartFileLocatorViewModel
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
@@ -26,17 +25,17 @@ struct SmartFileLocatorView: View {
                     }
                 }
             }
-            .scrollIndicators(.hidden)
+            .scrollIndicators(.automatic)
             .ezBackgroundColorStyle()
             
             if let selectedTab = smartFileLocatorViewModel.savedData.selectedTab {
                 VStack {
                     Spacer()
                     HStack {
-                        Spacer()
                         addFileButton(for: selectedTab)
+                        Spacer()
                     }
-                    .padding([.bottom, .trailing], 10)
+                    .padding([.bottom, .leading], 10)
                 }
             } else {
                 Spacer()
@@ -73,10 +72,9 @@ struct SmartFileLocatorView: View {
         .padding(10)
     }
     
-    
     private func tabBar() -> some View {
         ScrollView(.horizontal, showsIndicators: true) {
-            HStack(spacing: 5) {
+            HStack(spacing: 10) {
                 if smartFileLocatorViewModel.savedData.tabs.isEmpty {
                     Spacer().frame(height: 50)
                 } else {
@@ -84,11 +82,11 @@ struct SmartFileLocatorView: View {
                         tabButton(for: tab)
                     }
                     .frame(height: 50)
-                    .padding(.bottom, 5)
                     
                 }
                 addTabButton
             }
+            .contentShape(Rectangle())
         }
         .frame(height: 60)
         .ezTabbarBackgroundStyle()
@@ -96,49 +94,54 @@ struct SmartFileLocatorView: View {
     private func tabButton(for tab: String) -> some View {
         Button(action: {
             smartFileLocatorViewModel.savedData.selectedTab = tab
-        }) {
-            HStack(spacing: 5) {
+        }, label: {
+            HStack(alignment: .center, spacing: 5) {
                 Text(tab)
                     .lineLimit(1)
                     .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 deleteTabButton(for: tab)
                     .padding(.trailing, 5)
             }
             .padding(10)
-            .frame(height: 40)
-        }
+            .frame(height: 30)
+        })
         .ezTabbarButtonStyle()
-        .frame(width: tab.getActualButtonWidth(fontSize: FontSizeType.small.size, minimumWidth: 80))
+        .frame(minWidth: 50, maxWidth: 130)
         .padding(.leading, 10)
     }
     
-    
     private func deleteTabButton(for tab: String) -> some View {
-        Button(action: { smartFileLocatorViewModel.deleteTab(tab) }) {
-            Image(systemName: "xmark.circle.fill")
-                .resizable()
-                .frame(width: 16, height: 16)
-                .foregroundColor(.red)
-        }
+        Button(
+            action: {
+                smartFileLocatorViewModel.deleteTab(tab)
+            },
+            label: {
+                Image(systemName: "xmark.circle.fill")
+                    .resizable()
+                    .frame(width: 16, height: 16)
+                    .foregroundColor(.red)
+            }
+        )
         .buttonStyle(PlainButtonStyle())
     }
     
     private var addTabButton: some View {
-        Button(action: { showingAlert = true }) {}
+        Button(action: { showingAlert = true },
+               label: {})
             .ezButtonImageStyle(
                 imageName: "plus.circle.fill",
                 imageSize: CGSize(width: 30, height: 30),
                 lightModeForegroundColor: ThemeColorType.orange.color,
                 darkModeForegroundColor: ThemeColorType.orange.color,
                 lightModeBackgroundColor: .clear,
-                darkModeBackgroundColor:  .clear,
+                darkModeBackgroundColor: .clear,
                 frameSize: CGSize(width: 30, height: 30)
             )
     }
     
-    
     private func fileGridView(for selectedTab: String) -> some View {
-        GeometryReader { geometry in
+        GeometryReader { _ in
             ZStack(alignment: .bottomTrailing) {
                 ScrollView(.vertical, showsIndicators: false) {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)]) {
@@ -157,20 +160,18 @@ struct SmartFileLocatorView: View {
         }
     }
     
-    
     private func addFileButton(for selectedTab: String) -> some View {
-        Button(action: { smartFileLocatorViewModel.addFileView(for: selectedTab) }) {}
+        Button(action: { smartFileLocatorViewModel.addFileView(for: selectedTab) }, label: {})
             .ezButtonImageStyle(
                 imageName: "plus.circle.fill",
                 imageSize: CGSize(width: 30, height: 30),
                 lightModeForegroundColor: ThemeColorType.cyan.color,
                 darkModeForegroundColor: ThemeColorType.cyan.color,
                 lightModeBackgroundColor: .clear,
-                darkModeBackgroundColor:  .clear,
+                darkModeBackgroundColor: .clear,
                 frameSize: CGSize(width: 30, height: 30)
             )
     }
-    
     
     private var emptyStateView: some View {
         VStack {
@@ -287,7 +288,7 @@ struct FileView: View {
     
     private func onDropFile(providers: [NSItemProvider]) -> Bool {
         guard let provider = providers.first else { return false }
-        provider.loadItem(forTypeIdentifier: "public.file-url", options: nil) { (urlData, error) in
+        provider.loadItem(forTypeIdentifier: "public.file-url", options: nil) { (urlData, _) in
             DispatchQueue.main.async {
                 if let data = urlData as? Data,
                    let url = URL(dataRepresentation: data, relativeTo: nil) {
@@ -305,4 +306,3 @@ struct FileView: View {
         }
     }
 }
-

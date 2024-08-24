@@ -11,10 +11,11 @@ import Security
 
 protocol AppCoreWLANWifiProvidable {
     func getSignalStrength() -> Future<Int, AppCoreWLanStatus>
-    func getMbpsRate()-> Future<String, AppCoreWLanStatus>
-    func getHardwareAddress()-> Future<String, AppCoreWLanStatus>
+    func getMbpsRate() -> Future<String, AppCoreWLanStatus>
+    func getHardwareAddress() -> Future<String, AppCoreWLanStatus>
     func getWifiLists(attempts: Int ) -> Future<[ScaningWifiData], AppCoreWLanStatus>
     func connectToNetwork(ssid: String, password: String) -> Future<(String, Bool), AppCoreWLanStatus>
+    func getCurrentSSID() -> Future<String, AppCoreWLanStatus> 
 }
 
 struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
@@ -37,7 +38,7 @@ struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             promise(.success(signalStrength))
         }
     }
-    func getMbpsRate()-> Future<String, AppCoreWLanStatus> {
+    func getMbpsRate() -> Future<String, AppCoreWLanStatus> {
         return Future<String, AppCoreWLanStatus> { promise in
             guard let transmitRate = self.interface?.transmitRate() else {
                 promise(.failure(.unableToFetchSignalStrength))
@@ -122,6 +123,20 @@ struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             } catch {
                 Logger.writeLog(.error, message: "네트워크 스캔 실패: \(error.localizedDescription)")
                 promise(.failure(.scanningFailed))
+            }
+        }
+    }
+    func getCurrentSSID() -> Future<String, AppCoreWLanStatus> {
+        return Future<String, AppCoreWLanStatus> { promise in
+            guard let interface = self.interface else {
+                promise(.failure(.unableToFetchSignalStrength))
+                return
+            }
+            
+            if let ssid = interface.ssid() {
+                promise(.success(ssid))
+            } else {
+                promise(.success(""))
             }
         }
     }

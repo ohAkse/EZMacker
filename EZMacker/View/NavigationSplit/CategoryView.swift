@@ -38,7 +38,7 @@ struct CategoryView: View {
     private func categoryRow(for category: CategoryType) -> some View {
         return HStack {
             Image(systemName: category.imageName)
-                .ezNormalImageStyle(imageScale: .large, width:20, height: 20)
+                .ezNormalImageStyle(imageScale: .large, width: 20, height: 20)
             Text(category.title)
                 .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
 

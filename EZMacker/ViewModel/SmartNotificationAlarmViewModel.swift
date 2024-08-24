@@ -23,14 +23,13 @@ class SmartNotificationAlarmViewModel: ObservableObject {
     deinit {
         Logger.writeLog(.debug, message: "NotificationAlarmViewModel deinit Called")
     }
-    init(appSettingService: AppSmartSettingsService, appProcessService: AppSmartProcessProvidable, batterySetting:BatterySettingConfigurable, wifiSetting: WifiSettingConfigurable, fileLocatorSetting: FileLocatorSettingConfigurable ) {
+    init(appSettingService: AppSmartSettingsService, appProcessService: AppSmartProcessProvidable, batterySetting: BatterySettingConfigurable, wifiSetting: WifiSettingConfigurable, fileLocatorSetting: FileLocatorSettingConfigurable ) {
         self.appSettingService = appSettingService
         self.appProcessService = appProcessService
         self.batterySetting = batterySetting
         self.wifiSetting = wifiSetting
         self.fileLocatorSetting = fileLocatorSetting
     }
-    
     
     // MARK: - Configuration
     func loadConfig() {

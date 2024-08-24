@@ -23,7 +23,7 @@ struct SmartNotificationAlarmView: View {
         .padding(30)
     }
     
-    //MARK: 배터리 섹션
+    // MARK: 배터리 섹션
     private var batterySectionView: some View {
         VStack(alignment: .leading, spacing: baseSpacing) {
             Text("배터리")
@@ -67,7 +67,7 @@ struct SmartNotificationAlarmView: View {
         .ezBackgroundColorStyle()
     }
     
-    //MARK: 와이파이 섹션
+    // MARK: 와이파이 섹션
     private var wifiSectionView: some View {
         VStack(alignment: .leading, spacing: baseSpacing) {
             Text("Wifi")
@@ -87,7 +87,7 @@ struct SmartNotificationAlarmView: View {
         .ezBackgroundColorStyle()
     }
     
-    //MARK: 파일 로케이터 섹션
+    // MARK: 파일 로케이터 섹션
     private var fileLocatorView: some View {
         VStack(alignment: .leading, spacing: baseSpacing) {
             Text("파일 로케이터")
@@ -105,7 +105,7 @@ struct SmartNotificationAlarmView: View {
         .ezBackgroundColorStyle()
     }
     
-    //MARK: 저장 버튼
+    // MARK: 저장 버튼
     private var saveButtonView: some View {
         HStack {
             Spacer()

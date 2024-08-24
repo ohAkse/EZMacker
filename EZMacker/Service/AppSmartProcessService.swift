@@ -26,7 +26,7 @@ class AppSmartProcessService: AppSmartProcessProvidable {
     init() {
         let mibKeys: [Int32] = [ CTL_HW, HW_NCPU ]
         var numCPUs: uint = 0
-        mibKeys.withUnsafeBufferPointer() { mib in
+        mibKeys.withUnsafeBufferPointer { mib in
             var sizeOfNumCPUs = MemoryLayout<uint>.size
             let status = sysctl(processor_info_array_t(mutating: mib.baseAddress), 2, &numCPUs, &sizeOfNumCPUs, nil, 0)
             if status != 0 {
@@ -35,7 +35,7 @@ class AppSmartProcessService: AppSmartProcessProvidable {
         }
         self.numCPUs = numCPUs
         
-        //필요시 풀것
+        // 필요시 풀것
         #if !PROFILE_INFO
         getSoftwareProcessInfo()
         #endif
@@ -55,13 +55,13 @@ class AppSmartProcessService: AppSmartProcessProvidable {
         sleep(1)
         processUpdateInfo()
     }
-    func getTotalPercenatage()-> Float {
+    func getTotalPercenatage() -> Float {
         return totalUsagePercentage
     }
 
     func processUpdateInfo() {
         var numCPUsU: natural_t = 0
-        let err: kern_return_t = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &numCPUsU, &cpuInfo, &numCpuInfo);
+        let err: kern_return_t = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &numCPUsU, &cpuInfo, &numCpuInfo)
         guard err == KERN_SUCCESS else {
             Logger.writeLog(.error, message: "Error host_processor_info!")
             return

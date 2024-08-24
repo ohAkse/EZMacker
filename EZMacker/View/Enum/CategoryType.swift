@@ -7,7 +7,7 @@
 
 import Foundation
 enum CategoryType: CaseIterable {
-    case smartBattery, smartFileSearch, smartWifi,smartNotificationAlarm, smartFileLocator
+    case smartBattery, smartFileSearch, smartWifi, smartNotificationAlarm, smartFileLocator
     var title: String {
         switch self {
         case .smartBattery: return "스마트 배터리"
@@ -30,7 +30,7 @@ enum CategoryType: CaseIterable {
 }
 
 enum CategorySectionType {
-    case categoryMainSection, settingSection,categoryUtilitySection
+    case categoryMainSection, settingSection, categoryUtilitySection
     var title: String {
         switch self {
         case .categoryMainSection: return "My Mac"
