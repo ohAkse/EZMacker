@@ -79,7 +79,10 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                     }
                 },
                 onWifiTap: { ssid, password in
-                    smartWifiViewModel.connectWifi(ssid: ssid, password: password)
+                    Task.detached(priority: .background) {
+                        await smartWifiViewModel.connectWifi(ssid: ssid, password: password)
+                    }
+                    
                 },
                 onFindBestWifi: {
                     smartWifiViewModel.startSearchBestSSid()

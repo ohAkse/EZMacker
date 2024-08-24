@@ -27,43 +27,44 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
         self.systemPreferenceService = systemPreferenceService
         self.appSettingService = appSettingService
     }
-    
+    // DATA
     @Published var radioChannelData: RadioChannelData = .init() // ioreg
     @Published var wificonnectData: WifiConnectData = .init() // CoreWLan
     
+    // UI
     @Published var wifiRequestStatus: AppCoreWLanStatus = .none
     @Published var bestSSid = ""
     @Published var showAlert = false
     
-    // private variables
+    // Private Variables
+    private let scanQueue =  DispatchQueue(label: "ezMacker.com", attributes: .concurrent)
     private var scanResults: [ScaningWifiData] = []
-    private var wifiTimerCancellable: AnyCancellable?
     private var cancellables = Set<AnyCancellable>()
-    
+    private var rrsiTimerCancellable: AnyCancellable?
+    private var searchTimerCancellable: AnyCancellable?
     private let timerMax = 10
     
     func requestWifiInfo() {
-        let channel = appSmartWifiService.getRegistry(forKey: .IO80211Channel).compactMap { $0 as? Int }
-        let bandwidth = appSmartWifiService.getRegistry(forKey: .IO80211ChannelBandwidth).compactMap { $0 as? Int }
-        let frequency = appSmartWifiService.getRegistry(forKey: .IO80211ChannelFrequency).compactMap { $0 as? Int }
-        let band = appSmartWifiService.getRegistry(forKey: .IO80211Band).compactMap { $0 as? String }
-        let locale = appSmartWifiService.getRegistry(forKey: .IO80211Locale).compactMap { $0 as? String }
-        let macAddress = appSmartWifiService.getRegistry(forKey: .IOMACAddress)
-             .compactMap { $0 as? Data }
-             .map { $0.toHyphenSeparatedMACAddress() }
-
         Publishers.CombineLatest(
-            Publishers.CombineLatest3(bandwidth, frequency, channel),
-            Publishers.CombineLatest3(band, locale, macAddress)
+            Publishers.CombineLatest3(
+                appSmartWifiService.getRegistry(forKey: .IO80211Channel).compactMap { $0 as? Int },
+                appSmartWifiService.getRegistry(forKey: .IO80211ChannelBandwidth).compactMap { $0 as? Int },
+                appSmartWifiService.getRegistry(forKey: .IO80211ChannelFrequency).compactMap { $0 as? Int }
+            ),
+            Publishers.CombineLatest3(
+                appSmartWifiService.getRegistry(forKey: .IO80211Band).compactMap { $0 as? String },
+                appSmartWifiService.getRegistry(forKey: .IO80211Locale).compactMap { $0 as? String },
+                appSmartWifiService.getRegistry(forKey: .IOMACAddress).compactMap { $0 as? Data }.map { $0.toHyphenSeparatedMACAddress() }
+            )
         )
-        .map { (channelInfo, bandInfo) in
+        .map { channelInfo, otherInfo in
             RadioChannelData(
-                channelBandwidth: channelInfo.0,
-                channelFrequency: channelInfo.1,
-                channel: channelInfo.2,
-                band: bandInfo.0,
-                locale: bandInfo.1,
-                hardwareAddress: bandInfo.2
+                channelBandwidth: channelInfo.1,
+                channelFrequency: channelInfo.2,
+                channel: channelInfo.0,
+                band: otherInfo.0,
+                locale: otherInfo.1,
+                hardwareAddress: otherInfo.2
             )
         }
         .assign(to: \.radioChannelData, on: self)
@@ -121,18 +122,20 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
 
 extension SmartWifiViewModel {
     func startWifiTimer() {
-        wifiTimerCancellable = Timer.publish(every: 1, on: .current, in: .default)
+        rrsiTimerCancellable = Timer.publish(every: 1, on: .current, in: .default)
             .autoconnect()
             .sink { [weak self] _ in
                 self?.updateWifiSignalStrength()
             }
-        
-        wifiTimerCancellable?.store(in: &cancellables)
+        rrsiTimerCancellable?.store(in: &cancellables)
     }
     
     func stopWifiTimer() {
-        wifiTimerCancellable?.cancel()
-        wifiTimerCancellable = nil
+        rrsiTimerCancellable?.cancel()
+        rrsiTimerCancellable = nil
+        
+        searchTimerCancellable?.cancel()
+        searchTimerCancellable = nil
     }
 }
 
@@ -150,7 +153,7 @@ extension SmartWifiViewModel {
             })
             .store(in: &cancellables)
     }
-    func connectWifi(ssid: String, password: String) {
+    func connectWifi(ssid: String, password: String) async {
         appCoreWLanWifiService.connectToNetwork(ssid: ssid, password: password)
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
@@ -174,48 +177,64 @@ extension SmartWifiViewModel {
     }
 
     func startSearchBestSSid() {
-        guard let bestSSidMode: String = appSettingService.loadConfig(.bestSSidShowMode)  else {return}
-        let SSidShowMode = BestSSIDShow(rawValue: bestSSidMode)
-        scanResults.removeAll()
-        showAlert = false
+        guard let bestSSidMode: String = appSettingService.loadConfig(.bestSSidShowMode) else { return }
+        let resultShowMode = BestSSIDShow(rawValue: bestSSidMode)
+        var wifirssiList: [String: Set<Int>] = [:]
         
-        let timerPublisher = Timer.publish(every: 1, on: .main, in: .default)
+        let searchTimerPublisher = Timer.publish(every: 1, on: RunLoop.main, in: .common)
             .autoconnect()
             .prefix(timerMax)
-            .eraseToAnyPublisher()
-
-        let scanPublisher = timerPublisher
+        
+        searchTimerCancellable = searchTimerPublisher
             .flatMap { [weak self] _ -> AnyPublisher<[ScaningWifiData], Never> in
                 guard let self = self else { return Just([]).eraseToAnyPublisher() }
-                return self.appCoreWLanWifiService.getWifiLists(attempts: 1)
-                    .catch { _ in Just([]) }
-                    .setFailureType(to: Never.self)
-                    .eraseToAnyPublisher()
+                
+                return Future<[ScaningWifiData], Never> { promise in
+                    self.scanQueue.async {
+                        self.appCoreWLanWifiService.getWifiLists(attempts: 1)
+                            .catch { error -> AnyPublisher<[ScaningWifiData], Never> in
+                                Logger.writeLog(.error, message: "\(error.localizedDescription)")
+                                return Just([]).eraseToAnyPublisher()
+                            }
+                            .sink(
+                                receiveCompletion: { _ in },
+                                receiveValue: { value in promise(.success(value)) }
+                            )
+                            .store(in: &self.cancellables)
+                    }
+                }.eraseToAnyPublisher()
             }
-            .handleEvents(receiveOutput: { [weak self] wifiLists in
-                guard let self = self else { return }
-                self.scanResults.append(contentsOf: wifiLists)
-            })
-            .eraseToAnyPublisher()
-        
-        let delayPublisher = Just(())
-            .delay(for: .seconds(timerMax), scheduler: DispatchQueue.main)
-            .flatMap { _ in Empty<[ScaningWifiData], Never>() }
-            .eraseToAnyPublisher()
-
-        wifiTimerCancellable = Publishers.Merge(scanPublisher, delayPublisher)
-            .collect()
-            .sink(receiveCompletion: { [weak self] _ in
-                guard let self = self else { return }
-                bestSSid = scanResults.max(by: { Int($0.rssi)! < Int($1.rssi)! })?.ssid ?? "No SSID found"
-                if SSidShowMode == .alert {
-                    showAlert = true
-                } else {
-                    AppNotificationManager.shared.sendNotification(title: "알림", subtitle: "최적의 Wifi : \(self.bestSSid)")
+            .sink(
+                receiveCompletion: { [weak self] _ in
+                    guard let self = self else { return }
+                    DispatchQueue.main.async {
+                        let bestSSid = wifirssiList
+                            .mapValues { rssiSet in
+                                rssiSet.reduce(0, +) / rssiSet.count
+                            }
+                            .max(by: { $0.value < $1.value })?
+                            .key ?? "와이파이를 찾을 수 없습니다."
+                        
+                        self.bestSSid = bestSSid
+                        if resultShowMode == .alert {
+                            self.showAlert = true
+                        } else {
+                            AppNotificationManager.shared.sendNotification(
+                                title: "알림",
+                                subtitle: "최적의 Wifi : \(bestSSid)"
+                            )
+                        }
+                    }
+                },
+                receiveValue: { wifiList in
+                    for wifi in wifiList {
+                        if let rssi = Int(wifi.rssi) {
+                            wifirssiList[wifi.ssid, default: []].insert(rssi)
+                        }
+                        Logger.writeLog(.debug, message: "\(wifi)")
+                    }
                 }
-                scanResults.removeAll()
-            }, receiveValue: { _ in })
-        
-        wifiTimerCancellable?.store(in: &cancellables)
+            )
+        searchTimerCancellable?.store(in: &cancellables)
     }
 }
