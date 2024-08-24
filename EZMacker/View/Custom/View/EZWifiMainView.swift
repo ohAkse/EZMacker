@@ -42,9 +42,7 @@ struct EZWifiMainView: View {
                 Spacer()
                 if wifiLists.isEmpty {
                     HStack(alignment: .center) {
-                        ProgressView("Loading Wi-Fi Networks...")
-                            .progressViewStyle(CircularProgressViewStyle())
-                            .frame(width: 300, height: 300)
+                        EZLoadingView(size: 200, text: "Wifi 리스트 불러오는 중..")
                     }
                     Spacer()
                 } else {

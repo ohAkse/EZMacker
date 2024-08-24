@@ -68,6 +68,8 @@ struct EZWifiStrengthView: View {
     private func getWifiStrength() -> String {
         let description: String
         switch wifiStrength {
+        case 0:
+            description = "--"
         case -30..<0:
             description = "최상"
         case -50..<(-30):
