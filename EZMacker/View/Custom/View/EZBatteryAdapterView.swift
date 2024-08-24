@@ -25,12 +25,12 @@ struct EZBatteryAdapterView: View {
         }
         .background(backgroundColorForTheme())
         .clipShape(.capsule)
-        .onAppear{
+        .onAppear {
             withAnimation(.spring(duration: 0.2)) {
                 isAdapterAnimated.toggle()
             }
         }
-        .onDisappear{
+        .onDisappear {
             withAnimation(.interactiveSpring(duration: 0.2)) {
                 isAdapterAnimated.toggle()
            }
@@ -51,11 +51,11 @@ struct EZBatteryAdapterView: View {
     }
 }
 
-//#if DEBUG
-//struct EZElipseHImageView_Previews: PreviewProvider {
+// #if DEBUG
+// struct EZElipseHImageView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        EZElipseHImageView(title: "Title", content: "Content")
 //            .environmentObject(ColorSchemeViewModel())
 //    }
-//}
-//#endif
+// }
+// #endif

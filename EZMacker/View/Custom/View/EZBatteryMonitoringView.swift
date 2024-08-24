@@ -12,7 +12,7 @@ struct EZBatteryMonitoringView: View {
     @Binding var isAdapterConnect: Bool
     var body: some View {
         GeometryReader { geometry in
-            HStack{
+            HStack {
                 ZStack {
                     Path { path in
                         let width = geometry.size.width
@@ -68,4 +68,3 @@ struct EZBatteryMonitoringView: View {
         }
     }
 }
-

@@ -10,7 +10,6 @@ import SwiftUI
 struct EZBackgroundStyle: ViewModifier {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     
-    
     func body(content: Content) -> some View {
         content
             .background(

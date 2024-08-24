@@ -18,13 +18,13 @@ enum LogLevel {
 struct Logger {
     private static let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "EZMacker App")
     
-    static func writeLog(_ level: LogLevel, message: String, isNeededStackTraceInfo : Bool = false, line : Int = #line, fileName : String = #file, caller: String = #function) {
+    static func writeLog(_ level: LogLevel, message: String, isNeededStackTraceInfo: Bool = false, line: Int = #line, fileName: String = #file, caller: String = #function) {
         let logType: OSLogType
         var logMessage = ""
         var emoji = ""
 
         switch level {
-        case .debug :
+        case .debug: 
             logType = .debug
             emoji = "ℹ️"
         case .info:
@@ -43,11 +43,11 @@ struct Logger {
         
         logMessage = "[\(Date().getCurrentTime()) - App][Func : \(caller)] : \(emoji) : \(message) -> \(fileName.split(separator: "/").last!) :\(line)\r\n"
         
-        if isNeededStackTraceInfo{
+        if isNeededStackTraceInfo {
             logMessage += Thread.callStackSymbols.joined(separator: "\r\n")
         }
         
-        if level == .error || level == .fatal  {
+        if level == .error || level == .fatal {
             #if DEBUG
             saveLog(logMessage)
             #endif
@@ -67,7 +67,7 @@ struct Logger {
     private static func saveLog(_ logMessage: String) {
         DispatchQueue.global().async {
             if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                let fileName = "error_log_\(Date().getCurrentTime(Dataforamt : "yyyy-MM-dd")).txt"
+                let fileName = "error_log_\(Date().getCurrentTime(Dataforamt: "yyyy-MM-dd")).txt"
                 let fileURL = documentsDirectory.appendingPathComponent(fileName)
                 print(fileURL) // 에뮬레이터 경로 이걸로 확인
                 do {

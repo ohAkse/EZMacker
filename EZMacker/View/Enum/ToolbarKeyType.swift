@@ -10,8 +10,8 @@ enum ToolbarKeyType: String {
     case MainToolbar
     case ColorSchemeButton
     case ColorSchemePicker
-    var name:String {
-        switch self{
+    var name: String {
+        switch self {
         case .MainToolbar:
             return "MainToolbar"
         case .ColorSchemeButton:

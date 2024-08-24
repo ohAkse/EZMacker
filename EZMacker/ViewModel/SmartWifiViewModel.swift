@@ -19,7 +19,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     private let appSmartWifiService: ProvidableType
     private let systemPreferenceService: SystemPreferenceAccessible
     private let appCoreWLanWifiService: AppCoreWLANWifiProvidable
-    private let appSettingService:AppSmartSettingProvidable
+    private let appSettingService: AppSmartSettingProvidable
     
     init(appSmartWifiService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible, appCoreWLanWifiService: AppCoreWLANWifiProvidable, appSettingService: AppSmartSettingProvidable) {
         self.appSmartWifiService = appSmartWifiService
@@ -28,7 +28,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
         self.appSettingService = appSettingService
     }
     
-    //ioreg
+    // ioreg
     @Published var channelBandwidth = 0
     @Published var channelFrequency = 0
     @Published var channel = 0
@@ -36,7 +36,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     @Published var ssID = ""
     @Published var locale = ""
     
-    //CoreWLan
+    // CoreWLan
     @Published var currentWifiStrength = 0
     @Published var currentTransmitRate = ""
     @Published var currentHardwareAddress = ""
@@ -46,7 +46,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     @Published var bestSSid = ""
     @Published var showAlert = false
     
-    //private variables
+    // private variables
     private var scanResults: [ScaningWifiData] = []
     private var timerCancellable: AnyCancellable?
     private var scanTimerCancellable: AnyCancellable?
@@ -125,7 +125,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     }
 }
 
-//타이머 관련..
+// 타이머 관련..
 extension SmartWifiViewModel {
     func startWifiTimer() {
         timerCancellable = Timer.publish(every: 1, on: .current, in: .default)
@@ -179,9 +179,8 @@ extension SmartWifiViewModel {
             .store(in: &cancellables)
     }
 
-  
-    func startSearchBestSSid()  {
-        guard let bestSSidMode : String = appSettingService.loadConfig(.bestSSidShowMode)  else {return}
+    func startSearchBestSSid() {
+        guard let bestSSidMode: String = appSettingService.loadConfig(.bestSSidShowMode)  else {return}
         let currentSSidShowMode = BestSSIDShow(rawValue: bestSSidMode)
         scanResults.removeAll()
         showAlert = false
@@ -215,8 +214,7 @@ extension SmartWifiViewModel {
             .sink(receiveCompletion: { [weak self] _ in
                 guard let self = self else { return }
                 bestSSid = scanResults.max(by: { Int($0.rssi)! < Int($1.rssi)! })?.ssid ?? "No SSID found"
-                if currentSSidShowMode == .alert
-                {
+                if currentSSidShowMode == .alert {
                     showAlert = true
                 } else {
                     AppNotificationManager.shared.sendNotification(title: "알림", subtitle: "최적의 Wifi : \(self.bestSSid)")

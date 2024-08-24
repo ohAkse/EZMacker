@@ -13,7 +13,7 @@ struct EZWifiStrengthView: View {
     @State var wifiPower: String = ""
     var body: some View {
         GeometryReader { geo in
-            VStack(spacing:0) {
+            VStack(spacing: 0) {
                 HStack {
                     Image(systemName: "wifi")
                         .resizable()
@@ -25,7 +25,7 @@ struct EZWifiStrengthView: View {
                     Spacer()
                 }
                 .padding([.leading, .top], 10)
-                ZStack(alignment:.center) {
+                ZStack(alignment: .center) {
                     ArcShape(percentage: 1.0)
                         .stroke(
                             Color.gray.opacity(0.2),
@@ -46,7 +46,7 @@ struct EZWifiStrengthView: View {
                         )
                         .aspectRatio(5 / 2.5, contentMode: .fit)
                         .padding(20)
-                    VStack() {
+                    VStack {
                         Text("\(getWifiStrength())")
                             .ezNormalTextStyle(fontSize: FontSizeType.large.size, isBold: true)
                         Spacer(minLength: 5)
@@ -98,18 +98,16 @@ struct ArcShape: Shape {
         let endAngle = Angle(degrees: 180 + (180 * percentage))
         path.addArc(center: CGPoint(x: rect.midX, y: rect.maxY), radius: rect.width / 2, startAngle: startAngle, endAngle: endAngle, clockwise: false)
         
-        
         return path
     }
 }
 
-//#if DEBUG
-//struct InfoArcIndicatorView_Preview: PreviewProvider {
+// #if DEBUG
+// struct InfoArcIndicatorView_Preview: PreviewProvider {
 //    @State static var wifiStrength: Int = -71
 //    static var previews: some View {
 //        InfoArcIndicatorView(wifiStrength: $wifiStrength)
 //
 //    }
-//}
-//#endif
-
+// }
+// #endif

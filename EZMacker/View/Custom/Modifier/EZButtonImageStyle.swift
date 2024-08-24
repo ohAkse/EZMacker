@@ -53,7 +53,7 @@ struct EZButtonImageStyle: ButtonStyle {
         }
     }
 
-    private func backgroundColorForTheme() ->  Color? {
+    private func backgroundColorForTheme() -> Color? {
         switch colorSchemeViewModel.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return lightModeBackgroundColor
@@ -92,7 +92,7 @@ extension View {
     }
 }
 
-//struct EZButtonImageStyle: ButtonStyle {
+// struct EZButtonImageStyle: ButtonStyle {
 //    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
 //    
 //    var imageSize: CGSize
@@ -147,9 +147,9 @@ extension View {
 //            return Color.clear
 //        }
 //    }
-//}
+// }
 //
-//extension View {
+// extension View {
 //    func ezButtonImageStyle(
 //        imageName: String,
 //        isSystemImage: Bool = true,
@@ -167,4 +167,4 @@ extension View {
 //            frameSize: frameSize
 //        ))
 //    }
-//}
+// }

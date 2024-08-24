@@ -74,20 +74,33 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                         .lineLimit(1)
                         .fixedSize()
                 }
-                .padding(.vertical,20)
+                .padding(.vertical, 20)
                 .padding(.trailing, 10)
                 
                 EZBatteryMonitoringView(chargeData: $smartBatteryViewModel.chargeData, isAdapterConnect: $smartBatteryViewModel.isAdapterConnected)
-                    .padding(.vertical,20)
+                    .padding(.vertical, 20)
             }
-            Button(action: {  smartBatteryViewModel.openSettingWindow(settingPath: SystemPreference.batterySave.pathString) }) {}
-                .ezButtonImageStyle(
-                    imageName: "gearshape.fill",
-                    imageSize: CGSize(width: 20, height: 20),
-                    lightModeBackgroundColor: .clear,
-                    darkModeBackgroundColor:  .clear
-                )
-                .offset(x: 5, y: -15)
+            Button(
+                action: {
+                    smartBatteryViewModel.openSettingWindow(settingPath: SystemPreference.batterySave.pathString)
+                },
+                label: {}
+            )
+            .ezButtonImageStyle(
+                imageName: "gearshape.fill",
+                imageSize: CGSize(width: 20, height: 20),
+                lightModeBackgroundColor: .clear,
+                darkModeBackgroundColor: .clear
+            )
+            .offset(x: 5, y: -15)
+//            Button(action: {  smartBatteryViewModel.openSettingWindow(settingPath: SystemPreference.batterySave.pathString) }) {}
+//                .ezButtonImageStyle(
+//                    imageName: "gearshape.fill",
+//                    imageSize: CGSize(width: 20, height: 20),
+//                    lightModeBackgroundColor: .clear,
+//                    darkModeBackgroundColor: .clear
+//                )
+//                .offset(x: 5, y: -15)
         }
         .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.25)
     }
@@ -217,5 +230,3 @@ extension SmartBatteryView {
         return ""
     }
 }
-
-

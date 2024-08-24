@@ -37,4 +37,3 @@ extension View {
         modifier(EZNormalImageStyle(imageScale: imageScale, width: width, height: height))
     }
 }
-
