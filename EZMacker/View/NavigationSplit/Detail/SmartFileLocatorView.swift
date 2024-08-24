@@ -94,8 +94,8 @@ struct SmartFileLocatorView: View {
     private func tabButton(for tab: String) -> some View {
         Button(action: {
             smartFileLocatorViewModel.savedData.selectedTab = tab
-        }) {
-            HStack(alignment:.center, spacing: 5) {
+        }, label: {
+            HStack(alignment: .center, spacing: 5) {
                 Text(tab)
                     .lineLimit(1)
                     .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
@@ -105,7 +105,7 @@ struct SmartFileLocatorView: View {
             }
             .padding(10)
             .frame(height: 30)
-        }
+        })
         .ezTabbarButtonStyle()
         .frame(minWidth: 50, maxWidth: 130)
         .padding(.leading, 10)
