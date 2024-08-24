@@ -102,6 +102,7 @@
 		5F9DAB482C79AC5A000563A2 /* RadioChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB472C79AC5A000563A2 /* RadioChannelData.swift */; };
 		5F9DAB4A2C79BCBD000563A2 /* Data + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB492C79BCBD000563A2 /* Data + Extension.swift */; };
 		5F9DAB4C2C79C207000563A2 /* WifiConnectData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB4B2C79C207000563A2 /* WifiConnectData.swift */; };
+		5F9DAB502C79F0EA000563A2 /* EZLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */; };
 		5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */; };
 		5FCC8B9A2BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */; };
 		5FD0313A2BEA5E8D009A8169 /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD031392BEA5E8D009A8169 /* Int + Extension.swift */; };
@@ -237,6 +238,7 @@
 		5F9DAB472C79AC5A000563A2 /* RadioChannelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioChannelData.swift; sourceTree = "<group>"; };
 		5F9DAB492C79BCBD000563A2 /* Data + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data + Extension.swift"; sourceTree = "<group>"; };
 		5F9DAB4B2C79C207000563A2 /* WifiConnectData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConnectData.swift; sourceTree = "<group>"; };
+		5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZLoadingView.swift; sourceTree = "<group>"; };
 		5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartNotificationAlarmView.swift; sourceTree = "<group>"; };
 		5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartNotificationAlarmViewModel.swift; sourceTree = "<group>"; };
 		5FD031392BEA5E8D009A8169 /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				5F7E0B662C707844000C8C97 /* EZWifiMainView.swift */,
 				5F7E0B682C70789B000C8C97 /* EZWifiStrengthView.swift */,
 				5F7E0B6A2C70790F000C8C97 /* EZBatteryAdapterView.swift */,
+				5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -900,6 +903,7 @@
 				5FDE1EE82C6B0A1E00E67FCE /* EZButtonImageStyle.swift in Sources */,
 				5F6D4E652BE889BB004B94F8 /* Logger.swift in Sources */,
 				5FD0313A2BEA5E8D009A8169 /* Int + Extension.swift in Sources */,
+				5F9DAB502C79F0EA000563A2 /* EZLoadingView.swift in Sources */,
 				5F7E0B672C707844000C8C97 /* EZWifiMainView.swift in Sources */,
 				5F69D28B2C0DDA9D00F318ED /* EZWifiDetailView.swift in Sources */,
 				5F1012AE2BF399F600589C9B /* EZContent.swift in Sources */,

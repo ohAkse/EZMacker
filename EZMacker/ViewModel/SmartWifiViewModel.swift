@@ -35,6 +35,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     @Published var wifiRequestStatus: AppCoreWLanStatus = .none
     @Published var bestSSid = ""
     @Published var showAlert = false
+    @Published var isConnecting = false
     
     // Private Variables
     private let scanQueue =  DispatchQueue(label: "ezMacker.com", attributes: .concurrent)
@@ -153,6 +154,7 @@ extension SmartWifiViewModel {
             })
             .store(in: &cancellables)
     }
+    
     func connectWifi(ssid: String, password: String) async {
         appCoreWLanWifiService.connectToNetwork(ssid: ssid, password: password)
             .subscribe(on: DispatchQueue.global())
@@ -175,7 +177,6 @@ extension SmartWifiViewModel {
             })
             .store(in: &cancellables)
     }
-
     func startSearchBestSSid() {
         guard let bestSSidMode: String = appSettingService.loadConfig(.bestSSidShowMode) else { return }
         let resultShowMode = BestSSIDShow(rawValue: bestSSidMode)
@@ -231,7 +232,6 @@ extension SmartWifiViewModel {
                         if let rssi = Int(wifi.rssi) {
                             wifirssiList[wifi.ssid, default: []].insert(rssi)
                         }
-                        Logger.writeLog(.debug, message: "\(wifi)")
                     }
                 }
             )

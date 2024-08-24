@@ -93,14 +93,6 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 darkModeBackgroundColor: .clear
             )
             .offset(x: 5, y: -15)
-//            Button(action: {  smartBatteryViewModel.openSettingWindow(settingPath: SystemPreference.batterySave.pathString) }) {}
-//                .ezButtonImageStyle(
-//                    imageName: "gearshape.fill",
-//                    imageSize: CGSize(width: 20, height: 20),
-//                    lightModeBackgroundColor: .clear,
-//                    darkModeBackgroundColor: .clear
-//                )
-//                .offset(x: 5, y: -15)
         }
         .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.25)
     }
@@ -159,13 +151,11 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
             if smartBatteryViewModel.adapterConnectionSuccess == .decodingFailed {
                 HStack(alignment: .center, spacing: 0) {
                     HStack(alignment: .center, spacing: 0) {
-                            ProgressView("")
-                            .scaleEffect(2.0)
-                            .progressViewStyle(CircularProgressViewStyle())
+                        EZLoadingView(size: 180, text: "어댑터 정보 수집중..")
                             .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.4)
                     }
                     
-                    Text("정보를 수집중입니다. 잠시만 기다려 주세요.")
+                    Text("연결 상태 및 하드웨어 세부사항 확인 중입니다.")
                         .ezNormalTextStyle(fontSize: FontSizeType.large.size, isBold: true)
                         .padding(.leading, 10)
                 }

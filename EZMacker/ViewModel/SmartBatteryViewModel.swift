@@ -68,7 +68,7 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
 }
 extension SmartBatteryViewModel {
     func startConnectTimer() {
-        timer = Timer.publish(every: 3, on: .current, in: .default)
+        timer = Timer.publish(every: 2, on: RunLoop.main, in: .default)
             .autoconnect()
             .sink { [weak self] _ in
                 self?.checkAdapterConnectionStatus()
@@ -190,11 +190,12 @@ extension SmartBatteryViewModel {
                 receiveValue: { [weak self] adapterDetails in
                     guard let self = self else {return }
                     let adapterConnected = adapterDetails.count == 0 ?  false : true
-                    if adapterConnected {
-                    } else {
+                    if self.isAdapterConnected != adapterConnected {
+                        isAdapterConnected = adapterConnected
+                    }
+                    if !adapterConnected {
                         requestBatteryInfo()
                     }
-                    isAdapterConnected = adapterConnected
                     adapterInfo = adapterDetails
                     adapterConnectionSuccess = .processing
                 }
