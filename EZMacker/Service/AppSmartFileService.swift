@@ -21,7 +21,10 @@ struct AppSmartFileService: AppSmartFileProvidable {
             let fileManager = FileManager.default
             do {
                 let attributes = try fileManager.attributesOfItem(atPath: fileUrl.path)
-                let fileName = fileUrl.lastPathComponent
+                var fileName = fileUrl.lastPathComponent
+                if fileName.hasSuffix(".app") {
+                    fileName = String(fileName.dropLast(4))
+                }
                 let fileSize = attributes[.size] as? Int64 ?? 0
                 var fileType = FileDescription(type: attributes[.type] as? String ?? FileDescription.unknown.rawValue).name
                 

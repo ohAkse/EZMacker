@@ -9,7 +9,7 @@ import Combine
 import SwiftUI
 
 class SmartFileLocatorViewModel: ObservableObject {
-    @Published  var savedData: FileLocatorData
+    @Published  var savedData: FileTabData
 
     private let appSmartFileService: AppSmartFileProvidable
     private let appSmartFileMonitor: AppSmartFileMonitorable
@@ -20,7 +20,7 @@ class SmartFileLocatorViewModel: ObservableObject {
         self.appSmartFileService = appSmartFileService
         self.appSmartFileMonitor = appSmartFileMonitor
         self.appSettingService = appSmartSettingService
-        self.savedData = FileLocatorData(tabs: [], selectedTab: nil, fileViewsPerTab: [:])
+        self.savedData = FileTabData(tabs: [], selectedTab: nil, fileViewsPerTab: [:])
         loadSavedData()
         setupFileMonitors()
     }
@@ -32,10 +32,10 @@ class SmartFileLocatorViewModel: ObservableObject {
     private func loadSavedData() {
         if let savedData: Data = appSettingService.loadConfig(.fileLocatorData) {
             do {
-                self.savedData = try JSONDecoder().decode(FileLocatorData.self, from: savedData)
+                self.savedData = try JSONDecoder().decode(FileTabData.self, from: savedData)
                 self.restoreFileAccess()
             } catch {
-                print("Failed to decode saved data: \(error)")
+                Logger.writeLog(.error, message: "Failed to decode saved data: \(error)")
             }
         }
     }
@@ -45,7 +45,7 @@ class SmartFileLocatorViewModel: ObservableObject {
             let encodedData = try JSONEncoder().encode(savedData)
             appSettingService.saveConfig(.fileLocatorData, value: encodedData)
         } catch {
-            print("Failed to encode data for saving: \(error)")
+            Logger.writeLog(.error, message: "Failed to encode data for saving: \(error)")
         }
     }
     
@@ -177,9 +177,7 @@ class SmartFileLocatorViewModel: ObservableObject {
                         self.savedData.fileViewsPerTab[tab]?[id] = existingFileInfo
                         self.saveData()
                         self.updateThumbnail(for: id, in: tab, with: fileURL)
-                        
                         self.setupFileMonitor(for: id, in: tab, url: fileURL)
-                        
                         self.objectWillChange.send()
                     }
                 }
