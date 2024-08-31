@@ -30,4 +30,38 @@ struct AdapterData: Decodable {
         var MaxCurrent: Int
         var MaxVoltage: Int
     }
+
+    init(AdapterID: Int =  0,
+         AdapterVoltage: Int = 0,
+         Current: Int = 0,
+         Description: String = "",
+         FamilyCode: Int = 0,
+         FwVersion: String = "",
+         HwVersion: String = "",
+         IsWireless: Bool = false,
+         Manufacturer: String = "",
+         Model: String = "",
+         Name: String = "",
+         PMUConfiguration: Int = 0,
+         SerialString: String = "",
+         UsbHvcHvcIndex: Int = 0,
+         UsbHvcMenu: [UsbHvcMenuEntry] = [],
+         Watts: Int = 0) {
+        self.AdapterID = AdapterID
+        self.AdapterVoltage = AdapterVoltage
+        self.Current = Current
+        self.Description = Description
+        self.FamilyCode = FamilyCode
+        self.FwVersion = FwVersion
+        self.HwVersion = HwVersion
+        self.IsWireless = IsWireless
+        self.Manufacturer = Manufacturer
+        self.Model = Model
+        self.Name = Name
+        self.PMUConfiguration = PMUConfiguration
+        self.SerialString = SerialString
+        self.UsbHvcHvcIndex = UsbHvcHvcIndex
+        self.UsbHvcMenu = UsbHvcMenu
+        self.Watts = Watts
+    }
 }
