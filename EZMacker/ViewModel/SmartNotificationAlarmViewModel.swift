@@ -34,7 +34,7 @@ class SmartNotificationAlarmViewModel: ObservableObject {
     // MARK: - Configuration
     func loadConfig() {
         batterySetting = BatterySetting(
-            isBatteryWarningMode: loadSetting(.isBatteryWarningMode) ?? false,
+            isBatteryWarningMode: loadSetting(.isBatteryChargingErrorMode) ?? false,
             isBatteryCurrentMessageMode: loadSetting(.isBattryCurrentMessageMode) ?? false,
             batteryPercentage: loadSetting(.batteryPercentage) ?? "",
             selectedAppExitOption: loadSetting(.appExitMode).flatMap { AppUsageExit(rawValue: $0) } ?? .normal
@@ -48,7 +48,7 @@ class SmartNotificationAlarmViewModel: ObservableObject {
     }
         
     func saveConfig() {
-        saveSetting(.isBatteryWarningMode, value: batterySetting.isBatteryWarningMode)
+        saveSetting(.isBatteryChargingErrorMode, value: batterySetting.isBatteryWarningMode)
         saveSetting(.isBattryCurrentMessageMode, value: batterySetting.isBatteryCurrentMessageMode)
         saveSetting(.batteryPercentage, value: batterySetting.batteryPercentage)
         saveSetting(.appExitMode, value: batterySetting.selectedAppExitOption.rawValue)

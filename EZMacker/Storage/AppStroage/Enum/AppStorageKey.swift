@@ -9,7 +9,7 @@ import Foundation
 
 enum AppStorageKey: String, Hashable {
     case colorSchme
-    case isBatteryWarningMode
+    case isBatteryChargingErrorMode
     case isBattryCurrentMessageMode
     case batteryPercentage
     case bestSSidShowMode
@@ -21,7 +21,7 @@ enum AppStorageKey: String, Hashable {
         switch self {
         case .colorSchme:
             return "colorSchme"
-        case .isBatteryWarningMode:
+        case .isBatteryChargingErrorMode:
             return "isBatteryWarningMode"
         case .isBattryCurrentMessageMode:
             return "isBattryCurrentMessageMode"
@@ -42,7 +42,7 @@ enum AppStorageKey: String, Hashable {
         switch self {
         case .colorSchme:
             return "Light"
-        case .isBatteryWarningMode:
+        case .isBatteryChargingErrorMode:
             return false
         case .isBattryCurrentMessageMode:
             return false

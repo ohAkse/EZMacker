@@ -54,13 +54,17 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     private func chargingInfoView(geo: GeometryProxy) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             if smartBatteryViewModel.adapterMetricsData.isAdapterConnected {
-                if smartBatteryViewModel.batteryMatricsData.currentBatteryCapacity * 100 == 100 {
+                if smartBatteryViewModel.batteryMatricsData.currentBatteryCapacity * 100 >= 100 {
                     EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: "충전완료")
                 } else {
                     EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: smartBatteryViewModel.batteryMatricsData.chargingTime.toHourMinute())
                 }
             } else if smartBatteryViewModel.batteryMatricsData.chargingTime <= 1 {
-                EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지", info: smartBatteryViewModel.batteryMatricsData.remainingTime.toHourMinute())
+                if smartBatteryViewModel.adapterMetricsData.adapterConnectionSuccess == .decodingFailed {
+                    EZLoadingView(size: 120, text: "수집중..")
+                } else {
+                    EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지", info: smartBatteryViewModel.batteryMatricsData.remainingTime.toHourMinute())
+                }
             }
         }
         .frame(width: geo.size.width * 0.22, height: geo.size.height * 0.25)
@@ -174,14 +178,14 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                     .frame(width: geo.size.width * 0.5)
                     VStack(spacing: 0) {
                         EZBatteryInfoView(imageName: "battery_status",
-                                                  isSystem: false,
-                                                  title: "배터리 상태",
+                                          isSystem: false,
+                                          title: "배터리 상태",
                                           info: smartBatteryViewModel.batteryConditionData.healthState,
-                                                  isBatterStatus: true)
-                            .frame(height: geo.size.height * 0.2)
+                                          isBatterStatus: true)
+                        .frame(height: geo.size.height * 0.2)
                         EZBatteryInfoView(imageName: "battery_cell", isSystem: false, title: "베터리셀 끊김 횟수", info: "\(smartBatteryViewModel.batteryConditionData.batteryCellDisconnectCount)")
                             .frame(height: geo.size.height * 0.2)
-
+                        
                     }
                 }
             }

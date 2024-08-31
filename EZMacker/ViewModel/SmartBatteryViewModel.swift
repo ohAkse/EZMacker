@@ -17,8 +17,11 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     @Published var adapterMetricsData: AdapterMetricsData = .init()
     
     // 옵션 설정에 따른 표시 설정 관련 변수
-    private var isSentBatteryCapacityAlarmMode = false
-    private var isSentBatteryChargingErorAlarmMode = false
+    private var isBatteryCapacityAlarmMode = false
+    private var isBatteryChargingErrorAlarmMode = false
+    private var isOverFullcpuUsageExitMode = false
+    private var isSentChargingErrorAlarm = false
+    private var isSentCapacityAlarm = false
     
     // 일반 설정값들
     private var appSmartBatteryService: ProvidableType
@@ -34,6 +37,7 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
         self.appSettingService = appSettingService
         self.appProcessService = appProcessService
         self.systemPreferenceService =  systemPreferenceService
+        checkSettingConfig()
     }
 }
 extension SmartBatteryViewModel {
@@ -43,6 +47,10 @@ extension SmartBatteryViewModel {
             .prepend(Date())
             .sink { [weak self] _ in
                 self?.fetchBatteryCommonMetrics()
+                if self!.isOverFullcpuUsageExitMode {
+                    self?.appProcessService.checkProcessUpdateInfo()
+                    self?.needToAppExit()
+                }
             }
         timer?.store(in: &cancellables)
     }
@@ -53,7 +61,6 @@ extension SmartBatteryViewModel {
     }
     // 배터리 충전과 상관없이 연결정보(충전 데이터, 남은시간/예상완충시간 등)
     func fetchBatteryCommonMetrics() {
-        checkSettingConfig()
         validateAdapterConnection()
         appSmartBatteryService.getRegistry(forKey: .ChargerData)
             .subscribe(on: DispatchQueue.global())
@@ -85,7 +92,10 @@ extension SmartBatteryViewModel {
                     batteryMatricsData.chargeData.removeAll()
                 }
                 batteryMatricsData.chargeData.append(charge)
-                appChargingErrorCount += 1
+                if charge.notChargingReason != 0 {
+                    appChargingErrorCount += 1
+                    needToChargingErrorAlarm(errorCode: charge.notChargingReason)
+                }
             }
             .store(in: &cancellables)
         Publishers.CombineLatest(
@@ -98,6 +108,7 @@ extension SmartBatteryViewModel {
             batteryMatricsData.chargingTime = chargingTime
         }
         .store(in: &cancellables)
+        
         appSmartBatteryService.getRegistry(forKey: .CurrentCapacity)
             .subscribe(on: DispatchQueue.global())
             .compactMap { $0 as? Int }
@@ -106,7 +117,7 @@ extension SmartBatteryViewModel {
             .sink { [weak self] currentCapacity in
                 guard let self = self else { return }
                 batteryMatricsData.currentBatteryCapacity = currentCapacity
-                
+                needToBatteryCapacityAlarm()
             }
             .store(in: &cancellables)
     }
@@ -179,40 +190,56 @@ extension SmartBatteryViewModel {
 // MARK: 환경설정값에 따른 외부 세팅
 extension SmartBatteryViewModel {
     func checkSettingConfig() {
-        if let isBatteryWarningMode: Bool = appSettingService.loadConfig(.isBatteryWarningMode) {
+        if let isBatteryWarningMode: Bool = appSettingService.loadConfig(.isBatteryChargingErrorMode) {
             if isBatteryWarningMode {
-                if let lastChargeData = batteryMatricsData.chargeData.last, lastChargeData.notChargingReason != 0,
-                   appChargingErrorCount >= 6  && !isSentBatteryChargingErorAlarmMode {
-                    AppNotificationManager.shared.sendNotification(title: "배터리 오류 발생", subtitle: "errorCode: \(lastChargeData.notChargingReason)")
-                    isSentBatteryChargingErorAlarmMode = true
-                }
+                isBatteryChargingErrorAlarmMode = true
             }
         }
         if let isBattryCurrentMessageMode: Bool = appSettingService.loadConfig(.isBattryCurrentMessageMode) {
             if isBattryCurrentMessageMode {
-                if let batteryPercentage: String = appSettingService.loadConfig(.batteryPercentage) {
-                    let batteryDobulePercentage = (Double(batteryPercentage) ?? 0) / 100
-                    if batteryDobulePercentage <= batteryMatricsData.currentBatteryCapacity {
-                        if !isSentBatteryCapacityAlarmMode {
-                            AppNotificationManager.shared.sendNotification(title: "충전 안내", subtitle: "설정하신 배터리 충전이 완료되었습니다.")
-                        }
-                        isSentBatteryCapacityAlarmMode = true
-                    }
-                }
+                isBatteryCapacityAlarmMode = true
             }
         }
         
         if let selectedExitOption: String = appSettingService.loadConfig(.appExitMode) {
             if selectedExitOption != "사용안함" {
-                if let batteryLevel = Int.extractNumericPart(from: selectedExitOption) {
-                    if Int(appProcessService.getTotalPercenatage()) > batteryLevel {
-                        AppNotificationManager.shared.sendNotification(title: "종료 안내", subtitle: "CPU가 높아 앱을 종료합니다.")
-                        NSApplication.shared.terminate(nil)
-                    }
+                isOverFullcpuUsageExitMode = true
+            }
+        }
+    }
+    func needToChargingErrorAlarm(errorCode: Int) {
+        if isBatteryChargingErrorAlarmMode && !isSentChargingErrorAlarm {
+            if appChargingErrorCount >= 6 {
+                AppNotificationManager.shared.sendNotification(title: "배터리 오류 발생", subtitle: "errorCode: \(errorCode)")
+                isSentChargingErrorAlarm = true
+            }
+        }
+    }
+    func needToBatteryCapacityAlarm() {
+        if isBatteryCapacityAlarmMode && !isSentCapacityAlarm {
+            if let batteryPercentage: String = appSettingService.loadConfig(.batteryPercentage) {
+                let batteryDobulePercentage = (Double(batteryPercentage) ?? 0) / 100
+                if batteryDobulePercentage <= batteryMatricsData.currentBatteryCapacity {
+                    AppNotificationManager.shared.sendNotification(title: "충전 안내", subtitle: "설정하신 배터리 충전이 완료되었습니다.")
+                    isSentCapacityAlarm = true
                 }
             }
         }
     }
+    func needToAppExit() {
+        if let selectedExitOption: String = appSettingService.loadConfig(.appExitMode) {
+            if selectedExitOption != "사용안함" {
+                if let cpuUsage = Int.extractNumericPart(from: selectedExitOption) {
+                    Logger.writeLog(.debug, message: String(appProcessService.getTotalPercenatage()))
+                    if Int(appProcessService.getTotalPercenatage()) > cpuUsage {
+                        NSApplication.shared.terminate(nil)
+                    }
+                }
+                isOverFullcpuUsageExitMode = true
+            }
+        }
+    }
+    
     func openSettingWindow(settingPath: String) {
         systemPreferenceService.openSystemPreferences(systemPath: settingPath)
     }
