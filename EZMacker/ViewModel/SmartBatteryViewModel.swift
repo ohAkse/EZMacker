@@ -91,6 +91,7 @@ extension SmartBatteryViewModel {
                 if batteryMatricsData.chargeData.count > 5 {
                     batteryMatricsData.chargeData.removeAll()
                 }
+                Logger.writeLog(.debug, message: charge.notChargingReason.toHexaString())
                 batteryMatricsData.chargeData.append(charge)
                 if charge.notChargingReason != 0 {
                     appChargingErrorCount += 1
@@ -165,12 +166,12 @@ extension SmartBatteryViewModel {
         let adapterConnected = !adapterDetails.isEmpty
         if adapterMetricsData.isAdapterConnected != adapterConnected {
             adapterMetricsData.isAdapterConnected.toggle()
-        }
-        if adapterConnected {
-            adapterMetricsData.adapterData = adapterDetails
-            adapterMetricsData.adapterConnectionSuccess = .processing
-        } else {
-            fetchBatteryBasicExtraSpec()
+            if adapterConnected {
+                adapterMetricsData.adapterData = adapterDetails
+                adapterMetricsData.adapterConnectionSuccess = .processing
+            } else {
+                fetchBatteryBasicExtraSpec()
+            }
         }
     }
     
