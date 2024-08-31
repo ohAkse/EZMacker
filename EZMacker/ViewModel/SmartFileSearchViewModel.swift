@@ -12,7 +12,7 @@ class SmartFileSearchViewModel: ObservableObject {
     
     // MARK: - Publish Variable
     @Published var searchText: String = ""
-    @Published var searchResults: [FileQueryData] = []
+    @Published var searchResults: [FileQueryData] = .init()
     
     deinit {
         Logger.writeLog(.debug, message: "SmartFileSearchViewModel deinit Called")

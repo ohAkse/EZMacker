@@ -51,9 +51,11 @@ class AppSmartProcessService: AppSmartProcessProvidable {
     }
     
     func checkProcessUpdateInfo() {
-        processUpdateInfo()
-        sleep(1)
-        processUpdateInfo()
+        DispatchQueue.global(qos: .background).async {
+            self.processUpdateInfo()
+            sleep(1)
+            self.processUpdateInfo()
+        }
     }
     func getTotalPercenatage() -> Float {
         return totalUsagePercentage
@@ -104,7 +106,7 @@ class AppSmartProcessService: AppSmartProcessProvidable {
             
             // I print sum of all cores percentage.
             totalUsagePercentage = Float(totalInUse) / Float(totalTotal) * 100
-            Logger.writeLog(.info, message: String(format: "Total CPU Usage: %.2f%%", totalUsagePercentage))
+            // Logger.writeLog(.info, message: String(format: "Total CPU Usage: %.2f%%", totalUsagePercentage))
         }
 
         prevCpuInfo = cpuInfo

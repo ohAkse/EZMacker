@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FileLocatorData: Codable {
+struct FileTabData: Codable {
     var tabs: [String]
     var selectedTab: String?
     var fileViewsPerTab: [String: [UUID: FileQueryData]]

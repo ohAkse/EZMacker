@@ -13,7 +13,7 @@ protocol AppSmartSettingProvidable {
 }
 
 struct AppSmartSettingsService: AppSmartSettingProvidable {
-    @AppStorage(AppStorageKey.isBatteryWarningMode.name) var isBatteryWarningMode: Bool = AppStorageKey.isBatteryWarningMode.byDefault as? Bool ?? false
+    @AppStorage(AppStorageKey.isBatteryChargingErrorMode.name) var isBatteryWarningMode: Bool = AppStorageKey.isBatteryChargingErrorMode.byDefault as? Bool ?? false
     @AppStorage(AppStorageKey.isBattryCurrentMessageMode.name) var isBatteryCurrentMessageMode: Bool = AppStorageKey.isBattryCurrentMessageMode.byDefault as? Bool ?? false
     @AppStorage(AppStorageKey.batteryPercentage.name) var batteryPercentage: String = AppStorageKey.batteryPercentage.byDefault as? String ?? "0"
     @AppStorage(AppStorageKey.appExitMode.name) private var selectedAppExitMode: String = AppStorageKey.appExitMode.byDefault as? String ?? "unused"
@@ -23,10 +23,10 @@ struct AppSmartSettingsService: AppSmartSettingProvidable {
     
     func saveConfig<T>(_ key: AppStorageKey, value: T) {
         switch key {
-        case .isBatteryWarningMode, .isBattryCurrentMessageMode, .isFileChangeAlarmDisabled:
+        case .isBatteryChargingErrorMode, .isBattryCurrentMessageMode, .isFileChangeAlarmDisabled:
             if let boolValue = value as? Bool {
                 switch key {
-                case .isBatteryWarningMode: isBatteryWarningMode = boolValue
+                case .isBatteryChargingErrorMode: isBatteryWarningMode = boolValue
                 case .isBattryCurrentMessageMode: isBatteryCurrentMessageMode = boolValue
                 case .isFileChangeAlarmDisabled: isFileChangeAlarmDisabled = boolValue
                 default:
@@ -54,7 +54,7 @@ struct AppSmartSettingsService: AppSmartSettingProvidable {
     
     func loadConfig<T>(_ key: AppStorageKey) -> T? {
         let appStorageKey: [AppStorageKey: Any] = [
-            .isBatteryWarningMode: isBatteryWarningMode,
+            .isBatteryChargingErrorMode: isBatteryWarningMode,
             .isBattryCurrentMessageMode: isBatteryCurrentMessageMode,
             .isFileChangeAlarmDisabled: isFileChangeAlarmDisabled,
             .batteryPercentage: batteryPercentage,
