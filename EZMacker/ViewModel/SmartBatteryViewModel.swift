@@ -17,20 +17,20 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     @Published var adapterMetricsData: AdapterMetricsData = .init()
     
     // 옵션 설정에 따른 표시 설정 관련 변수
-    private var isBatteryCapacityAlarmMode = false
-    private var isBatteryChargingErrorAlarmMode = false
-    private var isOverFullcpuUsageExitMode = false
-    private var isSentChargingErrorAlarm = false
-    private var isSentCapacityAlarm = false
+    private(set) var isBatteryCapacityAlarmMode = false
+    private(set) var isBatteryChargingErrorAlarmMode = false
+    private(set) var isOverFullcpuUsageExitMode = false
+    private(set) var isSentChargingErrorAlarm = false
+    private(set) var isSentCapacityAlarm = false
     
     // 일반 설정값들
-    private var appSmartBatteryService: ProvidableType
-    private var systemPreferenceService: SystemPreferenceAccessible
-    private var appSettingService: AppSmartSettingProvidable
-    private var appProcessService: AppSmartProcessProvidable
-    private var appChargingErrorCount = 0
-    private var timer: AnyCancellable?
-    private var cancellables = Set<AnyCancellable>()
+    private let appSmartBatteryService: ProvidableType
+    private let systemPreferenceService: SystemPreferenceAccessible
+    private let appSettingService: AppSmartSettingProvidable
+    private let appProcessService: AppSmartProcessProvidable
+    private(set) var appChargingErrorCount = 0
+    private(set) var timer: AnyCancellable?
+    private(set) var cancellables = Set<AnyCancellable>()
     
     init(appSmartBatteryService: ProvidableType, appSettingService: AppSmartSettingProvidable, appProcessService: AppSmartProcessProvidable, systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartBatteryService = appSmartBatteryService
@@ -91,7 +91,6 @@ extension SmartBatteryViewModel {
                 if batteryMatricsData.chargeData.count > 5 {
                     batteryMatricsData.chargeData.removeAll()
                 }
-                Logger.writeLog(.debug, message: charge.notChargingReason.toHexaString())
                 batteryMatricsData.chargeData.append(charge)
                 if charge.notChargingReason != 0 {
                     appChargingErrorCount += 1

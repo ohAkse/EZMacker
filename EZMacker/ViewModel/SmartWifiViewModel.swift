@@ -39,11 +39,11 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     
     // Private Variables
     private let scanQueue =  DispatchQueue(label: "ezMacker.com", attributes: .concurrent)
-    private var scanResults: [ScaningWifiData] = []
-    private var cancellables = Set<AnyCancellable>()
-    private var rrsiTimerCancellable: AnyCancellable?
-    private var searchTimerCancellable: AnyCancellable?
     private let timerMax = 10
+    private(set) var scanResults: [ScaningWifiData] = []
+    private(set) var cancellables = Set<AnyCancellable>()
+    private(set) var rrsiTimerCancellable: AnyCancellable?
+    private(set) var searchTimerCancellable: AnyCancellable?
     
     func requestWifiInfo() {
         Publishers.CombineLatest(

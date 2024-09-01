@@ -26,9 +26,9 @@ struct EZMackerApp: App {
 }
 
 class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDelegate, UNUserNotificationCenterDelegate {
-    var window: NSWindow!
+    private(set) var window: NSWindow!
+    private(set) var originalFrame: NSRect?
     var alertManager = AppAlertManager.shared
-    private var originalFrame: NSRect?
     let systemConfigService = SystemPreferenceService()
     
     func applicationDidFinishLaunching(_ notification: Notification) {

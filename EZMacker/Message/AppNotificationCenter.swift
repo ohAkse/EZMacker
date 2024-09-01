@@ -6,6 +6,7 @@
 //
 
 import UserNotifications
+
 class AppNotificationManager {
     static let shared = AppNotificationManager()
 

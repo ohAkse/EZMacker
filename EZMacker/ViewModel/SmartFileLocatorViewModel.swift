@@ -14,7 +14,7 @@ class SmartFileLocatorViewModel: ObservableObject {
     private let appSmartFileService: AppSmartFileProvidable
     private let appSmartFileMonitor: AppSmartFileMonitorable
     private let appSettingService: AppSmartSettingProvidable
-    private var cancellables = Set<AnyCancellable>()
+    private(set) var cancellables = Set<AnyCancellable>()
     
     init(appSmartFileService: AppSmartFileProvidable, appSmartFileMonitor: AppSmartFileMonitorable, appSmartSettingService: AppSmartSettingProvidable) {
         self.appSmartFileService = appSmartFileService

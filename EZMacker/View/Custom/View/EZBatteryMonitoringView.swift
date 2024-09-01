@@ -51,7 +51,7 @@ struct EZBatteryMonitoringView: View {
                         .stroke(Color.red, lineWidth: 2)
                         if isAdapterConnect {
                             if let lastChargeData = chargeData.last, lastChargeData.notChargingReason != 0 {
-                                Text("No Charging: \(lastChargeData.notChargingReason.toNumber())")
+                                Text("No Charging: \(lastChargeData.notChargingReason.toHexaString().toErrorDescription())")
                                     .foregroundColor(Color.gray)
                                     .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                                     .padding()

@@ -14,8 +14,8 @@ protocol AppSmartWifiServiceProvidable: AppSmartServiceProvidable {
 }
 
 struct AppSmartWifiService: AppSmartWifiServiceProvidable {
-    var serviceKey: String
-    var service: io_object_t
+    private (set) var serviceKey: String
+    private (set) var service: io_object_t
     init(serviceKey: String) {
         self.serviceKey = serviceKey
         self.service = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceNameMatching(serviceKey))

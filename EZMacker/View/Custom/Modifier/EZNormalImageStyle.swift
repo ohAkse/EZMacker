@@ -9,9 +9,9 @@ import SwiftUI
 
 struct EZNormalImageStyle: ViewModifier {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
-    var imageScale: Image.Scale
-    var width: CGFloat
-    var height: CGFloat
+    let imageScale: Image.Scale
+    let width: CGFloat
+    let height: CGFloat
     func body(content: Content) -> some View {
         content
             .frame(width: width, height: height)

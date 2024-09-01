@@ -14,13 +14,12 @@ protocol AppSmartProcessProvidable {
 }
 
 class AppSmartProcessService: AppSmartProcessProvidable {
-    var cpuInfo: processor_info_array_t!
-    var prevCpuInfo: processor_info_array_t?
-    var numCpuInfo: mach_msg_type_number_t = 0
-    var numPrevCpuInfo: mach_msg_type_number_t = 0
-    var totalUsagePercentage: Float = 0
+    private (set) var cpuInfo: processor_info_array_t!
+    private (set) var prevCpuInfo: processor_info_array_t?
+    private (set) var numCpuInfo: mach_msg_type_number_t = 0
+    private (set) var numPrevCpuInfo: mach_msg_type_number_t = 0
+    private (set) var totalUsagePercentage: Float = 0
     let numCPUs: uint
-
     let CPUUsageLock = NSLock()
 
     init() {

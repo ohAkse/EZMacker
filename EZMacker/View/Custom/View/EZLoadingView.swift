@@ -13,9 +13,9 @@ struct EZLoadingView: View {
     @State private var animateStart = false
     @State private var animateEnd = true
     
-    var size: CGFloat
-    var lineWidth: CGFloat
-    var text: String
+    let size: CGFloat
+    let lineWidth: CGFloat
+    let text: String
     init(size: CGFloat = 150, lineWidth: CGFloat = 10, text: String = "연결 중...") {
         self.size = size
         self.lineWidth = lineWidth

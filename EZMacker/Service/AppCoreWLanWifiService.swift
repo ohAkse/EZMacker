@@ -19,10 +19,10 @@ protocol AppCoreWLANWifiProvidable {
 }
 
 struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
-    private var wifiClient: CWWiFiClient
-    private var interface: CWInterface?
-    private var wifyKeyChainService: AppWifiKeyChainService
-    private var networkList: Set<CWNetwork> = Set<CWNetwork>()
+    private (set) var wifiClient: CWWiFiClient
+    private (set) var interface: CWInterface?
+    private (set) var wifyKeyChainService: AppWifiKeyChainService
+    private (set) var networkList: Set<CWNetwork> = Set<CWNetwork>()
     init(wifiClient: CWWiFiClient, wifyKeyChainService: AppWifiKeyChainService) {
         self.wifiClient = wifiClient
         self.interface = wifiClient.interface()

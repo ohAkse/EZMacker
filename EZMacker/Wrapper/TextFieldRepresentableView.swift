@@ -71,15 +71,15 @@ class NSEZTextField: NSTextField {
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        setupTextField()
+        configTextField()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupTextField()
+        configTextField()
     }
     
-    private func setupTextField() {
+    private func configTextField() {
         self.cell = NSEZTextFieldCell(textCell: "")
     }
     
