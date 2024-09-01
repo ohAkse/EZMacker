@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import EZMackerServiceLib
 
 struct WifiConnectData {
     var strength: Int

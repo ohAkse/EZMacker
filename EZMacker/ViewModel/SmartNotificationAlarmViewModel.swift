@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Combine
+import EZMackerUtilLib
+import EZMackerServiceLib
 
 class SmartNotificationAlarmViewModel: ObservableObject {
 
@@ -16,14 +18,14 @@ class SmartNotificationAlarmViewModel: ObservableObject {
     @Published var fileLocatorSetting: FileLocatorSettingConfigurable
     
     // MARK: - Service Variable
-    private let appSettingService: AppSmartSettingProvidable
+    private let appSettingService: AppStorageSettingProvidable
     private let appProcessService: AppSmartProcessProvidable
-    private var cancellables = Set<AnyCancellable>()
+    private(set) var cancellables = Set<AnyCancellable>()
     
     deinit {
         Logger.writeLog(.debug, message: "NotificationAlarmViewModel deinit Called")
     }
-    init(appSettingService: AppSmartSettingsService, appProcessService: AppSmartProcessProvidable, batterySetting: BatterySettingConfigurable, wifiSetting: WifiSettingConfigurable, fileLocatorSetting: FileLocatorSettingConfigurable ) {
+    init(appSettingService: AppStorageSetting, appProcessService: AppSmartProcessProvidable, batterySetting: BatterySettingConfigurable, wifiSetting: WifiSettingConfigurable, fileLocatorSetting: FileLocatorSettingConfigurable ) {
         self.appSettingService = appSettingService
         self.appProcessService = appProcessService
         self.batterySetting = batterySetting
@@ -34,13 +36,13 @@ class SmartNotificationAlarmViewModel: ObservableObject {
     // MARK: - Configuration
     func loadConfig() {
         batterySetting = BatterySetting(
-            isBatteryWarningMode: loadSetting(.isBatteryWarningMode) ?? false,
+            isBatteryWarningMode: loadSetting(.isBatteryChargingErrorMode) ?? false,
             isBatteryCurrentMessageMode: loadSetting(.isBattryCurrentMessageMode) ?? false,
             batteryPercentage: loadSetting(.batteryPercentage) ?? "",
             selectedAppExitOption: loadSetting(.appExitMode).flatMap { AppUsageExit(rawValue: $0) } ?? .normal
         )
         wifiSetting = WifiSetting(
-            selectedBestSSIDOption: loadSetting(.bestSSidShowMode).flatMap { BestSSIDShow(rawValue: $0) } ?? .alert
+            selectedBestSSIDOption: loadSetting(.bestSSidShowMode).flatMap { BestSSIDShowMode(rawValue: $0) } ?? .alert
         )
         fileLocatorSetting = FileLocatorSetting(
             isFileChangeAlarmDisabled: loadSetting(.isFileChangeAlarmDisabled) ?? false
@@ -48,7 +50,7 @@ class SmartNotificationAlarmViewModel: ObservableObject {
     }
         
     func saveConfig() {
-        saveSetting(.isBatteryWarningMode, value: batterySetting.isBatteryWarningMode)
+        saveSetting(.isBatteryChargingErrorMode, value: batterySetting.isBatteryWarningMode)
         saveSetting(.isBattryCurrentMessageMode, value: batterySetting.isBatteryCurrentMessageMode)
         saveSetting(.batteryPercentage, value: batterySetting.batteryPercentage)
         saveSetting(.appExitMode, value: batterySetting.selectedAppExitOption.rawValue)

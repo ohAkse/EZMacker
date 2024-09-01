@@ -7,12 +7,13 @@
 
 import Combine
 import AppKit
+import EZMackerUtilLib
 
 class SmartFileSearchViewModel: ObservableObject {
     
     // MARK: - Publish Variable
     @Published var searchText: String = ""
-    @Published var searchResults: [FileQueryData] = []
+    @Published var searchResults: [FileQueryData] = .init()
     
     deinit {
         Logger.writeLog(.debug, message: "SmartFileSearchViewModel deinit Called")
@@ -59,7 +60,7 @@ class SmartFileSearchViewModel: ObservableObject {
         }
         
         let command = MDFindCommand.find(.name(searchText), folderURLs: folderURLs)
-        CommandToolRunner.shared.runCommand(command: command) { [weak self] result in
+        CommandToolRunner.runCommand(command: command) { [weak self] result in
             if let result = result {
                 Logger.writeLog(.info, message: "mdfind output: \(result)")
                 self?.processSearchResults(result)
@@ -92,7 +93,8 @@ class SmartFileSearchViewModel: ObservableObject {
             .moviesDirectory,
             .documentDirectory,
             .desktopDirectory,
-            .userDirectory
+            .userDirectory,
+            .libraryDirectory
         ]
         folderURLs.append(contentsOf: allFolders.compactMap {
             FileManager.default.urls(for: $0, in: .allDomainsMask).first

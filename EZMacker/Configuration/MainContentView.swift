@@ -1,8 +1,17 @@
+//
+//  AppSmartWifiService.swift
+//  EZMacker
+//
+//  Created by 박유경 on 9/1/24.
+//
+
 import SwiftUI
 import CoreWLAN
+import EZMackerServiceLib
+
 struct MainContentView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @State private var selectionValue = CategoryType.smartWifi
+    @State private var selectionValue = CategoryType.smartBattery
     
     var body: some View {
         NavigationSplitView {
@@ -13,16 +22,16 @@ struct MainContentView: View {
             GeometryReader { _ in
                 switch selectionValue {
                 case .smartBattery:
-                    SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService(), systemPreferenceService: SystemPreferenceService()))
+                    SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), appSettingService: AppStorageSetting(), appProcessService: AppSmartProcessService(), systemPreferenceService: SystemPreferenceService()))
                         .environmentObject(colorSchemeViewModel)
                 case .smartWifi:
-                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService()), appSettingService: AppSmartSettingsService()))
+                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService()), appSettingService: AppStorageSetting()))
                         .environmentObject(colorSchemeViewModel)
                 case .smartNotificationAlarm:
-                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSmartSettingsService(), appProcessService: AppSmartProcessService(), batterySetting: BatterySetting(), wifiSetting: WifiSetting(), fileLocatorSetting: FileLocatorSetting()))
+                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppStorageSetting(), appProcessService: AppSmartProcessService(), batterySetting: BatterySetting(), wifiSetting: WifiSetting(), fileLocatorSetting: FileLocatorSetting()))
                         .environmentObject(colorSchemeViewModel)
                 case .smartFileLocator:
-                        SmartFileLocatorView(smartFileLocatorViewModel: SmartFileLocatorViewModel(appSmartFileService: AppSmartFileService(), appSmartFileMonitor: AppSmartFileMonitorService(), appSmartSettingService: AppSmartSettingsService()))
+                        SmartFileLocatorView(smartFileLocatorViewModel: SmartFileLocatorViewModel(appSmartFileService: AppSmartFileService(), appSmartFileMonitor: AppSmartFileMonitoringService(), appSmartSettingService: AppStorageSetting()))
                         .environmentObject(colorSchemeViewModel)
                 case .smartFileSearch:
                     SmartFileSearchView(smartFileSearchViewModel: SmartFileSearchViewModel())

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum ToolbarKeyType: String {
     case MainToolbar
     case ColorSchemeButton

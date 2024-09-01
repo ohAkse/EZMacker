@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import EZMackerUtilLib
 struct EZTabbarButtonStyle: ButtonStyle {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
 

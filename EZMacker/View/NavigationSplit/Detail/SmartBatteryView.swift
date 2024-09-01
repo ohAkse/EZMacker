@@ -1,11 +1,19 @@
+//
+//  SmartBatteryView.swift
+//  EZMacker
+//
+//  Created by 박유경 on 8/31/24.
+//
+
 import SwiftUI
+import EZMackerUtilLib
+import EZMackerServiceLib
 
 struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @StateObject var smartBatteryViewModel: SmartBatteryViewModel<ProvidableType>
     @State private var toast: ToastData?
     @State private var isAdapterAnimated = false
-    
     var body: some View {
         GeometryReader { geo in
             VStack(spacing: 0) {
@@ -14,18 +22,22 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 Spacer(minLength: 40)
                 adapterInfoSection(geo: geo)
                 Spacer(minLength: 30)
-                EZBatteryBarView(batteryLevel: $smartBatteryViewModel.currentBatteryCapacity, isAdapterConnected: $smartBatteryViewModel.isAdapterConnected)
+                EZBatteryBarView(batteryLevel: $smartBatteryViewModel.batteryMatricsData.currentBatteryCapacity, isAdapterConnected: $smartBatteryViewModel.adapterMetricsData.isAdapterConnected)
                 Spacer(minLength: 15)
                 bottomInfoSection(geo: geo)
                     .offset(y: 15)
             }
             .onAppear {
-                smartBatteryViewModel.requestStaticBatteryInfo()
-                smartBatteryViewModel.startConnectTimer()
-                smartBatteryViewModel.checkAdapterConnectionStatus()
+                smartBatteryViewModel.fetchBatteryBasicSpec()
+                smartBatteryViewModel.validateAdapterConnection()
+                smartBatteryViewModel.startAdapterConnectionTimer()
+                toast = ToastData(type: .info,
+                                  title: "정보",
+                                  message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 약 3분정도 시간이 소요됩니다.",
+                                  duration: 10)
             }
             .onDisappear {
-                smartBatteryViewModel.stopConnectTimer()
+                smartBatteryViewModel.stopAdapterConnectionTimer()
             }
             .navigationTitle(CategoryType.smartBattery.title)
             .toastView(toast: $toast)
@@ -43,20 +55,18 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     }
     private func chargingInfoView(geo: GeometryProxy) -> some View {
         VStack(alignment: .leading, spacing: 0) {
-            if smartBatteryViewModel.isAdapterConnected {
-                if smartBatteryViewModel.currentBatteryCapacity * 100 == 100 {
+            if smartBatteryViewModel.adapterMetricsData.isAdapterConnected {
+                if smartBatteryViewModel.batteryMatricsData.currentBatteryCapacity * 100 >= 100 {
                     EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: "충전완료")
-                        
                 } else {
-                    EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: smartBatteryViewModel.chargingTime.toHourMinute())
+                    EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: smartBatteryViewModel.batteryMatricsData.chargingTime.toHourMinute())
                 }
-            } else if smartBatteryViewModel.chargingTime <= 1 {
-                EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지", info: smartBatteryViewModel.remainingTime.toHourMinute())
-            }
-        }
-        .onReceive(smartBatteryViewModel.$isAdapterConnected) { isConnected in
-            if isConnected {
-                toast = ToastData(type: .info, title: "정보", message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 약 3분정도 시간이 소요됩니다.", duration: 10)
+            } else if smartBatteryViewModel.batteryMatricsData.chargingTime <= 1 {
+                if smartBatteryViewModel.adapterMetricsData.adapterConnectionSuccess == .decodingFailed {
+                    EZLoadingView(size: 120, text: "수집중..")
+                } else {
+                    EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지", info: smartBatteryViewModel.batteryMatricsData.remainingTime.toHourMinute())
+                }
             }
         }
         .frame(width: geo.size.width * 0.22, height: geo.size.height * 0.25)
@@ -77,7 +87,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 .padding(.vertical, 20)
                 .padding(.trailing, 10)
                 
-                EZBatteryMonitoringView(chargeData: $smartBatteryViewModel.chargeData, isAdapterConnect: $smartBatteryViewModel.isAdapterConnected)
+                EZBatteryMonitoringView(chargeData: $smartBatteryViewModel.batteryMatricsData.chargeData, isAdapterConnect: $smartBatteryViewModel.adapterMetricsData.isAdapterConnected)
                     .padding(.vertical, 20)
             }
             Button(
@@ -99,19 +109,19 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     
     private func adapterInfoSection(geo: GeometryProxy) -> some View {
         VStack {
-            if smartBatteryViewModel.isAdapterConnected {
+            if smartBatteryViewModel.adapterMetricsData.isAdapterConnected {
                 connectedAdapterInfo(geo: geo)
             } else {
                 disconnectedAdapterInfo(geo: geo)
             }
         }
         .frame(height: geo.size.height * 0.4)
-        .animation(.spring(), value: smartBatteryViewModel.isAdapterConnected)
+        .animation(.spring(), value: smartBatteryViewModel.adapterMetricsData.isAdapterConnected)
     }
     
     private func connectedAdapterInfo(geo: GeometryProxy) -> some View {
         HStack {
-            if let adapterInfo = smartBatteryViewModel.adapterInfo?.first {
+            if let adapterInfo = smartBatteryViewModel.adapterMetricsData.adapterData.first {
                 VStack {
                     EZImage(systemName: "battery_adapter", isSystemName: false)
                     EZContent(content: adapterInfo.Name)
@@ -121,9 +131,9 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                     Spacer()
                     EZBatteryAdapterView(title: "Adp ID", content: "\(adapterInfo.AdapterID)")
                     Spacer()
-                    EZBatteryAdapterView(title: "Model ID", content: "\(adapterInfo.Model)")
+                    EZBatteryAdapterView(title: "Model ID", content: adapterInfo.Model)
                     Spacer()
-                    EZBatteryAdapterView(title: "F/W Ver", content: "\(adapterInfo.FwVersion)")
+                    EZBatteryAdapterView(title: "F/W Ver", content: adapterInfo.FwVersion)
                     Spacer()
                 }
                 .ezBackgroundColorStyle()
@@ -133,22 +143,25 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 
                 VStack(spacing: 0) {
                     Spacer()
-                    EZBatteryAdapterView(title: "Mfr.", content: "\(adapterInfo.Manufacturer)")
+                    EZBatteryAdapterView(title: "Mfr.", content: adapterInfo.Manufacturer)
                     Spacer()
-                    EZBatteryAdapterView(title: "Watts", content: "\(adapterInfo.Watts)" + "W")
+                    EZBatteryAdapterView(title: "Watts", content: "\(adapterInfo.Watts)W")
                     Spacer()
-                    EZBatteryAdapterView(title: "H/W Ver", content: "\(adapterInfo.HwVersion)")
+                    EZBatteryAdapterView(title: "H/W Ver", content: adapterInfo.HwVersion)
                     Spacer()
                 }
                 .frame(width: geo.size.width * 0.33)
                 .ezBackgroundColorStyle()
+            } else {
+                Text("No adapter connected")
+                    .frame(maxWidth: .infinity)
             }
         }
     }
     
     private func disconnectedAdapterInfo(geo: GeometryProxy) -> some View {
         Group {
-            if smartBatteryViewModel.adapterConnectionSuccess == .decodingFailed {
+            if smartBatteryViewModel.adapterMetricsData.adapterConnectionSuccess == .decodingFailed {
                 HStack(alignment: .center, spacing: 0) {
                     HStack(alignment: .center, spacing: 0) {
                         EZLoadingView(size: 180, text: "어댑터 정보 수집중..")
@@ -167,14 +180,14 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                     .frame(width: geo.size.width * 0.5)
                     VStack(spacing: 0) {
                         EZBatteryInfoView(imageName: "battery_status",
-                                                  isSystem: false,
-                                                  title: "배터리 상태",
-                                                  info: smartBatteryViewModel.healthState == "" ? "계산중.." : smartBatteryViewModel.healthState,
-                                                  isBatterStatus: true)
+                                          isSystem: false,
+                                          title: "배터리 상태",
+                                          info: smartBatteryViewModel.batteryConditionData.healthState,
+                                          isBatterStatus: true)
+                        .frame(height: geo.size.height * 0.2)
+                        EZBatteryInfoView(imageName: "battery_cell", isSystem: false, title: "베터리셀 끊김 횟수", info: "\(smartBatteryViewModel.batteryConditionData.batteryCellDisconnectCount)")
                             .frame(height: geo.size.height * 0.2)
-                        EZBatteryInfoView(imageName: "battery_cell", isSystem: false, title: "베터리셀 끊김 횟수", info: "\(smartBatteryViewModel.batteryCellDisconnectCount)")
-                            .frame(height: geo.size.height * 0.2)
-
+                        
                     }
                 }
             }
@@ -183,13 +196,13 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     
     private func bottomInfoSection(geo: GeometryProxy) -> some View {
         HStack(spacing: 30) {
-            EZBatteryInfoView(imageName: "battery_recycle", isSystem: false, title: "사이클 수", info: smartBatteryViewModel.cycleCount.toBun())
+            EZBatteryInfoView(imageName: "battery_recycle", isSystem: false, title: "사이클 수", info: smartBatteryViewModel.batteryConditionData.cycleCount.toBun())
                 .frame(height: geo.size.height * 0.2)
-            EZBatteryInfoView(imageName: "battery_thermometer", isSystem: false, title: "온도", info: smartBatteryViewModel.temperature.toDegree())
+            EZBatteryInfoView(imageName: "battery_thermometer", isSystem: false, title: "온도", info: smartBatteryViewModel.batteryConditionData.temperature.toDegree())
                 .frame(height: geo.size.height * 0.2)
-            EZBatteryInfoView(imageName: "battery_currentCapa", isSystem: false, title: "현재 용량", info: smartBatteryViewModel.batteryMaxCapacity.tomAH())
+            EZBatteryInfoView(imageName: "battery_currentCapa", isSystem: false, title: "현재 용량", info: smartBatteryViewModel.batteryConditionData.batteryMaxCapacity.tomAH())
                 .frame(height: geo.size.height * 0.2)
-            EZBatteryInfoView(imageName: "battery_designdCapa", isSystem: false, title: "설계 용량", info: smartBatteryViewModel.designedCapacity.tomAH())
+            EZBatteryInfoView(imageName: "battery_designdCapa", isSystem: false, title: "설계 용량", info: smartBatteryViewModel.batteryConditionData.designedCapacity.tomAH())
                 .frame(height: geo.size.height * 0.2)
         }
     }
@@ -197,14 +210,14 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
 
 extension SmartBatteryView {
     private func getBatteryImageName() -> String {
-        if smartBatteryViewModel.isAdapterConnected {
-            if smartBatteryViewModel.currentBatteryCapacity == 1 {
+        if smartBatteryViewModel.adapterMetricsData.isAdapterConnected {
+            if smartBatteryViewModel.batteryMatricsData.currentBatteryCapacity == 1 {
                 return "battery_full_charge"
             } else {
                 return "battery_charging"
             }
         } else {
-            switch smartBatteryViewModel.currentBatteryCapacity {
+            switch smartBatteryViewModel.batteryMatricsData.currentBatteryCapacity {
             case 1:
                 return "battery_full"
             case 0.67...0.99:

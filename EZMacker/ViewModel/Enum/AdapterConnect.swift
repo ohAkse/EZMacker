@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import EZMackerUtilLib
 
 enum AdapterConnect: Error, Equatable {
     case dataNotFound

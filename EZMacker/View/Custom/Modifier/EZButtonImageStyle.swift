@@ -6,19 +6,20 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct EZButtonImageStyle: ButtonStyle {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     
-    var imageSize: CGSize
-    var imageName: String
-    var isSystemImage: Bool
-    var lightModeForegroundColor: Color
-    var darkModeForegroundColor: Color
-    var lightModeBackgroundColor: Color?
-    var darkModeBackgroundColor: Color?
-    var frameSize: CGSize?
-    var isAddButton: Bool
+    let imageSize: CGSize
+    let imageName: String
+    let isSystemImage: Bool
+    let lightModeForegroundColor: Color
+    let darkModeForegroundColor: Color
+    let lightModeBackgroundColor: Color?
+    let darkModeBackgroundColor: Color?
+    let frameSize: CGSize?
+    let isAddButton: Bool
 
     func makeBody(configuration: Configuration) -> some View {
         Group {

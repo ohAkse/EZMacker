@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 struct EZTitle: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
     let size: CGFloat = FontSizeType.small.size

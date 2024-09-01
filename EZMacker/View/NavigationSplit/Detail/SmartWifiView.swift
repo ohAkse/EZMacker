@@ -1,6 +1,13 @@
+//
+//  AppSmartFileService.swift
+//  EZMacker
+//
+//  Created by 박유경 on 9/1/24.
+//
+
 import SwiftUI
 import CoreWLAN
-
+import EZMackerServiceLib
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @StateObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>
@@ -21,7 +28,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                 }
             }
             .onAppear {
-                smartWifiViewModel.requestWifiInfo()
+                smartWifiViewModel.fetchWifiInfo()
                 smartWifiViewModel.startWifiTimer()
             }
             .onDisappear {
@@ -77,7 +84,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                         appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService()),
                         onRefresh: {
                             Task {
-                                await smartWifiViewModel.requestCoreWLanWifiInfo()
+                                await smartWifiViewModel.fetchWifiListInfo()
                                 let status = smartWifiViewModel.getWifiRequestStatus()
                                 if status == .scanningFailed {
                                     toast = ToastData(type: .error, title: "에러", message: "와이파이를 확인할 수 없습니다. 권한을 확인해주세요.", duration: 5)
@@ -99,7 +106,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             }
         }
         .task {
-            await smartWifiViewModel.requestCoreWLanWifiInfo()
+            await smartWifiViewModel.fetchWifiListInfo()
             let status = smartWifiViewModel.getWifiRequestStatus()
             if status == .scanningFailed {
                 toast = ToastData(type: .error, title: "에러", message: "와이파이를 확인할 수 없습니다. 권한을 확인해주세요.", duration: 5)

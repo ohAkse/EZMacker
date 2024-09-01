@@ -7,6 +7,8 @@
 
 import SwiftUI
 import CoreWLAN
+import EZMackerUtilLib
+import EZMackerServiceLib
 
 struct EZWifiMainView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
@@ -16,10 +18,10 @@ struct EZWifiMainView: View {
     @State private var isShowingPasswordModal = false
     @State private var toast: ToastData?
     @State private var selectedSSid: String = ""
-    var appCoreWLanWifiService: AppCoreWLANWifiProvidable
-    var onRefresh: () -> Void
-    var onWifiTap: (String, String) -> Void
-    var onFindBestWifi: () -> Void
+    private(set) var appCoreWLanWifiService: AppCoreWLANWifiProvidable
+    private(set) var onRefresh: () -> Void
+    private(set) var onWifiTap: (String, String) -> Void
+    private(set) var onFindBestWifi: () -> Void
     
     var body: some View {
         VStack {

@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct EZNormalTextStyle: ViewModifier {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel
-    var fontSize: CGFloat
-    var isBold: Bool
+    let fontSize: CGFloat
+    let isBold: Bool
 
     func body(content: Content) -> some View {
         content
