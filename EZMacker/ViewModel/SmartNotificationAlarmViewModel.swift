@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import EZMackerUtilLib
+import EZMackerServiceLib
 
 class SmartNotificationAlarmViewModel: ObservableObject {
 
@@ -17,14 +18,14 @@ class SmartNotificationAlarmViewModel: ObservableObject {
     @Published var fileLocatorSetting: FileLocatorSettingConfigurable
     
     // MARK: - Service Variable
-    private let appSettingService: AppSmartSettingProvidable
+    private let appSettingService: AppStorageSettingProvidable
     private let appProcessService: AppSmartProcessProvidable
     private(set) var cancellables = Set<AnyCancellable>()
     
     deinit {
         Logger.writeLog(.debug, message: "NotificationAlarmViewModel deinit Called")
     }
-    init(appSettingService: AppSmartSettingsService, appProcessService: AppSmartProcessProvidable, batterySetting: BatterySettingConfigurable, wifiSetting: WifiSettingConfigurable, fileLocatorSetting: FileLocatorSettingConfigurable ) {
+    init(appSettingService: AppStorageSetting, appProcessService: AppSmartProcessProvidable, batterySetting: BatterySettingConfigurable, wifiSetting: WifiSettingConfigurable, fileLocatorSetting: FileLocatorSettingConfigurable ) {
         self.appSettingService = appSettingService
         self.appProcessService = appProcessService
         self.batterySetting = batterySetting
@@ -41,7 +42,7 @@ class SmartNotificationAlarmViewModel: ObservableObject {
             selectedAppExitOption: loadSetting(.appExitMode).flatMap { AppUsageExit(rawValue: $0) } ?? .normal
         )
         wifiSetting = WifiSetting(
-            selectedBestSSIDOption: loadSetting(.bestSSidShowMode).flatMap { BestSSIDShow(rawValue: $0) } ?? .alert
+            selectedBestSSIDOption: loadSetting(.bestSSidShowMode).flatMap { BestSSIDShowMode(rawValue: $0) } ?? .alert
         )
         fileLocatorSetting = FileLocatorSetting(
             isFileChangeAlarmDisabled: loadSetting(.isFileChangeAlarmDisabled) ?? false

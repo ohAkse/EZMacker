@@ -2,17 +2,17 @@
 //  AppSmartSettingService.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/26/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import SwiftUI
-import EZMackerUtilLib
-protocol AppSmartSettingProvidable {
+
+protocol AppStorageSettingProvidable {
     func saveConfig<T>(_ key: AppStorageKey, value: T)
     func loadConfig<T>(_ key: AppStorageKey) -> T?
 }
 
-struct AppSmartSettingsService: AppSmartSettingProvidable {
+struct AppStorageSetting: AppStorageSettingProvidable {
     @AppStorage(AppStorageKey.isBatteryChargingErrorMode.name) var isBatteryWarningMode: Bool = AppStorageKey.isBatteryChargingErrorMode.byDefault as? Bool ?? false
     @AppStorage(AppStorageKey.isBattryCurrentMessageMode.name) var isBatteryCurrentMessageMode: Bool = AppStorageKey.isBattryCurrentMessageMode.byDefault as? Bool ?? false
     @AppStorage(AppStorageKey.batteryPercentage.name) var batteryPercentage: String = AppStorageKey.batteryPercentage.byDefault as? String ?? "0"

@@ -1,8 +1,8 @@
 //
 //  AppSmartFileService.swift
-//  EZMacker
+//  EZMackerServiceLib
 //
-//  Created by 박유경 on 5/5/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Combine
@@ -10,14 +10,14 @@ import SwiftUI
 import QuickLookThumbnailing
 import EZMackerUtilLib
 
-protocol AppSmartFileProvidable {
+public protocol AppSmartFileProvidable {
     func getFileInfo(fileUrl: URL) -> Future<(String, Int64, String, URL, Date?), Error>
     func getThumbnail(for url: URL) -> Future<NSImage, Error>
 }
 
-struct AppSmartFileService: AppSmartFileProvidable {
-    
-    func getFileInfo(fileUrl: URL) -> Future<(String, Int64, String, URL, Date?), Error> {
+public struct AppSmartFileService: AppSmartFileProvidable {
+    public init() {}
+    public func getFileInfo(fileUrl: URL) -> Future<(String, Int64, String, URL, Date?), Error> {
         return Future { promise in
             let fileManager = FileManager.default
             do {
@@ -27,7 +27,7 @@ struct AppSmartFileService: AppSmartFileProvidable {
                     fileName = String(fileName.dropLast(4))
                 }
                 let fileSize = attributes[.size] as? Int64 ?? 0
-                var fileType = FileDescription(type: attributes[.type] as? String ?? FileDescription.unknown.rawValue).name
+                var fileType = AppFileDescriptionType(type: attributes[.type] as? String ?? AppFileDescriptionType.unknown.rawValue).name
                 
                 // TODO: 파일 실행 구조가 윈도우와 달라서 확인후 나중에 따로 처리할것
                 if fileType == "폴더", fileUrl.pathExtension == "app" {
@@ -45,7 +45,7 @@ struct AppSmartFileService: AppSmartFileProvidable {
         }
     }
 
-    func getThumbnail(for url: URL) -> Future<NSImage, Error> {
+    public func getThumbnail(for url: URL) -> Future<NSImage, Error> {
         return Future { promise in
             let size = CGSize(width: 100, height: 100)
             let request = QLThumbnailGenerator.Request(fileAt: url, size: size, scale: 1.0, representationTypes: .all)

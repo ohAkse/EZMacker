@@ -1,36 +1,35 @@
 //
 //  AppCoreWLanWifiService.swift
-//  EZMacker
+//  EZMackerServiceLib
 //
-//  Created by 박유경 on 5/27/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import CoreWLAN
 import Combine
-import Security
 import EZMackerUtilLib
 
-protocol AppCoreWLANWifiProvidable {
+public protocol AppCoreWLANWifiProvidable {
     func getSignalStrength() -> Future<Int, AppCoreWLanStatus>
     func getMbpsRate() -> Future<String, AppCoreWLanStatus>
     func getHardwareAddress() -> Future<String, AppCoreWLanStatus>
     func getWifiLists(attempts: Int ) -> Future<[ScaningWifiData], AppCoreWLanStatus>
     func connectToNetwork(ssid: String, password: String) -> Future<(String, Bool), AppCoreWLanStatus>
-    func getCurrentSSID() -> Future<String, AppCoreWLanStatus> 
+    func getCurrentSSID() -> Future<String, AppCoreWLanStatus>
 }
 
-struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
+public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
     private (set) var wifiClient: CWWiFiClient
     private (set) var interface: CWInterface?
     private (set) var wifyKeyChainService: AppWifiKeyChainService
     private (set) var networkList: Set<CWNetwork> = Set<CWNetwork>()
-    init(wifiClient: CWWiFiClient, wifyKeyChainService: AppWifiKeyChainService) {
+    public init(wifiClient: CWWiFiClient, wifyKeyChainService: AppWifiKeyChainService) {
         self.wifiClient = wifiClient
         self.interface = wifiClient.interface()
         self.wifyKeyChainService = wifyKeyChainService
     }
     
-    func getSignalStrength() -> Future<Int, AppCoreWLanStatus> {
+    public func getSignalStrength() -> Future<Int, AppCoreWLanStatus> {
         return Future<Int, AppCoreWLanStatus> { promise in
             guard let signalStrength = self.interface?.rssiValue() else {
                 promise(.failure(.unableToFetchSignalStrength))
@@ -39,7 +38,7 @@ struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             promise(.success(signalStrength))
         }
     }
-    func getMbpsRate() -> Future<String, AppCoreWLanStatus> {
+    public func getMbpsRate() -> Future<String, AppCoreWLanStatus> {
         return Future<String, AppCoreWLanStatus> { promise in
             guard let transmitRate = self.interface?.transmitRate() else {
                 promise(.failure(.unableToFetchSignalStrength))
@@ -49,7 +48,7 @@ struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
         }
     }
     
-    func getHardwareAddress() -> Future<String, AppCoreWLanStatus> {
+    public func getHardwareAddress() -> Future<String, AppCoreWLanStatus> {
         return Future<String, AppCoreWLanStatus> { promise in
             guard let transmitRate = self.interface?.hardwareAddress() else {
                 promise(.failure(.unableToFetchSignalStrength))
@@ -59,7 +58,7 @@ struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
         }
     }
     
-    func getWifiLists(attempts: Int ) -> Future<[ScaningWifiData], AppCoreWLanStatus> {
+    public func getWifiLists(attempts: Int ) -> Future<[ScaningWifiData], AppCoreWLanStatus> {
         return Future<[ScaningWifiData], AppCoreWLanStatus> { promise in
             self.scanWifiLists(attempts: attempts, promise: promise)
         }
@@ -96,7 +95,7 @@ struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             }
         }
     }
-    func connectToNetwork(ssid: String, password: String) -> Future<(String, Bool), AppCoreWLanStatus> {
+    public func connectToNetwork(ssid: String, password: String) -> Future<(String, Bool), AppCoreWLanStatus> {
         return Future { promise in
             guard let interface = self.interface else {
                 Logger.writeLog(.error, message: "WiFi 인터페이스를 찾을 수 없음")
@@ -127,7 +126,7 @@ struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             }
         }
     }
-    func getCurrentSSID() -> Future<String, AppCoreWLanStatus> {
+    public func getCurrentSSID() -> Future<String, AppCoreWLanStatus> {
         return Future<String, AppCoreWLanStatus> { promise in
             guard let interface = self.interface else {
                 promise(.failure(.unableToFetchSignalStrength))

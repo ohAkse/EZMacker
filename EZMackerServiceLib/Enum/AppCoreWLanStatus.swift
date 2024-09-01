@@ -1,13 +1,11 @@
 //
-//  AppCoreWLanError.swift
-//  EZMacker
+//  AppCoreWLanStatus.swift
+//  EZMackerServiceLib
 //
-//  Created by 박유경 on 5/27/24.
+//  Created by 박유경 on 9/1/24.
 //
 
-import Foundation
-
-enum AppCoreWLanStatus: Error, Equatable {
+public enum AppCoreWLanStatus: Error, Equatable {
     case none
     case success
     case unableToFetchSignalStrength
@@ -17,7 +15,7 @@ enum AppCoreWLanStatus: Error, Equatable {
     case notFoundPassword
     case unknownError(error: String)
 
-    var errorName: String {
+    public var errorName: String {
         switch self {
         case .success, .none:
             return ""
@@ -36,7 +34,7 @@ enum AppCoreWLanStatus: Error, Equatable {
         }
     }
     
-    static func == (lhs: AppCoreWLanStatus, rhs: AppCoreWLanStatus) -> Bool {
+    public static func == (lhs: AppCoreWLanStatus, rhs: AppCoreWLanStatus) -> Bool {
         switch (lhs, rhs) {
         case (.none, .none),
              (.success, .success),

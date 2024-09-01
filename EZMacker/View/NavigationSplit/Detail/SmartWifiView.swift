@@ -1,6 +1,13 @@
+//
+//  AppSmartFileService.swift
+//  EZMacker
+//
+//  Created by 박유경 on 9/1/24.
+//
+
 import SwiftUI
 import CoreWLAN
-
+import EZMackerServiceLib
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @StateObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>

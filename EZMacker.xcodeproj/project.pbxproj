@@ -18,7 +18,6 @@
 		5F1012B22BF39EBD00589C9B /* EZBatteryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012B12BF39EBD00589C9B /* EZBatteryInfoView.swift */; };
 		5F16A7DC2C358F07003EA0BE /* FileQueryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F16A7DB2C358F07003EA0BE /* FileQueryData.swift */; };
 		5F1A91B12BF8E48F0078F4F8 /* battery_charging_animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */; };
-		5F2DD1892BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */; };
 		5F3604162C38214A00C1B84B /* SmartFileLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */; };
 		5F3604182C38230400C1B84B /* SmartFileLocatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */; };
 		5F36041A2C38259400C1B84B /* SmartFileSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604192C38259400C1B84B /* SmartFileSearchView.swift */; };
@@ -30,23 +29,15 @@
 		5F36B2332BE7AB3100E08935 /* EZMackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2322BE7AB3100E08935 /* EZMackerUITests.swift */; };
 		5F36B2352BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2342BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift */; };
 		5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2432BE7ACC000E08935 /* MainContentView.swift */; };
-		5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */; };
-		5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */; };
-		5F36C0862C17E55C0031C0E3 /* AppWifiKeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36C0852C17E55C0031C0E3 /* AppWifiKeyChainService.swift */; };
 		5F36C0892C17ECE00031C0E3 /* AlertTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36C0882C17ECE00031C0E3 /* AlertTextFieldView.swift */; };
 		5F3A519A2C71C2D0000B2C2F /* FileManager + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3A51992C71C2D0000B2C2F /* FileManager + Extension.swift */; };
 		5F3CB4582C7052C0007A479D /* BatterySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3CB4572C7052C0007A479D /* BatterySetting.swift */; };
 		5F3CB45A2C7052D3007A479D /* WifiSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3CB4592C7052D3007A479D /* WifiSetting.swift */; };
 		5F3CB45C2C7052DE007A479D /* FileLocatorSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3CB45B2C7052DE007A479D /* FileLocatorSetting.swift */; };
-		5F3DBE092C04B18700B5C0DE /* AppCoreWLanWifiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE082C04B18700B5C0DE /* AppCoreWLanWifiService.swift */; };
-		5F3DBE0D2C04B3E300B5C0DE /* AppCoreWLanStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE0C2C04B3E300B5C0DE /* AppCoreWLanStatus.swift */; };
 		5F3DBE132C04BC8800B5C0DE /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DBE122C04BC8800B5C0DE /* View + Extension.swift */; };
-		5F3FF02A2C02BB5500E3246C /* AppSmartProcessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF0292C02BB5500E3246C /* AppSmartProcessService.swift */; };
-		5F3FF02E2C02BBFA00E3246C /* AppSmartProcessData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF02D2C02BBFA00E3246C /* AppSmartProcessData.swift */; };
 		5F3FF0302C02BE9800E3246C /* ChargeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF02F2C02BE9800E3246C /* ChargeData.swift */; };
 		5F3FF0322C02C6AE00E3246C /* EZBatteryBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF0312C02C6AE00E3246C /* EZBatteryBarView.swift */; };
 		5F3FF0342C02EE8600E3246C /* ColorSchemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF0332C02EE8600E3246C /* ColorSchemeViewModel.swift */; };
-		5F3FF0362C0303AC00E3246C /* AppSmartSettingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF0352C0303AC00E3246C /* AppSmartSettingService.swift */; };
 		5F3FF03D2C03384100E3246C /* AppNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF03C2C03384100E3246C /* AppNotificationCenter.swift */; };
 		5F3FF03F2C03392000E3246C /* AppAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FF03E2C03392000E3246C /* AppAlertManager.swift */; };
 		5F4196792C6C57530019A65F /* battery_connect_animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F4196782C6C57530019A65F /* battery_connect_animation.gif */; };
@@ -73,27 +64,21 @@
 		5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E782BE8A2DA004B94F8 /* ToastView.swift */; };
 		5F6D4E7C2BE8A328004B94F8 /* ToastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E7B2BE8A328004B94F8 /* ToastData.swift */; };
 		5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5DC2BE7BDE0004509BC /* SmartBatteryViewModel.swift */; };
-		5F70D5DF2BE7BE26004509BC /* AppSmartFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5DE2BE7BE26004509BC /* AppSmartFileService.swift */; };
 		5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5E12BE7C586004509BC /* CategoryType.swift */; };
 		5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */; };
-		5F72B7C62C421EA50060DEA0 /* AppSmartFileMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F72B7C52C421EA50060DEA0 /* AppSmartFileMonitorService.swift */; };
 		5F72B7C82C42357B0060DEA0 /* FileTabData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F72B7C72C42357B0060DEA0 /* FileTabData.swift */; };
-		5F7815652C69D3BD00DE5F39 /* AppSmartServiceProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7815642C69D3BD00DE5F39 /* AppSmartServiceProvidable.swift */; };
 		5F78156B2C69DF9F00DE5F39 /* EZInnerBackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78156A2C69DF9F00DE5F39 /* EZInnerBackgroundStyle.swift */; };
 		5F7E0B652C7077D9000C8C97 /* EZBatteryMonitoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B642C7077D9000C8C97 /* EZBatteryMonitoringView.swift */; };
 		5F7E0B672C707844000C8C97 /* EZWifiMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B662C707844000C8C97 /* EZWifiMainView.swift */; };
 		5F7E0B692C70789B000C8C97 /* EZWifiStrengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B682C70789B000C8C97 /* EZWifiStrengthView.swift */; };
 		5F7E0B6B2C70790F000C8C97 /* EZBatteryAdapterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B6A2C70790F000C8C97 /* EZBatteryAdapterView.swift */; };
-		5F7E0B6D2C707E9B000C8C97 /* FileDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B6C2C707E9B000C8C97 /* FileDescription.swift */; };
 		5F7E0B742C709CB6000C8C97 /* AppEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B732C709CB6000C8C97 /* AppEnviroment.swift */; };
 		5F7E0B772C709CC9000C8C97 /* EnviromentKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B762C709CC9000C8C97 /* EnviromentKey.swift */; };
 		5F97C3762BF9D25000B0DC56 /* SettingPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */; };
 		5F97C3782BF9DAFE00B0DC56 /* SystemPreferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3772BF9DAFE00B0DC56 /* SystemPreferenceService.swift */; };
-		5F97C37E2BFA0F2C00B0DC56 /* AppBCMWLanSkywalkInterfaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C37D2BFA0F2C00B0DC56 /* AppBCMWLanSkywalkInterfaceType.swift */; };
-		5F97C3802BFA0F6300B0DC56 /* AppSmartWifiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C37F2BFA0F6300B0DC56 /* AppSmartWifiService.swift */; };
 		5F97C3822BFA132E00B0DC56 /* SmartWifiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3812BFA132E00B0DC56 /* SmartWifiView.swift */; };
 		5F97C3842BFA133A00B0DC56 /* SmartWifiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3832BFA133A00B0DC56 /* SmartWifiViewModel.swift */; };
-		5F9999AC2C1DEE9600D38D59 /* BestSSIDShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9999AB2C1DEE9600D38D59 /* BestSSIDShow.swift */; };
+		5F9999AC2C1DEE9600D38D59 /* BestSSIDShowMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9999AB2C1DEE9600D38D59 /* BestSSIDShowMode.swift */; };
 		5F9999B02C1DF0E000D38D59 /* AppUsageExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9999AF2C1DF0E000D38D59 /* AppUsageExit.swift */; };
 		5F9DAB412C797CCD000563A2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 5F9DAB402C797CCD000563A2 /* .swiftlint.yml */; };
 		5F9DAB482C79AC5A000563A2 /* RadioChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB472C79AC5A000563A2 /* RadioChannelData.swift */; };
@@ -105,6 +90,8 @@
 		5FDDCABD2C188189006A528A /* GifRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDCABC2C188189006A528A /* GifRepresentableView.swift */; };
 		5FDE1EE82C6B0A1E00E67FCE /* EZButtonImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */; };
 		5FE62F2F2C843DB000658155 /* libEZMackerUtilLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE62F282C843CEF00658155 /* libEZMackerUtilLib.a */; };
+		5FE62F852C844F1900658155 /* libEZMackerServiceLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE62F832C844EE800658155 /* libEZMackerServiceLib.a */; };
+		5FE62FBB2C845D3A00658155 /* AppStorageSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE62FBA2C845D3A00658155 /* AppStorageSetting.swift */; };
 		5FE7B8CE2C1DA5E300AA841E /* AlertOKCancleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE7B8CD2C1DA5E300AA841E /* AlertOKCancleView.swift */; };
 		5FEE27C82BE9015400847761 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C72BE9015400847761 /* CategoryView.swift */; };
 		5FEE27CF2BE901D900847761 /* ColorSchemeToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27CE2BE901D900847761 /* ColorSchemeToolbarView.swift */; };
@@ -132,6 +119,13 @@
 			remoteGlobalIDString = 5FE62F132C843CDC00658155;
 			remoteInfo = EZMackerUtilLib;
 		};
+		5FE62F822C844EE800658155 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FE62F7D2C844EE800658155 /* EZMackerServiceLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5FE62F6E2C844ED300658155;
+			remoteInfo = EZMackerServiceLib;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -146,7 +140,6 @@
 		5F1012B12BF39EBD00589C9B /* EZBatteryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZBatteryInfoView.swift; sourceTree = "<group>"; };
 		5F16A7DB2C358F07003EA0BE /* FileQueryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileQueryData.swift; sourceTree = "<group>"; };
 		5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = battery_charging_animation.gif; sourceTree = "<group>"; };
-		5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryPowerSourceType.swift; sourceTree = "<group>"; };
 		5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileLocatorViewModel.swift; sourceTree = "<group>"; };
 		5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileLocatorView.swift; sourceTree = "<group>"; };
 		5F3604192C38259400C1B84B /* SmartFileSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileSearchView.swift; sourceTree = "<group>"; };
@@ -162,24 +155,16 @@
 		5F36B2322BE7AB3100E08935 /* EZMackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerUITests.swift; sourceTree = "<group>"; };
 		5F36B2342BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5F36B2432BE7ACC000E08935 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
-		5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryService.swift; sourceTree = "<group>"; };
-		5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryKeyType.swift; sourceTree = "<group>"; };
-		5F36C0852C17E55C0031C0E3 /* AppWifiKeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWifiKeyChainService.swift; sourceTree = "<group>"; };
 		5F36C0882C17ECE00031C0E3 /* AlertTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTextFieldView.swift; sourceTree = "<group>"; };
 		5F3A51992C71C2D0000B2C2F /* FileManager + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager + Extension.swift"; sourceTree = "<group>"; };
 		5F3CB4572C7052C0007A479D /* BatterySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterySetting.swift; sourceTree = "<group>"; };
 		5F3CB4592C7052D3007A479D /* WifiSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiSetting.swift; sourceTree = "<group>"; };
 		5F3CB45B2C7052DE007A479D /* FileLocatorSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLocatorSetting.swift; sourceTree = "<group>"; };
 		5F3DBE032C04A33000B5C0DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		5F3DBE082C04B18700B5C0DE /* AppCoreWLanWifiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoreWLanWifiService.swift; sourceTree = "<group>"; };
-		5F3DBE0C2C04B3E300B5C0DE /* AppCoreWLanStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoreWLanStatus.swift; sourceTree = "<group>"; };
 		5F3DBE122C04BC8800B5C0DE /* View + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
-		5F3FF0292C02BB5500E3246C /* AppSmartProcessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartProcessService.swift; sourceTree = "<group>"; };
-		5F3FF02D2C02BBFA00E3246C /* AppSmartProcessData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartProcessData.swift; sourceTree = "<group>"; };
 		5F3FF02F2C02BE9800E3246C /* ChargeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeData.swift; sourceTree = "<group>"; };
 		5F3FF0312C02C6AE00E3246C /* EZBatteryBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZBatteryBarView.swift; sourceTree = "<group>"; };
 		5F3FF0332C02EE8600E3246C /* ColorSchemeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeViewModel.swift; sourceTree = "<group>"; };
-		5F3FF0352C0303AC00E3246C /* AppSmartSettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartSettingService.swift; sourceTree = "<group>"; };
 		5F3FF03C2C03384100E3246C /* AppNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotificationCenter.swift; sourceTree = "<group>"; };
 		5F3FF03E2C03392000E3246C /* AppAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAlertManager.swift; sourceTree = "<group>"; };
 		5F4196782C6C57530019A65F /* battery_connect_animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = battery_connect_animation.gif; sourceTree = "<group>"; };
@@ -206,27 +191,21 @@
 		5F6D4E782BE8A2DA004B94F8 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		5F6D4E7B2BE8A328004B94F8 /* ToastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastData.swift; sourceTree = "<group>"; };
 		5F70D5DC2BE7BDE0004509BC /* SmartBatteryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartBatteryViewModel.swift; sourceTree = "<group>"; };
-		5F70D5DE2BE7BE26004509BC /* AppSmartFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartFileService.swift; sourceTree = "<group>"; };
 		5F70D5E12BE7C586004509BC /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeType.swift; sourceTree = "<group>"; };
-		5F72B7C52C421EA50060DEA0 /* AppSmartFileMonitorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartFileMonitorService.swift; sourceTree = "<group>"; };
 		5F72B7C72C42357B0060DEA0 /* FileTabData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTabData.swift; sourceTree = "<group>"; };
-		5F7815642C69D3BD00DE5F39 /* AppSmartServiceProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartServiceProvidable.swift; sourceTree = "<group>"; };
 		5F78156A2C69DF9F00DE5F39 /* EZInnerBackgroundStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZInnerBackgroundStyle.swift; sourceTree = "<group>"; };
 		5F7E0B642C7077D9000C8C97 /* EZBatteryMonitoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZBatteryMonitoringView.swift; sourceTree = "<group>"; };
 		5F7E0B662C707844000C8C97 /* EZWifiMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZWifiMainView.swift; sourceTree = "<group>"; };
 		5F7E0B682C70789B000C8C97 /* EZWifiStrengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZWifiStrengthView.swift; sourceTree = "<group>"; };
 		5F7E0B6A2C70790F000C8C97 /* EZBatteryAdapterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZBatteryAdapterView.swift; sourceTree = "<group>"; };
-		5F7E0B6C2C707E9B000C8C97 /* FileDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDescription.swift; sourceTree = "<group>"; };
 		5F7E0B732C709CB6000C8C97 /* AppEnviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnviroment.swift; sourceTree = "<group>"; };
 		5F7E0B762C709CC9000C8C97 /* EnviromentKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnviromentKey.swift; sourceTree = "<group>"; };
 		5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPreference.swift; sourceTree = "<group>"; };
 		5F97C3772BF9DAFE00B0DC56 /* SystemPreferenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPreferenceService.swift; sourceTree = "<group>"; };
-		5F97C37D2BFA0F2C00B0DC56 /* AppBCMWLanSkywalkInterfaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBCMWLanSkywalkInterfaceType.swift; sourceTree = "<group>"; };
-		5F97C37F2BFA0F6300B0DC56 /* AppSmartWifiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartWifiService.swift; sourceTree = "<group>"; };
 		5F97C3812BFA132E00B0DC56 /* SmartWifiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWifiView.swift; sourceTree = "<group>"; };
 		5F97C3832BFA133A00B0DC56 /* SmartWifiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWifiViewModel.swift; sourceTree = "<group>"; };
-		5F9999AB2C1DEE9600D38D59 /* BestSSIDShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSSIDShow.swift; sourceTree = "<group>"; };
+		5F9999AB2C1DEE9600D38D59 /* BestSSIDShowMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSSIDShowMode.swift; sourceTree = "<group>"; };
 		5F9999AF2C1DF0E000D38D59 /* AppUsageExit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUsageExit.swift; sourceTree = "<group>"; };
 		5F9DAB402C797CCD000563A2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		5F9DAB472C79AC5A000563A2 /* RadioChannelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioChannelData.swift; sourceTree = "<group>"; };
@@ -238,6 +217,8 @@
 		5FDDCABC2C188189006A528A /* GifRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifRepresentableView.swift; sourceTree = "<group>"; };
 		5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZButtonImageStyle.swift; sourceTree = "<group>"; };
 		5FE62F222C843CEF00658155 /* EZMackerUtilLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EZMackerUtilLib.xcodeproj; sourceTree = "<group>"; };
+		5FE62F7D2C844EE800658155 /* EZMackerServiceLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EZMackerServiceLib.xcodeproj; sourceTree = "<group>"; };
+		5FE62FBA2C845D3A00658155 /* AppStorageSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageSetting.swift; sourceTree = "<group>"; };
 		5FE7B8CD2C1DA5E300AA841E /* AlertOKCancleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOKCancleView.swift; sourceTree = "<group>"; };
 		5FEE27C72BE9015400847761 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		5FEE27CE2BE901D900847761 /* ColorSchemeToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeToolbarView.swift; sourceTree = "<group>"; };
@@ -249,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FE62F2F2C843DB000658155 /* libEZMackerUtilLib.a in Frameworks */,
+				5FE62F852C844F1900658155 /* libEZMackerServiceLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +347,7 @@
 		5F36B20A2BE7AB3000E08935 = {
 			isa = PBXGroup;
 			children = (
+				5FE62F7E2C844EE800658155 /* EZMackerServiceLib */,
 				5FE62F232C843CEF00658155 /* EZMackerUtilLib */,
 				5F9DAB402C797CCD000563A2 /* .swiftlint.yml */,
 				5F36B2152BE7AB3000E08935 /* EZMacker */,
@@ -397,7 +380,6 @@
 				5F6D4E5B2BE881BD004B94F8 /* Storage */,
 				5F36B2472BE7B1A600E08935 /* ViewModel */,
 				5F36B2462BE7B19E00E08935 /* View */,
-				5F36B2452BE7B19500E08935 /* Service */,
 				5F36B21F2BE7AB3100E08935 /* EZMacker.entitlements */,
 				5F36B21C2BE7AB3100E08935 /* Preview Content */,
 			);
@@ -429,23 +411,6 @@
 			path = EZMackerUITests;
 			sourceTree = "<group>";
 		};
-		5F36B2452BE7B19500E08935 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				5F7815632C69D3AD00DE5F39 /* Protocol */,
-				5F36B24C2BE7B25600E08935 /* Enum */,
-				5F36B2512BE7B2B800E08935 /* AppSmartBatteryService.swift */,
-				5F70D5DE2BE7BE26004509BC /* AppSmartFileService.swift */,
-				5F97C37F2BFA0F6300B0DC56 /* AppSmartWifiService.swift */,
-				5F3FF0292C02BB5500E3246C /* AppSmartProcessService.swift */,
-				5F3FF0352C0303AC00E3246C /* AppSmartSettingService.swift */,
-				5F3DBE082C04B18700B5C0DE /* AppCoreWLanWifiService.swift */,
-				5F36C0852C17E55C0031C0E3 /* AppWifiKeyChainService.swift */,
-				5F72B7C52C421EA50060DEA0 /* AppSmartFileMonitorService.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		5F36B2462BE7B19E00E08935 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -473,18 +438,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		5F36B24C2BE7B25600E08935 /* Enum */ = {
-			isa = PBXGroup;
-			children = (
-				5F36B2532BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift */,
-				5F2DD1882BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift */,
-				5F97C37D2BFA0F2C00B0DC56 /* AppBCMWLanSkywalkInterfaceType.swift */,
-				5F3FF02D2C02BBFA00E3246C /* AppSmartProcessData.swift */,
-				5F3DBE0C2C04B3E300B5C0DE /* AppCoreWLanStatus.swift */,
-			);
-			path = Enum;
-			sourceTree = "<group>";
-		};
 		5F36C0872C17ECD40031C0E3 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,9 +460,8 @@
 			isa = PBXGroup;
 			children = (
 				5F69D28F2C0DECE900F318ED /* AdapterConnect.swift */,
-				5F9999AB2C1DEE9600D38D59 /* BestSSIDShow.swift */,
+				5F9999AB2C1DEE9600D38D59 /* BestSSIDShowMode.swift */,
 				5F9999AF2C1DF0E000D38D59 /* AppUsageExit.swift */,
-				5F7E0B6C2C707E9B000C8C97 /* FileDescription.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -526,6 +478,7 @@
 			isa = PBXGroup;
 			children = (
 				5F6D4E5E2BE88209004B94F8 /* Enum */,
+				5FE62FBA2C845D3A00658155 /* AppStorageSetting.swift */,
 			);
 			path = AppStroage;
 			sourceTree = "<group>";
@@ -595,14 +548,6 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
-		5F7815632C69D3AD00DE5F39 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				5F7815642C69D3BD00DE5F39 /* AppSmartServiceProvidable.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
 		5F7E0B722C709CA4000C8C97 /* Enviroment */ = {
 			isa = PBXGroup;
 			children = (
@@ -658,6 +603,22 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5FE62F7E2C844EE800658155 /* EZMackerServiceLib */ = {
+			isa = PBXGroup;
+			children = (
+				5FE62F7D2C844EE800658155 /* EZMackerServiceLib.xcodeproj */,
+			);
+			path = EZMackerServiceLib;
+			sourceTree = "<group>";
+		};
+		5FE62F7F2C844EE800658155 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5FE62F832C844EE800658155 /* libEZMackerServiceLib.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		5FEE27BD2BE8DA9400847761 /* Configuration */ = {
@@ -790,6 +751,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 5FE62F7F2C844EE800658155 /* Products */;
+					ProjectRef = 5FE62F7D2C844EE800658155 /* EZMackerServiceLib.xcodeproj */;
+				},
+				{
 					ProductGroup = 5FE62F242C843CEF00658155 /* Products */;
 					ProjectRef = 5FE62F222C843CEF00658155 /* EZMackerUtilLib.xcodeproj */;
 				},
@@ -809,6 +774,13 @@
 			fileType = archive.ar;
 			path = libEZMackerUtilLib.a;
 			remoteRef = 5FE62F272C843CEF00658155 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5FE62F832C844EE800658155 /* libEZMackerServiceLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEZMackerServiceLib.a;
+			remoteRef = 5FE62F822C844EE800658155 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -875,20 +847,16 @@
 				5F7E0B672C707844000C8C97 /* EZWifiMainView.swift in Sources */,
 				5F69D28B2C0DDA9D00F318ED /* EZWifiDetailView.swift in Sources */,
 				5F1012AE2BF399F600589C9B /* EZContent.swift in Sources */,
-				5F97C37E2BFA0F2C00B0DC56 /* AppBCMWLanSkywalkInterfaceType.swift in Sources */,
 				5F97C3782BF9DAFE00B0DC56 /* SystemPreferenceService.swift in Sources */,
 				5FDDCABD2C188189006A528A /* GifRepresentableView.swift in Sources */,
 				5F5E23462C6A2E2200CD329F /* EZTabbarButtonStyle.swift in Sources */,
 				5F6D4E602BE88213004B94F8 /* AppStorageKey.swift in Sources */,
 				5F3CB4582C7052C0007A479D /* BatterySetting.swift in Sources */,
-				5F36C0862C17E55C0031C0E3 /* AppWifiKeyChainService.swift in Sources */,
-				5F3FF02A2C02BB5500E3246C /* AppSmartProcessService.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
 				5F0F96732C6B67B800A70564 /* EZTextFieldWrapperStyle.swift in Sources */,
 				5F36C0892C17ECE00031C0E3 /* AlertTextFieldView.swift in Sources */,
 				5F7E0B692C70789B000C8C97 /* EZWifiStrengthView.swift in Sources */,
 				5F7E0B652C7077D9000C8C97 /* EZBatteryMonitoringView.swift in Sources */,
-				5F3DBE0D2C04B3E300B5C0DE /* AppCoreWLanStatus.swift in Sources */,
 				5F485A092C69AD7D00B32585 /* EZTextFieldStyle.swift in Sources */,
 				5F1012B22BF39EBD00589C9B /* EZBatteryInfoView.swift in Sources */,
 				5F485A012C69ABDF00B32585 /* EZListViewStyle.swift in Sources */,
@@ -896,31 +864,28 @@
 				5F69D2902C0DECE900F318ED /* AdapterConnect.swift in Sources */,
 				5F3DBE132C04BC8800B5C0DE /* View + Extension.swift in Sources */,
 				5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeModeType.swift in Sources */,
-				5F97C3802BFA0F6300B0DC56 /* AppSmartWifiService.swift in Sources */,
 				5F9DAB482C79AC5A000563A2 /* RadioChannelData.swift in Sources */,
 				5FCC8B9A2BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift in Sources */,
 				5F485A052C69ACCB00B32585 /* EZNormalImageStyle.swift in Sources */,
 				5FEE27C82BE9015400847761 /* CategoryView.swift in Sources */,
-				5F9999AC2C1DEE9600D38D59 /* BestSSIDShow.swift in Sources */,
+				5F9999AC2C1DEE9600D38D59 /* BestSSIDShowMode.swift in Sources */,
 				5F3604182C38230400C1B84B /* SmartFileLocatorView.swift in Sources */,
 				5F1012A62BF3844300589C9B /* EZImage.swift in Sources */,
 				5F485A072C69ACEA00B32585 /* EZBackgroundColorStyle.swift in Sources */,
 				5F3FF03F2C03392000E3246C /* AppAlertManager.swift in Sources */,
 				5F1012AC2BF399ED00589C9B /* EZTitle.swift in Sources */,
-				5F3FF0362C0303AC00E3246C /* AppSmartSettingService.swift in Sources */,
 				5F3604162C38214A00C1B84B /* SmartFileLocatorViewModel.swift in Sources */,
 				5F4589992C0C56FA008FCD41 /* EZWifiChannelView.swift in Sources */,
 				5F3FF0322C02C6AE00E3246C /* EZBatteryBarView.swift in Sources */,
 				5F3CB45C2C7052DE007A479D /* FileLocatorSetting.swift in Sources */,
+				5FE62FBB2C845D3A00658155 /* AppStorageSetting.swift in Sources */,
 				5F97C3762BF9D25000B0DC56 /* SettingPreference.swift in Sources */,
 				5FEE27CF2BE901D900847761 /* ColorSchemeToolbarView.swift in Sources */,
 				5F97C3822BFA132E00B0DC56 /* SmartWifiView.swift in Sources */,
 				5F3FF03D2C03384100E3246C /* AppNotificationCenter.swift in Sources */,
 				5F3A519A2C71C2D0000B2C2F /* FileManager + Extension.swift in Sources */,
-				5F2DD1892BED1F5500BCD628 /* AppSmartBatteryPowerSourceType.swift in Sources */,
 				5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */,
 				5F485A0D2C69AF7C00B32585 /* EZButtonStyle.swift in Sources */,
-				5F36B2542BE7B2CB00E08935 /* AppSmartBatteryKeyType.swift in Sources */,
 				5F16A7DC2C358F07003EA0BE /* FileQueryData.swift in Sources */,
 				5F78156B2C69DF9F00DE5F39 /* EZInnerBackgroundStyle.swift in Sources */,
 				5F027B282C82E18500DF929B /* BatteryMetricsData.swift in Sources */,
@@ -932,25 +897,18 @@
 				5F9DAB4C2C79C207000563A2 /* WifiConnectData.swift in Sources */,
 				5F9999B02C1DF0E000D38D59 /* AppUsageExit.swift in Sources */,
 				5F97C3842BFA133A00B0DC56 /* SmartWifiViewModel.swift in Sources */,
-				5F7815652C69D3BD00DE5F39 /* AppSmartServiceProvidable.swift in Sources */,
 				5F69D2922C0DED4800F318ED /* AdapterData.swift in Sources */,
-				5F3DBE092C04B18700B5C0DE /* AppCoreWLanWifiService.swift in Sources */,
-				5F3FF02E2C02BBFA00E3246C /* AppSmartProcessData.swift in Sources */,
 				5F3FF0342C02EE8600E3246C /* ColorSchemeViewModel.swift in Sources */,
 				5F5E234C2C6A483A00CD329F /* EZTabbarGridStyle.swift in Sources */,
 				5F7E0B6B2C70790F000C8C97 /* EZBatteryAdapterView.swift in Sources */,
 				5F027B262C82D55900DF929B /* BatteryConditionData.swift in Sources */,
-				5F36B2522BE7B2B800E08935 /* AppSmartBatteryService.swift in Sources */,
 				5F6D4E7C2BE8A328004B94F8 /* ToastData.swift in Sources */,
-				5F72B7C62C421EA50060DEA0 /* AppSmartFileMonitorService.swift in Sources */,
 				5F027B2C2C82EC3900DF929B /* SmartBatteryView.swift in Sources */,
 				5FDDCABB2C188152006A528A /* TextFieldRepresentableView.swift in Sources */,
-				5F70D5DF2BE7BE26004509BC /* AppSmartFileService.swift in Sources */,
 				5FE7B8CE2C1DA5E300AA841E /* AlertOKCancleView.swift in Sources */,
 				5F69D2942C0DEDA100F318ED /* ScanningWifiData.swift in Sources */,
 				5F485A032C69ACB100B32585 /* EZNormalTextStyle.swift in Sources */,
 				5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */,
-				5F7E0B6D2C707E9B000C8C97 /* FileDescription.swift in Sources */,
 				5F72B7C82C42357B0060DEA0 /* FileTabData.swift in Sources */,
 				5F6D4E6C2BE88CC6004B94F8 /* ThemeColorType.swift in Sources */,
 				5F5E234A2C6A469600CD329F /* EZTabbarBackgroundStyle.swift in Sources */,

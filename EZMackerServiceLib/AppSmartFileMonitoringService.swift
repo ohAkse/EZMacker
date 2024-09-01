@@ -1,24 +1,25 @@
 //
-//  AppSmartFileMonitor.swift
-//  EZMacker
+//  AppSmartFileMonitoringService.swift
+//  EZMackerServiceLib
 //
-//  Created by 박유경 on 7/13/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Foundation
 
-protocol AppSmartFileMonitorable {
+public protocol AppSmartFileMonitorable {
     func startMonitoring(id: UUID, url: URL, changeHandler: @escaping (UUID, URL) -> Void)
     func stopMonitoring(id: UUID)
 }
 
-class AppSmartFileMonitorService: AppSmartFileMonitorable {
+public class AppSmartFileMonitoringService: AppSmartFileMonitorable {
     
+    public init() {}
     private (set) var fileMonitors: [UUID: DispatchSourceFileSystemObject] = [:]
     private (set) var pendingUpdates: [UUID: DispatchWorkItem] = [:]
     private let updateQueue = DispatchQueue(label: "ezMacker.com")
 
-    func startMonitoring(id: UUID, url: URL, changeHandler: @escaping (UUID, URL) -> Void) {
+    public func startMonitoring(id: UUID, url: URL, changeHandler: @escaping (UUID, URL) -> Void) {
         let fileDescriptor = open(url.path, O_EVTONLY)
         guard fileDescriptor >= 0 else { return }
         
@@ -40,7 +41,7 @@ class AppSmartFileMonitorService: AppSmartFileMonitorable {
         fileMonitors[id] = source
     }
 
-    func stopMonitoring(id: UUID) {
+    public func stopMonitoring(id: UUID) {
         fileMonitors[id]?.cancel()
         fileMonitors.removeValue(forKey: id)
         pendingUpdates[id]?.cancel()

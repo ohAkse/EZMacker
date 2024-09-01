@@ -1,17 +1,18 @@
 //
 //  AppSmartBatteryPowerSourceType.swift
-//  EZMacker
+//  EZMackerServiceLib
 //
-//  Created by 박유경 on 5/10/24.
+//  Created by 박유경 on 9/1/24.
 //
 
-import Foundation
-enum AppSmartBatteryPowerSourceType: String {
+import IOKit.ps
+
+public enum AppSmartBatteryPowerSourceType: String {
     case remainingTime
     case chargingTime
     case batteryHealth
 
-    var ioRegistryKey: String {
+    public var ioRegistryKey: String {
         switch self {
         case .remainingTime:
             return kIOPSTimeToEmptyKey as String

@@ -1,20 +1,20 @@
 //
 //  AppSmartProcessService.swift
-//  EZMacker
+//  EZMackerServiceLib
 //
-//  Created by 박유경 on 5/26/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Foundation
 import EZMackerUtilLib
 
-protocol AppSmartProcessProvidable {
+public protocol AppSmartProcessProvidable {
     func processUpdateInfo()
     func checkProcessUpdateInfo()
     func getTotalPercenatage() -> Float
 }
 
-class AppSmartProcessService: AppSmartProcessProvidable {
+public class AppSmartProcessService: AppSmartProcessProvidable {
     private (set) var cpuInfo: processor_info_array_t!
     private (set) var prevCpuInfo: processor_info_array_t?
     private (set) var numCpuInfo: mach_msg_type_number_t = 0
@@ -23,7 +23,7 @@ class AppSmartProcessService: AppSmartProcessProvidable {
     let numCPUs: uint
     let CPUUsageLock = NSLock()
 
-    init() {
+    public init() {
         let mibKeys: [Int32] = [ CTL_HW, HW_NCPU ]
         var numCPUs: uint = 0
         mibKeys.withUnsafeBufferPointer { mib in
@@ -36,7 +36,7 @@ class AppSmartProcessService: AppSmartProcessProvidable {
         self.numCPUs = numCPUs
         
         // 필요시 풀것
-        #if !PROFILE_INFO
+        #if PROFILE_INFO
         getSoftwareProcessInfo()
         #endif
     }
@@ -50,18 +50,18 @@ class AppSmartProcessService: AppSmartProcessProvidable {
         }
     }
     
-    func checkProcessUpdateInfo() {
+    public func checkProcessUpdateInfo() {
         DispatchQueue.global(qos: .background).async {
             self.processUpdateInfo()
             sleep(1)
             self.processUpdateInfo()
         }
     }
-    func getTotalPercenatage() -> Float {
+    public func getTotalPercenatage() -> Float {
         return totalUsagePercentage
     }
 
-    func processUpdateInfo() {
+    public func processUpdateInfo() {
         var numCPUsU: natural_t = 0
         let err: kern_return_t = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &numCPUsU, &cpuInfo, &numCpuInfo)
         guard err == KERN_SUCCESS else {

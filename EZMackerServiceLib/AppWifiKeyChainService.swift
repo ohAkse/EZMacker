@@ -1,20 +1,22 @@
 //
 //  AppWifiKeyChainService.swift
-//  EZMacker
+//  EZMackerServiceLib
 //
-//  Created by 박유경 on 6/11/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Foundation
-import Security
 import EZMackerUtilLib
-protocol AppWifiKeyChainProvidable {
+
+public protocol AppWifiKeyChainProvidable {
     func savePassword(service: String, account: String, password: String) -> Bool
     func getPassword(service: String, account: String) -> String?
 }
 
-class AppWifiKeyChainService: AppWifiKeyChainProvidable {
-     func savePassword(service: String, account: String, password: String) -> Bool {
+public class AppWifiKeyChainService: AppWifiKeyChainProvidable {
+    public init() {}
+    
+    public func savePassword(service: String, account: String, password: String) -> Bool {
         let data = password.data(using: .utf8)!
         
         let query: [String: Any] = [
@@ -31,7 +33,7 @@ class AppWifiKeyChainService: AppWifiKeyChainProvidable {
         return status == errSecSuccess
     }
     
-    func getPassword(service: String, account: String) -> String? {
+    public func getPassword(service: String, account: String) -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
@@ -50,3 +52,4 @@ class AppWifiKeyChainService: AppWifiKeyChainProvidable {
         return nil
     }
 }
+

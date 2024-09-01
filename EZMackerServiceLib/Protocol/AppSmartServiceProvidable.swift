@@ -1,13 +1,12 @@
 //
 //  AppSmartServiceProvidable.swift
-//  EZMacker
+//  EZMackerServiceLib
 //
-//  Created by 박유경 on 8/12/24.
+//  Created by 박유경 on 9/1/24.
 //
-
 import Combine
 
-protocol AppSmartServiceProvidable {
+public protocol AppSmartServiceProvidable {
     associatedtype KeyType
     var serviceKey: String { get }
     func getRegistry(forKey key: KeyType) -> Future<Any?, Never>

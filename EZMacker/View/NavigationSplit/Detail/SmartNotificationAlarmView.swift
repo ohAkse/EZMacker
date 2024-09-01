@@ -75,7 +75,7 @@ struct SmartNotificationAlarmView: View {
                 .padding(.top, 10)
             HStack {
                 Picker("최적의 와이파이 발견 시 알림으로 표시하기", selection: $smartNotificationAlarmViewModel.wifiSetting.selectedBestSSIDOption) {
-                    ForEach(BestSSIDShow.allCases, id: \.self) { option in
+                    ForEach(BestSSIDShowMode.allCases, id: \.self) { option in
                         Text(option.rawValue).tag(option)
                     }
                 }

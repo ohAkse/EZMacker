@@ -63,6 +63,7 @@ public extension String {
         case "0x0800":
             return "전원 관리되지 않음 또는 정적 전원 유효"
         default:
+            Logger.writeLog(.debug, message: "errorCode: \(self)")
             return "알 수 없는 상태(\(self))"
         }
     }

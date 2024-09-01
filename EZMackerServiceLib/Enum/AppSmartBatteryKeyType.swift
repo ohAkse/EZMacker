@@ -1,12 +1,11 @@
 //
 //  AppSmartBatteryKeyType.swift
-//  EZMacker
+//  EZMackerServiceLib
 //
-//  Created by 박유경 on 5/5/24.
+//  Created by 박유경 on 9/1/24.
 //
-import Foundation
 
-enum AppSmartBatteryKeyType: String, CaseIterable {
+public enum AppSmartBatteryKeyType: String, CaseIterable {
     case PostChargeWaitSeconds = "PostChargeWaitSeconds"
     case builtIn = "built-in"
     case AppleRawAdapterDetails = "AppleRawAdapterDetails"
