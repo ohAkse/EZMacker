@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import EZMackerUtilLib
 protocol AppSmartSettingProvidable {
     func saveConfig<T>(_ key: AppStorageKey, value: T)
     func loadConfig<T>(_ key: AppStorageKey) -> T?

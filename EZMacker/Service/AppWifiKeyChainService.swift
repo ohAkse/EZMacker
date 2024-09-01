@@ -7,7 +7,7 @@
 
 import Foundation
 import Security
-
+import EZMackerUtilLib
 protocol AppWifiKeyChainProvidable {
     func savePassword(service: String, account: String, password: String) -> Bool
     func getPassword(service: String, account: String) -> String?

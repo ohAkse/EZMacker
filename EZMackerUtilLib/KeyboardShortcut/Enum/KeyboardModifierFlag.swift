@@ -1,20 +1,20 @@
 //
 //  KeyboardModifierFlag.swift
-//  EZMacker
+//  EZMackerUtilLib
 //
-//  Created by 박유경 on 5/6/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import SwiftUI
 
-enum ModifierFlag {
+public enum ModifierFlag {
     case option
     case control
     case command
     case shift
     case none
 
-    init(_ flags: NSEvent.ModifierFlags) {
+    public init(_ flags: NSEvent.ModifierFlags) {
         switch true {
         case flags.contains(.control):
             self = .control

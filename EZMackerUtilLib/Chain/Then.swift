@@ -1,15 +1,15 @@
 //
 //  Then.swift
-//  EZMacker
+//  EZMackerUtilLib
 //
-//  Created by 박유경 on 6/11/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Foundation
 
-protocol Then {}
+public protocol Then {}
 
-extension Then where Self: NSObject {
+public extension Then where Self: NSObject {
     @discardableResult
     func then(_ block: (Self) -> Void) -> Self {
         block(self)

@@ -6,6 +6,7 @@
 //
 
 import UserNotifications
+import EZMackerUtilLib
 
 class AppNotificationManager {
     static let shared = AppNotificationManager()

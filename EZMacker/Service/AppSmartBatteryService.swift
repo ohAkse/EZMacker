@@ -8,6 +8,7 @@
 import Foundation
 import IOKit.ps
 import Combine
+import EZMackerUtilLib
 
 protocol AppSmartBatteryRegistryProvidable: AppSmartServiceProvidable {
     typealias BatteryKey = AppSmartBatteryKeyType

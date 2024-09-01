@@ -8,6 +8,7 @@
 import Cocoa
 import SwiftUI
 import UserNotifications
+import EZMackerUtilLib
 
 @main
 struct EZMackerApp: App {

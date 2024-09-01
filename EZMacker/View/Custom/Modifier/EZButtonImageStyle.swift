@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct EZButtonImageStyle: ButtonStyle {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel

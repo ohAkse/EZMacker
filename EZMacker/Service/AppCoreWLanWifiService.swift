@@ -8,6 +8,7 @@
 import CoreWLAN
 import Combine
 import Security
+import EZMackerUtilLib
 
 protocol AppCoreWLANWifiProvidable {
     func getSignalStrength() -> Future<Int, AppCoreWLanStatus>

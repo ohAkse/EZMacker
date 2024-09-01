@@ -1,17 +1,15 @@
 //
-//  CommandToolRunner.swift
-//  EZMacker
+//  CommandRunner.swift
+//  EZMackerUtilLib
 //
-//  Created by 박유경 on 5/27/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Foundation
 import AppKit
-// https://ss64.com/mac/
 
-struct CommandToolRunner {
-    static let shared = CommandToolRunner()
-    func runCommand<T: CoomandExecutable>(command: T, completion: @escaping (String?) -> Void) {
+public struct CommandToolRunner {
+    public static func runCommand<T: CoomandExecutable>(command: T, completion: @escaping (String?) -> Void) {
         let group = DispatchGroup()
         let queue = DispatchQueue(label: "ezMacker.com", attributes: .concurrent)
         let lock = NSLock()

@@ -1,13 +1,13 @@
 //
 //  String + Extension.swift
-//  EZMacker
+//  EZMackerUtilLib
 //
-//  Created by 박유경 on 8/13/24.
+//  Created by 박유경 on 9/1/24.
 //
 
-import SwiftUI
+import Foundation
 
-extension String {
+public extension String {
     func converFileType() -> String {
         switch self {
         case "NSFileTypeDirectory":
@@ -63,7 +63,7 @@ extension String {
         case "0x0800":
             return "전원 관리되지 않음 또는 정적 전원 유효"
         default:
-            return "알 수 없는 상태: \(self)"
+            return "알 수 없는 상태(\(self))"
         }
     }
 }

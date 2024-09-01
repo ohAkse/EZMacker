@@ -8,6 +8,7 @@
 import Combine
 import SwiftUI
 import QuickLookThumbnailing
+import EZMackerUtilLib
 
 protocol AppSmartFileProvidable {
     func getFileInfo(fileUrl: URL) -> Future<(String, Int64, String, URL, Date?), Error>

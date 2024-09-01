@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct EZLoadingView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel

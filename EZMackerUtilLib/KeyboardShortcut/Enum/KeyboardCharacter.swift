@@ -1,6 +1,13 @@
+//
+//  KeyboardCharacter.swift
+//  EZMackerUtilLib
+//
+//  Created by 박유경 on 9/1/24.
+//
+
 import SwiftUI
 
-enum KeyboardCharacter {
+public enum KeyboardCharacter {
     case o
     case n
     case m
@@ -19,7 +26,7 @@ enum KeyboardCharacter {
     case one
     case two
     
-    init(_ keyCode: UInt16) {
+    public init(_ keyCode: UInt16) {
         switch keyCode {
         case 0x1D:
             self = .o

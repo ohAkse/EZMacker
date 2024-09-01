@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreWLAN
+import EZMackerUtilLib
 
 struct EZWifiMainView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel

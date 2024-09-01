@@ -1,13 +1,13 @@
 //
 //  Double + Extension.swift
-//  EZMacker
+//  EZMackerUtilLib
 //
-//  Created by 박유경 on 5/27/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Foundation
 
-extension Double {
+public extension Double {
     func toMBps() -> String {
         return String(format: "%.2f Mbps", self)
     }

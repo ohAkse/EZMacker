@@ -8,6 +8,7 @@
 import Combine
 import CoreWLAN
 import Foundation
+import EZMackerUtilLib
 
 class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: ObservableObject {
     

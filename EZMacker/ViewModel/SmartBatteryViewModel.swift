@@ -4,8 +4,10 @@
 //
 //  Created by 박유경 on 5/5/24.
 //
+
 import Combine
 import SwiftUI
+import EZMackerUtilLib
 
 class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: ObservableObject {
     deinit {

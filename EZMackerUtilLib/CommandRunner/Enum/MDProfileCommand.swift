@@ -1,21 +1,21 @@
 //
-//  MDProfileQuery.swift
-//  EZMacker
+//  MDProfileCommand.swift
+//  EZMackerUtilLib
 //
-//  Created by 박유경 on 8/18/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Foundation
 
-enum MDProfileCommand: CoomandExecutable {
+public enum MDProfileCommand: CoomandExecutable {
     case hardware
     case software
-    
-    var executableURL: URL {
+
+    public var executableURL: URL {
         return URL(fileURLWithPath: "/usr/sbin/system_profiler")
     }
-    
-    var argumentsList: [[String]] {
+
+    public var argumentsList: [[String]] {
         switch self {
         case .hardware:
             return [["SPHardwareDataType", "-json"]]

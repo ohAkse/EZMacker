@@ -1,14 +1,14 @@
 //
 //  KeyboardShortCutHandler.swift
-//  EZMacker
+//  EZMackerUtilLib
 //
-//  Created by 박유경 on 5/6/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import SwiftUI
 
-enum KeyboardShortcutHandler {
-    static func handleEvent(modifierFlag: ModifierFlag, character: KeyboardCharacter) {
+public enum KeyboardShortcutHandler {
+    static public func handleEvent(modifierFlag: ModifierFlag, character: KeyboardCharacter) {
         switch (modifierFlag, character) {
         case (.command, .comma):
             miniaturizeWindow()

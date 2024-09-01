@@ -1,24 +1,23 @@
 //
 //  Date + Extension.swift
-//  EZMacker
+//  EZMackerUtilLib
 //
-//  Created by 박유경 on 5/6/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Foundation
 
-extension Date {
+public extension Date {
     func getCurrentTime(Dataforamt: String = "yyyy-MM-dd HH:mm:ss") -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = Dataforamt
         let dateString = formatter.string(from: self)
         return dateString
     }
-    
     func getFormattedDate() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yy/MM/dd HH:mm"
-        formatter.timeZone = TimeZone.current 
+        formatter.timeZone = TimeZone.current
         return formatter.string(from: self)
     }
 }

@@ -1,17 +1,16 @@
 //
 //  Int + Extension.swift
-//  EZMacker
+//  EZMackerUtilLib
 //
-//  Created by 박유경 on 5/7/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Foundation
 
-extension Int {
+public extension Int {
     func toBun() -> String {
         if self == 0 {return "계산중.."}
         return String(self) + "번"
-        
     }
     
     func toHourMinute() -> String {
@@ -57,7 +56,7 @@ extension Int {
     }
     
     static func extractNumericPart(from option: String) -> Int? {
-        let pattern = #"\d+"# 
+        let pattern = #"\d+"#
         if let range = option.range(of: pattern, options: .regularExpression) {
             let numericPart = option[range]
             return Int(numericPart)

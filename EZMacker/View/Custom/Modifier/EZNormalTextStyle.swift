@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct EZNormalTextStyle: ViewModifier {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel

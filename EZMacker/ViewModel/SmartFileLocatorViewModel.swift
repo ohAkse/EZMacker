@@ -7,6 +7,7 @@
 
 import Combine
 import SwiftUI
+import EZMackerUtilLib
 
 class SmartFileLocatorViewModel: ObservableObject {
     @Published  var savedData: FileTabData

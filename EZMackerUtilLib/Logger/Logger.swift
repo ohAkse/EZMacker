@@ -1,13 +1,14 @@
 //
 //  Logger.swift
-//  EZMacker
+//  EZMackerUtilLib
 //
-//  Created by 박유경 on 5/6/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Foundation
 import OSLog
-enum LogLevel {
+
+public enum LogLevel {
     case debug
     case info
     case warning
@@ -15,16 +16,16 @@ enum LogLevel {
     case fatal
 }
 
-struct Logger {
+public struct Logger {
     private static let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "EZMacker App")
     
-    static func writeLog(_ level: LogLevel, message: String, isNeededStackTraceInfo: Bool = false, line: Int = #line, fileName: String = #file, caller: String = #function) {
+    public static func writeLog(_ level: LogLevel, message: String, isNeededStackTraceInfo: Bool = false, line: Int = #line, fileName: String = #file, caller: String = #function) {
         let logType: OSLogType
         var logMessage = ""
         var emoji = ""
 
         switch level {
-        case .debug: 
+        case .debug:
             logType = .debug
             emoji = "ℹ️"
         case .info:
@@ -56,7 +57,7 @@ struct Logger {
         os_log("%@", log: log, type: logType, logMessage)
     }
 
-    static func fatalErrorMessage(_ message: String, fileName: String = #file, line: Int = #line, caller: String = #function) {
+    public static func fatalErrorMessage(_ message: String, fileName: String = #file, line: Int = #line, caller: String = #function) {
         #if DEBUG
         let emoji = "❕"
         let fatalLog = "[\(Date().getCurrentTime()) - App][Func : \(caller)] : \(emoji) : \(message) -> \(fileName.split(separator: "/").last!) :\(line)\r\n"
@@ -64,7 +65,7 @@ struct Logger {
         #endif
     }
     
-    private static func saveLog(_ logMessage: String) {
+    static func saveLog(_ logMessage: String) {
         DispatchQueue.global().async {
             if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 let fileName = "error_log_\(Date().getCurrentTime(Dataforamt: "yyyy-MM-dd")).txt"

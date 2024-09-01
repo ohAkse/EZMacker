@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import EZMackerUtilLib
 
 protocol AppSmartWifiServiceProvidable: AppSmartServiceProvidable {
     typealias WifiKey = AppBCMWLanSkywalkInterfaceType

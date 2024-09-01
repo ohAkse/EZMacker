@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct EZBatteryAdapterView: View {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel

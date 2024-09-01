@@ -1,20 +1,20 @@
 //
 //  MDFindCommand.swift
-//  EZMacker
+//  EZMackerUtilLib
 //
-//  Created by 박유경 on 8/18/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Foundation
 
-enum MDFindCommand: CoomandExecutable {
+public enum MDFindCommand: CoomandExecutable {
     case find(MDFindQuery, folderURLs: [URL])
     
-    var executableURL: URL {
+    public var executableURL: URL {
         return URL(fileURLWithPath: "/usr/bin/mdfind")
     }
     
-    var argumentsList: [[String]] {
+    public var argumentsList: [[String]] {
         switch self {
         case .find(let query, let folderURLs):
             return folderURLs.map { [query.queryString, "-onlyin", $0.path] }
@@ -22,7 +22,7 @@ enum MDFindCommand: CoomandExecutable {
     }
 }
 
-enum MDFindQuery {
+public enum MDFindQuery {
     case name(String)
     
     var queryString: String {

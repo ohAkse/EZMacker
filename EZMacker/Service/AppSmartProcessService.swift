@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import EZMackerUtilLib
 
 protocol AppSmartProcessProvidable {
     func processUpdateInfo()
@@ -40,7 +41,7 @@ class AppSmartProcessService: AppSmartProcessProvidable {
         #endif
     }
     func getSoftwareProcessInfo() {
-        CommandToolRunner.shared.runCommand(command: MDProfileCommand.software) { result in
+        CommandToolRunner.runCommand(command: MDProfileCommand.software) { result in
             if let result = result {
                 Logger.writeLog(.info, message: "System Profiler output: \(result)")
             } else {

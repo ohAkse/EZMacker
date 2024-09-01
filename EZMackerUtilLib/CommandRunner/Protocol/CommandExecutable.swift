@@ -1,13 +1,13 @@
 //
 //  CommandExecutable.swift
-//  EZMacker
+//  EZMackerUtilLib
 //
-//  Created by 박유경 on 8/18/24.
+//  Created by 박유경 on 9/1/24.
 //
 
 import Foundation
 
-protocol CoomandExecutable {
+public protocol CoomandExecutable {
     var executableURL: URL { get }
     var argumentsList: [[String]] { get }
 }
