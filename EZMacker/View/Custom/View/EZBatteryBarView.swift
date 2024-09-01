@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import EZMackerUtilLib
 struct EZBatteryBarView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @State var isUpdateAnimated  = false

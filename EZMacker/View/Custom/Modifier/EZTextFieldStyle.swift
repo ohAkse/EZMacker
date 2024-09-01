@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct EZTextFieldStyle: ViewModifier {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel

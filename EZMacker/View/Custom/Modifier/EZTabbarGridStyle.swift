@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct EZTabbarGridStyle: ViewModifier {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel

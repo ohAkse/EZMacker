@@ -4,35 +4,39 @@
 //
 //  Created by 박유경 on 5/5/24.
 //
+
 import Combine
 import SwiftUI
-
+import EZMackerUtilLib
+import EZMackerServiceLib
 class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: ObservableObject {
     deinit {
         Logger.writeLog(.debug, message: "SmartBatteryViewModel deinit Called")
     }
-    // UI 정보
+    // MARK: - Published Variable
     @Published var batteryConditionData: BatteryConditionData = .init()
     @Published var batteryMatricsData: BatteryMetricsData = .init()
     @Published var adapterMetricsData: AdapterMetricsData = .init()
     
-    // 옵션 설정에 따른 표시 설정 관련 변수
-    private var isBatteryCapacityAlarmMode = false
-    private var isBatteryChargingErrorAlarmMode = false
-    private var isOverFullcpuUsageExitMode = false
-    private var isSentChargingErrorAlarm = false
-    private var isSentCapacityAlarm = false
+    // MARK: - Service Variable
+    private let appSmartBatteryService: ProvidableType
+    private let systemPreferenceService: SystemPreferenceAccessible
+    private let appSettingService: AppStorageSettingProvidable
+    private let appProcessService: AppSmartProcessProvidable
     
-    // 일반 설정값들
-    private var appSmartBatteryService: ProvidableType
-    private var systemPreferenceService: SystemPreferenceAccessible
-    private var appSettingService: AppSmartSettingProvidable
-    private var appProcessService: AppSmartProcessProvidable
-    private var appChargingErrorCount = 0
-    private var timer: AnyCancellable?
-    private var cancellables = Set<AnyCancellable>()
+    // MARK: - Flag Variables
+    private(set) var isBatteryCapacityAlarmMode = false
+    private(set) var isBatteryChargingErrorAlarmMode = false
+    private(set) var isOverFullcpuUsageExitMode = false
+    private(set) var isSentChargingErrorAlarm = false
+    private(set) var isSentCapacityAlarm = false
     
-    init(appSmartBatteryService: ProvidableType, appSettingService: AppSmartSettingProvidable, appProcessService: AppSmartProcessProvidable, systemPreferenceService: SystemPreferenceAccessible) {
+    // MARK: - Normal Variables
+    private(set) var appChargingErrorCount = 0
+    private(set) var timer: AnyCancellable?
+    private(set) var cancellables = Set<AnyCancellable>()
+    
+    init(appSmartBatteryService: ProvidableType, appSettingService: AppStorageSettingProvidable, appProcessService: AppSmartProcessProvidable, systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartBatteryService = appSmartBatteryService
         self.appSettingService = appSettingService
         self.appProcessService = appProcessService
@@ -91,7 +95,6 @@ extension SmartBatteryViewModel {
                 if batteryMatricsData.chargeData.count > 5 {
                     batteryMatricsData.chargeData.removeAll()
                 }
-                Logger.writeLog(.debug, message: charge.notChargingReason.toHexaString())
                 batteryMatricsData.chargeData.append(charge)
                 if charge.notChargingReason != 0 {
                     appChargingErrorCount += 1
@@ -164,14 +167,14 @@ extension SmartBatteryViewModel {
     
     private func validateAdapterData(_ adapterDetails: [AdapterData]) {
         let adapterConnected = !adapterDetails.isEmpty
+        if adapterConnected {
+            adapterMetricsData.adapterData = adapterDetails
+            adapterMetricsData.adapterConnectionSuccess = .processing
+        } else {
+            fetchBatteryBasicExtraSpec()
+        }
         if adapterMetricsData.isAdapterConnected != adapterConnected {
             adapterMetricsData.isAdapterConnected.toggle()
-            if adapterConnected {
-                adapterMetricsData.adapterData = adapterDetails
-                adapterMetricsData.adapterConnectionSuccess = .processing
-            } else {
-                fetchBatteryBasicExtraSpec()
-            }
         }
     }
     

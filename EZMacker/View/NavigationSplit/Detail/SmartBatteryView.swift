@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
+import EZMackerServiceLib
 
 struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
@@ -231,4 +233,3 @@ extension SmartBatteryView {
         return ""
     }
 }
-

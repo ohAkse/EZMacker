@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct EZInnerBackgroundStyle: ViewModifier {
     @EnvironmentObject var colorScheme: ColorSchemeViewModel

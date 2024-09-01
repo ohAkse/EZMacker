@@ -8,6 +8,8 @@
 import Combine
 import CoreWLAN
 import Foundation
+import EZMackerUtilLib
+import EZMackerServiceLib
 
 class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: ObservableObject {
     
@@ -19,31 +21,29 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     private let appSmartWifiService: ProvidableType
     private let systemPreferenceService: SystemPreferenceAccessible
     private let appCoreWLanWifiService: AppCoreWLANWifiProvidable
-    private let appSettingService: AppSmartSettingProvidable
+    private let appSettingService: AppStorageSettingProvidable
     
-    init(appSmartWifiService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible, appCoreWLanWifiService: AppCoreWLANWifiProvidable, appSettingService: AppSmartSettingProvidable) {
+    init(appSmartWifiService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible, appCoreWLanWifiService: AppCoreWLANWifiProvidable, appSettingService: AppStorageSettingProvidable) {
         self.appSmartWifiService = appSmartWifiService
         self.appCoreWLanWifiService = appCoreWLanWifiService
         self.systemPreferenceService = systemPreferenceService
         self.appSettingService = appSettingService
     }
-    // DATA
+    // MARK: - Published Variable
     @Published var radioChannelData: RadioChannelData = .init() // ioreg
     @Published var wificonnectData: WifiConnectData = .init() // CoreWLan
-    
-    // UI
     @Published var wifiRequestStatus: AppCoreWLanStatus = .none
     @Published var bestSSid = ""
     @Published var showAlert = false
     @Published var isConnecting = false
     
-    // Private Variables
+    // MARK: - Service Variable
     private let scanQueue =  DispatchQueue(label: "ezMacker.com", attributes: .concurrent)
-    private var scanResults: [ScaningWifiData] = []
-    private var cancellables = Set<AnyCancellable>()
-    private var rrsiTimerCancellable: AnyCancellable?
-    private var searchTimerCancellable: AnyCancellable?
     private let timerMax = 10
+    private(set) var scanResults: [ScaningWifiData] = []
+    private(set) var cancellables = Set<AnyCancellable>()
+    private(set) var rrsiTimerCancellable: AnyCancellable?
+    private(set) var searchTimerCancellable: AnyCancellable?
     
     func requestWifiInfo() {
         Publishers.CombineLatest(
@@ -179,7 +179,7 @@ extension SmartWifiViewModel {
     }
     func startSearchBestSSid() {
         guard let bestSSidMode: String = appSettingService.loadConfig(.bestSSidShowMode) else { return }
-        let resultShowMode = BestSSIDShow(rawValue: bestSSidMode)
+        let resultShowMode = BestSSIDShowMode(rawValue: bestSSidMode)
         var wifirssiList: [String: Set<Int>] = [:]
         
         let searchTimerPublisher = Timer.publish(every: 1, on: RunLoop.main, in: .common)

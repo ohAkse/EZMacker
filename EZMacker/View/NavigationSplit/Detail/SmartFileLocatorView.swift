@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct SmartFileLocatorView: View {
     @StateObject var smartFileLocatorViewModel: SmartFileLocatorViewModel

@@ -7,16 +7,20 @@
 
 import Combine
 import SwiftUI
+import EZMackerUtilLib
+import EZMackerServiceLib
 
 class SmartFileLocatorViewModel: ObservableObject {
+    // MARK: - Published Variable
     @Published  var savedData: FileTabData
-
+    
+    // MARK: - Service Variable
     private let appSmartFileService: AppSmartFileProvidable
     private let appSmartFileMonitor: AppSmartFileMonitorable
-    private let appSettingService: AppSmartSettingProvidable
-    private var cancellables = Set<AnyCancellable>()
+    private let appSettingService: AppStorageSettingProvidable
+    private(set) var cancellables = Set<AnyCancellable>()
     
-    init(appSmartFileService: AppSmartFileProvidable, appSmartFileMonitor: AppSmartFileMonitorable, appSmartSettingService: AppSmartSettingProvidable) {
+    init(appSmartFileService: AppSmartFileProvidable, appSmartFileMonitor: AppSmartFileMonitorable, appSmartSettingService: AppStorageSettingProvidable) {
         self.appSmartFileService = appSmartFileService
         self.appSmartFileMonitor = appSmartFileMonitor
         self.appSettingService = appSmartSettingService
