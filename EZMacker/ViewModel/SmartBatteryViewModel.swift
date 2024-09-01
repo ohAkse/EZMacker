@@ -164,14 +164,14 @@ extension SmartBatteryViewModel {
     
     private func validateAdapterData(_ adapterDetails: [AdapterData]) {
         let adapterConnected = !adapterDetails.isEmpty
+        if adapterConnected {
+            adapterMetricsData.adapterData = adapterDetails
+            adapterMetricsData.adapterConnectionSuccess = .processing
+        } else {
+            fetchBatteryBasicExtraSpec()
+        }
         if adapterMetricsData.isAdapterConnected != adapterConnected {
             adapterMetricsData.isAdapterConnected.toggle()
-            if adapterConnected {
-                adapterMetricsData.adapterData = adapterDetails
-                adapterMetricsData.adapterConnectionSuccess = .processing
-            } else {
-                fetchBatteryBasicExtraSpec()
-            }
         }
     }
     

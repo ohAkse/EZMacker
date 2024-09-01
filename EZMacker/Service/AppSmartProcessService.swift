@@ -106,7 +106,6 @@ class AppSmartProcessService: AppSmartProcessProvidable {
             
             // I print sum of all cores percentage.
             totalUsagePercentage = Float(totalInUse) / Float(totalTotal) * 100
-            // Logger.writeLog(.info, message: String(format: "Total CPU Usage: %.2f%%", totalUsagePercentage))
         }
 
         prevCpuInfo = cpuInfo

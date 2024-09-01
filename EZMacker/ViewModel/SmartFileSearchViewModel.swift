@@ -92,7 +92,8 @@ class SmartFileSearchViewModel: ObservableObject {
             .moviesDirectory,
             .documentDirectory,
             .desktopDirectory,
-            .userDirectory
+            .userDirectory,
+            .libraryDirectory
         ]
         folderURLs.append(contentsOf: allFolders.compactMap {
             FileManager.default.urls(for: $0, in: .allDomainsMask).first
