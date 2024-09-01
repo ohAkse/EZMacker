@@ -45,7 +45,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     private(set) var rrsiTimerCancellable: AnyCancellable?
     private(set) var searchTimerCancellable: AnyCancellable?
     
-    func requestWifiInfo() {
+    func fetchWifiInfo() {
         Publishers.CombineLatest(
             Publishers.CombineLatest3(
                 appSmartWifiService.getRegistry(forKey: .IO80211Channel).compactMap { $0 as? Int },
@@ -89,7 +89,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
             .store(in: &cancellables)
     }
     
-    func requestCoreWLanWifiInfo() async {
+    func fetchWifiListInfo() async {
         appCoreWLanWifiService.getMbpsRate()
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
@@ -169,6 +169,7 @@ extension SmartWifiViewModel {
                 if isSwitchWifiSuccess {
                     self?.wifiRequestStatus = .success
                     self?.wificonnectData.connectedSSid = connectedSSID
+                    self?.fetchWifiInfo()
                     Logger.writeLog(.info, message: "Successfully connected to \(connectedSSID)")
                 } else {
                     self?.wifiRequestStatus = .notFoundSSID
