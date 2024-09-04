@@ -9,7 +9,7 @@ import CoreWLAN
 import Combine
 import EZMackerUtilLib
 
-public protocol AppCoreWLANWifiProvidable {
+public protocol AppCoreWLANWifiProvidable: AppWiFiClientProvidable {
     func getSignalStrength() -> Future<Int, AppCoreWLanStatus>
     func getMbpsRate() -> Future<String, AppCoreWLanStatus>
     func getHardwareAddress() -> Future<String, AppCoreWLanStatus>
@@ -19,7 +19,7 @@ public protocol AppCoreWLANWifiProvidable {
 }
 
 public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
-    private (set) var wifiClient: CWWiFiClient
+    public var wifiClient: CWWiFiClient
     private (set) var interface: CWInterface?
     private (set) var wifyKeyChainService: AppWifiKeyChainService
     private (set) var networkList: Set<CWNetwork> = Set<CWNetwork>()
@@ -90,7 +90,7 @@ public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             if attempts > 1 {
                 self.scanWifiLists(attempts: attempts - 1, promise: promise)
             } else {
-                Logger.writeLog(.error, message: AppCoreWLanStatus.scanningFailed.errorName)
+                Logger.writeLog(.error, message: AppCoreWLanStatus.scanningFailed.description)
                 promise(.failure(.scanningFailed))
             }
         }

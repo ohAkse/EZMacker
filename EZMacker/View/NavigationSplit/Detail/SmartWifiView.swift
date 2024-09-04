@@ -21,14 +21,19 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                     .padding(.top, 20)
             }
             .onReceive(smartWifiViewModel.$wifiRequestStatus) { wifiStatus in
-                if wifiStatus != .success && wifiStatus != .none {
-                    toast = ToastData(type: .error, title: "에러", message: "와이파이를 접속할 수 없습니다. 비밀번호를 확인해주세요.", duration: 5)
-                } else if wifiStatus == .success && wifiStatus != .none {
-                    toast = ToastData(type: .info, title: "성공", message: "Wifi가 변경되었습니다", duration: 5)
+                print(wifiStatus)
+                if wifiStatus != .none {
+                    if wifiStatus == .success {
+                        toast = ToastData(type: .info, title: "성공", message: wifiStatus.description, duration: 5)
+                    } else if wifiStatus == .disconnected {
+                        toast = ToastData(type: .warning, title: "정보", message: wifiStatus.description, duration: 5)
+                    } else {
+                        toast = ToastData(type: .error, title: "에러", message: wifiStatus.description, duration: 5)
+                    }
                 }
             }
             .onAppear {
-                smartWifiViewModel.fetchWifiInfo()
+                smartWifiViewModel.startMonitoring()
                 smartWifiViewModel.startWifiTimer()
             }
             .onDisappear {
@@ -87,7 +92,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                                 await smartWifiViewModel.fetchWifiListInfo()
                                 let status = smartWifiViewModel.getWifiRequestStatus()
                                 if status == .scanningFailed {
-                                    toast = ToastData(type: .error, title: "에러", message: "와이파이를 확인할 수 없습니다. 권한을 확인해주세요.", duration: 5)
+                                    toast = ToastData(type: .error, title: "에러", message: status.description, duration: 5)
                                 }
                             }
                         },
@@ -109,7 +114,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             await smartWifiViewModel.fetchWifiListInfo()
             let status = smartWifiViewModel.getWifiRequestStatus()
             if status == .scanningFailed {
-                toast = ToastData(type: .error, title: "에러", message: "와이파이를 확인할 수 없습니다. 권한을 확인해주세요.", duration: 5)
+                toast = ToastData(type: .error, title: "에러", message: status.description, duration: 5)
             }
         }
     }

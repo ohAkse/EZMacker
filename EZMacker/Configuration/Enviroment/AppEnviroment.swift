@@ -20,6 +20,6 @@ class AppEnvironment {
     
     private static func checkIfMacBook() -> Bool {
         guard let model = EnvironmentKey.macModel.key?.lowercased() else { return false }
-        return model.contains("macbook")
+        return model.contains("macbook") || model.contains("mini")
     }
 }

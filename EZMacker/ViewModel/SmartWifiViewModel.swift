@@ -16,17 +16,20 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     deinit {
         Logger.writeLog(.debug, message: "SmartWifiViewModel deinit Called")
         stopWifiTimer()
+        stopMonitoring()
     }
     
     private let appSmartWifiService: ProvidableType
     private let systemPreferenceService: SystemPreferenceAccessible
     private let appCoreWLanWifiService: AppCoreWLANWifiProvidable
     private let appSettingService: AppStorageSettingProvidable
+    private let appWifiMonitoringService: AppSmartWifiMonitorable
     
-    init(appSmartWifiService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible, appCoreWLanWifiService: AppCoreWLANWifiProvidable, appSettingService: AppStorageSettingProvidable) {
+    init(appSmartWifiService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible, appCoreWLanWifiService: AppCoreWLANWifiProvidable, appSettingService: AppStorageSettingProvidable, appWifiMonitoringService: AppSmartWifiMonitorable) {
         self.appSmartWifiService = appSmartWifiService
         self.appCoreWLanWifiService = appCoreWLanWifiService
         self.systemPreferenceService = systemPreferenceService
+        self.appWifiMonitoringService = appWifiMonitoringService
         self.appSettingService = appSettingService
     }
     // MARK: - Published Variable
@@ -68,13 +71,14 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
                 hardwareAddress: otherInfo.2
             )
         }
+        .removeDuplicates()
         .assign(to: \.radioChannelData, on: self)
         .store(in: &cancellables)
-
-        // TODO: 가끔 connectedID가 Emptry로 나오는데 API문제? 코드문제?
+        
         appCoreWLanWifiService.getCurrentSSID()
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
+            .removeDuplicates()
             .sink(
                 receiveCompletion: { completion in
                     if case .failure(let error) = completion {
@@ -108,7 +112,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
             .sink(receiveCompletion: { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.wifiRequestStatus = .scanningFailed
-                    Logger.writeLog(.error, message: error.errorName)
+                    Logger.writeLog(.error, message: error.description)
                 }
             }, receiveValue: { [weak self] wifiLists in
                 self?.wificonnectData.scanningWifiList = wifiLists
@@ -137,6 +141,25 @@ extension SmartWifiViewModel {
         
         searchTimerCancellable?.cancel()
         searchTimerCancellable = nil
+    }
+    
+    func startMonitoring() {
+        appWifiMonitoringService.startMonitoring()
+        appWifiMonitoringService.wifiStatusPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] status in
+                if status.isConnected && status.status == "Satisfied" {
+                    self?.wificonnectData.connectedSSid = status.ssid ?? ""
+                    self?.wifiRequestStatus = .success
+                    self?.fetchWifiInfo()
+                } else {
+                    self?.wifiRequestStatus = .disconnected
+                }
+            }
+            .store(in: &cancellables)
+    }
+    func stopMonitoring() {
+        appWifiMonitoringService.stopMonitoring()
     }
 }
 
