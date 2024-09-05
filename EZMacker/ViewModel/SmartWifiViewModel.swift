@@ -22,7 +22,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     private let appSmartWifiService: ProvidableType
     private let systemPreferenceService: SystemPreferenceAccessible
     private let appCoreWLanWifiService: AppCoreWLANWifiProvidable
-    private let appSettingService: AppStorageSettingProvidable
+    private let appStorageSettingService: AppStorageSettingProvidable
     private let appWifiMonitoringService: AppSmartWifiMonitorable
     
     init(appSmartWifiService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible, appCoreWLanWifiService: AppCoreWLANWifiProvidable, appSettingService: AppStorageSettingProvidable, appWifiMonitoringService: AppSmartWifiMonitorable) {
@@ -30,7 +30,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
         self.appCoreWLanWifiService = appCoreWLanWifiService
         self.systemPreferenceService = systemPreferenceService
         self.appWifiMonitoringService = appWifiMonitoringService
-        self.appSettingService = appSettingService
+        self.appStorageSettingService = appSettingService
     }
     // MARK: - Published Variable
     @Published var radioChannelData: RadioChannelData = .init() // ioreg
@@ -202,7 +202,7 @@ extension SmartWifiViewModel {
             .store(in: &cancellables)
     }
     func startSearchBestSSid() {
-        guard let bestSSidMode: String = appSettingService.loadConfig(.bestSSidShowMode) else { return }
+        guard let bestSSidMode: String = appStorageSettingService.loadConfig(.bestSSidShowMode) else { return }
         let resultShowMode = BestSSIDShowMode(rawValue: bestSSidMode)
         var wifirssiList: [String: Set<Int>] = [:]
         

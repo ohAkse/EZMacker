@@ -68,3 +68,8 @@ public extension String {
         }
     }
 }
+public extension String.Encoding {
+    func decode(_ data: Data) -> String? {
+        return String(data: data, encoding: self)
+    }
+}

@@ -20,13 +20,16 @@ public protocol AppCoreWLANWifiProvidable: AppWiFiClientProvidable {
 
 public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
     public var wifiClient: CWWiFiClient
-    private (set) var interface: CWInterface?
-    private (set) var wifyKeyChainService: AppWifiKeyChainService
-    private (set) var networkList: Set<CWNetwork> = Set<CWNetwork>()
-    public init(wifiClient: CWWiFiClient, wifyKeyChainService: AppWifiKeyChainService) {
+    private(set) var interface: CWInterface?
+    private(set) var wifyKeyChainService: AppWifiKeyChainService
+    private(set) var autoConnectService: AppSmartAutoconnectWifiServiceProvidable
+    private(set) var networkList: Set<CWNetwork> = Set<CWNetwork>()
+    
+    public init(wifiClient: CWWiFiClient, wifyKeyChainService: AppWifiKeyChainService, autoConnectionService: AppSmartAutoconnectWifiServiceProvidable) {
         self.wifiClient = wifiClient
         self.interface = wifiClient.interface()
         self.wifyKeyChainService = wifyKeyChainService
+        self.autoConnectService = autoConnectionService
     }
     
     public func getSignalStrength() -> Future<Int, AppCoreWLanStatus> {
@@ -77,7 +80,7 @@ public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
         do {
             let wifiInfoList = try wifiInterface.scanForNetworks(withSSID: nil, includeHidden: false).compactMap { network -> ScaningWifiData? in
                 guard let ssid = network.ssid else { return nil }
-                return ScaningWifiData(ssid: ssid, rssi: "\(network.rssiValue)")
+                return ScaningWifiData(ssid: ssid, rssi: "\(network.rssiValue)", isSaved: false)
             }.sorted { Int($0.rssi)! < Int($1.rssi)! }
             
             if wifiInfoList.isEmpty && attempts > 1 {
@@ -115,6 +118,7 @@ public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
                         Logger.writeLog(.info, message: "네트워크 연결 시도: \(ssid)")
                         try interface.associate(to: network, password: password)
                         promise(.success((ssid, true)))
+                        autoConnectService.savePassword(password, for: ssid)
                     } catch {
                         Logger.writeLog(.error, message: "네트워크 연결 실패: \(error.localizedDescription)")
                         promise(.failure(.unknownError(error: "네트워크 연결 실패: \(error.localizedDescription)")))

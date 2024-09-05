@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreWLAN
 import EZMackerServiceLib
+
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @StateObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>
@@ -84,9 +85,9 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             } else {
                 AnyView(
                     EZWifiMainView(
+                        appSmartAutoconnectWifiService: AppSmartAutoconnectWifiService(),
                         ssid: $smartWifiViewModel.wificonnectData.connectedSSid,
                         wifiLists: $smartWifiViewModel.wificonnectData.scanningWifiList,
-                        appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService()),
                         onRefresh: {
                             Task {
                                 await smartWifiViewModel.fetchWifiListInfo()

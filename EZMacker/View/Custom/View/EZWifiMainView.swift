@@ -18,10 +18,24 @@ struct EZWifiMainView: View {
     @State private var isShowingPasswordModal = false
     @State private var toast: ToastData?
     @State private var selectedSSid: String = ""
-    private(set) var appCoreWLanWifiService: AppCoreWLANWifiProvidable
+    private(set) var appSmartAutoconnectWifiService: AppSmartAutoconnectWifiServiceProvidable
     private(set) var onRefresh: () -> Void
     private(set) var onWifiTap: (String, String) -> Void
     private(set) var onFindBestWifi: () -> Void
+    
+    init(appSmartAutoconnectWifiService: AppSmartAutoconnectWifiServiceProvidable,
+         ssid: Binding<String> = .constant(""),
+         wifiLists: Binding<[ScaningWifiData]> = .constant([]),
+         onRefresh: @escaping () -> Void = {},
+         onWifiTap: @escaping (String, String) -> Void = { _, _ in },
+         onFindBestWifi: @escaping () -> Void = {}) {
+        self.appSmartAutoconnectWifiService = appSmartAutoconnectWifiService
+        self._ssid = ssid
+        self._wifiLists = wifiLists
+        self.onRefresh = onRefresh
+        self.onWifiTap = onWifiTap
+        self.onFindBestWifi = onFindBestWifi
+    }
     
     var body: some View {
         VStack {
@@ -96,8 +110,7 @@ struct EZWifiMainView: View {
                                 }
                                 .contentShape(Rectangle())
                                 .onTapGesture {
-                                    selectedSSid = wifi.ssid
-                                    isShowingPasswordModal = true
+                                    validateWifiTap(wifi)
                                 }
                             }
                             .ezListRowStyle()
@@ -132,6 +145,22 @@ struct EZWifiMainView: View {
         }
         .toastView(toast: $toast)
     }
+    private func validateWifiTap(_ wifi: ScaningWifiData) {
+        if let savedPassword = appSmartAutoconnectWifiService.getPassword(for: wifi.ssid) {
+            connectToWifi(ssid: wifi.ssid, password: savedPassword)
+        } else {
+            showPasswordModal(for: wifi.ssid)
+        }
+    }
+
+    private func showPasswordModal(for ssid: String) {
+        selectedSSid = ssid
+        isShowingPasswordModal = true
+    }
+
+    private func connectToWifi(ssid: String, password: String) {
+        onWifiTap(ssid, password)
+    }
     
     private func didTapWifiListWithAscending() {
         wifiLists = wifiLists.sorted { Int($0.rssi)! < Int($1.rssi)! }
@@ -142,41 +171,3 @@ struct EZWifiMainView: View {
     }
 }
 
-// #if DEBUG
-// struct InfoWifiMainInfoView_Previews: PreviewProvider {
-//    static var colorScheme = ColorSchemeViewModel()
-//    static var smartWifiService = AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface")
-//    static var systemPreferenceService = SystemPreferenceService()
-//    static var appCoreWLanWifiService = AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService())
-//    static var appSettingService = AppSmartSettingsService()
-//    @StateObject static var smartWifiViewModel = SmartWifiViewModel(
-//        appSmartWifiService: smartWifiService,
-//        systemPreferenceService: systemPreferenceService,
-//        appCoreWLanWifiService: appCoreWLanWifiService,
-//        appSettingService: appSettingService
-//    )
-//
-//    @State static var ssid = "ABCD"
-//    @State static var wifiLists = [
-//        ScaningWifiData(ssid: "Network 1", rssi: "-70"),
-//        ScaningWifiData(ssid: "Network  2", rssi: "-60"),
-//        ScaningWifiData(ssid: "Network 3", rssi: "-80"),
-//        ScaningWifiData(ssid: "Network 4", rssi: "-60"),
-//        ScaningWifiData(ssid: "Network 5", rssi: "-80")
-//    ]
-//
-//    static var previews: some View {
-//        InfoWifiMainInfoView(
-//            ssid: $ssid,
-//            wifiLists: $wifiLists,
-//            appCoreWLanWifiService: appCoreWLanWifiService,
-//            onRefresh: {},
-//            onWifiTap: { _, _ in },
-//            onFindBestWifi: {}
-//        )
-//        .environmentObject(colorScheme)
-//        .environmentObject(smartWifiViewModel)
-//        .frame(width: 700, height: 700)
-//    }
-// }
-// #endif
