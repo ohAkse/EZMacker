@@ -170,4 +170,3 @@ struct EZWifiMainView: View {
         wifiLists = wifiLists.sorted { Int($0.rssi)! > Int($1.rssi)! }
     }
 }
-

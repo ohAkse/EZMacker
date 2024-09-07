@@ -11,8 +11,13 @@ import EZMackerServiceLib
 
 struct MainContentView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @State private var selectionValue = CategoryType.smartBattery
-    
+    @State private var selectionValue: CategoryType = {
+        if AppEnvironment.shared.macBookType == .macMini {
+            return CategoryType.smartWifi
+        } else {
+            return CategoryType.smartBattery
+        }
+    }()
     var body: some View {
         NavigationSplitView {
             CategoryView(selectionValue: $selectionValue)

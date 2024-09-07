@@ -14,7 +14,7 @@ struct CategoryView: View {
     var body: some View {
         List(selection: $selectionValue) {
             Section(CategorySectionType.categoryMainSection.title) {
-                if !AppEnvironment.shared.isMacBook {
+                if (AppEnvironment.shared.macBookType == .macBookPro) || (AppEnvironment.shared.macBookType == .macBookAir) {
                     categoryRow(for: .smartBattery)
                 }
                 categoryRow(for: .smartWifi)
