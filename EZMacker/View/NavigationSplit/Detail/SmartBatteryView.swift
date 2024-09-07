@@ -12,8 +12,10 @@ import EZMackerServiceLib
 struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
     @StateObject var smartBatteryViewModel: SmartBatteryViewModel<ProvidableType>
-    @State private var toast: ToastData?
-    @State private var isAdapterAnimated = false
+    @State private(set) var toast: ToastData?
+    @State private(set) var isAdapterAnimated = false
+    @State private(set) var hasShownToast = false
+    
     var body: some View {
         GeometryReader { geo in
             VStack(spacing: 0) {
@@ -86,10 +88,21 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 }
                 .padding(.vertical, 20)
                 .padding(.trailing, 10)
-                
                 EZBatteryMonitoringView(chargeData: $smartBatteryViewModel.batteryMatricsData.chargeData, isAdapterConnect: $smartBatteryViewModel.adapterMetricsData.isAdapterConnected)
                     .padding(.vertical, 20)
+                    .onReceive(smartBatteryViewModel.$batteryMatricsData) { metricsData in
+                        if let lastChargeData = metricsData.chargeData.last,
+                           BatteryChargeErrorType.from(hexString: lastChargeData.notChargingReason.toHexaString()) == .deviceAvailable {
+                            if !hasShownToast {
+                                toast = ToastData(type: .warning,
+                                                  title: "경고",
+                                                  message: "배터리가 충전 대기 중입니다. 어댑터를 다시 꽂거나 상단 메뉴에서 '지금 완전 충전'을 눌러 충전을 재개하세요.",
+                                                  duration: 600)
+                            }
+                        }
+                    }
             }
+            
             Button(
                 action: {
                     smartBatteryViewModel.openSettingWindow(settingPath: SystemPreference.batterySave.pathString)
