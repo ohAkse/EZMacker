@@ -10,7 +10,6 @@ import EZMackerUtilLib
 
 enum AdapterConnect: Error, Equatable {
     case dataNotFound
-    case serializationFailed
     case decodingFailed
     case success
     case none
@@ -20,16 +19,13 @@ enum AdapterConnect: Error, Equatable {
         switch self {
         case .dataNotFound:
             Logger.writeLog(.error, message: "Data not found.")
-            return "Data not found."
-        case .serializationFailed:
-            Logger.writeLog(.error, message: "Failed to serialize data.")
-            return "Failed to serialize data."
+            return "어댑터 정보를 찾을 수 없습니다."
         case .decodingFailed:
             Logger.writeLog(.error, message: "decodingFailed")
-            return "decodingFailed"
+            return "어댑터 정보를 해독하는데 실패했습니다."
         case .success:
             Logger.writeLog(.error, message: "Failed to decode data.")
-            return "success"
+            return ""
         case .processing:
             Logger.writeLog(.error, message: "processing data.")
             return "processing data."
@@ -44,7 +40,6 @@ enum AdapterConnect: Error, Equatable {
     static func == (lhs: AdapterConnect, rhs: AdapterConnect) -> Bool {
         switch (lhs, rhs) {
         case (.dataNotFound, .dataNotFound),
-             (.serializationFailed, .serializationFailed),
              (.decodingFailed, .decodingFailed),
              (.success, .success),
              (.none, .none),

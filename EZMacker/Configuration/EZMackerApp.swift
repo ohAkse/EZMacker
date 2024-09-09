@@ -35,7 +35,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDe
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.regular)
         UNUserNotificationCenter.current().delegate = self
-        
         window = NSApp.windows.first
         window.delegate = self
         requestNotificationAuthorization()

@@ -19,7 +19,7 @@ public enum LogLevel {
 public struct Logger {
     private static let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "EZMacker App")
     
-    public static func writeLog(_ level: LogLevel, message: String, isNeededStackTraceInfo: Bool = false, line: Int = #line, fileName: String = #file, caller: String = #function) {
+    public static func writeLog(_ level: LogLevel, message: Any, isNeededStackTraceInfo: Bool = false, line: Int = #line, fileName: String = #file, caller: String = #function) {
         let logType: OSLogType
         var logMessage = ""
         var emoji = ""

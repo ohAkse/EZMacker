@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RadioChannelData {
+struct RadioChannelData: Equatable {
     var channelBandwidth: Int
     var channelFrequency: Int
     var channel: Int

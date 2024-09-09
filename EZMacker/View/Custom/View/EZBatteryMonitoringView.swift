@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct EZBatteryMonitoringView: View {
     @Binding var chargeData: [ChargeData]
@@ -56,6 +57,7 @@ struct EZBatteryMonitoringView: View {
                                     .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                                     .padding()
                                     .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+        
                             } else {
                                 Text("")
                                     .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
