@@ -14,8 +14,10 @@ struct CategoryView: View {
     var body: some View {
         List(selection: $selectionValue) {
             Section(CategorySectionType.categoryMainSection.title) {
-                categoryRow(for: .smartBattery)
-                categoryRow(for: .smartWifi)                
+                if (AppEnvironment.shared.macBookType == .macBookPro) || (AppEnvironment.shared.macBookType == .macBookAir) {
+                    categoryRow(for: .smartBattery)
+                }
+                categoryRow(for: .smartWifi)
             }
             .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)

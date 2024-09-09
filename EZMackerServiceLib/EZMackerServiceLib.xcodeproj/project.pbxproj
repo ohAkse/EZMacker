@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F5C79392C88761200C7BFD9 /* AppSmartWifiMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5C79382C88761200C7BFD9 /* AppSmartWifiMonitoringService.swift */; };
+		5F5C79472C888C1800C7BFD9 /* AppWifiClientProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5C79462C888C1800C7BFD9 /* AppWifiClientProvidable.swift */; };
+		5FB977942C89DF7500ACB194 /* AppSmartAutoconnectWifiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB977932C89DF7500ACB194 /* AppSmartAutoconnectWifiService.swift */; };
 		5FE62F8A2C844FB400658155 /* AppSmartServiceProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE62F892C844FB400658155 /* AppSmartServiceProvidable.swift */; };
 		5FE62F8D2C84500500658155 /* AppSmartBatteryKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE62F8C2C84500500658155 /* AppSmartBatteryKeyType.swift */; };
 		5FE62F8F2C84502400658155 /* AppSmartBatteryPowerSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE62F8E2C84502400658155 /* AppSmartBatteryPowerSourceType.swift */; };
@@ -25,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F5C79382C88761200C7BFD9 /* AppSmartWifiMonitoringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartWifiMonitoringService.swift; sourceTree = "<group>"; };
+		5F5C79462C888C1800C7BFD9 /* AppWifiClientProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWifiClientProvidable.swift; sourceTree = "<group>"; };
+		5FB977932C89DF7500ACB194 /* AppSmartAutoconnectWifiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartAutoconnectWifiService.swift; sourceTree = "<group>"; };
 		5FE62F6E2C844ED300658155 /* libEZMackerServiceLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEZMackerServiceLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE62F892C844FB400658155 /* AppSmartServiceProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartServiceProvidable.swift; sourceTree = "<group>"; };
 		5FE62F8C2C84500500658155 /* AppSmartBatteryKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartBatteryKeyType.swift; sourceTree = "<group>"; };
@@ -59,9 +65,11 @@
 			children = (
 				5FE62FAA2C8453A300658155 /* Model */,
 				5FE62FA62C8451FA00658155 /* AppSmartFileMonitoringService.swift */,
+				5FB977932C89DF7500ACB194 /* AppSmartAutoconnectWifiService.swift */,
 				5FE62FA42C8451EF00658155 /* AppWifiKeyChainService.swift */,
 				5FE62FA22C8451DB00658155 /* AppCoreWLanWifiService.swift */,
 				5FE62F9E2C8451C300658155 /* AppSmartProcessService.swift */,
+				5F5C79382C88761200C7BFD9 /* AppSmartWifiMonitoringService.swift */,
 				5FE62F9C2C8451B600658155 /* AppSmartWifiService.swift */,
 				5FE62F9A2C8451A600658155 /* AppSmartFileService.swift */,
 				5FE62F982C84519B00658155 /* AppSmartBatteryService.swift */,
@@ -83,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				5FE62F892C844FB400658155 /* AppSmartServiceProvidable.swift */,
+				5F5C79462C888C1800C7BFD9 /* AppWifiClientProvidable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -184,10 +193,13 @@
 				5FE62FAE2C8457E900658155 /* ProcessMonitoringData.swift in Sources */,
 				5FE62F8D2C84500500658155 /* AppSmartBatteryKeyType.swift in Sources */,
 				5FE62F9B2C8451A600658155 /* AppSmartFileService.swift in Sources */,
+				5FB977942C89DF7500ACB194 /* AppSmartAutoconnectWifiService.swift in Sources */,
 				5FE62F952C8450BB00658155 /* AppCoreWLanStatus.swift in Sources */,
 				5FE62F8F2C84502400658155 /* AppSmartBatteryPowerSourceType.swift in Sources */,
+				5F5C79472C888C1800C7BFD9 /* AppWifiClientProvidable.swift in Sources */,
 				5FE62FAC2C8453B500658155 /* ScanningWifiData.swift in Sources */,
 				5FE62F9F2C8451C300658155 /* AppSmartProcessService.swift in Sources */,
+				5F5C79392C88761200C7BFD9 /* AppSmartWifiMonitoringService.swift in Sources */,
 				5FE62FA52C8451EF00658155 /* AppWifiKeyChainService.swift in Sources */,
 				5FE62FA72C8451FA00658155 /* AppSmartFileMonitoringService.swift in Sources */,
 				5FE62FA92C84537F00658155 /* AppFileDescriptionType.swift in Sources */,

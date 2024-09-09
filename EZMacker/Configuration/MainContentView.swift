@@ -11,8 +11,13 @@ import EZMackerServiceLib
 
 struct MainContentView: View {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @State private var selectionValue = CategoryType.smartBattery
-    
+    @State private var selectionValue: CategoryType = {
+        if AppEnvironment.shared.macBookType == .macMini {
+            return CategoryType.smartWifi
+        } else {
+            return CategoryType.smartBattery
+        }
+    }()
     var body: some View {
         NavigationSplitView {
             CategoryView(selectionValue: $selectionValue)
@@ -25,7 +30,7 @@ struct MainContentView: View {
                     SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), appSettingService: AppStorageSetting(), appProcessService: AppSmartProcessService(), systemPreferenceService: SystemPreferenceService()))
                         .environmentObject(colorSchemeViewModel)
                 case .smartWifi:
-                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService()), appSettingService: AppStorageSetting()))
+                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService(), autoConnectionService: AppSmartAutoconnectWifiService()), appSettingService: AppStorageSetting(), appWifiMonitoringService: AppSmartWifiMonitoringService(wifiClient: CWWiFiClient())))
                         .environmentObject(colorSchemeViewModel)
                 case .smartNotificationAlarm:
                     SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppStorageSetting(), appProcessService: AppSmartProcessService(), batterySetting: BatterySetting(), wifiSetting: WifiSetting(), fileLocatorSetting: FileLocatorSetting()))
