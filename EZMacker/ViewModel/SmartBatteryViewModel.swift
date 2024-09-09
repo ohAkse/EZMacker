@@ -17,7 +17,9 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     @Published var batteryConditionData: BatteryConditionData = .init()
     @Published var batteryMatricsData: BatteryMetricsData = .init()
     @Published var adapterMetricsData: AdapterMetricsData = .init()
-    
+    @Published var showAlert = false
+    @Published var alertMessage = ""
+    @Published var subtitle = ""
     // MARK: - Service Variable
     private let appSmartBatteryService: ProvidableType
     private let systemPreferenceService: SystemPreferenceAccessible
@@ -30,9 +32,10 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     private(set) var isOverFullcpuUsageExitMode = false
     private(set) var isSentChargingErrorAlarm = false
     private(set) var isSentCapacityAlarm = false
-    
+    private(set) var hasShownAlert = false
     // MARK: - Normal Variables
     private(set) var appChargingErrorCount = 0
+    private(set) var adapterDecodingErrorCount = 0
     private(set) var timer: AnyCancellable?
     private(set) var cancellables = Set<AnyCancellable>()
     
@@ -42,6 +45,8 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
         self.appProcessService = appProcessService
         self.systemPreferenceService =  systemPreferenceService
         checkSettingConfig()
+        fetchBatteryBasicExtraSpec()
+        fetchBatteryBasicSpec()
     }
 }
 extension SmartBatteryViewModel {
@@ -154,12 +159,31 @@ extension SmartBatteryViewModel {
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] result in
+                    guard let self = self else { return }
                     if case .failure = result {
-                        self?.adapterMetricsData.adapterConnectionSuccess = .decodingFailed
+                        adapterDecodingErrorCount += 1
+                        switch adapterDecodingErrorCount {
+                        case 1...5:
+                            adapterMetricsData.adapterConnectionSuccess = .decodingFailed
+                        case 6...10:
+                            adapterMetricsData.adapterConnectionSuccess = .dataNotFound
+                            if !hasShownAlert {
+                                showAlert = true
+                                hasShownAlert = true
+                                subtitle = "에러"
+                                alertMessage = adapterMetricsData.adapterConnectionSuccess.localizedDescription
+                            }
+                        case 11...:
+                            adapterMetricsData.adapterConnectionSuccess = .processing // 한번 에러 띄우면 그냥 종료까지 계산으로 넘기기위해 프로세싱으로
+                        default:
+                            break // 이 경우는 발생하지 않지만, switch 문의 완전성을 위해 포함
+                        }
                     }
                 },
                 receiveValue: { [weak self] adapterDetails in
                     self?.validateAdapterData(adapterDetails)
+                    self?.hasShownAlert = false // 충전기를 다시 꽃으면 초기화
+                    self?.adapterDecodingErrorCount = 0
                 }
             )
             .store(in: &cancellables)

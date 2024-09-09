@@ -15,7 +15,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     @State private(set) var toast: ToastData?
     @State private(set) var isAdapterAnimated = false
     @State private(set) var hasShownToast = false
-    
+    @State private(set) var errCount = 0
     var body: some View {
         GeometryReader { geo in
             VStack(spacing: 0) {
@@ -30,7 +30,6 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                     .offset(y: 15)
             }
             .onAppear {
-                smartBatteryViewModel.fetchBatteryBasicSpec()
                 smartBatteryViewModel.validateAdapterConnection()
                 smartBatteryViewModel.startAdapterConnectionTimer()
                 toast = ToastData(type: .info,
@@ -43,6 +42,14 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
             }
             .navigationTitle(CategoryType.smartBattery.title)
             .toastView(toast: $toast)
+            .sheet(isPresented: $smartBatteryViewModel.showAlert) {
+                AlertOKCancleView(
+                    isPresented: $smartBatteryViewModel.showAlert,
+                    title: "에러",
+                    subtitle: "확인 불가",
+                    content: smartBatteryViewModel.alertMessage
+                )
+            }
         }
         .padding(30)
     }
@@ -63,12 +70,20 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 } else {
                     EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "완충까지", info: smartBatteryViewModel.batteryMatricsData.chargingTime.toHourMinute())
                 }
-            } else if smartBatteryViewModel.batteryMatricsData.chargingTime <= 1 {
+            } else {
+#if !IMPORVE_LATER // 충전기를 꽃을 시 잠시 ioreg에서 남은시간/완충시간 계산이 튀는 문제가 있어 어떻게 처리할지 고민할것
+                EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지", info: smartBatteryViewModel.batteryMatricsData.remainingTime.toHourMinute())
+#else
                 if smartBatteryViewModel.adapterMetricsData.adapterConnectionSuccess == .decodingFailed {
                     EZLoadingView(size: 120, text: "수집중..")
                 } else {
-                    EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지", info: smartBatteryViewModel.batteryMatricsData.remainingTime.toHourMinute())
+                    if smartBatteryViewModel.batteryMatricsData.chargingTime == -1 &&  smartBatteryViewModel.adapterMetricsData.adapterConnectionSuccess == .dataNotFound {
+                        EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "예측불가", info: "-분")
+                    } else {
+                        EZBatteryInfoView(imageName: getBatteryImageName(), isSystem: false, title: "종료까지", info: smartBatteryViewModel.batteryMatricsData.remainingTime.toHourMinute())
+                    }
                 }
+#endif
             }
         }
         .frame(width: geo.size.width * 0.22, height: geo.size.height * 0.25)
@@ -91,15 +106,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 EZBatteryMonitoringView(chargeData: $smartBatteryViewModel.batteryMatricsData.chargeData, isAdapterConnect: $smartBatteryViewModel.adapterMetricsData.isAdapterConnected)
                     .padding(.vertical, 20)
                     .onReceive(smartBatteryViewModel.$batteryMatricsData) { metricsData in
-                        if let lastChargeData = metricsData.chargeData.last,
-                           BatteryChargeErrorType.from(hexString: lastChargeData.notChargingReason.toHexaString()) == .deviceAvailable {
-                            if !hasShownToast {
-                                toast = ToastData(type: .warning,
-                                                  title: "경고",
-                                                  message: "배터리가 충전 대기 중입니다. 어댑터를 다시 꽂거나 상단 메뉴에서 '지금 완전 충전'을 눌러 충전을 재개하세요.",
-                                                  duration: 600)
-                            }
-                        }
+                        checkAndShowFullyChargedWarning(metricsData: metricsData)
                     }
             }
             
@@ -120,10 +127,28 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
         .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.25)
     }
     
+    private func checkAndShowFullyChargedWarning(metricsData: BatteryMetricsData) {
+        guard let lastChargeData = metricsData.chargeData.last else { return }
+        
+        let chargeErrorType = BatteryChargeErrorType.from(hexString: lastChargeData.notChargingReason.toHexaString())
+        
+        if chargeErrorType.isFullyCharged() && !hasShownToast {
+            toast = ToastData(type: .warning,
+                              title: "경고",
+                              message: "배터리가 충전 대기 중입니다. 충전을 원할 시 어댑터를 다시 꽂거나 상단 메뉴의 배터리 탭에서'지금 완전 충전'을 눌러 충전을 재개하세요.",
+                              duration: 600)
+            hasShownToast = true
+        }
+    }
+    
     private func adapterInfoSection(geo: GeometryProxy) -> some View {
         VStack {
             if smartBatteryViewModel.adapterMetricsData.isAdapterConnected {
-                connectedAdapterInfo(geo: geo)
+                if smartBatteryViewModel.adapterMetricsData.adapterConnectionSuccess == .dataNotFound {
+                    disconnectedAdapterInfo(geo: geo)
+                } else {
+                    connectedAdapterInfo(geo: geo)
+                }
             } else {
                 disconnectedAdapterInfo(geo: geo)
             }
@@ -136,6 +161,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
         HStack {
             if let adapterInfo = smartBatteryViewModel.adapterMetricsData.adapterData.first {
                 VStack {
+                    
                     EZImage(systemName: "battery_adapter", isSystemName: false)
                     EZContent(content: adapterInfo.Name)
                 }
@@ -171,7 +197,6 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
             }
         }
     }
-    
     private func disconnectedAdapterInfo(geo: GeometryProxy) -> some View {
         Group {
             if smartBatteryViewModel.adapterMetricsData.adapterConnectionSuccess == .decodingFailed {

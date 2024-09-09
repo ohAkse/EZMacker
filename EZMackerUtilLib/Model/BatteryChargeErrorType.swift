@@ -27,6 +27,7 @@ public enum BatteryChargeErrorType: String {
     case settingsMaintained = "0x1000"
     case unmanagedPower = "0x0800"
     case alreadyFullChaged = "0x400001"
+    case fullChaged = "0x408001"
     case unknown
     
     public func description() -> String {
@@ -53,8 +54,6 @@ public enum BatteryChargeErrorType: String {
             return "유휴 상태 수면 방지"
         case .childProcessLimit:
             return "자식 프로세스 제한 상태 2"
-        case .deviceAvailable:
-            return "장치 사용 가능(대기중)"
         case .maxPerformance:
             return "최대 성능 상태"
         case .contextMaintained:
@@ -63,10 +62,18 @@ public enum BatteryChargeErrorType: String {
             return "설정 유지됨"
         case .unmanagedPower:
             return "전원 관리되지 않음 또는 정적 전원 유효"
-        case .alreadyFullChaged:
-            return "충전 완료"
+        case .alreadyFullChaged, .fullChaged, .deviceAvailable:
+            return "충전 완료(대기중)"
         case .unknown:
             return "알 수 없는 상태"
+        }
+    }
+    public func isFullyCharged() -> Bool {
+        switch self {
+        case .alreadyFullChaged, .fullChaged, .deviceAvailable:
+            return true
+        default:
+            return false
         }
     }
     

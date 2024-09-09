@@ -18,4 +18,3 @@ struct ChargeData: Identifiable {
     var chargerID: Int
     var notChargingReason: Int
 }
-
