@@ -2,35 +2,35 @@
 //  AppStorageKey.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/6/24.
+//  Created by 박유경 on 9/14/24.
 //
 
 import Foundation
 
 enum AppStorageKey: String, Hashable {
-    case colorSchme
+    case colorSchemeType
     case isBatteryChargingErrorMode
-    case isBattryCurrentMessageMode
+    case isBatteryCurrentMessageMode
     case batteryPercentage
-    case bestSSidShowMode
-    case appExitMode
+    case bestSSIDShowType
+    case cpuUsageExitType
     case fileLocatorData
     case isFileChangeAlarmDisabled
     
     var name: String {
         switch self {
-        case .colorSchme:
-            return "colorSchme"
+        case .colorSchemeType:
+            return "colorSchemeType"
         case .isBatteryChargingErrorMode:
             return "isBatteryWarningMode"
-        case .isBattryCurrentMessageMode:
+        case .isBatteryCurrentMessageMode:
             return "isBattryCurrentMessageMode"
-        case .bestSSidShowMode:
-            return "bestSSidShowMode"
+        case .bestSSIDShowType:
+            return "bestSSIDShowType"
         case .batteryPercentage:
             return "batteryPercentage"
-        case .appExitMode:
-            return "appExitMode"
+        case .cpuUsageExitType:
+            return "cpuUsageExitType"
         case .fileLocatorData:
             return "fileLocatorData"
         case .isFileChangeAlarmDisabled:
@@ -40,17 +40,17 @@ enum AppStorageKey: String, Hashable {
     
     var byDefault: Any {
         switch self {
-        case .colorSchme:
+        case .colorSchemeType:
             return "Light"
         case .isBatteryChargingErrorMode:
             return false
-        case .isBattryCurrentMessageMode:
+        case .isBatteryCurrentMessageMode:
             return false
-        case .bestSSidShowMode:
+        case .bestSSIDShowType:
             return "alert"
         case .batteryPercentage:
             return "0"
-        case .appExitMode:
+        case .cpuUsageExitType:
             return "unused"
         case .fileLocatorData:
             return Data()

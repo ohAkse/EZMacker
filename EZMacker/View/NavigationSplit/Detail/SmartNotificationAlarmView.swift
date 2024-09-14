@@ -30,8 +30,8 @@ struct SmartNotificationAlarmView: View {
                 .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                 .padding(.top, 10)
             
-            Picker("CPU 과사용시 종료하기", selection: $smartNotificationAlarmViewModel.batterySetting.selectedAppExitOption) {
-                ForEach(AppUsageExit.allCases, id: \.self) { option in
+            Picker("CPU 과사용시 종료하기", selection: $smartNotificationAlarmViewModel.batterySetting.cpuUsageExitType) {
+                ForEach(CPUUsageExitType.allCases, id: \.self) { option in
                     Text(option.rawValue).tag(option)
                 }
             }
@@ -75,7 +75,7 @@ struct SmartNotificationAlarmView: View {
                 .padding(.top, 10)
             HStack {
                 Picker("최적의 와이파이 발견 시 알림으로 표시하기", selection: $smartNotificationAlarmViewModel.wifiSetting.selectedBestSSIDOption) {
-                    ForEach(BestSSIDShowMode.allCases, id: \.self) { option in
+                    ForEach(BestSSIDShowType.allCases, id: \.self) { option in
                         Text(option.rawValue).tag(option)
                     }
                 }

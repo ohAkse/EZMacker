@@ -22,7 +22,6 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                     .padding(.top, 20)
             }
             .onReceive(smartWifiViewModel.$wifiRequestStatus) { wifiStatus in
-                print(wifiStatus)
                 if wifiStatus != .none {
                     if wifiStatus == .success {
                         toast = ToastData(type: .info, title: "성공", message: wifiStatus.description, duration: 5)

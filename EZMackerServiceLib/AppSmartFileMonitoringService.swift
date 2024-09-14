@@ -30,7 +30,7 @@ public class AppSmartFileMonitoringService: AppSmartFileMonitorable {
         )
         
         source.setEventHandler { [weak self] in
-            self?.handleFileChange(for: id, url: url, changeHandler: changeHandler)
+            self?.onFileChanged(for: id, url: url, changeHandler: changeHandler)
         }
         
         source.setCancelHandler {
@@ -48,7 +48,7 @@ public class AppSmartFileMonitoringService: AppSmartFileMonitorable {
         pendingUpdates.removeValue(forKey: id)
     }
 
-    private func handleFileChange(for id: UUID, url: URL, changeHandler: @escaping (UUID, URL) -> Void) {
+    private func onFileChanged(for id: UUID, url: URL, changeHandler: @escaping (UUID, URL) -> Void) {
         pendingUpdates[id]?.cancel()
         
         let workItem = DispatchWorkItem { [weak self] in

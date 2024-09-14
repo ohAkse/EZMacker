@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F0DAC5C2C955CBD00BB3488 /* Reflection + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC5B2C955CBD00BB3488 /* Reflection + Extension.swift */; };
 		5F60FC912C8C0C3E001A4D41 /* BatteryChargeErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F60FC902C8C0C3E001A4D41 /* BatteryChargeErrorType.swift */; };
 		5FE62F342C84416700658155 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE62F332C84416700658155 /* Logger.swift */; };
 		5FE62F372C84419C00658155 /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE62F362C84419C00658155 /* Date + Extension.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F0DAC5B2C955CBD00BB3488 /* Reflection + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reflection + Extension.swift"; sourceTree = "<group>"; };
 		5F60FC902C8C0C3E001A4D41 /* BatteryChargeErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryChargeErrorType.swift; sourceTree = "<group>"; };
 		5FE62F132C843CDC00658155 /* libEZMackerUtilLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEZMackerUtilLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE62F332C84416700658155 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -54,6 +56,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F0DAC5A2C95591D00BB3488 /* Reflection */ = {
+			isa = PBXGroup;
+			children = (
+				5F0DAC5B2C955CBD00BB3488 /* Reflection + Extension.swift */,
+			);
+			path = Reflection;
+			sourceTree = "<group>";
+		};
 		5F60FC8F2C8C0C2B001A4D41 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +75,7 @@
 		5FE62F0A2C843CDC00658155 = {
 			isa = PBXGroup;
 			children = (
+				5F0DAC5A2C95591D00BB3488 /* Reflection */,
 				5F60FC8F2C8C0C2B001A4D41 /* Model */,
 				5FE62F542C844BF800658155 /* KeyboardShortcut */,
 				5FE62F502C8446F700658155 /* Chain */,
@@ -234,6 +245,7 @@
 				5FE62F4E2C84464B00658155 /* CommandRunner.swift in Sources */,
 				5FE62F372C84419C00658155 /* Date + Extension.swift in Sources */,
 				5FE62F572C844C1200658155 /* KeyboardModifierFlag.swift in Sources */,
+				5F0DAC5C2C955CBD00BB3488 /* Reflection + Extension.swift in Sources */,
 				5FE62F3B2C84447100658155 /* String + Extension.swift in Sources */,
 				5FE62F3D2C8444B100658155 /* Data + Extension.swift in Sources */,
 				5FE62F452C8445B900658155 /* CommandExecutable.swift in Sources */,
