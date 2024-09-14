@@ -88,28 +88,28 @@ class SmartFileLocatorViewModel: ObservableObject {
     
     private func setupFileMonitor(for id: UUID, in tab: String, url: URL) {
         appSmartFileMonitor.startMonitoring(id: id, url: url) { [weak self] id, url in
-            self?.handleFileChange(for: id, in: tab, url: url)
+            self?.onFileChanged(for: id, in: tab, url: url)
         }
     }
     
-    private func handleFileChange(for id: UUID, in tab: String, url: URL) {
+    private func onFileChanged(for id: UUID, in tab: String, url: URL) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             
             if FileManager.default.fileExists(atPath: url.path) {
-                if let oldFileName = self.savedData.fileViewsPerTab[tab]?[id]?.fileName,
+                if let oldFileName = savedData.fileViewsPerTab[tab]?[id]?.fileName,
                    oldFileName != url.lastPathComponent {
-                    self.handleFileRename(oldFileName: oldFileName, newURL: url, id: id, tab: tab)
+                    renameFileName(oldFileName: oldFileName, newURL: url, id: id, tab: tab)
                 } else {
-                    self.updateFileInfo(for: id, in: tab, with: url)
+                    updateFileInfo(for: id, in: tab, with: url)
                 }
             } else {
-                self.handleFileDeletion(id: id, tab: tab)
+                deleteFileInfo(id: id, tab: tab)
             }
         }
     }
     
-    private func handleFileRename(oldFileName: String, newURL: URL, id: UUID, tab: String) {
+    private func renameFileName(oldFileName: String, newURL: URL, id: UUID, tab: String) {
         AppNotificationManager.shared.sendNotification(
             title: "파일 이름 변경",
             subtitle: "\(oldFileName) 이름이 변경되었습니다."
@@ -118,13 +118,11 @@ class SmartFileLocatorViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.savedData.fileViewsPerTab[tab]?.removeValue(forKey: id)
             self.appSmartFileMonitor.stopMonitoring(id: id)
-            
-            let newID = UUID()
-            self.setFileInfo(fileURL: newURL, for: newID, in: tab)
+            self.setFileInfo(fileURL: newURL, for: UUID(), in: tab)
         }
     }
     
-    private func handleFileDeletion(id: UUID, tab: String) {
+    private func deleteFileInfo(id: UUID, tab: String) {
         if let deletedFileName = savedData.fileViewsPerTab[tab]?[id]?.fileName {
             guard let isFileChangeAlarmDisabled: Bool = appSettingService.loadConfig(.isFileChangeAlarmDisabled)  else {return}
             if !isFileChangeAlarmDisabled {
@@ -152,7 +150,7 @@ class SmartFileLocatorViewModel: ObservableObject {
                     case .finished:
                         break
                     case .failure(let error):
-                        print("Error updating file info: \(error.localizedDescription)")
+                        Logger.writeLog(.error, message: error.localizedDescription)
                     }
                 },
                 receiveValue: { [weak self] (fileName, fileSize, fileType, fileURL, date) in
@@ -273,7 +271,7 @@ class SmartFileLocatorViewModel: ObservableObject {
             }
             NSWorkspace.shared.open(url)
         } catch {
-            print("Error opening file: \(error.localizedDescription)")
+            Logger.writeLog(.error, message: error.localizedDescription)
         }
     }
 }
