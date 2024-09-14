@@ -6,9 +6,9 @@
 //
 
 protocol WifiSettingConfigurable {
-    var selectedBestSSIDOption: BestSSIDShowMode { get set }
+    var selectedBestSSIDOption: BestSSIDShowType { get set }
 }
 
 struct WifiSetting: WifiSettingConfigurable {
-    var selectedBestSSIDOption: BestSSIDShowMode = .alert
+    var selectedBestSSIDOption: BestSSIDShowType = .alert
 }

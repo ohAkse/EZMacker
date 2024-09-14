@@ -9,12 +9,19 @@ import Cocoa
 import SwiftUI
 import UserNotifications
 import EZMackerUtilLib
-
+import SwiftData
 @main
 struct EZMackerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var colorSchemeViewModel = ColorSchemeViewModel()
-    
+    let container: ModelContainer
+    init() {
+        do {
+            container = try ModelContainer(for: AppSettings.self)
+        } catch {
+            fatalError("Failed to create ModelContainer: \(error)")
+        }
+    }
     var body: some Scene {
         WindowGroup {
             MainContentView()
@@ -23,6 +30,7 @@ struct EZMackerApp: App {
         }
         .windowToolbarStyle(.unifiedCompact)
         .windowResizability(.contentSize)
+        .modelContainer(container)
     }
 }
 
@@ -45,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDe
             return event
         }
     }
-
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

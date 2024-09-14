@@ -17,10 +17,10 @@ class SmartFileLocatorViewModel: ObservableObject {
     // MARK: - Service Variable
     private let appSmartFileService: AppSmartFileProvidable
     private let appSmartFileMonitor: AppSmartFileMonitorable
-    private let appSettingService: AppStorageSettingProvidable
+    private let appSettingService: AppSettingProvidable
     private(set) var cancellables = Set<AnyCancellable>()
     
-    init(appSmartFileService: AppSmartFileProvidable, appSmartFileMonitor: AppSmartFileMonitorable, appSmartSettingService: AppStorageSettingProvidable) {
+    init(appSmartFileService: AppSmartFileProvidable, appSmartFileMonitor: AppSmartFileMonitorable, appSmartSettingService: AppSettingProvidable) {
         self.appSmartFileService = appSmartFileService
         self.appSmartFileMonitor = appSmartFileMonitor
         self.appSettingService = appSmartSettingService

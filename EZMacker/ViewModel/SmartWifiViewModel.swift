@@ -22,10 +22,10 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     private let appSmartWifiService: ProvidableType
     private let systemPreferenceService: SystemPreferenceAccessible
     private let appCoreWLanWifiService: AppCoreWLANWifiProvidable
-    private let appStorageSettingService: AppStorageSettingProvidable
+    private let appStorageSettingService: AppSettingProvidable
     private let appWifiMonitoringService: AppSmartWifiMonitorable
     
-    init(appSmartWifiService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible, appCoreWLanWifiService: AppCoreWLANWifiProvidable, appSettingService: AppStorageSettingProvidable, appWifiMonitoringService: AppSmartWifiMonitorable) {
+    init(appSmartWifiService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible, appCoreWLanWifiService: AppCoreWLANWifiProvidable, appSettingService: AppSettingProvidable, appWifiMonitoringService: AppSmartWifiMonitorable) {
         self.appSmartWifiService = appSmartWifiService
         self.appCoreWLanWifiService = appCoreWLanWifiService
         self.systemPreferenceService = systemPreferenceService
@@ -202,8 +202,8 @@ extension SmartWifiViewModel {
             .store(in: &cancellables)
     }
     func startSearchBestSSid() {
-        guard let bestSSidMode: String = appStorageSettingService.loadConfig(.bestSSidShowMode) else { return }
-        let resultShowMode = BestSSIDShowMode(rawValue: bestSSidMode)
+        guard let bestSSidMode: String = appStorageSettingService.loadConfig(.bestSSIDShowType) else { return }
+        let resultShowMode = BestSSIDShowType(rawValue: bestSSidMode)
         var wifirssiList: [String: Set<Int>] = [:]
         
         let searchTimerPublisher = Timer.publish(every: 1, on: RunLoop.main, in: .common)
