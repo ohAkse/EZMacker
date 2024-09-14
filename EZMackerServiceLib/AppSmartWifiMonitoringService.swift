@@ -8,6 +8,7 @@
 import Network
 import CoreWLAN
 import Combine
+import EZMackerThreadLib
 
 public protocol AppSmartWifiMonitorable: AppWiFiClientProvidable {
     func startMonitoring()
@@ -18,7 +19,7 @@ public protocol AppSmartWifiMonitorable: AppWiFiClientProvidable {
 
 public class AppSmartWifiMonitoringService: AppSmartWifiMonitorable {
     private let monitor: NWPathMonitor
-    private let queue = DispatchQueue(label: "WiFiMonitor")
+    private let wifiMonitoringQueue = DispatchQueueBuilder().createQueue(for: .wifiMonitoring)
     private let statusSubject = PassthroughSubject<(isConnected: Bool, ssid: String?, status: String), Never>()
     public  var wifiClient: CWWiFiClient
     
@@ -38,7 +39,7 @@ public class AppSmartWifiMonitoringService: AppSmartWifiMonitorable {
     }
 
     public func startMonitoring() {
-        monitor.start(queue: queue)
+        monitor.start(queue: wifiMonitoringQueue)
     }
 
     public func stopMonitoring() {

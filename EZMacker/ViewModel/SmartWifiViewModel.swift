@@ -10,6 +10,7 @@ import CoreWLAN
 import Foundation
 import EZMackerUtilLib
 import EZMackerServiceLib
+import EZMackerThreadLib
 
 class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: ObservableObject {
     
@@ -41,7 +42,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     @Published var isConnecting = false
     
     // MARK: - Service Variable
-    private let scanQueue =  DispatchQueue(label: "ezMacker.com", attributes: .concurrent)
+    private let scanQueue = DispatchQueueBuilder().createQueue(for: .wifiScan)
     private let timerMax = 10
     private(set) var scanResults: [ScaningWifiData] = []
     private(set) var cancellables = Set<AnyCancellable>()
