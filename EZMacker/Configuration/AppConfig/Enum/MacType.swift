@@ -1,22 +1,22 @@
 //
-//  MacModelIdentifier.swift
+//  MacType.swift
 //  EZMacker
 //
-//  Created by 박유경 on 9/7/24.
+//  Created by 박유경 on 9/14/24.
 //
 
 import Foundation
 
-enum MacBookType {
+enum MacType {
     case macBookPro
     case macBookAir
     case macMini
     
-    static func from(identifier: String) -> MacBookType {
+    static func from(identifier: String) -> MacType {
         switch identifier {
-        case _ where MacBookType.macBookProIdentifiers.contains(identifier):
+        case _ where MacType.macBookProIdentifiers.contains(identifier):
             return .macBookPro
-        case _ where MacBookType.macBookAirIdentifiers.contains(identifier):
+        case _ where MacType.macBookAirIdentifiers.contains(identifier):
             return .macBookAir
         default:
             return .macMini

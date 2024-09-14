@@ -2,21 +2,19 @@
 //  AppEnviroment.swift
 //  EZMacker
 //
-//  Created by 박유경 on 8/17/24.
+//  Created by 박유경 on 9/14/24.
 //
 
 import Foundation
 
-// 맥미니/맥북, pInfo 관련된 정보가 다름으로 인해 기능의 문제가 있을시 분기처리하기 위해 싱글톤으로 생성
 class AppEnvironment {
     static let shared = AppEnvironment()
-    
     var isSandboxed: Bool
-    var macBookType: MacBookType
+    var macBookType: MacType
     
     private init() {
-        self.isSandboxed = EnvironmentKey.sandboxID.isActivated
-        self.macBookType = MacBookType.from(identifier: Self.getMacModelIdentifier())
+        self.isSandboxed = AppConfigType.sandboxID.isActivated
+        self.macBookType = MacType.from(identifier: Self.getMacModelIdentifier())
     }
     
     private static func getMacModelIdentifier() -> String {
