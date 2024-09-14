@@ -8,15 +8,19 @@
 import Foundation
 import SwiftData
 
+// TODO: 모델링화하기
 @Model
 class AppSettings {
     var isBatteryWarningMode: Bool
     var isBatteryCurrentMessageMode: Bool
     var batteryPercentage: String
-    var cpuUsageExitType: String // 배터리 관련 설정
-    var ssidShowType: String // 와이파이 관련 설정
-    var smartFileLocatorData: Data // 파일 로케이터 데이터
-    var isFileChangeAlarmDisabled: Bool // 알람
+    var cpuUsageExitType: String
+    // BatterySetting
+    var ssidShowType: String
+    // WifiSetting
+    var smartFileLocatorData: Data
+    var isFileChangeAlarmDisabled: Bool
+    // FileLocatorSetting
     var colorScheme: Int
     
     init(
