@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public protocol DispatchQueueConfigurable {
     var label: String { get }
     var attributes: DispatchQueue.Attributes { get }

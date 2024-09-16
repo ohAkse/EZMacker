@@ -43,9 +43,12 @@ extension DispatchQueue {
         os_signpost(.event, log: DispatchQueueFactory.log, name: "Event", signpostID: signpostID, "%{public}s: %@", self.label, event)
     }
     
-    public func globalWithLogging() -> DispatchQueue {
-        let queue = DispatchQueue.global()
-        queue.setSpecific(key: DispatchQueueFactory.loggingEnabledKey, value: true)
-        return queue
+    public static func asyncGlobalLogging(qos: DispatchQoS.QoSClass = .default, message: String = #function, execute work: @escaping () -> Void) {
+        let signpostID = OSSignpostID(log: DispatchQueueFactory.log)
+        DispatchQueue.global(qos: qos).async {
+            os_signpost(.begin, log: DispatchQueueFactory.log, name: "GlobalQueueTask", signpostID: signpostID, "%{public}s: Task Start: %{public}s", "Global.\(qos)", message)
+            work()
+            os_signpost(.end, log: DispatchQueueFactory.log, name: "GlobalQueueTask", signpostID: signpostID, "%{public}s: Task End: %{public}s", "Global.\(qos)", message)
+        }
     }
 }
