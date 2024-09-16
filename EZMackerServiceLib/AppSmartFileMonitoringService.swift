@@ -15,7 +15,7 @@ public protocol AppSmartFileMonitorable {
 public class AppSmartFileMonitoringService: AppSmartFileMonitorable {
     
     public init() {}
-    private let fileMonotringQueue = DispatchQueueBuilder().createQueue(for: .fileMonitoring)
+    private let fileMonotringQueue = DispatchQueueFactory.createQueue(for: FileMonitoringQueueConfiguration(), withPov: false)
     private (set) var fileMonitors: [UUID: DispatchSourceFileSystemObject] = [:]
     private (set) var pendingUpdates: [UUID: DispatchWorkItem] = [:]
 

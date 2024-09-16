@@ -19,7 +19,7 @@ public protocol AppSmartWifiMonitorable: AppWiFiClientProvidable {
 
 public class AppSmartWifiMonitoringService: AppSmartWifiMonitorable {
     private let monitor: NWPathMonitor
-    private let wifiMonitoringQueue = DispatchQueueBuilder().createQueue(for: .wifiMonitoring)
+    private let wifiMonitoringQueue = DispatchQueueFactory.createQueue(for: WifiMonitoringQueueConfiguration(), withPov: false)
     private let statusSubject = PassthroughSubject<(isConnected: Bool, ssid: String?, status: String), Never>()
     public  var wifiClient: CWWiFiClient
     

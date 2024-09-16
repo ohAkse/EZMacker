@@ -21,10 +21,11 @@ public class AppSmartProcessService: AppSmartProcessProvidable {
     private (set) var numCpuInfo: mach_msg_type_number_t = 0
     private (set) var numPrevCpuInfo: mach_msg_type_number_t = 0
     private (set) var totalUsagePercentage: Float = 0
-    private let processQueue = DispatchQueueBuilder().createQueue(for: .cpuMonitoring)
+    private let processQueue = DispatchQueueFactory.createQueue(for: CpuMonitoringQueueConfiguration(), withPov: true)
+    
     let numCPUs: uint
     let CPUUsageLock = NSLock()
-
+    
     public init() {
         let mibKeys: [Int32] = [ CTL_HW, HW_NCPU ]
         var numCPUs: uint = 0
@@ -51,14 +52,15 @@ public class AppSmartProcessService: AppSmartProcessProvidable {
             }
         }
     }
-    
+  
     public func checkProcessUpdateInfo() {
-        processQueue.async {
+        processQueue.asyncLogging {
             self.processUpdateInfo()
-            sleep(1)
+            Thread.sleep(forTimeInterval: 1)
             self.processUpdateInfo()
         }
     }
+
     public func getTotalPercenatage() -> Float {
         return totalUsagePercentage
     }

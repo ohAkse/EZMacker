@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F0DACA02C957C6500BB3488 /* DispatchQueueConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC9F2C957C6500BB3488 /* DispatchQueueConfiguration.swift */; };
-		5F0DACA22C957CB000BB3488 /* DispatchQueueBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DACA12C957CB000BB3488 /* DispatchQueueBuilder.swift */; };
+		5F0BE8D92C9711CF000883D1 /* DispatchQueue + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0BE8D82C9711CF000883D1 /* DispatchQueue + Extension.swift */; };
+		5F0BE8E72C972152000883D1 /* SerialConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0BE8E62C972152000883D1 /* SerialConfiguration.swift */; };
+		5F0BE8E92C97216C000883D1 /* ConcurrentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0BE8E82C97216C000883D1 /* ConcurrentConfiguration.swift */; };
+		5F0BE8EC2C972208000883D1 /* DispatchQueueConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0BE8EB2C972208000883D1 /* DispatchQueueConfigurable.swift */; };
+		5F0DACA22C957CB000BB3488 /* DispatchQueueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DACA12C957CB000BB3488 /* DispatchQueueFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F0BE8D82C9711CF000883D1 /* DispatchQueue + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue + Extension.swift"; sourceTree = "<group>"; };
+		5F0BE8E62C972152000883D1 /* SerialConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialConfiguration.swift; sourceTree = "<group>"; };
+		5F0BE8E82C97216C000883D1 /* ConcurrentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentConfiguration.swift; sourceTree = "<group>"; };
+		5F0BE8EB2C972208000883D1 /* DispatchQueueConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueConfigurable.swift; sourceTree = "<group>"; };
 		5F0DAC802C957AC300BB3488 /* libEZMackerThreadLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEZMackerThreadLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F0DAC9F2C957C6500BB3488 /* DispatchQueueConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueConfiguration.swift; sourceTree = "<group>"; };
-		5F0DACA12C957CB000BB3488 /* DispatchQueueBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueBuilder.swift; sourceTree = "<group>"; };
+		5F0DACA12C957CB000BB3488 /* DispatchQueueFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,11 +34,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F0BE8D72C9711C0000883D1 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5F0BE8D82C9711CF000883D1 /* DispatchQueue + Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		5F0BE8E02C97206A000883D1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5F0BE8E12C972074000883D1 /* Configuration */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5F0BE8E12C972074000883D1 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				5F0BE8E62C972152000883D1 /* SerialConfiguration.swift */,
+				5F0BE8E82C97216C000883D1 /* ConcurrentConfiguration.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		5F0BE8EA2C9721E2000883D1 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				5F0BE8EB2C972208000883D1 /* DispatchQueueConfigurable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		5F0DAC772C957AC300BB3488 = {
 			isa = PBXGroup;
 			children = (
-				5F0DACA12C957CB000BB3488 /* DispatchQueueBuilder.swift */,
-				5F0DAC9E2C957C4600BB3488 /* Enum */,
+				5F0BE8EA2C9721E2000883D1 /* Protocol */,
+				5F0BE8E02C97206A000883D1 /* Model */,
+				5F0BE8D72C9711C0000883D1 /* Extension */,
+				5F0DACA12C957CB000BB3488 /* DispatchQueueFactory.swift */,
 				5F0DAC812C957AC300BB3488 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,14 +84,6 @@
 				5F0DAC802C957AC300BB3488 /* libEZMackerThreadLib.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		5F0DAC9E2C957C4600BB3488 /* Enum */ = {
-			isa = PBXGroup;
-			children = (
-				5F0DAC9F2C957C6500BB3488 /* DispatchQueueConfiguration.swift */,
-			);
-			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,8 +154,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F0DACA22C957CB000BB3488 /* DispatchQueueBuilder.swift in Sources */,
-				5F0DACA02C957C6500BB3488 /* DispatchQueueConfiguration.swift in Sources */,
+				5F0BE8EC2C972208000883D1 /* DispatchQueueConfigurable.swift in Sources */,
+				5F0BE8D92C9711CF000883D1 /* DispatchQueue + Extension.swift in Sources */,
+				5F0DACA22C957CB000BB3488 /* DispatchQueueFactory.swift in Sources */,
+				5F0BE8E72C972152000883D1 /* SerialConfiguration.swift in Sources */,
+				5F0BE8E92C97216C000883D1 /* ConcurrentConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
