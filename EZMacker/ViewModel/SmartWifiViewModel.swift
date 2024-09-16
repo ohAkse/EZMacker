@@ -10,6 +10,7 @@ import CoreWLAN
 import Foundation
 import EZMackerUtilLib
 import EZMackerServiceLib
+import EZMackerThreadLib
 
 class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: ObservableObject {
     
@@ -41,7 +42,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     @Published var isConnecting = false
     
     // MARK: - Service Variable
-    private let scanQueue =  DispatchQueue(label: "ezMacker.com", attributes: .concurrent)
+    private let scanQueue = DispatchQueueFactory.createQueue(for: WifiScanQueueConfiguration(), withPov: false)
     private let timerMax = 10
     private(set) var scanResults: [ScaningWifiData] = []
     private(set) var cancellables = Set<AnyCancellable>()
@@ -214,7 +215,8 @@ extension SmartWifiViewModel {
             .flatMap { [weak self] _ -> AnyPublisher<[ScaningWifiData], Never> in
                 guard let self = self else { return Just([]).eraseToAnyPublisher() }
                 
-                return Future<[ScaningWifiData], Never> { promise in
+                return Future<[ScaningWifiData], Never> { [weak self] promise in
+                    guard let self = self else { return }
                     self.scanQueue.async {
                         self.appCoreWLanWifiService.getWifiLists(attempts: 1)
                             .catch { error -> AnyPublisher<[ScaningWifiData], Never> in
@@ -223,7 +225,9 @@ extension SmartWifiViewModel {
                             }
                             .sink(
                                 receiveCompletion: { _ in },
-                                receiveValue: { value in promise(.success(value)) }
+                                receiveValue: { value in
+                                    promise(.success(value))
+                                }
                             )
                             .store(in: &self.cancellables)
                     }

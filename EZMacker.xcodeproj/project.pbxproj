@@ -19,6 +19,7 @@
 		5F0DAC432C95453800BB3488 /* AppStorageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC422C95453800BB3488 /* AppStorageKey.swift */; };
 		5F0DAC4F2C954F3000BB3488 /* BestSSIDShowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC4E2C954F3000BB3488 /* BestSSIDShowType.swift */; };
 		5F0DAC512C954F8100BB3488 /* CPUUsageExitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC502C954F8100BB3488 /* CPUUsageExitType.swift */; };
+		5F0DAC992C957B0E00BB3488 /* libEZMackerThreadLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0DAC962C957AE800BB3488 /* libEZMackerThreadLib.a */; };
 		5F0F96732C6B67B800A70564 /* EZTextFieldWrapperStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F96722C6B67B800A70564 /* EZTextFieldWrapperStyle.swift */; };
 		5F1012A62BF3844300589C9B /* EZImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012A52BF3844300589C9B /* EZImage.swift */; };
 		5F1012AC2BF399ED00589C9B /* EZTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012AB2BF399ED00589C9B /* EZTitle.swift */; };
@@ -99,6 +100,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5F0DAC952C957AE800BB3488 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F0DAC8F2C957AE800BB3488 /* EZMackerThreadLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5F0DAC802C957AC300BB3488;
+			remoteInfo = EZMackerThreadLib;
+		};
 		5F36B2252BE7AB3100E08935 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F36B20B2BE7AB3000E08935 /* Project object */;
@@ -142,6 +150,7 @@
 		5F0DAC422C95453800BB3488 /* AppStorageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageKey.swift; sourceTree = "<group>"; };
 		5F0DAC4E2C954F3000BB3488 /* BestSSIDShowType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSSIDShowType.swift; sourceTree = "<group>"; };
 		5F0DAC502C954F8100BB3488 /* CPUUsageExitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUUsageExitType.swift; sourceTree = "<group>"; };
+		5F0DAC8F2C957AE800BB3488 /* EZMackerThreadLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EZMackerThreadLib.xcodeproj; sourceTree = "<group>"; };
 		5F0F96722C6B67B800A70564 /* EZTextFieldWrapperStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTextFieldWrapperStyle.swift; sourceTree = "<group>"; };
 		5F1012A52BF3844300589C9B /* EZImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZImage.swift; sourceTree = "<group>"; };
 		5F1012AB2BF399ED00589C9B /* EZTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTitle.swift; sourceTree = "<group>"; };
@@ -233,6 +242,7 @@
 			files = (
 				5FE62F2F2C843DB000658155 /* libEZMackerUtilLib.a in Frameworks */,
 				5FE62F852C844F1900658155 /* libEZMackerServiceLib.a in Frameworks */,
+				5F0DAC992C957B0E00BB3488 /* libEZMackerThreadLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +307,22 @@
 				5F0DAC502C954F8100BB3488 /* CPUUsageExitType.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		5F0DAC902C957AE800BB3488 /* EZMackerThreadLib */ = {
+			isa = PBXGroup;
+			children = (
+				5F0DAC8F2C957AE800BB3488 /* EZMackerThreadLib.xcodeproj */,
+			);
+			path = EZMackerThreadLib;
+			sourceTree = "<group>";
+		};
+		5F0DAC912C957AE800BB3488 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5F0DAC962C957AE800BB3488 /* libEZMackerThreadLib.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		5F1012962BF3825D00589C9B /* Modifier */ = {
@@ -394,6 +420,7 @@
 		5F36B20A2BE7AB3000E08935 = {
 			isa = PBXGroup;
 			children = (
+				5F0DAC902C957AE800BB3488 /* EZMackerThreadLib */,
 				5FE62F7E2C844EE800658155 /* EZMackerServiceLib */,
 				5FE62F232C843CEF00658155 /* EZMackerUtilLib */,
 				5F9DAB402C797CCD000563A2 /* .swiftlint.yml */,
@@ -766,6 +793,10 @@
 					ProjectRef = 5FE62F7D2C844EE800658155 /* EZMackerServiceLib.xcodeproj */;
 				},
 				{
+					ProductGroup = 5F0DAC912C957AE800BB3488 /* Products */;
+					ProjectRef = 5F0DAC8F2C957AE800BB3488 /* EZMackerThreadLib.xcodeproj */;
+				},
+				{
 					ProductGroup = 5FE62F242C843CEF00658155 /* Products */;
 					ProjectRef = 5FE62F222C843CEF00658155 /* EZMackerUtilLib.xcodeproj */;
 				},
@@ -780,6 +811,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		5F0DAC962C957AE800BB3488 /* libEZMackerThreadLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEZMackerThreadLib.a;
+			remoteRef = 5F0DAC952C957AE800BB3488 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		5FE62F282C843CEF00658155 /* libEZMackerUtilLib.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

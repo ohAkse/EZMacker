@@ -10,32 +10,35 @@ import SwiftUI
 import UserNotifications
 import EZMackerUtilLib
 import SwiftData
+
 @main
 struct EZMackerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var colorSchemeViewModel = ColorSchemeViewModel()
-    let container: ModelContainer
-    init() {
-        do {
-            container = try ModelContainer(for: AppSettings.self)
-        } catch {
-            fatalError("Failed to create ModelContainer: \(error)")
-        }
-    }
+
+    var modelContainer: ModelContainer = {
+          let schema = Schema([AppSettings.self])
+          let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+          do {
+              return try ModelContainer(for: schema, configurations: [modelConfiguration]) 
+          } catch {
+              fatalError("Could not create ModelContainer: \(error)")
+          }
+      }()
     var body: some Scene {
         WindowGroup {
             MainContentView()
                 .frame(minWidth: 1100, minHeight: 730)
                 .environmentObject(colorSchemeViewModel)
+                .modelContainer(modelContainer)
         }
         .windowToolbarStyle(.unifiedCompact)
         .windowResizability(.contentSize)
-        .modelContainer(container)
     }
 }
 
 class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDelegate, UNUserNotificationCenterDelegate {
-    private(set) var window: NSWindow!
+    private(set) weak var window: NSWindow?
     private(set) var originalFrame: NSRect?
     var alertManager = AppAlertManager.shared
     let systemConfigService = SystemPreferenceService()
@@ -44,9 +47,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDe
         NSApp.setActivationPolicy(.regular)
         UNUserNotificationCenter.current().delegate = self
         window = NSApp.windows.first
-        window.delegate = self
+        window?.delegate = self
         requestNotificationAuthorization()
-        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
+            guard let self = self else {
+                return nil
+            }
             let modifierFlag = ModifierFlag(event.modifierFlags)
             let character = KeyboardCharacter(event.keyCode)
             KeyboardShortcutHandler.handleEvent(modifierFlag: modifierFlag, character: character)
