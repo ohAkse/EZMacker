@@ -19,6 +19,8 @@ struct MainContentView: View {
             return CategoryType.smartBattery
         }
     }()
+    
+    let factory: ViewModelFactory
     var body: some View {
         NavigationSplitView {
             CategoryView(selectionValue: $selectionValue)
@@ -28,19 +30,19 @@ struct MainContentView: View {
             GeometryReader { _ in
                 switch selectionValue {
                 case .smartBattery:
-                    SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), appSettingService: AppSettingsManager(context: context), appProcessService: AppSmartProcessService(), systemPreferenceService: SystemPreferenceService()))
+                    SmartBatteryView<AppSmartBatteryService>(factory: factory)
                         .environmentObject(colorSchemeViewModel)
                 case .smartWifi:
-                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService(), autoConnectionService: AppSmartAutoconnectWifiService()), appSettingService: AppSettingsManager(context: context), appWifiMonitoringService: AppSmartWifiMonitoringService(wifiClient: CWWiFiClient())))
-                        .environmentObject(colorSchemeViewModel)
-                case .smartNotificationAlarm:
-                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppSettingsManager(context: context), appProcessService: AppSmartProcessService(), batterySetting: BatterySetting(), wifiSetting: WifiSetting(), fileLocatorSetting: FileLocatorSetting()))
+                    SmartWifiView<AppSmartWifiService>(factory: factory)
                         .environmentObject(colorSchemeViewModel)
                 case .smartFileLocator:
-                        SmartFileLocatorView(smartFileLocatorViewModel: SmartFileLocatorViewModel(appSmartFileService: AppSmartFileService(), appSmartFileMonitor: AppSmartFileMonitoringService(), appSmartSettingService: AppSettingsManager(context: context)))
+                    SmartFileLocatorView(factory: factory)
+                        .environmentObject(colorSchemeViewModel)
+                case .smartNotificationAlarm:
+                    SmartNotificationAlarmView(factory: factory)
                         .environmentObject(colorSchemeViewModel)
                 case .smartFileSearch:
-                    SmartFileSearchView(smartFileSearchViewModel: SmartFileSearchViewModel())
+                    SmartFileSearchView(factory: factory)
                         .environmentObject(colorSchemeViewModel)
                 }
             }

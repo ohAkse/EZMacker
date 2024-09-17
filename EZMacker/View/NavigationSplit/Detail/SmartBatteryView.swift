@@ -11,11 +11,18 @@ import EZMackerServiceLib
 
 struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @StateObject var smartBatteryViewModel: SmartBatteryViewModel<ProvidableType>
+    @Environment(\.modelContext) private var context
     @State private(set) var toast: ToastData?
     @State private(set) var isAdapterAnimated = false
     @State private(set) var hasShownToast = false
     @State private(set) var errCount = 0
+    
+    @StateObject private var smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>
+    
+    init(factory: ViewModelFactory) {
+        _smartBatteryViewModel = StateObject(wrappedValue: factory.createSmartBatteryViewModel())
+    }
+    
     var body: some View {
         GeometryReader { geo in
             VStack(spacing: 0) {

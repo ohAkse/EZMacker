@@ -6,6 +6,10 @@ struct SmartNotificationAlarmView: View {
     @State private var toast: ToastData?
     private let baseSpacing = 10.0
     
+    init(factory: ViewModelFactory) {
+        _smartNotificationAlarmViewModel = StateObject(wrappedValue: factory.createSmartNotificationAlarmViewModel())
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: baseSpacing) {
             ScrollView(.vertical, showsIndicators: false) {
