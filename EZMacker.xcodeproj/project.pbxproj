@@ -109,6 +109,7 @@
 		5FE99EA92C995EF800233969 /* SettingsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE99EA82C995EF800233969 /* SettingsKey.swift */; };
 		5FE99EAB2C995F0C00233969 /* SystemServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE99EAA2C995F0C00233969 /* SystemServiceKey.swift */; };
 		5FE99EAD2C995F1E00233969 /* ProcessServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE99EAC2C995F1E00233969 /* ProcessServiceKey.swift */; };
+		5FE99EB52C99605300233969 /* SmartGlobalDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE99EB42C99605300233969 /* SmartGlobalDependency.swift */; };
 		5FEE27C82BE9015400847761 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C72BE9015400847761 /* CategoryView.swift */; };
 		5FEE27CF2BE901D900847761 /* ColorSchemeToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27CE2BE901D900847761 /* ColorSchemeToolbarView.swift */; };
 /* End PBXBuildFile section */
@@ -259,6 +260,7 @@
 		5FE99EA82C995EF800233969 /* SettingsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKey.swift; sourceTree = "<group>"; };
 		5FE99EAA2C995F0C00233969 /* SystemServiceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemServiceKey.swift; sourceTree = "<group>"; };
 		5FE99EAC2C995F1E00233969 /* ProcessServiceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessServiceKey.swift; sourceTree = "<group>"; };
+		5FE99EB42C99605300233969 /* SmartGlobalDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartGlobalDependency.swift; sourceTree = "<group>"; };
 		5FEE27C72BE9015400847761 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		5FEE27CE2BE901D900847761 /* ColorSchemeToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeToolbarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -715,6 +717,7 @@
 				5FE99E762C993EE100233969 /* SmartFileLocatorDependency.swift */,
 				5FE99E7B2C993EF900233969 /* SmartFileSearchDependency.swift */,
 				5FE99E7D2C993F0A00233969 /* SmartNotificationAlarmDependency.swift */,
+				5FE99EB42C99605300233969 /* SmartGlobalDependency.swift */,
 			);
 			path = Dependancy;
 			sourceTree = "<group>";
@@ -1030,6 +1033,7 @@
 				5F3A519A2C71C2D0000B2C2F /* FileManager + Extension.swift in Sources */,
 				5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */,
 				5F485A0D2C69AF7C00B32585 /* EZButtonStyle.swift in Sources */,
+				5FE99EB52C99605300233969 /* SmartGlobalDependency.swift in Sources */,
 				5F16A7DC2C358F07003EA0BE /* FileQueryData.swift in Sources */,
 				5F78156B2C69DF9F00DE5F39 /* EZInnerBackgroundStyle.swift in Sources */,
 				5F027B282C82E18500DF929B /* BatteryMetricsData.swift in Sources */,

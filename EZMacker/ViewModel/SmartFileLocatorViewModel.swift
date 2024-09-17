@@ -33,13 +33,16 @@ class SmartFileLocatorViewModel: ObservableObject {
     }
     
     private func loadSavedData() {
-        if let savedData: Data = appSettingService.loadConfig(.fileLocatorData) {
+        if let savedData: Data = appSettingService.loadConfig(.fileLocatorData),
+           !savedData.isEmpty {
             do {
                 self.savedData = try JSONDecoder().decode(FileTabData.self, from: savedData)
                 self.restoreFileAccess()
             } catch {
                 Logger.writeLog(.error, message: "Failed to decode saved data: \(error)")
             }
+        } else {
+            Logger.writeLog(.info, message: "No Save Data or Empty Data")
         }
     }
     
