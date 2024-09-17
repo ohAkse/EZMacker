@@ -12,7 +12,7 @@ import EZMackerServiceLib
 
 class SmartFileLocatorViewModel: ObservableObject {
     // MARK: - Published Variable
-    @Published  var savedData: FileTabData
+    @Published  var savedData: FileTabData = .init()
     
     // MARK: - Service Variable
     private let appSmartFileService: AppSmartFileProvidable
@@ -24,23 +24,25 @@ class SmartFileLocatorViewModel: ObservableObject {
         self.appSmartFileService = appSmartFileService
         self.appSmartFileMonitor = appSmartFileMonitor
         self.appSettingService = appSmartSettingService
-        self.savedData = FileTabData(tabs: [], selectedTab: nil, fileViewsPerTab: [:])
         loadSavedData()
         setupFileMonitors()
     }
-
+    
     deinit {
         Logger.writeLog(.debug, message: "SmartFileLocatorViewModel deinit called")
     }
     
     private func loadSavedData() {
-        if let savedData: Data = appSettingService.loadConfig(.fileLocatorData) {
+        if let savedData: Data = appSettingService.loadConfig(.fileLocatorData),
+           !savedData.isEmpty {
             do {
                 self.savedData = try JSONDecoder().decode(FileTabData.self, from: savedData)
                 self.restoreFileAccess()
             } catch {
                 Logger.writeLog(.error, message: "Failed to decode saved data: \(error)")
             }
+        } else {
+            Logger.writeLog(.info, message: "No Save Data or Empty Data")
         }
     }
     
@@ -186,12 +188,12 @@ class SmartFileLocatorViewModel: ObservableObject {
             )
             .store(in: &cancellables)
     }
-
+    
     func setFileInfo(fileURL: URL, for id: UUID, in tab: String) {
         updateFileInfo(for: id, in: tab, with: fileURL, sendNotification: false)
         setupFileMonitor(for: id, in: tab, url: fileURL)
     }
-
+    
     private func updateThumbnail(for id: UUID, in tab: String, with url: URL) {
         appSmartFileService.getThumbnail(for: url)
             .receive(on: DispatchQueue.main)
@@ -252,7 +254,7 @@ class SmartFileLocatorViewModel: ObservableObject {
             self.saveData()
         }
     }
-
+    
     func getFileInfo(for id: UUID, in tab: String) -> FileQueryData? {
         return savedData.fileViewsPerTab[tab]?[id]
     }

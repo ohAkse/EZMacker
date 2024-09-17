@@ -9,6 +9,7 @@ import Combine
 import SwiftUI
 import EZMackerUtilLib
 import EZMackerServiceLib
+import SwiftData
 class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: ObservableObject {
     deinit {
         Logger.writeLog(.debug, message: "SmartBatteryViewModel deinit Called")
@@ -25,7 +26,6 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     private let systemPreferenceService: SystemPreferenceAccessible
     private let appSettingService: AppSettingProvidable
     private let appProcessService: AppSmartProcessProvidable
-    
     // MARK: - Flag Variables
     private(set) var isBatteryCapacityAlarmMode = false
     private(set) var isBatteryChargingErrorAlarmMode = false
@@ -38,12 +38,14 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     private(set) var adapterDecodingErrorCount = 0
     private(set) var timer: AnyCancellable?
     private(set) var cancellables = Set<AnyCancellable>()
+    private(set) var modelContext: ModelContext?
     
     init(appSmartBatteryService: ProvidableType, appSettingService: AppSettingProvidable, appProcessService: AppSmartProcessProvidable, systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartBatteryService = appSmartBatteryService
         self.appSettingService = appSettingService
         self.appProcessService = appProcessService
-        self.systemPreferenceService =  systemPreferenceService
+        self.systemPreferenceService = systemPreferenceService
+        
         checkSettingConfig()
         fetchBatteryBasicExtraSpec()
         fetchBatteryBasicSpec()

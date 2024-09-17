@@ -11,9 +11,13 @@ import EZMackerServiceLib
 
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @StateObject var smartWifiViewModel: SmartWifiViewModel<ProvidableType>
+    @StateObject private var smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>
     @State private var toast: ToastData?
-
+    
+    init(factory: ViewModelFactory) {
+        _smartWifiViewModel = StateObject(wrappedValue: factory.createSmartWifiViewModel())
+    }
+    
     var body: some View {
         GeometryReader { geo in
             VStack(spacing: 0) {
@@ -71,7 +75,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
         }
         .frame(width: geo.size.width)  
     }
-
+    
     // Wi-Fi 메인 정보 뷰
     private func wifiMainInfoView(geo: GeometryProxy) -> some View {
         HStack(alignment: .center, spacing: 0) {

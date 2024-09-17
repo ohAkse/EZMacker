@@ -16,6 +16,10 @@ struct SmartFileLocatorView: View {
     @State private var newTabName = ""
     @State private var errorMessage = ""
     
+    init(factory: ViewModelFactory) {
+        _smartFileLocatorViewModel = StateObject(wrappedValue: factory.createSmartFileLocatorViewModel())
+    }
+    
     var body: some View {
         ZStack {
             ScrollView {
@@ -130,15 +134,15 @@ struct SmartFileLocatorView: View {
     private var addTabButton: some View {
         Button(action: { showingAlert = true },
                label: {})
-            .ezButtonImageStyle(
-                imageName: "plus.circle.fill",
-                imageSize: CGSize(width: 30, height: 30),
-                lightModeForegroundColor: ThemeColorType.orange.color,
-                darkModeForegroundColor: ThemeColorType.orange.color,
-                lightModeBackgroundColor: .clear,
-                darkModeBackgroundColor: .clear,
-                frameSize: CGSize(width: 30, height: 30)
-            )
+        .ezButtonImageStyle(
+            imageName: "plus.circle.fill",
+            imageSize: CGSize(width: 30, height: 30),
+            lightModeForegroundColor: ThemeColorType.orange.color,
+            darkModeForegroundColor: ThemeColorType.orange.color,
+            lightModeBackgroundColor: .clear,
+            darkModeBackgroundColor: .clear,
+            frameSize: CGSize(width: 30, height: 30)
+        )
     }
     
     private func fileGridView(for selectedTab: String) -> some View {
