@@ -10,7 +10,8 @@ import CoreWLAN
 import EZMackerServiceLib
 
 struct MainContentView: View {
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    @EnvironmentObject private var colorSchemeViewModel: ColorSchemeViewModel
+    @Environment(\.modelContext) private var context
     @State private var selectionValue: CategoryType = {
         if AppEnvironment.shared.macBookType == .macMini {
             return CategoryType.smartWifi
@@ -18,6 +19,8 @@ struct MainContentView: View {
             return CategoryType.smartBattery
         }
     }()
+    
+    let factory: ViewModelFactory
     var body: some View {
         NavigationSplitView {
             CategoryView(selectionValue: $selectionValue)
@@ -27,23 +30,22 @@ struct MainContentView: View {
             GeometryReader { _ in
                 switch selectionValue {
                 case .smartBattery:
-                    SmartBatteryView(smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>(appSmartBatteryService: AppSmartBatteryService(serviceKey: "AppleSmartBattery"), appSettingService: AppStorageSetting(), appProcessService: AppSmartProcessService(), systemPreferenceService: SystemPreferenceService()))
+                    SmartBatteryView<AppSmartBatteryService>(factory: factory)
                         .environmentObject(colorSchemeViewModel)
                 case .smartWifi:
-                    SmartWifiView(smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>(appSmartWifiService: AppSmartWifiService(serviceKey: "AppleBCMWLANSkywalkInterface"), systemPreferenceService: SystemPreferenceService(), appCoreWLanWifiService: AppCoreWLanWifiService(wifiClient: CWWiFiClient.shared(), wifyKeyChainService: AppWifiKeyChainService(), autoConnectionService: AppSmartAutoconnectWifiService()), appSettingService: AppStorageSetting(), appWifiMonitoringService: AppSmartWifiMonitoringService(wifiClient: CWWiFiClient())))
-                        .environmentObject(colorSchemeViewModel)
-                case .smartNotificationAlarm:
-                    SmartNotificationAlarmView(smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel(appSettingService: AppStorageSetting(), appProcessService: AppSmartProcessService(), batterySetting: BatterySetting(), wifiSetting: WifiSetting(), fileLocatorSetting: FileLocatorSetting()))
+                    SmartWifiView<AppSmartWifiService>(factory: factory)
                         .environmentObject(colorSchemeViewModel)
                 case .smartFileLocator:
-                        SmartFileLocatorView(smartFileLocatorViewModel: SmartFileLocatorViewModel(appSmartFileService: AppSmartFileService(), appSmartFileMonitor: AppSmartFileMonitoringService(), appSmartSettingService: AppStorageSetting()))
+                    SmartFileLocatorView(factory: factory)
+                        .environmentObject(colorSchemeViewModel)
+                case .smartNotificationAlarm:
+                    SmartNotificationAlarmView(factory: factory)
                         .environmentObject(colorSchemeViewModel)
                 case .smartFileSearch:
-                    SmartFileSearchView(smartFileSearchViewModel: SmartFileSearchViewModel())
+                    SmartFileSearchView(factory: factory)
                         .environmentObject(colorSchemeViewModel)
                 }
             }
-            
         }
         .toolbar(id: ToolbarKeyType.MainToolbar.name) {
             ToolbarItem(id: ToolbarKeyType.ColorSchemePicker.name, placement: .primaryAction) {

@@ -12,35 +12,37 @@ import EZMackerServiceLib
 
 class SmartFileLocatorViewModel: ObservableObject {
     // MARK: - Published Variable
-    @Published  var savedData: FileTabData
+    @Published  var savedData: FileTabData = .init()
     
     // MARK: - Service Variable
     private let appSmartFileService: AppSmartFileProvidable
     private let appSmartFileMonitor: AppSmartFileMonitorable
-    private let appSettingService: AppStorageSettingProvidable
+    private let appSettingService: AppSettingProvidable
     private(set) var cancellables = Set<AnyCancellable>()
     
-    init(appSmartFileService: AppSmartFileProvidable, appSmartFileMonitor: AppSmartFileMonitorable, appSmartSettingService: AppStorageSettingProvidable) {
+    init(appSmartFileService: AppSmartFileProvidable, appSmartFileMonitor: AppSmartFileMonitorable, appSmartSettingService: AppSettingProvidable) {
         self.appSmartFileService = appSmartFileService
         self.appSmartFileMonitor = appSmartFileMonitor
         self.appSettingService = appSmartSettingService
-        self.savedData = FileTabData(tabs: [], selectedTab: nil, fileViewsPerTab: [:])
         loadSavedData()
         setupFileMonitors()
     }
-
+    
     deinit {
         Logger.writeLog(.debug, message: "SmartFileLocatorViewModel deinit called")
     }
     
     private func loadSavedData() {
-        if let savedData: Data = appSettingService.loadConfig(.fileLocatorData) {
+        if let savedData: Data = appSettingService.loadConfig(.fileLocatorData),
+           !savedData.isEmpty {
             do {
                 self.savedData = try JSONDecoder().decode(FileTabData.self, from: savedData)
                 self.restoreFileAccess()
             } catch {
                 Logger.writeLog(.error, message: "Failed to decode saved data: \(error)")
             }
+        } else {
+            Logger.writeLog(.info, message: "No Save Data or Empty Data")
         }
     }
     
@@ -88,28 +90,28 @@ class SmartFileLocatorViewModel: ObservableObject {
     
     private func setupFileMonitor(for id: UUID, in tab: String, url: URL) {
         appSmartFileMonitor.startMonitoring(id: id, url: url) { [weak self] id, url in
-            self?.handleFileChange(for: id, in: tab, url: url)
+            self?.onFileChanged(for: id, in: tab, url: url)
         }
     }
     
-    private func handleFileChange(for id: UUID, in tab: String, url: URL) {
+    private func onFileChanged(for id: UUID, in tab: String, url: URL) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             
             if FileManager.default.fileExists(atPath: url.path) {
-                if let oldFileName = self.savedData.fileViewsPerTab[tab]?[id]?.fileName,
+                if let oldFileName = savedData.fileViewsPerTab[tab]?[id]?.fileName,
                    oldFileName != url.lastPathComponent {
-                    self.handleFileRename(oldFileName: oldFileName, newURL: url, id: id, tab: tab)
+                    renameFileName(oldFileName: oldFileName, newURL: url, id: id, tab: tab)
                 } else {
-                    self.updateFileInfo(for: id, in: tab, with: url)
+                    updateFileInfo(for: id, in: tab, with: url)
                 }
             } else {
-                self.handleFileDeletion(id: id, tab: tab)
+                deleteFileInfo(id: id, tab: tab)
             }
         }
     }
     
-    private func handleFileRename(oldFileName: String, newURL: URL, id: UUID, tab: String) {
+    private func renameFileName(oldFileName: String, newURL: URL, id: UUID, tab: String) {
         AppNotificationManager.shared.sendNotification(
             title: "파일 이름 변경",
             subtitle: "\(oldFileName) 이름이 변경되었습니다."
@@ -118,13 +120,11 @@ class SmartFileLocatorViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.savedData.fileViewsPerTab[tab]?.removeValue(forKey: id)
             self.appSmartFileMonitor.stopMonitoring(id: id)
-            
-            let newID = UUID()
-            self.setFileInfo(fileURL: newURL, for: newID, in: tab)
+            self.setFileInfo(fileURL: newURL, for: UUID(), in: tab)
         }
     }
     
-    private func handleFileDeletion(id: UUID, tab: String) {
+    private func deleteFileInfo(id: UUID, tab: String) {
         if let deletedFileName = savedData.fileViewsPerTab[tab]?[id]?.fileName {
             guard let isFileChangeAlarmDisabled: Bool = appSettingService.loadConfig(.isFileChangeAlarmDisabled)  else {return}
             if !isFileChangeAlarmDisabled {
@@ -152,7 +152,7 @@ class SmartFileLocatorViewModel: ObservableObject {
                     case .finished:
                         break
                     case .failure(let error):
-                        print("Error updating file info: \(error.localizedDescription)")
+                        Logger.writeLog(.error, message: error.localizedDescription)
                     }
                 },
                 receiveValue: { [weak self] (fileName, fileSize, fileType, fileURL, date) in
@@ -188,12 +188,12 @@ class SmartFileLocatorViewModel: ObservableObject {
             )
             .store(in: &cancellables)
     }
-
+    
     func setFileInfo(fileURL: URL, for id: UUID, in tab: String) {
         updateFileInfo(for: id, in: tab, with: fileURL, sendNotification: false)
         setupFileMonitor(for: id, in: tab, url: fileURL)
     }
-
+    
     private func updateThumbnail(for id: UUID, in tab: String, with url: URL) {
         appSmartFileService.getThumbnail(for: url)
             .receive(on: DispatchQueue.main)
@@ -254,7 +254,7 @@ class SmartFileLocatorViewModel: ObservableObject {
             self.saveData()
         }
     }
-
+    
     func getFileInfo(for id: UUID, in tab: String) -> FileQueryData? {
         return savedData.fileViewsPerTab[tab]?[id]
     }
@@ -273,7 +273,7 @@ class SmartFileLocatorViewModel: ObservableObject {
             }
             NSWorkspace.shared.open(url)
         } catch {
-            print("Error opening file: \(error.localizedDescription)")
+            Logger.writeLog(.error, message: error.localizedDescription)
         }
     }
 }

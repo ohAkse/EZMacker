@@ -10,6 +10,7 @@ import CoreWLAN
 import Foundation
 import EZMackerUtilLib
 import EZMackerServiceLib
+import EZMackerThreadLib
 
 class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: ObservableObject {
     
@@ -22,10 +23,10 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     private let appSmartWifiService: ProvidableType
     private let systemPreferenceService: SystemPreferenceAccessible
     private let appCoreWLanWifiService: AppCoreWLANWifiProvidable
-    private let appStorageSettingService: AppStorageSettingProvidable
+    private let appStorageSettingService: AppSettingProvidable
     private let appWifiMonitoringService: AppSmartWifiMonitorable
     
-    init(appSmartWifiService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible, appCoreWLanWifiService: AppCoreWLANWifiProvidable, appSettingService: AppStorageSettingProvidable, appWifiMonitoringService: AppSmartWifiMonitorable) {
+    init(appSmartWifiService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible, appCoreWLanWifiService: AppCoreWLANWifiProvidable, appSettingService: AppSettingProvidable, appWifiMonitoringService: AppSmartWifiMonitorable) {
         self.appSmartWifiService = appSmartWifiService
         self.appCoreWLanWifiService = appCoreWLanWifiService
         self.systemPreferenceService = systemPreferenceService
@@ -41,7 +42,7 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     @Published var isConnecting = false
     
     // MARK: - Service Variable
-    private let scanQueue =  DispatchQueue(label: "ezMacker.com", attributes: .concurrent)
+    private let scanQueue = DispatchQueueFactory.createQueue(for: WifiScanQueueConfiguration(), withPov: false)
     private let timerMax = 10
     private(set) var scanResults: [ScaningWifiData] = []
     private(set) var cancellables = Set<AnyCancellable>()
@@ -202,8 +203,8 @@ extension SmartWifiViewModel {
             .store(in: &cancellables)
     }
     func startSearchBestSSid() {
-        guard let bestSSidMode: String = appStorageSettingService.loadConfig(.bestSSidShowMode) else { return }
-        let resultShowMode = BestSSIDShowMode(rawValue: bestSSidMode)
+        guard let bestSSidMode: String = appStorageSettingService.loadConfig(.bestSSIDShowType) else { return }
+        let resultShowMode = BestSSIDShowType(rawValue: bestSSidMode)
         var wifirssiList: [String: Set<Int>] = [:]
         
         let searchTimerPublisher = Timer.publish(every: 1, on: RunLoop.main, in: .common)
@@ -214,7 +215,8 @@ extension SmartWifiViewModel {
             .flatMap { [weak self] _ -> AnyPublisher<[ScaningWifiData], Never> in
                 guard let self = self else { return Just([]).eraseToAnyPublisher() }
                 
-                return Future<[ScaningWifiData], Never> { promise in
+                return Future<[ScaningWifiData], Never> { [weak self] promise in
+                    guard let self = self else { return }
                     self.scanQueue.async {
                         self.appCoreWLanWifiService.getWifiLists(attempts: 1)
                             .catch { error -> AnyPublisher<[ScaningWifiData], Never> in
@@ -223,7 +225,9 @@ extension SmartWifiViewModel {
                             }
                             .sink(
                                 receiveCompletion: { _ in },
-                                receiveValue: { value in promise(.success(value)) }
+                                receiveValue: { value in
+                                    promise(.success(value))
+                                }
                             )
                             .store(in: &self.cancellables)
                     }

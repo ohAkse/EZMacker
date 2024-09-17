@@ -5,11 +5,12 @@
 //  Created by 박유경 on 9/1/24.
 //
 import AppKit
+import EZMackerThreadLib
 
 public struct CommandToolRunner {
     public static func runCommand<T: CoomandExecutable>(command: T, completion: @escaping (String?) -> Void) {
         let group = DispatchGroup()
-        let queue = DispatchQueue(label: "ezMacker.com", attributes: .concurrent)
+        let commandRunQueue = DispatchQueueFactory.createQueue(for: CommandRunQueueConfiguration(), withPov: false)
         let lock = NSLock()
         var results = [String]()
         
@@ -37,7 +38,7 @@ public struct CommandToolRunner {
                 }
             }
             
-            queue.async {
+            commandRunQueue.async {
                 do {
                     try process.run()
                 } catch {

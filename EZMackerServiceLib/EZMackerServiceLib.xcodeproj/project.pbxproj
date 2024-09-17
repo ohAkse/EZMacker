@@ -25,6 +25,7 @@
 		5FE62FA92C84537F00658155 /* AppFileDescriptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE62FA82C84537F00658155 /* AppFileDescriptionType.swift */; };
 		5FE62FAC2C8453B500658155 /* ScanningWifiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE62FAB2C8453B500658155 /* ScanningWifiData.swift */; };
 		5FE62FAE2C8457E900658155 /* ProcessMonitoringData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE62FAD2C8457E900658155 /* ProcessMonitoringData.swift */; };
+		5FE99E8D2C9952AE00233969 /* IORegServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE99E8C2C9952AE00233969 /* IORegServiceKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		5FE62FA82C84537F00658155 /* AppFileDescriptionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFileDescriptionType.swift; sourceTree = "<group>"; };
 		5FE62FAB2C8453B500658155 /* ScanningWifiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningWifiData.swift; sourceTree = "<group>"; };
 		5FE62FAD2C8457E900658155 /* ProcessMonitoringData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessMonitoringData.swift; sourceTree = "<group>"; };
+		5FE99E8C2C9952AE00233969 /* IORegServiceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IORegServiceKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		5FE62F8B2C844FF700658155 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				5FE99E8B2C99524C00233969 /* IOReg */,
 				5FE62F8C2C84500500658155 /* AppSmartBatteryKeyType.swift */,
 				5FE62F8E2C84502400658155 /* AppSmartBatteryPowerSourceType.swift */,
 				5FE62F902C84508500658155 /* AppBCMWLanSkywalkInterfaceType.swift */,
@@ -115,6 +118,14 @@
 				5FE62FAD2C8457E900658155 /* ProcessMonitoringData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5FE99E8B2C99524C00233969 /* IOReg */ = {
+			isa = PBXGroup;
+			children = (
+				5FE99E8C2C9952AE00233969 /* IORegServiceKey.swift */,
+			);
+			path = IOReg;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 				5F5C79472C888C1800C7BFD9 /* AppWifiClientProvidable.swift in Sources */,
 				5FE62FAC2C8453B500658155 /* ScanningWifiData.swift in Sources */,
 				5FE62F9F2C8451C300658155 /* AppSmartProcessService.swift in Sources */,
+				5FE99E8D2C9952AE00233969 /* IORegServiceKey.swift in Sources */,
 				5F5C79392C88761200C7BFD9 /* AppSmartWifiMonitoringService.swift in Sources */,
 				5FE62FA52C8451EF00658155 /* AppWifiKeyChainService.swift in Sources */,
 				5FE62FA72C8451FA00658155 /* AppSmartFileMonitoringService.swift in Sources */,

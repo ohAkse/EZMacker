@@ -1,13 +1,13 @@
 //
-//  EnviromentKey.swift
+//  AppConfigType.swift
 //  EZMacker
 //
-//  Created by 박유경 on 8/17/24.
+//  Created by 박유경 on 9/14/24.
 //
 
 import Foundation
 
-enum EnvironmentKey: String {
+enum AppConfigType: String {
     case sandboxID = "APP_SANDBOX_CONTAINER_ID"
     case macModel = "hw.model"
     

@@ -9,6 +9,7 @@ import Combine
 import SwiftUI
 import EZMackerUtilLib
 import EZMackerServiceLib
+import SwiftData
 class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: ObservableObject {
     deinit {
         Logger.writeLog(.debug, message: "SmartBatteryViewModel deinit Called")
@@ -23,9 +24,8 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     // MARK: - Service Variable
     private let appSmartBatteryService: ProvidableType
     private let systemPreferenceService: SystemPreferenceAccessible
-    private let appSettingService: AppStorageSettingProvidable
+    private let appSettingService: AppSettingProvidable
     private let appProcessService: AppSmartProcessProvidable
-    
     // MARK: - Flag Variables
     private(set) var isBatteryCapacityAlarmMode = false
     private(set) var isBatteryChargingErrorAlarmMode = false
@@ -38,12 +38,14 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     private(set) var adapterDecodingErrorCount = 0
     private(set) var timer: AnyCancellable?
     private(set) var cancellables = Set<AnyCancellable>()
+    private(set) var modelContext: ModelContext?
     
-    init(appSmartBatteryService: ProvidableType, appSettingService: AppStorageSettingProvidable, appProcessService: AppSmartProcessProvidable, systemPreferenceService: SystemPreferenceAccessible) {
+    init(appSmartBatteryService: ProvidableType, appSettingService: AppSettingProvidable, appProcessService: AppSmartProcessProvidable, systemPreferenceService: SystemPreferenceAccessible) {
         self.appSmartBatteryService = appSmartBatteryService
         self.appSettingService = appSettingService
         self.appProcessService = appProcessService
-        self.systemPreferenceService =  systemPreferenceService
+        self.systemPreferenceService = systemPreferenceService
+        
         checkSettingConfig()
         fetchBatteryBasicExtraSpec()
         fetchBatteryBasicSpec()
@@ -223,14 +225,14 @@ extension SmartBatteryViewModel {
                 isBatteryChargingErrorAlarmMode = true
             }
         }
-        if let isBattryCurrentMessageMode: Bool = appSettingService.loadConfig(.isBattryCurrentMessageMode) {
+        if let isBattryCurrentMessageMode: Bool = appSettingService.loadConfig(.isBatteryCurrentMessageMode) {
             if isBattryCurrentMessageMode {
                 isBatteryCapacityAlarmMode = true
             }
         }
         
-        if let selectedExitOption: String = appSettingService.loadConfig(.appExitMode) {
-            if selectedExitOption != "사용안함" {
+        if let selectedExitOption: String = appSettingService.loadConfig(.cpuUsageExitType) {
+            if selectedExitOption != CPUUsageExitType.unused.typeName {
                 isOverFullcpuUsageExitMode = true
             }
         }
@@ -255,8 +257,8 @@ extension SmartBatteryViewModel {
         }
     }
     func needToAppExit() {
-        if let selectedExitOption: String = appSettingService.loadConfig(.appExitMode) {
-            if selectedExitOption != "사용안함" {
+        if let selectedExitOption: String = appSettingService.loadConfig(.cpuUsageExitType) {
+            if selectedExitOption != CPUUsageExitType.unused.typeName {
                 if let cpuUsage = Int.extractNumericPart(from: selectedExitOption) {
                     Logger.writeLog(.debug, message: String(appProcessService.getTotalPercenatage()))
                     if Int(appProcessService.getTotalPercenatage()) > cpuUsage {

@@ -11,6 +11,9 @@ struct SmartFileSearchView: View {
     
     @StateObject var smartFileSearchViewModel: SmartFileSearchViewModel
     @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    init(factory: ViewModelFactory) {
+        _smartFileSearchViewModel = StateObject(wrappedValue: factory.createSmartFileSearchViewModel())
+    }
     
     var body: some View {
         VStack(spacing: 16) {
