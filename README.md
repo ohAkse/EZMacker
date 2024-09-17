@@ -18,8 +18,8 @@
 
 
 ### 🚀 시작하기
-- MacBook Sonoma OS(14.2)버전 이상이면 바로 실행 가능합니다.
-- ❗️ **_Mac Mini의 경우 Battery 정보를 받아올 수 없어 기능 개선 예정_** 입니다.
+- MacBook Sonoma OS(14)버전 이상이면 바로 실행 가능합니다.
+- ❗️ **_Mac Mini의 경우 Battery 정보를 받아올 수 없어 기능 개선 예정_** 입니다. > (MacMini시 배터리 화면 안보이게 수정 완료(테스트 필요)
 
 
 ## 2️⃣ 개발 환경
@@ -120,6 +120,20 @@ case 1. 배터리 완충시간 및 종료시간 로직 개선
 원인: Merge/CombineLatest/Zip의 개념을 혼용하여 스트림 처리가 다소 미흡하게 처리 됨을 확인
 
 대책: 공통로직으로 사용되는 완충시간 및 종료시간의 스트림은 실시간으로 처리 되어야 하기에 CombineLatest로 변경
+
+
+## 7️⃣ 개선작업
+
+case 1. ViewModel DI 구조 개선
+
+이유: 방대해진 Service 객체들에 대한 관리가 조금씩 힘들어지고 있다고 느껴져서 Locator + Factory Method Pattern으로 변경(추가에정)
+
+case 2. Instrument SignPost 기능을 통한 앱 로깅 추가
+
+이유: GCD를 이용하여 work에 대한 Performance 및 Logging에 대한 추적을 용이하기 위한 기능을 추가함(사진 추가예정)
+
+
+
 
 
 
