@@ -21,7 +21,11 @@ public class AppSmartFileMonitoringService: AppSmartFileMonitorable {
 
     public func startMonitoring(id: UUID, url: URL, changeHandler: @escaping (UUID, URL) -> Void) {
         let fileDescriptor = open(url.path, O_EVTONLY)
-        guard fileDescriptor >= 0 else { return }
+        
+        guard fileDescriptor >= 0 else {
+            changeHandler(id, url)
+            return
+        }
         
         let source = DispatchSource.makeFileSystemObjectSource(
             fileDescriptor: fileDescriptor,
