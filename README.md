@@ -83,9 +83,8 @@
 
 
 ## 6️⃣Trouble Shooting
-### - Instrument Profiling을 통한 문제 해결
 
-case 1. 최적의 와이파이 찾기 개선
+## Case 1. 최적의 와이파이 찾기 및 CPU 과사용시 종료하기 개선
 
 <p align="center">
   <img width="1440" alt="before_best_id" src="https://github.com/user-attachments/assets/26f446f8-0aca-4833-bf64-fe08e14f8424">
@@ -106,16 +105,8 @@ case 1. 최적의 와이파이 찾기 개선
 
 대책: DispatchQueue(백그라운드)를 사용하여 Timer Publisher를 Wrapping하여 개선
 
-case 2. CPU 과사용시 종료하기 기능 개선
 
-원인: Process 사용량 관련 로직이 메인스레드에서 실행 됨
-
-대책: Process 사용량은 UI와 직접적인 관련이 없기에 백그라운드 스레드에서 실행하게 변경
-
-
-### - Refactoring을 통한 성능 최적화 
-
-case 1. 배터리 완충시간 및 종료시간 로직 개선
+## Case 2. 배터리 완충시간 및 종료시간 로직 개선
 
 원인: Merge/CombineLatest/Zip의 개념을 혼용하여 스트림 처리가 다소 미흡하게 처리 됨을 확인
 
@@ -124,15 +115,79 @@ case 1. 배터리 완충시간 및 종료시간 로직 개선
 
 ## 7️⃣ 개선작업
 
-case 1. ViewModel DI 구조 개선
+## Case 1: Instrument 로깅 기능 추가
+### 도입 이유
+1. Instrument Profile 기본기능에 대한 한계
+   - 특정 기능/함수에 대한 시작/종료점을 명확히 알수가 없음
+   - 콘솔 로깅을 통해 진행 할 수 있으나, 가시적인 로깅에 대한 불편함을 겪음
+2. GCD Queue Logging의 필요성
+   - Queue간(Serial/Concurrent/Global)의 작업 전환과 병렬 실행 상황을 더 명확히 이해하고 분석할 수 있는 도구가 필요
+   - 실시간으로 앱 성능을 모니터링할 때 각 큐의 작업 실행을 명확히 구분할 수 있는 마킹 기능이 필요
 
-이유: 방대해진 Service 객체들에 대한 관리가 조금씩 힘들어지고 있다고 느껴져서 Locator + Factory Method Pattern으로 변경(추가에정)
+### 해결 방안
+  - GCD/Custom Queue에 대한 os_signpost를 기능을 추가
 
-case 2. Instrument SignPost 기능을 통한 앱 로깅 추가
+### 결과:
+1. 효율적인 이벤트 추적 구현
+   - 앱의 주요 기능 실행 시작과 종료 시점을 코드 내에서 간단히 마킹 가능
+   - 콘솔 출력 없이 Instrument 도구를 통해 각 작업의 소요 시간을 밀리초 단위로 확인 가능
+   - 시각적인 타임라인을 통해 이벤트 흐름을 직관적으로 파악 가능
+2. 실시간 성능 분석 가능
+   - 개발 및 테스트 과정에서 실시간으로 앱 성능을 모니터링 가능
 
-이유: GCD를 이용하여 work에 대한 Performance 및 Logging에 대한 추적을 용이하기 위한 기능을 추가함(사진 추가예정)
+### 기대효과:
+1. 개발 생산성 향상 
+   - Profile Logging을 통해 디버깅 시간 감소
+
+<p align="center">
+  <img width="1000" alt="signpost" src="https://github.com/user-attachments/assets/adde7028-53ae-4ef4-b2c0-dda6b2319ca4">
+  <br>
+  <em>Signpost Logging</em>
+</p>
+
+<br>
+<br>
+
+<p align="center">
+  <img width="1000" alt="concurrency" src="https://github.com/user-attachments/assets/e7d56829-9dfa-485a-89e3-c29db2986b48">
+  <br>
+  <em>Concurrency Monitoring</em>
+</p>
+
+## Case 2. ViewModel DI 구조 개선
+### 변경 이유:
+1. 뷰모델 확장성에 대한 고민: 
+   - 서비스 객체 증가로 관리 복잡성 증가
+   - 코드 관리와 유지보수가 어려워지는 추세
+   - Compile Warning > Compile Error로 진행 중(SwiftLint)
+
+### 해결 방안
+   - Locator + Factory Method 패턴을 결합하여 추상화 진행
+
+### 결과
+1. 개선 방향 
+   - ViewModel 의존성 주입 구조가 단순화 
+   - 코드의 확장성과 유지보수성이 향상
+   - Unit Test를 위한 구조화 기반 마련
+  
+### 기대효과:
+1. Mocking Unit Test
+   - 테스트 용이성 증가로 개발 효율성 향상 예상
 
 
+<p align="center">
+  <img width="1000" alt="di-before" src="https://github.com/user-attachments/assets/23ade5dd-db30-4f62-a97a-6cb2d53f425d">
+  <br>
+  <em>변경전: 코드 복잡성이 증가 </em>
+</p>
+  <br>
+<br>
+
+<p align="center">
+  <img width="1000" alt="di-after" src="https://github.com/user-attachments/assets/84c0f45a-c43b-4968-b333-07314fb3792b">
+  <br>
+  <em>변경후: Locator + Factory Method Pattern을 이용하여 복잡성 감소</em>
+</p>
 
 
 
