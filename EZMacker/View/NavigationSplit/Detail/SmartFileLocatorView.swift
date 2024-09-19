@@ -10,7 +10,7 @@ import EZMackerUtilLib
 
 struct SmartFileLocatorView: View {
     @StateObject var smartFileLocatorViewModel: SmartFileLocatorViewModel
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     @State private var showingAlert = false
     @State private var showingErrorAlert = false
     @State private var newTabName = ""
@@ -59,7 +59,7 @@ struct SmartFileLocatorView: View {
         }
         .cornerRadius(12)
         .padding(30)
-        .environmentObject(colorSchemeViewModel)
+        .environmentObject(appThemeManager)
     }
     
     private func fileGridContent(for selectedTab: String) -> some View {
@@ -215,7 +215,7 @@ struct FileView: View {
     let fileInfo: FileQueryData
     let onDelete: () -> Void
     let onDrop: (URL) -> Void
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     @State private var isTargeted: Bool = false
     
     var body: some View {

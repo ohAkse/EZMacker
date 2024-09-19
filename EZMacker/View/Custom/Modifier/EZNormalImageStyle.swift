@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZNormalImageStyle: ViewModifier {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     let imageScale: Image.Scale
     let width: CGFloat
     let height: CGFloat
@@ -21,7 +21,7 @@ struct EZNormalImageStyle: ViewModifier {
     }
     
     private func imageColorForTheme() -> Color {
-        switch colorScheme.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightBlue.color
         case ColorSchemeModeType.Dark.title:

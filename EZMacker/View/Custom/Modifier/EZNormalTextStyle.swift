@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZNormalTextStyle: ViewModifier {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     let fontSize: CGFloat
     let isBold: Bool
 
@@ -20,7 +20,7 @@ struct EZNormalTextStyle: ViewModifier {
     }
 
     private func textColorForTheme() -> Color {
-        switch colorScheme.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightBlack.color
         case ColorSchemeModeType.Dark.title:

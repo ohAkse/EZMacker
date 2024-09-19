@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZImage: View {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     let systemName: String
     let isSystemName: Bool
     var body: some View {
@@ -31,7 +31,7 @@ struct EZImage: View {
     }
     
     private func getImageForegroundStyle() -> [Color] {
-        switch colorScheme.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return [.gray, .blue]
         case ColorSchemeModeType.Dark.title:
@@ -42,7 +42,7 @@ struct EZImage: View {
         }
     }
     private func getImageBackground() -> Color {
-        switch colorScheme.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightWhite.color
         case ColorSchemeModeType.Dark.title:

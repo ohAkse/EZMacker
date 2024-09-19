@@ -10,8 +10,7 @@ import EZMackerUtilLib
 import EZMackerServiceLib
 
 struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
-    @Environment(\.modelContext) private var context
+    @EnvironmentObject var appThemeManager: AppThemeManager
     @State private(set) var toast: ToastData?
     @State private(set) var isAdapterAnimated = false
     @State private(set) var hasShownToast = false

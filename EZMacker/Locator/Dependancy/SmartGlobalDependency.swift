@@ -7,6 +7,7 @@
 
 import Foundation
 import EZMackerServiceLib
+import EZMackerUtilLib
 
 struct SmartGlobalDependency: DependencyRegisterable {
     func register(in container: DependencyContainer) {

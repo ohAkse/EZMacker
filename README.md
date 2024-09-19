@@ -18,14 +18,14 @@
 
 
 ### 🚀 시작하기
-- MacBook Sonoma OS(14.2)버전 이상이면 바로 실행 가능합니다.
-- ❗️ **_Mac Mini의 경우 Battery 정보를 받아올 수 없어 기능 개선 예정_** 입니다.
+- MacBook Sonoma OS(14)버전 이상이면 바로 실행 가능합니다.
+- ❗️ **_Mac Mini의 경우 Battery 정보를 받아올 수 없어 기능 개선 예정_** 입니다. > (MacMini시 배터리 화면 안보이게 수정 완료(테스트 필요)
 
 
 ## 2️⃣ 개발 환경
 <div style="display: flex;">
     <img src="https://img.shields.io/badge/XCode(15.2)-F05138?style=for-the-badge&logo=Swift&logoColor=white">
-    <img src="https://img.shields.io/badge/MacOS(14.2)-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
+    <img src="https://img.shields.io/badge/MacOS(14.0)-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
     <img src="https://img.shields.io/badge/SwiftLint-39477F?style=for-the-badge&logo=Realm&logoColor=white">
     <img src="https://img.shields.io/badge/SwiftUI-147EFB?style=for-the-badge&logo=Xcode&logoColor=white">
   <img src="https://img.shields.io/badge/Appkit-147EFB?style=for-the-badge&logo=Xcode&logoColor=white">
@@ -52,12 +52,15 @@
   <em>개발 아키텍쳐 다이어그램</em>
 </p>
 
-### 프로젝트 구조
-아키텍쳐 패턴: MVVM
-비즈니스 로직 처리 패턴: Combine을 활용한 비동기 처리 패턴
+### 프로젝트 구조 소개
+- MVVM 구조를 활용하여 뷰와 비즈니스 로직을 분리하였으며, Combine을 주로 사용하여 개발
+- ThreadLib/ServiceLib/UtilLib 총 3가지의 주요 기능 라이브러리를 포함시켜 역할을 분리하여 개발을 진행
+- 재사용 가능한 UI 컴포넌트와 모듈화된 기능을 설계 및 작성
 
 ### 특이사항
-소멸자(Deinit) 로그를 통해 메모리 누수와 관련된 작업을 확인하며 개발
+- 소멸자(Deinit) 로그를 통해 메모리 누수와 관련된 작업을 확인하며 개발
+- FatalError(Debug)를 이용한 실수 방지
+- Instrumnet를 활용한 앱 안정화 및 퍼포먼스 확인
 
 ## 5️⃣시연영상
 
@@ -83,9 +86,7 @@
 
 
 ## 6️⃣Trouble Shooting
-### - Instrument Profiling을 통한 문제 해결
-
-case 1. 최적의 와이파이 찾기 개선
+## Case 1. 최적의 와이파이 찾기 및 CPU 과사용시 종료하기 개선
 
 <p align="center">
   <img width="1440" alt="before_best_id" src="https://github.com/user-attachments/assets/26f446f8-0aca-4833-bf64-fe08e14f8424">
@@ -106,20 +107,106 @@ case 1. 최적의 와이파이 찾기 개선
 
 대책: DispatchQueue(백그라운드)를 사용하여 Timer Publisher를 Wrapping하여 개선
 
-case 2. CPU 과사용시 종료하기 기능 개선
 
-원인: Process 사용량 관련 로직이 메인스레드에서 실행 됨
-
-대책: Process 사용량은 UI와 직접적인 관련이 없기에 백그라운드 스레드에서 실행하게 변경
-
-
-### - Refactoring을 통한 성능 최적화 
-
-case 1. 배터리 완충시간 및 종료시간 로직 개선
+## Case 2. 배터리 완충시간 및 종료시간 로직 개선
 
 원인: Merge/CombineLatest/Zip의 개념을 혼용하여 스트림 처리가 다소 미흡하게 처리 됨을 확인
 
 대책: 공통로직으로 사용되는 완충시간 및 종료시간의 스트림은 실시간으로 처리 되어야 하기에 CombineLatest로 변경
+
+
+## 7️⃣ 개선작업
+
+## Case 1: Instrument 로깅 기능 추가
+### 도입 이유
+1. Instrument Profile 기본기능에 대한 한계
+   - 특정 기능/함수에 대한 시작/종료점을 명확히 알수가 없음
+   - 콘솔 로깅을 통해 진행 할 수 있으나, 가시적인 로깅에 대한 불편함을 겪음
+2. GCD Queue Logging의 필요성
+   - Queue간(Serial/Concurrent/Global)의 작업 전환과 병렬 실행 상황을 더 명확히 이해하고 분석할 수 있는 도구가 필요
+   - 실시간으로 앱 성능을 모니터링할 때 각 큐의 작업 실행을 명확히 구분할 수 있는 마킹 기능이 필요
+
+### 해결 방안
+  - GCD/Custom Queue에 대한 os_signpost를 기능을 추가
+
+### 결과:
+1. 효율적인 이벤트 추적 구현
+   - 앱의 주요 기능 실행 시작과 종료 시점을 코드 내에서 간단히 마킹 가능
+   - 콘솔 출력 없이 Instrument 도구를 통해 각 작업의 소요 시간을 밀리초 단위로 확인 가능
+   - 시각적인 타임라인을 통해 이벤트 흐름을 직관적으로 파악 가능
+2. 실시간 성능 분석 가능
+   - 개발 및 테스트 과정에서 실시간으로 앱 성능을 모니터링 가능
+
+### 기대효과:
+1. 개발 생산성 향상 
+   - Profile Logging을 통해 디버깅 시간 감소
+
+<p align="center">
+  <img width="1000" alt="signpost" src="https://github.com/user-attachments/assets/adde7028-53ae-4ef4-b2c0-dda6b2319ca4">
+  <br>
+  <em>Signpost Logging</em>
+</p>
+
+<br>
+<br>
+
+<p align="center">
+  <img width="1000" alt="concurrency" src="https://github.com/user-attachments/assets/e7d56829-9dfa-485a-89e3-c29db2986b48">
+  <br>
+  <em>Concurrency Monitoring</em>
+</p>
+
+## Case 2. ViewModel DI 구조 개선
+### 변경 이유:
+1. 뷰모델 확장성에 대한 고민: 
+   - 서비스 객체 증가로 관리 복잡성 증가
+   - 코드 관리와 유지보수가 어려워지는 추세
+   - Compile Warning > Compile Error로 진행 중(SwiftLint)
+
+### 해결 방안
+   - Locator + Factory Method 패턴을 결합하여 추상화 진행
+
+### 결과
+1. 개선 방향 
+   - ViewModel 의존성 주입 구조가 단순화 
+   - 코드의 확장성과 유지보수성이 향상
+   - Unit Test를 위한 구조화 기반 마련
+  
+### 기대효과:
+1. Mocking Unit Test
+   - 테스트 용이성 증가로 개발 효율성 향상 예상
+
+
+## 변경전
+<p align="center">
+  <img width="700" alt="di-before" src="https://github.com/user-attachments/assets/bbdf4689-d59e-4112-9cc8-52874bada602">
+  <br>
+  <em>코드 복잡성 증가, 가독성 저하 </em>
+</p>
+  <br>
+<br>
+
+
+## 변경후
+
+<p align="center">
+  <img width="700" alt="di-after" src="https://github.com/user-attachments/assets/6bd30bea-ddc1-43d5-af9c-1a1e388a2ac0">
+  <br>
+  <em>화면에 해당하는 서비스 객체 로케이터에 등록 </em>
+</p>
+
+
+
+<p align="center">
+  <img width="700" alt="di-after" src="https://github.com/user-attachments/assets/5f219e59-7b49-4a4e-9cd4-9b9c5c92e3b5">
+  <br>
+  <em>
+    로케이터에 등록 된 팩토리 의존성 주입
+  </em>
+</p>
+
+이후 각 화면에 해당하는 서비스 객체들을 Resolve함으로써 코드 관리가 용이해짐
+
 
 
 

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-class ColorSchemeViewModel: ObservableObject {
+class AppThemeManager: ObservableObject {
     @AppStorage(AppStorageKey.colorSchemeType.name) var colorScheme: String = (AppStorageKey.colorSchemeType.byDefault as? String ?? "")
     @Published var isShowChooseColorScheme: Bool = false
     @Published var rotateDegree: Double = 0

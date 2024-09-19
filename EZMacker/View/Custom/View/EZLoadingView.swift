@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZLoadingView: View {
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     @State private var isCircleRotating = true
     @State private var animateStart = false
     @State private var animateEnd = true
@@ -62,7 +62,7 @@ struct EZLoadingView: View {
     }
 
     private func foregroundColorForTheme() -> Color {
-        switch colorSchemeViewModel.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.cyan.color
         case ColorSchemeModeType.Dark.title:
