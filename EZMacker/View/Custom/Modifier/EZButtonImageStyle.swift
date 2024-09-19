@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZButtonImageStyle: ButtonStyle {
-    @EnvironmentObject var colorSchemeViewModel: AppToolbarViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     
     let imageSize: CGSize
     let imageName: String
@@ -43,7 +43,7 @@ struct EZButtonImageStyle: ButtonStyle {
     }
     
     private func foregroundColorForTheme() -> Color {
-        switch colorSchemeViewModel.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return lightModeForegroundColor
         case ColorSchemeModeType.Dark.title:
@@ -55,7 +55,7 @@ struct EZButtonImageStyle: ButtonStyle {
     }
 
     private func backgroundColorForTheme() -> Color? {
-        switch colorSchemeViewModel.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return lightModeBackgroundColor
         case ColorSchemeModeType.Dark.title:

@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZBackgroundStyle: ViewModifier {
-    @EnvironmentObject var colorSchemeViewModel: AppToolbarViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     
     func body(content: Content) -> some View {
         content
@@ -20,7 +20,7 @@ struct EZBackgroundStyle: ViewModifier {
             .cornerRadius(12)
     }
     private func foregroundColorForTheme() -> Color {
-        switch colorSchemeViewModel.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color
         case ColorSchemeModeType.Dark.title:

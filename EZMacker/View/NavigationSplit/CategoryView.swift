@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryView: View {
-    @EnvironmentObject var colorSchemeViewModel: AppToolbarViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     @Binding var selectionValue: CategoryType
     @State private var showAlert = false
     var body: some View {

@@ -10,7 +10,7 @@ import CoreWLAN
 import EZMackerServiceLib
 
 struct MainContentView: View {
-    @EnvironmentObject private var colorSchemeViewModel: AppToolbarViewModel
+    @EnvironmentObject private var appThemeManager: AppThemeManager
     @State private var selectionValue: CategoryType = {
         if AppEnvironment.shared.macBookType == .macMini {
             return CategoryType.smartWifi
@@ -54,20 +54,20 @@ struct MainContentView: View {
                     Capsule()
                         .stroke(.blue, lineWidth: 1)
                 }
-                .opacity(colorSchemeViewModel.isShowChooseColorScheme ? 1 : 0)
-                .animation(.linear(duration: 0.2), value: colorSchemeViewModel.rotateDegree)
+                .opacity(appThemeManager.isShowChooseColorScheme ? 1 : 0)
+                .animation(.linear(duration: 0.2), value: appThemeManager.rotateDegree)
             }
             
             ToolbarItem(id: ToolbarKeyType.ColorSchemeButton.name, placement: .primaryAction) {
                 Button {
-                    colorSchemeViewModel.toggleColorScheme()
+                    appThemeManager.toggleColorScheme()
                 } label: {
                     Image(systemName: ToolbarImage.colorSchemeButton.systemName)
-                        .rotationEffect(.degrees(colorSchemeViewModel.rotateDegree))
-                        .animation(.linear(duration: 0.2), value: colorSchemeViewModel.rotateDegree)
+                        .rotationEffect(.degrees(appThemeManager.rotateDegree))
+                        .animation(.linear(duration: 0.2), value: appThemeManager.rotateDegree)
                 }
             }
         }
-        .preferredColorScheme(colorSchemeViewModel.colorScheme == ColorSchemeModeType.Dark.title ? .dark : .light)
+        .preferredColorScheme(appThemeManager.colorScheme == ColorSchemeModeType.Dark.title ? .dark : .light)
     }
 }

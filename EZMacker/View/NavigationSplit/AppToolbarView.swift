@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: 차후 탭에따라 기능 추가시 이름 및 역핧 추가할것
 struct AppToolbarView: View {
-    @EnvironmentObject var colorSchemeViewModel: AppToolbarViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     
     let buttonTitle: String
     let buttonTag: Int
@@ -17,7 +17,7 @@ struct AppToolbarView: View {
     var body: some View {
         Button {
             let scheme = buttonTag == 0 ? ColorSchemeModeType.Light.title : ColorSchemeModeType.Dark.title
-            colorSchemeViewModel.updateColorScheme(to: scheme)
+            appThemeManager.updateColorScheme(to: scheme)
         } label: {
             Text(buttonTitle)
         }

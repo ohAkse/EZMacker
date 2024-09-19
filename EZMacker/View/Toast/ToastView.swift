@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ToastView: View {
-    @EnvironmentObject var colorScheme: AppToolbarViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     var type: ToastType
     var title: String
     var message: String
@@ -22,11 +22,11 @@ struct ToastView: View {
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(colorScheme.getColorScheme() == ColorSchemeModeType.Light.title ? ThemeColorType.lightBlack.color : ThemeColorType.lightBlack.color)
+                        .foregroundColor(appThemeManager.getColorScheme() == ColorSchemeModeType.Light.title ? ThemeColorType.lightBlack.color : ThemeColorType.lightBlack.color)
                     
                     Text(message)
                         .font(.system(size: 12))
-                        .foregroundColor(colorScheme.getColorScheme() == ColorSchemeModeType.Light.title ? ThemeColorType.lightBlack.color : ThemeColorType.lightBlack.color)
+                        .foregroundColor(appThemeManager.getColorScheme() == ColorSchemeModeType.Light.title ? ThemeColorType.lightBlack.color : ThemeColorType.lightBlack.color)
                 }
                 
                 Spacer(minLength: 10)

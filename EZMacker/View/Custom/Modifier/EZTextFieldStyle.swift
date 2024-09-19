@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZTextFieldStyle: ViewModifier {
-    @EnvironmentObject var colorSchemeViewModel: AppToolbarViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     let customBackgroundColor: Color?
     let customBorderColor: Color?
     
@@ -31,7 +31,7 @@ struct EZTextFieldStyle: ViewModifier {
     }
     
     private func backgroundColorForTheme() -> Color {
-        switch colorSchemeViewModel.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color
         case ColorSchemeModeType.Dark.title:
@@ -42,7 +42,7 @@ struct EZTextFieldStyle: ViewModifier {
         }
     }
     private func foregroundColorForTheme() -> Color {
-        switch colorSchemeViewModel.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.black.color.opacity(0.7)
         case ColorSchemeModeType.Dark.title:

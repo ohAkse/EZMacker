@@ -14,8 +14,7 @@ import SwiftData
 @main
 struct EZMackerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject private var colorSchemeViewModel = AppToolbarViewModel()
-    
+    @StateObject private var appThemeManager: AppThemeManager
     let modelContainer: ModelContainer
     let viewModelFactory: ViewModelFactory
     
@@ -23,6 +22,8 @@ struct EZMackerApp: App {
         let (container, modelContainer) = Self.configEnvironment()
         self.modelContainer = modelContainer
         self.viewModelFactory = ViewModelFactory(container: container)
+        
+         _appThemeManager = StateObject(wrappedValue: AppThemeManager())
     }
     private static func configEnvironment() -> (DependencyContainer, ModelContainer) {
         let modelContainer = configModelContainer()
@@ -50,7 +51,7 @@ struct EZMackerApp: App {
     }
     
     private static func registerDependencies(in container: DependencyContainer) {
-        let dependencyList: [DependencyRegisterable] = 
+        let dependencyList: [DependencyRegisterable] =
         [
             SmartGlobalDependency(),
             SmartBatteryDependency(),
@@ -65,7 +66,7 @@ struct EZMackerApp: App {
         WindowGroup {
             MainContentView(factory: viewModelFactory)
                 .frame(minWidth: 1100, minHeight: 730)
-                .environmentObject(colorSchemeViewModel)
+                .environmentObject(appThemeManager)
                 .modelContainer(modelContainer)
         }
         .windowToolbarStyle(.unifiedCompact)

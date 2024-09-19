@@ -8,7 +8,7 @@
 import SwiftUI
 import EZMackerUtilLib
 struct EZBatteryBarView: View {
-    @EnvironmentObject var colorSchemeViewModel: AppToolbarViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     @State var isUpdateAnimated  = false
     @Binding var batteryLevel: Double
     @Binding var isAdapterConnected: Bool
@@ -84,7 +84,7 @@ struct EZBatteryBarView: View {
     }
     
     private func batteryImageColors() -> [Color] {
-        switch colorSchemeViewModel.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return [ThemeColorType.lightGreen.color, ThemeColorType.lightGray.color]
         case ColorSchemeModeType.Dark.title:
@@ -96,7 +96,7 @@ struct EZBatteryBarView: View {
     }
     
     private func textForegroundColor() -> Color {
-        switch colorSchemeViewModel.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.black.color.opacity(0.5)
         case ColorSchemeModeType.Dark.title:
