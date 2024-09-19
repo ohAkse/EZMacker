@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZInnerBackgroundStyle: ViewModifier {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var colorScheme: AppToolbarViewModel
     
     func body(content: Content) -> some View {
         content

@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZNormalImageStyle: ViewModifier {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var colorScheme: AppToolbarViewModel
     let imageScale: Image.Scale
     let width: CGFloat
     let height: CGFloat

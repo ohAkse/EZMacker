@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZImage: View {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var colorScheme: AppToolbarViewModel
     let systemName: String
     let isSystemName: Bool
     var body: some View {

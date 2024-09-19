@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZNormalTextStyle: ViewModifier {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var colorScheme: AppToolbarViewModel
     let fontSize: CGFloat
     let isBold: Bool
 

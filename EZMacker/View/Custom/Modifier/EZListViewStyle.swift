@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EZListViewStyle: ViewModifier {
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    @EnvironmentObject var colorSchemeViewModel: AppToolbarViewModel
     
     func body(content: Content) -> some View {
         content

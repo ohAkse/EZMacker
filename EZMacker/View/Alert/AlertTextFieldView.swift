@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct AlertTextFieldView: View {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var colorScheme: AppToolbarViewModel
     @Binding var textFieldValue: String
     @Binding var isPresented: Bool
     var ssid: String

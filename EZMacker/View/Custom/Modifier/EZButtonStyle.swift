@@ -8,7 +8,7 @@
 import SwiftUI
 import EZMackerUtilLib
 struct EZButtonStyle: ButtonStyle {
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    @EnvironmentObject var colorSchemeViewModel: AppToolbarViewModel
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

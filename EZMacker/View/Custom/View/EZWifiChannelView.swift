@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EZWifiChannelView: View {
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    @EnvironmentObject var colorSchemeViewModel: AppToolbarViewModel
     @Binding var channelBandwidth: Int
     @Binding var channelFrequency: Int
     @Binding var channel: Int

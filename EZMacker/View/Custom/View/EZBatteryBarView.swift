@@ -8,7 +8,7 @@
 import SwiftUI
 import EZMackerUtilLib
 struct EZBatteryBarView: View {
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    @EnvironmentObject var colorSchemeViewModel: AppToolbarViewModel
     @State var isUpdateAnimated  = false
     @Binding var batteryLevel: Double
     @Binding var isAdapterConnected: Bool

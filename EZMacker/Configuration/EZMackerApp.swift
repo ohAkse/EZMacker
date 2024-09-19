@@ -14,7 +14,7 @@ import SwiftData
 @main
 struct EZMackerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject private var colorSchemeViewModel = ColorSchemeViewModel()
+    @StateObject private var colorSchemeViewModel = AppToolbarViewModel()
     
     let modelContainer: ModelContainer
     let viewModelFactory: ViewModelFactory

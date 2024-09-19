@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ToastView: View {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var colorScheme: AppToolbarViewModel
     var type: ToastType
     var title: String
     var message: String

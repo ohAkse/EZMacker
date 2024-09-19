@@ -10,7 +10,7 @@ import EZMackerUtilLib
 
 struct EZBatteryInfoView: View {
     
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var colorScheme: AppToolbarViewModel
     @State private var isAnimated = false
     let imageName: String
     let isSystem: Bool

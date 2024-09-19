@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EZWifiDetailView: View {
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    @EnvironmentObject var colorSchemeViewModel: AppToolbarViewModel
     @Binding var band: String
     @Binding var hardwareAddress: String
     @Binding var locale: String

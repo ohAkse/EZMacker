@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SmartNotificationAlarmView: View {
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    @EnvironmentObject var colorSchemeViewModel: AppToolbarViewModel
     @StateObject var smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel
     @State private var toast: ToastData?
     private let baseSpacing = 10.0

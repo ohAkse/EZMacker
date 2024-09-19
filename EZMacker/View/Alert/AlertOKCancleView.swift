@@ -10,7 +10,7 @@ import EZMackerUtilLib
 
 struct AlertOKCancleView: View {
     @Binding var isPresented: Bool
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var colorScheme: AppToolbarViewModel
     var title: String
     var subtitle: String
     var content: String
