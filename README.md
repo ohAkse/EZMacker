@@ -25,7 +25,7 @@
 ## 2️⃣ 개발 환경
 <div style="display: flex;">
     <img src="https://img.shields.io/badge/XCode(15.2)-F05138?style=for-the-badge&logo=Swift&logoColor=white">
-    <img src="https://img.shields.io/badge/MacOS(14.2)-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
+    <img src="https://img.shields.io/badge/MacOS(14.0)-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
     <img src="https://img.shields.io/badge/SwiftLint-39477F?style=for-the-badge&logo=Realm&logoColor=white">
     <img src="https://img.shields.io/badge/SwiftUI-147EFB?style=for-the-badge&logo=Xcode&logoColor=white">
   <img src="https://img.shields.io/badge/Appkit-147EFB?style=for-the-badge&logo=Xcode&logoColor=white">
@@ -52,12 +52,15 @@
   <em>개발 아키텍쳐 다이어그램</em>
 </p>
 
-### 프로젝트 구조
-아키텍쳐 패턴: MVVM
-비즈니스 로직 처리 패턴: Combine을 활용한 비동기 처리 패턴
+### 프로젝트 구조 소개
+- MVVM 구조를 활용하여 뷰와 비즈니스 로직을 분리하였으며, Combine을 주로 사용하여 개발
+- ThreadLib/ServiceLib/UtilLib 총 3가지의 주요 기능 라이브러리를 포함시켜 역할을 분리하여 개발을 진행
+- 재사용 가능한 UI 컴포넌트와 모듈화된 기능을 설계 및 작성
 
 ### 특이사항
-소멸자(Deinit) 로그를 통해 메모리 누수와 관련된 작업을 확인하며 개발
+- 소멸자(Deinit) 로그를 통해 메모리 누수와 관련된 작업을 확인하며 개발
+- FatalError(Debug)를 이용한 실수 방지
+- Instrumnet를 활용한 앱 안정화 및 퍼포먼스 확인
 
 ## 5️⃣시연영상
 
@@ -83,7 +86,6 @@
 
 
 ## 6️⃣Trouble Shooting
-
 ## Case 1. 최적의 와이파이 찾기 및 CPU 과사용시 종료하기 개선
 
 <p align="center">
@@ -175,19 +177,35 @@
    - 테스트 용이성 증가로 개발 효율성 향상 예상
 
 
+## 변경전
 <p align="center">
-  <img width="1000" alt="di-before" src="https://github.com/user-attachments/assets/23ade5dd-db30-4f62-a97a-6cb2d53f425d">
+  <img width="700" alt="di-before" src="https://github.com/user-attachments/assets/bbdf4689-d59e-4112-9cc8-52874bada602">
   <br>
-  <em>변경전: 코드 복잡성이 증가 </em>
+  <em>코드 복잡성 증가, 가독성 저하 </em>
 </p>
   <br>
 <br>
 
+
+## 변경후
+
 <p align="center">
-  <img width="1000" alt="di-after" src="https://github.com/user-attachments/assets/84c0f45a-c43b-4968-b333-07314fb3792b">
+  <img width="700" alt="di-after" src="https://github.com/user-attachments/assets/6bd30bea-ddc1-43d5-af9c-1a1e388a2ac0">
   <br>
-  <em>변경후: Locator + Factory Method Pattern을 이용하여 복잡성 감소</em>
+  <em>화면에 해당하는 서비스 객체 로케이터에 등록 </em>
 </p>
+
+
+
+<p align="center">
+  <img width="700" alt="di-after" src="https://github.com/user-attachments/assets/5f219e59-7b49-4a4e-9cd4-9b9c5c92e3b5">
+  <br>
+  <em>
+    로케이터에 등록 된 팩토리 의존성 주입
+  </em>
+</p>
+
+이후 각 화면에 해당하는 서비스 객체들을 Resolve함으로써 코드 관리가 용이해짐
 
 
 
