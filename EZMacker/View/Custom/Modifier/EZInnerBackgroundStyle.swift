@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZInnerBackgroundStyle: ViewModifier {
-    @EnvironmentObject var colorScheme: ColorSchemeViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     
     func body(content: Content) -> some View {
         content
@@ -18,7 +18,7 @@ struct EZInnerBackgroundStyle: ViewModifier {
     }
     
     private func innerBackgroundTheme() -> Color {
-        switch colorScheme.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.white.color.opacity(0.5)
         case ColorSchemeModeType.Dark.title:

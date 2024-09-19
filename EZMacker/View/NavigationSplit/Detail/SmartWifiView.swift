@@ -10,7 +10,7 @@ import CoreWLAN
 import EZMackerServiceLib
 
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     @StateObject private var smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>
     @State private var toast: ToastData?
     
@@ -67,7 +67,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             EZWifiChannelView(channelBandwidth: $smartWifiViewModel.radioChannelData.channelBandwidth, channelFrequency: $smartWifiViewModel.radioChannelData.channelFrequency, channel: $smartWifiViewModel.radioChannelData.channel)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
-                .environmentObject(colorSchemeViewModel)
+                .environmentObject(appThemeManager)
             Spacer(minLength: 10)
             EZWifiDetailView(band: $smartWifiViewModel.radioChannelData.band, hardwareAddress: $smartWifiViewModel.radioChannelData.macAddress, locale: $smartWifiViewModel.radioChannelData.locale)
                 .frame(maxWidth: .infinity)

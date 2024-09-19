@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EZListViewStyle: ViewModifier {
-    @EnvironmentObject var colorSchemeViewModel: ColorSchemeViewModel
+    @EnvironmentObject var appThemeManager: AppThemeManager
     
     func body(content: Content) -> some View {
         content
@@ -19,7 +19,7 @@ struct EZListViewStyle: ViewModifier {
     }
     
     private func backgroundColorForTheme() -> Color {
-        switch colorSchemeViewModel.getColorScheme() {
+        switch appThemeManager.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color
         case ColorSchemeModeType.Dark.title:
