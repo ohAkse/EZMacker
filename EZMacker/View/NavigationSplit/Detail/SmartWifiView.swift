@@ -26,14 +26,15 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                     .padding(.top, 20)
             }
             .onReceive(smartWifiViewModel.$wifiRequestStatus) { wifiStatus in
-                if wifiStatus != .none {
-                    if wifiStatus == .success {
-                        toast = ToastData(type: .info, title: "성공", message: wifiStatus.description, duration: 5)
-                    } else if wifiStatus == .disconnected {
-                        toast = ToastData(type: .warning, title: "정보", message: wifiStatus.description, duration: 5)
-                    } else {
-                        toast = ToastData(type: .error, title: "에러", message: wifiStatus.description, duration: 5)
-                    }
+                switch wifiStatus {
+                case .none:
+                    break
+                case .success:
+                    toast = ToastData(type: .info, title: "성공", message: wifiStatus.description, duration: 5)
+                case .disconnected:
+                    toast = ToastData(type: .warning, title: "정보", message: wifiStatus.description, duration: 5)
+                default:
+                    toast = ToastData(type: .error, title: "에러", message: wifiStatus.description, duration: 5)
                 }
             }
             .onAppear {
@@ -43,6 +44,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             .onDisappear {
                 smartWifiViewModel.stopWifiTimer()
             }
+            .toastView(toast: $toast)
         }
         .sheet(isPresented: $smartWifiViewModel.showAlert) {
             AlertOKCancleView(
@@ -54,7 +56,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
         }
         .navigationTitle(CategoryType.smartWifi.title)
         .padding(30)
-        .toastView(toast: $toast)
+        
     }
     
     // Wi-Fi 세부 정보 뷰
@@ -118,7 +120,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             await smartWifiViewModel.fetchWifiListInfo()
             let status = smartWifiViewModel.getWifiRequestStatus()
             if status == .scanningFailed {
-                toast = ToastData(type: .error, title: "에러", message: status.description, duration: 5)
+                toast = ToastData(type: .error, title: "에러", message: status.description, duration: 100)
             }
         }
     }
