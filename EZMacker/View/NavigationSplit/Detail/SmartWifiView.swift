@@ -30,11 +30,11 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                 case .none:
                     break
                 case .success:
-                    toast = ToastData(type: .info, title: "성공", message: wifiStatus.description)
+                    toast = ToastData(type: .info, message: wifiStatus.description)
                 case .disconnected:
-                    toast = ToastData(type: .warning, title: "정보", message: wifiStatus.description)
+                    toast = ToastData(type: .warning, message: wifiStatus.description)
                 default:
-                    toast = ToastData(type: .error, title: "에러", message: wifiStatus.description)
+                    toast = ToastData(type: .error, message: wifiStatus.description)
                 }
             }
             .onAppear {
@@ -98,7 +98,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                                 await smartWifiViewModel.fetchWifiListInfo()
                                 let status = smartWifiViewModel.getWifiRequestStatus()
                                 if status == .scanningFailed {
-                                    toast = ToastData(type: .error, title: "에러", message: status.description, duration: 5)
+                                    toast = ToastData(type: .error, message: status.description)
                                 }
                             }
                         },
@@ -120,7 +120,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             await smartWifiViewModel.fetchWifiListInfo()
             let status = smartWifiViewModel.getWifiRequestStatus()
             if status == .scanningFailed {
-                toast = ToastData(type: .error, title: "에러", message: status.description, duration: 100)
+                toast = ToastData(type: .error, message: status.description)
             }
         }
     }

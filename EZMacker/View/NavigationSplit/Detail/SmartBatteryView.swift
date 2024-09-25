@@ -138,11 +138,9 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
         if !hasShownToast {
             if chargeErrorType.isFullyCharged() {
                 toast = ToastData(type: .warning,
-                                  title: "경고",
                                   message: "배터리가 충전 대기 중입니다. 충전을 원할 시 어댑터를 다시 꽂거나 상단 메뉴의 배터리 탭에서'지금 완전 충전'을 눌러 충전을 재개하세요.")
             } else {
                 toast = ToastData(type: .info,
-                                  title: "정보",
                                   message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 약 3분정도 시간이 소요됩니다.")
             }
             hasShownToast = true
