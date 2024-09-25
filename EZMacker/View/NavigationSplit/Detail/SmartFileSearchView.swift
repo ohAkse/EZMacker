@@ -10,7 +10,7 @@ import SwiftUI
 struct SmartFileSearchView: View {
     
     @StateObject var smartFileSearchViewModel: SmartFileSearchViewModel
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     init(factory: ViewModelFactory) {
         _smartFileSearchViewModel = StateObject(wrappedValue: factory.createSmartFileSearchViewModel())
     }

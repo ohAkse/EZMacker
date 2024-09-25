@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EZListRowStyle: ViewModifier {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     
     func body(content: Content) -> some View {
         content

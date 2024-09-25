@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZBatteryAdapterView: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     let size: CGFloat = FontSizeType.medium.size
     let title: String
     let content: String

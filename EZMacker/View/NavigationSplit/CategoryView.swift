@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryView: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     @Binding var selectionValue: CategoryType
     @State private var showAlert = false
     var body: some View {

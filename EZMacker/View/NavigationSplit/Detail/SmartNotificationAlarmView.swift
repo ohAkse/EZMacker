@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SmartNotificationAlarmView: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     @StateObject var smartNotificationAlarmViewModel: SmartNotificationAlarmViewModel
     @State private var toast: ToastData?
     private let baseSpacing = 10.0
@@ -115,7 +115,7 @@ struct SmartNotificationAlarmView: View {
             Spacer()
             Button("확인") {
                 smartNotificationAlarmViewModel.saveConfig()
-                toast = ToastData(type: .info, title: "정보", message: "저장이 완료되었습니다.", duration: 3)
+                toast = ToastData(type: .info, message: "저장이 완료되었습니다.", duration: 3)
             }
             .frame(width: 55, height: 45)
             .ezButtonStyle()

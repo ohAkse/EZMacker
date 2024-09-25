@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZContent: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     let size: CGFloat = FontSizeType.small.size
     let content: String
     

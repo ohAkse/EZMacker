@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ToastView: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     var type: ToastType
     var title: String
     var message: String
@@ -20,7 +20,7 @@ struct ToastView: View {
                     .foregroundColor(type.themeColor)
                 
                 VStack(alignment: .leading) {
-                    Text(title)
+                    Text(type.title)
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(appThemeManager.getColorScheme() == ColorSchemeModeType.Light.title ? ThemeColorType.lightBlack.color : ThemeColorType.lightBlack.color)
                     
@@ -77,7 +77,7 @@ struct ToastModifier: ViewModifier {
                 Spacer()
                 ToastView(
                     type: toast.type,
-                    title: toast.title,
+                    title: toast.type.title,
                     message: toast.message) {
                         dismissToast()
                     }
@@ -85,7 +85,7 @@ struct ToastModifier: ViewModifier {
             .transition(.move(edge: .bottom))
         }
     }
-    
+        
     private func showToast() {
         guard let toast = toast else { return }
         

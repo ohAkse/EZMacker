@@ -11,7 +11,7 @@ import EZMackerUtilLib
 import EZMackerServiceLib
 
 struct EZWifiMainView: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     @Binding var ssid: String
     @Binding var wifiLists: [ScaningWifiData]
     @State private var password: String = ""
@@ -88,7 +88,7 @@ struct EZWifiMainView: View {
                                 .padding(.trailing, 5)
                             Button(action: {
                                 onFindBestWifi()
-                                toast = ToastData(type: .info, title: "정보", message: "최적의 와이파이를 찾고 있습니다.")
+                                toast = ToastData(type: .info, message: "최적의 와이파이를 찾고 있습니다.")
                                 
                             }, label: {})
                                 .ezButtonImageStyle(imageName: "arrow.clockwise.circle")

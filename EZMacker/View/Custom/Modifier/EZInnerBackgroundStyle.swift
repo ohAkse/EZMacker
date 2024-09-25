@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZInnerBackgroundStyle: ViewModifier {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     
     func body(content: Content) -> some View {
         content

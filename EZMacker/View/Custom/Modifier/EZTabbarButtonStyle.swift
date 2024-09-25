@@ -8,7 +8,7 @@
 import SwiftUI
 import EZMackerUtilLib
 struct EZTabbarButtonStyle: ButtonStyle {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

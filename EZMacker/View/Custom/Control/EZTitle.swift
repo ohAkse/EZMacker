@@ -8,7 +8,7 @@
 import SwiftUI
 import EZMackerUtilLib
 struct EZTitle: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     let size: CGFloat = FontSizeType.small.size
     let title: String
     

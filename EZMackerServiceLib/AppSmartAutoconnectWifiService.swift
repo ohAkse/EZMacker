@@ -52,7 +52,6 @@ public class AppSmartAutoconnectWifiService: AppSmartAutoconnectWifiServiceProvi
         
         return String.Encoding.utf8.decode(passwordData)
     }
-    // TODO: 차후 기능 추가
     public func deletePassword(for ssid: String) {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,

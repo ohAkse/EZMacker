@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EZWifiStrengthView: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     @Binding var wifiStrength: Int
     @State var wifiPower: String = ""
     var body: some View {

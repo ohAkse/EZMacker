@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZTextFieldStyle: ViewModifier {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     let customBackgroundColor: Color?
     let customBorderColor: Color?
     

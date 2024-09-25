@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZImage: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     let systemName: String
     let isSystemName: Bool
     var body: some View {

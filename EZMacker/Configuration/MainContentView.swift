@@ -10,7 +10,7 @@ import CoreWLAN
 import EZMackerServiceLib
 
 struct MainContentView: View {
-    @EnvironmentObject private var appThemeManager: AppThemeManager
+    @EnvironmentObject private var appThemeManager: SystemThemeService
     @State private var selectionValue: CategoryType = {
         if AppEnvironment.shared.macBookType == .macMini {
             return CategoryType.smartWifi
