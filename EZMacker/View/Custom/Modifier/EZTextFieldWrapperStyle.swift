@@ -8,7 +8,7 @@
 import SwiftUI
 import EZMackerUtilLib
 struct EZTextFieldWrapperStyle: ViewModifier {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
 
     func body(content: Content) -> some View {
         content

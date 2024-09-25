@@ -10,7 +10,7 @@ import EZMackerUtilLib
 import EZMackerServiceLib
 
 struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     @State private(set) var toast: ToastData?
     @State private(set) var isAdapterAnimated = false
     @State private(set) var hasShownToast = false
@@ -142,7 +142,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
             toast = ToastData(type: .warning,
                               title: "경고",
                               message: "배터리가 충전 대기 중입니다. 충전을 원할 시 어댑터를 다시 꽂거나 상단 메뉴의 배터리 탭에서'지금 완전 충전'을 눌러 충전을 재개하세요.",
-                              duration: 600)
+                              duration: 5)
             hasShownToast = true
         }
     }

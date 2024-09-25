@@ -11,7 +11,7 @@ import EZMackerUtilLib
 import EZMackerServiceLib
 
 struct EZWifiMainView: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     @Binding var ssid: String
     @Binding var wifiLists: [ScaningWifiData]
     @State private var password: String = ""

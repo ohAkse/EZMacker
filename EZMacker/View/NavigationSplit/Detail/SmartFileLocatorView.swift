@@ -10,7 +10,7 @@ import EZMackerUtilLib
 
 struct SmartFileLocatorView: View {
     @StateObject var smartFileLocatorViewModel: SmartFileLocatorViewModel
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     @State private var showingAlert = false
     @State private var showingErrorAlert = false
     @State private var newTabName = ""
@@ -215,7 +215,7 @@ struct FileView: View {
     let fileInfo: FileQueryData
     let onDelete: () -> Void
     let onDrop: (URL) -> Void
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     @State private var isTargeted: Bool = false
     
     var body: some View {

@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: 차후 탭에따라 기능 추가시 이름 및 역핧 추가할것
 struct AppToolbarView: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     
     let buttonTitle: String
     let buttonTag: Int

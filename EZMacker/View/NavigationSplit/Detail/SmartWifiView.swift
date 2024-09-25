@@ -10,7 +10,7 @@ import CoreWLAN
 import EZMackerServiceLib
 
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var appThemeManager: SystemThemeService
     @StateObject private var smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>
     @State private var toast: ToastData?
     

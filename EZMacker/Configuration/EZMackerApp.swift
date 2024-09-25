@@ -14,7 +14,7 @@ import SwiftData
 @main
 struct EZMackerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject private var appThemeManager: AppThemeManager
+    @StateObject private var appThemeManager: SystemThemeService
     let modelContainer: ModelContainer
     let viewModelFactory: ViewModelFactory
     
@@ -23,7 +23,7 @@ struct EZMackerApp: App {
         self.modelContainer = modelContainer
         self.viewModelFactory = ViewModelFactory(container: container)
         
-         _appThemeManager = StateObject(wrappedValue: AppThemeManager())
+         _appThemeManager = StateObject(wrappedValue: SystemThemeService())
     }
     private static func configEnvironment() -> (DependencyContainer, ModelContainer) {
         let modelContainer = configModelContainer()
