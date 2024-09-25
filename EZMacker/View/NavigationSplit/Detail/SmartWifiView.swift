@@ -30,11 +30,11 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                 case .none:
                     break
                 case .success:
-                    toast = ToastData(type: .info, title: "성공", message: wifiStatus.description, duration: 5)
+                    toast = ToastData(type: .info, title: "성공", message: wifiStatus.description)
                 case .disconnected:
-                    toast = ToastData(type: .warning, title: "정보", message: wifiStatus.description, duration: 5)
+                    toast = ToastData(type: .warning, title: "정보", message: wifiStatus.description)
                 default:
-                    toast = ToastData(type: .error, title: "에러", message: wifiStatus.description, duration: 5)
+                    toast = ToastData(type: .error, title: "에러", message: wifiStatus.description)
                 }
             }
             .onAppear {
