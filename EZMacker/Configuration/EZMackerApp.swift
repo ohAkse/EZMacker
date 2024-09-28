@@ -14,7 +14,7 @@ import SwiftData
 @main
 struct EZMackerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject private var appThemeManager: SystemThemeService
+    @StateObject private var systemThemeService: SystemThemeService
     let modelContainer: ModelContainer
     let viewModelFactory: ViewModelFactory
     
@@ -23,7 +23,7 @@ struct EZMackerApp: App {
         self.modelContainer = modelContainer
         self.viewModelFactory = ViewModelFactory(container: container)
         
-         _appThemeManager = StateObject(wrappedValue: SystemThemeService())
+         _systemThemeService = StateObject(wrappedValue: SystemThemeService())
     }
     private static func configEnvironment() -> (DependencyContainer, ModelContainer) {
         let modelContainer = configModelContainer()
@@ -51,22 +51,26 @@ struct EZMackerApp: App {
     }
     
     private static func registerDependencies(in container: DependencyContainer) {
-        let dependencyList: [DependencyRegisterable] =
+        var dependencyList: [DependencyRegisterable] =
         [
             SmartGlobalDependency(),
             SmartBatteryDependency(),
             SmartWifiDependency(),
             SmartFileLocatorDependency(),
             SmartFileSearchDependency(),
-            SmartNotificationAlarmDependency()
+            SmartNotificationAlarmDependency(),
+            SmartImageTunerDependency()
         ]
+        #if DEBUG
+        dependencyList.append(SmartMockDependency())
+        #endif
         dependencyList.forEach { $0.register(in: container) }
     }
     var body: some Scene {
         WindowGroup {
             MainContentView(factory: viewModelFactory)
                 .frame(minWidth: 1100, minHeight: 730)
-                .environmentObject(appThemeManager)
+                .environmentObject(systemThemeService)
                 .modelContainer(modelContainer)
         }
         .windowToolbarStyle(.unifiedCompact)

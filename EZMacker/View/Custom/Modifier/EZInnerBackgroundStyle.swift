@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZInnerBackgroundStyle: ViewModifier {
-    @EnvironmentObject var appThemeManager: SystemThemeService
+    @EnvironmentObject var systemThemeService: SystemThemeService
     
     func body(content: Content) -> some View {
         content
@@ -18,14 +18,14 @@ struct EZInnerBackgroundStyle: ViewModifier {
     }
     
     private func innerBackgroundTheme() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.white.color.opacity(0.5)
         case ColorSchemeModeType.Dark.title:
             return ThemeColorType.softWhite.color
         default:
             Logger.fatalErrorMessage("colorScheme is Empty")
-            return Color.primary  
+            return Color.primary
         }
     }
 }

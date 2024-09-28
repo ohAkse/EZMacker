@@ -55,4 +55,16 @@ class ViewModelFactory {
             fileLocatorSetting: container.resolve(FileLocatorSettingConfigurable.self, forKey: NotificationAlarmKey.fileLocatorSetting.value)
         )
     }
+    func createSmartImageTunerViewModel() -> SmartImageTunerViewModel {
+        return SmartImageTunerViewModel()
+    }
+}
+
+// MARK: UI용 Preview Factory 주입
+extension ViewModelFactory {
+    static var preview: ViewModelFactory {
+        let container = DependencyContainer.shared
+        SmartMockDependency().register(in: container)
+        return ViewModelFactory(container: container)
+    }
 }

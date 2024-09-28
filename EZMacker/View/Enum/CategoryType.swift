@@ -5,9 +5,8 @@
 //  Created by 박유경 on 5/5/24.
 //
 
-import Foundation
 enum CategoryType: CaseIterable {
-    case smartBattery, smartFileSearch, smartWifi, smartNotificationAlarm, smartFileLocator
+    case smartBattery, smartFileSearch, smartWifi, smartNotificationAlarm, smartFileLocator, smartImageTuner
     var title: String {
         switch self {
         case .smartBattery: return "스마트 배터리"
@@ -15,6 +14,7 @@ enum CategoryType: CaseIterable {
         case .smartWifi: return "스마트 와이파이"
         case .smartFileLocator: return "스마트 파일 로케이터"
         case .smartNotificationAlarm: return "알람 메시지"
+        case .smartImageTuner: return "스마트 이미지튜너"
         }
     }
     
@@ -25,6 +25,7 @@ enum CategoryType: CaseIterable {
         case .smartWifi: return "wifi"
         case .smartFileLocator: return "square.grid.3x1.folder.fill.badge.plus"
         case .smartNotificationAlarm: return "gearshape.fill"
+        case .smartImageTuner: return "pencil.and.scribble"
         }
     }
 }

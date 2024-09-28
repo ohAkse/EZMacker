@@ -10,7 +10,7 @@ import CoreWLAN
 import EZMackerServiceLib
 
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
-    @EnvironmentObject var appThemeManager: SystemThemeService
+    @EnvironmentObject var systemThemeService: SystemThemeService
     @StateObject private var smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>
     @State private var toast: ToastData?
     
@@ -69,13 +69,13 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             EZWifiChannelView(channelBandwidth: $smartWifiViewModel.radioChannelData.channelBandwidth, channelFrequency: $smartWifiViewModel.radioChannelData.channelFrequency, channel: $smartWifiViewModel.radioChannelData.channel)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
-                .environmentObject(appThemeManager)
+                .environmentObject(systemThemeService)
             Spacer(minLength: 10)
             EZWifiDetailView(band: $smartWifiViewModel.radioChannelData.band, hardwareAddress: $smartWifiViewModel.radioChannelData.macAddress, locale: $smartWifiViewModel.radioChannelData.locale)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
         }
-        .frame(width: geo.size.width)  
+        .frame(width: geo.size.width)
     }
     
     // Wi-Fi 메인 정보 뷰

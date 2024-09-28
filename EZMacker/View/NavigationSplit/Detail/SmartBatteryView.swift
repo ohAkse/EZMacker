@@ -10,13 +10,11 @@ import EZMackerUtilLib
 import EZMackerServiceLib
 
 struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
-    @EnvironmentObject var systemThemeService: SystemThemeService
+    @StateObject private var smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>
     @State private(set) var toast: ToastData?
     @State private(set) var isAdapterAnimated = false
     @State private(set) var hasShownToast = false
     @State private(set) var errCount = 0
-    
-    @StateObject private var smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>
     
     init(factory: ViewModelFactory) {
         _smartBatteryViewModel = StateObject(wrappedValue: factory.createSmartBatteryViewModel())

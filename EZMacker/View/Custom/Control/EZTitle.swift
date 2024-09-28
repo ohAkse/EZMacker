@@ -8,7 +8,7 @@
 import SwiftUI
 import EZMackerUtilLib
 struct EZTitle: View {
-    @EnvironmentObject var appThemeManager: SystemThemeService
+    @EnvironmentObject var systemThemeService: SystemThemeService
     let size: CGFloat = FontSizeType.small.size
     let title: String
     
@@ -26,7 +26,7 @@ struct EZTitle: View {
             .shadow(radius: 5)
     }
     private func getHeaderFontStyles() -> [Color] {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return [ThemeColorType.lightBlack.color, ThemeColorType.lightYellow.color]
         case ColorSchemeModeType.Dark.title:

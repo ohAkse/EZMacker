@@ -10,7 +10,7 @@ import EZMackerUtilLib
 
 struct AlertOKCancleView: View {
     @Binding var isPresented: Bool
-    @EnvironmentObject var appThemeManager: SystemThemeService
+    @EnvironmentObject var systemThemeService: SystemThemeService
     var title: String
     var subtitle: String
     var content: String
@@ -59,7 +59,7 @@ struct AlertOKCancleView: View {
     }
     
     private func backgroundColorForTheme() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color
         case ColorSchemeModeType.Dark.title:

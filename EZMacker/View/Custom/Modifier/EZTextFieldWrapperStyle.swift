@@ -7,8 +7,9 @@
 
 import SwiftUI
 import EZMackerUtilLib
+
 struct EZTextFieldWrapperStyle: ViewModifier {
-    @EnvironmentObject var appThemeManager: SystemThemeService
+    @EnvironmentObject var systemThemeService: SystemThemeService
 
     func body(content: Content) -> some View {
         content
@@ -30,7 +31,7 @@ struct EZTextFieldWrapperStyle: ViewModifier {
     }
     
     private func backgroundColorForTheme() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.white.color
         case ColorSchemeModeType.Dark.title:

@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZContent: View {
-    @EnvironmentObject var appThemeManager: SystemThemeService
+    @EnvironmentObject var systemThemeService: SystemThemeService
     let size: CGFloat = FontSizeType.small.size
     let content: String
     
@@ -21,7 +21,7 @@ struct EZContent: View {
         
     }
     private func getContentFontStyles() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightBlack.color
         case ColorSchemeModeType.Dark.title:

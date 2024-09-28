@@ -27,6 +27,10 @@
 		5F1012B22BF39EBD00589C9B /* EZBatteryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012B12BF39EBD00589C9B /* EZBatteryInfoView.swift */; };
 		5F16A7DC2C358F07003EA0BE /* FileQueryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F16A7DB2C358F07003EA0BE /* FileQueryData.swift */; };
 		5F1A91B12BF8E48F0078F4F8 /* battery_charging_animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */; };
+		5F2890422CA7E17900602B78 /* SmartImageTunerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890412CA7E17900602B78 /* SmartImageTunerView.swift */; };
+		5F2890472CA7E18900602B78 /* SmartImageTunerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890462CA7E18900602B78 /* SmartImageTunerViewModel.swift */; };
+		5F2890492CA7E28A00602B78 /* SmartImageTunerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */; };
+		5F28904B2CA7E96800602B78 /* SmartMockDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */; };
 		5F3604162C38214A00C1B84B /* SmartFileLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */; };
 		5F3604182C38230400C1B84B /* SmartFileLocatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */; };
 		5F36041A2C38259400C1B84B /* SmartFileSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604192C38259400C1B84B /* SmartFileSearchView.swift */; };
@@ -122,6 +126,27 @@
 			remoteGlobalIDString = 5F0DAC802C957AC300BB3488;
 			remoteInfo = EZMackerThreadLib;
 		};
+		5F2890522CA7F42900602B78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F0DAC8F2C957AE800BB3488 /* EZMackerThreadLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F0DAC7F2C957AC300BB3488;
+			remoteInfo = EZMackerThreadLib;
+		};
+		5F2890572CA7F43000602B78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FE62F7D2C844EE800658155 /* EZMackerServiceLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5FE62F6D2C844ED300658155;
+			remoteInfo = EZMackerServiceLib;
+		};
+		5F2890592CA7F43400602B78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FE62F222C843CEF00658155 /* EZMackerUtilLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5FE62F122C843CDC00658155;
+			remoteInfo = EZMackerUtilLib;
+		};
 		5F36B2252BE7AB3100E08935 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F36B20B2BE7AB3000E08935 /* Project object */;
@@ -173,6 +198,10 @@
 		5F1012B12BF39EBD00589C9B /* EZBatteryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZBatteryInfoView.swift; sourceTree = "<group>"; };
 		5F16A7DB2C358F07003EA0BE /* FileQueryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileQueryData.swift; sourceTree = "<group>"; };
 		5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = battery_charging_animation.gif; sourceTree = "<group>"; };
+		5F2890412CA7E17900602B78 /* SmartImageTunerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartImageTunerView.swift; sourceTree = "<group>"; };
+		5F2890462CA7E18900602B78 /* SmartImageTunerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartImageTunerViewModel.swift; sourceTree = "<group>"; };
+		5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartImageTunerDependency.swift; sourceTree = "<group>"; };
+		5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartMockDependency.swift; sourceTree = "<group>"; };
 		5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileLocatorViewModel.swift; sourceTree = "<group>"; };
 		5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileLocatorView.swift; sourceTree = "<group>"; };
 		5F3604192C38259400C1B84B /* SmartFileSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileSearchView.swift; sourceTree = "<group>"; };
@@ -538,6 +567,7 @@
 				5F97C3832BFA133A00B0DC56 /* SmartWifiViewModel.swift */,
 				5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */,
 				5F36041B2C3825B500C1B84B /* SmartFileSearchViewModel.swift */,
+				5F2890462CA7E18900602B78 /* SmartImageTunerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -718,6 +748,8 @@
 				5FE99E7B2C993EF900233969 /* SmartFileSearchDependency.swift */,
 				5FE99E7D2C993F0A00233969 /* SmartNotificationAlarmDependency.swift */,
 				5FE99EB42C99605300233969 /* SmartGlobalDependency.swift */,
+				5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */,
+				5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */,
 			);
 			path = Dependancy;
 			sourceTree = "<group>";
@@ -781,6 +813,7 @@
 				5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */,
 				5F3604192C38259400C1B84B /* SmartFileSearchView.swift */,
 				5F027B2B2C82EC3900DF929B /* SmartBatteryView.swift */,
+				5F2890412CA7E17900602B78 /* SmartImageTunerView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -800,6 +833,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				5F28905A2CA7F43400602B78 /* PBXTargetDependency */,
+				5F2890582CA7F43000602B78 /* PBXTargetDependency */,
+				5F2890532CA7F42900602B78 /* PBXTargetDependency */,
 			);
 			name = EZMacker;
 			packageProductDependencies = (
@@ -1043,6 +1079,8 @@
 				5F485A0B2C69AE8C00B32585 /* EZListRowStyle.swift in Sources */,
 				5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */,
 				5F36041A2C38259400C1B84B /* SmartFileSearchView.swift in Sources */,
+				5F2890422CA7E17900602B78 /* SmartImageTunerView.swift in Sources */,
+				5F28904B2CA7E96800602B78 /* SmartMockDependency.swift in Sources */,
 				5F0DAC3A2C953DB000BB3488 /* AppEnviroment.swift in Sources */,
 				5F9DAB4C2C79C207000563A2 /* WifiConnectData.swift in Sources */,
 				5F97C3842BFA133A00B0DC56 /* SmartWifiViewModel.swift in Sources */,
@@ -1057,6 +1095,7 @@
 				5FDDCABB2C188152006A528A /* TextFieldRepresentableView.swift in Sources */,
 				5FE99EA92C995EF800233969 /* SettingsKey.swift in Sources */,
 				5F0DAC4F2C954F3000BB3488 /* BestSSIDShowType.swift in Sources */,
+				5F2890492CA7E28A00602B78 /* SmartImageTunerDependency.swift in Sources */,
 				5F0DAC402C9544F500BB3488 /* AppSettingManager.swift in Sources */,
 				5FE99E6F2C993BA100233969 /* ViewModelFactory.swift in Sources */,
 				5FE7B8CE2C1DA5E300AA841E /* AlertOKCancleView.swift in Sources */,
@@ -1074,6 +1113,7 @@
 				5FE99EA12C995E5500233969 /* WifiServiceKey.swift in Sources */,
 				5FE99E7C2C993EF900233969 /* SmartFileSearchDependency.swift in Sources */,
 				5F0DAC3E2C9544A100BB3488 /* AppSettings.swift in Sources */,
+				5F2890472CA7E18900602B78 /* SmartImageTunerViewModel.swift in Sources */,
 				5F6D4E6A2BE88AD9004B94F8 /* ToolbarKeyType.swift in Sources */,
 				5F0DAC432C95453800BB3488 /* AppStorageKey.swift in Sources */,
 			);
@@ -1099,6 +1139,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5F2890532CA7F42900602B78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EZMackerThreadLib;
+			targetProxy = 5F2890522CA7F42900602B78 /* PBXContainerItemProxy */;
+		};
+		5F2890582CA7F43000602B78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EZMackerServiceLib;
+			targetProxy = 5F2890572CA7F43000602B78 /* PBXContainerItemProxy */;
+		};
+		5F28905A2CA7F43400602B78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EZMackerUtilLib;
+			targetProxy = 5F2890592CA7F43400602B78 /* PBXContainerItemProxy */;
+		};
 		5F36B2262BE7AB3100E08935 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F36B2122BE7AB3000E08935 /* EZMacker */;

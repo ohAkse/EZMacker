@@ -10,12 +10,12 @@ import CoreWLAN
 import EZMackerServiceLib
 
 struct MainContentView: View {
-    @EnvironmentObject private var appThemeManager: SystemThemeService
+    @EnvironmentObject private var systemThemeService: SystemThemeService
     @State private var selectionValue: CategoryType = {
         if AppEnvironment.shared.macBookType == .macMini {
             return CategoryType.smartWifi
         } else {
-            return CategoryType.smartBattery
+            return CategoryType.smartImageTuner
         }
     }()
     private let factory: ViewModelFactory
@@ -41,6 +41,8 @@ struct MainContentView: View {
                 SmartNotificationAlarmView(factory: factory)
             case .smartFileSearch:
                 SmartFileSearchView(factory: factory)
+            case .smartImageTuner:
+                SmartImageTunerView(factory: factory)
             }
         }
         .toolbar(id: ToolbarKeyType.MainToolbar.name) {
@@ -54,20 +56,20 @@ struct MainContentView: View {
                     Capsule()
                         .stroke(.blue, lineWidth: 1)
                 }
-                .opacity(appThemeManager.isShowChooseColorScheme ? 1 : 0)
-                .animation(.linear(duration: 0.2), value: appThemeManager.rotateDegree)
+                .opacity(systemThemeService.isShowChooseColorScheme ? 1 : 0)
+                .animation(.linear(duration: 0.2), value: systemThemeService.rotateDegree)
             }
             
             ToolbarItem(id: ToolbarKeyType.ColorSchemeButton.name, placement: .primaryAction) {
                 Button {
-                    appThemeManager.toggleColorScheme()
+                    systemThemeService.toggleColorScheme()
                 } label: {
                     Image(systemName: ToolbarImage.colorSchemeButton.systemName)
-                        .rotationEffect(.degrees(appThemeManager.rotateDegree))
-                        .animation(.linear(duration: 0.2), value: appThemeManager.rotateDegree)
+                        .rotationEffect(.degrees(systemThemeService.rotateDegree))
+                        .animation(.linear(duration: 0.2), value: systemThemeService.rotateDegree)
                 }
             }
         }
-        .preferredColorScheme(appThemeManager.colorScheme == ColorSchemeModeType.Dark.title ? .dark : .light)
+        .preferredColorScheme(systemThemeService.colorScheme == ColorSchemeModeType.Dark.title ? .dark : .light)
     }
 }

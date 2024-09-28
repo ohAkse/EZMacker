@@ -8,7 +8,7 @@
 import SwiftUI
 import EZMackerUtilLib
 struct EZButtonStyle: ButtonStyle {
-    @EnvironmentObject var appThemeManager: SystemThemeService
+    @EnvironmentObject var systemThemeService: SystemThemeService
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -20,7 +20,7 @@ struct EZButtonStyle: ButtonStyle {
     }
     
     private func backgroundColorForTheme() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return Color.blue
         case ColorSchemeModeType.Dark.title:
