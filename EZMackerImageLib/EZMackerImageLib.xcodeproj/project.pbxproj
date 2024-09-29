@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5FCA104B2CA962690064A494 /* ImageSenderWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104A2CA962690064A494 /* ImageSenderWrapper.swift */; };
+		5FCA104D2CA962910064A494 /* ImageSenderBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104C2CA962910064A494 /* ImageSenderBridge.mm */; };
+		5FCA10512CA963070064A494 /* ImageSenderProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104F2CA963070064A494 /* ImageSenderProcessor.cpp */; };
+		5FCA10522CA963070064A494 /* ImageSenderProcessor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5FCA10502CA963070064A494 /* ImageSenderProcessor.hpp */; };
+		5FCA10542CA964740064A494 /* ImageReceiverWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA10532CA964740064A494 /* ImageReceiverWrapper.swift */; };
+		5FCA10562CA9649D0064A494 /* ImageReceiverBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA10552CA9649D0064A494 /* ImageReceiverBridge.mm */; };
+		5FCA105A2CA964F80064A494 /* ImageReceiverProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA10582CA964F70064A494 /* ImageReceiverProcessor.cpp */; };
+		5FCA105B2CA964F80064A494 /* ImageReceiverProcessor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5FCA10592CA964F70064A494 /* ImageReceiverProcessor.hpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5F28909E2CA8030F00602B78 /* libEZMackerImageLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEZMackerImageLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F2890E82CA8141300602B78 /* EZMackerImageLib-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZMackerImageLib-Bridging-Header.h"; sourceTree = "<group>"; };
+		5FCA104A2CA962690064A494 /* ImageSenderWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSenderWrapper.swift; sourceTree = "<group>"; };
+		5FCA104C2CA962910064A494 /* ImageSenderBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageSenderBridge.mm; sourceTree = "<group>"; };
+		5FCA104E2CA962A70064A494 /* ImageSenderBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageSenderBridge.h; sourceTree = "<group>"; };
+		5FCA104F2CA963070064A494 /* ImageSenderProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageSenderProcessor.cpp; sourceTree = "<group>"; };
+		5FCA10502CA963070064A494 /* ImageSenderProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ImageSenderProcessor.hpp; sourceTree = "<group>"; };
+		5FCA10532CA964740064A494 /* ImageReceiverWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageReceiverWrapper.swift; sourceTree = "<group>"; };
+		5FCA10552CA9649D0064A494 /* ImageReceiverBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageReceiverBridge.mm; sourceTree = "<group>"; };
+		5FCA10572CA964BB0064A494 /* ImageReceiverBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageReceiverBridge.h; sourceTree = "<group>"; };
+		5FCA10582CA964F70064A494 /* ImageReceiverProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageReceiverProcessor.cpp; sourceTree = "<group>"; };
+		5FCA10592CA964F70064A494 /* ImageReceiverProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ImageReceiverProcessor.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5F28909C2CA8030F00602B78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5F2890952CA8030F00602B78 = {
+			isa = PBXGroup;
+			children = (
+				5F2890A02CA8030F00602B78 /* EZMackerImageLib */,
+				5F28909F2CA8030F00602B78 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5F28909F2CA8030F00602B78 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5F28909E2CA8030F00602B78 /* libEZMackerImageLib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5F2890A02CA8030F00602B78 /* EZMackerImageLib */ = {
+			isa = PBXGroup;
+			children = (
+				5FCA103E2CA954360064A494 /* Native */,
+				5F2890BA2CA8067600602B78 /* Bridge */,
+				5F2890E82CA8141300602B78 /* EZMackerImageLib-Bridging-Header.h */,
+				5FCA104A2CA962690064A494 /* ImageSenderWrapper.swift */,
+				5FCA10532CA964740064A494 /* ImageReceiverWrapper.swift */,
+			);
+			path = EZMackerImageLib;
+			sourceTree = "<group>";
+		};
+		5F2890BA2CA8067600602B78 /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				5FCA104C2CA962910064A494 /* ImageSenderBridge.mm */,
+				5FCA104E2CA962A70064A494 /* ImageSenderBridge.h */,
+				5FCA10552CA9649D0064A494 /* ImageReceiverBridge.mm */,
+				5FCA10572CA964BB0064A494 /* ImageReceiverBridge.h */,
+			);
+			path = Bridge;
+			sourceTree = "<group>";
+		};
+		5FCA103E2CA954360064A494 /* Native */ = {
+			isa = PBXGroup;
+			children = (
+				5FCA104F2CA963070064A494 /* ImageSenderProcessor.cpp */,
+				5FCA10502CA963070064A494 /* ImageSenderProcessor.hpp */,
+				5FCA10582CA964F70064A494 /* ImageReceiverProcessor.cpp */,
+				5FCA10592CA964F70064A494 /* ImageReceiverProcessor.hpp */,
+			);
+			path = Native;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5F28909A2CA8030F00602B78 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FCA105B2CA964F80064A494 /* ImageReceiverProcessor.hpp in Headers */,
+				5FCA10522CA963070064A494 /* ImageSenderProcessor.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		5F28909D2CA8030F00602B78 /* EZMackerImageLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F2890A72CA8030F00602B78 /* Build configuration list for PBXNativeTarget "EZMackerImageLib" */;
+			buildPhases = (
+				5F28909A2CA8030F00602B78 /* Headers */,
+				5F28909B2CA8030F00602B78 /* Sources */,
+				5F28909C2CA8030F00602B78 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EZMackerImageLib;
+			productName = EZMackerImageLib;
+			productReference = 5F28909E2CA8030F00602B78 /* libEZMackerImageLib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5F2890962CA8030F00602B78 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					5F28909D2CA8030F00602B78 = {
+						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1540;
+					};
+				};
+			};
+			buildConfigurationList = 5F2890992CA8030F00602B78 /* Build configuration list for PBXProject "EZMackerImageLib" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5F2890952CA8030F00602B78;
+			productRefGroup = 5F28909F2CA8030F00602B78 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5F28909D2CA8030F00602B78 /* EZMackerImageLib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5F28909B2CA8030F00602B78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FCA104B2CA962690064A494 /* ImageSenderWrapper.swift in Sources */,
+				5FCA10512CA963070064A494 /* ImageSenderProcessor.cpp in Sources */,
+				5FCA10542CA964740064A494 /* ImageReceiverWrapper.swift in Sources */,
+				5FCA10562CA9649D0064A494 /* ImageReceiverBridge.mm in Sources */,
+				5FCA105A2CA964F80064A494 /* ImageReceiverProcessor.cpp in Sources */,
+				5FCA104D2CA962910064A494 /* ImageSenderBridge.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5F2890A52CA8030F00602B78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5F2890A62CA8030F00602B78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		5F2890A82CA8030F00602B78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C9QJLU3JB2;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "EZMackerImageLib/EZMackerImageLib-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5F2890A92CA8030F00602B78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C9QJLU3JB2;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "EZMackerImageLib/EZMackerImageLib-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5F2890992CA8030F00602B78 /* Build configuration list for PBXProject "EZMackerImageLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F2890A52CA8030F00602B78 /* Debug */,
+				5F2890A62CA8030F00602B78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5F2890A72CA8030F00602B78 /* Build configuration list for PBXNativeTarget "EZMackerImageLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F2890A82CA8030F00602B78 /* Debug */,
+				5F2890A92CA8030F00602B78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5F2890962CA8030F00602B78 /* Project object */;
+}

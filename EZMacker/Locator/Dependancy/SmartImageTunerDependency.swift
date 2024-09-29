@@ -4,11 +4,11 @@
 //
 //  Created by 박유경 on 9/28/24.
 //
-
-import Foundation
+import EZMackerImageLib
 
 struct SmartImageTunerDependency: DependencyRegisterable {
     func register(in container: DependencyContainer) {
-        // MARK: 필요시 register & resolve 할것
+        container.register({ _ in  ImageSenderWrapper() as ImageSenderProvidable }, forKey: ImageTunerWrapperKey.imageSender.rawValue)
+        container.register({ _ in ImageReceiverWrapper() as ImageReceiverProvidable}, forKey: ImageTunerWrapperKey.imageReceiver.rawValue)
     }
 }

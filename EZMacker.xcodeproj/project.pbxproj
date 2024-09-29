@@ -31,6 +31,7 @@
 		5F2890472CA7E18900602B78 /* SmartImageTunerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890462CA7E18900602B78 /* SmartImageTunerViewModel.swift */; };
 		5F2890492CA7E28A00602B78 /* SmartImageTunerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */; };
 		5F28904B2CA7E96800602B78 /* SmartMockDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */; };
+		5F2890DF2CA8101C00602B78 /* libEZMackerImageLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F2890B32CA8031B00602B78 /* libEZMackerImageLib.a */; };
 		5F3604162C38214A00C1B84B /* SmartFileLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */; };
 		5F3604182C38230400C1B84B /* SmartFileLocatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */; };
 		5F36041A2C38259400C1B84B /* SmartFileSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604192C38259400C1B84B /* SmartFileSearchView.swift */; };
@@ -90,6 +91,7 @@
 		5F9DAB482C79AC5A000563A2 /* RadioChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB472C79AC5A000563A2 /* RadioChannelData.swift */; };
 		5F9DAB4C2C79C207000563A2 /* WifiConnectData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB4B2C79C207000563A2 /* WifiConnectData.swift */; };
 		5F9DAB502C79F0EA000563A2 /* EZLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */; };
+		5FCA105D2CA966E30064A494 /* ImageTunerWrapperKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA105C2CA966E30064A494 /* ImageTunerWrapperKey.swift */; };
 		5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */; };
 		5FCC8B9A2BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */; };
 		5FCDCF842CA409DB00CF8D22 /* SystemTehemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCDCF832CA409DB00CF8D22 /* SystemTehemeService.swift */; };
@@ -147,6 +149,20 @@
 			remoteGlobalIDString = 5FE62F122C843CDC00658155;
 			remoteInfo = EZMackerUtilLib;
 		};
+		5F2890B22CA8031B00602B78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5F28909E2CA8030F00602B78;
+			remoteInfo = EZMackerImageLib;
+		};
+		5F2890E02CA8102C00602B78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F28909D2CA8030F00602B78;
+			remoteInfo = EZMackerImageLib;
+		};
 		5F36B2252BE7AB3100E08935 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F36B20B2BE7AB3000E08935 /* Project object */;
@@ -202,6 +218,7 @@
 		5F2890462CA7E18900602B78 /* SmartImageTunerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartImageTunerViewModel.swift; sourceTree = "<group>"; };
 		5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartImageTunerDependency.swift; sourceTree = "<group>"; };
 		5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartMockDependency.swift; sourceTree = "<group>"; };
+		5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EZMackerImageLib.xcodeproj; sourceTree = "<group>"; };
 		5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileLocatorViewModel.swift; sourceTree = "<group>"; };
 		5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileLocatorView.swift; sourceTree = "<group>"; };
 		5F3604192C38259400C1B84B /* SmartFileSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileSearchView.swift; sourceTree = "<group>"; };
@@ -266,6 +283,7 @@
 		5F9DAB472C79AC5A000563A2 /* RadioChannelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioChannelData.swift; sourceTree = "<group>"; };
 		5F9DAB4B2C79C207000563A2 /* WifiConnectData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConnectData.swift; sourceTree = "<group>"; };
 		5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZLoadingView.swift; sourceTree = "<group>"; };
+		5FCA105C2CA966E30064A494 /* ImageTunerWrapperKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTunerWrapperKey.swift; sourceTree = "<group>"; };
 		5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartNotificationAlarmView.swift; sourceTree = "<group>"; };
 		5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartNotificationAlarmViewModel.swift; sourceTree = "<group>"; };
 		5FCDCF832CA409DB00CF8D22 /* SystemTehemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemTehemeService.swift; sourceTree = "<group>"; };
@@ -302,6 +320,7 @@
 				5FE62F2F2C843DB000658155 /* libEZMackerUtilLib.a in Frameworks */,
 				5FE62F852C844F1900658155 /* libEZMackerServiceLib.a in Frameworks */,
 				5F0DAC992C957B0E00BB3488 /* libEZMackerThreadLib.a in Frameworks */,
+				5F2890DF2CA8101C00602B78 /* libEZMackerImageLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,10 +495,27 @@
 			path = Wrapper;
 			sourceTree = "<group>";
 		};
+		5F2890AE2CA8031B00602B78 /* EZMackerImageLib */ = {
+			isa = PBXGroup;
+			children = (
+				5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */,
+			);
+			path = EZMackerImageLib;
+			sourceTree = "<group>";
+		};
+		5F2890AF2CA8031B00602B78 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5F2890B32CA8031B00602B78 /* libEZMackerImageLib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5F36B20A2BE7AB3000E08935 = {
 			isa = PBXGroup;
 			children = (
 				5F9DAB402C797CCD000563A2 /* .swiftlint.yml */,
+				5F2890AE2CA8031B00602B78 /* EZMackerImageLib */,
 				5F0DAC902C957AE800BB3488 /* EZMackerThreadLib */,
 				5FE62F7E2C844EE800658155 /* EZMackerServiceLib */,
 				5FE62F232C843CEF00658155 /* EZMackerUtilLib */,
@@ -780,6 +816,7 @@
 				5FE99EA22C995E6B00233969 /* BatteryServiceKey.swift */,
 				5FE99EA42C995E8D00233969 /* FileLocatorServiceKey.swift */,
 				5FE99EA62C995EA100233969 /* NotificationAlarmKey.swift */,
+				5FCA105C2CA966E30064A494 /* ImageTunerWrapperKey.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -833,6 +870,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5F2890E12CA8102C00602B78 /* PBXTargetDependency */,
 				5F28905A2CA7F43400602B78 /* PBXTargetDependency */,
 				5F2890582CA7F43000602B78 /* PBXTargetDependency */,
 				5F2890532CA7F42900602B78 /* PBXTargetDependency */,
@@ -918,6 +956,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 5F2890AF2CA8031B00602B78 /* Products */;
+					ProjectRef = 5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */;
+				},
+				{
 					ProductGroup = 5FE62F7F2C844EE800658155 /* Products */;
 					ProjectRef = 5FE62F7D2C844EE800658155 /* EZMackerServiceLib.xcodeproj */;
 				},
@@ -945,6 +987,13 @@
 			fileType = archive.ar;
 			path = libEZMackerThreadLib.a;
 			remoteRef = 5F0DAC952C957AE800BB3488 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5F2890B32CA8031B00602B78 /* libEZMackerImageLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEZMackerImageLib.a;
+			remoteRef = 5F2890B22CA8031B00602B78 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		5FE62F282C843CEF00658155 /* libEZMackerUtilLib.a */ = {
@@ -1106,6 +1155,7 @@
 				5F6D4E6C2BE88CC6004B94F8 /* ThemeColorType.swift in Sources */,
 				5F5E234A2C6A469600CD329F /* EZTabbarBackgroundStyle.swift in Sources */,
 				5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */,
+				5FCA105D2CA966E30064A494 /* ImageTunerWrapperKey.swift in Sources */,
 				5FE99EA32C995E6B00233969 /* BatteryServiceKey.swift in Sources */,
 				5F3FF0302C02BE9800E3246C /* ChargeData.swift in Sources */,
 				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,
@@ -1153,6 +1203,11 @@
 			isa = PBXTargetDependency;
 			name = EZMackerUtilLib;
 			targetProxy = 5F2890592CA7F43400602B78 /* PBXContainerItemProxy */;
+		};
+		5F2890E12CA8102C00602B78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EZMackerImageLib;
+			targetProxy = 5F2890E02CA8102C00602B78 /* PBXContainerItemProxy */;
 		};
 		5F36B2262BE7AB3100E08935 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1317,11 +1372,14 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = ezmacker.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1356,11 +1414,14 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = ezmacker.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

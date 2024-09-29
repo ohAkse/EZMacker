@@ -7,7 +7,7 @@
 
 import Foundation
 import EZMackerServiceLib
-
+import EZMackerImageLib
 class ViewModelFactory {
     private let container: DependencyContainer
     
@@ -56,7 +56,10 @@ class ViewModelFactory {
         )
     }
     func createSmartImageTunerViewModel() -> SmartImageTunerViewModel {
-        return SmartImageTunerViewModel()
+        return SmartImageTunerViewModel(
+            imageSenderWrapper: container.resolve(ImageSenderProvidable.self, forKey: ImageTunerWrapperKey.imageSender.value),
+            imageReceiverWrapper: container.resolve(ImageReceiverProvidable.self, forKey: ImageTunerWrapperKey.imageReceiver.value)
+        )
     }
 }
 
