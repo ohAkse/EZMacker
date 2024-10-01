@@ -12,13 +12,16 @@
 
 class ImageSenderProcessor {
 private:
-    int value;
+    int64_t m_value;
+    int64_t* m_inoutValue;
 
 public:
-    void setValue(int val);
-    int getValue() const;
-    void printValue() const;
-    int updateAndReturn(int value);
+    ImageSenderProcessor();
+    ~ImageSenderProcessor();
+    void setValue(int value);
+    void updateNativeValue(int64_t* inoutValue);
+    void printValue() noexcept;
+    void printInoutValue() noexcept;
 };
 
 #endif /* ImageSenderProcessor_hpp */

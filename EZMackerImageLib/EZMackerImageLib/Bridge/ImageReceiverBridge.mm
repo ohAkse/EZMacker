@@ -11,7 +11,6 @@
 #include "imageReceiverProcessor.hpp"
 
 @implementation ImageReceiverBridge {
-    int _value;
     ImageReceiverProcessor* _imageReceiverProcessor;
 }
 
@@ -19,22 +18,21 @@
     self = [super init];
     if (self) {
         _imageReceiverProcessor = new ImageReceiverProcessor();
-        _value = 55;
     }
     return self;
 }
 
 - (void)dealloc {
-    NSLog(@"SmartImageInterfaice dealloc called");
+    NSLog(@"ImageReceiverBridge dealloc called");
     delete _imageReceiverProcessor;
 }
 
 
 - (void)printValue {
-    NSLog(@"Interface 값: %d", _value);
+    _imageReceiverProcessor->printValue();
 }
 - (void)receivedCallbackFromNative:(void (^)(int))callback {
-    _imageReceiverProcessor->setCallback([callback](int value) {
+    _imageReceiverProcessor->setValueCallback([callback](int value) {
         dispatch_async(dispatch_get_main_queue(), ^{
             callback(value);
         });

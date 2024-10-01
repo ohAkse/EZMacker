@@ -12,9 +12,9 @@
 @interface ImageSenderBridge : NSObject
 - (instancetype)init;
 - (void)setValue:(int)value;
-- (int)getValue;
 - (void)printValue;
-- (int)updateAndReturn:(int)value;
+- (void)printInoutValue;
+- (void)updateNativeValue:(int64_t *)value;
 @end
 
 

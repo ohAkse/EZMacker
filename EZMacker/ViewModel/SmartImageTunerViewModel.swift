@@ -15,24 +15,20 @@ class SmartImageTunerViewModel: ObservableObject {
     }
     private let imageSenderWrapper: ImageSenderProvidable
     private let imageReceiverWrapper: ImageReceiverProvidable
-
+    var num: Int64 = 5 // Test Value
     init(imageSenderWrapper: ImageSenderProvidable, imageReceiverWrapper: ImageReceiverProvidable) {
         self.imageSenderWrapper = imageSenderWrapper
         self.imageReceiverWrapper = imageReceiverWrapper
-        
-        ImageSenderTest()
-        imageReceiveTest()
+        // Test용
+        imageSenderWrapper.updateNativeValue(inOut: &num)
     }
-    func ImageSenderTest() {
-        // MARK: SenderTest
-        imageSenderWrapper.setValues(5)
-        imageSenderWrapper.printValues()
-        
-        let result = imageSenderWrapper.updateAndReturn(5)
-        Logger.writeLog(.info, message: result)
-    }
-    func imageReceiveTest() {
-        imageReceiverWrapper.printValues()
+}
+
+// CallBack Result From Native
+extension SmartImageTunerViewModel {
+    func bindNativeOutput() {
+        imageSenderWrapper.printInoutNativeValue()
+        // MARK: ReceiverTest
         imageReceiverWrapper.receivedCallbackFromNative { value in
             print("Received value from C++: \(value)")
         }

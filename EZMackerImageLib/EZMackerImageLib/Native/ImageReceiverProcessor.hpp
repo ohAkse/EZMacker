@@ -22,7 +22,7 @@ public:
     ImageReceiverProcessor();
     ~ImageReceiverProcessor();
     
-    void printValue() const;
-    void setCallback(std::function<void(int)> cb);
+    void printValue() noexcept;
+    void setValueCallback(std::function<void(int)> cb) noexcept;
 };
 #endif /* ImageReceiverProcessor_hpp */

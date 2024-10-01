@@ -6,19 +6,26 @@
 //
 
 #include "ImageSenderProcessor.hpp"
+#include <opencv2/opencv.hpp>
+#include <opencv2/stitching.hpp>
+
+ImageSenderProcessor::ImageSenderProcessor():
+m_value(0), m_inoutValue(nullptr)
+{}
+
+ImageSenderProcessor::~ImageSenderProcessor() {}
 
 void ImageSenderProcessor::setValue(int val) {
-    value = val;
+    m_value = val;
 }
 
-int ImageSenderProcessor::getValue() const {
-    return value;
+void ImageSenderProcessor::printValue() noexcept {
+    std::cout << "Native Value: " << m_value << std::endl;
 }
-
-void ImageSenderProcessor::printValue() const {
-    std::cout << "Native Value: " << value << std::endl;
+void ImageSenderProcessor::printInoutValue() noexcept {
+    std::cout << "Native Value: " << *m_inoutValue << std::endl;
 }
-int ImageSenderProcessor::updateAndReturn(int value) {
-    this->value = value;
-    return value + 2; // 예: 입력값에 2를 더해 반환
+void ImageSenderProcessor::updateNativeValue(int64_t* inoutValue) {
+    this->m_inoutValue = inoutValue;
+    *inoutValue = (*inoutValue) + 11;
 }

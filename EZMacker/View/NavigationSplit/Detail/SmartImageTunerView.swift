@@ -24,6 +24,9 @@ struct SmartImageTunerView: View {
                 .frame(width: 50)
             }
         }
+        .onAppear {
+            smartImageTunerViewModel.bindNativeOutput()
+        }
         .navigationTitle(CategoryType.smartImageTuner.title)
         .padding(30)
     }

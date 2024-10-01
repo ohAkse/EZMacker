@@ -6,10 +6,10 @@
 //
 
 public protocol ImageSenderProvidable {
-    func setValues(_ value: Int)
-    func getValues() -> Int
-    func updateAndReturn(_ value: Int) -> Int
-    func printValues()
+    func setNativeValue(in value: Int)
+    func updateNativeValue(inOut value: inout Int64)
+    func printNativeValue()
+    func printInoutNativeValue()
 }
 
 public class ImageSenderWrapper: NSObject, ImageSenderProvidable {
@@ -19,19 +19,17 @@ public class ImageSenderWrapper: NSObject, ImageSenderProvidable {
         self.imageSenderBridge = ImageSenderBridge()
         super.init()
     }
-    
-    public func setValues(_ value: Int) {
+    public func setNativeValue(in value: Int) {
         imageSenderBridge.setValue(Int32(value))
     }
-    
-    public func getValues() -> Int {
-        return Int(imageSenderBridge.getValue())
+
+    public func updateNativeValue(inOut value: inout Int64) {
+        imageSenderBridge.updateNativeValue(&value)
     }
-    
-    public func printValues() {
+    public func printNativeValue() {
         imageSenderBridge.printValue()
     }
-    public func updateAndReturn(_ value: Int) -> Int {
-        return Int(imageSenderBridge.updateAndReturn(Int32(value)))
+    public func printInoutNativeValue() {
+        imageSenderBridge.printInoutValue()
     }
 }
