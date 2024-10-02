@@ -34,7 +34,9 @@ struct SmartImageTunerView: View {
     private var toolbarSectionView: some View {
         VStack {
             Text("툴바 영역")
-            
+            Button("값 업데이트") {
+                smartImageTunerViewModel.setInt64()
+            }
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)

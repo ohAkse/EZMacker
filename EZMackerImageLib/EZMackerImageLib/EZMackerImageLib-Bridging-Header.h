@@ -5,6 +5,5 @@
 #ifndef EZMackerImageLib_Bridging_Header_h
 #define EZMackerImageLib_Bridging_Header_h
 
-#import "Bridge/ImageSenderBridge.h"
-#import "Bridge/ImageReceiverBridge.h"
+#import "Bridge/ImageProcessBridge.h"
 #endif /* EZMacker_Bridging_Header_h */

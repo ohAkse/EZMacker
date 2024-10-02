@@ -7,29 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5FCA104B2CA962690064A494 /* ImageSenderWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104A2CA962690064A494 /* ImageSenderWrapper.swift */; };
-		5FCA104D2CA962910064A494 /* ImageSenderBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104C2CA962910064A494 /* ImageSenderBridge.mm */; };
-		5FCA10512CA963070064A494 /* ImageSenderProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104F2CA963070064A494 /* ImageSenderProcessor.cpp */; };
-		5FCA10522CA963070064A494 /* ImageSenderProcessor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5FCA10502CA963070064A494 /* ImageSenderProcessor.hpp */; };
-		5FCA10542CA964740064A494 /* ImageReceiverWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA10532CA964740064A494 /* ImageReceiverWrapper.swift */; };
-		5FCA10562CA9649D0064A494 /* ImageReceiverBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA10552CA9649D0064A494 /* ImageReceiverBridge.mm */; };
-		5FCA105A2CA964F80064A494 /* ImageReceiverProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA10582CA964F70064A494 /* ImageReceiverProcessor.cpp */; };
-		5FCA105B2CA964F80064A494 /* ImageReceiverProcessor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5FCA10592CA964F70064A494 /* ImageReceiverProcessor.hpp */; };
+		5FCA104B2CA962690064A494 /* ImageProcessWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104A2CA962690064A494 /* ImageProcessWrapper.swift */; };
+		5FCA104D2CA962910064A494 /* ImageProcessBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104C2CA962910064A494 /* ImageProcessBridge.mm */; };
+		5FCA10512CA963070064A494 /* ImageProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104F2CA963070064A494 /* ImageProcessor.cpp */; };
+		5FCA10522CA963070064A494 /* ImageProcessor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5FCA10502CA963070064A494 /* ImageProcessor.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5F28909E2CA8030F00602B78 /* libEZMackerImageLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEZMackerImageLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2890E82CA8141300602B78 /* EZMackerImageLib-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZMackerImageLib-Bridging-Header.h"; sourceTree = "<group>"; };
-		5FCA104A2CA962690064A494 /* ImageSenderWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSenderWrapper.swift; sourceTree = "<group>"; };
-		5FCA104C2CA962910064A494 /* ImageSenderBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageSenderBridge.mm; sourceTree = "<group>"; };
-		5FCA104E2CA962A70064A494 /* ImageSenderBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageSenderBridge.h; sourceTree = "<group>"; };
-		5FCA104F2CA963070064A494 /* ImageSenderProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageSenderProcessor.cpp; sourceTree = "<group>"; };
-		5FCA10502CA963070064A494 /* ImageSenderProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ImageSenderProcessor.hpp; sourceTree = "<group>"; };
-		5FCA10532CA964740064A494 /* ImageReceiverWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageReceiverWrapper.swift; sourceTree = "<group>"; };
-		5FCA10552CA9649D0064A494 /* ImageReceiverBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageReceiverBridge.mm; sourceTree = "<group>"; };
-		5FCA10572CA964BB0064A494 /* ImageReceiverBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageReceiverBridge.h; sourceTree = "<group>"; };
-		5FCA10582CA964F70064A494 /* ImageReceiverProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageReceiverProcessor.cpp; sourceTree = "<group>"; };
-		5FCA10592CA964F70064A494 /* ImageReceiverProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ImageReceiverProcessor.hpp; sourceTree = "<group>"; };
+		5FCA104A2CA962690064A494 /* ImageProcessWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessWrapper.swift; sourceTree = "<group>"; };
+		5FCA104C2CA962910064A494 /* ImageProcessBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageProcessBridge.mm; sourceTree = "<group>"; };
+		5FCA104E2CA962A70064A494 /* ImageProcessBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageProcessBridge.h; sourceTree = "<group>"; };
+		5FCA104F2CA963070064A494 /* ImageProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageProcessor.cpp; sourceTree = "<group>"; };
+		5FCA10502CA963070064A494 /* ImageProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ImageProcessor.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +56,7 @@
 				5FCA103E2CA954360064A494 /* Native */,
 				5F2890BA2CA8067600602B78 /* Bridge */,
 				5F2890E82CA8141300602B78 /* EZMackerImageLib-Bridging-Header.h */,
-				5FCA104A2CA962690064A494 /* ImageSenderWrapper.swift */,
-				5FCA10532CA964740064A494 /* ImageReceiverWrapper.swift */,
+				5FCA104A2CA962690064A494 /* ImageProcessWrapper.swift */,
 			);
 			path = EZMackerImageLib;
 			sourceTree = "<group>";
@@ -74,10 +64,8 @@
 		5F2890BA2CA8067600602B78 /* Bridge */ = {
 			isa = PBXGroup;
 			children = (
-				5FCA104C2CA962910064A494 /* ImageSenderBridge.mm */,
-				5FCA104E2CA962A70064A494 /* ImageSenderBridge.h */,
-				5FCA10552CA9649D0064A494 /* ImageReceiverBridge.mm */,
-				5FCA10572CA964BB0064A494 /* ImageReceiverBridge.h */,
+				5FCA104C2CA962910064A494 /* ImageProcessBridge.mm */,
+				5FCA104E2CA962A70064A494 /* ImageProcessBridge.h */,
 			);
 			path = Bridge;
 			sourceTree = "<group>";
@@ -85,10 +73,8 @@
 		5FCA103E2CA954360064A494 /* Native */ = {
 			isa = PBXGroup;
 			children = (
-				5FCA104F2CA963070064A494 /* ImageSenderProcessor.cpp */,
-				5FCA10502CA963070064A494 /* ImageSenderProcessor.hpp */,
-				5FCA10582CA964F70064A494 /* ImageReceiverProcessor.cpp */,
-				5FCA10592CA964F70064A494 /* ImageReceiverProcessor.hpp */,
+				5FCA104F2CA963070064A494 /* ImageProcessor.cpp */,
+				5FCA10502CA963070064A494 /* ImageProcessor.hpp */,
 			);
 			path = Native;
 			sourceTree = "<group>";
@@ -100,8 +86,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FCA105B2CA964F80064A494 /* ImageReceiverProcessor.hpp in Headers */,
-				5FCA10522CA963070064A494 /* ImageSenderProcessor.hpp in Headers */,
+				5FCA10522CA963070064A494 /* ImageProcessor.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,12 +148,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FCA104B2CA962690064A494 /* ImageSenderWrapper.swift in Sources */,
-				5FCA10512CA963070064A494 /* ImageSenderProcessor.cpp in Sources */,
-				5FCA10542CA964740064A494 /* ImageReceiverWrapper.swift in Sources */,
-				5FCA10562CA9649D0064A494 /* ImageReceiverBridge.mm in Sources */,
-				5FCA105A2CA964F80064A494 /* ImageReceiverProcessor.cpp in Sources */,
-				5FCA104D2CA962910064A494 /* ImageSenderBridge.mm in Sources */,
+				5FCA104B2CA962690064A494 /* ImageProcessWrapper.swift in Sources */,
+				5FCA10512CA963070064A494 /* ImageProcessor.cpp in Sources */,
+				5FCA104D2CA962910064A494 /* ImageProcessBridge.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

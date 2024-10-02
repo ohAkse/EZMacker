@@ -57,8 +57,7 @@ class ViewModelFactory {
     }
     func createSmartImageTunerViewModel() -> SmartImageTunerViewModel {
         return SmartImageTunerViewModel(
-            imageSenderWrapper: container.resolve(ImageSenderProvidable.self, forKey: ImageTunerWrapperKey.imageSender.value),
-            imageReceiverWrapper: container.resolve(ImageReceiverProvidable.self, forKey: ImageTunerWrapperKey.imageReceiver.value)
+            imageSenderWrapper: container.resolve(ImageProcessWrapperProvidable.self, forKey: ImageTunerWrapperKey.imageSender.value)
         )
     }
 }

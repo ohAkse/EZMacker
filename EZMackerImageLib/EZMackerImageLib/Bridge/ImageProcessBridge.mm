@@ -6,17 +6,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ImageSenderBridge.h"
+#import "ImageProcessBridge.h"
 
-#include "ImageSenderProcessor.hpp"
+#include "ImageProcessor.hpp"
 
-@implementation ImageSenderBridge {
-    ImageSenderProcessor* _imageSenderProcessor;
+@implementation ImageProcessBridge {
+    ImageProcessor* _imageSenderProcessor;
 }
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _imageSenderProcessor = new ImageSenderProcessor();
+        _imageSenderProcessor = new ImageProcessor();
     }
     return self;
 }
@@ -36,5 +36,9 @@
 - (void)printInoutValue {
     _imageSenderProcessor->printInoutValue();
 }
-
+- (void)setInt64Callback:(void (^)(int64_t))int64callback {
+    _imageSenderProcessor->setInt64Callback([int64callback](int64_t value) {
+        int64callback(value);
+    });
+}
 @end

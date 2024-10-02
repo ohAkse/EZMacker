@@ -9,12 +9,14 @@
 #define ImageSenderBridge_h
 #import <Foundation/Foundation.h>
 
-@interface ImageSenderBridge : NSObject
+@interface ImageProcessBridge : NSObject
 - (instancetype)init;
 - (void)setValue:(int)value;
 - (void)printValue;
 - (void)printInoutValue;
 - (void)updateNativeValue:(int64_t *)value;
+- (void)setInt64Callback:(void (^)(int64_t))int64callback;
+
 @end
 
 
