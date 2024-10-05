@@ -13,9 +13,9 @@ struct SmartNotificationAlarmDependency: DependencyRegisterable {
         container.register({ context in
             guard let context = context else { fatalError("ModelContext is nil") }
             return AppSettingsManager(context: context) as AppSettingProvidable
-        }, forKey: SettingsKey.appSettingsManager.value)
-        container.register({ _ in BatterySetting() as BatterySettingConfigurable }, forKey: NotificationAlarmKey.batterySetting.value)
-        container.register({ _ in WifiSetting() as WifiSettingConfigurable }, forKey: NotificationAlarmKey.wifiSetting.value)
-        container.register({ _ in FileLocatorSetting() as FileLocatorSettingConfigurable }, forKey: NotificationAlarmKey.fileLocatorSetting.value)
+        }, forKey: SettingsKey.appSettingsManager.value, lifetime: .transient)
+        container.register({ _ in BatterySetting() as BatterySettingConfigurable }, forKey: NotificationAlarmKey.batterySetting.value, lifetime: .transient)
+        container.register({ _ in WifiSetting() as WifiSettingConfigurable }, forKey: NotificationAlarmKey.wifiSetting.value, lifetime: .transient)
+        container.register({ _ in FileLocatorSetting() as FileLocatorSettingConfigurable }, forKey: NotificationAlarmKey.fileLocatorSetting.value, lifetime: .transient)
     }
 }

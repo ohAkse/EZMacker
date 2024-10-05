@@ -8,13 +8,15 @@
 import Foundation
 import SwiftData
 
-protocol DependencyRegisterable {
-    func register(in container: DependencyContainer)
+enum DependencyLifetime {
+    case singleton
+    case transient
 }
 
 class DependencyContainer {
     static let shared = DependencyContainer()
-    private var dependencies: [String: Any] = [:]
+    private var dependencies: [String: (lifetime: DependencyLifetime, factory: (ModelContext?) -> Any)] = [:]
+    private var singletonInstances: [String: Any] = [:]
     private var modelContext: ModelContext?
     
     private init() {}
@@ -23,14 +25,31 @@ class DependencyContainer {
         self.modelContext = context
     }
     
-    func register<T>(_ dependency: @escaping (ModelContext?) -> T, forKey key: String) {
-        dependencies[key] = dependency
+    func register<T>(_ dependency: @escaping (ModelContext?) -> T, forKey key: String, lifetime: DependencyLifetime) {
+        dependencies[key] = (lifetime: lifetime, factory: dependency)
     }
     
     func resolve<T>(_ type: T.Type, forKey key: String) -> T {
-        guard let dependency = dependencies[key] as? (ModelContext?) -> T else {
+        guard let dependencyInfo = dependencies[key] else {
             fatalError("Dependency not found for key: \(key)")
         }
-        return dependency(modelContext)
+        
+        switch dependencyInfo.lifetime {
+         case .singleton:
+             if let instance = singletonInstances[key] as? T {
+                 return instance
+             }
+             guard let newInstance = dependencyInfo.factory(modelContext) as? T else {
+                 fatalError("Failed to create instance for key: \(key)")
+             }
+             singletonInstances[key] = newInstance
+             return newInstance
+             
+         case .transient:
+             guard let instance = dependencyInfo.factory(modelContext) as? T else {
+                 fatalError("Failed to create instance for key: \(key)")
+             }
+             return instance
+         }
     }
 }
