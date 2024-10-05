@@ -8,6 +8,6 @@ import EZMackerImageLib
 
 struct SmartImageTunerDependency: DependencyRegisterable {
     func register(in container: DependencyContainer) {
-        container.register({ _ in  ImageProcessWrapper() as ImageProcessWrapperProvidable }, forKey: ImageTunerWrapperKey.imageSender.rawValue)
+        container.register({ _ in  ImageProcessWrapper() as ImageProcessWrapperProvidable }, forKey: ImageTunerWrapperKey.imageSender.rawValue, lifetime: .transient)
     }
 }
