@@ -10,7 +10,7 @@ import EZMackerServiceLib
 
 struct SmartFileLocatorDependency: DependencyRegisterable {
     func register(in container: DependencyContainer) {
-        container.register({ _ in AppSmartFileService() as AppSmartFileProvidable }, forKey: FileLocatorServiceKey.appSmartFileService.rawValue)
-        container.register({ _ in AppSmartFileMonitoringService() as AppSmartFileMonitorable }, forKey: FileLocatorServiceKey.appFileMonitoringService.value)
+        container.register({ _ in AppSmartFileService() as AppSmartFileProvidable }, forKey: FileLocatorServiceKey.appSmartFileService.rawValue, lifetime: .transient)
+        container.register({ _ in AppSmartFileMonitoringService() as AppSmartFileMonitorable }, forKey: FileLocatorServiceKey.appFileMonitoringService.value, lifetime: .transient)
     }
 }
