@@ -13,6 +13,8 @@ import EZMackerServiceLib
 struct EZWifiMainView: View {
     @Binding var ssid: String
     @Binding var wifiLists: [ScaningWifiData]
+    @Binding var isRefreshing: Bool
+    @Binding var isFindingBestWifi: Bool
     @State private var password: String = ""
     @State private var isShowingPasswordModal = false
     @State private var toast: ToastData?
@@ -25,17 +27,21 @@ struct EZWifiMainView: View {
     init(appSmartAutoconnectWifiService: AppSmartAutoconnectWifiServiceProvidable,
          ssid: Binding<String> = .constant(""),
          wifiLists: Binding<[ScaningWifiData]> = .constant([]),
+         isRefreshing: Binding<Bool> = .constant(false),
+         isFindingBestWifi: Binding<Bool> = .constant(false),
          onRefresh: @escaping () -> Void = {},
          onWifiTap: @escaping (String, String) -> Void = { _, _ in },
          onFindBestWifi: @escaping () -> Void = {}) {
         self.appSmartAutoconnectWifiService = appSmartAutoconnectWifiService
         self._ssid = ssid
         self._wifiLists = wifiLists
+        self._isRefreshing = isRefreshing
+        self._isFindingBestWifi = isFindingBestWifi
         self.onRefresh = onRefresh
         self.onWifiTap = onWifiTap
         self.onFindBestWifi = onFindBestWifi
     }
-    
+    // MARK: Refresh의 경우 Disabled 처리가 빨리 처리가 되어 깜빡이는것처럼 보여서 일단 처리 안함
     var body: some View {
         VStack {
             HStack {
@@ -66,12 +72,12 @@ struct EZWifiMainView: View {
                         Button(action: {
                             didTapWifiListWithAscending()
                         }, label: {})
-                            .ezButtonImageStyle(imageName: "arrowshape.up.fill")
+                        .ezButtonImageStyle(imageName: "arrowshape.up.fill")
                         Spacer()
                         Button(action: {
                             didTapWifiListWithDescending()
                         }, label: {})
-                            .ezButtonImageStyle(imageName: "arrowshape.down.fill")
+                        .ezButtonImageStyle(imageName: "arrowshape.down.fill")
                         Spacer()
                     }
                     .padding(.top, 20)
@@ -82,15 +88,17 @@ struct EZWifiMainView: View {
                             Spacer()
                             Button(action: {
                                 onRefresh()
+                                Logger.writeLog(.info, message: isRefreshing)
                             }, label: {})
-                                .ezButtonImageStyle(imageName: "rays")
-                                .padding(.trailing, 5)
+                            .ezButtonImageStyle(imageName: "rays")
+                            .padding(.trailing, 5)
                             Button(action: {
                                 onFindBestWifi()
                                 toast = ToastData(type: .info, message: "최적의 와이파이를 찾고 있습니다.")
-                                
                             }, label: {})
-                                .ezButtonImageStyle(imageName: "arrow.clockwise.circle")
+                            .ezButtonImageStyle(imageName: "arrow.clockwise.circle")
+                            .disabled(isRefreshing || isFindingBestWifi)
+                            .opacity(isRefreshing || isFindingBestWifi ? 0.5 : 1)
                         }
                         .padding([.trailing], 10)
                         List {
@@ -144,6 +152,7 @@ struct EZWifiMainView: View {
         }
         .toastView(toast: $toast)
     }
+    
     private func validateWifiTap(_ wifi: ScaningWifiData) {
         if let savedPassword = appSmartAutoconnectWifiService.getPassword(for: wifi.ssid) {
             connectToWifi(ssid: wifi.ssid, password: savedPassword)
@@ -151,12 +160,12 @@ struct EZWifiMainView: View {
             showPasswordModal(for: wifi.ssid)
         }
     }
-
+    
     private func showPasswordModal(for ssid: String) {
         selectedSSid = ssid
         isShowingPasswordModal = true
     }
-
+    
     private func connectToWifi(ssid: String, password: String) {
         onWifiTap(ssid, password)
     }

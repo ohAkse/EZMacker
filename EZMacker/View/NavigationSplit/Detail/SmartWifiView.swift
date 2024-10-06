@@ -13,7 +13,9 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     @EnvironmentObject var systemThemeService: SystemThemeService
     @StateObject private var smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>
     @State private var toast: ToastData?
-    
+    @State private var isRefreshing = false
+    @State private var isFindingBestWifi = false
+    @State private var isConnected = false
     init(factory: ViewModelFactory) {
         _smartWifiViewModel = StateObject(wrappedValue: factory.createSmartWifiViewModel())
     }
@@ -28,12 +30,18 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             .onReceive(smartWifiViewModel.$wifiRequestStatus) { wifiStatus in
                 switch wifiStatus {
                 case .none:
-                    break
+                    isConnected = false
                 case .success:
                     toast = ToastData(type: .info, message: wifiStatus.description)
+                    isConnected = true
                 case .disconnected:
+                    isConnected = false
                     toast = ToastData(type: .warning, message: wifiStatus.description)
+                case .notFoundSSID:
+                    isConnected = false
+                    toast = ToastData(type: .error, message: wifiStatus.description)
                 default:
+                    isConnected = false
                     toast = ToastData(type: .error, message: wifiStatus.description)
                 }
             }
@@ -81,7 +89,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     // Wi-Fi 메인 정보 뷰
     private func wifiMainInfoView(geo: GeometryProxy) -> some View {
         HStack(alignment: .center, spacing: 0) {
-            if smartWifiViewModel.isConnecting {
+            if !isConnected {
                 VStack {
                     Spacer()
                     EZLoadingView()
@@ -93,24 +101,29 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                         appSmartAutoconnectWifiService: AppSmartAutoconnectWifiService(),
                         ssid: $smartWifiViewModel.wificonnectData.connectedSSid,
                         wifiLists: $smartWifiViewModel.wificonnectData.scanningWifiList,
+                        isRefreshing: $isRefreshing,
+                        isFindingBestWifi: $isFindingBestWifi,
                         onRefresh: {
                             Task {
+                                isRefreshing = true
                                 await smartWifiViewModel.fetchWifiListInfo()
                                 let status = smartWifiViewModel.getWifiRequestStatus()
                                 if status == .scanningFailed {
                                     toast = ToastData(type: .error, message: status.description)
                                 }
+                                isRefreshing = false
                             }
                         },
                         onWifiTap: { ssid, password in
                             Task {
-                                smartWifiViewModel.isConnecting = true
                                 await smartWifiViewModel.connectWifi(ssid: ssid, password: password)
-                                smartWifiViewModel.isConnecting = false
                             }
                         },
                         onFindBestWifi: {
-                            smartWifiViewModel.startSearchBestSSid()
+                            isFindingBestWifi = true
+                            smartWifiViewModel.startSearchBestSSid {
+                                isFindingBestWifi = false
+                            }
                         }
                     )
                 )

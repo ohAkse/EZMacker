@@ -39,7 +39,6 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     @Published var wifiRequestStatus: AppCoreWLanStatus = .none
     @Published var bestSSid = ""
     @Published var showAlert = false
-    @Published var isConnecting = false
     
     // MARK: - Service Variable
     private let scanQueue = DispatchQueueFactory.createQueue(for: WifiScanQueueConfiguration(), withPov: false)
@@ -202,67 +201,71 @@ extension SmartWifiViewModel {
             })
             .store(in: &cancellables)
     }
-    func startSearchBestSSid() {
-        guard let bestSSidMode: String = appStorageSettingService.loadConfig(.bestSSIDShowType) else { return }
-        let resultShowMode = BestSSIDShowType(rawValue: bestSSidMode)
-        var wifirssiList: [String: Set<Int>] = [:]
-        
-        let searchTimerPublisher = Timer.publish(every: 1, on: RunLoop.main, in: .common)
-            .autoconnect()
-            .prefix(timerMax)
-        
-        searchTimerCancellable = searchTimerPublisher
-            .flatMap { [weak self] _ -> AnyPublisher<[ScaningWifiData], Never> in
-                guard let self = self else { return Just([]).eraseToAnyPublisher() }
-                
-                return Future<[ScaningWifiData], Never> { [weak self] promise in
-                    guard let self = self else { return }
-                    self.scanQueue.async {
-                        self.appCoreWLanWifiService.getWifiLists(attempts: 1)
-                            .catch { error -> AnyPublisher<[ScaningWifiData], Never> in
-                                Logger.writeLog(.error, message: "\(error.localizedDescription)")
-                                return Just([]).eraseToAnyPublisher()
-                            }
-                            .sink(
-                                receiveCompletion: { _ in },
-                                receiveValue: { value in
-                                    promise(.success(value))
-                                }
-                            )
-                            .store(in: &self.cancellables)
-                    }
-                }.eraseToAnyPublisher()
-            }
-            .sink(
-                receiveCompletion: { [weak self] _ in
-                    guard let self = self else { return }
-                    DispatchQueue.main.async {
-                        let bestSSid = wifirssiList
-                            .mapValues { rssiSet in
-                                rssiSet.reduce(0, +) / rssiSet.count
-                            }
-                            .max(by: { $0.value < $1.value })?
-                            .key ?? "와이파이를 찾을 수 없습니다."
-                        
-                        self.bestSSid = bestSSid
-                        if resultShowMode == .alert {
-                            self.showAlert = true
-                        } else {
-                            AppNotificationManager.shared.sendNotification(
-                                title: "알림",
-                                subtitle: "최적의 Wifi : \(bestSSid)"
-                            )
-                        }
-                    }
-                },
-                receiveValue: { wifiList in
-                    for wifi in wifiList {
-                        if let rssi = Int(wifi.rssi) {
-                            wifirssiList[wifi.ssid, default: []].insert(rssi)
-                        }
-                    }
-                }
-            )
-        searchTimerCancellable?.store(in: &cancellables)
-    }
+    func startSearchBestSSid(completion: @escaping () -> Void) {
+         guard let bestSSidMode: String = appStorageSettingService.loadConfig(.bestSSIDShowType) else {
+             completion()
+             return
+         }
+         let resultShowMode = BestSSIDShowType(rawValue: bestSSidMode)
+         var wifirssiList: [String: Set<Int>] = [:]
+         
+         let searchTimerPublisher = Timer.publish(every: 1, on: RunLoop.main, in: .common)
+             .autoconnect()
+             .prefix(timerMax)
+         
+         searchTimerCancellable = searchTimerPublisher
+             .flatMap { [weak self] _ -> AnyPublisher<[ScaningWifiData], Never> in
+                 guard let self = self else { return Just([]).eraseToAnyPublisher() }
+                 
+                 return Future<[ScaningWifiData], Never> { [weak self] promise in
+                     guard let self = self else { return }
+                     self.scanQueue.async {
+                         self.appCoreWLanWifiService.getWifiLists(attempts: 1)
+                             .catch { error -> AnyPublisher<[ScaningWifiData], Never> in
+                                 Logger.writeLog(.error, message: "\(error.localizedDescription)")
+                                 return Just([]).eraseToAnyPublisher()
+                             }
+                             .sink(
+                                 receiveCompletion: { _ in },
+                                 receiveValue: { value in
+                                     promise(.success(value))
+                                 }
+                             )
+                             .store(in: &self.cancellables)
+                     }
+                 }.eraseToAnyPublisher()
+             }
+             .sink(
+                 receiveCompletion: { [weak self] _ in
+                     guard let self = self else { return }
+                     DispatchQueue.main.async {
+                         let bestSSid = wifirssiList
+                             .mapValues { rssiSet in
+                                 rssiSet.reduce(0, +) / rssiSet.count
+                             }
+                             .max(by: { $0.value < $1.value })?
+                             .key ?? "와이파이를 찾을 수 없습니다."
+                         
+                         self.bestSSid = bestSSid
+                         if resultShowMode == .alert {
+                             self.showAlert = true
+                         } else {
+                             AppNotificationManager.shared.sendNotification(
+                                 title: "알림",
+                                 subtitle: "최적의 Wifi : \(bestSSid)"
+                             )
+                         }
+                         completion()
+                     }
+                 },
+                 receiveValue: { wifiList in
+                     for wifi in wifiList {
+                         if let rssi = Int(wifi.rssi) {
+                             wifirssiList[wifi.ssid, default: []].insert(rssi)
+                         }
+                     }
+                 }
+             )
+         searchTimerCancellable?.store(in: &cancellables)
+     }
 }
