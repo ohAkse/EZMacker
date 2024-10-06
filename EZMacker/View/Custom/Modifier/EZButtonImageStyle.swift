@@ -76,7 +76,7 @@ extension View {
         darkModeForegroundColor: Color = ThemeColorType.white.color,
         lightModeBackgroundColor: Color? = ThemeColorType.white.color.opacity(0.4),
         darkModeBackgroundColor: Color? = ThemeColorType.white.color.opacity(0.4),
-        frameSize: CGSize? = CGSize(width: 30, height: 30),
+        frameSize: CGSize? = CGSize(width: 35, height: 35),
         isAddButton: Bool = false
     ) -> some View {
         self.buttonStyle(EZButtonImageStyle(

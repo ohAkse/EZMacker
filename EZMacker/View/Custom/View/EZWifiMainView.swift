@@ -69,15 +69,17 @@ struct EZWifiMainView: View {
                 } else {
                     VStack(spacing: 0) {
                         Spacer()
-                        Button(action: {
-                            didTapWifiListWithAscending()
-                        }, label: {})
-                        .ezButtonImageStyle(imageName: "arrowshape.up.fill")
+                        EZButtonActionView(
+                            action: { didTapWifiListWithAscending() },
+                            imageName: "arrowshape.up.fill",
+                            isDisabled: false
+                        )
                         Spacer()
-                        Button(action: {
-                            didTapWifiListWithDescending()
-                        }, label: {})
-                        .ezButtonImageStyle(imageName: "arrowshape.down.fill")
+                        EZButtonActionView(
+                            action: { didTapWifiListWithDescending() },
+                            imageName: "arrowshape.down.fill",
+                            isDisabled: false
+                        )
                         Spacer()
                     }
                     .padding(.top, 20)
@@ -86,19 +88,23 @@ struct EZWifiMainView: View {
                         Spacer()
                         HStack {
                             Spacer()
-                            Button(action: {
-                                onRefresh()
-                                Logger.writeLog(.info, message: isRefreshing)
-                            }, label: {})
-                            .ezButtonImageStyle(imageName: "rays")
+                            EZButtonActionView(
+                                action: {
+                                    onRefresh()
+                                    Logger.writeLog(.info, message: "isRefreshing: \(isRefreshing)")
+                                },
+                                imageName: "rays",
+                                isDisabled: isRefreshing || isFindingBestWifi
+                            )
                             .padding(.trailing, 5)
-                            Button(action: {
-                                onFindBestWifi()
-                                toast = ToastData(type: .info, message: "최적의 와이파이를 찾고 있습니다.")
-                            }, label: {})
-                            .ezButtonImageStyle(imageName: "arrow.clockwise.circle")
-                            .disabled(isRefreshing || isFindingBestWifi)
-                            .opacity(isRefreshing || isFindingBestWifi ? 0.5 : 1)
+                            
+                            EZButtonActionView(
+                                action: {
+                                    onFindBestWifi()
+                                    toast = ToastData(type: .info, message: "최적의 와이파이를 찾고 있습니다.")
+                                },
+                                imageName: "arrow.clockwise.circle",
+                                isDisabled: isRefreshing || isFindingBestWifi)
                         }
                         .padding([.trailing], 10)
                         List {

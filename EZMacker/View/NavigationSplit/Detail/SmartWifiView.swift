@@ -16,6 +16,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     @State private var isRefreshing = false
     @State private var isFindingBestWifi = false
     @State private var isConnected = false
+    @Namespace private var animation
     init(factory: ViewModelFactory) {
         _smartWifiViewModel = StateObject(wrappedValue: factory.createSmartWifiViewModel())
     }
@@ -87,16 +88,23 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     }
     
     // Wi-Fi 메인 정보 뷰
+    @State private var rotationDegrees: Double = 0
+
     private func wifiMainInfoView(geo: GeometryProxy) -> some View {
         HStack(alignment: .center, spacing: 0) {
-            if !isConnected {
-                VStack {
-                    Spacer()
-                    EZLoadingView()
-                    Spacer()
-                }
-            } else {
-                AnyView(
+            ZStack {
+                if !isConnected {
+                    VStack {
+                        EZLoadingView()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .ezBackgroundColorStyle()
+                            .clipped()
+                    }
+                    .rotation3DEffect(
+                        .degrees(rotationDegrees),
+                        axis: (x: 0, y: 1, z: 0)
+                    )
+                } else {
                     EZWifiMainView(
                         appSmartAutoconnectWifiService: AppSmartAutoconnectWifiService(),
                         ssid: $smartWifiViewModel.wificonnectData.connectedSSid,
@@ -126,7 +134,17 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                             }
                         }
                     )
-                )
+                    .rotation3DEffect(
+                        .degrees(rotationDegrees),
+                        axis: (x: 0, y: 1, z: 0)
+                    )
+                }
+            }
+            .animation(.easeInOut(duration: 1), value: isConnected)
+        }
+        .onChange(of: isConnected) { _, _ in
+            withAnimation(.easeInOut(duration: 0.5)) {
+                rotationDegrees += 360
             }
         }
         .task {

@@ -22,4 +22,12 @@ struct RadioChannelData: Equatable {
         self.locale = locale
         self.macAddress = hardwareAddress
     }
+    mutating func clear() {
+        self.channelBandwidth = 0
+        self.channelFrequency = 0
+        self.channel = 0
+        self.band = ""
+        self.locale = ""
+        self.macAddress = ""
+    }
 }

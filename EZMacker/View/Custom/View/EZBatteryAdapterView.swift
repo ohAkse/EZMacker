@@ -17,9 +17,9 @@ struct EZBatteryAdapterView: View {
     var body: some View {
         HStack {
             if isAdapterAnimated {
-                EZTitle(title: title)
+                EZTitleView(title: title)
                 Spacer()
-                EZContent(content: content)
+                EZContentView(content: content)
                     .padding(.trailing, 10)
                 Spacer()
             }

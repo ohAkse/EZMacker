@@ -1,14 +1,14 @@
 //
-//  CustomContent.swift
+//  EZContentView.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/14/24.
+//  Created by 박유경 on 10/6/24.
 //
 
 import SwiftUI
 import EZMackerUtilLib
 
-struct EZContent: View {
+struct EZContentView: View {
     @EnvironmentObject var systemThemeService: SystemThemeService
     let size: CGFloat = FontSizeType.small.size
     let content: String

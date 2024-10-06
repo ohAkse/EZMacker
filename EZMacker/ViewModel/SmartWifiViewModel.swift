@@ -152,8 +152,10 @@ extension SmartWifiViewModel {
                     self?.wificonnectData.connectedSSid = status.ssid ?? ""
                     self?.wifiRequestStatus = .success
                     self?.fetchWifiInfo()
+
                 } else {
                     self?.wifiRequestStatus = .disconnected
+                    self?.radioChannelData.clear()
                 }
             }
             .store(in: &cancellables)

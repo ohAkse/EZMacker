@@ -1,14 +1,14 @@
 //
-//  CustomImage.swift
+//  EZImageView.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/14/24.
+//  Created by 박유경 on 10/6/24.
 //
 
 import SwiftUI
 import EZMackerUtilLib
 
-struct EZImage: View {
+struct EZImageView: View {
     @EnvironmentObject var systemThemeService: SystemThemeService
     let systemName: String
     let isSystemName: Bool
@@ -53,11 +53,3 @@ struct EZImage: View {
         }
     }
 }
-
-// #if DEBUG
-// struct CustomImage_Preview: PreviewProvider {
-//    static var previews: some View {
-//        EZImage(systemName: "globe", isSystemName: true)
-//    }
-// }
-// #endif

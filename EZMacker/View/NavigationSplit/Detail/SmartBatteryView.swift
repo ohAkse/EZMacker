@@ -166,9 +166,8 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
         HStack {
             if let adapterInfo = smartBatteryViewModel.adapterMetricsData.adapterData.first {
                 VStack {
-                    
-                    EZImage(systemName: "battery_adapter", isSystemName: false)
-                    EZContent(content: adapterInfo.Name)
+                    EZImageView(systemName: "battery_adapter", isSystemName: false)
+                    EZContentView(content: adapterInfo.Name)
                 }
                 .frame(width: geo.size.width * 0.3)
                 VStack(spacing: 0) {
