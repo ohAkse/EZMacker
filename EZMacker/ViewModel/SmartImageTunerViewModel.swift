@@ -9,6 +9,7 @@ import SwiftUI
 import EZMackerImageLib
 import EZMackerUtilLib
 import PencilKit
+
 class SmartImageTunerViewModel: ObservableObject {
     deinit {
         Logger.writeLog(.debug, message: "SmartImageTunerViewModel deinit Called")
@@ -18,7 +19,7 @@ class SmartImageTunerViewModel: ObservableObject {
     }
     @Published var image: NSImage?
     @Published var displayMode: ImageDisplayMode = .keepAspectRatio
-    private var frameSize: CGSize = .zero
+    
     private let imageSenderWrapper: ImageProcessWrapperProvidable
     
     func setImage(_ newImage: NSImage) {
@@ -27,71 +28,85 @@ class SmartImageTunerViewModel: ObservableObject {
     func setDisplayMode(_ mode: ImageDisplayMode) {
         displayMode = mode
     }
-    func updateFrameSize(_ size: CGSize) {
-        frameSize = size
-    }
-    func saveImage(with drawing: [NSBezierPath]) {
-        guard let image = image else { return }
+    
+    func saveImage(currentDrawing: [NSBezierPath], viewSize: CGSize) {
+        guard let capturedImage = captureImageSection(currentDrawing: currentDrawing, viewSize: viewSize) else { return }
         
-        let savePanel = NSSavePanel()
-        savePanel.allowedContentTypes = [.png]
-        savePanel.canCreateDirectories = true
-        savePanel.isExtensionHidden = false
-        savePanel.title = "Save Image"
-        savePanel.message = "Choose a location to save the image"
-        savePanel.nameFieldStringValue = "image.png"
+        let savePanel = NSSavePanel().then {
+            $0.allowedContentTypes = [.png]
+            $0.canCreateDirectories = true
+            $0.isExtensionHidden = false
+            $0.title = "Save Image"
+            $0.message = "Choose a location to save the image"
+            $0.nameFieldStringValue = "image.png"
+        }
         
         savePanel.begin { result in
             if result == .OK, let url = savePanel.url {
-                let savedImage: NSImage
+                let finalImage: NSImage
+                
                 if self.displayMode == .fillFrame {
-                    savedImage = image.resize(to: self.frameSize)
+                    finalImage = capturedImage.resize(to: viewSize)
                 } else {
-                    savedImage = image
+                    finalImage = capturedImage
                 }
                 
-                let finalImage = self.drawingOnImage(savedImage, drawing: drawing)
-                
-                if let tiffData = finalImage.tiffRepresentation,
-                   let bitmapImage = NSBitmapImageRep(data: tiffData),
+                if let tiffRepresentation = finalImage.tiffRepresentation,
+                   let bitmapImage = NSBitmapImageRep(data: tiffRepresentation),
                    let pngData = bitmapImage.representation(using: .png, properties: [:]) {
                     do {
                         try pngData.write(to: url)
-                        print("Image saved successfully")
+                        Logger.writeLog(.info, message: "Image saved successfully")
                     } catch {
-                        print("Error saving image: \(error)")
+                        Logger.writeLog(.error, message: error.localizedDescription)
                     }
                 }
             }
         }
     }
+    
+    private func captureImageSection(currentDrawing: [NSBezierPath], viewSize: CGSize) -> NSImage? {
+        guard let image = self.image,
+              viewSize.width > 0, viewSize.height > 0,
+              image.size.width > 0, image.size.height > 0 else { return nil }
 
-    private func drawingOnImage(_ image: NSImage, drawing: [NSBezierPath]) -> NSImage {
         let imageSize = image.size
-        let finalImage = NSImage(size: imageSize)
-        
-        finalImage.lockFocus()
-        
-        // 원본 이미지 그리기
+        let newImage = NSImage(size: imageSize)
+
+        newImage.lockFocus()
+
         image.draw(in: NSRect(origin: .zero, size: imageSize))
-        
-        // 드로잉 그리기
+
         NSColor.black.set()
-        for path in drawing {
-            path.lineWidth = 5
-            path.stroke()
+        for path in currentDrawing {
+            if let scaledPath = path.copy() as? NSBezierPath {
+                let scaleX = imageSize.width / viewSize.width
+                let scaleY = imageSize.height / viewSize.height
+                
+                // 유효성 검사 추가
+                guard scaleX.isFinite && scaleY.isFinite && scaleX > 0 && scaleY > 0 else {
+                    print("zz")
+                    continue
+                }
+                
+                scaledPath.transform(using: AffineTransform(scaleByX: scaleX, byY: scaleY))
+                scaledPath.lineWidth = max(1, 5 * min(scaleX, scaleY)) // 최소 1의 두께 보장
+                scaledPath.stroke()
+            }
         }
-        
-        finalImage.unlockFocus()
-        
-        return finalImage
+
+        newImage.unlockFocus()
+
+        return newImage
     }
+    
 }
 // CallBack Result From Native
 extension SmartImageTunerViewModel {
     func bindNativeOutput() {
         // MARK: ReceiverTest
-        imageSenderWrapper.setInt64callback { newValue in
+        imageSenderWrapper.setInt64callback { [weak self] newValue in
+            guard let _ = self else { return }
             DispatchQueue.main.async {
                 Logger.writeLog(.info, message: "Received updated value from C++: \(newValue)")
             }

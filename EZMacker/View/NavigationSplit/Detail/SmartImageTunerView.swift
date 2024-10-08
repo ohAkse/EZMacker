@@ -14,15 +14,17 @@ struct SmartImageTunerView: View {
     @StateObject var smartImageTunerViewModel: SmartImageTunerViewModel
     @State private var isDrawing = false
     @State private var currentDrawing: [NSBezierPath] = []
-    
+    @State private var selectedTab: TunerTabType?
+    @State private var imageSectionSize: CGSize = .zero
     init(factory: ViewModelFactory) {
         _smartImageTunerViewModel = StateObject(wrappedValue: factory.createSmartImageTunerViewModel())
     }
+    
     var body: some View {
         HStack(spacing: 15) {
             imageSectionView
             toolbarSectionView
-                .frame(width: 50)
+                .frame(width: 65)
         }
         .onAppear {
             smartImageTunerViewModel.bindNativeOutput()
@@ -32,25 +34,50 @@ struct SmartImageTunerView: View {
     }
     
     private var toolbarSectionView: some View {
-        VStack {
-            Text("툴바 영역")
-            Button("값 업데이트") {
-                smartImageTunerViewModel.setInt64()
+        GeometryReader { geometry in
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 10) {
+                    ForEach(TunerTabType.allCases, id: \.self) { tab in
+                        EZImageTunerTabButtonView(
+                            tab: tab,
+                            isSelected: selectedTab == tab,
+                            isDisabled: shouldDisableButton(for: tab),
+                            action: { selectTab(tab) }
+                        )
+                    }
+                }
+                .padding(.vertical, 10)
             }
-            Button(action: saveImage) {
-                Image(systemName: "square.and.arrow.down")
-                    .font(.system(size: 20))
-            }
-            .disabled(smartImageTunerViewModel.image == nil)
-            Button(action: toggleDrawing) {
-                Image(systemName: isDrawing ? "pencil.slash" : "pencil")
-                    .font(.system(size: 20))
-            }
-            .disabled(smartImageTunerViewModel.image == nil)
+            .frame(width: 65, height: geometry.size.height)
         }
-        .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .ezBackgroundColorStyle()
+    }
+    
+    private func shouldDisableButton(for tab: TunerTabType) -> Bool {
+        return smartImageTunerViewModel.image == nil
+        // return ![.draw].contains(tab)
+    }
+    
+    private func selectTab(_ tab: TunerTabType) {
+        selectedTab = tab
+        performAction(for: tab)
+    }
+    
+    private func performAction(for tab: TunerTabType) {
+        switch tab {
+        case .rotate: smartImageTunerViewModel.setInt64() // 테스트용
+        case .save: saveImage()
+        case .draw: toggleDrawing()
+        case .crop: cropImage()
+        case .filter: filterImage()
+        case .reset: resetImage()
+        case .addText: addTextToImage()
+        case .highlight: toggleHighlight()
+        case .erase: toggleEraser()
+        case .flip: flipImage()
+        case .redo: redoImage()
+        case .undo: undoImage()
+        }
     }
     
     private var imageSectionView: some View {
@@ -60,14 +87,14 @@ struct SmartImageTunerView: View {
                     Group {
                         switch smartImageTunerViewModel.displayMode {
                         case .keepAspectRatio:
-                            Image(nsImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
+                                Image(nsImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
                         case .fillFrame:
-                            Image(nsImage: image)
-                                .resizable()
-                                .frame(width: geometry.size.width, height: geometry.size.height)
+                                Image(nsImage: image)
+                                    .resizable()
+                                    .frame(width: geometry.size.width, height: geometry.size.height)
                         }
                     }
                     if isDrawing {
@@ -75,8 +102,19 @@ struct SmartImageTunerView: View {
                             .frame(width: geometry.size.width, height: geometry.size.height)
                     }
                 } else {
-                    Text("이미지를 등록하세요")
-                        .foregroundColor(.gray)
+                    VStack {
+                        Text("편집하고자 하는 이미지를 화면에 드래그하여 올려주세요.")
+                            .foregroundColor(.gray)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                        
+                        Text("*정보: 이미지를 올려놓으면 버튼이 활성화되며, 스크롤하여 더 많은 기능을 이용하실 수 있습니다.")
+                            .foregroundColor(.red)
+                            .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: true)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                    }
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
@@ -84,9 +122,6 @@ struct SmartImageTunerView: View {
             .onDrop(of: [UTType.image], isTargeted: nil) { providers in
                 loadDroppedImage(from: providers)
                 return true
-            }
-            .onChange(of: geometry.size) { _, newSize in
-                smartImageTunerViewModel.updateFrameSize(newSize)
             }
             .contextMenu {
                 if smartImageTunerViewModel.image != nil {
@@ -119,6 +154,10 @@ struct SmartImageTunerView: View {
                     )
                 }
             }
+            .preference(key: SizePreferenceKey.self, value: geometry.size)
+            .onPreferenceChange(SizePreferenceKey.self) { newSize in
+                imageSectionSize = newSize
+            }
         }
     }
     private func loadDroppedImage(from providers: [NSItemProvider]) {
@@ -132,11 +171,41 @@ struct SmartImageTunerView: View {
             }
         }
     }
+}
+
+// MARK: 탭 버튼 선택에 따른 함수
+extension SmartImageTunerView {
     private func saveImage() {
-        smartImageTunerViewModel.saveImage(with: currentDrawing)
+        smartImageTunerViewModel.saveImage(currentDrawing: currentDrawing, viewSize: imageSectionSize)
     }
-    
     private func toggleDrawing() {
         isDrawing.toggle()
+    }
+    private func cropImage() {
+        
+    }
+    private func filterImage() {
+        
+    }
+    private func resetImage() {
+        
+    }
+    private func addTextToImage() {
+        
+    }
+    private func toggleHighlight() {
+        
+    }
+    private func toggleEraser() {
+        
+    }
+    private func flipImage() {
+        
+    }
+    private func redoImage() {
+        
+    }
+    private func undoImage() {
+        
     }
 }

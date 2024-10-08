@@ -80,6 +80,7 @@
 		5F7E0B672C707844000C8C97 /* EZWifiMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B662C707844000C8C97 /* EZWifiMainView.swift */; };
 		5F7E0B692C70789B000C8C97 /* EZWifiStrengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B682C70789B000C8C97 /* EZWifiStrengthView.swift */; };
 		5F7E0B6B2C70790F000C8C97 /* EZBatteryAdapterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B6A2C70790F000C8C97 /* EZBatteryAdapterView.swift */; };
+		5F81F3392CB40E41004ED2EE /* EZImageTunerTabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F81F3382CB40E41004ED2EE /* EZImageTunerTabButtonView.swift */; };
 		5F97C3762BF9D25000B0DC56 /* SettingPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */; };
 		5F97C3782BF9DAFE00B0DC56 /* SystemPreferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3772BF9DAFE00B0DC56 /* SystemPreferenceService.swift */; };
 		5F97C3822BFA132E00B0DC56 /* SmartWifiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3812BFA132E00B0DC56 /* SmartWifiView.swift */; };
@@ -88,6 +89,7 @@
 		5F9DAB482C79AC5A000563A2 /* RadioChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB472C79AC5A000563A2 /* RadioChannelData.swift */; };
 		5F9DAB4C2C79C207000563A2 /* WifiConnectData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB4B2C79C207000563A2 /* WifiConnectData.swift */; };
 		5F9DAB502C79F0EA000563A2 /* EZLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */; };
+		5FA5E26B2CB58A500031F16D /* SizePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5E26A2CB58A500031F16D /* SizePreferenceKey.swift */; };
 		5FC1BDBC2CB15B3300D549BF /* ImageDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1BDBB2CB15B3300D549BF /* ImageDisplayMode.swift */; };
 		5FC1BDBE2CB15FDF00D549BF /* NSImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1BDBD2CB15FDF00D549BF /* NSImage + Extension.swift */; };
 		5FC1BDC82CB1699400D549BF /* CanvasRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1BDC72CB1699400D549BF /* CanvasRepresentableView.swift */; };
@@ -276,6 +278,7 @@
 		5F7E0B662C707844000C8C97 /* EZWifiMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZWifiMainView.swift; sourceTree = "<group>"; };
 		5F7E0B682C70789B000C8C97 /* EZWifiStrengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZWifiStrengthView.swift; sourceTree = "<group>"; };
 		5F7E0B6A2C70790F000C8C97 /* EZBatteryAdapterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZBatteryAdapterView.swift; sourceTree = "<group>"; };
+		5F81F3382CB40E41004ED2EE /* EZImageTunerTabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZImageTunerTabButtonView.swift; sourceTree = "<group>"; };
 		5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPreference.swift; sourceTree = "<group>"; };
 		5F97C3772BF9DAFE00B0DC56 /* SystemPreferenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPreferenceService.swift; sourceTree = "<group>"; };
 		5F97C3812BFA132E00B0DC56 /* SmartWifiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWifiView.swift; sourceTree = "<group>"; };
@@ -284,6 +287,7 @@
 		5F9DAB472C79AC5A000563A2 /* RadioChannelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioChannelData.swift; sourceTree = "<group>"; };
 		5F9DAB4B2C79C207000563A2 /* WifiConnectData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConnectData.swift; sourceTree = "<group>"; };
 		5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZLoadingView.swift; sourceTree = "<group>"; };
+		5FA5E26A2CB58A500031F16D /* SizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePreferenceKey.swift; sourceTree = "<group>"; };
 		5FC1BDBB2CB15B3300D549BF /* ImageDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayMode.swift; sourceTree = "<group>"; };
 		5FC1BDBD2CB15FDF00D549BF /* NSImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage + Extension.swift"; sourceTree = "<group>"; };
 		5FC1BDC72CB1699400D549BF /* CanvasRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRepresentableView.swift; sourceTree = "<group>"; };
@@ -447,6 +451,7 @@
 				5FC2CB922CB2B4350066438C /* EZTitleView.swift */,
 				5FC2CB942CB2B44D0066438C /* EZImageView.swift */,
 				5FC2CB962CB2B4E20066438C /* EZButtonActionView.swift */,
+				5F81F3382CB40E41004ED2EE /* EZImageTunerTabButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -697,6 +702,7 @@
 		5F70D5E32BE7C810004509BC /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				5FA5E2692CB58A400031F16D /* Key */,
 				5F1012972BF3826A00589C9B /* View */,
 				5F1012962BF3825D00589C9B /* Modifier */,
 			);
@@ -729,6 +735,14 @@
 				5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		5FA5E2692CB58A400031F16D /* Key */ = {
+			isa = PBXGroup;
+			children = (
+				5FA5E26A2CB58A500031F16D /* SizePreferenceKey.swift */,
+			);
+			path = Key;
 			sourceTree = "<group>";
 		};
 		5FE62F232C843CEF00658155 /* EZMackerUtilLib */ = {
@@ -1085,6 +1099,7 @@
 				5FDDCABD2C188189006A528A /* GifRepresentableView.swift in Sources */,
 				5F5E23462C6A2E2200CD329F /* EZTabbarButtonStyle.swift in Sources */,
 				5F3CB4582C7052C0007A479D /* BatterySetting.swift in Sources */,
+				5FA5E26B2CB58A500031F16D /* SizePreferenceKey.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
 				5FE99E6B2C993AB000233969 /* SmartBatteryDependency.swift in Sources */,
 				5F0DAC322C953C4C00BB3488 /* MacType.swift in Sources */,
@@ -1095,6 +1110,7 @@
 				5F7E0B652C7077D9000C8C97 /* EZBatteryMonitoringView.swift in Sources */,
 				5F485A092C69AD7D00B32585 /* EZTextFieldStyle.swift in Sources */,
 				5FE99EA72C995EA100233969 /* NotificationAlarmKey.swift in Sources */,
+				5F81F3392CB40E41004ED2EE /* EZImageTunerTabButtonView.swift in Sources */,
 				5F1012B22BF39EBD00589C9B /* EZBatteryInfoView.swift in Sources */,
 				5FC1BDC82CB1699400D549BF /* CanvasRepresentableView.swift in Sources */,
 				5F485A012C69ABDF00B32585 /* EZListViewStyle.swift in Sources */,

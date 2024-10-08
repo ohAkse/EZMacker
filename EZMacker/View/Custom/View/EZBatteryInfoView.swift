@@ -9,7 +9,6 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZBatteryInfoView: View {
-    
     @EnvironmentObject var systemThemeService: SystemThemeService
     @State private var isAnimated = false
     let imageName: String

@@ -9,12 +9,17 @@ import AppKit
 
 extension NSImage {
     func resize(to newSize: NSSize) -> NSImage {
-        let img = NSImage(size: newSize)
-        img.lockFocus()
+        guard newSize.width > 0, newSize.height > 0, self.size.width > 0, self.size.height > 0 else {
+            return self
+        }
+        let newImage = NSImage(size: newSize)
+        
+        newImage.lockFocus()
         let ctx = NSGraphicsContext.current
         ctx?.imageInterpolation = .high
         self.draw(in: NSRect(origin: .zero, size: newSize), from: NSRect(origin: .zero, size: size), operation: .copy, fraction: 1)
-        img.unlockFocus()
-        return img
+        newImage.unlockFocus()
+        
+        return newImage
     }
 }

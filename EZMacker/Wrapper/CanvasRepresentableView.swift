@@ -13,9 +13,10 @@ struct CanvasRepresentableView: NSViewRepresentable {
     @ObservedObject var smartImageTunerViewModel: SmartImageTunerViewModel
     
     func makeNSView(context: Context) -> NSView {
-        let view = NSCanvasView()
-        view.delegate = context.coordinator
-        view.viewModel = smartImageTunerViewModel
+        let view = NSCanvasView().then {
+            $0.delegate = context.coordinator
+            $0.viewModel = smartImageTunerViewModel
+        }
         return view
     }
     
