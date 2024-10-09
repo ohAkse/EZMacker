@@ -163,42 +163,86 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     }
     
     private func connectedAdapterInfo(geo: GeometryProxy) -> some View {
-        HStack {
+        Group {
             if let adapterInfo = smartBatteryViewModel.adapterMetricsData.adapterData.first {
-                VStack {
-                    EZImageView(systemName: "battery_adapter", isSystemName: false)
-                    EZContentView(content: adapterInfo.Name)
+                if adapterInfo.isCType {
+                    cTypeAdapterView(adapterInfo: adapterInfo, geo: geo)
+                } else {
+                    tTypeAdapterView(adapterInfo: adapterInfo, geo: geo)
                 }
-                .frame(width: geo.size.width * 0.3)
-                VStack(spacing: 0) {
-                    Spacer()
-                    EZBatteryAdapterView(title: "Adp ID", content: "\(adapterInfo.AdapterID)")
-                    Spacer()
-                    EZBatteryAdapterView(title: "Model ID", content: adapterInfo.Model)
-                    Spacer()
-                    EZBatteryAdapterView(title: "F/W Ver", content: adapterInfo.FwVersion)
-                    Spacer()
-                }
-                .ezBackgroundColorStyle()
-                .frame(width: geo.size.width * 0.33)
-                
-                Spacer(minLength: 5)
-                
-                VStack(spacing: 0) {
-                    Spacer()
-                    EZBatteryAdapterView(title: "Mfr.", content: adapterInfo.Manufacturer)
-                    Spacer()
-                    EZBatteryAdapterView(title: "Watts", content: "\(adapterInfo.Watts)W")
-                    Spacer()
-                    EZBatteryAdapterView(title: "H/W Ver", content: adapterInfo.HwVersion)
-                    Spacer()
-                }
-                .frame(width: geo.size.width * 0.33)
-                .ezBackgroundColorStyle()
             } else {
                 Text("No adapter connected")
                     .frame(maxWidth: .infinity)
             }
+        }
+    }
+
+    private func cTypeAdapterView(adapterInfo: AdapterData, geo: GeometryProxy) -> some View {
+        HStack {
+            VStack {
+                EZImageView(systemName: "ChargerCType", isSystemName: false)
+            }
+            .frame(width: geo.size.width * 0.3)
+            
+            VStack(spacing: 0) {
+                Spacer()
+                EZBatteryAdapterView(title: "제조사", content: adapterInfo.Manufacturer ?? "Unknown")
+                Spacer()
+                EZBatteryAdapterView(title: "H/W Ver", content: adapterInfo.HwVersion ?? "Unknown")
+                Spacer()
+                EZBatteryAdapterView(title: "F/W Ver", content: adapterInfo.FwVersion ?? "Unknown")
+                Spacer()
+            }
+            .ezBackgroundColorStyle()
+            .frame(width: geo.size.width * 0.33)
+            
+            Spacer(minLength: 5)
+            
+            VStack(spacing: 0) {
+                Spacer()
+                EZBatteryAdapterView(title: "전압", content: "\(adapterInfo.AdapterVoltage)mV")
+                Spacer()
+                EZBatteryAdapterView(title: "전류", content: "\(adapterInfo.Current)mA")
+                Spacer()
+                EZBatteryAdapterView(title: "전력", content: "\(adapterInfo.Watts)W")
+                Spacer()
+            }
+            .frame(width: geo.size.width * 0.33)
+            .ezBackgroundColorStyle()
+        }
+    }
+
+    private func tTypeAdapterView(adapterInfo: AdapterData, geo: GeometryProxy) -> some View {
+        HStack {
+            VStack {
+                EZImageView(systemName: "ChargerTType", isSystemName: false)
+            }
+            .frame(width: geo.size.width * 0.3)
+            VStack(spacing: 0) {
+                Spacer()
+                EZBatteryAdapterView(title: "제조사", content: adapterInfo.Manufacturer ?? "Unknown")
+                Spacer()
+                EZBatteryAdapterView(title: "H/W Ver", content: adapterInfo.HwVersion ?? "Unknown")
+                Spacer()
+                EZBatteryAdapterView(title: "F/W Ver", content: adapterInfo.FwVersion ?? "Unknown")
+                Spacer()
+            }
+            .ezBackgroundColorStyle()
+            .frame(width: geo.size.width * 0.33)
+            
+            Spacer(minLength: 5)
+            
+            VStack(spacing: 0) {
+                Spacer()
+                EZBatteryAdapterView(title: "전압", content: "\(adapterInfo.AdapterVoltage)mV")
+                Spacer()
+                EZBatteryAdapterView(title: "전류", content: "\(adapterInfo.Current)mA")
+                Spacer()
+                EZBatteryAdapterView(title: "전력", content: "\(adapterInfo.Watts)W")
+                Spacer()
+            }
+            .frame(width: geo.size.width * 0.33)
+            .ezBackgroundColorStyle()
         }
     }
     private func disconnectedAdapterInfo(geo: GeometryProxy) -> some View {
