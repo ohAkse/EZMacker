@@ -46,19 +46,18 @@ struct EZWifiMainView: View {
         VStack {
             HStack {
                 VStack {
-                    Image(systemName: "wifi.router.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .font(.headline)
-                        .fontWeight(.bold)
+                    Spacer()
+                    EZImage(systemName: "wifi_router", isSystemName: false)
+                        .frame(height: 200)
                     Spacer(minLength: 0)
                     Text("\(ssid)")
+                        .frame(height: 30)
                         .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                     Spacer()
                 }
-                .frame(width: 200, height: 300)
+                .frame(width: 200, height: 280)
                 .padding([.leading, .trailing], 20)
-                .padding(.top, 60)
+                .padding(.top, 10)
                 
                 Spacer()
                 if wifiLists.isEmpty {
