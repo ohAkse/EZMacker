@@ -16,6 +16,7 @@ public protocol AppCoreWLANWifiProvidable: AppWiFiClientProvidable {
     func getWifiLists(attempts: Int ) -> Future<[ScaningWifiData], AppCoreWLanStatus>
     func connectToNetwork(ssid: String, password: String) -> Future<(String, Bool), AppCoreWLanStatus>
     func getCurrentSSID() -> Future<String, AppCoreWLanStatus>
+    func checkIsConnected() -> Bool
 }
 
 public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
@@ -69,6 +70,7 @@ public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
     
     private func scanWifiLists(attempts: Int, promise: @escaping (Result<[ScaningWifiData], AppCoreWLanStatus>) -> Void) {
         if attempts < 1 {
+            Logger.writeLog(.error, message: "retry 숫자 초과..")
             promise(.failure(.scanningFailed))
         }
         
@@ -86,7 +88,6 @@ public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             if wifiInfoList.isEmpty && attempts > 1 {
                 self.scanWifiLists(attempts: attempts - 1, promise: promise)
             } else {
-                
                 promise(.success(wifiInfoList))
             }
         } catch {
@@ -142,6 +143,16 @@ public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             } else {
                 promise(.success(""))
             }
+        }
+    }
+    public func checkIsConnected() -> Bool {
+        guard let interface = self.interface else {
+            return false
+        }
+        if interface.powerOn() {
+            return true
+        } else {
+            return false
         }
     }
 }

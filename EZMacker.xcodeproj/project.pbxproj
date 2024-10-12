@@ -78,6 +78,9 @@
 		5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5DC2BE7BDE0004509BC /* SmartBatteryViewModel.swift */; };
 		5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5E12BE7C586004509BC /* CategoryType.swift */; };
 		5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */; };
+		5F7115D42CBA8E2600FBCD9D /* SmartWifiMoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7115D32CBA8E2600FBCD9D /* SmartWifiMoreInfoView.swift */; };
+		5F7115D92CBA90AA00FBCD9D /* NavigationPathDestionation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7115D82CBA90AA00FBCD9D /* NavigationPathDestionation.swift */; };
+		5F71166B2CBADED100FBCD9D /* AdapterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F71166A2CBADED100FBCD9D /* AdapterType.swift */; };
 		5F72B7C82C42357B0060DEA0 /* FileTabData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F72B7C72C42357B0060DEA0 /* FileTabData.swift */; };
 		5F78156B2C69DF9F00DE5F39 /* EZInnerBackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78156A2C69DF9F00DE5F39 /* EZInnerBackgroundStyle.swift */; };
 		5F7E0B652C7077D9000C8C97 /* EZBatteryMonitoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B642C7077D9000C8C97 /* EZBatteryMonitoringView.swift */; };
@@ -280,6 +283,9 @@
 		5F70D5DC2BE7BDE0004509BC /* SmartBatteryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartBatteryViewModel.swift; sourceTree = "<group>"; };
 		5F70D5E12BE7C586004509BC /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		5F70D5EC2BE7D8F4004509BC /* FontSizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeType.swift; sourceTree = "<group>"; };
+		5F7115D32CBA8E2600FBCD9D /* SmartWifiMoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWifiMoreInfoView.swift; sourceTree = "<group>"; };
+		5F7115D82CBA90AA00FBCD9D /* NavigationPathDestionation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationPathDestionation.swift; sourceTree = "<group>"; };
+		5F71166A2CBADED100FBCD9D /* AdapterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterType.swift; sourceTree = "<group>"; };
 		5F72B7C72C42357B0060DEA0 /* FileTabData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTabData.swift; sourceTree = "<group>"; };
 		5F78156A2C69DF9F00DE5F39 /* EZInnerBackgroundStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZInnerBackgroundStyle.swift; sourceTree = "<group>"; };
 		5F7E0B642C7077D9000C8C97 /* EZBatteryMonitoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZBatteryMonitoringView.swift; sourceTree = "<group>"; };
@@ -729,6 +735,15 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		5F7115D52CBA903700FBCD9D /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				5F7115D82CBA90AA00FBCD9D /* NavigationPathDestionation.swift */,
+				5F71166A2CBADED100FBCD9D /* AdapterType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		5F95BF092C985E80006B7BFB /* Locator */ = {
 			isa = PBXGroup;
 			children = (
@@ -873,6 +888,7 @@
 		5FEE27C62BE9012900847761 /* NavigationSplit */ = {
 			isa = PBXGroup;
 			children = (
+				5F7115D52CBA903700FBCD9D /* Enum */,
 				5FEE27C92BE9017C00847761 /* Detail */,
 				5FEE27C72BE9015400847761 /* CategoryView.swift */,
 				5FEE27CE2BE901D900847761 /* AppToolbarView.swift */,
@@ -889,6 +905,7 @@
 				5F3604192C38259400C1B84B /* SmartFileSearchView.swift */,
 				5F027B2B2C82EC3900DF929B /* SmartBatteryView.swift */,
 				5F2890412CA7E17900602B78 /* SmartImageTunerView.swift */,
+				5F7115D32CBA8E2600FBCD9D /* SmartWifiMoreInfoView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1111,6 +1128,8 @@
 				5FE99EA52C995E8D00233969 /* FileLocatorServiceKey.swift in Sources */,
 				5FDE1EE82C6B0A1E00E67FCE /* EZButtonImageStyle.swift in Sources */,
 				5FC2CB912CB2B4210066438C /* EZContentView.swift in Sources */,
+				5F7115D42CBA8E2600FBCD9D /* SmartWifiMoreInfoView.swift in Sources */,
+				5F71166B2CBADED100FBCD9D /* AdapterType.swift in Sources */,
 				5F9DAB502C79F0EA000563A2 /* EZLoadingView.swift in Sources */,
 				5FE99E682C993A4900233969 /* DependancyContainer.swift in Sources */,
 				5F7E0B672C707844000C8C97 /* EZWifiMainView.swift in Sources */,
@@ -1205,6 +1224,7 @@
 				5F6BA56A2CBA0F5500205073 /* DrawToolPopupView.swift in Sources */,
 				5F6BA5642CBA0A0000205073 /* EZPopupStyle.swift in Sources */,
 				5FE99EA32C995E6B00233969 /* BatteryServiceKey.swift in Sources */,
+				5F7115D92CBA90AA00FBCD9D /* NavigationPathDestionation.swift in Sources */,
 				5F3FF0302C02BE9800E3246C /* ChargeData.swift in Sources */,
 				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,
 				5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */,
@@ -1328,8 +1348,9 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DUSE_PRIVATE_FUNC";
 				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited) PROFILE_INFO TEST_REMOVE IMPORVE_LATER";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1385,6 +1406,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-DUSE_PRIVATE_FUNC";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};

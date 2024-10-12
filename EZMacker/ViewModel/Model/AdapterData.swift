@@ -32,6 +32,7 @@ struct AdapterData: Decodable {
     }
 
     var isCType: Bool {
+        
         return (Model?.isEmpty == nil) && (Manufacturer?.isEmpty == nil)
       }
     init(AdapterID: Int =  0,

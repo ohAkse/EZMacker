@@ -19,10 +19,11 @@ struct EZWifiMainView: View {
     @State private var isShowingPasswordModal = false
     @State private var toast: ToastData?
     @State private var selectedSSid: String = ""
-    private(set) var appSmartAutoconnectWifiService: AppSmartAutoconnectWifiServiceProvidable
-    private(set) var onRefresh: () -> Void
-    private(set) var onWifiTap: (String, String) -> Void
-    private(set) var onFindBestWifi: () -> Void
+    private (set) var appSmartAutoconnectWifiService: AppSmartAutoconnectWifiServiceProvidable
+    private (set) var onRefresh: () -> Void
+    private (set) var onWifiTap: (String, String) -> Void
+    private (set) var onFindBestWifi: () -> Void
+    private (set) var onMoreInfo: () -> Void
     
     init(appSmartAutoconnectWifiService: AppSmartAutoconnectWifiServiceProvidable,
          ssid: Binding<String> = .constant(""),
@@ -31,7 +32,8 @@ struct EZWifiMainView: View {
          isFindingBestWifi: Binding<Bool> = .constant(false),
          onRefresh: @escaping () -> Void = {},
          onWifiTap: @escaping (String, String) -> Void = { _, _ in },
-         onFindBestWifi: @escaping () -> Void = {}) {
+         onFindBestWifi: @escaping () -> Void = {},
+         onMoreInfo: @escaping () -> Void = {}) {
         self.appSmartAutoconnectWifiService = appSmartAutoconnectWifiService
         self._ssid = ssid
         self._wifiLists = wifiLists
@@ -40,6 +42,7 @@ struct EZWifiMainView: View {
         self.onRefresh = onRefresh
         self.onWifiTap = onWifiTap
         self.onFindBestWifi = onFindBestWifi
+        self.onMoreInfo = onMoreInfo
     }
     // MARK: Refresh의 경우 Disabled 처리가 빨리 처리가 되어 깜빡이는것처럼 보여서 일단 처리 안함
     var body: some View {
@@ -87,6 +90,17 @@ struct EZWifiMainView: View {
                         Spacer()
                         HStack {
                             Spacer()
+                            #if USE_PRIVATE_FUNC
+                            EZButtonActionView(
+                                action: {
+                                    onMoreInfo()
+                                },
+                                imageName: "info.windshield",
+                                isDisabled: false
+                            )
+                            .padding(.trailing, 5)
+                            #endif
+                            
                             EZButtonActionView(
                                 action: {
                                     onRefresh()
@@ -176,10 +190,14 @@ struct EZWifiMainView: View {
     }
     
     private func didTapWifiListWithAscending() {
-        wifiLists = wifiLists.sorted { Int($0.rssi)! < Int($1.rssi)! }
+        withAnimation {
+            wifiLists = wifiLists.sorted { Int($0.rssi)! < Int($1.rssi)! }
+        }
     }
     
     private func didTapWifiListWithDescending() {
-        wifiLists = wifiLists.sorted { Int($0.rssi)! > Int($1.rssi)! }
+        withAnimation {
+            wifiLists = wifiLists.sorted { Int($0.rssi)! > Int($1.rssi)! }
+        }
     }
 }
