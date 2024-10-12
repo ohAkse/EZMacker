@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZBatteryAdapterView: View {
-    @EnvironmentObject var appThemeManager: SystemThemeService
+    @EnvironmentObject var systemThemeService: SystemThemeService
     let size: CGFloat = FontSizeType.medium.size
     let title: String
     let content: String
@@ -17,9 +17,9 @@ struct EZBatteryAdapterView: View {
     var body: some View {
         HStack {
             if isAdapterAnimated {
-                EZTitle(title: title)
+                EZTitleView(title: title)
                 Spacer()
-                EZContent(content: content)
+                EZContentView(content: content)
                     .padding(.trailing, 10)
                 Spacer()
             }
@@ -40,7 +40,7 @@ struct EZBatteryAdapterView: View {
     }
     
     private func backgroundColorForTheme() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.white.color
         case ColorSchemeModeType.Dark.title:

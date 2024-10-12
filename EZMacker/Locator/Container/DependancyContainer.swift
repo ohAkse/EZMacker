@@ -13,6 +13,9 @@ enum DependencyLifetime {
     case transient
 }
 
+protocol DependencyRegisterable {
+    func register(in container: DependencyContainer)
+}
 class DependencyContainer {
     static let shared = DependencyContainer()
     private var dependencies: [String: (lifetime: DependencyLifetime, factory: (ModelContext?) -> Any)] = [:]

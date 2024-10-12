@@ -317,7 +317,7 @@
 				5F0DAC882C957AC300BB3488 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		5F0DAC892C957AC300BB3488 /* Build configuration list for PBXNativeTarget "EZMackerThreadLib" */ = {
 			isa = XCConfigurationList;
@@ -326,7 +326,7 @@
 				5F0DAC8B2C957AC300BB3488 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

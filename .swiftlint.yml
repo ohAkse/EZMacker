@@ -1,5 +1,4 @@
 disabled_rules:
-  - trailing_whitespace
   - xctfail_message
   - unused_optional_binding
   - identifier_name
@@ -36,3 +35,6 @@ redundant_string_enum_value:
   severity: error
 non_optional_string_data_conversion:
   severity: error
+trailing_whitespace:
+  severity: error
+  ignores_empty_lines: true

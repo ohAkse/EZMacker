@@ -7,7 +7,7 @@
 
 import Foundation
 import EZMackerServiceLib
-
+import EZMackerImageLib
 class ViewModelFactory {
     private let container: DependencyContainer
     
@@ -54,5 +54,19 @@ class ViewModelFactory {
             wifiSetting: container.resolve(WifiSettingConfigurable.self, forKey: NotificationAlarmKey.wifiSetting.value),
             fileLocatorSetting: container.resolve(FileLocatorSettingConfigurable.self, forKey: NotificationAlarmKey.fileLocatorSetting.value)
         )
+    }
+    func createSmartImageTunerViewModel() -> SmartImageTunerViewModel {
+        return SmartImageTunerViewModel(
+            imageSenderWrapper: container.resolve(ImageProcessWrapperProvidable.self, forKey: ImageTunerWrapperKey.imageSender.value)
+        )
+    }
+}
+
+// MARK: UI용 Preview Factory 주입
+extension ViewModelFactory {
+    static var preview: ViewModelFactory {
+        let container = DependencyContainer.shared
+        SmartMockDependency().register(in: container)
+        return ViewModelFactory(container: container)
     }
 }

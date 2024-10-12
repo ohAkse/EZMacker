@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZButtonImageStyle: ButtonStyle {
-    @EnvironmentObject var appThemeManager: SystemThemeService
+    @EnvironmentObject var systemThemeService: SystemThemeService
     
     let imageSize: CGSize
     let imageName: String
@@ -43,7 +43,7 @@ struct EZButtonImageStyle: ButtonStyle {
     }
     
     private func foregroundColorForTheme() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return lightModeForegroundColor
         case ColorSchemeModeType.Dark.title:
@@ -55,7 +55,7 @@ struct EZButtonImageStyle: ButtonStyle {
     }
 
     private func backgroundColorForTheme() -> Color? {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return lightModeBackgroundColor
         case ColorSchemeModeType.Dark.title:
@@ -76,7 +76,7 @@ extension View {
         darkModeForegroundColor: Color = ThemeColorType.white.color,
         lightModeBackgroundColor: Color? = ThemeColorType.white.color.opacity(0.4),
         darkModeBackgroundColor: Color? = ThemeColorType.white.color.opacity(0.4),
-        frameSize: CGSize? = CGSize(width: 30, height: 30),
+        frameSize: CGSize? = CGSize(width: 35, height: 35),
         isAddButton: Bool = false
     ) -> some View {
         self.buttonStyle(EZButtonImageStyle(

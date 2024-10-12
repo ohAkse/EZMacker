@@ -10,13 +10,11 @@ import EZMackerUtilLib
 import EZMackerServiceLib
 
 struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
-    @EnvironmentObject var systemThemeService: SystemThemeService
+    @StateObject private var smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>
     @State private(set) var toast: ToastData?
     @State private(set) var isAdapterAnimated = false
     @State private(set) var hasShownToast = false
     @State private(set) var errCount = 0
-    
-    @StateObject private var smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>
     
     init(factory: ViewModelFactory) {
         _smartBatteryViewModel = StateObject(wrappedValue: factory.createSmartBatteryViewModel())
@@ -182,7 +180,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     private func cTypeAdapterView(adapterInfo: AdapterData, geo: GeometryProxy) -> some View {
         HStack {
             VStack {
-                EZImage(systemName: "ChargerCType", isSystemName: false)
+                EZImageView(systemName: "ChargerCType", isSystemName: false)
             }
             .frame(width: geo.size.width * 0.3)
             
@@ -217,7 +215,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     private func tTypeAdapterView(adapterInfo: AdapterData, geo: GeometryProxy) -> some View {
         HStack {
             VStack {
-                EZImage(systemName: "ChargerTType", isSystemName: false)
+                EZImageView(systemName: "ChargerTType", isSystemName: false)
             }
             .frame(width: geo.size.width * 0.3)
             VStack(spacing: 0) {

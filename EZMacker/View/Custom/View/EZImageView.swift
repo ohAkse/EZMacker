@@ -1,15 +1,15 @@
 //
-//  CustomImage.swift
+//  EZImageView.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/14/24.
+//  Created by 박유경 on 10/6/24.
 //
 
 import SwiftUI
 import EZMackerUtilLib
 
-struct EZImage: View {
-    @EnvironmentObject var appThemeManager: SystemThemeService
+struct EZImageView: View {
+    @EnvironmentObject var systemThemeService: SystemThemeService
     let systemName: String
     let isSystemName: Bool
     var body: some View {
@@ -31,7 +31,7 @@ struct EZImage: View {
     }
     
     private func getImageForegroundStyle() -> [Color] {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return [.gray, .blue]
         case ColorSchemeModeType.Dark.title:
@@ -42,7 +42,7 @@ struct EZImage: View {
         }
     }
     private func getImageBackground() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightWhite.color
         case ColorSchemeModeType.Dark.title:
@@ -53,11 +53,3 @@ struct EZImage: View {
         }
     }
 }
-
-// #if DEBUG
-// struct CustomImage_Preview: PreviewProvider {
-//    static var previews: some View {
-//        EZImage(systemName: "globe", isSystemName: true)
-//    }
-// }
-// #endif

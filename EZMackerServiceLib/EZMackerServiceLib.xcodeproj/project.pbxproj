@@ -373,7 +373,7 @@
 				5FE62F762C844ED300658155 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		5FE62F772C844ED300658155 /* Build configuration list for PBXNativeTarget "EZMackerServiceLib" */ = {
 			isa = XCConfigurationList;
@@ -382,7 +382,7 @@
 				5FE62F792C844ED300658155 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

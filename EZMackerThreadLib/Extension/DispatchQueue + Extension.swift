@@ -42,7 +42,7 @@ extension DispatchQueue {
         let signpostID = OSSignpostID(log: DispatchQueueFactory.log)
         os_signpost(.event, log: DispatchQueueFactory.log, name: "Event", signpostID: signpostID, "%{public}s: %@", self.label, event)
     }
-    
+
     public static func asyncGlobalLogging(qos: DispatchQoS.QoSClass = .default, message: String = #function, execute work: @escaping () -> Void) {
         let signpostID = OSSignpostID(log: DispatchQueueFactory.log)
         DispatchQueue.global(qos: qos).async {

@@ -21,12 +21,14 @@
 		5F0DAC512C954F8100BB3488 /* CPUUsageExitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC502C954F8100BB3488 /* CPUUsageExitType.swift */; };
 		5F0DAC992C957B0E00BB3488 /* libEZMackerThreadLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0DAC962C957AE800BB3488 /* libEZMackerThreadLib.a */; };
 		5F0F96732C6B67B800A70564 /* EZTextFieldWrapperStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F96722C6B67B800A70564 /* EZTextFieldWrapperStyle.swift */; };
-		5F1012A62BF3844300589C9B /* EZImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012A52BF3844300589C9B /* EZImage.swift */; };
-		5F1012AC2BF399ED00589C9B /* EZTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012AB2BF399ED00589C9B /* EZTitle.swift */; };
-		5F1012AE2BF399F600589C9B /* EZContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012AD2BF399F600589C9B /* EZContent.swift */; };
 		5F1012B22BF39EBD00589C9B /* EZBatteryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1012B12BF39EBD00589C9B /* EZBatteryInfoView.swift */; };
 		5F16A7DC2C358F07003EA0BE /* FileQueryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F16A7DB2C358F07003EA0BE /* FileQueryData.swift */; };
 		5F1A91B12BF8E48F0078F4F8 /* battery_charging_animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */; };
+		5F2890422CA7E17900602B78 /* SmartImageTunerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890412CA7E17900602B78 /* SmartImageTunerView.swift */; };
+		5F2890472CA7E18900602B78 /* SmartImageTunerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890462CA7E18900602B78 /* SmartImageTunerViewModel.swift */; };
+		5F2890492CA7E28A00602B78 /* SmartImageTunerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */; };
+		5F28904B2CA7E96800602B78 /* SmartMockDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */; };
+		5F2890DF2CA8101C00602B78 /* libEZMackerImageLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F2890B32CA8031B00602B78 /* libEZMackerImageLib.a */; };
 		5F3604162C38214A00C1B84B /* SmartFileLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */; };
 		5F3604182C38230400C1B84B /* SmartFileLocatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */; };
 		5F36041A2C38259400C1B84B /* SmartFileSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604192C38259400C1B84B /* SmartFileSearchView.swift */; };
@@ -63,6 +65,10 @@
 		5F69D28B2C0DDA9D00F318ED /* EZWifiDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69D28A2C0DDA9D00F318ED /* EZWifiDetailView.swift */; };
 		5F69D2902C0DECE900F318ED /* AdapterConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69D28F2C0DECE900F318ED /* AdapterConnect.swift */; };
 		5F69D2922C0DED4800F318ED /* AdapterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69D2912C0DED4800F318ED /* AdapterData.swift */; };
+		5F6BA5642CBA0A0000205073 /* EZPopupStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA5632CBA0A0000205073 /* EZPopupStyle.swift */; };
+		5F6BA56A2CBA0F5500205073 /* DrawToolPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA5692CBA0F5500205073 /* DrawToolPopupView.swift */; };
+		5F6BA56C2CBA0F6000205073 /* FilterPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA56B2CBA0F6000205073 /* FilterPopupView.swift */; };
+		5F6BA56E2CBA0F6A00205073 /* AddTextPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA56D2CBA0F6A00205073 /* AddTextPopupView.swift */; };
 		5F6D4E6A2BE88AD9004B94F8 /* ToolbarKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E692BE88AD9004B94F8 /* ToolbarKeyType.swift */; };
 		5F6D4E6C2BE88CC6004B94F8 /* ThemeColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E6B2BE88CC6004B94F8 /* ThemeColorType.swift */; };
 		5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeModeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E6D2BE88CE1004B94F8 /* ColorSchemeModeType.swift */; };
@@ -78,6 +84,7 @@
 		5F7E0B672C707844000C8C97 /* EZWifiMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B662C707844000C8C97 /* EZWifiMainView.swift */; };
 		5F7E0B692C70789B000C8C97 /* EZWifiStrengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B682C70789B000C8C97 /* EZWifiStrengthView.swift */; };
 		5F7E0B6B2C70790F000C8C97 /* EZBatteryAdapterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E0B6A2C70790F000C8C97 /* EZBatteryAdapterView.swift */; };
+		5F81F3392CB40E41004ED2EE /* EZImageTunerTabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F81F3382CB40E41004ED2EE /* EZImageTunerTabButtonView.swift */; };
 		5F97C3762BF9D25000B0DC56 /* SettingPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */; };
 		5F97C3782BF9DAFE00B0DC56 /* SystemPreferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3772BF9DAFE00B0DC56 /* SystemPreferenceService.swift */; };
 		5F97C3822BFA132E00B0DC56 /* SmartWifiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97C3812BFA132E00B0DC56 /* SmartWifiView.swift */; };
@@ -86,6 +93,15 @@
 		5F9DAB482C79AC5A000563A2 /* RadioChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB472C79AC5A000563A2 /* RadioChannelData.swift */; };
 		5F9DAB4C2C79C207000563A2 /* WifiConnectData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB4B2C79C207000563A2 /* WifiConnectData.swift */; };
 		5F9DAB502C79F0EA000563A2 /* EZLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */; };
+		5FA5E26B2CB58A500031F16D /* SizePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5E26A2CB58A500031F16D /* SizePreferenceKey.swift */; };
+		5FC1BDBC2CB15B3300D549BF /* ImageDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1BDBB2CB15B3300D549BF /* ImageDisplayMode.swift */; };
+		5FC1BDBE2CB15FDF00D549BF /* NSImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1BDBD2CB15FDF00D549BF /* NSImage + Extension.swift */; };
+		5FC1BDC82CB1699400D549BF /* CanvasRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1BDC72CB1699400D549BF /* CanvasRepresentableView.swift */; };
+		5FC2CB912CB2B4210066438C /* EZContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2CB902CB2B4210066438C /* EZContentView.swift */; };
+		5FC2CB932CB2B4350066438C /* EZTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2CB922CB2B4350066438C /* EZTitleView.swift */; };
+		5FC2CB952CB2B44D0066438C /* EZImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2CB942CB2B44D0066438C /* EZImageView.swift */; };
+		5FC2CB972CB2B4E20066438C /* EZButtonActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2CB962CB2B4E20066438C /* EZButtonActionView.swift */; };
+		5FCA105D2CA966E30064A494 /* ImageTunerWrapperKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA105C2CA966E30064A494 /* ImageTunerWrapperKey.swift */; };
 		5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */; };
 		5FCC8B9A2BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */; };
 		5FCDCF842CA409DB00CF8D22 /* SystemTehemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCDCF832CA409DB00CF8D22 /* SystemTehemeService.swift */; };
@@ -121,6 +137,41 @@
 			proxyType = 2;
 			remoteGlobalIDString = 5F0DAC802C957AC300BB3488;
 			remoteInfo = EZMackerThreadLib;
+		};
+		5F2890522CA7F42900602B78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F0DAC8F2C957AE800BB3488 /* EZMackerThreadLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F0DAC7F2C957AC300BB3488;
+			remoteInfo = EZMackerThreadLib;
+		};
+		5F2890572CA7F43000602B78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FE62F7D2C844EE800658155 /* EZMackerServiceLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5FE62F6D2C844ED300658155;
+			remoteInfo = EZMackerServiceLib;
+		};
+		5F2890592CA7F43400602B78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FE62F222C843CEF00658155 /* EZMackerUtilLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5FE62F122C843CDC00658155;
+			remoteInfo = EZMackerUtilLib;
+		};
+		5F2890B22CA8031B00602B78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5F28909E2CA8030F00602B78;
+			remoteInfo = EZMackerImageLib;
+		};
+		5F2890E02CA8102C00602B78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F28909D2CA8030F00602B78;
+			remoteInfo = EZMackerImageLib;
 		};
 		5F36B2252BE7AB3100E08935 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -167,12 +218,14 @@
 		5F0DAC502C954F8100BB3488 /* CPUUsageExitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUUsageExitType.swift; sourceTree = "<group>"; };
 		5F0DAC8F2C957AE800BB3488 /* EZMackerThreadLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EZMackerThreadLib.xcodeproj; sourceTree = "<group>"; };
 		5F0F96722C6B67B800A70564 /* EZTextFieldWrapperStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTextFieldWrapperStyle.swift; sourceTree = "<group>"; };
-		5F1012A52BF3844300589C9B /* EZImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZImage.swift; sourceTree = "<group>"; };
-		5F1012AB2BF399ED00589C9B /* EZTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTitle.swift; sourceTree = "<group>"; };
-		5F1012AD2BF399F600589C9B /* EZContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZContent.swift; sourceTree = "<group>"; };
 		5F1012B12BF39EBD00589C9B /* EZBatteryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZBatteryInfoView.swift; sourceTree = "<group>"; };
 		5F16A7DB2C358F07003EA0BE /* FileQueryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileQueryData.swift; sourceTree = "<group>"; };
 		5F1A91B02BF8E48F0078F4F8 /* battery_charging_animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = battery_charging_animation.gif; sourceTree = "<group>"; };
+		5F2890412CA7E17900602B78 /* SmartImageTunerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartImageTunerView.swift; sourceTree = "<group>"; };
+		5F2890462CA7E18900602B78 /* SmartImageTunerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartImageTunerViewModel.swift; sourceTree = "<group>"; };
+		5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartImageTunerDependency.swift; sourceTree = "<group>"; };
+		5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartMockDependency.swift; sourceTree = "<group>"; };
+		5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EZMackerImageLib.xcodeproj; sourceTree = "<group>"; };
 		5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileLocatorViewModel.swift; sourceTree = "<group>"; };
 		5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileLocatorView.swift; sourceTree = "<group>"; };
 		5F3604192C38259400C1B84B /* SmartFileSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileSearchView.swift; sourceTree = "<group>"; };
@@ -214,6 +267,10 @@
 		5F69D28A2C0DDA9D00F318ED /* EZWifiDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZWifiDetailView.swift; sourceTree = "<group>"; };
 		5F69D28F2C0DECE900F318ED /* AdapterConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterConnect.swift; sourceTree = "<group>"; };
 		5F69D2912C0DED4800F318ED /* AdapterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterData.swift; sourceTree = "<group>"; };
+		5F6BA5632CBA0A0000205073 /* EZPopupStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZPopupStyle.swift; sourceTree = "<group>"; };
+		5F6BA5692CBA0F5500205073 /* DrawToolPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawToolPopupView.swift; sourceTree = "<group>"; };
+		5F6BA56B2CBA0F6000205073 /* FilterPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPopupView.swift; sourceTree = "<group>"; };
+		5F6BA56D2CBA0F6A00205073 /* AddTextPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextPopupView.swift; sourceTree = "<group>"; };
 		5F6D4E692BE88AD9004B94F8 /* ToolbarKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarKeyType.swift; sourceTree = "<group>"; };
 		5F6D4E6B2BE88CC6004B94F8 /* ThemeColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColorType.swift; sourceTree = "<group>"; };
 		5F6D4E6D2BE88CE1004B94F8 /* ColorSchemeModeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeModeType.swift; sourceTree = "<group>"; };
@@ -229,6 +286,7 @@
 		5F7E0B662C707844000C8C97 /* EZWifiMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZWifiMainView.swift; sourceTree = "<group>"; };
 		5F7E0B682C70789B000C8C97 /* EZWifiStrengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZWifiStrengthView.swift; sourceTree = "<group>"; };
 		5F7E0B6A2C70790F000C8C97 /* EZBatteryAdapterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZBatteryAdapterView.swift; sourceTree = "<group>"; };
+		5F81F3382CB40E41004ED2EE /* EZImageTunerTabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZImageTunerTabButtonView.swift; sourceTree = "<group>"; };
 		5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPreference.swift; sourceTree = "<group>"; };
 		5F97C3772BF9DAFE00B0DC56 /* SystemPreferenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPreferenceService.swift; sourceTree = "<group>"; };
 		5F97C3812BFA132E00B0DC56 /* SmartWifiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWifiView.swift; sourceTree = "<group>"; };
@@ -237,6 +295,15 @@
 		5F9DAB472C79AC5A000563A2 /* RadioChannelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioChannelData.swift; sourceTree = "<group>"; };
 		5F9DAB4B2C79C207000563A2 /* WifiConnectData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConnectData.swift; sourceTree = "<group>"; };
 		5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZLoadingView.swift; sourceTree = "<group>"; };
+		5FA5E26A2CB58A500031F16D /* SizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePreferenceKey.swift; sourceTree = "<group>"; };
+		5FC1BDBB2CB15B3300D549BF /* ImageDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayMode.swift; sourceTree = "<group>"; };
+		5FC1BDBD2CB15FDF00D549BF /* NSImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage + Extension.swift"; sourceTree = "<group>"; };
+		5FC1BDC72CB1699400D549BF /* CanvasRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRepresentableView.swift; sourceTree = "<group>"; };
+		5FC2CB902CB2B4210066438C /* EZContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZContentView.swift; sourceTree = "<group>"; };
+		5FC2CB922CB2B4350066438C /* EZTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTitleView.swift; sourceTree = "<group>"; };
+		5FC2CB942CB2B44D0066438C /* EZImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZImageView.swift; sourceTree = "<group>"; };
+		5FC2CB962CB2B4E20066438C /* EZButtonActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZButtonActionView.swift; sourceTree = "<group>"; };
+		5FCA105C2CA966E30064A494 /* ImageTunerWrapperKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTunerWrapperKey.swift; sourceTree = "<group>"; };
 		5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartNotificationAlarmView.swift; sourceTree = "<group>"; };
 		5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartNotificationAlarmViewModel.swift; sourceTree = "<group>"; };
 		5FCDCF832CA409DB00CF8D22 /* SystemTehemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemTehemeService.swift; sourceTree = "<group>"; };
@@ -273,6 +340,7 @@
 				5FE62F2F2C843DB000658155 /* libEZMackerUtilLib.a in Frameworks */,
 				5FE62F852C844F1900658155 /* libEZMackerServiceLib.a in Frameworks */,
 				5F0DAC992C957B0E00BB3488 /* libEZMackerThreadLib.a in Frameworks */,
+				5F2890DF2CA8101C00602B78 /* libEZMackerImageLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +439,7 @@
 				5F5E234B2C6A483A00CD329F /* EZTabbarGridStyle.swift */,
 				5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */,
 				5F0F96722C6B67B800A70564 /* EZTextFieldWrapperStyle.swift */,
+				5F6BA5632CBA0A0000205073 /* EZPopupStyle.swift */,
 			);
 			path = Modifier;
 			sourceTree = "<group>";
@@ -378,6 +447,7 @@
 		5F1012972BF3826A00589C9B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5F6BA5682CBA0F3000205073 /* Popup */,
 				5F1012B12BF39EBD00589C9B /* EZBatteryInfoView.swift */,
 				5F3FF0312C02C6AE00E3246C /* EZBatteryBarView.swift */,
 				5F4589982C0C56FA008FCD41 /* EZWifiChannelView.swift */,
@@ -387,18 +457,13 @@
 				5F7E0B682C70789B000C8C97 /* EZWifiStrengthView.swift */,
 				5F7E0B6A2C70790F000C8C97 /* EZBatteryAdapterView.swift */,
 				5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */,
+				5FC2CB902CB2B4210066438C /* EZContentView.swift */,
+				5FC2CB922CB2B4350066438C /* EZTitleView.swift */,
+				5FC2CB942CB2B44D0066438C /* EZImageView.swift */,
+				5FC2CB962CB2B4E20066438C /* EZButtonActionView.swift */,
+				5F81F3382CB40E41004ED2EE /* EZImageTunerTabButtonView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		5F1012A22BF3842200589C9B /* Control */ = {
-			isa = PBXGroup;
-			children = (
-				5F1012A52BF3844300589C9B /* EZImage.swift */,
-				5F1012AB2BF399ED00589C9B /* EZTitle.swift */,
-				5F1012AD2BF399F600589C9B /* EZContent.swift */,
-			);
-			path = Control;
 			sourceTree = "<group>";
 		};
 		5F1A919D2BF860F50078F4F8 /* Model */ = {
@@ -443,14 +508,32 @@
 			children = (
 				5FDDCABA2C188152006A528A /* TextFieldRepresentableView.swift */,
 				5FDDCABC2C188189006A528A /* GifRepresentableView.swift */,
+				5FC1BDC72CB1699400D549BF /* CanvasRepresentableView.swift */,
 			);
 			path = Wrapper;
+			sourceTree = "<group>";
+		};
+		5F2890AE2CA8031B00602B78 /* EZMackerImageLib */ = {
+			isa = PBXGroup;
+			children = (
+				5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */,
+			);
+			path = EZMackerImageLib;
+			sourceTree = "<group>";
+		};
+		5F2890AF2CA8031B00602B78 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5F2890B32CA8031B00602B78 /* libEZMackerImageLib.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		5F36B20A2BE7AB3000E08935 = {
 			isa = PBXGroup;
 			children = (
 				5F9DAB402C797CCD000563A2 /* .swiftlint.yml */,
+				5F2890AE2CA8031B00602B78 /* EZMackerImageLib */,
 				5F0DAC902C957AE800BB3488 /* EZMackerThreadLib */,
 				5FE62F7E2C844EE800658155 /* EZMackerServiceLib */,
 				5FE62F232C843CEF00658155 /* EZMackerUtilLib */,
@@ -538,6 +621,7 @@
 				5F97C3832BFA133A00B0DC56 /* SmartWifiViewModel.swift */,
 				5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */,
 				5F36041B2C3825B500C1B84B /* SmartFileSearchViewModel.swift */,
+				5F2890462CA7E18900602B78 /* SmartImageTunerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -564,8 +648,19 @@
 			isa = PBXGroup;
 			children = (
 				5F69D28F2C0DECE900F318ED /* AdapterConnect.swift */,
+				5FC1BDBB2CB15B3300D549BF /* ImageDisplayMode.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		5F6BA5682CBA0F3000205073 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				5F6BA5692CBA0F5500205073 /* DrawToolPopupView.swift */,
+				5F6BA56B2CBA0F6000205073 /* FilterPopupView.swift */,
+				5F6BA56D2CBA0F6A00205073 /* AddTextPopupView.swift */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 		5F6D4E5B2BE881BD004B94F8 /* Storage */ = {
@@ -581,6 +676,7 @@
 			children = (
 				5F3DBE122C04BC8800B5C0DE /* View + Extension.swift */,
 				5F3A51992C71C2D0000B2C2F /* FileManager + Extension.swift */,
+				5FC1BDBD2CB15FDF00D549BF /* NSImage + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -626,7 +722,7 @@
 		5F70D5E32BE7C810004509BC /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				5F1012A22BF3842200589C9B /* Control */,
+				5FA5E2692CB58A400031F16D /* Key */,
 				5F1012972BF3826A00589C9B /* View */,
 				5F1012962BF3825D00589C9B /* Modifier */,
 			);
@@ -659,6 +755,14 @@
 				5F97C3752BF9D25000B0DC56 /* SettingPreference.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		5FA5E2692CB58A400031F16D /* Key */ = {
+			isa = PBXGroup;
+			children = (
+				5FA5E26A2CB58A500031F16D /* SizePreferenceKey.swift */,
+			);
+			path = Key;
 			sourceTree = "<group>";
 		};
 		5FE62F232C843CEF00658155 /* EZMackerUtilLib */ = {
@@ -718,6 +822,8 @@
 				5FE99E7B2C993EF900233969 /* SmartFileSearchDependency.swift */,
 				5FE99E7D2C993F0A00233969 /* SmartNotificationAlarmDependency.swift */,
 				5FE99EB42C99605300233969 /* SmartGlobalDependency.swift */,
+				5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */,
+				5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */,
 			);
 			path = Dependancy;
 			sourceTree = "<group>";
@@ -748,6 +854,7 @@
 				5FE99EA22C995E6B00233969 /* BatteryServiceKey.swift */,
 				5FE99EA42C995E8D00233969 /* FileLocatorServiceKey.swift */,
 				5FE99EA62C995EA100233969 /* NotificationAlarmKey.swift */,
+				5FCA105C2CA966E30064A494 /* ImageTunerWrapperKey.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -781,6 +888,7 @@
 				5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */,
 				5F3604192C38259400C1B84B /* SmartFileSearchView.swift */,
 				5F027B2B2C82EC3900DF929B /* SmartBatteryView.swift */,
+				5F2890412CA7E17900602B78 /* SmartImageTunerView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -800,6 +908,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				5F2890E12CA8102C00602B78 /* PBXTargetDependency */,
+				5F28905A2CA7F43400602B78 /* PBXTargetDependency */,
+				5F2890582CA7F43000602B78 /* PBXTargetDependency */,
+				5F2890532CA7F42900602B78 /* PBXTargetDependency */,
 			);
 			name = EZMacker;
 			packageProductDependencies = (
@@ -882,6 +994,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 5F2890AF2CA8031B00602B78 /* Products */;
+					ProjectRef = 5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */;
+				},
+				{
 					ProductGroup = 5FE62F7F2C844EE800658155 /* Products */;
 					ProjectRef = 5FE62F7D2C844EE800658155 /* EZMackerServiceLib.xcodeproj */;
 				},
@@ -909,6 +1025,13 @@
 			fileType = archive.ar;
 			path = libEZMackerThreadLib.a;
 			remoteRef = 5F0DAC952C957AE800BB3488 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5F2890B32CA8031B00602B78 /* libEZMackerImageLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEZMackerImageLib.a;
+			remoteRef = 5F2890B22CA8031B00602B78 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		5FE62F282C843CEF00658155 /* libEZMackerUtilLib.a */ = {
@@ -987,15 +1110,16 @@
 				5F36041C2C3825B500C1B84B /* SmartFileSearchViewModel.swift in Sources */,
 				5FE99EA52C995E8D00233969 /* FileLocatorServiceKey.swift in Sources */,
 				5FDE1EE82C6B0A1E00E67FCE /* EZButtonImageStyle.swift in Sources */,
+				5FC2CB912CB2B4210066438C /* EZContentView.swift in Sources */,
 				5F9DAB502C79F0EA000563A2 /* EZLoadingView.swift in Sources */,
 				5FE99E682C993A4900233969 /* DependancyContainer.swift in Sources */,
 				5F7E0B672C707844000C8C97 /* EZWifiMainView.swift in Sources */,
 				5F69D28B2C0DDA9D00F318ED /* EZWifiDetailView.swift in Sources */,
-				5F1012AE2BF399F600589C9B /* EZContent.swift in Sources */,
 				5F97C3782BF9DAFE00B0DC56 /* SystemPreferenceService.swift in Sources */,
 				5FDDCABD2C188189006A528A /* GifRepresentableView.swift in Sources */,
 				5F5E23462C6A2E2200CD329F /* EZTabbarButtonStyle.swift in Sources */,
 				5F3CB4582C7052C0007A479D /* BatterySetting.swift in Sources */,
+				5FA5E26B2CB58A500031F16D /* SizePreferenceKey.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
 				5FE99E6B2C993AB000233969 /* SmartBatteryDependency.swift in Sources */,
 				5F0DAC322C953C4C00BB3488 /* MacType.swift in Sources */,
@@ -1006,8 +1130,11 @@
 				5F7E0B652C7077D9000C8C97 /* EZBatteryMonitoringView.swift in Sources */,
 				5F485A092C69AD7D00B32585 /* EZTextFieldStyle.swift in Sources */,
 				5FE99EA72C995EA100233969 /* NotificationAlarmKey.swift in Sources */,
+				5F81F3392CB40E41004ED2EE /* EZImageTunerTabButtonView.swift in Sources */,
 				5F1012B22BF39EBD00589C9B /* EZBatteryInfoView.swift in Sources */,
+				5FC1BDC82CB1699400D549BF /* CanvasRepresentableView.swift in Sources */,
 				5F485A012C69ABDF00B32585 /* EZListViewStyle.swift in Sources */,
+				5FC1BDBE2CB15FDF00D549BF /* NSImage + Extension.swift in Sources */,
 				5F69D2902C0DECE900F318ED /* AdapterConnect.swift in Sources */,
 				5F3DBE132C04BC8800B5C0DE /* View + Extension.swift in Sources */,
 				5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeModeType.swift in Sources */,
@@ -1016,11 +1143,9 @@
 				5F485A052C69ACCB00B32585 /* EZNormalImageStyle.swift in Sources */,
 				5FEE27C82BE9015400847761 /* CategoryView.swift in Sources */,
 				5F3604182C38230400C1B84B /* SmartFileLocatorView.swift in Sources */,
-				5F1012A62BF3844300589C9B /* EZImage.swift in Sources */,
 				5F485A072C69ACEA00B32585 /* EZBackgroundColorStyle.swift in Sources */,
 				5F3FF03F2C03392000E3246C /* AppAlertManager.swift in Sources */,
 				5FE99EAB2C995F0C00233969 /* SystemServiceKey.swift in Sources */,
-				5F1012AC2BF399ED00589C9B /* EZTitle.swift in Sources */,
 				5F3604162C38214A00C1B84B /* SmartFileLocatorViewModel.swift in Sources */,
 				5F4589992C0C56FA008FCD41 /* EZWifiChannelView.swift in Sources */,
 				5F3FF0322C02C6AE00E3246C /* EZBatteryBarView.swift in Sources */,
@@ -1043,6 +1168,9 @@
 				5F485A0B2C69AE8C00B32585 /* EZListRowStyle.swift in Sources */,
 				5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */,
 				5F36041A2C38259400C1B84B /* SmartFileSearchView.swift in Sources */,
+				5FC2CB972CB2B4E20066438C /* EZButtonActionView.swift in Sources */,
+				5F2890422CA7E17900602B78 /* SmartImageTunerView.swift in Sources */,
+				5F28904B2CA7E96800602B78 /* SmartMockDependency.swift in Sources */,
 				5F0DAC3A2C953DB000BB3488 /* AppEnviroment.swift in Sources */,
 				5F9DAB4C2C79C207000563A2 /* WifiConnectData.swift in Sources */,
 				5F97C3842BFA133A00B0DC56 /* SmartWifiViewModel.swift in Sources */,
@@ -1057,16 +1185,25 @@
 				5FDDCABB2C188152006A528A /* TextFieldRepresentableView.swift in Sources */,
 				5FE99EA92C995EF800233969 /* SettingsKey.swift in Sources */,
 				5F0DAC4F2C954F3000BB3488 /* BestSSIDShowType.swift in Sources */,
+				5F2890492CA7E28A00602B78 /* SmartImageTunerDependency.swift in Sources */,
 				5F0DAC402C9544F500BB3488 /* AppSettingManager.swift in Sources */,
 				5FE99E6F2C993BA100233969 /* ViewModelFactory.swift in Sources */,
+				5FC2CB952CB2B44D0066438C /* EZImageView.swift in Sources */,
 				5FE7B8CE2C1DA5E300AA841E /* AlertOKCancleView.swift in Sources */,
 				5F0DAC512C954F8100BB3488 /* CPUUsageExitType.swift in Sources */,
 				5F485A032C69ACB100B32585 /* EZNormalTextStyle.swift in Sources */,
 				5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */,
 				5F72B7C82C42357B0060DEA0 /* FileTabData.swift in Sources */,
+				5FC2CB932CB2B4350066438C /* EZTitleView.swift in Sources */,
+				5F6BA56E2CBA0F6A00205073 /* AddTextPopupView.swift in Sources */,
 				5F6D4E6C2BE88CC6004B94F8 /* ThemeColorType.swift in Sources */,
 				5F5E234A2C6A469600CD329F /* EZTabbarBackgroundStyle.swift in Sources */,
+				5FC1BDBC2CB15B3300D549BF /* ImageDisplayMode.swift in Sources */,
+				5F6BA56C2CBA0F6000205073 /* FilterPopupView.swift in Sources */,
 				5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */,
+				5FCA105D2CA966E30064A494 /* ImageTunerWrapperKey.swift in Sources */,
+				5F6BA56A2CBA0F5500205073 /* DrawToolPopupView.swift in Sources */,
+				5F6BA5642CBA0A0000205073 /* EZPopupStyle.swift in Sources */,
 				5FE99EA32C995E6B00233969 /* BatteryServiceKey.swift in Sources */,
 				5F3FF0302C02BE9800E3246C /* ChargeData.swift in Sources */,
 				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,
@@ -1074,6 +1211,7 @@
 				5FE99EA12C995E5500233969 /* WifiServiceKey.swift in Sources */,
 				5FE99E7C2C993EF900233969 /* SmartFileSearchDependency.swift in Sources */,
 				5F0DAC3E2C9544A100BB3488 /* AppSettings.swift in Sources */,
+				5F2890472CA7E18900602B78 /* SmartImageTunerViewModel.swift in Sources */,
 				5F6D4E6A2BE88AD9004B94F8 /* ToolbarKeyType.swift in Sources */,
 				5F0DAC432C95453800BB3488 /* AppStorageKey.swift in Sources */,
 			);
@@ -1099,6 +1237,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5F2890532CA7F42900602B78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EZMackerThreadLib;
+			targetProxy = 5F2890522CA7F42900602B78 /* PBXContainerItemProxy */;
+		};
+		5F2890582CA7F43000602B78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EZMackerServiceLib;
+			targetProxy = 5F2890572CA7F43000602B78 /* PBXContainerItemProxy */;
+		};
+		5F28905A2CA7F43400602B78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EZMackerUtilLib;
+			targetProxy = 5F2890592CA7F43400602B78 /* PBXContainerItemProxy */;
+		};
+		5F2890E12CA8102C00602B78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EZMackerImageLib;
+			targetProxy = 5F2890E02CA8102C00602B78 /* PBXContainerItemProxy */;
+		};
 		5F36B2262BE7AB3100E08935 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F36B2122BE7AB3000E08935 /* EZMacker */;
@@ -1262,11 +1420,14 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = ezmacker.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1301,11 +1462,14 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = ezmacker.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

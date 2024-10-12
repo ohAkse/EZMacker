@@ -1,14 +1,15 @@
 //
-//  CustomTitle.swift
+//  EZTitleView.swift
 //  EZMacker
 //
-//  Created by 박유경 on 5/14/24.
+//  Created by 박유경 on 10/6/24.
 //
 
 import SwiftUI
 import EZMackerUtilLib
-struct EZTitle: View {
-    @EnvironmentObject var appThemeManager: SystemThemeService
+
+struct EZTitleView: View {
+    @EnvironmentObject var systemThemeService: SystemThemeService
     let size: CGFloat = FontSizeType.small.size
     let title: String
     
@@ -26,13 +27,19 @@ struct EZTitle: View {
             .shadow(radius: 5)
     }
     private func getHeaderFontStyles() -> [Color] {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
-            return [ThemeColorType.lightBlack.color, ThemeColorType.lightYellow.color]
+            return [
+                ThemeColorType.lightBlack.color,
+                ThemeColorType.lightYellow.color
+            ]
         case ColorSchemeModeType.Dark.title:
-            return [ThemeColorType.lightWhite.color, ThemeColorType.lightBlue.color]
+            return [
+                ThemeColorType.lightWhite.color,
+                ThemeColorType.lightBlue.color
+            ]
         default:
-            Logger.fatalErrorMessage("colorSchme is Empty")
+            Logger.fatalErrorMessage("colorScheme is Empty")
             return [.clear, .clear]
         }
     }

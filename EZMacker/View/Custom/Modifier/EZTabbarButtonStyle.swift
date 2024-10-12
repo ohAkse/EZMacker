@@ -8,7 +8,7 @@
 import SwiftUI
 import EZMackerUtilLib
 struct EZTabbarButtonStyle: ButtonStyle {
-    @EnvironmentObject var appThemeManager: SystemThemeService
+    @EnvironmentObject var systemThemeService: SystemThemeService
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -20,7 +20,7 @@ struct EZTabbarButtonStyle: ButtonStyle {
     }
     
     private func dynamicBackgroundColor () -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.white.color
         case ColorSchemeModeType.Dark.title:

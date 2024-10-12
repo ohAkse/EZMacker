@@ -8,6 +8,7 @@
 import Foundation
 import Security
 import EZMackerUtilLib
+
 public protocol AppSmartAutoconnectWifiServiceProvidable {
     func savePassword(_ password: String, for ssid: String)
     func getPassword(for ssid: String) -> String?
