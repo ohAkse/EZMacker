@@ -47,7 +47,7 @@ struct EZWifiMainView: View {
             HStack {
                 VStack {
                     Spacer()
-                    EZImage(systemName: "wifi_router", isSystemName: false)
+                    EZImageView(systemName: "wifi_router", isSystemName: false)
                         .frame(height: 200)
                     Spacer(minLength: 0)
                     Text("\(ssid)")
