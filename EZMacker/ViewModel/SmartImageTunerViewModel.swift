@@ -17,6 +17,7 @@ class SmartImageTunerViewModel: ObservableObject {
     init(imageSenderWrapper: ImageProcessWrapperProvidable) {
         self.imageSenderWrapper = imageSenderWrapper
     }
+    
     @Published var image: NSImage?
     @Published var displayMode: ImageDisplayMode = .keepAspectRatio
     
@@ -38,7 +39,7 @@ class SmartImageTunerViewModel: ObservableObject {
             $0.isExtensionHidden = false
             $0.title = "Save Image"
             $0.message = "Choose a location to save the image"
-            $0.nameFieldStringValue = "image.png"
+            $0.nameFieldStringValue = ""
         }
         
         savePanel.begin { result in
@@ -83,9 +84,7 @@ class SmartImageTunerViewModel: ObservableObject {
                 let scaleX = imageSize.width / viewSize.width
                 let scaleY = imageSize.height / viewSize.height
                 
-                // 유효성 검사 추가
                 guard scaleX.isFinite && scaleY.isFinite && scaleX > 0 && scaleY > 0 else {
-                    print("zz")
                     continue
                 }
                 
