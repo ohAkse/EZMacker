@@ -226,11 +226,11 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
             .ezBackgroundColorStyle()
         }
     }
-    // MARK: T타입의 경우 정보를 늦게줘서 정보는 미리 설정하고 이미지는 2.5 + n초내에 정보가 들어오면 T타입 설정, 아니라면 C타입으로 설정
+    // MARK: T타입의 경우 정보를 늦게줘서 정보는 미리 설정하고 이미지는 Retry 로직에 따라 특정시간내에 못받아오면 C타입, 받아오면 T타입으로 설정
     private func checkAdapterType() {
         guard adapterImageType == .loading else { return }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             adapterCheckCount += 1
             if let adapterInfo = smartBatteryViewModel.adapterMetricsData.adapterData.first {
                 if adapterCheckCount >= 5 || (adapterInfo.Model != nil && adapterInfo.Manufacturer != nil) {
@@ -318,4 +318,3 @@ extension SmartBatteryView {
         return ""
     }
 }
-

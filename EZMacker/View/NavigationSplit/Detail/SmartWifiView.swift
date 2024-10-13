@@ -20,9 +20,10 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     @State private var rotationDegrees: Double = 0
     @State private var navigationPath: [NavigationPathDestination] = []
     @Namespace private var animation
-    init(factory: ViewModelFactory) {
-        _smartWifiViewModel = StateObject(wrappedValue: factory.createSmartWifiViewModel())
-    }
+     
+     init(factory: ViewModelFactory) {
+         _smartWifiViewModel = StateObject(wrappedValue: factory.createSmartWifiViewModel())
+     }
     
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -55,7 +56,9 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                 }
                 .onReceive(smartWifiViewModel.$isConnected) { isConnected in
                     if !isConnected && !navigationPath.isEmpty {
+                        #if NO_NEED_MONITORING
                         navigationPath.removeLast()
+                        #endif
                     }
                 }
                 .toastView(toast: $toast)
@@ -73,7 +76,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             .navigationDestination(for: NavigationPathDestination.self) { destination in
                 switch destination {
                 case .wifiMoreInfo:
-                    WifiMoreInfoView(smartWifiViewModel: smartWifiViewModel)
+                    SmartWifiMoreInfoView(smartWifiMoreInfoViewModel: smartWifiViewModel.createMoreInfoViewModel())
                 }
             }
         }

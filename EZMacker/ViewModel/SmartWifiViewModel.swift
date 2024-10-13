@@ -7,7 +7,6 @@
 
 import Combine
 import CoreWLAN
-import Foundation
 import EZMackerUtilLib
 import EZMackerServiceLib
 import EZMackerThreadLib
@@ -18,18 +17,17 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
         Logger.writeLog(.debug, message: "SmartWifiViewModel deinit Called")
         stopWifiTimer()
         stopMonitoring()
+        cancellables.removeAll()
     }
     
     private let appSmartWifiService: ProvidableType
-    private let systemPreferenceService: SystemPreferenceAccessible
     private let appCoreWLanWifiService: AppCoreWLANWifiProvidable
     private let appStorageSettingService: AppSettingProvidable
     private let appWifiMonitoringService: AppSmartWifiMonitorable
     
-    init(appSmartWifiService: ProvidableType, systemPreferenceService: SystemPreferenceAccessible, appCoreWLanWifiService: AppCoreWLANWifiProvidable, appSettingService: AppSettingProvidable, appWifiMonitoringService: AppSmartWifiMonitorable) {
+    init(appSmartWifiService: ProvidableType, appCoreWLanWifiService: AppCoreWLANWifiProvidable, appSettingService: AppSettingProvidable, appWifiMonitoringService: AppSmartWifiMonitorable) {
         self.appSmartWifiService = appSmartWifiService
         self.appCoreWLanWifiService = appCoreWLanWifiService
-        self.systemPreferenceService = systemPreferenceService
         self.appWifiMonitoringService = appWifiMonitoringService
         self.appStorageSettingService = appSettingService
     }
@@ -288,4 +286,12 @@ extension SmartWifiViewModel {
              )
          searchTimerCancellable?.store(in: &cancellables)
      }
+}
+extension SmartWifiViewModel {
+    func createMoreInfoViewModel() -> SmartWifiMoreInfoViewModel {
+        return SmartWifiMoreInfoViewModel(
+            dataInjector: self,
+            appCoreWLanWifiService: self.appCoreWLanWifiService
+        )
+    }
 }

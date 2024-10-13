@@ -133,6 +133,11 @@ struct EZWifiMainView: View {
                                     Text("RSSI: \(wifi.rssi)")
                                         .font(.subheadline)
                                         .foregroundColor(.gray)
+                                    #if NO_NEED_MONITORING
+                                    Text("B.I: \(wifi.beaconInterval ?? 0)ms")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                    #endif
                                 }
                                 .contentShape(Rectangle())
                                 .onTapGesture {
