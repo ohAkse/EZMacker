@@ -38,10 +38,10 @@ public class AppSmartProcessService: AppSmartProcessProvidable {
         }
         self.numCPUs = numCPUs
         
-        // 필요시 풀것
-#if PROFILE_INFO
+        #if NOT_USE_NOW
         getSoftwareProcessInfo()
-#endif
+        #endif
+        
     }
     func getSoftwareProcessInfo() {
         CommandToolRunner.runCommand(command: MDProfileCommand.software) { result in

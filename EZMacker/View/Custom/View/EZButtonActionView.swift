@@ -16,7 +16,7 @@ struct EZButtonActionView: View {
     
     var body: some View {
         Button(action: action) {
-            // 빈 클로저를 유지합니다.
+            
         }
         .ezButtonImageStyle(
             imageName: imageName,

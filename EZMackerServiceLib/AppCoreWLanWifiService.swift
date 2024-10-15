@@ -16,20 +16,34 @@ public protocol AppCoreWLANWifiProvidable: AppWiFiClientProvidable {
     func getWifiLists(attempts: Int ) -> Future<[ScaningWifiData], AppCoreWLanStatus>
     func connectToNetwork(ssid: String, password: String) -> Future<(String, Bool), AppCoreWLanStatus>
     func getCurrentSSID() -> Future<String, AppCoreWLanStatus>
-}
-
-public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
-    public var wifiClient: CWWiFiClient
-    private(set) var interface: CWInterface?
-    private(set) var wifyKeyChainService: AppWifiKeyChainService
-    private(set) var autoConnectService: AppSmartAutoconnectWifiServiceProvidable
-    private(set) var networkList: Set<CWNetwork> = Set<CWNetwork>()
+    func checkIsConnected() -> Bool
+    func getInterfaceName() -> String
+    func getActivePHYMode() -> String
+    func getPowerOn() -> Bool
+    func getSupportedWLANChannels() -> [Int]
+    func getBssid() -> String
+    func getNoiseMeasument() -> Int
+    func getSecurity() -> String
+    func getInterfaceMode() -> String
+    func getServiceActive() -> Bool
+    var wifiEventPublisher: AnyPublisher<AppWifiEventType, Never> { get }
     
+}
+public class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
+    public var wifiClient: CWWiFiClient
+    private (set) var interface: CWInterface?
+    private (set) var wifyKeyChainService: AppWifiKeyChainService
+    private (set) var autoConnectService: AppSmartAutoconnectWifiServiceProvidable
+    private let wifiEventSubject = PassthroughSubject<AppWifiEventType, Never>()
+    public var wifiEventPublisher: AnyPublisher<AppWifiEventType, Never> {
+        return wifiEventSubject.eraseToAnyPublisher()
+    }
     public init(wifiClient: CWWiFiClient, wifyKeyChainService: AppWifiKeyChainService, autoConnectionService: AppSmartAutoconnectWifiServiceProvidable) {
         self.wifiClient = wifiClient
         self.interface = wifiClient.interface()
         self.wifyKeyChainService = wifyKeyChainService
         self.autoConnectService = autoConnectionService
+        configWiFiMonitoring()
     }
     
     public func getSignalStrength() -> Future<Int, AppCoreWLanStatus> {
@@ -69,6 +83,7 @@ public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
     
     private func scanWifiLists(attempts: Int, promise: @escaping (Result<[ScaningWifiData], AppCoreWLanStatus>) -> Void) {
         if attempts < 1 {
+            Logger.writeLog(.error, message: "retry 숫자 초과..")
             promise(.failure(.scanningFailed))
         }
         
@@ -76,19 +91,18 @@ public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
             promise(.failure(.unableToFetchSignalStrength))
             return
         }
-        
         do {
             let wifiInfoList = try wifiInterface.scanForNetworks(withSSID: nil, includeHidden: false).compactMap { network -> ScaningWifiData? in
                 guard let ssid = network.ssid else { return nil }
-                return ScaningWifiData(ssid: ssid, rssi: "\(network.rssiValue)", isSaved: false)
+                return ScaningWifiData(ssid: ssid, rssi: "\(network.rssiValue)", beaconInterval: network.beaconInterval, isSaved: false)
             }.sorted { Int($0.rssi)! < Int($1.rssi)! }
             
             if wifiInfoList.isEmpty && attempts > 1 {
                 self.scanWifiLists(attempts: attempts - 1, promise: promise)
             } else {
-                
                 promise(.success(wifiInfoList))
             }
+            
         } catch {
             if attempts > 1 {
                 self.scanWifiLists(attempts: attempts - 1, promise: promise)
@@ -118,7 +132,7 @@ public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
                         Logger.writeLog(.info, message: "네트워크 연결 시도: \(ssid)")
                         try interface.associate(to: network, password: password)
                         promise(.success((ssid, true)))
-                        autoConnectService.savePassword(password, for: ssid)
+                        self.autoConnectService.savePassword(password, for: ssid)
                     } catch {
                         Logger.writeLog(.error, message: "네트워크 연결 실패: \(error.localizedDescription)")
                         promise(.failure(.unknownError(error: "네트워크 연결 실패: \(error.localizedDescription)")))
@@ -143,5 +157,138 @@ public struct AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
                 promise(.success(""))
             }
         }
+    }
+    public func checkIsConnected() -> Bool {
+        guard let interface = self.interface else {
+            return false
+        }
+        if interface.powerOn() {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+// MARK: MoreInfo 추가 정보들
+extension AppCoreWLanWifiService {
+    public func getNoiseMeasument() -> Int {
+        guard let noise = interface?.noiseMeasurement() else {
+            Logger.writeLog(.error, message: "노이즈를 가져올 수 없습니다.")
+            return -1
+        }
+        return noise
+    }
+    
+    public func getInterfaceName() -> String {
+        guard let interfaceName = interface?.interfaceName else {
+            Logger.writeLog(.error, message: "인터페이스 이름을 가져올 수 없습니다.")
+            return "Unknown"
+        }
+        return interfaceName
+    }
+    
+    public func getActivePHYMode() -> String {
+        guard let phyMode = interface?.activePHYMode() else {
+            Logger.writeLog(.error, message: "PHY 모드를 가져올 수 없습니다.")
+            return "Unknown"
+        }
+        return phyMode.description
+    }
+    
+    public func getPowerOn() -> Bool {
+        guard let isPowerOn = interface?.powerOn() else {
+            Logger.writeLog(.error, message: "전원 상태를 가져올 수 없습니다.")
+            return false
+        }
+        return isPowerOn
+    }
+    
+    public func getSupportedWLANChannels() -> [Int] {
+        guard let wlanChannels = interface?.supportedWLANChannels() else {
+            Logger.writeLog(.error, message: "지원되는 WLAN 채널을 가져올 수 없습니다.")
+            return []
+        }
+        let uniqueChannels = Set(wlanChannels.map { $0.channelNumber })
+        return uniqueChannels.sorted()
+    }
+    
+    public func getBssid() -> String {
+        guard let bssid = interface?.bssid() else {
+            Logger.writeLog(.error, message: "BSSID를 가져올 수 없습니다.")
+            return "Unknown"
+        }
+        return bssid
+    }
+    
+    public func getNoiseMeasurement() -> Int {
+        guard let noise = interface?.noiseMeasurement() else {
+            Logger.writeLog(.error, message: "잡음 측정값을 가져올 수 없습니다.")
+            return -1
+        }
+        return noise
+    }
+    
+    public func getSecurity() -> String {
+        guard let security = interface?.security() else {
+            Logger.writeLog(.error, message: "보안 정보를 가져올 수 없습니다.")
+            return "Unknown"
+        }
+        return security.description
+    }
+    
+    public func getInterfaceMode() -> String {
+        guard let interfaceMode = interface?.interfaceMode() else {
+            Logger.writeLog(.error, message: "인터페이스 모드를 가져올 수 없습니다.")
+            return "Unknown"
+        }
+        return interfaceMode.description
+    }
+    
+    public func getServiceActive() -> Bool {
+        guard let isActive = interface?.serviceActive() else {
+            Logger.writeLog(.error, message: "서비스 활성 상태를 가져올 수 없습니다.")
+            return false
+        }
+        return isActive
+    }
+    private func configWiFiMonitoring() {
+        do {
+            try wifiClient.startMonitoringEvent(with: .ssidDidChange)
+            try wifiClient.startMonitoringEvent(with: .bssidDidChange)
+            try wifiClient.startMonitoringEvent(with: .linkDidChange)
+            try wifiClient.startMonitoringEvent(with: .modeDidChange)
+            try wifiClient.startMonitoringEvent(with: .powerDidChange)
+            try wifiClient.startMonitoringEvent(with: .scanCacheUpdated)
+            wifiClient.delegate = self
+        } catch {
+            Logger.writeLog(.error, message: "Failed to start monitoring Wi-Fi events: \(error.localizedDescription)")
+        }
+    }
+}
+
+extension AppCoreWLanWifiService: CWEventDelegate {
+    public func ssidDidChangeForWiFiInterface(withName interfaceName: String) {
+        wifiEventSubject.send(.ssidChanged(interfaceName))
+    }
+
+    public func bssidDidChangeForWiFiInterface(withName interfaceName: String) {
+        wifiEventSubject.send(.bssidChanged(interfaceName))
+    }
+
+    public func linkDidChangeForWiFiInterface(withName interfaceName: String) {
+        wifiEventSubject.send(.linkChanged(interfaceName))
+    }
+
+    public func modeDidChangeForWiFiInterface(withName interfaceName: String) {
+        wifiEventSubject.send(.modeChanged(interfaceName))
+    }
+
+    public func powerStateDidChangeForWiFiInterface(withName interfaceName: String) {
+        wifiEventSubject.send(.powerChanged(interfaceName))
+    }
+
+    public func scanCacheUpdatedForWiFiInterface(withName interfaceName: String) {
+        wifiEventSubject.send(.scanCacheUpdated(interfaceName))
     }
 }

@@ -68,7 +68,6 @@ public class AppSmartWifiMonitoringService: AppSmartWifiMonitorable {
         @unknown default:
             status = "Unknown"
         }
-
         statusSubject.send((isConnected: isConnected, ssid: ssid, status: status))
     }
 }

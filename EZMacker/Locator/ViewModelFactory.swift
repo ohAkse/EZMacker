@@ -18,7 +18,6 @@ class ViewModelFactory {
     func createSmartWifiViewModel() -> SmartWifiViewModel<AppSmartWifiService> {
         return SmartWifiViewModel(
             appSmartWifiService: container.resolve(AppSmartWifiService.self, forKey: WifiServiceKey.appSmartWifiService.value),
-            systemPreferenceService: container.resolve(SystemPreferenceAccessible.self, forKey: SystemServiceKey.systemPreferenceService.value),
             appCoreWLanWifiService: container.resolve(AppCoreWLANWifiProvidable.self, forKey: WifiServiceKey.appCoreWLanWifiService.value),
             appSettingService: container.resolve(AppSettingProvidable.self, forKey: SettingsKey.appSettingsManager.value),
             appWifiMonitoringService: container.resolve(AppSmartWifiMonitorable.self, forKey: WifiServiceKey.appWifiMonitoringService.value)
