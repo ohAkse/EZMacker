@@ -10,6 +10,5 @@ import EZMackerServiceLib
 protocol SmartWifiInjectable {
     var radioChannelData: RadioChannelData { get }
     var wificonnectData: WifiConnectData { get }
-    var wifiRequestStatus: AppCoreWLanStatus { get }
 }
 extension SmartWifiViewModel: SmartWifiInjectable {}
