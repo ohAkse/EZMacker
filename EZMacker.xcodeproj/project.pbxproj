@@ -16,6 +16,7 @@
 		5F0755B42CC39610000B915D /* PenToolSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755B32CC39610000B915D /* PenToolSetting.swift */; };
 		5F0755B62CC39693000B915D /* ColorPickerRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755B52CC39693000B915D /* ColorPickerRepresentableView.swift */; };
 		5F0755B82CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755B72CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift */; };
+		5F0755CA2CC3D453000B915D /* SaveImageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755C92CC3D453000B915D /* SaveImageResult.swift */; };
 		5F0DAC322C953C4C00BB3488 /* MacType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC312C953C4C00BB3488 /* MacType.swift */; };
 		5F0DAC342C953CDB00BB3488 /* AppConfigType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC332C953CDB00BB3488 /* AppConfigType.swift */; };
 		5F0DAC3A2C953DB000BB3488 /* AppEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC392C953DB000BB3488 /* AppEnviroment.swift */; };
@@ -223,6 +224,7 @@
 		5F0755B32CC39610000B915D /* PenToolSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenToolSetting.swift; sourceTree = "<group>"; };
 		5F0755B52CC39693000B915D /* ColorPickerRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerRepresentableView.swift; sourceTree = "<group>"; };
 		5F0755B72CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCoordinatorPreferenceKey.swift; sourceTree = "<group>"; };
+		5F0755C92CC3D453000B915D /* SaveImageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImageResult.swift; sourceTree = "<group>"; };
 		5F0DAC312C953C4C00BB3488 /* MacType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacType.swift; sourceTree = "<group>"; };
 		5F0DAC332C953CDB00BB3488 /* AppConfigType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigType.swift; sourceTree = "<group>"; };
 		5F0DAC392C953DB000BB3488 /* AppEnviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnviroment.swift; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 			children = (
 				5F69D28F2C0DECE900F318ED /* AdapterConnect.swift */,
 				5FC1BDBB2CB15B3300D549BF /* ImageDisplayMode.swift */,
+				5F0755C92CC3D453000B915D /* SaveImageResult.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1264,6 +1267,7 @@
 				5F0755762CC36643000B915D /* EZAddTextPopupView.swift in Sources */,
 				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,
 				5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */,
+				5F0755CA2CC3D453000B915D /* SaveImageResult.swift in Sources */,
 				5FE99EA12C995E5500233969 /* WifiServiceKey.swift in Sources */,
 				5FE99E7C2C993EF900233969 /* SmartFileSearchDependency.swift in Sources */,
 				5F0DAC3E2C9544A100BB3488 /* AppSettings.swift in Sources */,

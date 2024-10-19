@@ -10,12 +10,13 @@ import SwiftUI
 
 struct ColorPickerPresentableView: NSViewRepresentable {
     @Binding var color: Color
-    let label: String
-
+    
     func makeNSView(context: Context) -> NSColorWell {
-        let colorWell = NSColorWell()
-        colorWell.target = context.coordinator
-        colorWell.action = #selector(Coordinator.colorChanged(_:))
+        let colorWell = NSColorWell().then {
+            $0.target = context.coordinator
+            $0.action = #selector(Coordinator.colorChanged(_:))
+        }
+        context.coordinator.setColorWell(colorWell)
         return colorWell
     }
 
@@ -24,21 +25,36 @@ struct ColorPickerPresentableView: NSViewRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        Coordinator { newColor in
+            self.color = newColor
+        }
     }
 
     class Coordinator: NSObject {
-        var parent: ColorPickerPresentableView
-
-        init(_ parent: ColorPickerPresentableView) {
-            self.parent = parent
+        private weak var colorWell: NSColorWell?
+        private var onColorChange: (Color) -> Void
+        
+        deinit {
+            colorWell?.deactivate()
+            colorWell = nil
+        }
+        
+        init(onColorChange: @escaping (Color) -> Void) {
+            self.onColorChange = onColorChange
+            super.init()
         }
 
         @objc func colorChanged(_ sender: NSColorWell) {
-            parent.color = Color(sender.color)
+            onColorChange(Color(sender.color))
+        }
+
+        func setColorWell(_ colorWell: NSColorWell) {
+            self.colorWell = colorWell
         }
 
         func closeColorPanel() {
+            colorWell?.deactivate()
+            colorWell = nil
             NSColorPanel.shared.close()
         }
     }

@@ -6,19 +6,20 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct EZPenPopupView: View {
     @Binding var isPresented: Bool
     @Binding var penToolSetting: PenToolSetting
-    @State private (set) var colorPickerCoordinator: ColorPickerPresentableView.Coordinator?
+    @State private var colorPickerCoordinator: ColorPickerPresentableView.Coordinator?
     let completion: (PenToolSetting) -> Void
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Spacer(minLength: 5)
             Text("펜")
                 .font(.headline)
-
+            
             VStack(alignment: .leading, spacing: 10) {
                 Text("굵기: \(Int(penToolSetting.selectedThickness))")
                 Slider(value: $penToolSetting.selectedThickness, in: 1...20, step: 1)
@@ -26,12 +27,14 @@ struct EZPenPopupView: View {
 
             VStack(alignment: .leading, spacing: 10) {
                 Text("색상")
-                ColorPickerPresentableView(color: $penToolSetting.selectedColor, label: "색상")
-                    .onPreferenceChange(ColorPickerCoordinatorPreferenceKey.self) { coordinator in
-                        self.colorPickerCoordinator = coordinator
+                ColorPickerPresentableView(color: $penToolSetting.selectedColor)
+                    .onAppear {
+                        self.colorPickerCoordinator = ColorPickerPresentableView.Coordinator { newColor in
+                            self.penToolSetting.selectedColor = newColor
+                        }
                     }
             }
-
+            
             HStack(alignment: .center, spacing: 0) {
                 Spacer(minLength: 0)
                 Button(action: {
@@ -48,6 +51,9 @@ struct EZPenPopupView: View {
                 Spacer(minLength: 0)
             }
             Spacer(minLength: 5)
+        }
+        .onDisappear {
+            colorPickerCoordinator = nil
         }
         .ezPopupStyle()
     }

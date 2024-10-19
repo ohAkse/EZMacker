@@ -12,13 +12,13 @@ struct PenStroke {
     var penThickness: CGFloat
 }
 
-struct PenToolSetting: Identifiable {
-    let id: UUID
-    var selectedColor: Color = .accentColor
-    var selectedThickness: CGFloat = 2.0
-    var penStrokes: [PenStroke] = []
-
-    init(id: UUID = UUID()) {
-        self.id = id
+struct PenToolSetting {
+    var penStrokes: [PenStroke]
+    var selectedColor: Color
+    var selectedThickness: CGFloat
+    init(penStrokes: [PenStroke] = [], selectedColor: Color = .black, selectedThickness: CGFloat = 2.0) {
+        self.penStrokes = penStrokes
+        self.selectedColor = selectedColor
+        self.selectedThickness = selectedThickness
     }
 }

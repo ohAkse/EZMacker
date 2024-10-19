@@ -30,36 +30,43 @@ struct CanvasRepresentableView: NSViewRepresentable {
     
     class Coordinator: NSObject {
         var parent: CanvasRepresentableView
+        private var currentPath: NSBezierPath?
         
         init(_ parent: CanvasRepresentableView) {
             self.parent = parent
         }
-  
+
         @objc func addLine(_ gestureRecognizer: NSPanGestureRecognizer) {
             let point = gestureRecognizer.location(in: gestureRecognizer.view)
             
-            if gestureRecognizer.state == .began {
+            switch gestureRecognizer.state {
+            case .began:
                 beginNewStroke(at: point)
-                
-            } else if gestureRecognizer.state == .changed {
+            case .changed:
                 continueStroke(at: point)
+            case .ended:
+                finishStroke()
+            default:
+                break
             }
 
             gestureRecognizer.view?.needsDisplay = true
         }
 
         private func beginNewStroke(at point: CGPoint) {
-            let newPath = NSBezierPath()
-            newPath.move(to: point)
-            
-            parent.penToolSetting.penStrokes.append(
-                PenStroke(penPath: newPath, penColor: parent.penToolSetting.selectedColor, penThickness: parent.penToolSetting.selectedThickness)
-            )
+            currentPath = NSBezierPath()
+            currentPath?.move(to: point)
         }
 
         private func continueStroke(at point: CGPoint) {
-            guard let currentStroke = parent.penToolSetting.penStrokes.last else { return }
-            currentStroke.penPath.line(to: point)
+            currentPath?.line(to: point)
+            parent.penToolSetting.penStrokes.append(
+                PenStroke(penPath: currentPath!, penColor: parent.penToolSetting.selectedColor, penThickness: parent.penToolSetting.selectedThickness)
+            )
+        }
+
+        private func finishStroke() {
+            currentPath = nil
         }
     }
 }
@@ -89,13 +96,14 @@ class NSCanvasView: NSView {
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        
         for stroke in penToolSetting.penStrokes {
-            let nsColor = NSColor(stroke.penColor)
-            nsColor.set()
-            
-            stroke.penPath.lineWidth = stroke.penThickness
-            stroke.penPath.stroke()
+            NSColor(stroke.penColor).set()
+            stroke.penPath.then {
+                $0.lineCapStyle = .round
+                $0.lineJoinStyle = .round
+                $0.lineWidth = stroke.penThickness
+                $0.stroke()
+            }
         }
     }
 }

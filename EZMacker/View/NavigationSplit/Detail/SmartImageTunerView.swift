@@ -16,7 +16,6 @@ struct SmartImageTunerView: View {
     @State private var isPopupPresented = false
     @State private var selectedTab: TunerTabType?
     /**드로잉 **/
-    @State private var isDrawing = false
     @State private (set) var penToolSetting: PenToolSetting = .init()
     /**이미지 스케일링**/
     @State private var imageSectionSize: CGSize = .zero
@@ -118,10 +117,8 @@ struct SmartImageTunerView: View {
             ZStack {
                 if let image = smartImageTunerViewModel.image {
                     imageView(for: image, in: geometry)
-                    if isDrawing {
-                        CanvasRepresentableView(penToolSetting: $penToolSetting)
-                            .frame(width: geometry.size.width, height: geometry.size.height)
-                    }
+                    CanvasRepresentableView(penToolSetting: $penToolSetting)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
                 } else {
                     emptyStateView
                 }
@@ -240,10 +237,7 @@ extension SmartImageTunerView {
 extension SmartImageTunerView {
     private func onPenSettingChanged(_ settings: PenToolSetting) {
           penToolSetting = settings
-          Logger.writeLog(.debug, message: "굵기: \(penToolSetting.selectedThickness) 색상: \(penToolSetting.selectedColor)")
           isPopupPresented = false
-          isDrawing = true
-
       }
       
     private func onEraserSettingChanged(_ setting: String) {
@@ -261,17 +255,16 @@ extension SmartImageTunerView {
           // Implement add text functionality
       }
       
-      private func toggleDrawing() {
-          isDrawing.toggle()
-      }
-      
-      private func saveImage() {
-          smartImageTunerViewModel.saveImage(currentDrawing: penToolSetting, viewSize: imageSectionSize) { success in
-              if success {
-                  self.toast = ToastData(type: .success, message: "이미지가 성공적으로 저장되었습니다.")
-              } else {
-                  self.toast = ToastData(type: .error, message: "이미지 저장에 실패했습니다.")
-              }
-          }
-      }
+    private func saveImage() {
+        smartImageTunerViewModel.saveImage(currentDrawing: penToolSetting, viewSize: imageSectionSize) { result in
+            switch result {
+            case .success:
+                self.toast = ToastData(type: .success, message: "이미지가 성공적으로 저장되었습니다.")
+            case .cancelled:
+                break
+            case .error(let errorMessage):
+                self.toast = ToastData(type: .error, message: "이미지 저장에 실패했습니다: \(errorMessage)")
+            }
+        }
+    }
 }

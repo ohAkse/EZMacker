@@ -28,7 +28,7 @@ class SmartImageTunerViewModel: ObservableObject {
         displayMode = mode
     }
     
-    func saveImage(currentDrawing: PenToolSetting, viewSize: CGSize, completion: @escaping (Bool) -> Void) {
+    func saveImage(currentDrawing: PenToolSetting, viewSize: CGSize, completion: @escaping (SaveImageResult) -> Void) {
         let savePanel = NSSavePanel().then {
             $0.allowedContentTypes = [.png]
             $0.canCreateDirectories = true
@@ -41,66 +41,70 @@ class SmartImageTunerViewModel: ObservableObject {
         savePanel.begin { [weak self] result in
             guard let self = self else { return }
             
-            guard let capturedImage = self.captureImageSection(currentPenSetting: currentDrawing, viewSize: viewSize) else {
-                completion(false)
-                return
-            }
-            
-            if result == .OK, let url = savePanel.url {
-                let finalImage: NSImage
-                
-                if displayMode == .fillFrame {
-                    finalImage = capturedImage.resize(to: viewSize)
-                } else {
-                    finalImage = capturedImage
+            switch result {
+            case .OK:
+                guard let url = savePanel.url else {
+                    completion(.error("Failed to get save URL"))
+                    return
                 }
                 
-                if let tiffRepresentation = finalImage.tiffRepresentation,
-                   let bitmapImage = NSBitmapImageRep(data: tiffRepresentation),
-                   let pngData = bitmapImage.representation(using: .png, properties: [:]) {
-                    do {
-                        try pngData.write(to: url)
-                        completion(true)
-                    } catch {
-                        completion(false)
-                    }
-                } else {
-                    completion(false)
+                guard let capturedImage = self.captureImageSection(currentPenSetting: currentDrawing, viewSize: viewSize) else {
+                    completion(.error("Failed to capture image"))
+                    return
                 }
-            } else {
-                completion(false)
+                
+                let finalImage = self.displayMode == .fillFrame ? capturedImage.resize(to: viewSize) : capturedImage
+                
+                guard let tiffRepresentation = finalImage.tiffRepresentation,
+                      let bitmapImage = NSBitmapImageRep(data: tiffRepresentation),
+                      let pngData = bitmapImage.representation(using: .png, properties: [:]) else {
+                    completion(.error("Failed to create PNG data"))
+                    return
+                }
+                
+                do {
+                    try pngData.write(to: url)
+                    completion(.success)
+                } catch {
+                    completion(.error("Failed to write image data: \(error.localizedDescription)"))
+                }
+            case .cancel:
+                completion(.cancelled)
+            default:
+                completion(.error("Unknown error occurred"))
+                
             }
         }
     }
-    
+
     private func captureImageSection(currentPenSetting: PenToolSetting, viewSize: CGSize) -> NSImage? {
         guard let image = self.image,
               viewSize.width > 0, viewSize.height > 0,
               image.size.width > 0, image.size.height > 0 else { return nil }
         
         let imageSize = image.size
-        let newImage = NSImage(size: imageSize)
+        let newImage = NSImage(size: viewSize)
         
         newImage.lockFocus()
-
-        image.draw(in: NSRect(origin: .zero, size: imageSize))
+        NSGraphicsContext.current?.shouldAntialias = true
+        NSGraphicsContext.current?.imageInterpolation = .high
+        
+        if displayMode == .keepAspectRatio {
+            let aspectRatio = min(viewSize.width / imageSize.width, viewSize.height / imageSize.height)
+            let scaledSize = CGSize(width: imageSize.width * aspectRatio, height: imageSize.height * aspectRatio)
+            let origin = CGPoint(x: (viewSize.width - scaledSize.width) / 2, y: (viewSize.height - scaledSize.height) / 2)
+            image.draw(in: CGRect(origin: origin, size: scaledSize))
+        } else {
+            image.draw(in: CGRect(origin: .zero, size: viewSize))
+        }
         
         for stroke in currentPenSetting.penStrokes {
-            if let scaledPath = stroke.penPath.copy() as? NSBezierPath {
-                let scaleX = imageSize.width / viewSize.width
-                let scaleY = imageSize.height / viewSize.height
-                
-                guard scaleX.isFinite && scaleY.isFinite && scaleX > 0 && scaleY > 0 else {
-                    continue
-                }
-
-                scaledPath.transform(using: AffineTransform(scaleByX: scaleX, byY: scaleY))
-                
-                let nsColor = NSColor(stroke.penColor)
-                nsColor.set()
-                
-                scaledPath.lineWidth = max(1, stroke.penThickness * min(scaleX, scaleY))
-                scaledPath.stroke()
+            NSColor(stroke.penColor).set()
+            stroke.penPath.then {
+                $0.lineWidth = stroke.penThickness
+                $0.lineCapStyle = .round
+                $0.lineJoinStyle = .round
+                $0.stroke()
             }
         }
         
