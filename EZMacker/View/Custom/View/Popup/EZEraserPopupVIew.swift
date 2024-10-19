@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddTextPopupView: View {
+struct EZEraserPopupVIew: View {
     @Binding var isPresented: Bool
     let completion: (String) -> Void
     @State private var text = ""

@@ -30,7 +30,7 @@ struct SmartFileLocatorView: View {
                 }
             }
             .scrollIndicators(.automatic)
-            .ezBackgroundColorStyle()
+            .ezBackgroundStyle()
             
             if let selectedTab = smartFileLocatorViewModel.savedData.selectedTab {
                 VStack {
@@ -68,7 +68,7 @@ struct SmartFileLocatorView: View {
                          onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
                          onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
                 .id(id)
-                .ezBackgroundColorStyle()
+                .ezBackgroundStyle()
                 
             }
         }

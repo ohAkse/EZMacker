@@ -8,7 +8,6 @@
 import SwiftUI
 import EZMackerImageLib
 import EZMackerUtilLib
-import PencilKit
 
 class SmartImageTunerViewModel: ObservableObject {
     deinit {
@@ -17,7 +16,6 @@ class SmartImageTunerViewModel: ObservableObject {
     init(imageSenderWrapper: ImageProcessWrapperProvidable) {
         self.imageSenderWrapper = imageSenderWrapper
     }
-    
     @Published var image: NSImage?
     @Published var displayMode: ImageDisplayMode = .keepAspectRatio
     
@@ -30,9 +28,7 @@ class SmartImageTunerViewModel: ObservableObject {
         displayMode = mode
     }
     
-    func saveImage(currentDrawing: [NSBezierPath], viewSize: CGSize) {
-        guard let capturedImage = captureImageSection(currentDrawing: currentDrawing, viewSize: viewSize) else { return }
-        
+    func saveImage(currentDrawing: PenToolSetting, viewSize: CGSize, completion: @escaping (Bool) -> Void) {
         let savePanel = NSSavePanel().then {
             $0.allowedContentTypes = [.png]
             $0.canCreateDirectories = true
@@ -42,11 +38,18 @@ class SmartImageTunerViewModel: ObservableObject {
             $0.nameFieldStringValue = ""
         }
         
-        savePanel.begin { result in
+        savePanel.begin { [weak self] result in
+            guard let self = self else { return }
+            
+            guard let capturedImage = self.captureImageSection(currentPenSetting: currentDrawing, viewSize: viewSize) else {
+                completion(false)
+                return
+            }
+            
             if result == .OK, let url = savePanel.url {
                 let finalImage: NSImage
                 
-                if self.displayMode == .fillFrame {
+                if displayMode == .fillFrame {
                     finalImage = capturedImage.resize(to: viewSize)
                 } else {
                     finalImage = capturedImage
@@ -57,48 +60,53 @@ class SmartImageTunerViewModel: ObservableObject {
                    let pngData = bitmapImage.representation(using: .png, properties: [:]) {
                     do {
                         try pngData.write(to: url)
-                        Logger.writeLog(.info, message: "Image saved successfully")
+                        completion(true)
                     } catch {
-                        Logger.writeLog(.error, message: error.localizedDescription)
+                        completion(false)
                     }
+                } else {
+                    completion(false)
                 }
+            } else {
+                completion(false)
             }
         }
     }
     
-    private func captureImageSection(currentDrawing: [NSBezierPath], viewSize: CGSize) -> NSImage? {
+    private func captureImageSection(currentPenSetting: PenToolSetting, viewSize: CGSize) -> NSImage? {
         guard let image = self.image,
               viewSize.width > 0, viewSize.height > 0,
               image.size.width > 0, image.size.height > 0 else { return nil }
-
+        
         let imageSize = image.size
         let newImage = NSImage(size: imageSize)
-
+        
         newImage.lockFocus()
 
         image.draw(in: NSRect(origin: .zero, size: imageSize))
-
-        NSColor.black.set()
-        for path in currentDrawing {
-            if let scaledPath = path.copy() as? NSBezierPath {
+        
+        for stroke in currentPenSetting.penStrokes {
+            if let scaledPath = stroke.penPath.copy() as? NSBezierPath {
                 let scaleX = imageSize.width / viewSize.width
                 let scaleY = imageSize.height / viewSize.height
                 
                 guard scaleX.isFinite && scaleY.isFinite && scaleX > 0 && scaleY > 0 else {
                     continue
                 }
-                
+
                 scaledPath.transform(using: AffineTransform(scaleByX: scaleX, byY: scaleY))
-                scaledPath.lineWidth = max(1, 5 * min(scaleX, scaleY)) // 최소 1의 두께 보장
+                
+                let nsColor = NSColor(stroke.penColor)
+                nsColor.set()
+                
+                scaledPath.lineWidth = max(1, stroke.penThickness * min(scaleX, scaleY))
                 scaledPath.stroke()
             }
         }
-
+        
         newImage.unlockFocus()
-
         return newImage
     }
-    
 }
 // CallBack Result From Native
 extension SmartImageTunerViewModel {

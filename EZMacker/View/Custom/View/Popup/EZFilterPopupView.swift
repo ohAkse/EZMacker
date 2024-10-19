@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FilterPopupView: View {
+struct EZFilterPopupView: View {
     @Binding var isPresented: Bool
     let completion: (String) -> Void
     

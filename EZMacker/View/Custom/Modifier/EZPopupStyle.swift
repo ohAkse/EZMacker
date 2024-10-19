@@ -6,15 +6,31 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 
 struct EZPopupStyle: ViewModifier {
+    @EnvironmentObject var systemThemeService: SystemThemeService
     func body(content: Content) -> some View {
         content
-            .frame(width: 220, height: 200)
+            .frame(width: 200, height: 200)
             .padding()
-            .background(Color(.windowBackgroundColor))
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .foregroundColor(foregroundColorForTheme())
+            )
             .cornerRadius(12)
             .shadow(radius: 5)
+    }
+    private func foregroundColorForTheme() -> Color {
+        switch systemThemeService.getColorScheme() {
+        case ColorSchemeModeType.Light.title:
+            return ThemeColorType.lightModeLavender.color
+        case ColorSchemeModeType.Dark.title:
+            return ThemeColorType.darkModeSlateGray.color
+        default:
+            Logger.fatalErrorMessage("colorSchme is Empty")
+            return Color.clear
+        }
     }
 }
 

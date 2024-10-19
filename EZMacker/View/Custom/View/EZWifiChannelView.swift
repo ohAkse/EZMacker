@@ -63,7 +63,7 @@ struct EZWifiChannelView: View {
                 
                 Spacer(minLength: 5)
             }
-            .ezBackgroundColorStyle()
+            .ezBackgroundStyle()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }

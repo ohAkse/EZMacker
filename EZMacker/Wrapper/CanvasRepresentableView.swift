@@ -9,18 +9,20 @@ import AppKit
 import SwiftUI
 
 struct CanvasRepresentableView: NSViewRepresentable {
-    @Binding var currentDrawing: [NSBezierPath]
-    @ObservedObject var smartImageTunerViewModel: SmartImageTunerViewModel
+    @Binding var penToolSetting: PenToolSetting
     
-    func makeNSView(context: Context) -> NSView {
-        let view = NSCanvasView().then {
+    func makeNSView(context: Context) -> NSCanvasView {
+        let nsCanvasView = NSCanvasView().then {
             $0.delegate = context.coordinator
-            $0.viewModel = smartImageTunerViewModel
+            $0.penToolSetting = penToolSetting
         }
-        return view
+        return nsCanvasView
     }
     
-    func updateNSView(_ nsView: NSView, context: Context) {}
+    func updateNSView(_ nsView: NSCanvasView, context: Context) {
+        nsView.penToolSetting = penToolSetting
+        nsView.setNeedsDisplay(nsView.bounds)
+    }
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -32,26 +34,40 @@ struct CanvasRepresentableView: NSViewRepresentable {
         init(_ parent: CanvasRepresentableView) {
             self.parent = parent
         }
-        
+  
         @objc func addLine(_ gestureRecognizer: NSPanGestureRecognizer) {
             let point = gestureRecognizer.location(in: gestureRecognizer.view)
             
             if gestureRecognizer.state == .began {
-                let newPath = NSBezierPath()
-                newPath.move(to: point)
-                parent.currentDrawing.append(newPath)
-            } else if gestureRecognizer.state == .changed, let currentPath = parent.currentDrawing.last {
-                currentPath.line(to: point)
+                beginNewStroke(at: point)
+                
+            } else if gestureRecognizer.state == .changed {
+                continueStroke(at: point)
             }
-            
+
             gestureRecognizer.view?.needsDisplay = true
+        }
+
+        private func beginNewStroke(at point: CGPoint) {
+            let newPath = NSBezierPath()
+            newPath.move(to: point)
+            
+            parent.penToolSetting.penStrokes.append(
+                PenStroke(penPath: newPath, penColor: parent.penToolSetting.selectedColor, penThickness: parent.penToolSetting.selectedThickness)
+            )
+        }
+
+        private func continueStroke(at point: CGPoint) {
+            guard let currentStroke = parent.penToolSetting.penStrokes.last else { return }
+            currentStroke.penPath.line(to: point)
         }
     }
 }
 
 class NSCanvasView: NSView {
     weak var delegate: CanvasRepresentableView.Coordinator?
-    weak var viewModel: SmartImageTunerViewModel?
+    var penToolSetting: PenToolSetting = .init()
+    
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         configGesture()
@@ -74,10 +90,12 @@ class NSCanvasView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
-        NSColor.black.set()
-        for path in delegate?.parent.currentDrawing ?? [] {
-            path.lineWidth = 5
-            path.stroke()
+        for stroke in penToolSetting.penStrokes {
+            let nsColor = NSColor(stroke.penColor)
+            nsColor.set()
+            
+            stroke.penPath.lineWidth = stroke.penThickness
+            stroke.penPath.stroke()
         }
     }
 }

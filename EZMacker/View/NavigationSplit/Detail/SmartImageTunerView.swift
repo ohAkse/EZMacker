@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EZMackerUtilLib
 import UniformTypeIdentifiers
 
 struct SmartImageTunerView: View {
@@ -16,7 +17,7 @@ struct SmartImageTunerView: View {
     @State private var selectedTab: TunerTabType?
     /**드로잉 **/
     @State private var isDrawing = false
-    @State private var currentDrawing: [NSBezierPath] = []
+    @State private (set) var penToolSetting: PenToolSetting = .init()
     /**이미지 스케일링**/
     @State private var imageSectionSize: CGSize = .zero
     
@@ -46,14 +47,40 @@ struct SmartImageTunerView: View {
     }
     
     private var popupOverlay: some View {
-        Group {
-            if isPopupPresented, let selectedTab = selectedTab {
-                popupViewForTab(selectedTab)
-                    .frame(width: 250)
-                    .transition(.opacity)
-                    .zIndex(1)
+        GeometryReader { geometry in
+            Group {
+                if isPopupPresented, let selectedTab = selectedTab {
+                    popupViewForTab(selectedTab)
+                        .frame(width: 250)
+                        .position(x: geometry.size.width - 115,
+                                  y: adjustYPosition(for: selectedTab, in: geometry))
+                        .transition(.opacity)
+                        .zIndex(1)
+                }
             }
         }
+    }
+
+    private func adjustYPosition(for tab: TunerTabType, in geometry: GeometryProxy) -> CGFloat {
+        let tabIndex = TunerTabType.allCases.firstIndex(of: tab) ?? 0
+        let tabHeight: CGFloat = 50
+        let spacing: CGFloat = 10
+        
+        let tabCenterY = CGFloat(tabIndex) * (tabHeight + spacing) + tabHeight / 2
+        let popupHeight: CGFloat = 200
+        
+        let minY = popupHeight / 2
+        let maxY = geometry.size.height - popupHeight / 2
+        
+        var y = tabCenterY
+        
+        if y - popupHeight / 2 < 0 {
+            y = minY
+        } else if y + popupHeight / 2 > geometry.size.height {
+            y = maxY
+        }
+        
+        return y
     }
     
     private var toolbarSection: some View {
@@ -83,7 +110,7 @@ struct SmartImageTunerView: View {
             .frame(width: 65, height: geometry.size.height)
             .background(Color.clear)
         }
-        .ezBackgroundColorStyle()
+        .ezBackgroundStyle()
     }
     
     private var imageSectionView: some View {
@@ -92,7 +119,7 @@ struct SmartImageTunerView: View {
                 if let image = smartImageTunerViewModel.image {
                     imageView(for: image, in: geometry)
                     if isDrawing {
-                        CanvasRepresentableView(currentDrawing: $currentDrawing, smartImageTunerViewModel: smartImageTunerViewModel)
+                        CanvasRepresentableView(penToolSetting: $penToolSetting)
                             .frame(width: geometry.size.width, height: geometry.size.height)
                     }
                 } else {
@@ -100,7 +127,7 @@ struct SmartImageTunerView: View {
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
-            .ezBackgroundColorStyle()
+            .ezBackgroundStyle()
             .onDrop(of: [UTType.image], isTargeted: nil) { providers in
                 loadDroppedImage(from: providers)
                 return true
@@ -150,11 +177,11 @@ struct SmartImageTunerView: View {
     private var imageContextMenu: some View {
         Group {
             if smartImageTunerViewModel.image != nil {
-                Button("비율 유지하기") {
+                Button("비율 유지") {
                     smartImageTunerViewModel.setDisplayMode(.keepAspectRatio)
                 }
                 
-                Button("이미지 리사이즈") {
+                Button("전체비율 유지") {
                     smartImageTunerViewModel.setDisplayMode(.fillFrame)
                 }
             }
@@ -174,7 +201,12 @@ extension SmartImageTunerView {
     }
     
     private func shouldDisableButton(for tab: TunerTabType) -> Bool {
+        #if IS_WORKING
+        return false
+        #else
         return smartImageTunerViewModel.image == nil
+        #endif
+        
     }
     
     private func loadDroppedImage(from providers: [NSItemProvider]) {
@@ -189,43 +221,57 @@ extension SmartImageTunerView {
     }
     
     private func popupViewForTab(_ tab: TunerTabType) -> AnyView {
-        switch tab {
-        case .reset, .rotate, .draw:
-            return AnyView(DrawToolPopupView(isPresented: $isPopupPresented, completion: DrawAction))
-        case .filter:
-            return AnyView(FilterPopupView(isPresented: $isPopupPresented, completion: FilterAction))
-        case .addText, .undo:
-            return AnyView(AddTextPopupView(isPresented: $isPopupPresented, completion: addTextAction))
-        default:
-            return AnyView(EmptyView())
+            switch tab {
+            case .pen:
+                return AnyView(EZPenPopupView(isPresented: $isPopupPresented, penToolSetting: $penToolSetting, completion: onPenSettingChanged))
+            case .erase:
+                return AnyView(EZEraserPopupVIew(isPresented: $isPopupPresented, completion: onEraserSettingChanged))
+            case .filter:
+                return AnyView(EZFilterPopupView(isPresented: $isPopupPresented, completion: onFilterChanged))
+            case .addText:
+                return AnyView(EZAddTextPopupView(isPresented: $isPopupPresented, completion: onAddTextChanged))
+            default:
+                return AnyView(EZAddTextPopupView(isPresented: $isPopupPresented, completion: onAddTextChanged))
+            }
         }
-    }
 }
 
 // MARK: - 버튼 기능별 함수들
 extension SmartImageTunerView {
-    private func DrawAction(_ action: String) {
-        print("Draw action: \(action)")
-        isPopupPresented = false
-        toggleDrawing()
-    }
-    
-    private func FilterAction(_ filter: String) {
-        print("Apply filter: \(filter)")
-        isPopupPresented = false
-    }
-    
-    private func addTextAction(_ text: String) {
-        print("Add text: \(text)")
-        isPopupPresented = false
-    }
-    
-    private func toggleDrawing() {
-        isDrawing.toggle()
-    }
-    
-    private func saveImage() {
-        smartImageTunerViewModel.saveImage(currentDrawing: currentDrawing, viewSize: imageSectionSize)
-        toast = ToastData(type: .error, message: "ㅇㅇ")
-    }
+    private func onPenSettingChanged(_ settings: PenToolSetting) {
+          penToolSetting = settings
+          Logger.writeLog(.debug, message: "굵기: \(penToolSetting.selectedThickness) 색상: \(penToolSetting.selectedColor)")
+          isPopupPresented = false
+          isDrawing = true
+
+      }
+      
+    private func onEraserSettingChanged(_ setting: String) {
+          isPopupPresented = false
+          // Implement eraser functionality
+      }
+      
+      private func onFilterChanged(_ filter: String) {
+          isPopupPresented = false
+          // Implement filter functionality
+      }
+      
+      private func onAddTextChanged(_ text: String) {
+          isPopupPresented = false
+          // Implement add text functionality
+      }
+      
+      private func toggleDrawing() {
+          isDrawing.toggle()
+      }
+      
+      private func saveImage() {
+          smartImageTunerViewModel.saveImage(currentDrawing: penToolSetting, viewSize: imageSectionSize) { success in
+              if success {
+                  self.toast = ToastData(type: .success, message: "이미지가 성공적으로 저장되었습니다.")
+              } else {
+                  self.toast = ToastData(type: .error, message: "이미지 저장에 실패했습니다.")
+              }
+          }
+      }
 }

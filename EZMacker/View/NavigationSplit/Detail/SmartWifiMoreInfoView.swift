@@ -26,7 +26,7 @@ struct SmartWifiMoreInfoView: View {
             commandListSection
             #endif
         }
-        .ezBackgroundColorStyle()
+        .ezBackgroundStyle()
         .navigationTitle(CategoryType.smartWifi.moreInfoTitle)
         .padding(30)
         .onDisappear {

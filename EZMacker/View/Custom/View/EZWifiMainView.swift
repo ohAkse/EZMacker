@@ -150,7 +150,7 @@ struct EZWifiMainView: View {
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(Color.gray, lineWidth: 3)
                         )
-                        .ezBackgroundColorStyle()
+                        .ezBackgroundStyle()
                         .ezListViewStyle()
                         .padding(10)
                     }
@@ -158,7 +158,7 @@ struct EZWifiMainView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .ezBackgroundColorStyle()
+        .ezBackgroundStyle()
         .clipped()
         .sheet(isPresented: $isShowingPasswordModal) {
             AlertTextFieldView(

@@ -68,7 +68,7 @@ struct SmartNotificationAlarmView: View {
             .ezInnerBackgroundStyle()
         }
         .padding()
-        .ezBackgroundColorStyle()
+        .ezBackgroundStyle()
     }
     
     // MARK: 와이파이 섹션
@@ -88,7 +88,7 @@ struct SmartNotificationAlarmView: View {
             .ezInnerBackgroundStyle()
         }
         .padding()
-        .ezBackgroundColorStyle()
+        .ezBackgroundStyle()
     }
     
     // MARK: 파일 로케이터 섹션
@@ -106,7 +106,7 @@ struct SmartNotificationAlarmView: View {
             .ezInnerBackgroundStyle()
         }
         .padding()
-        .ezBackgroundColorStyle()
+        .ezBackgroundStyle()
     }
     
     // MARK: 저장 버튼

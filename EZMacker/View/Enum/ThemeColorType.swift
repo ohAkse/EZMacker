@@ -8,23 +8,11 @@
 import SwiftUI
 
 enum ThemeColorType {
-    case white
-    case black
-    case cyan
-    case orange
-    case darkBlue
-    case darkBrown
-    case darkGray
-    case lightGray
-    case lightDark
-    case lightWhite
-    case lightBlue
-    case lightBlack
-    case lightGreen
-    case lightYellow
-    case lightRed
-    case softWhite
-    case softGray
+    case white, black, cyan, orange
+    case darkBlue, darkBrown, darkGray
+    case lightGray, lightDark, lightWhite, lightBlue, lightBlack, lightGreen, lightYellow, lightRed
+    case softWhite, softGray
+    case lightModeLavender, darkModeSlateGray // pop
     
     var color: Color {
         switch self {
@@ -45,6 +33,8 @@ enum ThemeColorType {
         case .lightRed: return Color(red: 204/255, green: 0/255, blue: 51/255)
         case .softWhite: return Color(red: 232/255, green: 232/255, blue: 232/255).opacity(0.4)
         case .softGray: return Color(red: 227/255, green: 225/255, blue: 225/255).opacity(0.2)
+        case .lightModeLavender: return Color(red: 245/255, green: 245/255, blue: 220/255)
+        case .darkModeSlateGray: return Color(red: 36/255, green: 46/255, blue: 66/255)
         }
     }
 }

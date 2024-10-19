@@ -107,7 +107,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                     VStack {
                         EZLoadingView()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .ezBackgroundColorStyle()
+                            .ezBackgroundStyle()
                             .clipped()
                     }
                     .rotation3DEffect(

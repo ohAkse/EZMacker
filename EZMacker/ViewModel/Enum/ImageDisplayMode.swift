@@ -14,9 +14,9 @@ enum ImageDisplayMode {
     var description: String {
         switch self {
         case .keepAspectRatio:
-            return "비율 유지하기"
+            return "비율 유지"
         case .fillFrame:
-            return "이미지 리사이즈"
+            return "전체비율 유지"
         }
     }
 }

@@ -15,7 +15,7 @@ struct MainContentView: View {
         if AppEnvironment.shared.macBookType == .macMini {
             return CategoryType.smartWifi
         } else {
-            return CategoryType.smartWifi
+            return CategoryType.smartImageTuner
         }
     }()
     private let factory: ViewModelFactory
