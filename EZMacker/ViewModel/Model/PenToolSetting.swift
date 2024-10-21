@@ -10,15 +10,46 @@ struct PenStroke {
     var penPath: NSBezierPath
     var penColor: Color
     var penThickness: CGFloat
+    var lineCapStyle: NSBezierPath.LineCapStyle
+    var lineJoinStyle: NSBezierPath.LineJoinStyle
+    var isEraser: Bool = false
 }
 
 struct PenToolSetting {
-    var penStrokes: [PenStroke]
-    var selectedColor: Color
-    var selectedThickness: CGFloat
-    init(penStrokes: [PenStroke] = [], selectedColor: Color = .black, selectedThickness: CGFloat = 2.0) {
-        self.penStrokes = penStrokes
-        self.selectedColor = selectedColor
-        self.selectedThickness = selectedThickness
+    var penStrokes: [PenStroke] = []
+    var undoStack: [PenStroke] = []
+    var redoStack: [PenStroke] = []
+    var currentStroke: PenStroke
+    
+    var canUndo: Bool { !undoStack.isEmpty }
+    var canRedo: Bool { !redoStack.isEmpty }
+    init(selectedColor: Color = .black,
+         selectedThickness: CGFloat = 2.0,
+         lineCapStyle: NSBezierPath.LineCapStyle = .round,
+         lineJoinStyle: NSBezierPath.LineJoinStyle = .round) {
+        self.currentStroke = PenStroke(
+            penPath: NSBezierPath(),
+            penColor: selectedColor,
+            penThickness: selectedThickness,
+            lineCapStyle: lineCapStyle,
+            lineJoinStyle: lineJoinStyle
+        )
     }
-}
+    mutating func addStroke(_ stroke: PenStroke) {
+        penStrokes.append(stroke)
+        undoStack.append(stroke)
+        redoStack.removeAll()
+    }
+    mutating func undo() {
+         guard canUndo else { return }
+         let lastStroke = penStrokes.removeLast()
+         undoStack.removeLast()
+         redoStack.append(lastStroke)
+     }
+    mutating func redo() {
+         guard canRedo else { return }
+         let redoStroke = redoStack.removeLast()
+         penStrokes.append(redoStroke)
+         undoStack.append(redoStroke)
+     }
+ }

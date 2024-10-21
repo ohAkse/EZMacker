@@ -10,7 +10,7 @@ import EZMackerUtilLib
 
 enum TunerTabType: Int, CaseIterable {
     case reset, rotate, crop, filter, flip, addText
-    case pen, erase, save
+    case pen, save
     case undo, redo
 
     var icon: String {
@@ -22,7 +22,6 @@ enum TunerTabType: Int, CaseIterable {
         case .filter: return "wand.and.stars"
         case .reset: return "arrow.counterclockwise"
         case .addText: return "textbox"
-        case .erase: return "eraser"
         case .flip: return "arrow.left.and.right"
         case .undo: return "arrow.uturn.backward"
         case .redo: return "arrow.uturn.forward"
@@ -38,7 +37,6 @@ enum TunerTabType: Int, CaseIterable {
         case .filter: return "필터"
         case .reset: return "초기화"
         case .addText: return "텍스트"
-        case .erase: return "지우개"
         case .flip: return "뒤집기"
         case .undo: return "되돌리기"
         case .redo: return "앞돌리기"

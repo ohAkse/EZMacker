@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import CoreGraphics
 public protocol Then {}
 
 public extension Then where Self: NSObject {

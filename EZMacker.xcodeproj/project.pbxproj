@@ -70,13 +70,13 @@
 		5F5E23462C6A2E2200CD329F /* EZTabbarButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */; };
 		5F5E234A2C6A469600CD329F /* EZTabbarBackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E23492C6A469600CD329F /* EZTabbarBackgroundStyle.swift */; };
 		5F5E234C2C6A483A00CD329F /* EZTabbarGridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E234B2C6A483A00CD329F /* EZTabbarGridStyle.swift */; };
+		5F6547FA2CC4A50C002CAEA9 /* CGContext + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6547F92CC4A50C002CAEA9 /* CGContext + Extension.swift */; };
 		5F69D28B2C0DDA9D00F318ED /* EZWifiDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69D28A2C0DDA9D00F318ED /* EZWifiDetailView.swift */; };
 		5F69D2902C0DECE900F318ED /* AdapterConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69D28F2C0DECE900F318ED /* AdapterConnect.swift */; };
 		5F69D2922C0DED4800F318ED /* AdapterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69D2912C0DED4800F318ED /* AdapterData.swift */; };
 		5F6BA5642CBA0A0000205073 /* EZPopupStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA5632CBA0A0000205073 /* EZPopupStyle.swift */; };
 		5F6BA56A2CBA0F5500205073 /* EZPenPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA5692CBA0F5500205073 /* EZPenPopupView.swift */; };
 		5F6BA56C2CBA0F6000205073 /* EZFilterPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA56B2CBA0F6000205073 /* EZFilterPopupView.swift */; };
-		5F6BA56E2CBA0F6A00205073 /* EZEraserPopupVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA56D2CBA0F6A00205073 /* EZEraserPopupVIew.swift */; };
 		5F6D4E6A2BE88AD9004B94F8 /* ToolbarKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E692BE88AD9004B94F8 /* ToolbarKeyType.swift */; };
 		5F6D4E6C2BE88CC6004B94F8 /* ThemeColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E6B2BE88CC6004B94F8 /* ThemeColorType.swift */; };
 		5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeModeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E6D2BE88CE1004B94F8 /* ColorSchemeModeType.swift */; };
@@ -283,13 +283,13 @@
 		5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTabbarButtonStyle.swift; sourceTree = "<group>"; };
 		5F5E23492C6A469600CD329F /* EZTabbarBackgroundStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTabbarBackgroundStyle.swift; sourceTree = "<group>"; };
 		5F5E234B2C6A483A00CD329F /* EZTabbarGridStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTabbarGridStyle.swift; sourceTree = "<group>"; };
+		5F6547F92CC4A50C002CAEA9 /* CGContext + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGContext + Extension.swift"; sourceTree = "<group>"; };
 		5F69D28A2C0DDA9D00F318ED /* EZWifiDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZWifiDetailView.swift; sourceTree = "<group>"; };
 		5F69D28F2C0DECE900F318ED /* AdapterConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterConnect.swift; sourceTree = "<group>"; };
 		5F69D2912C0DED4800F318ED /* AdapterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterData.swift; sourceTree = "<group>"; };
 		5F6BA5632CBA0A0000205073 /* EZPopupStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZPopupStyle.swift; sourceTree = "<group>"; };
 		5F6BA5692CBA0F5500205073 /* EZPenPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZPenPopupView.swift; sourceTree = "<group>"; };
 		5F6BA56B2CBA0F6000205073 /* EZFilterPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZFilterPopupView.swift; sourceTree = "<group>"; };
-		5F6BA56D2CBA0F6A00205073 /* EZEraserPopupVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZEraserPopupVIew.swift; sourceTree = "<group>"; };
 		5F6D4E692BE88AD9004B94F8 /* ToolbarKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarKeyType.swift; sourceTree = "<group>"; };
 		5F6D4E6B2BE88CC6004B94F8 /* ThemeColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColorType.swift; sourceTree = "<group>"; };
 		5F6D4E6D2BE88CE1004B94F8 /* ColorSchemeModeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeModeType.swift; sourceTree = "<group>"; };
@@ -693,7 +693,6 @@
 			children = (
 				5F6BA5692CBA0F5500205073 /* EZPenPopupView.swift */,
 				5F6BA56B2CBA0F6000205073 /* EZFilterPopupView.swift */,
-				5F6BA56D2CBA0F6A00205073 /* EZEraserPopupVIew.swift */,
 				5F0755752CC36643000B915D /* EZAddTextPopupView.swift */,
 			);
 			path = Popup;
@@ -714,6 +713,7 @@
 				5F3A51992C71C2D0000B2C2F /* FileManager + Extension.swift */,
 				5FC1BDBD2CB15FDF00D549BF /* NSImage + Extension.swift */,
 				5F0755912CC3888D000B915D /* Color + Extension.swift */,
+				5F6547F92CC4A50C002CAEA9 /* CGContext + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1252,7 +1252,6 @@
 				5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */,
 				5F72B7C82C42357B0060DEA0 /* FileTabData.swift in Sources */,
 				5FC2CB932CB2B4350066438C /* EZTitleView.swift in Sources */,
-				5F6BA56E2CBA0F6A00205073 /* EZEraserPopupVIew.swift in Sources */,
 				5F6D4E6C2BE88CC6004B94F8 /* ThemeColorType.swift in Sources */,
 				5F5E234A2C6A469600CD329F /* EZTabbarBackgroundStyle.swift in Sources */,
 				5FC1BDBC2CB15B3300D549BF /* ImageDisplayMode.swift in Sources */,
@@ -1260,6 +1259,7 @@
 				5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */,
 				5FCA105D2CA966E30064A494 /* ImageTunerWrapperKey.swift in Sources */,
 				5F6BA56A2CBA0F5500205073 /* EZPenPopupView.swift in Sources */,
+				5F6547FA2CC4A50C002CAEA9 /* CGContext + Extension.swift in Sources */,
 				5F6BA5642CBA0A0000205073 /* EZPopupStyle.swift in Sources */,
 				5FE99EA32C995E6B00233969 /* BatteryServiceKey.swift in Sources */,
 				5F7115D92CBA90AA00FBCD9D /* NavigationPathDestionation.swift in Sources */,

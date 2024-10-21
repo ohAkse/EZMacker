@@ -10,9 +10,10 @@ import EZMackerUtilLib
 
 struct EZPopupStyle: ViewModifier {
     @EnvironmentObject var systemThemeService: SystemThemeService
+    let height: CGFloat
     func body(content: Content) -> some View {
         content
-            .frame(width: 200, height: 200)
+            .frame(width: 200, height: height)
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 12)
@@ -35,7 +36,7 @@ struct EZPopupStyle: ViewModifier {
 }
 
 extension View {
-    func ezPopupStyle() -> some View {
-        self.modifier(EZPopupStyle())
+    func ezPopupStyle(height: CGFloat = 200) -> some View {
+        self.modifier(EZPopupStyle(height: height))
     }
 }

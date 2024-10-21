@@ -30,7 +30,7 @@ struct CanvasRepresentableView: NSViewRepresentable {
     
     class Coordinator: NSObject {
         var parent: CanvasRepresentableView
-        private var currentPath: NSBezierPath?
+        var currentPath: NSBezierPath?
         
         init(_ parent: CanvasRepresentableView) {
             self.parent = parent
@@ -44,28 +44,31 @@ struct CanvasRepresentableView: NSViewRepresentable {
                 beginNewStroke(at: point)
             case .changed:
                 continueStroke(at: point)
+                gestureRecognizer.view?.setNeedsDisplay(gestureRecognizer.view?.bounds ?? .zero)
             case .ended:
                 finishStroke()
             default:
                 break
             }
-
-            gestureRecognizer.view?.needsDisplay = true
         }
 
         private func beginNewStroke(at point: CGPoint) {
             currentPath = NSBezierPath()
             currentPath?.move(to: point)
+            parent.penToolSetting.currentStroke.penPath = currentPath ?? NSBezierPath()
         }
 
         private func continueStroke(at point: CGPoint) {
             currentPath?.line(to: point)
-            parent.penToolSetting.penStrokes.append(
-                PenStroke(penPath: currentPath!, penColor: parent.penToolSetting.selectedColor, penThickness: parent.penToolSetting.selectedThickness)
-            )
+            parent.penToolSetting.currentStroke.penPath = currentPath ?? NSBezierPath()
         }
 
         private func finishStroke() {
+            if let path = currentPath {
+                var newStroke = parent.penToolSetting.currentStroke
+                newStroke.penPath = path
+                parent.penToolSetting.addStroke(newStroke)
+            }
             currentPath = nil
         }
     }
@@ -96,14 +99,33 @@ class NSCanvasView: NSView {
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
+        guard let context = NSGraphicsContext.current?.cgContext else { return }
+
         for stroke in penToolSetting.penStrokes {
-            NSColor(stroke.penColor).set()
-            stroke.penPath.then {
-                $0.lineCapStyle = .round
-                $0.lineJoinStyle = .round
-                $0.lineWidth = stroke.penThickness
-                $0.stroke()
-            }
+            drawStroke(stroke, in: context)
         }
+
+        if let currentPath = delegate?.currentPath {
+            drawStroke(PenStroke(penPath: currentPath,
+                                 penColor: penToolSetting.currentStroke.penColor,
+                                 penThickness: penToolSetting.currentStroke.penThickness,
+                                 lineCapStyle: penToolSetting.currentStroke.lineCapStyle,
+                                 lineJoinStyle: penToolSetting.currentStroke.lineJoinStyle,
+                                 isEraser: penToolSetting.currentStroke.isEraser),
+                       in: context)
+        }
+    }
+    
+    private func drawStroke(_ stroke: PenStroke, in context: CGContext) {
+        context.applyAntialiasing(true)
+        context.saveGState()
+        context
+            .applyLineWidth(stroke.penThickness)
+            .applyLineCap(stroke.lineCapStyle.cgLineCap)
+            .applyLineJoin(stroke.lineJoinStyle.cgLineJoin)
+            .applyStrokeColor(stroke.penColor.cgColor ?? .clear)
+            .applyPath(stroke.penPath.cgPath)
+            .strokePath()
+        context.restoreGState()
     }
 }

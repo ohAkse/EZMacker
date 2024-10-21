@@ -177,7 +177,6 @@ struct SmartImageTunerView: View {
                 Button("비율 유지") {
                     smartImageTunerViewModel.setDisplayMode(.keepAspectRatio)
                 }
-                
                 Button("전체비율 유지") {
                     smartImageTunerViewModel.setDisplayMode(.fillFrame)
                 }
@@ -190,20 +189,29 @@ struct SmartImageTunerView: View {
 extension SmartImageTunerView {
     private func selectTab(_ tab: TunerTabType) {
         selectedTab = tab
-        if selectedTab == .save {
+        switch tab {
+        case .save:
             saveImage()
-        } else {
+        case .reset:
+            resetImage()
+        case .undo:
+            undoImage()
+        case .redo:
+            redoImage()
+        default:
             isPopupPresented = true
         }
     }
     
     private func shouldDisableButton(for tab: TunerTabType) -> Bool {
-        #if IS_WORKING
-        return false
-        #else
-        return smartImageTunerViewModel.image == nil
-        #endif
-        
+        switch tab {
+        case .undo:
+            return smartImageTunerViewModel.image == nil || !penToolSetting.canUndo
+        case .redo:
+            return smartImageTunerViewModel.image == nil || !penToolSetting.canRedo
+        default:
+            return smartImageTunerViewModel.image == nil
+        }
     }
     
     private func loadDroppedImage(from providers: [NSItemProvider]) {
@@ -216,24 +224,21 @@ extension SmartImageTunerView {
             }
         }
     }
-    
     private func popupViewForTab(_ tab: TunerTabType) -> AnyView {
             switch tab {
             case .pen:
                 return AnyView(EZPenPopupView(isPresented: $isPopupPresented, penToolSetting: $penToolSetting, completion: onPenSettingChanged))
-            case .erase:
-                return AnyView(EZEraserPopupVIew(isPresented: $isPopupPresented, completion: onEraserSettingChanged))
             case .filter:
                 return AnyView(EZFilterPopupView(isPresented: $isPopupPresented, completion: onFilterChanged))
             case .addText:
                 return AnyView(EZAddTextPopupView(isPresented: $isPopupPresented, completion: onAddTextChanged))
             default:
-                return AnyView(EZAddTextPopupView(isPresented: $isPopupPresented, completion: onAddTextChanged))
+                return AnyView(EmptyView())
             }
         }
 }
 
-// MARK: - 버튼 기능별 함수들
+// MARK: - 팝업이 나타나는 함수
 extension SmartImageTunerView {
     private func onPenSettingChanged(_ settings: PenToolSetting) {
           penToolSetting = settings
@@ -242,19 +247,19 @@ extension SmartImageTunerView {
       
     private func onEraserSettingChanged(_ setting: String) {
           isPopupPresented = false
-          // Implement eraser functionality
       }
       
       private func onFilterChanged(_ filter: String) {
           isPopupPresented = false
-          // Implement filter functionality
       }
       
       private func onAddTextChanged(_ text: String) {
           isPopupPresented = false
-          // Implement add text functionality
       }
-      
+}
+
+// MARK: - 팝업이 나타나지 않는 함수
+extension SmartImageTunerView {
     private func saveImage() {
         smartImageTunerViewModel.saveImage(currentDrawing: penToolSetting, viewSize: imageSectionSize) { result in
             switch result {
@@ -266,5 +271,14 @@ extension SmartImageTunerView {
                 self.toast = ToastData(type: .error, message: "이미지 저장에 실패했습니다: \(errorMessage)")
             }
         }
+    }
+    private func resetImage() {
+        penToolSetting = .init()
+    }
+    private func undoImage() {
+        penToolSetting.undo()
+    }
+    private func redoImage() {
+        penToolSetting.redo()
     }
 }

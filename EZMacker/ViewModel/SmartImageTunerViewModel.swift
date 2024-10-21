@@ -40,7 +40,6 @@ class SmartImageTunerViewModel: ObservableObject {
         
         savePanel.begin { [weak self] result in
             guard let self = self else { return }
-            
             switch result {
             case .OK:
                 guard let url = savePanel.url else {
@@ -86,28 +85,34 @@ class SmartImageTunerViewModel: ObservableObject {
         let newImage = NSImage(size: viewSize)
         
         newImage.lockFocus()
-        NSGraphicsContext.current?.shouldAntialias = true
-        NSGraphicsContext.current?.imageInterpolation = .high
+        guard let context = NSGraphicsContext.current?.cgContext else {
+            newImage.unlockFocus()
+            return nil
+        }
+        
+        context.saveGState()
+        context.applyAntialiasing(true)
+        context.interpolationQuality = .high
         
         if displayMode == .keepAspectRatio {
             let aspectRatio = min(viewSize.width / imageSize.width, viewSize.height / imageSize.height)
             let scaledSize = CGSize(width: imageSize.width * aspectRatio, height: imageSize.height * aspectRatio)
             let origin = CGPoint(x: (viewSize.width - scaledSize.width) / 2, y: (viewSize.height - scaledSize.height) / 2)
-            image.draw(in: CGRect(origin: origin, size: scaledSize))
+            context.draw(image.cgImage(forProposedRect: nil, context: nil, hints: nil)!, in: CGRect(origin: origin, size: scaledSize))
         } else {
-            image.draw(in: CGRect(origin: .zero, size: viewSize))
+            context.draw(image.cgImage(forProposedRect: nil, context: nil, hints: nil)!, in: CGRect(origin: .zero, size: viewSize))
         }
-        
         for stroke in currentPenSetting.penStrokes {
-            NSColor(stroke.penColor).set()
-            stroke.penPath.then {
-                $0.lineWidth = stroke.penThickness
-                $0.lineCapStyle = .round
-                $0.lineJoinStyle = .round
-                $0.stroke()
-            }
+            context
+                .applyLineWidth(stroke.penThickness)
+                .applyLineCap(stroke.lineCapStyle.cgLineCap)
+                .applyLineJoin(stroke.lineJoinStyle.cgLineJoin)
+                .applyStrokeColor(stroke.penColor.cgColor ?? .clear)
+                .applyPath(stroke.penPath.cgPath)
+                .strokePath()
         }
         
+        context.restoreGState()
         newImage.unlockFocus()
         return newImage
     }
