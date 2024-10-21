@@ -188,16 +188,21 @@ struct SmartImageTunerView: View {
 // MARK: - Helper Methods
 extension SmartImageTunerView {
     private func selectTab(_ tab: TunerTabType) {
+        guard !shouldDisableButton(for: tab) else { return }
         selectedTab = tab
         switch tab {
         case .save:
             saveImage()
+            selectedTab = nil
         case .reset:
             resetImage()
+            selectedTab = nil
         case .undo:
             undoImage()
+            selectedTab = nil
         case .redo:
             redoImage()
+            selectedTab = nil
         default:
             isPopupPresented = true
         }
@@ -205,6 +210,8 @@ extension SmartImageTunerView {
     
     private func shouldDisableButton(for tab: TunerTabType) -> Bool {
         switch tab {
+        case .reset:
+            return smartImageTunerViewModel.image == nil || (!penToolSetting.canUndo && !penToolSetting.canRedo)
         case .undo:
             return smartImageTunerViewModel.image == nil || !penToolSetting.canUndo
         case .redo:

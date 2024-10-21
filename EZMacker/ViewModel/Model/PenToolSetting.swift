@@ -23,17 +23,13 @@ struct PenToolSetting {
     
     var canUndo: Bool { !undoStack.isEmpty }
     var canRedo: Bool { !redoStack.isEmpty }
-    init(selectedColor: Color = .black,
-         selectedThickness: CGFloat = 2.0,
-         lineCapStyle: NSBezierPath.LineCapStyle = .round,
-         lineJoinStyle: NSBezierPath.LineJoinStyle = .round) {
+    init(penColor: Color = .black, penThickness: CGFloat = 5.0, lineCapStyle: NSBezierPath.LineCapStyle = .round, lineJoinStyle: NSBezierPath.LineJoinStyle = .round) {
         self.currentStroke = PenStroke(
-            penPath: NSBezierPath(),
-            penColor: selectedColor,
-            penThickness: selectedThickness,
-            lineCapStyle: lineCapStyle,
-            lineJoinStyle: lineJoinStyle
-        )
+                             penPath: NSBezierPath(),
+                             penColor: penColor,
+                             penThickness: penThickness,
+                             lineCapStyle: lineCapStyle,
+                             lineJoinStyle: lineJoinStyle )
     }
     mutating func addStroke(_ stroke: PenStroke) {
         penStrokes.append(stroke)

@@ -70,6 +70,7 @@ struct EZImageTunerTabButtonView: View {
             )
         }
         .buttonStyle(PlainButtonStyle())
+        .disabled(isDisabled)
     }
 
     private func backgroundColor() -> Color {

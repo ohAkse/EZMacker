@@ -25,7 +25,7 @@ struct EZPopupStyle: ViewModifier {
     private func foregroundColorForTheme() -> Color {
         switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
-            return ThemeColorType.lightModeLavender.color
+            return ThemeColorType.lightModeMint.color
         case ColorSchemeModeType.Dark.title:
             return ThemeColorType.darkModeSlateGray.color
         default:

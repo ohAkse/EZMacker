@@ -12,7 +12,8 @@ enum ThemeColorType {
     case darkBlue, darkBrown, darkGray
     case lightGray, lightDark, lightWhite, lightBlue, lightBlack, lightGreen, lightYellow, lightRed
     case softWhite, softGray
-    case lightModeLavender, darkModeSlateGray // pop
+    case lightModeLavender, lightModeMint, lightModeSky // TODO: 나중에 고를것
+    case darkModeSlateGray
     
     var color: Color {
         switch self {
@@ -34,6 +35,8 @@ enum ThemeColorType {
         case .softWhite: return Color(red: 232/255, green: 232/255, blue: 232/255).opacity(0.4)
         case .softGray: return Color(red: 227/255, green: 225/255, blue: 225/255).opacity(0.2)
         case .lightModeLavender: return Color(red: 245/255, green: 245/255, blue: 220/255)
+        case .lightModeMint: return Color(red: 230/255, green: 255/255, blue: 230/255)
+        case .lightModeSky: return Color(red: 240/255, green: 248/255, blue: 255/255)
         case .darkModeSlateGray: return Color(red: 36/255, green: 46/255, blue: 66/255)
         }
     }

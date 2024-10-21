@@ -62,7 +62,7 @@ struct EZPenPopupView: View {
                     completion(penToolSetting)
                     isPresented = false
                 }, label: {
-                    Text("적용")
+                    Text("닫기")
                         .fixedSize()
                         .frame(width: 10, height: 10)
                         .contentShape(Rectangle())
