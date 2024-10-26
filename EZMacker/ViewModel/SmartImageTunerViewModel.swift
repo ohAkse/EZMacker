@@ -16,13 +16,13 @@ class SmartImageTunerViewModel: ObservableObject {
     init(imageSenderWrapper: ImageProcessWrapperProvidable) {
         self.imageSenderWrapper = imageSenderWrapper
     }
-    @Published var image: NSImage?
+    @Published var originImage: NSImage?
     @Published var displayMode: ImageDisplayMode = .keepAspectRatio
     
     private let imageSenderWrapper: ImageProcessWrapperProvidable
     
-    func setImage(_ newImage: NSImage) {
-        self.image = newImage
+    func setUploadImage(_ newImage: NSImage) {
+        self.originImage = newImage
     }
     func setDisplayMode(_ mode: ImageDisplayMode) {
         displayMode = mode
@@ -40,6 +40,7 @@ class SmartImageTunerViewModel: ObservableObject {
         
         savePanel.begin { [weak self] result in
             guard let self = self else { return }
+            
             switch result {
             case .OK:
                 guard let url = savePanel.url else {
@@ -51,33 +52,35 @@ class SmartImageTunerViewModel: ObservableObject {
                     completion(.error("Failed to capture image"))
                     return
                 }
-                
-                let finalImage = self.displayMode == .fillFrame ? capturedImage.resize(to: viewSize) : capturedImage
-                
-                guard let tiffRepresentation = finalImage.tiffRepresentation,
-                      let bitmapImage = NSBitmapImageRep(data: tiffRepresentation),
-                      let pngData = bitmapImage.representation(using: .png, properties: [:]) else {
-                    completion(.error("Failed to create PNG data"))
-                    return
+                if let finalCGImage = capturedImage.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+                    let bitmapImageRep = NSBitmapImageRep(cgImage: finalCGImage)
+                    bitmapImageRep.size = capturedImage.size
+                    
+                    if let pngData = bitmapImageRep.representation(using: .png, properties: [:]) {
+                        do {
+                            try pngData.write(to: url)
+                            completion(.success)
+                        } catch {
+                            completion(.error("Failed to write image data: \(error.localizedDescription)"))
+                        }
+                    } else {
+                        completion(.error("Failed to create PNG data"))
+                    }
+                } else {
+                    completion(.error("Failed to get CGImage"))
                 }
                 
-                do {
-                    try pngData.write(to: url)
-                    completion(.success)
-                } catch {
-                    completion(.error("Failed to write image data: \(error.localizedDescription)"))
-                }
             case .cancel:
                 completion(.cancelled)
+                
             default:
                 completion(.error("Unknown error occurred"))
-                
             }
         }
     }
 
     private func captureImageSection(currentPenSetting: PenToolSetting, viewSize: CGSize) -> NSImage? {
-        guard let image = self.image,
+        guard let image = self.originImage,
               viewSize.width > 0, viewSize.height > 0,
               image.size.width > 0, image.size.height > 0 else { return nil }
         
@@ -91,7 +94,7 @@ class SmartImageTunerViewModel: ObservableObject {
         }
         
         context.saveGState()
-        context.applyAntialiasing(true)
+        context.setShouldAntialias(true)
         context.interpolationQuality = .high
         
         if displayMode == .keepAspectRatio {
@@ -102,6 +105,7 @@ class SmartImageTunerViewModel: ObservableObject {
         } else {
             context.draw(image.cgImage(forProposedRect: nil, context: nil, hints: nil)!, in: CGRect(origin: .zero, size: viewSize))
         }
+        
         for stroke in currentPenSetting.penStrokes {
             context
                 .applyLineWidth(stroke.penThickness)
@@ -116,20 +120,42 @@ class SmartImageTunerViewModel: ObservableObject {
         newImage.unlockFocus()
         return newImage
     }
+
 }
-// CallBack Result From Native
+
 extension SmartImageTunerViewModel {
-    func bindNativeOutput() {
-        // MARK: ReceiverTest
-        imageSenderWrapper.setInt64callback { [weak self] newValue in
-            guard let _ = self else { return }
-            DispatchQueue.main.async {
-                Logger.writeLog(.info, message: "Received updated value from C++: \(newValue)")
+    func rotateImage(rotateType: RotateType) {
+        imageSenderWrapper.rotateImageAsync(originImage!, rotateType: rotateType) { [weak self] rotatedImage, error in
+            guard let self = self else { return }
+            if let rotateImage = rotatedImage {
+                originImage = rotateImage
+            } else if let error = error {
+                switch error {
+                case .cgImageCreationFailed:
+                    Logger.writeLog(.error, message: "Failed to create CGImage")
+                case .dataConversionFailed:
+                    Logger.writeLog(.error, message: "Failed to convert to PNG data")
+                case .processingFailed:
+                    Logger.writeLog(.error, message: "Failed to process image")
+                }
             }
         }
     }
-    func setInt64() {
-        var num: Int64 = 5
-        self.imageSenderWrapper.updateNativeValue(inOut: &num)
+    func flipImage(flipType: FlipType) {
+        imageSenderWrapper.flipImageAsync(originImage!, flipType: flipType) { [weak self] flipedImage, error in
+            guard let self = self else { return }
+            if let flippedImage = flipedImage {
+                originImage = flippedImage
+            } else if let error = error {
+                switch error {
+                case .cgImageCreationFailed:
+                    Logger.writeLog(.error, message: "Failed to create CGImage")
+                case .dataConversionFailed:
+                    Logger.writeLog(.error, message: "Failed to convert to PNG data")
+                case .processingFailed:
+                    Logger.writeLog(.error, message: "Failed to process image")
+                }
+            }
+        }
     }
 }

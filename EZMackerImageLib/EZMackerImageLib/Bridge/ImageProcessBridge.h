@@ -5,19 +5,25 @@
 //  Created by 박유경 on 9/29/24.
 //
 
-#ifndef ImageSenderBridge_h
-#define ImageSenderBridge_h
+// ImageProcessBridge.h
+
 #import <Foundation/Foundation.h>
+#import "FlipType.h"
+#import "RotateType.h"
+NS_ASSUME_NONNULL_BEGIN
 
 @interface ImageProcessBridge : NSObject
+
 - (instancetype)init;
-- (void)setValue:(int)value;
-- (void)printValue;
-- (void)printInoutValue;
-- (void)updateNativeValue:(int64_t *)value;
-- (void)setInt64Callback:(void (^)(int64_t))int64callback;
+- (void)dealloc;
+- (nullable NSData *)rotateImageSync:(nullable NSData *)imageData rotateType:(RotateType)rotateType;
+- (void)rotateImageAsync:(nullable NSData *)imageData
+              rotateType:(RotateType)rotateType
+             completion:(void(^)(NSData * _Nullable resultData))completion;
+- (void)flipImageAsync:(nullable NSData *)imageData
+              flipType:(FlipType)flipType
+             completion:(void(^)(NSData * _Nullable resultData))completion;
 
 @end
 
-
-#endif /* ImageSenderBridge_h */
+NS_ASSUME_NONNULL_END

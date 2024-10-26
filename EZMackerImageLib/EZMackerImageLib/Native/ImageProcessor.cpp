@@ -6,32 +6,23 @@
 //
 
 #include "ImageProcessor.hpp"
-#include <opencv2/opencv.hpp>
-#include <opencv2/stitching.hpp>
 
-ImageProcessor::ImageProcessor():
-m_value(0), m_inoutValue(nullptr)
-{}
-
-ImageProcessor::~ImageProcessor() {}
-
-void ImageProcessor::setValue(int val) {
-    m_value = val;
+ImageProcessor::ImageProcessor() {
+    m_ImageFlipProcessor = new ImageFlipProcessor();
+    m_ImageRotateProcessor = new ImageRotateProcessor();
 }
 
-void ImageProcessor::printValue() noexcept {
-    std::cout << "Native Value: " << m_value << std::endl;
+ImageProcessor::~ImageProcessor() {
+    cout<<"ImageProcessor deinit called"<<endl;
+    delete m_ImageFlipProcessor;
+    delete m_ImageRotateProcessor;
 }
-void ImageProcessor::printInoutValue() noexcept {
-    std::cout << "Native InoutValue: " << *m_inoutValue << std::endl;
+future<vector<unsigned char>> ImageProcessor::processImageRotateAsync(const vector<unsigned char>& imageData, RotateType rotateType) {
+    return m_ImageRotateProcessor->rotateImageAsync(imageData, rotateType);
 }
-void ImageProcessor::updateNativeValue(int64_t* inoutValue) {
-    // this->m_inoutValue = inoutValue;
-    *inoutValue = (*inoutValue) + 11;
-    if (this->m_int64callback) {
-        this->m_int64callback(*inoutValue);
-    }
+future<vector<unsigned char>> ImageProcessor::processImageFlipAsync(const vector<unsigned char>& imageData, FlipType flipType) {
+    return m_ImageFlipProcessor->flipImageAsync(imageData, flipType);
 }
-void ImageProcessor::setInt64Callback(std::function<void(int64_t)> callback) {
-    m_int64callback = std::move(callback);
+vector<unsigned char> ImageProcessor::processImageRotateSync(const vector<unsigned char>& imageData, RotateType rotateType) {
+    return m_ImageRotateProcessor->rotateImageSync(imageData, rotateType);
 }

@@ -38,3 +38,5 @@ non_optional_string_data_conversion:
 trailing_whitespace:
   severity: error
   ignores_empty_lines: true
+opening_brace:
+  severity: error

@@ -14,6 +14,7 @@ struct SmartImageTunerView: View {
     @StateObject var smartImageTunerViewModel: SmartImageTunerViewModel
     @State private var toast: ToastData?
     @State private var isPopupPresented = false
+    @State private var isPenToolActive = false
     @State private var selectedTab: TunerTabType?
     /**드로잉 **/
     @State private (set) var penToolSetting: PenToolSetting = .init()
@@ -30,7 +31,6 @@ struct SmartImageTunerView: View {
                 imageSectionRootView
                 toolbarSection
             }
-            .onAppear(perform: bindViewModel)
             .padding(30)
             .navigationTitle(CategoryType.smartImageTuner.title)
             .animation(.easeInOut(duration: 0.3), value: isPopupPresented)
@@ -87,10 +87,6 @@ struct SmartImageTunerView: View {
             .frame(width: 65)
     }
     
-    private func bindViewModel() {
-        smartImageTunerViewModel.bindNativeOutput()
-    }
-    
     private var toolbarSectionView: some View {
         GeometryReader { geometry in
             ScrollView(.vertical, showsIndicators: false) {
@@ -115,10 +111,11 @@ struct SmartImageTunerView: View {
     private var imageSectionView: some View {
         GeometryReader { geometry in
             ZStack {
-                if let image = smartImageTunerViewModel.image {
+                if let image = smartImageTunerViewModel.originImage {
                     imageView(for: image, in: geometry)
                     CanvasRepresentableView(penToolSetting: $penToolSetting)
                         .frame(width: geometry.size.width, height: geometry.size.height)
+                        .allowsHitTesting(isPenToolActive)
                 } else {
                     emptyStateView
                 }
@@ -173,7 +170,7 @@ struct SmartImageTunerView: View {
     
     private var imageContextMenu: some View {
         Group {
-            if smartImageTunerViewModel.image != nil {
+            if smartImageTunerViewModel.originImage != nil {
                 Button("비율 유지") {
                     smartImageTunerViewModel.setDisplayMode(.keepAspectRatio)
                 }
@@ -190,7 +187,10 @@ extension SmartImageTunerView {
     private func selectTab(_ tab: TunerTabType) {
         guard !shouldDisableButton(for: tab) else { return }
         selectedTab = tab
+        isPenToolActive = (tab == .pen)
         switch tab {
+        case .pen, .filter, .addText:
+            isPopupPresented = true
         case .save:
             saveImage()
             selectedTab = nil
@@ -203,7 +203,14 @@ extension SmartImageTunerView {
         case .redo:
             redoImage()
             selectedTab = nil
+        case .rotate:
+            rotateImage()
+            selectedTab = nil
+        case .flip:
+            flopImage()
+            selectedTab = nil
         default:
+            isPenToolActive = false
             isPopupPresented = true
         }
     }
@@ -211,13 +218,13 @@ extension SmartImageTunerView {
     private func shouldDisableButton(for tab: TunerTabType) -> Bool {
         switch tab {
         case .reset:
-            return smartImageTunerViewModel.image == nil || (!penToolSetting.canUndo && !penToolSetting.canRedo)
+            return smartImageTunerViewModel.originImage == nil || (!penToolSetting.canUndo && !penToolSetting.canRedo)
         case .undo:
-            return smartImageTunerViewModel.image == nil || !penToolSetting.canUndo
+            return smartImageTunerViewModel.originImage == nil || !penToolSetting.canUndo
         case .redo:
-            return smartImageTunerViewModel.image == nil || !penToolSetting.canRedo
+            return smartImageTunerViewModel.originImage == nil || !penToolSetting.canRedo
         default:
-            return smartImageTunerViewModel.image == nil
+            return smartImageTunerViewModel.originImage == nil
         }
     }
     
@@ -226,7 +233,7 @@ extension SmartImageTunerView {
         item.loadObject(ofClass: NSImage.self) { image, _ in
             if let image = image as? NSImage {
                 DispatchQueue.main.async {
-                    self.smartImageTunerViewModel.setImage(image)
+                    self.smartImageTunerViewModel.setUploadImage(image)
                 }
             }
         }
@@ -287,5 +294,13 @@ extension SmartImageTunerView {
     }
     private func redoImage() {
         penToolSetting.redo()
+    }
+    private func rotateImage() {
+        // TODO: 차후 UI선택버튼 추가
+        smartImageTunerViewModel.rotateImage(rotateType: .ROTATE_90_COUNTERCLOCKWISE)
+    }
+    private func flopImage() {
+        // TODO: 차후 UI선택버튼 추가
+        smartImageTunerViewModel.flipImage(flipType: .Horizontal)
     }
 }
