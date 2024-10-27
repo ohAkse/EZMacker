@@ -18,7 +18,7 @@ class SmartImageTunerViewModel: ObservableObject {
     }
     @Published var originImage: NSImage?
     @Published var displayMode: ImageDisplayMode = .keepAspectRatio
-    
+    @Published private(set) var isProcessing = false
     private let imageSenderWrapper: ImageProcessWrapperProvidable
     
     func setUploadImage(_ newImage: NSImage) {
@@ -125,6 +125,7 @@ class SmartImageTunerViewModel: ObservableObject {
 
 extension SmartImageTunerViewModel {
     func rotateImage(rotateType: RotateType) {
+        isProcessing = true
         imageSenderWrapper.rotateImageAsync(originImage!, rotateType: rotateType) { [weak self] rotatedImage, error in
             guard let self = self else { return }
             if let rotateImage = rotatedImage {
@@ -139,9 +140,11 @@ extension SmartImageTunerViewModel {
                     Logger.writeLog(.error, message: "Failed to process image")
                 }
             }
+            isProcessing = false
         }
     }
     func flipImage(flipType: FlipType) {
+        isProcessing = true
         imageSenderWrapper.flipImageAsync(originImage!, flipType: flipType) { [weak self] flipedImage, error in
             guard let self = self else { return }
             if let flippedImage = flipedImage {
@@ -156,6 +159,7 @@ extension SmartImageTunerViewModel {
                     Logger.writeLog(.error, message: "Failed to process image")
                 }
             }
+            isProcessing = false
         }
     }
 }

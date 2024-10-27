@@ -27,13 +27,21 @@ struct SmartImageTunerView: View {
     
     var body: some View {
         GeometryReader { _ in
-            HStack(spacing: 15) {
-                imageSectionRootView
-                toolbarSection
+            ZStack {
+                HStack(spacing: 15) {
+                    imageSectionRootView
+                    toolbarSection
+                }
+                .padding(30)
+                .navigationTitle(CategoryType.smartImageTuner.title)
+                .animation(.easeInOut(duration: 0.3), value: isPopupPresented)
+                
+                if smartImageTunerViewModel.isProcessing {
+                    Color.black.opacity(0.3)
+                        .edgesIgnoringSafeArea(.all)
+                    EZLoadingView(size: 150, text: "이미지 처리 중...")
+                }
             }
-            .padding(30)
-            .navigationTitle(CategoryType.smartImageTuner.title)
-            .animation(.easeInOut(duration: 0.3), value: isPopupPresented)
         }
     }
     
@@ -264,6 +272,7 @@ extension SmartImageTunerView {
       }
       
       private func onFilterChanged(_ filter: String) {
+          Logger.writeLog(.info, message: filter)
           isPopupPresented = false
       }
       
