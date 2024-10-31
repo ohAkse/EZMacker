@@ -87,6 +87,8 @@
         }
     });
 }
+
+
 - (void)flipImageAsync:(NSData *)imageData flipType:(FlipType)flipType completion:(void(^)(NSData *))completion {
     if (!imageData) {
         NSLog(@"Input image data is nil");
@@ -111,5 +113,40 @@
         }
     });
 }
-
+- (void)filterImageAsync:(NSData *)imageData filterType:(FilterType)filterType completion:(void(^)(NSData *resultData))completion {
+    if (!imageData) {
+        NSLog(@"Input image data is nil");
+        if (completion) completion(nil);
+        return;
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        @try {
+            if (!self->_processor) {
+                NSLog(@"Image processor is not initialized");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (completion) completion(nil);
+                });
+                return;
+            }
+            
+            const unsigned char* bytes = static_cast<const unsigned char*>(imageData.bytes);
+            std::vector<unsigned char> inputVector(bytes, bytes + imageData.length);
+            
+            auto futureResult = self->_processor->processImageFilterAsync(inputVector, static_cast<FilterType>(filterType));
+            auto result = futureResult.get();
+            
+            NSData* resultData = result.empty() ? nil : [NSData dataWithBytes:result.data() length:result.size()];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completion) completion(resultData);
+            });
+        } @catch (NSException *exception) {
+            NSLog(@"Error processing image asynchronously: %@", exception);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completion) completion(nil);
+            });
+        }
+    });
+}
 @end

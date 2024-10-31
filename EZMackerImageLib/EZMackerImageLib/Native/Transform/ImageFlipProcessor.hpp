@@ -24,7 +24,7 @@ public:
     future<std::vector<unsigned char>> flipImageAsync(const std::vector<unsigned char>& imageData, FlipType flipType);
 
 private:
-    vector<unsigned char> flipImageImpl(const std::vector<unsigned char>& imageData, FlipType flipType);
+    
 };
 
 #endif /* ImageFlipProcessor_hpp */

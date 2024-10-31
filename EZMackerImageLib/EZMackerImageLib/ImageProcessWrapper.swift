@@ -17,6 +17,7 @@ public protocol ImageProcessWrapperProvidable {
     func rotateImageSync(_ image: NSImage, rotateType: RotateType) -> Result<NSImage, ImageProcessError>
     func rotateImageAsync(_ image: NSImage, rotateType: RotateType, completion: @escaping (NSImage?, ImageProcessError?) -> Void)
     func flipImageAsync(_ image: NSImage, flipType: FlipType, completion: @escaping (NSImage?, ImageProcessError?) -> Void)
+    func filterImageAsync(_ image: NSImage, filterType: FilterType, completion: @escaping (NSImage?, ImageProcessError?) -> Void)
 }
 
 public class ImageProcessWrapper: NSObject, ImageProcessWrapperProvidable {
@@ -88,4 +89,26 @@ public class ImageProcessWrapper: NSObject, ImageProcessWrapperProvidable {
              }
          }
      }
+    public func filterImageAsync(_ image: NSImage, filterType: FilterType, completion: @escaping (NSImage?, ImageProcessError?) -> Void) {
+        guard let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
+            completion(nil, .cgImageCreationFailed)
+            return
+        }
+
+        let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+        guard let imageData = bitmapRep.representation(using: .png, properties: [:]) else {
+            completion(nil, .dataConversionFailed)
+            return
+        }
+
+        imageProcessBridge.filterImageAsync(imageData, filterType: filterType ) { [weak self] resultData in
+             guard let _ = self else { return }
+            if let data = resultData,
+               let flippedImage = NSImage(data: data) {
+                completion(flippedImage, nil)
+            } else {
+                completion(nil, .processingFailed)
+            }
+        }
+    }
 }

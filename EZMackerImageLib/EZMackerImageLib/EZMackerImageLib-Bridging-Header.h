@@ -8,4 +8,6 @@
 #import "Bridge/ImageProcessBridge.h"
 #import "Enum/FlipType.h"
 #import "Enum/RotateType.h"
+#import "Enum/FilterType.h"
+
 #endif /* EZMacker_Bridging_Header_h */

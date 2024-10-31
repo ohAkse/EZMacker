@@ -6,27 +6,27 @@
 //
 
 import SwiftUI
-
+import EZMackerImageLib
 struct EZFilterPopupView: View {
     @Binding var isPresented: Bool
-    let completion: (String) -> Void
+    let completion: (FilterType) -> Void
     
     let filters: [[FilterItem]] = [
         [
-            FilterItem(title: "흑백", systemImage: "circle.lefthalf.filled", effect: "blackAndWhite"),
-            FilterItem(title: "세피아", systemImage: "camera.filters", effect: "sepia")
+            FilterItem(title: "흑백", systemImage: "circle.lefthalf.filled", effect: FilterType.BLACK_AND_WHITE),
+            FilterItem(title: "세피아", systemImage: "camera.filters", effect: FilterType.SEPIA)
         ],
         [
-            FilterItem(title: "빈티지", systemImage: "photo.artframe", effect: "vintage"),
-            FilterItem(title: "선명하게", systemImage: "wand.and.stars", effect: "sharpen")
+            FilterItem(title: "빈티지", systemImage: "photo.artframe", effect: FilterType.VINTAGE),
+            FilterItem(title: "선명하게", systemImage: "wand.and.stars", effect: FilterType.SHARPEN)
         ],
         [
-            FilterItem(title: "블러", systemImage: "circle.circle", effect: "blur"),
-            FilterItem(title: "엠보싱", systemImage: "square.3.layers.3d", effect: "emboss")
+            FilterItem(title: "블러", systemImage: "circle.circle", effect: FilterType.BLUR),
+            FilterItem(title: "엠보싱", systemImage: "square.3.layers.3d", effect: FilterType.EMBOSS)
         ],
         [
-            FilterItem(title: "스케치", systemImage: "pencil.and.outline", effect: "sketch"),
-            FilterItem(title: "네거티브", systemImage: "pencil.and.outline", effect: "negative")
+            FilterItem(title: "스케치", systemImage: "pencil.and.outline", effect: FilterType.SKETCH),
+            FilterItem(title: "네거티브", systemImage: "pencil.and.outline", effect: FilterType.NEGATIVE)
         ]
     ]
     

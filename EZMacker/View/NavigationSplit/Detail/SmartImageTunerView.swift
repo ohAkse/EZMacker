@@ -7,6 +7,7 @@
 
 import SwiftUI
 import EZMackerUtilLib
+import EZMackerImageLib
 import UniformTypeIdentifiers
 
 struct SmartImageTunerView: View {
@@ -190,8 +191,8 @@ struct SmartImageTunerView: View {
     }
 }
 
-// MARK: - Helper Methods
 extension SmartImageTunerView {
+// Popup이 아닌
     private func selectTab(_ tab: TunerTabType) {
         guard !shouldDisableButton(for: tab) else { return }
         selectedTab = tab
@@ -201,22 +202,16 @@ extension SmartImageTunerView {
             isPopupPresented = true
         case .save:
             saveImage()
-            selectedTab = nil
         case .reset:
             resetImage()
-            selectedTab = nil
         case .undo:
             undoImage()
-            selectedTab = nil
         case .redo:
             redoImage()
-            selectedTab = nil
         case .rotate:
-            rotateImage()
-            selectedTab = nil
+            rotateImage() // TODO: 차후 UI선택버튼 추가
         case .flip:
-            flopImage()
-            selectedTab = nil
+            flopImage() // TODO: 차후 UI선택버튼 추가
         default:
             isPenToolActive = false
             isPopupPresented = true
@@ -263,22 +258,35 @@ extension SmartImageTunerView {
 // MARK: - 팝업이 나타나는 함수
 extension SmartImageTunerView {
     private func onPenSettingChanged(_ settings: PenToolSetting) {
-          penToolSetting = settings
-          isPopupPresented = false
-      }
-      
-    private func onEraserSettingChanged(_ setting: String) {
-          isPopupPresented = false
-      }
-      
-      private func onFilterChanged(_ filter: String) {
-          Logger.writeLog(.info, message: filter)
-          isPopupPresented = false
-      }
-      
-      private func onAddTextChanged(_ text: String) {
-          isPopupPresented = false
-      }
+        penToolSetting = settings
+        isPopupPresented = false
+        selectedTab = nil
+    }
+
+    private func onFilterChanged(_ filtertype: FilterType) {
+        smartImageTunerViewModel.filterImage(filterType: filtertype)
+        isPopupPresented = false
+        selectedTab = nil
+    }
+
+    private func onAddTextChanged(_ text: String) {
+        isPopupPresented = false
+    }
+
+    private func rotateImage() {
+        // TODO: 차후 UI선택버튼 추가
+        smartImageTunerViewModel.rotateImage(rotateType: .ROTATE_90_COUNTERCLOCKWISE)
+        isPopupPresented = false
+        selectedTab = nil
+    }
+
+    private func flopImage() {
+        // TODO: 차후 UI선택버튼 추가
+        smartImageTunerViewModel.flipImage(flipType: .Horizontal)
+        isPopupPresented = false
+        selectedTab = nil
+    }
+
 }
 
 // MARK: - 팝업이 나타나지 않는 함수
@@ -293,23 +301,19 @@ extension SmartImageTunerView {
             case .error(let errorMessage):
                 self.toast = ToastData(type: .error, message: "이미지 저장에 실패했습니다: \(errorMessage)")
             }
+            selectedTab = nil
         }
     }
     private func resetImage() {
         penToolSetting = .init()
+        selectedTab = nil
     }
     private func undoImage() {
         penToolSetting.undo()
+        selectedTab = nil
     }
     private func redoImage() {
         penToolSetting.redo()
-    }
-    private func rotateImage() {
-        // TODO: 차후 UI선택버튼 추가
-        smartImageTunerViewModel.rotateImage(rotateType: .ROTATE_90_COUNTERCLOCKWISE)
-    }
-    private func flopImage() {
-        // TODO: 차후 UI선택버튼 추가
-        smartImageTunerViewModel.flipImage(flipType: .Horizontal)
+        selectedTab = nil
     }
 }

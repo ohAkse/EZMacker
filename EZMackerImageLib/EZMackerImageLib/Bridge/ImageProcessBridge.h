@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "FlipType.h"
 #import "RotateType.h"
+#import "FilterType.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ImageProcessBridge : NSObject
@@ -22,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
              completion:(void(^)(NSData * _Nullable resultData))completion;
 - (void)flipImageAsync:(nullable NSData *)imageData
               flipType:(FlipType)flipType
+             completion:(void(^)(NSData * _Nullable resultData))completion;
+- (void)filterImageAsync:(nullable NSData *)imageData
+              filterType:(FilterType)filterType
              completion:(void(^)(NSData * _Nullable resultData))completion;
 
 @end

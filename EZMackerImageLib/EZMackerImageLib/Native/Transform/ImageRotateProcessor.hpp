@@ -8,6 +8,10 @@
 #ifndef ImageRotateProcessor_hpp
 #define ImageRotateProcessor_hpp
 
+#ifdef NO
+#undef NO
+#endif
+
 #include <iostream>
 #include <vector>
 #include <future>
@@ -17,12 +21,15 @@
 
 using namespace std;
 using namespace cv;
+
 class ImageRotateProcessor {
 public:
     ImageRotateProcessor();
     ~ImageRotateProcessor();
     future<vector<unsigned char>> rotateImageAsync(const vector<unsigned char>& imageData, RotateType RotateType);
     vector<unsigned char> rotateImageSync(const vector<unsigned char>& imageData, RotateType rotateTYpe);
+private:
+    vector<unsigned char> rotateImageImpl(const vector<unsigned char>& imageData, RotateType rotateType);
     int convertToOpenCVRotateFlag(RotateType type) {
          switch (type) {
              case RotateType::ROTATE_90_CLOCKWISE:
@@ -35,9 +42,6 @@ public:
                  return cv::ROTATE_90_CLOCKWISE;
          }
      }
-
-private:
-    vector<unsigned char> rotateImageImpl(const vector<unsigned char>& imageData, RotateType rotateType);
 };
 
 #endif /* ImageRotateProcessor_hpp */

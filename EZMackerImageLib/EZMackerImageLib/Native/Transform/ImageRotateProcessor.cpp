@@ -23,7 +23,9 @@ vector<unsigned char> ImageRotateProcessor::rotateImageImpl(const vector<unsigne
         cv::rotate(image, rotatedImage, convertToOpenCVRotateFlag(rotateType));
 
         vector<unsigned char> encodedImage;
-        vector<int> params = {IMWRITE_PNG_COMPRESSION, 9};
+        vector<int> params;
+        params.push_back(cv::IMWRITE_PNG_COMPRESSION);
+        params.push_back(0);
 
         if (!imencode(".png", rotatedImage, encodedImage, params)) {
             throw runtime_error("Failed to encode image");

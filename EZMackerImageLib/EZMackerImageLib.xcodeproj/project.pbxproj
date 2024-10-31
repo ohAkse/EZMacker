@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F37233F2CD25D270080FCBB /* ImageFilterProcessor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5F37233E2CD25D270080FCBB /* ImageFilterProcessor.hpp */; };
+		5F3723402CD25D270080FCBB /* ImageFilterProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F37233D2CD25D270080FCBB /* ImageFilterProcessor.cpp */; };
 		5F39986E2CC7FA3100F42344 /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F39986D2CC7FA3100F42344 /* libopencv_core.a */; };
 		5FCA104B2CA962690064A494 /* ImageProcessWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104A2CA962690064A494 /* ImageProcessWrapper.swift */; };
 		5FCA104D2CA962910064A494 /* ImageProcessBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104C2CA962910064A494 /* ImageProcessBridge.mm */; };
@@ -21,6 +23,9 @@
 /* Begin PBXFileReference section */
 		5F28909E2CA8030F00602B78 /* libEZMackerImageLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEZMackerImageLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2890E82CA8141300602B78 /* EZMackerImageLib-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZMackerImageLib-Bridging-Header.h"; sourceTree = "<group>"; };
+		5F3723382CD25B600080FCBB /* FilterType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterType.h; sourceTree = "<group>"; };
+		5F37233D2CD25D270080FCBB /* ImageFilterProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageFilterProcessor.cpp; sourceTree = "<group>"; };
+		5F37233E2CD25D270080FCBB /* ImageFilterProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ImageFilterProcessor.hpp; sourceTree = "<group>"; };
 		5F3997E62CC7E61300F42344 /* libopencv_imgcodecs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgcodecs.a; path = ../../../../../../opt/homebrew/Cellar/opencv/4.10.0_9/lib/libopencv_imgcodecs.a; sourceTree = "<group>"; };
 		5F3997E72CC7E61300F42344 /* libopencv_highgui.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_highgui.a; path = ../../../../../../opt/homebrew/Cellar/opencv/4.10.0_9/lib/libopencv_highgui.a; sourceTree = "<group>"; };
 		5F3997E82CC7E61300F42344 /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = ../../../../../../opt/homebrew/Cellar/opencv/4.10.0_9/lib/libopencv_core.a; sourceTree = "<group>"; };
@@ -224,6 +229,7 @@
 			children = (
 				5FD6276E2CCCE7EF00412E73 /* FlipType.h */,
 				5FD627812CCCF5E400412E73 /* RotateType.h */,
+				5F3723382CD25B600080FCBB /* FilterType.h */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -235,6 +241,8 @@
 				5FD6277A2CCCEBCE00412E73 /* ImageFlipProcessor.hpp */,
 				5FD6277D2CCCEBDB00412E73 /* ImageRotateProcessor.cpp */,
 				5FD6277E2CCCEBDB00412E73 /* ImageRotateProcessor.hpp */,
+				5F37233D2CD25D270080FCBB /* ImageFilterProcessor.cpp */,
+				5F37233E2CD25D270080FCBB /* ImageFilterProcessor.hpp */,
 			);
 			path = Transform;
 			sourceTree = "<group>";
@@ -249,6 +257,7 @@
 				5FD6277F2CCCEBDB00412E73 /* ImageRotateProcessor.hpp in Headers */,
 				5FD6277B2CCCEBCE00412E73 /* ImageFlipProcessor.hpp in Headers */,
 				5FCA10522CA963070064A494 /* ImageProcessor.hpp in Headers */,
+				5F37233F2CD25D270080FCBB /* ImageFilterProcessor.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +321,7 @@
 			files = (
 				5FD627802CCCEBDB00412E73 /* ImageRotateProcessor.cpp in Sources */,
 				5FCA104B2CA962690064A494 /* ImageProcessWrapper.swift in Sources */,
+				5F3723402CD25D270080FCBB /* ImageFilterProcessor.cpp in Sources */,
 				5FD6277C2CCCEBCE00412E73 /* ImageFlipProcessor.cpp in Sources */,
 				5FCA10512CA963070064A494 /* ImageProcessor.cpp in Sources */,
 				5FCA104D2CA962910064A494 /* ImageProcessBridge.mm in Sources */,
