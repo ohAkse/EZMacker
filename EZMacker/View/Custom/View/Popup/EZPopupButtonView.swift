@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EZFilterButtonView: View {
+struct EZPopupButtonView: View {
     let title: String
     let systemImage: String
     let action: () -> Void
@@ -23,6 +23,6 @@ struct EZFilterButtonView: View {
             .frame(height: 40)
             .frame(maxWidth: .infinity)
         }
-        .ezFilterButtonStyle()
+        .ezPopupButtonStyle()
     }
 }

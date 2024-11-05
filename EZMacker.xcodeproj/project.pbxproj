@@ -36,11 +36,15 @@
 		5F2890472CA7E18900602B78 /* SmartImageTunerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890462CA7E18900602B78 /* SmartImageTunerViewModel.swift */; };
 		5F2890492CA7E28A00602B78 /* SmartImageTunerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */; };
 		5F28904B2CA7E96800602B78 /* SmartMockDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */; };
+		5F2A824D2CDA47420096ED62 /* EZFlipPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A824C2CDA47420096ED62 /* EZFlipPopupView.swift */; };
+		5F2A824F2CDA47520096ED62 /* EZRotationPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A824E2CDA47520096ED62 /* EZRotationPopupView.swift */; };
+		5F2A82512CDA47E00096ED62 /* FlipItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A82502CDA47E00096ED62 /* FlipItem.swift */; };
+		5F2A82532CDA4C040096ED62 /* RotationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A82522CDA4C040096ED62 /* RotationItem.swift */; };
 		5F2F485E2CD77B8400299E3C /* ResizeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F485D2CD77B8400299E3C /* ResizeItem.swift */; };
 		5F2F48602CD77BAA00299E3C /* EZResizeAnchorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F485F2CD77BAA00299E3C /* EZResizeAnchorView.swift */; };
 		5F309ABE2CCE227A0035BF60 /* FilterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F309ABD2CCE227A0035BF60 /* FilterItem.swift */; };
-		5F309AC02CCE22AD0035BF60 /* EZFilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F309ABF2CCE22AD0035BF60 /* EZFilterButtonView.swift */; };
-		5F309AC42CCE23540035BF60 /* EZFilterButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F309AC32CCE23540035BF60 /* EZFilterButtonStyle.swift */; };
+		5F309AC02CCE22AD0035BF60 /* EZPopupButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F309ABF2CCE22AD0035BF60 /* EZPopupButtonView.swift */; };
+		5F309AC42CCE23540035BF60 /* EZPopupButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F309AC32CCE23540035BF60 /* EZPopupButtonStyle.swift */; };
 		5F3604162C38214A00C1B84B /* SmartFileLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */; };
 		5F3604182C38230400C1B84B /* SmartFileLocatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */; };
 		5F36041A2C38259400C1B84B /* SmartFileSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604192C38259400C1B84B /* SmartFileSearchView.swift */; };
@@ -255,11 +259,15 @@
 		5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartImageTunerDependency.swift; sourceTree = "<group>"; };
 		5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartMockDependency.swift; sourceTree = "<group>"; };
 		5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EZMackerImageLib.xcodeproj; sourceTree = "<group>"; };
+		5F2A824C2CDA47420096ED62 /* EZFlipPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZFlipPopupView.swift; sourceTree = "<group>"; };
+		5F2A824E2CDA47520096ED62 /* EZRotationPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZRotationPopupView.swift; sourceTree = "<group>"; };
+		5F2A82502CDA47E00096ED62 /* FlipItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipItem.swift; sourceTree = "<group>"; };
+		5F2A82522CDA4C040096ED62 /* RotationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationItem.swift; sourceTree = "<group>"; };
 		5F2F485D2CD77B8400299E3C /* ResizeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeItem.swift; sourceTree = "<group>"; };
 		5F2F485F2CD77BAA00299E3C /* EZResizeAnchorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZResizeAnchorView.swift; sourceTree = "<group>"; };
 		5F309ABD2CCE227A0035BF60 /* FilterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItem.swift; sourceTree = "<group>"; };
-		5F309ABF2CCE22AD0035BF60 /* EZFilterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZFilterButtonView.swift; sourceTree = "<group>"; };
-		5F309AC32CCE23540035BF60 /* EZFilterButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZFilterButtonStyle.swift; sourceTree = "<group>"; };
+		5F309ABF2CCE22AD0035BF60 /* EZPopupButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZPopupButtonView.swift; sourceTree = "<group>"; };
+		5F309AC32CCE23540035BF60 /* EZPopupButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZPopupButtonStyle.swift; sourceTree = "<group>"; };
 		5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileLocatorViewModel.swift; sourceTree = "<group>"; };
 		5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileLocatorView.swift; sourceTree = "<group>"; };
 		5F3604192C38259400C1B84B /* SmartFileSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileSearchView.swift; sourceTree = "<group>"; };
@@ -844,7 +852,6 @@
 				5F3FF0312C02C6AE00E3246C /* EZBatteryBarView.swift */,
 				5F4589982C0C56FA008FCD41 /* EZWifiChannelView.swift */,
 				5F69D28A2C0DDA9D00F318ED /* EZWifiDetailView.swift */,
-				5F309ABF2CCE22AD0035BF60 /* EZFilterButtonView.swift */,
 				5F7E0B642C7077D9000C8C97 /* EZBatteryMonitoringView.swift */,
 				5F7E0B662C707844000C8C97 /* EZWifiMainView.swift */,
 				5F7E0B682C70789B000C8C97 /* EZWifiStrengthView.swift */,
@@ -930,6 +937,8 @@
 				5F309ABD2CCE227A0035BF60 /* FilterItem.swift */,
 				5F0841E82CD5FC310016D9BF /* TextItem.swift */,
 				5F2F485D2CD77B8400299E3C /* ResizeItem.swift */,
+				5F2A82502CDA47E00096ED62 /* FlipItem.swift */,
+				5F2A82522CDA4C040096ED62 /* RotationItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -939,7 +948,7 @@
 			children = (
 				5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */,
 				5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */,
-				5F309AC32CCE23540035BF60 /* EZFilterButtonStyle.swift */,
+				5F309AC32CCE23540035BF60 /* EZPopupButtonStyle.swift */,
 			);
 			path = ButtonStyle;
 			sourceTree = "<group>";
@@ -1088,6 +1097,9 @@
 				5F0755752CC36643000B915D /* EZAddTextPopupView.swift */,
 				5F0841F42CD5FD700016D9BF /* EZTextEditorView.swift */,
 				5F2F485F2CD77BAA00299E3C /* EZResizeAnchorView.swift */,
+				5F2A824C2CDA47420096ED62 /* EZFlipPopupView.swift */,
+				5F2A824E2CDA47520096ED62 /* EZRotationPopupView.swift */,
+				5F309ABF2CCE22AD0035BF60 /* EZPopupButtonView.swift */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -2723,8 +2735,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F2A824D2CDA47420096ED62 /* EZFlipPopupView.swift in Sources */,
 				5FE99EAD2C995F1E00233969 /* ProcessServiceKey.swift in Sources */,
-				5F309AC42CCE23540035BF60 /* EZFilterButtonStyle.swift in Sources */,
+				5F309AC42CCE23540035BF60 /* EZPopupButtonStyle.swift in Sources */,
 				5F6D4E762BE8A2A4004B94F8 /* ToastType.swift in Sources */,
 				5F36041C2C3825B500C1B84B /* SmartFileSearchViewModel.swift in Sources */,
 				5FE99EA52C995E8D00233969 /* FileLocatorServiceKey.swift in Sources */,
@@ -2740,6 +2753,7 @@
 				5FDDCABD2C188189006A528A /* GifRepresentableView.swift in Sources */,
 				5F5E23462C6A2E2200CD329F /* EZTabbarButtonStyle.swift in Sources */,
 				5F3CB4582C7052C0007A479D /* BatterySetting.swift in Sources */,
+				5F2A824F2CDA47520096ED62 /* EZRotationPopupView.swift in Sources */,
 				5FA5E26B2CB58A500031F16D /* SizePreferenceKey.swift in Sources */,
 				5F5329BA2CBB9560000AE73F /* SmartWifiMoreInfoViewModel.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
@@ -2776,13 +2790,14 @@
 				5F3CB45C2C7052DE007A479D /* FileLocatorSetting.swift in Sources */,
 				5F97C3762BF9D25000B0DC56 /* SettingPreference.swift in Sources */,
 				5FEE27CF2BE901D900847761 /* AppToolbarView.swift in Sources */,
-				5F309AC02CCE22AD0035BF60 /* EZFilterButtonView.swift in Sources */,
+				5F309AC02CCE22AD0035BF60 /* EZPopupButtonView.swift in Sources */,
 				5F97C3822BFA132E00B0DC56 /* SmartWifiView.swift in Sources */,
 				5F3FF03D2C03384100E3246C /* AppNotificationCenter.swift in Sources */,
 				5FCDCF842CA409DB00CF8D22 /* SystemTehemeService.swift in Sources */,
 				5F3A519A2C71C2D0000B2C2F /* FileManager + Extension.swift in Sources */,
 				5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */,
 				5F5329ED2CBBC173000AE73F /* SmartWifi + Inject.swift in Sources */,
+				5F2A82512CDA47E00096ED62 /* FlipItem.swift in Sources */,
 				5F485A0D2C69AF7C00B32585 /* EZButtonStyle.swift in Sources */,
 				5FE99EB52C99605300233969 /* SmartGlobalDependency.swift in Sources */,
 				5F16A7DC2C358F07003EA0BE /* FileQueryData.swift in Sources */,
@@ -2798,6 +2813,7 @@
 				5F2890422CA7E17900602B78 /* SmartImageTunerView.swift in Sources */,
 				5F28904B2CA7E96800602B78 /* SmartMockDependency.swift in Sources */,
 				5F0841F52CD5FD700016D9BF /* EZTextEditorView.swift in Sources */,
+				5F2A82532CDA4C040096ED62 /* RotationItem.swift in Sources */,
 				5F0DAC3A2C953DB000BB3488 /* AppEnviroment.swift in Sources */,
 				5F9DAB4C2C79C207000563A2 /* WifiConnectData.swift in Sources */,
 				5F0755B82CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift in Sources */,

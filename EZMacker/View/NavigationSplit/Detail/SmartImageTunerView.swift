@@ -237,10 +237,6 @@ extension SmartImageTunerView {
             undoImage()
         case .redo:
             redoImage()
-        case .rotate:
-            rotateImage() // TODO: 차후 UI선택버튼 추가
-        case .flip:
-            flopImage() // TODO: 차후 UI선택버튼 추가
         default:
             isPenToolActive = false
             isPopupPresented = true
@@ -280,6 +276,10 @@ extension SmartImageTunerView {
                 return AnyView(EZFilterPopupView(isPresented: $isPopupPresented, completion: onFilterChanged))
             case .addText:
                 return AnyView(EZAddTextPopupView(isPresented: $isPopupPresented, completion: onAddTextChanged))
+            case .flip:
+                return AnyView(EZFlipPopupView(isPresented: $isPopupPresented, completion: onFlipChanged))
+            case .rotate:
+                return AnyView(EZRotationPopupView(isPresented: $isPopupPresented, completion: onRotateChanged))
             default:
                 return AnyView(EmptyView())
             }
@@ -312,21 +312,16 @@ extension SmartImageTunerView {
     private func deleteTextOverlay(_ overlay: TextItem) {
         textItemList.removeAll { $0.id == overlay.id }
     }
-
-    private func rotateImage() {
-        // TODO: 차후 UI선택버튼 추가
-        smartImageTunerViewModel.rotateImage(rotateType: .ROTATE_90_COUNTERCLOCKWISE)
+    private func onRotateChanged(_ rotateType: RotateType) {
+        smartImageTunerViewModel.rotateImage(rotateType: rotateType)
         isPopupPresented = false
         selectedTab = nil
     }
-
-    private func flopImage() {
-        // TODO: 차후 UI선택버튼 추가
-        smartImageTunerViewModel.flipImage(flipType: .Horizontal)
+    private func onFlipChanged(_ flipType: FlipType) {
+        smartImageTunerViewModel.flipImage(flipType: flipType)
         isPopupPresented = false
         selectedTab = nil
     }
-
 }
 
 // MARK: - 팝업이 나타나지 않는 함수

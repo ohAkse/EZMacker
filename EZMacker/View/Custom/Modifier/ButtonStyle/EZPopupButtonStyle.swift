@@ -8,7 +8,7 @@
 import SwiftUI
 import EZMackerUtilLib
 
-struct EZFilterButtonStyle: ButtonStyle {
+struct EZPopupButtonStyle: ButtonStyle {
     @EnvironmentObject var systemThemeService: SystemThemeService
     
     func makeBody(configuration: Configuration) -> some View {
@@ -58,7 +58,7 @@ struct EZFilterButtonStyle: ButtonStyle {
 }
 
 extension View {
-    func ezFilterButtonStyle() -> some View {
-        self.buttonStyle(EZFilterButtonStyle())
+    func ezPopupButtonStyle() -> some View {
+        self.buttonStyle(EZPopupButtonStyle())
     }
 }

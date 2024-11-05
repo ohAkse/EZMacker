@@ -7,6 +7,7 @@
 
 import SwiftUI
 import EZMackerImageLib
+
 struct EZFilterPopupView: View {
     @Binding var isPresented: Bool
     let completion: (FilterType) -> Void
@@ -41,7 +42,7 @@ struct EZFilterPopupView: View {
                 ForEach(filters, id: \.self) { row in
                     HStack(spacing: 12) {
                         ForEach(row, id: \.title) { filter in
-                            EZFilterButtonView(
+                            EZPopupButtonView(
                                 title: filter.title,
                                 systemImage: filter.systemImage,
                                 action: { completion(filter.effect) }

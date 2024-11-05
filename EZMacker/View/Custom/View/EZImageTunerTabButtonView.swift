@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 enum TunerTabType: Int, CaseIterable {
-    case reset, rotate, crop, filter, flip, addText
+    case reset, rotate, filter, flip, addText
     case pen, save
     case undo, redo
 
@@ -18,7 +18,6 @@ enum TunerTabType: Int, CaseIterable {
         case .rotate: return "rotate.right"
         case .save: return "square.and.arrow.down"
         case .pen: return "highlighter"
-        case .crop: return "crop"
         case .filter: return "wand.and.stars"
         case .reset: return "arrow.counterclockwise"
         case .addText: return "textbox"
@@ -33,7 +32,6 @@ enum TunerTabType: Int, CaseIterable {
         case .rotate: return "회전"
         case .save: return "저장"
         case .pen: return "펜"
-        case .crop: return "자르기"
         case .filter: return "필터"
         case .reset: return "초기화"
         case .addText: return "텍스트"
