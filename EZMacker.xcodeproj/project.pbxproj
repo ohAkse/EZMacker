@@ -17,6 +17,8 @@
 		5F0755B62CC39693000B915D /* ColorPickerRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755B52CC39693000B915D /* ColorPickerRepresentableView.swift */; };
 		5F0755B82CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755B72CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift */; };
 		5F0755CA2CC3D453000B915D /* SaveImageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755C92CC3D453000B915D /* SaveImageResult.swift */; };
+		5F0841E92CD5FC310016D9BF /* TextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0841E82CD5FC310016D9BF /* TextItem.swift */; };
+		5F0841F52CD5FD700016D9BF /* EZTextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0841F42CD5FD700016D9BF /* EZTextEditorView.swift */; };
 		5F0DAC322C953C4C00BB3488 /* MacType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC312C953C4C00BB3488 /* MacType.swift */; };
 		5F0DAC342C953CDB00BB3488 /* AppConfigType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC332C953CDB00BB3488 /* AppConfigType.swift */; };
 		5F0DAC3A2C953DB000BB3488 /* AppEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC392C953DB000BB3488 /* AppEnviroment.swift */; };
@@ -34,6 +36,8 @@
 		5F2890472CA7E18900602B78 /* SmartImageTunerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890462CA7E18900602B78 /* SmartImageTunerViewModel.swift */; };
 		5F2890492CA7E28A00602B78 /* SmartImageTunerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */; };
 		5F28904B2CA7E96800602B78 /* SmartMockDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */; };
+		5F2F485E2CD77B8400299E3C /* ResizeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F485D2CD77B8400299E3C /* ResizeItem.swift */; };
+		5F2F48602CD77BAA00299E3C /* EZResizeAnchorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F485F2CD77BAA00299E3C /* EZResizeAnchorView.swift */; };
 		5F309ABE2CCE227A0035BF60 /* FilterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F309ABD2CCE227A0035BF60 /* FilterItem.swift */; };
 		5F309AC02CCE22AD0035BF60 /* EZFilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F309ABF2CCE22AD0035BF60 /* EZFilterButtonView.swift */; };
 		5F309AC42CCE23540035BF60 /* EZFilterButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F309AC32CCE23540035BF60 /* EZFilterButtonStyle.swift */; };
@@ -110,7 +114,6 @@
 		5F9DAB502C79F0EA000563A2 /* EZLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */; };
 		5FA5E26B2CB58A500031F16D /* SizePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5E26A2CB58A500031F16D /* SizePreferenceKey.swift */; };
 		5FC1BDBC2CB15B3300D549BF /* ImageDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1BDBB2CB15B3300D549BF /* ImageDisplayMode.swift */; };
-		5FC1BDBE2CB15FDF00D549BF /* NSImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1BDBD2CB15FDF00D549BF /* NSImage + Extension.swift */; };
 		5FC1BDC82CB1699400D549BF /* CanvasRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1BDC72CB1699400D549BF /* CanvasRepresentableView.swift */; };
 		5FC2CB912CB2B4210066438C /* EZContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2CB902CB2B4210066438C /* EZContentView.swift */; };
 		5FC2CB932CB2B4350066438C /* EZTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2CB922CB2B4350066438C /* EZTitleView.swift */; };
@@ -232,6 +235,8 @@
 		5F0755B52CC39693000B915D /* ColorPickerRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerRepresentableView.swift; sourceTree = "<group>"; };
 		5F0755B72CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCoordinatorPreferenceKey.swift; sourceTree = "<group>"; };
 		5F0755C92CC3D453000B915D /* SaveImageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImageResult.swift; sourceTree = "<group>"; };
+		5F0841E82CD5FC310016D9BF /* TextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextItem.swift; sourceTree = "<group>"; };
+		5F0841F42CD5FD700016D9BF /* EZTextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTextEditorView.swift; sourceTree = "<group>"; };
 		5F0DAC312C953C4C00BB3488 /* MacType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacType.swift; sourceTree = "<group>"; };
 		5F0DAC332C953CDB00BB3488 /* AppConfigType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigType.swift; sourceTree = "<group>"; };
 		5F0DAC392C953DB000BB3488 /* AppEnviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnviroment.swift; sourceTree = "<group>"; };
@@ -250,6 +255,8 @@
 		5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartImageTunerDependency.swift; sourceTree = "<group>"; };
 		5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartMockDependency.swift; sourceTree = "<group>"; };
 		5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EZMackerImageLib.xcodeproj; sourceTree = "<group>"; };
+		5F2F485D2CD77B8400299E3C /* ResizeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeItem.swift; sourceTree = "<group>"; };
+		5F2F485F2CD77BAA00299E3C /* EZResizeAnchorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZResizeAnchorView.swift; sourceTree = "<group>"; };
 		5F309ABD2CCE227A0035BF60 /* FilterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItem.swift; sourceTree = "<group>"; };
 		5F309ABF2CCE22AD0035BF60 /* EZFilterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZFilterButtonView.swift; sourceTree = "<group>"; };
 		5F309AC32CCE23540035BF60 /* EZFilterButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZFilterButtonStyle.swift; sourceTree = "<group>"; };
@@ -333,7 +340,6 @@
 		5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZLoadingView.swift; sourceTree = "<group>"; };
 		5FA5E26A2CB58A500031F16D /* SizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePreferenceKey.swift; sourceTree = "<group>"; };
 		5FC1BDBB2CB15B3300D549BF /* ImageDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayMode.swift; sourceTree = "<group>"; };
-		5FC1BDBD2CB15FDF00D549BF /* NSImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage + Extension.swift"; sourceTree = "<group>"; };
 		5FC1BDC72CB1699400D549BF /* CanvasRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRepresentableView.swift; sourceTree = "<group>"; };
 		5FC2CB902CB2B4210066438C /* EZContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZContentView.swift; sourceTree = "<group>"; };
 		5FC2CB922CB2B4350066438C /* EZTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTitleView.swift; sourceTree = "<group>"; };
@@ -922,6 +928,8 @@
 			isa = PBXGroup;
 			children = (
 				5F309ABD2CCE227A0035BF60 /* FilterItem.swift */,
+				5F0841E82CD5FC310016D9BF /* TextItem.swift */,
+				5F2F485D2CD77B8400299E3C /* ResizeItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1078,6 +1086,8 @@
 				5F6BA5692CBA0F5500205073 /* EZPenPopupView.swift */,
 				5F6BA56B2CBA0F6000205073 /* EZFilterPopupView.swift */,
 				5F0755752CC36643000B915D /* EZAddTextPopupView.swift */,
+				5F0841F42CD5FD700016D9BF /* EZTextEditorView.swift */,
+				5F2F485F2CD77BAA00299E3C /* EZResizeAnchorView.swift */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -1095,7 +1105,6 @@
 			children = (
 				5F3DBE122C04BC8800B5C0DE /* View + Extension.swift */,
 				5F3A51992C71C2D0000B2C2F /* FileManager + Extension.swift */,
-				5FC1BDBD2CB15FDF00D549BF /* NSImage + Extension.swift */,
 				5F0755912CC3888D000B915D /* Color + Extension.swift */,
 				5F6547F92CC4A50C002CAEA9 /* CGContext + Extension.swift */,
 			);
@@ -2734,6 +2743,7 @@
 				5FA5E26B2CB58A500031F16D /* SizePreferenceKey.swift in Sources */,
 				5F5329BA2CBB9560000AE73F /* SmartWifiMoreInfoViewModel.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
+				5F2F485E2CD77B8400299E3C /* ResizeItem.swift in Sources */,
 				5FE99E6B2C993AB000233969 /* SmartBatteryDependency.swift in Sources */,
 				5F0DAC322C953C4C00BB3488 /* MacType.swift in Sources */,
 				5F0F96732C6B67B800A70564 /* EZTextFieldWrapperStyle.swift in Sources */,
@@ -2747,8 +2757,8 @@
 				5F1012B22BF39EBD00589C9B /* EZBatteryInfoView.swift in Sources */,
 				5FC1BDC82CB1699400D549BF /* CanvasRepresentableView.swift in Sources */,
 				5F485A012C69ABDF00B32585 /* EZListViewStyle.swift in Sources */,
-				5FC1BDBE2CB15FDF00D549BF /* NSImage + Extension.swift in Sources */,
 				5F69D2902C0DECE900F318ED /* AdapterConnect.swift in Sources */,
+				5F2F48602CD77BAA00299E3C /* EZResizeAnchorView.swift in Sources */,
 				5F3DBE132C04BC8800B5C0DE /* View + Extension.swift in Sources */,
 				5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeModeType.swift in Sources */,
 				5F9DAB482C79AC5A000563A2 /* RadioChannelData.swift in Sources */,
@@ -2787,6 +2797,7 @@
 				5FC2CB972CB2B4E20066438C /* EZButtonActionView.swift in Sources */,
 				5F2890422CA7E17900602B78 /* SmartImageTunerView.swift in Sources */,
 				5F28904B2CA7E96800602B78 /* SmartMockDependency.swift in Sources */,
+				5F0841F52CD5FD700016D9BF /* EZTextEditorView.swift in Sources */,
 				5F0DAC3A2C953DB000BB3488 /* AppEnviroment.swift in Sources */,
 				5F9DAB4C2C79C207000563A2 /* WifiConnectData.swift in Sources */,
 				5F0755B82CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift in Sources */,
@@ -2827,6 +2838,7 @@
 				5FE99EA32C995E6B00233969 /* BatteryServiceKey.swift in Sources */,
 				5F7115D92CBA90AA00FBCD9D /* NavigationPathDestionation.swift in Sources */,
 				5F3FF0302C02BE9800E3246C /* ChargeData.swift in Sources */,
+				5F0841E92CD5FC310016D9BF /* TextItem.swift in Sources */,
 				5F0755762CC36643000B915D /* EZAddTextPopupView.swift in Sources */,
 				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,
 				5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */,

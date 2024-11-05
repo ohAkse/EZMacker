@@ -20,7 +20,9 @@ struct SmartImageTunerView: View {
     /**드로잉 **/
     @State private (set) var penToolSetting: PenToolSetting = .init()
     /**이미지 스케일링**/
-    @State private var imageSectionSize: CGSize = .zero
+    @State private (set)var imageSectionSize: CGSize = .zero
+    // 이미지 텍스트
+    @State private (set)var textItemList: [TextItem] = []
     
     init(factory: ViewModelFactory) {
         _smartImageTunerViewModel = StateObject(wrappedValue: factory.createSmartImageTunerViewModel())
@@ -72,23 +74,16 @@ struct SmartImageTunerView: View {
     private func adjustYPosition(for tab: TunerTabType, in geometry: GeometryProxy) -> CGFloat {
         let tabIndex = TunerTabType.allCases.firstIndex(of: tab) ?? 0
         let tabHeight: CGFloat = 50
-        let spacing: CGFloat = 10
-        
-        let tabCenterY = CGFloat(tabIndex) * (tabHeight + spacing) + tabHeight / 2
         let popupHeight: CGFloat = 200
         
-        let minY = popupHeight / 2
-        let maxY = geometry.size.height - popupHeight / 2
+        let tabCenterY = CGFloat(tabIndex) * (tabHeight + 10) + tabHeight / 2
+        let y = tabCenterY
         
-        var y = tabCenterY
-        
-        if y - popupHeight / 2 < 0 {
-            y = minY
-        } else if y + popupHeight / 2 > geometry.size.height {
-            y = maxY
+        switch y {
+        case ..<(popupHeight / 2): return popupHeight / 2
+        case (geometry.size.height - popupHeight / 2)...: return geometry.size.height - popupHeight / 2
+        default: return y
         }
-        
-        return y
     }
     
     private var toolbarSection: some View {
@@ -116,31 +111,61 @@ struct SmartImageTunerView: View {
         }
         .ezBackgroundStyle()
     }
-    
     private var imageSectionView: some View {
         GeometryReader { geometry in
-            ZStack {
-                if let image = smartImageTunerViewModel.originImage {
-                    imageView(for: image, in: geometry)
-                    CanvasRepresentableView(penToolSetting: $penToolSetting)
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                        .allowsHitTesting(isPenToolActive)
-                } else {
-                    emptyStateView
+            mainContentArea(in: geometry)
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .ezBackgroundStyle()
+                .onDrop(of: [UTType.image], isTargeted: nil) { providers in
+                    loadDroppedImage(from: providers)
+                    return true
                 }
-            }
-            .frame(width: geometry.size.width, height: geometry.size.height)
-            .ezBackgroundStyle()
-            .onDrop(of: [UTType.image], isTargeted: nil) { providers in
-                loadDroppedImage(from: providers)
-                return true
-            }
-            .contextMenu { imageContextMenu }
-            .preference(key: SizePreferenceKey.self, value: geometry.size)
-            .onPreferenceChange(SizePreferenceKey.self) { newSize in
-                imageSectionSize = newSize
+                .contextMenu { imageContextMenu }
+                .preference(key: SizePreferenceKey.self, value: geometry.size)
+                .onPreferenceChange(SizePreferenceKey.self) { newSize in
+                    imageSectionSize = newSize
+                }
+        }
+    }
+
+    // MARK: - ImageSection Components
+    private func mainContentArea(in geometry: GeometryProxy) -> some View {
+        ZStack {
+            if let image = smartImageTunerViewModel.originImage {
+                imageLayer(image, in: geometry)
+                textOverlayLayer(in: geometry)
+                drawingLayer(in: geometry)
+            } else {
+                emptyStateView
             }
         }
+    }
+
+    private func imageLayer(_ image: NSImage, in geometry: GeometryProxy) -> some View {
+        imageView(for: image, in: geometry)
+    }
+
+    private func textOverlayLayer(in geometry: GeometryProxy) -> some View {
+        ForEach(textItemList) { overlay in
+            if let index = textItemList.firstIndex(where: { $0.id == overlay.id }) {
+                EZTextEditorView(
+                    textItem: $textItemList[index],
+                    onUpdate: { updatedOverlay in
+                        updateTextOverlay(updatedOverlay, for: overlay)
+                    },
+                    onDelete: { deleteTextOverlay(overlay) },
+                    onConfirm: { updatedOverlay in
+                        updateTextOverlay(updatedOverlay, for: overlay)
+                    }
+                )
+            }
+        }
+    }
+
+    private func drawingLayer(in geometry: GeometryProxy) -> some View {
+        CanvasRepresentableView(penToolSetting: $penToolSetting)
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .allowsHitTesting(isPenToolActive)
     }
     
     private func imageView(for image: NSImage, in geometry: GeometryProxy) -> AnyView {
@@ -192,11 +217,15 @@ struct SmartImageTunerView: View {
 }
 
 extension SmartImageTunerView {
-// Popup이 아닌
     private func selectTab(_ tab: TunerTabType) {
         guard !shouldDisableButton(for: tab) else { return }
         selectedTab = tab
+        
         isPenToolActive = (tab == .pen)
+        for index in textItemList.indices {
+            textItemList[index].isEditing = false
+        }
+
         switch tab {
         case .pen, .filter, .addText:
             isPopupPresented = true
@@ -232,6 +261,8 @@ extension SmartImageTunerView {
     }
     
     private func loadDroppedImage(from providers: [NSItemProvider]) {
+        penToolSetting = .init()
+        textItemList.removeAll()
         guard let item = providers.first else { return }
         item.loadObject(ofClass: NSImage.self) { image, _ in
             if let image = image as? NSImage {
@@ -259,8 +290,6 @@ extension SmartImageTunerView {
 extension SmartImageTunerView {
     private func onPenSettingChanged(_ settings: PenToolSetting) {
         penToolSetting = settings
-        isPopupPresented = false
-        selectedTab = nil
     }
 
     private func onFilterChanged(_ filtertype: FilterType) {
@@ -269,8 +298,19 @@ extension SmartImageTunerView {
         selectedTab = nil
     }
 
-    private func onAddTextChanged(_ text: String) {
-        isPopupPresented = false
+    private func onAddTextChanged(_ overlay: TextItem) {
+         textItemList.append(overlay)
+         isPopupPresented = false
+         selectedTab = nil
+     }
+    private func updateTextOverlay(_ updatedOverlay: TextItem, for overlay: TextItem) {
+        if let index = textItemList.firstIndex(where: { $0.id == overlay.id }) {
+            textItemList[index] = updatedOverlay
+        }
+    }
+
+    private func deleteTextOverlay(_ overlay: TextItem) {
+        textItemList.removeAll { $0.id == overlay.id }
     }
 
     private func rotateImage() {
@@ -292,7 +332,7 @@ extension SmartImageTunerView {
 // MARK: - 팝업이 나타나지 않는 함수
 extension SmartImageTunerView {
     private func saveImage() {
-        smartImageTunerViewModel.saveImage(currentDrawing: penToolSetting, viewSize: imageSectionSize) { result in
+        smartImageTunerViewModel.saveImage(currentDrawing: penToolSetting, textOverlays: textItemList, viewSize: imageSectionSize) { result in
             switch result {
             case .success:
                 self.toast = ToastData(type: .success, message: "이미지가 성공적으로 저장되었습니다.")

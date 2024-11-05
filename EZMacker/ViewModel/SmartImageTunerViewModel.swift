@@ -20,28 +20,21 @@ class SmartImageTunerViewModel: ObservableObject {
     @Published var displayMode: ImageDisplayMode = .keepAspectRatio
     @Published private(set) var isProcessing = false
     private let imageSenderWrapper: ImageProcessWrapperProvidable
-    
+    private let textRenderingOffset: CGFloat = 5
     func setUploadImage(_ newImage: NSImage) {
         self.originImage = newImage
     }
     func setDisplayMode(_ mode: ImageDisplayMode) {
         displayMode = mode
     }
-    private func captureImageSection(currentPenSetting: PenToolSetting, viewSize: CGSize) -> NSImage? {
+  
+    private func captureImageSection(currentPenSetting: PenToolSetting, textOverlays: [TextItem], viewSize: CGSize) -> NSImage? {
         guard let image = self.originImage,
               viewSize.width > 0, viewSize.height > 0,
               image.size.width > 0, image.size.height > 0 else { return nil }
         
         let imageSize = image.size
-        let newImage: NSImage
-        
-        if displayMode == .keepAspectRatio {
-            let aspectRatio = min(viewSize.width / imageSize.width, viewSize.height / imageSize.height)
-            let scaledSize = CGSize(width: imageSize.width * aspectRatio, height: imageSize.height * aspectRatio)
-            newImage = NSImage(size: scaledSize)
-        } else {
-            newImage = NSImage(size: viewSize)
-        }
+        let newImage = NSImage(size: viewSize)
         
         newImage.lockFocus()
         guard let context = NSGraphicsContext.current?.cgContext else {
@@ -50,25 +43,23 @@ class SmartImageTunerViewModel: ObservableObject {
         }
         
         context.saveGState()
-        context.setShouldAntialias(true)
-        context.interpolationQuality = .high
+        context.then {
+            $0.setShouldAntialias(true)
+            $0.interpolationQuality = .high
+        }
         
         if displayMode == .keepAspectRatio {
-            if let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
-                context.draw(cgImage, in: CGRect(origin: .zero, size: newImage.size))
-            }
+            let aspectRatio = min(viewSize.width / imageSize.width, viewSize.height / imageSize.height)
+            let scaledSize = CGSize(width: imageSize.width * aspectRatio, height: imageSize.height * aspectRatio)
+            let origin = CGPoint(x: (viewSize.width - scaledSize.width) / 2, y: (viewSize.height - scaledSize.height) / 2)
+            context.draw(image.cgImage(forProposedRect: nil, context: nil, hints: nil)!, in: CGRect(origin: origin, size: scaledSize))
         } else {
-            if let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
-                context.draw(cgImage, in: CGRect(origin: .zero, size: viewSize))
-            }
+            context.draw(image.cgImage(forProposedRect: nil, context: nil, hints: nil)!, in: CGRect(origin: .zero, size: viewSize))
         }
-
-        let scaleX = newImage.size.width / viewSize.width
-        let scaleY = newImage.size.height / viewSize.height
         
         for stroke in currentPenSetting.penStrokes {
             context
-                .applyLineWidth(stroke.penThickness * min(scaleX, scaleY))
+                .applyLineWidth(stroke.penThickness)
                 .applyLineCap(stroke.lineCapStyle.cgLineCap)
                 .applyLineJoin(stroke.lineJoinStyle.cgLineJoin)
                 .applyStrokeColor(stroke.penColor.cgColor ?? .clear)
@@ -76,11 +67,33 @@ class SmartImageTunerViewModel: ObservableObject {
                 .strokePath()
         }
         
+        for overlay in textOverlays {
+            let nsColor = NSColor(overlay.color)
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .left
+
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: NSFont.systemFont(ofSize: overlay.fontSize),
+                .foregroundColor: nsColor,
+                .paragraphStyle: NSMutableParagraphStyle()
+            ]
+            
+            let attributedString = NSAttributedString(string: overlay.text, attributes: attributes)
+            let textRect = CGRect(
+                x: (overlay.position.x - overlay.size.width / 2) + textRenderingOffset,
+                y: viewSize.height - overlay.position.y - overlay.size.height + textRenderingOffset,
+                width: overlay.size.width,
+                height: overlay.size.height
+            )
+            attributedString.draw(in: textRect)
+        }
+        
         context.restoreGState()
         newImage.unlockFocus()
         return newImage
     }
-    func saveImage(currentDrawing: PenToolSetting, viewSize: CGSize, completion: @escaping (SaveImageResult) -> Void) {
+
+    func saveImage(currentDrawing: PenToolSetting, textOverlays: [TextItem], viewSize: CGSize, completion: @escaping (SaveImageResult) -> Void) {
         let savePanel = NSSavePanel().then {
             $0.allowedContentTypes = [.png]
             $0.canCreateDirectories = true
@@ -96,12 +109,12 @@ class SmartImageTunerViewModel: ObservableObject {
             switch result {
             case .OK:
                 guard let url = savePanel.url,
-                      let originImage = self.originImage else {
+                      let _ = originImage else {
                     completion(.error("Failed to get save URL or original image"))
                     return
                 }
                 
-                guard let capturedImage = self.captureImageSection(currentPenSetting: currentDrawing, viewSize: viewSize) else {
+                guard let capturedImage = self.captureImageSection(currentPenSetting: currentDrawing, textOverlays: textOverlays, viewSize: viewSize) else {
                     completion(.error("Failed to capture image"))
                     return
                 }

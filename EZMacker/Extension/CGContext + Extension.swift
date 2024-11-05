@@ -35,5 +35,4 @@ extension CGContext {
         self.setShouldAntialias(isApply)
         return self
     }
-    
 }
