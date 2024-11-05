@@ -120,12 +120,11 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 label: {}
             )
             .ezButtonImageStyle(
+                type: .clear,
                 imageName: "gearshape.fill",
-                imageSize: CGSize(width: 20, height: 20),
-                lightModeBackgroundColor: .clear,
-                darkModeBackgroundColor: .clear
+                imageSize: CGSize(width: 20, height: 20)
             )
-            .offset(x: 5, y: -15)
+            .offset(x: 20, y: -25)
         }
         .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.25)
     }

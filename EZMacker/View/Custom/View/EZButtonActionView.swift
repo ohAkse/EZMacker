@@ -19,11 +19,9 @@ struct EZButtonActionView: View {
             
         }
         .ezButtonImageStyle(
+            type: .basic,
             imageName: imageName,
-            lightModeForegroundColor: ThemeColorType.black.color,
-            darkModeForegroundColor: ThemeColorType.white.color,
-            lightModeBackgroundColor: ThemeColorType.lightWhite.color,
-            darkModeBackgroundColor: ThemeColorType.lightDark.color,
+            imageSize: CGSize(width: 20, height: 20),
             frameSize: CGSize(width: 30, height: 30)
         )
         .overlay(

@@ -8,87 +8,73 @@
 import SwiftUI
 import EZMackerUtilLib
 
+enum ButtonImageType {
+    case basic
+    case clear
+    case custom
+    case tabAdd
+}
+
 struct EZButtonImageStyle: ButtonStyle {
     @EnvironmentObject var systemThemeService: SystemThemeService
     
-    let imageSize: CGSize
+    let type: ButtonImageType
     let imageName: String
-    let isSystemImage: Bool
-    let lightModeForegroundColor: Color
-    let darkModeForegroundColor: Color
-    let lightModeBackgroundColor: Color?
-    let darkModeBackgroundColor: Color?
+    let imageSize: CGSize
     let frameSize: CGSize?
-    let isAddButton: Bool
-
+    
     func makeBody(configuration: Configuration) -> some View {
-        Group {
-            if isSystemImage {
-                Image(systemName: imageName)
-                    .resizable()
-            } else {
-                Image(imageName)
-                    .resizable()
-            }
-        }
-        .aspectRatio(contentMode: .fit)
-        .frame(width: imageSize.width, height: imageSize.height)
-        .foregroundColor(foregroundColorForTheme())
-        .padding()
-        .background(backgroundColorForTheme())
-        .frame(width: frameSize?.width, height: frameSize?.height)
-        .cornerRadius(frameSize != nil ? min(frameSize!.width, frameSize!.height) / 4 : 0)
-        .scaleEffect(configuration.isPressed ? 0.95 : 1)
-        .buttonStyle(PlainButtonStyle())
+        Image(systemName: imageName)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: imageSize.width, height: imageSize.height)
+            .foregroundColor(getForegroundColor())
+            .padding()
+            .background(getBackgroundColor())
+            .frame(width: frameSize?.width, height: frameSize?.height)
+            .cornerRadius(frameSize.map { min($0.width, $0.height) / 4 } ?? 0)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
     }
     
-    private func foregroundColorForTheme() -> Color {
-        switch systemThemeService.getColorScheme() {
-        case ColorSchemeModeType.Light.title:
-            return lightModeForegroundColor
-        case ColorSchemeModeType.Dark.title:
-            return darkModeForegroundColor
-        default:
-            Logger.fatalErrorMessage("colorScheme is Empty")
-            return Color.primary
+    private func getForegroundColor() -> Color {
+        let isLight = systemThemeService.getColorScheme() == ColorSchemeModeType.Light.title
+        
+        switch type {
+        case .basic:
+            return isLight ? ThemeColorType.lightBlack.color : ThemeColorType.lightWhite.color
+        case .clear:
+            return isLight ? ThemeColorType.orange.color : ThemeColorType.orange.color
+        case .custom:
+            return isLight ? ThemeColorType.cyan.color : ThemeColorType.cyan.color
+        case .tabAdd:
+            return isLight ? ThemeColorType.lightBlue.color : ThemeColorType.cyan.color
         }
     }
-
-    private func backgroundColorForTheme() -> Color? {
-        switch systemThemeService.getColorScheme() {
-        case ColorSchemeModeType.Light.title:
-            return lightModeBackgroundColor
-        case ColorSchemeModeType.Dark.title:
-            return darkModeBackgroundColor
-        default:
-            Logger.fatalErrorMessage("colorScheme is Empty")
-            return Color.clear
+    
+    private func getBackgroundColor() -> Color {
+        let isLight = systemThemeService.getColorScheme() == ColorSchemeModeType.Light.title
+        
+        switch type {
+        case .basic:
+            return isLight ? ThemeColorType.lightWhite.color : ThemeColorType.lightDark.color
+        case .clear, .custom, .tabAdd:
+            return .clear
         }
     }
 }
 
 extension View {
     func ezButtonImageStyle(
+        type: ButtonImageType = .basic,
         imageName: String,
-        isSystemImage: Bool = true,
-        imageSize: CGSize = CGSize(width: 15, height: 15),
-        lightModeForegroundColor: Color = ThemeColorType.lightDark.color,
-        darkModeForegroundColor: Color = ThemeColorType.white.color,
-        lightModeBackgroundColor: Color? = ThemeColorType.white.color.opacity(0.4),
-        darkModeBackgroundColor: Color? = ThemeColorType.white.color.opacity(0.4),
-        frameSize: CGSize? = CGSize(width: 35, height: 35),
-        isAddButton: Bool = false
+        imageSize: CGSize = CGSize(width: 20, height: 20),
+        frameSize: CGSize? = nil
     ) -> some View {
         self.buttonStyle(EZButtonImageStyle(
-            imageSize: imageSize,
+            type: type,
             imageName: imageName,
-            isSystemImage: isSystemImage,
-            lightModeForegroundColor: lightModeForegroundColor,
-            darkModeForegroundColor: darkModeForegroundColor,
-            lightModeBackgroundColor: lightModeBackgroundColor,
-            darkModeBackgroundColor: darkModeBackgroundColor,
-            frameSize: frameSize,
-            isAddButton: isAddButton
+            imageSize: imageSize,
+            frameSize: frameSize
         ))
     }
 }
