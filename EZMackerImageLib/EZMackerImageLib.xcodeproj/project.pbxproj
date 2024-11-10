@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5F37233F2CD25D270080FCBB /* ImageFilterProcessor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5F37233E2CD25D270080FCBB /* ImageFilterProcessor.hpp */; };
 		5F3723402CD25D270080FCBB /* ImageFilterProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F37233D2CD25D270080FCBB /* ImageFilterProcessor.cpp */; };
-		5F39986E2CC7FA3100F42344 /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F39986D2CC7FA3100F42344 /* libopencv_core.a */; };
 		5FCA104B2CA962690064A494 /* ImageProcessWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104A2CA962690064A494 /* ImageProcessWrapper.swift */; };
 		5FCA104D2CA962910064A494 /* ImageProcessBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104C2CA962910064A494 /* ImageProcessBridge.mm */; };
 		5FCA10512CA963070064A494 /* ImageProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA104F2CA963070064A494 /* ImageProcessor.cpp */; };
@@ -103,7 +102,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F39986E2CC7FA3100F42344 /* libopencv_core.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
