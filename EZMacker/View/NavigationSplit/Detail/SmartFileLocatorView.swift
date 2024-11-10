@@ -30,7 +30,7 @@ struct SmartFileLocatorView: View {
                 }
             }
             .scrollIndicators(.automatic)
-            .ezBackgroundColorStyle()
+            .ezBackgroundStyle()
             
             if let selectedTab = smartFileLocatorViewModel.savedData.selectedTab {
                 VStack {
@@ -68,7 +68,7 @@ struct SmartFileLocatorView: View {
                          onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
                          onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
                 .id(id)
-                .ezBackgroundColorStyle()
+                .ezBackgroundStyle()
                 
             }
         }
@@ -133,14 +133,12 @@ struct SmartFileLocatorView: View {
         Button(action: { showingAlert = true },
                label: {})
         .ezButtonImageStyle(
+            type: .tabAdd,
             imageName: "plus.circle.fill",
             imageSize: CGSize(width: 30, height: 30),
-            lightModeForegroundColor: ThemeColorType.orange.color,
-            darkModeForegroundColor: ThemeColorType.orange.color,
-            lightModeBackgroundColor: .clear,
-            darkModeBackgroundColor: .clear,
             frameSize: CGSize(width: 30, height: 30)
         )
+
     }
     
     private func fileGridView(for selectedTab: String) -> some View {
@@ -166,14 +164,11 @@ struct SmartFileLocatorView: View {
     private func addFileButton(for selectedTab: String) -> some View {
         Button(action: { smartFileLocatorViewModel.addFileView(for: selectedTab) }, label: {})
             .ezButtonImageStyle(
+                type: .clear,
                 imageName: "plus.circle.fill",
                 imageSize: CGSize(width: 30, height: 30),
-                lightModeForegroundColor: ThemeColorType.cyan.color,
-                darkModeForegroundColor: ThemeColorType.cyan.color,
-                lightModeBackgroundColor: .clear,
-                darkModeBackgroundColor: .clear,
                 frameSize: CGSize(width: 30, height: 30)
-            )
+                )
     }
     
     private var emptyStateView: some View {

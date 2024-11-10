@@ -11,34 +11,142 @@
 #include "ImageProcessor.hpp"
 
 @implementation ImageProcessBridge {
-    ImageProcessor* _imageSenderProcessor;
+    ImageProcessor* _processor;
 }
+
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _imageSenderProcessor = new ImageProcessor();
+        _processor = new ImageProcessor();
     }
     return self;
 }
+
 - (void)dealloc {
-    NSLog(@"ImageSenderBridge dealloc called");
-    delete _imageSenderProcessor;
+    NSLog(@"dealloc called");
+    delete _processor;
 }
-- (void)setValue:(int)value {
-    _imageSenderProcessor->setValue(value);
+
+- (NSData *)rotateImageSync:(NSData *)imageData rotateType:(RotateType)rotateType {
+    if (!imageData) {
+        NSLog(@"Input image data is nil");
+        return nil;
+    }
+
+    @try {
+        const unsigned char* bytes = static_cast<const unsigned char*>(imageData.bytes);
+        vector<unsigned char> inputVector(bytes, bytes + imageData.length);
+        vector<unsigned char> result = _processor->processImageRotateSync(inputVector, rotateType);
+        
+        if (result.empty()) {
+            NSLog(@"Image processing failed");
+            return nil;
+        }
+        
+        return [NSData dataWithBytes:result.data() length:result.size()];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Error processing image: %@", exception);
+        return nil;
+    }
 }
-- (void)updateNativeValue:(int64_t *)value {
-    return _imageSenderProcessor->updateNativeValue(value);
+
+- (void)rotateImageAsync:(NSData *)imageData rotateType:(RotateType)rotateType completion:(void(^)(NSData *))completion {
+    if (!imageData) {
+        NSLog(@"Input image data is nil");
+        if (completion) {
+            completion(nil);
+        }
+        return;
+    }
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        @try {
+            const unsigned char* bytes = static_cast<const unsigned char*>(imageData.bytes);
+            vector<unsigned char> inputVector(bytes, bytes + imageData.length);
+            auto futureResult = self->_processor->processImageRotateAsync(inputVector, rotateType);
+            auto result = futureResult.get();
+            NSData* resultData = nil;
+            if (!result.empty()) {
+                resultData = [NSData dataWithBytes:result.data()
+                                         length:result.size()];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completion) {
+                    completion(resultData);
+                }
+            });
+        } @catch (NSException *exception) {
+            NSLog(@"Error processing image asynchronously: %@", exception);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completion) {
+                    completion(nil);
+                }
+            });
+        }
+    });
 }
-- (void)printValue {
-    _imageSenderProcessor->printValue();
+
+
+- (void)flipImageAsync:(NSData *)imageData flipType:(FlipType)flipType completion:(void(^)(NSData *))completion {
+    if (!imageData) {
+        NSLog(@"Input image data is nil");
+        if (completion) completion(nil);
+        return;
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        @try {
+            const unsigned char* bytes = static_cast<const unsigned char*>(imageData.bytes);
+            vector<unsigned char> inputVector(bytes, bytes + imageData.length);
+            auto futureResult = self->_processor->processImageFlipAsync(inputVector, static_cast<FlipType>(flipType));
+            auto result = futureResult.get();
+            NSData* resultData = result.empty() ? nil : [NSData dataWithBytes:result.data() length:result.size()];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completion) completion(resultData);
+            });
+        } @catch (NSException *exception) {
+            NSLog(@"Error processing image asynchronously: %@", exception);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completion) completion(nil);
+            });
+        }
+    });
 }
-- (void)printInoutValue {
-    _imageSenderProcessor->printInoutValue();
-}
-- (void)setInt64Callback:(void (^)(int64_t))int64callback {
-    _imageSenderProcessor->setInt64Callback([int64callback](int64_t value) {
-        int64callback(value);
+- (void)filterImageAsync:(NSData *)imageData filterType:(FilterType)filterType completion:(void(^)(NSData *resultData))completion {
+    if (!imageData) {
+        NSLog(@"Input image data is nil");
+        if (completion) completion(nil);
+        return;
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        @try {
+            if (!self->_processor) {
+                NSLog(@"Image processor is not initialized");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (completion) completion(nil);
+                });
+                return;
+            }
+            
+            const unsigned char* bytes = static_cast<const unsigned char*>(imageData.bytes);
+            std::vector<unsigned char> inputVector(bytes, bytes + imageData.length);
+            
+            auto futureResult = self->_processor->processImageFilterAsync(inputVector, static_cast<FilterType>(filterType));
+            auto result = futureResult.get();
+            
+            NSData* resultData = result.empty() ? nil : [NSData dataWithBytes:result.data() length:result.size()];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completion) completion(resultData);
+            });
+        } @catch (NSException *exception) {
+            NSLog(@"Error processing image asynchronously: %@", exception);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completion) completion(nil);
+            });
+        }
     });
 }
 @end

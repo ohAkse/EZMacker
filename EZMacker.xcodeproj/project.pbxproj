@@ -11,6 +11,14 @@
 		5F027B282C82E18500DF929B /* BatteryMetricsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F027B272C82E18500DF929B /* BatteryMetricsData.swift */; };
 		5F027B2A2C82E7BF00DF929B /* AdapterMetricsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F027B292C82E7BF00DF929B /* AdapterMetricsData.swift */; };
 		5F027B2C2C82EC3900DF929B /* SmartBatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F027B2B2C82EC3900DF929B /* SmartBatteryView.swift */; };
+		5F0755762CC36643000B915D /* EZAddTextPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755752CC36643000B915D /* EZAddTextPopupView.swift */; };
+		5F0755922CC3888D000B915D /* Color + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755912CC3888D000B915D /* Color + Extension.swift */; };
+		5F0755B42CC39610000B915D /* PenToolSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755B32CC39610000B915D /* PenToolSetting.swift */; };
+		5F0755B62CC39693000B915D /* ColorPickerRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755B52CC39693000B915D /* ColorPickerRepresentableView.swift */; };
+		5F0755B82CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755B72CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift */; };
+		5F0755CA2CC3D453000B915D /* SaveImageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0755C92CC3D453000B915D /* SaveImageResult.swift */; };
+		5F0841E92CD5FC310016D9BF /* TextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0841E82CD5FC310016D9BF /* TextItem.swift */; };
+		5F0841F52CD5FD700016D9BF /* EZTextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0841F42CD5FD700016D9BF /* EZTextEditorView.swift */; };
 		5F0DAC322C953C4C00BB3488 /* MacType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC312C953C4C00BB3488 /* MacType.swift */; };
 		5F0DAC342C953CDB00BB3488 /* AppConfigType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC332C953CDB00BB3488 /* AppConfigType.swift */; };
 		5F0DAC3A2C953DB000BB3488 /* AppEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC392C953DB000BB3488 /* AppEnviroment.swift */; };
@@ -28,7 +36,15 @@
 		5F2890472CA7E18900602B78 /* SmartImageTunerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890462CA7E18900602B78 /* SmartImageTunerViewModel.swift */; };
 		5F2890492CA7E28A00602B78 /* SmartImageTunerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */; };
 		5F28904B2CA7E96800602B78 /* SmartMockDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */; };
-		5F2890DF2CA8101C00602B78 /* libEZMackerImageLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F2890B32CA8031B00602B78 /* libEZMackerImageLib.a */; };
+		5F2A824D2CDA47420096ED62 /* EZFlipPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A824C2CDA47420096ED62 /* EZFlipPopupView.swift */; };
+		5F2A824F2CDA47520096ED62 /* EZRotationPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A824E2CDA47520096ED62 /* EZRotationPopupView.swift */; };
+		5F2A82512CDA47E00096ED62 /* FlipItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A82502CDA47E00096ED62 /* FlipItem.swift */; };
+		5F2A82532CDA4C040096ED62 /* RotationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A82522CDA4C040096ED62 /* RotationItem.swift */; };
+		5F2F485E2CD77B8400299E3C /* ResizeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F485D2CD77B8400299E3C /* ResizeItem.swift */; };
+		5F2F48602CD77BAA00299E3C /* EZResizeAnchorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2F485F2CD77BAA00299E3C /* EZResizeAnchorView.swift */; };
+		5F309ABE2CCE227A0035BF60 /* FilterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F309ABD2CCE227A0035BF60 /* FilterItem.swift */; };
+		5F309AC02CCE22AD0035BF60 /* EZPopupButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F309ABF2CCE22AD0035BF60 /* EZPopupButtonView.swift */; };
+		5F309AC42CCE23540035BF60 /* EZPopupButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F309AC32CCE23540035BF60 /* EZPopupButtonStyle.swift */; };
 		5F3604162C38214A00C1B84B /* SmartFileLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */; };
 		5F3604182C38230400C1B84B /* SmartFileLocatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */; };
 		5F36041A2C38259400C1B84B /* SmartFileSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3604192C38259400C1B84B /* SmartFileSearchView.swift */; };
@@ -41,6 +57,8 @@
 		5F36B2352BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2342BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift */; };
 		5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2432BE7ACC000E08935 /* MainContentView.swift */; };
 		5F36C0892C17ECE00031C0E3 /* AlertTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36C0882C17ECE00031C0E3 /* AlertTextFieldView.swift */; };
+		5F3998712CC7FFFB00F42344 /* libEZMackerImageLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F2890B32CA8031B00602B78 /* libEZMackerImageLib.a */; };
+		5F3998742CC8009600F42344 /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F39986B2CC7F99400F42344 /* libopencv_core.a */; };
 		5F3A519A2C71C2D0000B2C2F /* FileManager + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3A51992C71C2D0000B2C2F /* FileManager + Extension.swift */; };
 		5F3CB4582C7052C0007A479D /* BatterySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3CB4572C7052C0007A479D /* BatterySetting.swift */; };
 		5F3CB45A2C7052D3007A479D /* WifiSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3CB4592C7052D3007A479D /* WifiSetting.swift */; };
@@ -64,13 +82,13 @@
 		5F5E23462C6A2E2200CD329F /* EZTabbarButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */; };
 		5F5E234A2C6A469600CD329F /* EZTabbarBackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E23492C6A469600CD329F /* EZTabbarBackgroundStyle.swift */; };
 		5F5E234C2C6A483A00CD329F /* EZTabbarGridStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E234B2C6A483A00CD329F /* EZTabbarGridStyle.swift */; };
+		5F6547FA2CC4A50C002CAEA9 /* CGContext + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6547F92CC4A50C002CAEA9 /* CGContext + Extension.swift */; };
 		5F69D28B2C0DDA9D00F318ED /* EZWifiDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69D28A2C0DDA9D00F318ED /* EZWifiDetailView.swift */; };
 		5F69D2902C0DECE900F318ED /* AdapterConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69D28F2C0DECE900F318ED /* AdapterConnect.swift */; };
 		5F69D2922C0DED4800F318ED /* AdapterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69D2912C0DED4800F318ED /* AdapterData.swift */; };
 		5F6BA5642CBA0A0000205073 /* EZPopupStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA5632CBA0A0000205073 /* EZPopupStyle.swift */; };
-		5F6BA56A2CBA0F5500205073 /* DrawToolPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA5692CBA0F5500205073 /* DrawToolPopupView.swift */; };
-		5F6BA56C2CBA0F6000205073 /* FilterPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA56B2CBA0F6000205073 /* FilterPopupView.swift */; };
-		5F6BA56E2CBA0F6A00205073 /* AddTextPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA56D2CBA0F6A00205073 /* AddTextPopupView.swift */; };
+		5F6BA56A2CBA0F5500205073 /* EZPenPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA5692CBA0F5500205073 /* EZPenPopupView.swift */; };
+		5F6BA56C2CBA0F6000205073 /* EZFilterPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BA56B2CBA0F6000205073 /* EZFilterPopupView.swift */; };
 		5F6D4E6A2BE88AD9004B94F8 /* ToolbarKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E692BE88AD9004B94F8 /* ToolbarKeyType.swift */; };
 		5F6D4E6C2BE88CC6004B94F8 /* ThemeColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E6B2BE88CC6004B94F8 /* ThemeColorType.swift */; };
 		5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeModeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D4E6D2BE88CE1004B94F8 /* ColorSchemeModeType.swift */; };
@@ -100,7 +118,6 @@
 		5F9DAB502C79F0EA000563A2 /* EZLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */; };
 		5FA5E26B2CB58A500031F16D /* SizePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5E26A2CB58A500031F16D /* SizePreferenceKey.swift */; };
 		5FC1BDBC2CB15B3300D549BF /* ImageDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1BDBB2CB15B3300D549BF /* ImageDisplayMode.swift */; };
-		5FC1BDBE2CB15FDF00D549BF /* NSImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1BDBD2CB15FDF00D549BF /* NSImage + Extension.swift */; };
 		5FC1BDC82CB1699400D549BF /* CanvasRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1BDC72CB1699400D549BF /* CanvasRepresentableView.swift */; };
 		5FC2CB912CB2B4210066438C /* EZContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2CB902CB2B4210066438C /* EZContentView.swift */; };
 		5FC2CB932CB2B4350066438C /* EZTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2CB922CB2B4350066438C /* EZTitleView.swift */; };
@@ -110,6 +127,9 @@
 		5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */; };
 		5FCC8B9A2BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */; };
 		5FCDCF842CA409DB00CF8D22 /* SystemTehemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCDCF832CA409DB00CF8D22 /* SystemTehemeService.swift */; };
+		5FD627372CCCA63800412E73 /* libopencv_highgui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD6269C2CCCA5AE00412E73 /* libopencv_highgui.a */; };
+		5FD627382CCCA63800412E73 /* libopencv_imgcodecs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD626A42CCCA5AE00412E73 /* libopencv_imgcodecs.a */; };
+		5FD627392CCCA63800412E73 /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD626A82CCCA5AE00412E73 /* libopencv_imgproc.a */; };
 		5FDDCABB2C188152006A528A /* TextFieldRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDCABA2C188152006A528A /* TextFieldRepresentableView.swift */; };
 		5FDDCABD2C188189006A528A /* GifRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDCABC2C188189006A528A /* GifRepresentableView.swift */; };
 		5FDE1EE82C6B0A1E00E67FCE /* EZButtonImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */; };
@@ -171,13 +191,6 @@
 			remoteGlobalIDString = 5F28909E2CA8030F00602B78;
 			remoteInfo = EZMackerImageLib;
 		};
-		5F2890E02CA8102C00602B78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5F28909D2CA8030F00602B78;
-			remoteInfo = EZMackerImageLib;
-		};
 		5F36B2252BE7AB3100E08935 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F36B20B2BE7AB3000E08935 /* Project object */;
@@ -191,6 +204,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5F36B2122BE7AB3000E08935;
 			remoteInfo = EZMacker;
+		};
+		5F3998722CC8002600F42344 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F28909D2CA8030F00602B78;
+			remoteInfo = EZMackerImageLib;
 		};
 		5FE62F272C843CEF00658155 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -213,6 +233,14 @@
 		5F027B272C82E18500DF929B /* BatteryMetricsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryMetricsData.swift; sourceTree = "<group>"; };
 		5F027B292C82E7BF00DF929B /* AdapterMetricsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterMetricsData.swift; sourceTree = "<group>"; };
 		5F027B2B2C82EC3900DF929B /* SmartBatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartBatteryView.swift; sourceTree = "<group>"; };
+		5F0755752CC36643000B915D /* EZAddTextPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZAddTextPopupView.swift; sourceTree = "<group>"; };
+		5F0755912CC3888D000B915D /* Color + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extension.swift"; sourceTree = "<group>"; };
+		5F0755B32CC39610000B915D /* PenToolSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenToolSetting.swift; sourceTree = "<group>"; };
+		5F0755B52CC39693000B915D /* ColorPickerRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerRepresentableView.swift; sourceTree = "<group>"; };
+		5F0755B72CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCoordinatorPreferenceKey.swift; sourceTree = "<group>"; };
+		5F0755C92CC3D453000B915D /* SaveImageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImageResult.swift; sourceTree = "<group>"; };
+		5F0841E82CD5FC310016D9BF /* TextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextItem.swift; sourceTree = "<group>"; };
+		5F0841F42CD5FD700016D9BF /* EZTextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTextEditorView.swift; sourceTree = "<group>"; };
 		5F0DAC312C953C4C00BB3488 /* MacType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacType.swift; sourceTree = "<group>"; };
 		5F0DAC332C953CDB00BB3488 /* AppConfigType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigType.swift; sourceTree = "<group>"; };
 		5F0DAC392C953DB000BB3488 /* AppEnviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnviroment.swift; sourceTree = "<group>"; };
@@ -231,6 +259,15 @@
 		5F2890482CA7E28A00602B78 /* SmartImageTunerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartImageTunerDependency.swift; sourceTree = "<group>"; };
 		5F28904A2CA7E96800602B78 /* SmartMockDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartMockDependency.swift; sourceTree = "<group>"; };
 		5F2890AD2CA8031B00602B78 /* EZMackerImageLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EZMackerImageLib.xcodeproj; sourceTree = "<group>"; };
+		5F2A824C2CDA47420096ED62 /* EZFlipPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZFlipPopupView.swift; sourceTree = "<group>"; };
+		5F2A824E2CDA47520096ED62 /* EZRotationPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZRotationPopupView.swift; sourceTree = "<group>"; };
+		5F2A82502CDA47E00096ED62 /* FlipItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipItem.swift; sourceTree = "<group>"; };
+		5F2A82522CDA4C040096ED62 /* RotationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationItem.swift; sourceTree = "<group>"; };
+		5F2F485D2CD77B8400299E3C /* ResizeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeItem.swift; sourceTree = "<group>"; };
+		5F2F485F2CD77BAA00299E3C /* EZResizeAnchorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZResizeAnchorView.swift; sourceTree = "<group>"; };
+		5F309ABD2CCE227A0035BF60 /* FilterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItem.swift; sourceTree = "<group>"; };
+		5F309ABF2CCE22AD0035BF60 /* EZPopupButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZPopupButtonView.swift; sourceTree = "<group>"; };
+		5F309AC32CCE23540035BF60 /* EZPopupButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZPopupButtonStyle.swift; sourceTree = "<group>"; };
 		5F3604152C38214A00C1B84B /* SmartFileLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileLocatorViewModel.swift; sourceTree = "<group>"; };
 		5F3604172C38230400C1B84B /* SmartFileLocatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileLocatorView.swift; sourceTree = "<group>"; };
 		5F3604192C38259400C1B84B /* SmartFileSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFileSearchView.swift; sourceTree = "<group>"; };
@@ -247,6 +284,10 @@
 		5F36B2342BE7AB3100E08935 /* EZMackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZMackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5F36B2432BE7ACC000E08935 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 		5F36C0882C17ECE00031C0E3 /* AlertTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTextFieldView.swift; sourceTree = "<group>"; };
+		5F3998652CC7F83500F42344 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = ../../../../../opt/homebrew/Cellar/opencv/4.10.0_11/lib/libopencv_imgproc.a; sourceTree = "<group>"; };
+		5F3998662CC7F83500F42344 /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = ../../../../../opt/homebrew/Cellar/opencv/4.10.0_11/lib/libopencv_core.a; sourceTree = "<group>"; };
+		5F3998692CC7F95000F42344 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = ../../../Downloads/libopencv_imgproc.a; sourceTree = "<group>"; };
+		5F39986B2CC7F99400F42344 /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = ../../../Downloads/libopencv_core.a; sourceTree = "<group>"; };
 		5F3A51992C71C2D0000B2C2F /* FileManager + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager + Extension.swift"; sourceTree = "<group>"; };
 		5F3CB4572C7052C0007A479D /* BatterySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterySetting.swift; sourceTree = "<group>"; };
 		5F3CB4592C7052D3007A479D /* WifiSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiSetting.swift; sourceTree = "<group>"; };
@@ -271,13 +312,13 @@
 		5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTabbarButtonStyle.swift; sourceTree = "<group>"; };
 		5F5E23492C6A469600CD329F /* EZTabbarBackgroundStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTabbarBackgroundStyle.swift; sourceTree = "<group>"; };
 		5F5E234B2C6A483A00CD329F /* EZTabbarGridStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTabbarGridStyle.swift; sourceTree = "<group>"; };
+		5F6547F92CC4A50C002CAEA9 /* CGContext + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGContext + Extension.swift"; sourceTree = "<group>"; };
 		5F69D28A2C0DDA9D00F318ED /* EZWifiDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZWifiDetailView.swift; sourceTree = "<group>"; };
 		5F69D28F2C0DECE900F318ED /* AdapterConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterConnect.swift; sourceTree = "<group>"; };
 		5F69D2912C0DED4800F318ED /* AdapterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterData.swift; sourceTree = "<group>"; };
 		5F6BA5632CBA0A0000205073 /* EZPopupStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZPopupStyle.swift; sourceTree = "<group>"; };
-		5F6BA5692CBA0F5500205073 /* DrawToolPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawToolPopupView.swift; sourceTree = "<group>"; };
-		5F6BA56B2CBA0F6000205073 /* FilterPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPopupView.swift; sourceTree = "<group>"; };
-		5F6BA56D2CBA0F6A00205073 /* AddTextPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextPopupView.swift; sourceTree = "<group>"; };
+		5F6BA5692CBA0F5500205073 /* EZPenPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZPenPopupView.swift; sourceTree = "<group>"; };
+		5F6BA56B2CBA0F6000205073 /* EZFilterPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZFilterPopupView.swift; sourceTree = "<group>"; };
 		5F6D4E692BE88AD9004B94F8 /* ToolbarKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarKeyType.swift; sourceTree = "<group>"; };
 		5F6D4E6B2BE88CC6004B94F8 /* ThemeColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColorType.swift; sourceTree = "<group>"; };
 		5F6D4E6D2BE88CE1004B94F8 /* ColorSchemeModeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeModeType.swift; sourceTree = "<group>"; };
@@ -307,7 +348,6 @@
 		5F9DAB4F2C79F0EA000563A2 /* EZLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZLoadingView.swift; sourceTree = "<group>"; };
 		5FA5E26A2CB58A500031F16D /* SizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePreferenceKey.swift; sourceTree = "<group>"; };
 		5FC1BDBB2CB15B3300D549BF /* ImageDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayMode.swift; sourceTree = "<group>"; };
-		5FC1BDBD2CB15FDF00D549BF /* NSImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage + Extension.swift"; sourceTree = "<group>"; };
 		5FC1BDC72CB1699400D549BF /* CanvasRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRepresentableView.swift; sourceTree = "<group>"; };
 		5FC2CB902CB2B4210066438C /* EZContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZContentView.swift; sourceTree = "<group>"; };
 		5FC2CB922CB2B4350066438C /* EZTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTitleView.swift; sourceTree = "<group>"; };
@@ -317,6 +357,353 @@
 		5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartNotificationAlarmView.swift; sourceTree = "<group>"; };
 		5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartNotificationAlarmViewModel.swift; sourceTree = "<group>"; };
 		5FCDCF832CA409DB00CF8D22 /* SystemTehemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemTehemeService.swift; sourceTree = "<group>"; };
+		5FD625752CCCA5AE00412E73 /* OpenCVConfig-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "OpenCVConfig-version.cmake"; sourceTree = "<group>"; };
+		5FD625762CCCA5AE00412E73 /* OpenCVConfig.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = OpenCVConfig.cmake; sourceTree = "<group>"; };
+		5FD625772CCCA5AE00412E73 /* OpenCVModules-release.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "OpenCVModules-release.cmake"; sourceTree = "<group>"; };
+		5FD625782CCCA5AE00412E73 /* OpenCVModules.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = OpenCVModules.cmake; sourceTree = "<group>"; };
+		5FD6257B2CCCA5AE00412E73 /* libopencv.sfm.correspondence.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv.sfm.correspondence.a; sourceTree = "<group>"; };
+		5FD6257C2CCCA5AE00412E73 /* libopencv.sfm.multiview.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv.sfm.multiview.a; sourceTree = "<group>"; };
+		5FD6257D2CCCA5AE00412E73 /* libopencv.sfm.numeric.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv.sfm.numeric.a; sourceTree = "<group>"; };
+		5FD6257E2CCCA5AE00412E73 /* libopencv.sfm.simple_pipeline.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv.sfm.simple_pipeline.a; sourceTree = "<group>"; };
+		5FD625812CCCA5AE00412E73 /* opencv4.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = opencv4.pc; sourceTree = "<group>"; };
+		5FD625832CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625852CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625872CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625892CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6258B2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6258D2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6258F2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625912CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625932CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625952CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625972CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625992CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6259B2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6259D2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6259F2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625A12CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625A32CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625A52CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625A72CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625A92CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625AB2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625AD2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625AF2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625B12CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625B32CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625B52CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625B72CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625B92CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625BB2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625BD2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625BF2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625C12CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625C32CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625C52CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625C72CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625C92CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625CB2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625CD2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625CF2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625D12CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625D32CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625D52CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625D72CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625D92CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625DB2CCCA5AE00412E73 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		5FD625DC2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625DE2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625E02CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625E22CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625E42CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625E62CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625E82CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625EA2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625EC2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625EE2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625F02CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625F22CCCA5AE00412E73 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		5FD625F42CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625F62CCCA5AE00412E73 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		5FD625F72CCCA5AE00412E73 /* version.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = version.py; sourceTree = "<group>"; };
+		5FD625F92CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625FB2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625FD2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD625FF2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626012CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626032CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626052CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626072CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626092CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6260B2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6260D2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6260F2CCCA5AE00412E73 /* cv2.cpython-312-darwin.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "cv2.cpython-312-darwin.so"; sourceTree = "<group>"; };
+		5FD626112CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626132CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626152CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626172CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626192CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6261B2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6261D2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6261F2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626212CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626232CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626252CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626272CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626292CCCA5AE00412E73 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		5FD6262B2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6262D2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6262F2CCCA5AE00412E73 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		5FD626302CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626322CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626342CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626362CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626382CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6263A2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6263C2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD6263E2CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626402CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626422CCCA5AE00412E73 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		5FD626432CCCA5AE00412E73 /* __init__.pyi */ = {isa = PBXFileReference; lastKnownFileType = text; path = __init__.pyi; sourceTree = "<group>"; };
+		5FD626442CCCA5AE00412E73 /* config-3.12.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "config-3.12.py"; sourceTree = "<group>"; };
+		5FD626452CCCA5AE00412E73 /* config.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = config.py; sourceTree = "<group>"; };
+		5FD626462CCCA5AE00412E73 /* load_config_py2.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = load_config_py2.py; sourceTree = "<group>"; };
+		5FD626472CCCA5AE00412E73 /* load_config_py3.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = load_config_py3.py; sourceTree = "<group>"; };
+		5FD626482CCCA5AE00412E73 /* py.typed */ = {isa = PBXFileReference; lastKnownFileType = text; path = py.typed; sourceTree = "<group>"; };
+		5FD6264C2CCCA5AE00412E73 /* libade.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libade.a; sourceTree = "<group>"; };
+		5FD6264D2CCCA5AE00412E73 /* libittnotify.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libittnotify.a; sourceTree = "<group>"; };
+		5FD6264E2CCCA5AE00412E73 /* libopencv_alphamat.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_alphamat.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6264F2CCCA5AE00412E73 /* libopencv_alphamat.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_alphamat.410.dylib; sourceTree = "<group>"; };
+		5FD626502CCCA5AE00412E73 /* libopencv_alphamat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_alphamat.a; sourceTree = "<group>"; };
+		5FD626512CCCA5AE00412E73 /* libopencv_alphamat.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_alphamat.dylib; sourceTree = "<group>"; };
+		5FD626522CCCA5AE00412E73 /* libopencv_aruco.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_aruco.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626532CCCA5AE00412E73 /* libopencv_aruco.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_aruco.410.dylib; sourceTree = "<group>"; };
+		5FD626542CCCA5AE00412E73 /* libopencv_aruco.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_aruco.a; sourceTree = "<group>"; };
+		5FD626552CCCA5AE00412E73 /* libopencv_aruco.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_aruco.dylib; sourceTree = "<group>"; };
+		5FD626562CCCA5AE00412E73 /* libopencv_bgsegm.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_bgsegm.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626572CCCA5AE00412E73 /* libopencv_bgsegm.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_bgsegm.410.dylib; sourceTree = "<group>"; };
+		5FD626582CCCA5AE00412E73 /* libopencv_bgsegm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_bgsegm.a; sourceTree = "<group>"; };
+		5FD626592CCCA5AE00412E73 /* libopencv_bgsegm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_bgsegm.dylib; sourceTree = "<group>"; };
+		5FD6265A2CCCA5AE00412E73 /* libopencv_bioinspired.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_bioinspired.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6265B2CCCA5AE00412E73 /* libopencv_bioinspired.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_bioinspired.410.dylib; sourceTree = "<group>"; };
+		5FD6265C2CCCA5AE00412E73 /* libopencv_bioinspired.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_bioinspired.a; sourceTree = "<group>"; };
+		5FD6265D2CCCA5AE00412E73 /* libopencv_bioinspired.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_bioinspired.dylib; sourceTree = "<group>"; };
+		5FD6265E2CCCA5AE00412E73 /* libopencv_calib3d.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_calib3d.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6265F2CCCA5AE00412E73 /* libopencv_calib3d.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_calib3d.410.dylib; sourceTree = "<group>"; };
+		5FD626602CCCA5AE00412E73 /* libopencv_calib3d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_calib3d.a; sourceTree = "<group>"; };
+		5FD626612CCCA5AE00412E73 /* libopencv_calib3d.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_calib3d.dylib; sourceTree = "<group>"; };
+		5FD626622CCCA5AE00412E73 /* libopencv_ccalib.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_ccalib.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626632CCCA5AE00412E73 /* libopencv_ccalib.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_ccalib.410.dylib; sourceTree = "<group>"; };
+		5FD626642CCCA5AE00412E73 /* libopencv_ccalib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_ccalib.a; sourceTree = "<group>"; };
+		5FD626652CCCA5AE00412E73 /* libopencv_ccalib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_ccalib.dylib; sourceTree = "<group>"; };
+		5FD626662CCCA5AE00412E73 /* libopencv_core.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_core.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626672CCCA5AE00412E73 /* libopencv_core.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_core.410.dylib; sourceTree = "<group>"; };
+		5FD626682CCCA5AE00412E73 /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_core.a; sourceTree = "<group>"; };
+		5FD626692CCCA5AE00412E73 /* libopencv_core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_core.dylib; sourceTree = "<group>"; };
+		5FD6266A2CCCA5AE00412E73 /* libopencv_datasets.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_datasets.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6266B2CCCA5AE00412E73 /* libopencv_datasets.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_datasets.410.dylib; sourceTree = "<group>"; };
+		5FD6266C2CCCA5AE00412E73 /* libopencv_datasets.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_datasets.a; sourceTree = "<group>"; };
+		5FD6266D2CCCA5AE00412E73 /* libopencv_datasets.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_datasets.dylib; sourceTree = "<group>"; };
+		5FD6266E2CCCA5AE00412E73 /* libopencv_dnn_objdetect.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_dnn_objdetect.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6266F2CCCA5AE00412E73 /* libopencv_dnn_objdetect.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_dnn_objdetect.410.dylib; sourceTree = "<group>"; };
+		5FD626702CCCA5AE00412E73 /* libopencv_dnn_objdetect.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_dnn_objdetect.a; sourceTree = "<group>"; };
+		5FD626712CCCA5AE00412E73 /* libopencv_dnn_objdetect.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_dnn_objdetect.dylib; sourceTree = "<group>"; };
+		5FD626722CCCA5AE00412E73 /* libopencv_dnn_superres.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_dnn_superres.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626732CCCA5AE00412E73 /* libopencv_dnn_superres.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_dnn_superres.410.dylib; sourceTree = "<group>"; };
+		5FD626742CCCA5AE00412E73 /* libopencv_dnn_superres.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_dnn_superres.a; sourceTree = "<group>"; };
+		5FD626752CCCA5AE00412E73 /* libopencv_dnn_superres.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_dnn_superres.dylib; sourceTree = "<group>"; };
+		5FD626762CCCA5AE00412E73 /* libopencv_dnn.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_dnn.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626772CCCA5AE00412E73 /* libopencv_dnn.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_dnn.410.dylib; sourceTree = "<group>"; };
+		5FD626782CCCA5AE00412E73 /* libopencv_dnn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_dnn.a; sourceTree = "<group>"; };
+		5FD626792CCCA5AE00412E73 /* libopencv_dnn.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_dnn.dylib; sourceTree = "<group>"; };
+		5FD6267A2CCCA5AE00412E73 /* libopencv_dpm.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_dpm.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6267B2CCCA5AE00412E73 /* libopencv_dpm.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_dpm.410.dylib; sourceTree = "<group>"; };
+		5FD6267C2CCCA5AE00412E73 /* libopencv_dpm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_dpm.a; sourceTree = "<group>"; };
+		5FD6267D2CCCA5AE00412E73 /* libopencv_dpm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_dpm.dylib; sourceTree = "<group>"; };
+		5FD6267E2CCCA5AE00412E73 /* libopencv_face.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_face.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6267F2CCCA5AE00412E73 /* libopencv_face.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_face.410.dylib; sourceTree = "<group>"; };
+		5FD626802CCCA5AE00412E73 /* libopencv_face.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_face.a; sourceTree = "<group>"; };
+		5FD626812CCCA5AE00412E73 /* libopencv_face.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_face.dylib; sourceTree = "<group>"; };
+		5FD626822CCCA5AE00412E73 /* libopencv_features2d.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_features2d.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626832CCCA5AE00412E73 /* libopencv_features2d.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_features2d.410.dylib; sourceTree = "<group>"; };
+		5FD626842CCCA5AE00412E73 /* libopencv_features2d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_features2d.a; sourceTree = "<group>"; };
+		5FD626852CCCA5AE00412E73 /* libopencv_features2d.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_features2d.dylib; sourceTree = "<group>"; };
+		5FD626862CCCA5AE00412E73 /* libopencv_flann.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_flann.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626872CCCA5AE00412E73 /* libopencv_flann.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_flann.410.dylib; sourceTree = "<group>"; };
+		5FD626882CCCA5AE00412E73 /* libopencv_flann.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_flann.a; sourceTree = "<group>"; };
+		5FD626892CCCA5AE00412E73 /* libopencv_flann.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_flann.dylib; sourceTree = "<group>"; };
+		5FD6268A2CCCA5AE00412E73 /* libopencv_freetype.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_freetype.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6268B2CCCA5AE00412E73 /* libopencv_freetype.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_freetype.410.dylib; sourceTree = "<group>"; };
+		5FD6268C2CCCA5AE00412E73 /* libopencv_freetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_freetype.a; sourceTree = "<group>"; };
+		5FD6268D2CCCA5AE00412E73 /* libopencv_freetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_freetype.dylib; sourceTree = "<group>"; };
+		5FD6268E2CCCA5AE00412E73 /* libopencv_fuzzy.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_fuzzy.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6268F2CCCA5AE00412E73 /* libopencv_fuzzy.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_fuzzy.410.dylib; sourceTree = "<group>"; };
+		5FD626902CCCA5AE00412E73 /* libopencv_fuzzy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_fuzzy.a; sourceTree = "<group>"; };
+		5FD626912CCCA5AE00412E73 /* libopencv_fuzzy.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_fuzzy.dylib; sourceTree = "<group>"; };
+		5FD626922CCCA5AE00412E73 /* libopencv_gapi.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_gapi.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626932CCCA5AE00412E73 /* libopencv_gapi.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_gapi.410.dylib; sourceTree = "<group>"; };
+		5FD626942CCCA5AE00412E73 /* libopencv_gapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_gapi.a; sourceTree = "<group>"; };
+		5FD626952CCCA5AE00412E73 /* libopencv_gapi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_gapi.dylib; sourceTree = "<group>"; };
+		5FD626962CCCA5AE00412E73 /* libopencv_hfs.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_hfs.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626972CCCA5AE00412E73 /* libopencv_hfs.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_hfs.410.dylib; sourceTree = "<group>"; };
+		5FD626982CCCA5AE00412E73 /* libopencv_hfs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_hfs.a; sourceTree = "<group>"; };
+		5FD626992CCCA5AE00412E73 /* libopencv_hfs.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_hfs.dylib; sourceTree = "<group>"; };
+		5FD6269A2CCCA5AE00412E73 /* libopencv_highgui.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_highgui.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6269B2CCCA5AE00412E73 /* libopencv_highgui.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_highgui.410.dylib; sourceTree = "<group>"; };
+		5FD6269C2CCCA5AE00412E73 /* libopencv_highgui.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_highgui.a; sourceTree = "<group>"; };
+		5FD6269D2CCCA5AE00412E73 /* libopencv_highgui.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_highgui.dylib; sourceTree = "<group>"; };
+		5FD6269E2CCCA5AE00412E73 /* libopencv_img_hash.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_img_hash.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6269F2CCCA5AE00412E73 /* libopencv_img_hash.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_img_hash.410.dylib; sourceTree = "<group>"; };
+		5FD626A02CCCA5AE00412E73 /* libopencv_img_hash.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_img_hash.a; sourceTree = "<group>"; };
+		5FD626A12CCCA5AE00412E73 /* libopencv_img_hash.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_img_hash.dylib; sourceTree = "<group>"; };
+		5FD626A22CCCA5AE00412E73 /* libopencv_imgcodecs.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_imgcodecs.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626A32CCCA5AE00412E73 /* libopencv_imgcodecs.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_imgcodecs.410.dylib; sourceTree = "<group>"; };
+		5FD626A42CCCA5AE00412E73 /* libopencv_imgcodecs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_imgcodecs.a; sourceTree = "<group>"; };
+		5FD626A52CCCA5AE00412E73 /* libopencv_imgcodecs.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_imgcodecs.dylib; sourceTree = "<group>"; };
+		5FD626A62CCCA5AE00412E73 /* libopencv_imgproc.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_imgproc.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626A72CCCA5AE00412E73 /* libopencv_imgproc.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_imgproc.410.dylib; sourceTree = "<group>"; };
+		5FD626A82CCCA5AE00412E73 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_imgproc.a; sourceTree = "<group>"; };
+		5FD626A92CCCA5AE00412E73 /* libopencv_imgproc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_imgproc.dylib; sourceTree = "<group>"; };
+		5FD626AA2CCCA5AE00412E73 /* libopencv_intensity_transform.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_intensity_transform.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626AB2CCCA5AE00412E73 /* libopencv_intensity_transform.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_intensity_transform.410.dylib; sourceTree = "<group>"; };
+		5FD626AC2CCCA5AE00412E73 /* libopencv_intensity_transform.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_intensity_transform.a; sourceTree = "<group>"; };
+		5FD626AD2CCCA5AE00412E73 /* libopencv_intensity_transform.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_intensity_transform.dylib; sourceTree = "<group>"; };
+		5FD626AE2CCCA5AE00412E73 /* libopencv_line_descriptor.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_line_descriptor.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626AF2CCCA5AE00412E73 /* libopencv_line_descriptor.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_line_descriptor.410.dylib; sourceTree = "<group>"; };
+		5FD626B02CCCA5AE00412E73 /* libopencv_line_descriptor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_line_descriptor.a; sourceTree = "<group>"; };
+		5FD626B12CCCA5AE00412E73 /* libopencv_line_descriptor.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_line_descriptor.dylib; sourceTree = "<group>"; };
+		5FD626B22CCCA5AE00412E73 /* libopencv_mcc.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_mcc.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626B32CCCA5AE00412E73 /* libopencv_mcc.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_mcc.410.dylib; sourceTree = "<group>"; };
+		5FD626B42CCCA5AE00412E73 /* libopencv_mcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_mcc.a; sourceTree = "<group>"; };
+		5FD626B52CCCA5AE00412E73 /* libopencv_mcc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_mcc.dylib; sourceTree = "<group>"; };
+		5FD626B62CCCA5AE00412E73 /* libopencv_ml.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_ml.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626B72CCCA5AE00412E73 /* libopencv_ml.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_ml.410.dylib; sourceTree = "<group>"; };
+		5FD626B82CCCA5AE00412E73 /* libopencv_ml.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_ml.a; sourceTree = "<group>"; };
+		5FD626B92CCCA5AE00412E73 /* libopencv_ml.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_ml.dylib; sourceTree = "<group>"; };
+		5FD626BA2CCCA5AE00412E73 /* libopencv_objdetect.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_objdetect.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626BB2CCCA5AE00412E73 /* libopencv_objdetect.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_objdetect.410.dylib; sourceTree = "<group>"; };
+		5FD626BC2CCCA5AE00412E73 /* libopencv_objdetect.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_objdetect.a; sourceTree = "<group>"; };
+		5FD626BD2CCCA5AE00412E73 /* libopencv_objdetect.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_objdetect.dylib; sourceTree = "<group>"; };
+		5FD626BE2CCCA5AE00412E73 /* libopencv_optflow.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_optflow.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626BF2CCCA5AE00412E73 /* libopencv_optflow.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_optflow.410.dylib; sourceTree = "<group>"; };
+		5FD626C02CCCA5AE00412E73 /* libopencv_optflow.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_optflow.a; sourceTree = "<group>"; };
+		5FD626C12CCCA5AE00412E73 /* libopencv_optflow.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_optflow.dylib; sourceTree = "<group>"; };
+		5FD626C22CCCA5AE00412E73 /* libopencv_phase_unwrapping.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_phase_unwrapping.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626C32CCCA5AE00412E73 /* libopencv_phase_unwrapping.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_phase_unwrapping.410.dylib; sourceTree = "<group>"; };
+		5FD626C42CCCA5AE00412E73 /* libopencv_phase_unwrapping.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_phase_unwrapping.a; sourceTree = "<group>"; };
+		5FD626C52CCCA5AE00412E73 /* libopencv_phase_unwrapping.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_phase_unwrapping.dylib; sourceTree = "<group>"; };
+		5FD626C62CCCA5AE00412E73 /* libopencv_photo.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_photo.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626C72CCCA5AE00412E73 /* libopencv_photo.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_photo.410.dylib; sourceTree = "<group>"; };
+		5FD626C82CCCA5AE00412E73 /* libopencv_photo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_photo.a; sourceTree = "<group>"; };
+		5FD626C92CCCA5AE00412E73 /* libopencv_photo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_photo.dylib; sourceTree = "<group>"; };
+		5FD626CA2CCCA5AE00412E73 /* libopencv_plot.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_plot.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626CB2CCCA5AE00412E73 /* libopencv_plot.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_plot.410.dylib; sourceTree = "<group>"; };
+		5FD626CC2CCCA5AE00412E73 /* libopencv_plot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_plot.a; sourceTree = "<group>"; };
+		5FD626CD2CCCA5AE00412E73 /* libopencv_plot.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_plot.dylib; sourceTree = "<group>"; };
+		5FD626CE2CCCA5AE00412E73 /* libopencv_quality.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_quality.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626CF2CCCA5AE00412E73 /* libopencv_quality.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_quality.410.dylib; sourceTree = "<group>"; };
+		5FD626D02CCCA5AE00412E73 /* libopencv_quality.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_quality.a; sourceTree = "<group>"; };
+		5FD626D12CCCA5AE00412E73 /* libopencv_quality.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_quality.dylib; sourceTree = "<group>"; };
+		5FD626D22CCCA5AE00412E73 /* libopencv_rapid.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_rapid.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626D32CCCA5AE00412E73 /* libopencv_rapid.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_rapid.410.dylib; sourceTree = "<group>"; };
+		5FD626D42CCCA5AE00412E73 /* libopencv_rapid.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_rapid.a; sourceTree = "<group>"; };
+		5FD626D52CCCA5AE00412E73 /* libopencv_rapid.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_rapid.dylib; sourceTree = "<group>"; };
+		5FD626D62CCCA5AE00412E73 /* libopencv_reg.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_reg.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626D72CCCA5AE00412E73 /* libopencv_reg.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_reg.410.dylib; sourceTree = "<group>"; };
+		5FD626D82CCCA5AE00412E73 /* libopencv_reg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_reg.a; sourceTree = "<group>"; };
+		5FD626D92CCCA5AE00412E73 /* libopencv_reg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_reg.dylib; sourceTree = "<group>"; };
+		5FD626DA2CCCA5AE00412E73 /* libopencv_rgbd.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_rgbd.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626DB2CCCA5AE00412E73 /* libopencv_rgbd.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_rgbd.410.dylib; sourceTree = "<group>"; };
+		5FD626DC2CCCA5AE00412E73 /* libopencv_rgbd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_rgbd.a; sourceTree = "<group>"; };
+		5FD626DD2CCCA5AE00412E73 /* libopencv_rgbd.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_rgbd.dylib; sourceTree = "<group>"; };
+		5FD626DE2CCCA5AE00412E73 /* libopencv_saliency.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_saliency.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626DF2CCCA5AE00412E73 /* libopencv_saliency.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_saliency.410.dylib; sourceTree = "<group>"; };
+		5FD626E02CCCA5AE00412E73 /* libopencv_saliency.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_saliency.a; sourceTree = "<group>"; };
+		5FD626E12CCCA5AE00412E73 /* libopencv_saliency.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_saliency.dylib; sourceTree = "<group>"; };
+		5FD626E22CCCA5AE00412E73 /* libopencv_sfm.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_sfm.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626E32CCCA5AE00412E73 /* libopencv_sfm.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_sfm.410.dylib; sourceTree = "<group>"; };
+		5FD626E42CCCA5AE00412E73 /* libopencv_sfm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_sfm.a; sourceTree = "<group>"; };
+		5FD626E52CCCA5AE00412E73 /* libopencv_sfm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_sfm.dylib; sourceTree = "<group>"; };
+		5FD626E62CCCA5AE00412E73 /* libopencv_shape.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_shape.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626E72CCCA5AE00412E73 /* libopencv_shape.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_shape.410.dylib; sourceTree = "<group>"; };
+		5FD626E82CCCA5AE00412E73 /* libopencv_shape.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_shape.a; sourceTree = "<group>"; };
+		5FD626E92CCCA5AE00412E73 /* libopencv_shape.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_shape.dylib; sourceTree = "<group>"; };
+		5FD626EA2CCCA5AE00412E73 /* libopencv_signal.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_signal.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626EB2CCCA5AE00412E73 /* libopencv_signal.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_signal.410.dylib; sourceTree = "<group>"; };
+		5FD626EC2CCCA5AE00412E73 /* libopencv_signal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_signal.a; sourceTree = "<group>"; };
+		5FD626ED2CCCA5AE00412E73 /* libopencv_signal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_signal.dylib; sourceTree = "<group>"; };
+		5FD626EE2CCCA5AE00412E73 /* libopencv_stereo.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_stereo.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626EF2CCCA5AE00412E73 /* libopencv_stereo.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_stereo.410.dylib; sourceTree = "<group>"; };
+		5FD626F02CCCA5AE00412E73 /* libopencv_stereo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_stereo.a; sourceTree = "<group>"; };
+		5FD626F12CCCA5AE00412E73 /* libopencv_stereo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_stereo.dylib; sourceTree = "<group>"; };
+		5FD626F22CCCA5AE00412E73 /* libopencv_stitching.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_stitching.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626F32CCCA5AE00412E73 /* libopencv_stitching.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_stitching.410.dylib; sourceTree = "<group>"; };
+		5FD626F42CCCA5AE00412E73 /* libopencv_stitching.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_stitching.a; sourceTree = "<group>"; };
+		5FD626F52CCCA5AE00412E73 /* libopencv_stitching.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_stitching.dylib; sourceTree = "<group>"; };
+		5FD626F62CCCA5AE00412E73 /* libopencv_structured_light.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_structured_light.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626F72CCCA5AE00412E73 /* libopencv_structured_light.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_structured_light.410.dylib; sourceTree = "<group>"; };
+		5FD626F82CCCA5AE00412E73 /* libopencv_structured_light.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_structured_light.a; sourceTree = "<group>"; };
+		5FD626F92CCCA5AE00412E73 /* libopencv_structured_light.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_structured_light.dylib; sourceTree = "<group>"; };
+		5FD626FA2CCCA5AE00412E73 /* libopencv_superres.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_superres.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626FB2CCCA5AE00412E73 /* libopencv_superres.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_superres.410.dylib; sourceTree = "<group>"; };
+		5FD626FC2CCCA5AE00412E73 /* libopencv_superres.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_superres.a; sourceTree = "<group>"; };
+		5FD626FD2CCCA5AE00412E73 /* libopencv_superres.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_superres.dylib; sourceTree = "<group>"; };
+		5FD626FE2CCCA5AE00412E73 /* libopencv_surface_matching.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_surface_matching.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD626FF2CCCA5AE00412E73 /* libopencv_surface_matching.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_surface_matching.410.dylib; sourceTree = "<group>"; };
+		5FD627002CCCA5AE00412E73 /* libopencv_surface_matching.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_surface_matching.a; sourceTree = "<group>"; };
+		5FD627012CCCA5AE00412E73 /* libopencv_surface_matching.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_surface_matching.dylib; sourceTree = "<group>"; };
+		5FD627022CCCA5AE00412E73 /* libopencv_text.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_text.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD627032CCCA5AE00412E73 /* libopencv_text.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_text.410.dylib; sourceTree = "<group>"; };
+		5FD627042CCCA5AE00412E73 /* libopencv_text.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_text.a; sourceTree = "<group>"; };
+		5FD627052CCCA5AE00412E73 /* libopencv_text.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_text.dylib; sourceTree = "<group>"; };
+		5FD627062CCCA5AE00412E73 /* libopencv_tracking.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_tracking.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD627072CCCA5AE00412E73 /* libopencv_tracking.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_tracking.410.dylib; sourceTree = "<group>"; };
+		5FD627082CCCA5AE00412E73 /* libopencv_tracking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_tracking.a; sourceTree = "<group>"; };
+		5FD627092CCCA5AE00412E73 /* libopencv_tracking.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_tracking.dylib; sourceTree = "<group>"; };
+		5FD6270A2CCCA5AE00412E73 /* libopencv_video.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_video.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6270B2CCCA5AE00412E73 /* libopencv_video.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_video.410.dylib; sourceTree = "<group>"; };
+		5FD6270C2CCCA5AE00412E73 /* libopencv_video.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_video.a; sourceTree = "<group>"; };
+		5FD6270D2CCCA5AE00412E73 /* libopencv_video.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_video.dylib; sourceTree = "<group>"; };
+		5FD6270E2CCCA5AE00412E73 /* libopencv_videoio.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_videoio.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6270F2CCCA5AE00412E73 /* libopencv_videoio.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_videoio.410.dylib; sourceTree = "<group>"; };
+		5FD627102CCCA5AE00412E73 /* libopencv_videoio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_videoio.a; sourceTree = "<group>"; };
+		5FD627112CCCA5AE00412E73 /* libopencv_videoio.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_videoio.dylib; sourceTree = "<group>"; };
+		5FD627122CCCA5AE00412E73 /* libopencv_videostab.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_videostab.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD627132CCCA5AE00412E73 /* libopencv_videostab.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_videostab.410.dylib; sourceTree = "<group>"; };
+		5FD627142CCCA5AE00412E73 /* libopencv_videostab.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_videostab.a; sourceTree = "<group>"; };
+		5FD627152CCCA5AE00412E73 /* libopencv_videostab.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_videostab.dylib; sourceTree = "<group>"; };
+		5FD627162CCCA5AE00412E73 /* libopencv_viz.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_viz.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD627172CCCA5AE00412E73 /* libopencv_viz.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_viz.410.dylib; sourceTree = "<group>"; };
+		5FD627182CCCA5AE00412E73 /* libopencv_viz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_viz.a; sourceTree = "<group>"; };
+		5FD627192CCCA5AE00412E73 /* libopencv_viz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_viz.dylib; sourceTree = "<group>"; };
+		5FD6271A2CCCA5AE00412E73 /* libopencv_wechat_qrcode.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_wechat_qrcode.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6271B2CCCA5AE00412E73 /* libopencv_wechat_qrcode.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_wechat_qrcode.410.dylib; sourceTree = "<group>"; };
+		5FD6271C2CCCA5AE00412E73 /* libopencv_wechat_qrcode.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_wechat_qrcode.a; sourceTree = "<group>"; };
+		5FD6271D2CCCA5AE00412E73 /* libopencv_wechat_qrcode.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_wechat_qrcode.dylib; sourceTree = "<group>"; };
+		5FD6271E2CCCA5AE00412E73 /* libopencv_xfeatures2d.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_xfeatures2d.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6271F2CCCA5AE00412E73 /* libopencv_xfeatures2d.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_xfeatures2d.410.dylib; sourceTree = "<group>"; };
+		5FD627202CCCA5AE00412E73 /* libopencv_xfeatures2d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_xfeatures2d.a; sourceTree = "<group>"; };
+		5FD627212CCCA5AE00412E73 /* libopencv_xfeatures2d.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_xfeatures2d.dylib; sourceTree = "<group>"; };
+		5FD627222CCCA5AE00412E73 /* libopencv_ximgproc.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_ximgproc.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD627232CCCA5AE00412E73 /* libopencv_ximgproc.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_ximgproc.410.dylib; sourceTree = "<group>"; };
+		5FD627242CCCA5AE00412E73 /* libopencv_ximgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_ximgproc.a; sourceTree = "<group>"; };
+		5FD627252CCCA5AE00412E73 /* libopencv_ximgproc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_ximgproc.dylib; sourceTree = "<group>"; };
+		5FD627262CCCA5AE00412E73 /* libopencv_xobjdetect.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_xobjdetect.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD627272CCCA5AE00412E73 /* libopencv_xobjdetect.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_xobjdetect.410.dylib; sourceTree = "<group>"; };
+		5FD627282CCCA5AE00412E73 /* libopencv_xobjdetect.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_xobjdetect.a; sourceTree = "<group>"; };
+		5FD627292CCCA5AE00412E73 /* libopencv_xobjdetect.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_xobjdetect.dylib; sourceTree = "<group>"; };
+		5FD6272A2CCCA5AE00412E73 /* libopencv_xphoto.4.10.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_xphoto.4.10.0.dylib; sourceTree = "<group>"; };
+		5FD6272B2CCCA5AE00412E73 /* libopencv_xphoto.410.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_xphoto.410.dylib; sourceTree = "<group>"; };
+		5FD6272C2CCCA5AE00412E73 /* libopencv_xphoto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_xphoto.a; sourceTree = "<group>"; };
+		5FD6272D2CCCA5AE00412E73 /* libopencv_xphoto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_xphoto.dylib; sourceTree = "<group>"; };
+		5FD6272E2CCCA5AE00412E73 /* libopencv.sfm.correspondence.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv.sfm.correspondence.a; sourceTree = "<group>"; };
+		5FD6272F2CCCA5AE00412E73 /* libopencv.sfm.multiview.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv.sfm.multiview.a; sourceTree = "<group>"; };
+		5FD627302CCCA5AE00412E73 /* libopencv.sfm.numeric.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv.sfm.numeric.a; sourceTree = "<group>"; };
+		5FD627312CCCA5AE00412E73 /* libopencv.sfm.simple_pipeline.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv.sfm.simple_pipeline.a; sourceTree = "<group>"; };
+		5FD627322CCCA5AE00412E73 /* libOrbbecSDK.1.9.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libOrbbecSDK.1.9.4.dylib; sourceTree = "<group>"; };
+		5FD627332CCCA5AE00412E73 /* libOrbbecSDK.1.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libOrbbecSDK.1.9.dylib; sourceTree = "<group>"; };
+		5FD627342CCCA5AE00412E73 /* libOrbbecSDK.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libOrbbecSDK.dylib; sourceTree = "<group>"; };
+		5FD627352CCCA5AE00412E73 /* libtegra_hal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtegra_hal.a; sourceTree = "<group>"; };
 		5FDDCABA2C188152006A528A /* TextFieldRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldRepresentableView.swift; sourceTree = "<group>"; };
 		5FDDCABC2C188189006A528A /* GifRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifRepresentableView.swift; sourceTree = "<group>"; };
 		5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZButtonImageStyle.swift; sourceTree = "<group>"; };
@@ -347,10 +734,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FD627372CCCA63800412E73 /* libopencv_highgui.a in Frameworks */,
+				5FD627382CCCA63800412E73 /* libopencv_imgcodecs.a in Frameworks */,
+				5FD627392CCCA63800412E73 /* libopencv_imgproc.a in Frameworks */,
+				5F3998742CC8009600F42344 /* libopencv_core.a in Frameworks */,
+				5F3998712CC7FFFB00F42344 /* libEZMackerImageLib.a in Frameworks */,
 				5FE62F2F2C843DB000658155 /* libEZMackerUtilLib.a in Frameworks */,
 				5FE62F852C844F1900658155 /* libEZMackerServiceLib.a in Frameworks */,
 				5F0DAC992C957B0E00BB3488 /* libEZMackerThreadLib.a in Frameworks */,
-				5F2890DF2CA8101C00602B78 /* libEZMackerImageLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +827,7 @@
 		5F1012962BF3825D00589C9B /* Modifier */ = {
 			isa = PBXGroup;
 			children = (
+				5F309ACD2CCE2AFA0035BF60 /* ButtonStyle */,
 				5F485A002C69ABDF00B32585 /* EZListViewStyle.swift */,
 				5F485A022C69ACB100B32585 /* EZNormalTextStyle.swift */,
 				5F485A042C69ACCB00B32585 /* EZNormalImageStyle.swift */,
@@ -444,10 +836,8 @@
 				5F485A0A2C69AE8C00B32585 /* EZListRowStyle.swift */,
 				5F485A0C2C69AF7C00B32585 /* EZButtonStyle.swift */,
 				5F78156A2C69DF9F00DE5F39 /* EZInnerBackgroundStyle.swift */,
-				5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */,
 				5F5E23492C6A469600CD329F /* EZTabbarBackgroundStyle.swift */,
 				5F5E234B2C6A483A00CD329F /* EZTabbarGridStyle.swift */,
-				5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */,
 				5F0F96722C6B67B800A70564 /* EZTextFieldWrapperStyle.swift */,
 				5F6BA5632CBA0A0000205073 /* EZPopupStyle.swift */,
 			);
@@ -491,6 +881,7 @@
 				5F027B252C82D55900DF929B /* BatteryConditionData.swift */,
 				5F027B272C82E18500DF929B /* BatteryMetricsData.swift */,
 				5F027B292C82E7BF00DF929B /* AdapterMetricsData.swift */,
+				5F0755B32CC39610000B915D /* PenToolSetting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -519,6 +910,7 @@
 				5FDDCABA2C188152006A528A /* TextFieldRepresentableView.swift */,
 				5FDDCABC2C188189006A528A /* GifRepresentableView.swift */,
 				5FC1BDC72CB1699400D549BF /* CanvasRepresentableView.swift */,
+				5F0755B52CC39693000B915D /* ColorPickerRepresentableView.swift */,
 			);
 			path = Wrapper;
 			sourceTree = "<group>";
@@ -537,6 +929,28 @@
 				5F2890B32CA8031B00602B78 /* libEZMackerImageLib.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5F309ABC2CCE226E0035BF60 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5F309ABD2CCE227A0035BF60 /* FilterItem.swift */,
+				5F0841E82CD5FC310016D9BF /* TextItem.swift */,
+				5F2F485D2CD77B8400299E3C /* ResizeItem.swift */,
+				5F2A82502CDA47E00096ED62 /* FlipItem.swift */,
+				5F2A82522CDA4C040096ED62 /* RotationItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5F309ACD2CCE2AFA0035BF60 /* ButtonStyle */ = {
+			isa = PBXGroup;
+			children = (
+				5F5E23452C6A2E2200CD329F /* EZTabbarButtonStyle.swift */,
+				5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */,
+				5F309AC32CCE23540035BF60 /* EZPopupButtonStyle.swift */,
+			);
+			path = ButtonStyle;
 			sourceTree = "<group>";
 		};
 		5F36B20A2BE7AB3000E08935 = {
@@ -669,6 +1083,7 @@
 			children = (
 				5F69D28F2C0DECE900F318ED /* AdapterConnect.swift */,
 				5FC1BDBB2CB15B3300D549BF /* ImageDisplayMode.swift */,
+				5F0755C92CC3D453000B915D /* SaveImageResult.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -676,9 +1091,15 @@
 		5F6BA5682CBA0F3000205073 /* Popup */ = {
 			isa = PBXGroup;
 			children = (
-				5F6BA5692CBA0F5500205073 /* DrawToolPopupView.swift */,
-				5F6BA56B2CBA0F6000205073 /* FilterPopupView.swift */,
-				5F6BA56D2CBA0F6A00205073 /* AddTextPopupView.swift */,
+				5F309ABC2CCE226E0035BF60 /* Model */,
+				5F6BA5692CBA0F5500205073 /* EZPenPopupView.swift */,
+				5F6BA56B2CBA0F6000205073 /* EZFilterPopupView.swift */,
+				5F0755752CC36643000B915D /* EZAddTextPopupView.swift */,
+				5F0841F42CD5FD700016D9BF /* EZTextEditorView.swift */,
+				5F2F485F2CD77BAA00299E3C /* EZResizeAnchorView.swift */,
+				5F2A824C2CDA47420096ED62 /* EZFlipPopupView.swift */,
+				5F2A824E2CDA47520096ED62 /* EZRotationPopupView.swift */,
+				5F309ABF2CCE22AD0035BF60 /* EZPopupButtonView.swift */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -696,7 +1117,8 @@
 			children = (
 				5F3DBE122C04BC8800B5C0DE /* View + Extension.swift */,
 				5F3A51992C71C2D0000B2C2F /* FileManager + Extension.swift */,
-				5FC1BDBD2CB15FDF00D549BF /* NSImage + Extension.swift */,
+				5F0755912CC3888D000B915D /* Color + Extension.swift */,
+				5F6547F92CC4A50C002CAEA9 /* CGContext + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -790,8 +1212,1180 @@
 			isa = PBXGroup;
 			children = (
 				5FA5E26A2CB58A500031F16D /* SizePreferenceKey.swift */,
+				5F0755B72CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift */,
 			);
 			path = Key;
+			sourceTree = "<group>";
+		};
+		5FD625792CCCA5AE00412E73 /* opencv4 */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625752CCCA5AE00412E73 /* OpenCVConfig-version.cmake */,
+				5FD625762CCCA5AE00412E73 /* OpenCVConfig.cmake */,
+				5FD625772CCCA5AE00412E73 /* OpenCVModules-release.cmake */,
+				5FD625782CCCA5AE00412E73 /* OpenCVModules.cmake */,
+			);
+			path = opencv4;
+			sourceTree = "<group>";
+		};
+		5FD6257A2CCCA5AE00412E73 /* cmake */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625792CCCA5AE00412E73 /* opencv4 */,
+			);
+			path = cmake;
+			sourceTree = "<group>";
+		};
+		5FD6257F2CCCA5AE00412E73 /* 3rdparty */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6257B2CCCA5AE00412E73 /* libopencv.sfm.correspondence.a */,
+				5FD6257C2CCCA5AE00412E73 /* libopencv.sfm.multiview.a */,
+				5FD6257D2CCCA5AE00412E73 /* libopencv.sfm.numeric.a */,
+				5FD6257E2CCCA5AE00412E73 /* libopencv.sfm.simple_pipeline.a */,
+			);
+			path = 3rdparty;
+			sourceTree = "<group>";
+		};
+		5FD625802CCCA5AE00412E73 /* opencv4 */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6257F2CCCA5AE00412E73 /* 3rdparty */,
+			);
+			path = opencv4;
+			sourceTree = "<group>";
+		};
+		5FD625822CCCA5AE00412E73 /* pkgconfig */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625812CCCA5AE00412E73 /* opencv4.pc */,
+			);
+			path = pkgconfig;
+			sourceTree = "<group>";
+		};
+		5FD625842CCCA5AE00412E73 /* alphamat */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625832CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = alphamat;
+			sourceTree = "<group>";
+		};
+		5FD625862CCCA5AE00412E73 /* aruco */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625852CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = aruco;
+			sourceTree = "<group>";
+		};
+		5FD625882CCCA5AE00412E73 /* barcode */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625872CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = barcode;
+			sourceTree = "<group>";
+		};
+		5FD6258A2CCCA5AE00412E73 /* bgsegm */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625892CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = bgsegm;
+			sourceTree = "<group>";
+		};
+		5FD6258C2CCCA5AE00412E73 /* bioinspired */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6258B2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = bioinspired;
+			sourceTree = "<group>";
+		};
+		5FD6258E2CCCA5AE00412E73 /* ccm */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6258D2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ccm;
+			sourceTree = "<group>";
+		};
+		5FD625902CCCA5AE00412E73 /* colored_kinfu */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6258F2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = colored_kinfu;
+			sourceTree = "<group>";
+		};
+		5FD625922CCCA5AE00412E73 /* cuda */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625912CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = cuda;
+			sourceTree = "<group>";
+		};
+		5FD625942CCCA5AE00412E73 /* datasets */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625932CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = datasets;
+			sourceTree = "<group>";
+		};
+		5FD625962CCCA5AE00412E73 /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625952CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		5FD625982CCCA5AE00412E73 /* dnn */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625972CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = dnn;
+			sourceTree = "<group>";
+		};
+		5FD6259A2CCCA5AE00412E73 /* dnn_superres */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625992CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = dnn_superres;
+			sourceTree = "<group>";
+		};
+		5FD6259C2CCCA5AE00412E73 /* dpm */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6259B2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = dpm;
+			sourceTree = "<group>";
+		};
+		5FD6259E2CCCA5AE00412E73 /* dynafu */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6259D2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = dynafu;
+			sourceTree = "<group>";
+		};
+		5FD625A02CCCA5AE00412E73 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6259F2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		5FD625A22CCCA5AE00412E73 /* face */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625A12CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = face;
+			sourceTree = "<group>";
+		};
+		5FD625A42CCCA5AE00412E73 /* fisheye */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625A32CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = fisheye;
+			sourceTree = "<group>";
+		};
+		5FD625A62CCCA5AE00412E73 /* flann */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625A52CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = flann;
+			sourceTree = "<group>";
+		};
+		5FD625A82CCCA5AE00412E73 /* freetype */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625A72CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = freetype;
+			sourceTree = "<group>";
+		};
+		5FD625AA2CCCA5AE00412E73 /* ft */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625A92CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ft;
+			sourceTree = "<group>";
+		};
+		5FD625AC2CCCA5AE00412E73 /* cpu */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625AB2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = cpu;
+			sourceTree = "<group>";
+		};
+		5FD625AE2CCCA5AE00412E73 /* fluid */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625AD2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = fluid;
+			sourceTree = "<group>";
+		};
+		5FD625B02CCCA5AE00412E73 /* ocl */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625AF2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ocl;
+			sourceTree = "<group>";
+		};
+		5FD625B22CCCA5AE00412E73 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625AC2CCCA5AE00412E73 /* cpu */,
+				5FD625AE2CCCA5AE00412E73 /* fluid */,
+				5FD625B02CCCA5AE00412E73 /* ocl */,
+				5FD625B12CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		5FD625B42CCCA5AE00412E73 /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625B32CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		5FD625B62CCCA5AE00412E73 /* ie */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625B42CCCA5AE00412E73 /* detail */,
+				5FD625B52CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ie;
+			sourceTree = "<group>";
+		};
+		5FD625B82CCCA5AE00412E73 /* fluid */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625B72CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = fluid;
+			sourceTree = "<group>";
+		};
+		5FD625BA2CCCA5AE00412E73 /* imgproc */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625B82CCCA5AE00412E73 /* fluid */,
+				5FD625B92CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = imgproc;
+			sourceTree = "<group>";
+		};
+		5FD625BC2CCCA5AE00412E73 /* oak */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625BB2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = oak;
+			sourceTree = "<group>";
+		};
+		5FD625BE2CCCA5AE00412E73 /* ep */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625BD2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ep;
+			sourceTree = "<group>";
+		};
+		5FD625C02CCCA5AE00412E73 /* onnx */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625BE2CCCA5AE00412E73 /* ep */,
+				5FD625BF2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = onnx;
+			sourceTree = "<group>";
+		};
+		5FD625C22CCCA5AE00412E73 /* cpu */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625C12CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = cpu;
+			sourceTree = "<group>";
+		};
+		5FD625C42CCCA5AE00412E73 /* ot */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625C22CCCA5AE00412E73 /* cpu */,
+				5FD625C32CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ot;
+			sourceTree = "<group>";
+		};
+		5FD625C62CCCA5AE00412E73 /* ov */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625C52CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ov;
+			sourceTree = "<group>";
+		};
+		5FD625C82CCCA5AE00412E73 /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625C72CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		5FD625CA2CCCA5AE00412E73 /* own */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625C82CCCA5AE00412E73 /* detail */,
+				5FD625C92CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = own;
+			sourceTree = "<group>";
+		};
+		5FD625CC2CCCA5AE00412E73 /* ocv */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625CB2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ocv;
+			sourceTree = "<group>";
+		};
+		5FD625CE2CCCA5AE00412E73 /* render */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625CC2CCCA5AE00412E73 /* ocv */,
+				5FD625CD2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = render;
+			sourceTree = "<group>";
+		};
+		5FD625D02CCCA5AE00412E73 /* streaming */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625CF2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = streaming;
+			sourceTree = "<group>";
+		};
+		5FD625D22CCCA5AE00412E73 /* video */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625D12CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = video;
+			sourceTree = "<group>";
+		};
+		5FD625D42CCCA5AE00412E73 /* draw */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625D32CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = draw;
+			sourceTree = "<group>";
+		};
+		5FD625D62CCCA5AE00412E73 /* gst */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625D52CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = gst;
+			sourceTree = "<group>";
+		};
+		5FD625D82CCCA5AE00412E73 /* onevpl */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625D72CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = onevpl;
+			sourceTree = "<group>";
+		};
+		5FD625DA2CCCA5AE00412E73 /* wip */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625D42CCCA5AE00412E73 /* draw */,
+				5FD625D62CCCA5AE00412E73 /* gst */,
+				5FD625D82CCCA5AE00412E73 /* onevpl */,
+				5FD625D92CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = wip;
+			sourceTree = "<group>";
+		};
+		5FD625DD2CCCA5AE00412E73 /* gapi */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625B22CCCA5AE00412E73 /* core */,
+				5FD625B62CCCA5AE00412E73 /* ie */,
+				5FD625BA2CCCA5AE00412E73 /* imgproc */,
+				5FD625BC2CCCA5AE00412E73 /* oak */,
+				5FD625C02CCCA5AE00412E73 /* onnx */,
+				5FD625C42CCCA5AE00412E73 /* ot */,
+				5FD625C62CCCA5AE00412E73 /* ov */,
+				5FD625CA2CCCA5AE00412E73 /* own */,
+				5FD625CE2CCCA5AE00412E73 /* render */,
+				5FD625D02CCCA5AE00412E73 /* streaming */,
+				5FD625D22CCCA5AE00412E73 /* video */,
+				5FD625DA2CCCA5AE00412E73 /* wip */,
+				5FD625DB2CCCA5AE00412E73 /* __init__.py */,
+				5FD625DC2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = gapi;
+			sourceTree = "<group>";
+		};
+		5FD625DF2CCCA5AE00412E73 /* hfs */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625DE2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = hfs;
+			sourceTree = "<group>";
+		};
+		5FD625E12CCCA5AE00412E73 /* img_hash */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625E02CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = img_hash;
+			sourceTree = "<group>";
+		};
+		5FD625E32CCCA5AE00412E73 /* intensity_transform */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625E22CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = intensity_transform;
+			sourceTree = "<group>";
+		};
+		5FD625E52CCCA5AE00412E73 /* ipp */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625E42CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ipp;
+			sourceTree = "<group>";
+		};
+		5FD625E72CCCA5AE00412E73 /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625E62CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		5FD625E92CCCA5AE00412E73 /* kinfu */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625E72CCCA5AE00412E73 /* detail */,
+				5FD625E82CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = kinfu;
+			sourceTree = "<group>";
+		};
+		5FD625EB2CCCA5AE00412E73 /* large_kinfu */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625EA2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = large_kinfu;
+			sourceTree = "<group>";
+		};
+		5FD625ED2CCCA5AE00412E73 /* legacy */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625EC2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = legacy;
+			sourceTree = "<group>";
+		};
+		5FD625EF2CCCA5AE00412E73 /* line_descriptor */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625EE2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = line_descriptor;
+			sourceTree = "<group>";
+		};
+		5FD625F12CCCA5AE00412E73 /* linemod */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625F02CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = linemod;
+			sourceTree = "<group>";
+		};
+		5FD625F32CCCA5AE00412E73 /* mat_wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625F22CCCA5AE00412E73 /* __init__.py */,
+			);
+			path = mat_wrapper;
+			sourceTree = "<group>";
+		};
+		5FD625F52CCCA5AE00412E73 /* mcc */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625F42CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = mcc;
+			sourceTree = "<group>";
+		};
+		5FD625F82CCCA5AE00412E73 /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625F62CCCA5AE00412E73 /* __init__.py */,
+				5FD625F72CCCA5AE00412E73 /* version.py */,
+			);
+			path = misc;
+			sourceTree = "<group>";
+		};
+		5FD625FA2CCCA5AE00412E73 /* ml */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625F92CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ml;
+			sourceTree = "<group>";
+		};
+		5FD625FC2CCCA5AE00412E73 /* motempl */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625FB2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = motempl;
+			sourceTree = "<group>";
+		};
+		5FD625FE2CCCA5AE00412E73 /* multicalib */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625FD2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = multicalib;
+			sourceTree = "<group>";
+		};
+		5FD626002CCCA5AE00412E73 /* ocl */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625FF2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ocl;
+			sourceTree = "<group>";
+		};
+		5FD626022CCCA5AE00412E73 /* ogl */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626012CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ogl;
+			sourceTree = "<group>";
+		};
+		5FD626042CCCA5AE00412E73 /* omnidir */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626032CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = omnidir;
+			sourceTree = "<group>";
+		};
+		5FD626062CCCA5AE00412E73 /* optflow */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626052CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = optflow;
+			sourceTree = "<group>";
+		};
+		5FD626082CCCA5AE00412E73 /* parallel */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626072CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = parallel;
+			sourceTree = "<group>";
+		};
+		5FD6260A2CCCA5AE00412E73 /* phase_unwrapping */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626092CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = phase_unwrapping;
+			sourceTree = "<group>";
+		};
+		5FD6260C2CCCA5AE00412E73 /* plot */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6260B2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = plot;
+			sourceTree = "<group>";
+		};
+		5FD6260E2CCCA5AE00412E73 /* ppf_match_3d */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6260D2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ppf_match_3d;
+			sourceTree = "<group>";
+		};
+		5FD626102CCCA5AE00412E73 /* python-3.12 */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6260F2CCCA5AE00412E73 /* cv2.cpython-312-darwin.so */,
+			);
+			path = "python-3.12";
+			sourceTree = "<group>";
+		};
+		5FD626122CCCA5AE00412E73 /* quality */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626112CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = quality;
+			sourceTree = "<group>";
+		};
+		5FD626142CCCA5AE00412E73 /* rapid */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626132CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = rapid;
+			sourceTree = "<group>";
+		};
+		5FD626162CCCA5AE00412E73 /* reg */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626152CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = reg;
+			sourceTree = "<group>";
+		};
+		5FD626182CCCA5AE00412E73 /* rgbd */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626172CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = rgbd;
+			sourceTree = "<group>";
+		};
+		5FD6261A2CCCA5AE00412E73 /* saliency */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626192CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = saliency;
+			sourceTree = "<group>";
+		};
+		5FD6261C2CCCA5AE00412E73 /* samples */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6261B2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = samples;
+			sourceTree = "<group>";
+		};
+		5FD6261E2CCCA5AE00412E73 /* segmentation */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6261D2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = segmentation;
+			sourceTree = "<group>";
+		};
+		5FD626202CCCA5AE00412E73 /* sfm */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6261F2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = sfm;
+			sourceTree = "<group>";
+		};
+		5FD626222CCCA5AE00412E73 /* signal */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626212CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = signal;
+			sourceTree = "<group>";
+		};
+		5FD626242CCCA5AE00412E73 /* stereo */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626232CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = stereo;
+			sourceTree = "<group>";
+		};
+		5FD626262CCCA5AE00412E73 /* structured_light */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626252CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = structured_light;
+			sourceTree = "<group>";
+		};
+		5FD626282CCCA5AE00412E73 /* text */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626272CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = text;
+			sourceTree = "<group>";
+		};
+		5FD6262A2CCCA5AE00412E73 /* typing */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626292CCCA5AE00412E73 /* __init__.py */,
+			);
+			path = typing;
+			sourceTree = "<group>";
+		};
+		5FD6262C2CCCA5AE00412E73 /* fs */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6262B2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = fs;
+			sourceTree = "<group>";
+		};
+		5FD6262E2CCCA5AE00412E73 /* nested */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6262D2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = nested;
+			sourceTree = "<group>";
+		};
+		5FD626312CCCA5AE00412E73 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6262C2CCCA5AE00412E73 /* fs */,
+				5FD6262E2CCCA5AE00412E73 /* nested */,
+				5FD6262F2CCCA5AE00412E73 /* __init__.py */,
+				5FD626302CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		5FD626332CCCA5AE00412E73 /* videoio_registry */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626322CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = videoio_registry;
+			sourceTree = "<group>";
+		};
+		5FD626352CCCA5AE00412E73 /* videostab */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626342CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = videostab;
+			sourceTree = "<group>";
+		};
+		5FD626372CCCA5AE00412E73 /* viz */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626362CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = viz;
+			sourceTree = "<group>";
+		};
+		5FD626392CCCA5AE00412E73 /* wechat_qrcode */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626382CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = wechat_qrcode;
+			sourceTree = "<group>";
+		};
+		5FD6263B2CCCA5AE00412E73 /* xfeatures2d */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6263A2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = xfeatures2d;
+			sourceTree = "<group>";
+		};
+		5FD6263D2CCCA5AE00412E73 /* segmentation */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6263C2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = segmentation;
+			sourceTree = "<group>";
+		};
+		5FD6263F2CCCA5AE00412E73 /* ximgproc */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6263D2CCCA5AE00412E73 /* segmentation */,
+				5FD6263E2CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = ximgproc;
+			sourceTree = "<group>";
+		};
+		5FD626412CCCA5AE00412E73 /* xphoto */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626402CCCA5AE00412E73 /* __init__.pyi */,
+			);
+			path = xphoto;
+			sourceTree = "<group>";
+		};
+		5FD626492CCCA5AE00412E73 /* cv2 */ = {
+			isa = PBXGroup;
+			children = (
+				5FD625842CCCA5AE00412E73 /* alphamat */,
+				5FD625862CCCA5AE00412E73 /* aruco */,
+				5FD625882CCCA5AE00412E73 /* barcode */,
+				5FD6258A2CCCA5AE00412E73 /* bgsegm */,
+				5FD6258C2CCCA5AE00412E73 /* bioinspired */,
+				5FD6258E2CCCA5AE00412E73 /* ccm */,
+				5FD625902CCCA5AE00412E73 /* colored_kinfu */,
+				5FD625922CCCA5AE00412E73 /* cuda */,
+				5FD625942CCCA5AE00412E73 /* datasets */,
+				5FD625962CCCA5AE00412E73 /* detail */,
+				5FD625982CCCA5AE00412E73 /* dnn */,
+				5FD6259A2CCCA5AE00412E73 /* dnn_superres */,
+				5FD6259C2CCCA5AE00412E73 /* dpm */,
+				5FD6259E2CCCA5AE00412E73 /* dynafu */,
+				5FD625A02CCCA5AE00412E73 /* Error */,
+				5FD625A22CCCA5AE00412E73 /* face */,
+				5FD625A42CCCA5AE00412E73 /* fisheye */,
+				5FD625A62CCCA5AE00412E73 /* flann */,
+				5FD625A82CCCA5AE00412E73 /* freetype */,
+				5FD625AA2CCCA5AE00412E73 /* ft */,
+				5FD625DD2CCCA5AE00412E73 /* gapi */,
+				5FD625DF2CCCA5AE00412E73 /* hfs */,
+				5FD625E12CCCA5AE00412E73 /* img_hash */,
+				5FD625E32CCCA5AE00412E73 /* intensity_transform */,
+				5FD625E52CCCA5AE00412E73 /* ipp */,
+				5FD625E92CCCA5AE00412E73 /* kinfu */,
+				5FD625EB2CCCA5AE00412E73 /* large_kinfu */,
+				5FD625ED2CCCA5AE00412E73 /* legacy */,
+				5FD625EF2CCCA5AE00412E73 /* line_descriptor */,
+				5FD625F12CCCA5AE00412E73 /* linemod */,
+				5FD625F32CCCA5AE00412E73 /* mat_wrapper */,
+				5FD625F52CCCA5AE00412E73 /* mcc */,
+				5FD625F82CCCA5AE00412E73 /* misc */,
+				5FD625FA2CCCA5AE00412E73 /* ml */,
+				5FD625FC2CCCA5AE00412E73 /* motempl */,
+				5FD625FE2CCCA5AE00412E73 /* multicalib */,
+				5FD626002CCCA5AE00412E73 /* ocl */,
+				5FD626022CCCA5AE00412E73 /* ogl */,
+				5FD626042CCCA5AE00412E73 /* omnidir */,
+				5FD626062CCCA5AE00412E73 /* optflow */,
+				5FD626082CCCA5AE00412E73 /* parallel */,
+				5FD6260A2CCCA5AE00412E73 /* phase_unwrapping */,
+				5FD6260C2CCCA5AE00412E73 /* plot */,
+				5FD6260E2CCCA5AE00412E73 /* ppf_match_3d */,
+				5FD626102CCCA5AE00412E73 /* python-3.12 */,
+				5FD626122CCCA5AE00412E73 /* quality */,
+				5FD626142CCCA5AE00412E73 /* rapid */,
+				5FD626162CCCA5AE00412E73 /* reg */,
+				5FD626182CCCA5AE00412E73 /* rgbd */,
+				5FD6261A2CCCA5AE00412E73 /* saliency */,
+				5FD6261C2CCCA5AE00412E73 /* samples */,
+				5FD6261E2CCCA5AE00412E73 /* segmentation */,
+				5FD626202CCCA5AE00412E73 /* sfm */,
+				5FD626222CCCA5AE00412E73 /* signal */,
+				5FD626242CCCA5AE00412E73 /* stereo */,
+				5FD626262CCCA5AE00412E73 /* structured_light */,
+				5FD626282CCCA5AE00412E73 /* text */,
+				5FD6262A2CCCA5AE00412E73 /* typing */,
+				5FD626312CCCA5AE00412E73 /* utils */,
+				5FD626332CCCA5AE00412E73 /* videoio_registry */,
+				5FD626352CCCA5AE00412E73 /* videostab */,
+				5FD626372CCCA5AE00412E73 /* viz */,
+				5FD626392CCCA5AE00412E73 /* wechat_qrcode */,
+				5FD6263B2CCCA5AE00412E73 /* xfeatures2d */,
+				5FD6263F2CCCA5AE00412E73 /* ximgproc */,
+				5FD626412CCCA5AE00412E73 /* xphoto */,
+				5FD626422CCCA5AE00412E73 /* __init__.py */,
+				5FD626432CCCA5AE00412E73 /* __init__.pyi */,
+				5FD626442CCCA5AE00412E73 /* config-3.12.py */,
+				5FD626452CCCA5AE00412E73 /* config.py */,
+				5FD626462CCCA5AE00412E73 /* load_config_py2.py */,
+				5FD626472CCCA5AE00412E73 /* load_config_py3.py */,
+				5FD626482CCCA5AE00412E73 /* py.typed */,
+			);
+			path = cv2;
+			sourceTree = "<group>";
+		};
+		5FD6264A2CCCA5AE00412E73 /* site-packages */ = {
+			isa = PBXGroup;
+			children = (
+				5FD626492CCCA5AE00412E73 /* cv2 */,
+			);
+			path = "site-packages";
+			sourceTree = "<group>";
+		};
+		5FD6264B2CCCA5AE00412E73 /* python3.12 */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6264A2CCCA5AE00412E73 /* site-packages */,
+			);
+			path = python3.12;
+			sourceTree = "<group>";
+		};
+		5FD627362CCCA5AE00412E73 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				5FD6257A2CCCA5AE00412E73 /* cmake */,
+				5FD625802CCCA5AE00412E73 /* opencv4 */,
+				5FD625822CCCA5AE00412E73 /* pkgconfig */,
+				5FD6264B2CCCA5AE00412E73 /* python3.12 */,
+				5FD6264C2CCCA5AE00412E73 /* libade.a */,
+				5FD6264D2CCCA5AE00412E73 /* libittnotify.a */,
+				5FD6264E2CCCA5AE00412E73 /* libopencv_alphamat.4.10.0.dylib */,
+				5FD6264F2CCCA5AE00412E73 /* libopencv_alphamat.410.dylib */,
+				5FD626502CCCA5AE00412E73 /* libopencv_alphamat.a */,
+				5FD626512CCCA5AE00412E73 /* libopencv_alphamat.dylib */,
+				5FD626522CCCA5AE00412E73 /* libopencv_aruco.4.10.0.dylib */,
+				5FD626532CCCA5AE00412E73 /* libopencv_aruco.410.dylib */,
+				5FD626542CCCA5AE00412E73 /* libopencv_aruco.a */,
+				5FD626552CCCA5AE00412E73 /* libopencv_aruco.dylib */,
+				5FD626562CCCA5AE00412E73 /* libopencv_bgsegm.4.10.0.dylib */,
+				5FD626572CCCA5AE00412E73 /* libopencv_bgsegm.410.dylib */,
+				5FD626582CCCA5AE00412E73 /* libopencv_bgsegm.a */,
+				5FD626592CCCA5AE00412E73 /* libopencv_bgsegm.dylib */,
+				5FD6265A2CCCA5AE00412E73 /* libopencv_bioinspired.4.10.0.dylib */,
+				5FD6265B2CCCA5AE00412E73 /* libopencv_bioinspired.410.dylib */,
+				5FD6265C2CCCA5AE00412E73 /* libopencv_bioinspired.a */,
+				5FD6265D2CCCA5AE00412E73 /* libopencv_bioinspired.dylib */,
+				5FD6265E2CCCA5AE00412E73 /* libopencv_calib3d.4.10.0.dylib */,
+				5FD6265F2CCCA5AE00412E73 /* libopencv_calib3d.410.dylib */,
+				5FD626602CCCA5AE00412E73 /* libopencv_calib3d.a */,
+				5FD626612CCCA5AE00412E73 /* libopencv_calib3d.dylib */,
+				5FD626622CCCA5AE00412E73 /* libopencv_ccalib.4.10.0.dylib */,
+				5FD626632CCCA5AE00412E73 /* libopencv_ccalib.410.dylib */,
+				5FD626642CCCA5AE00412E73 /* libopencv_ccalib.a */,
+				5FD626652CCCA5AE00412E73 /* libopencv_ccalib.dylib */,
+				5FD626662CCCA5AE00412E73 /* libopencv_core.4.10.0.dylib */,
+				5FD626672CCCA5AE00412E73 /* libopencv_core.410.dylib */,
+				5FD626682CCCA5AE00412E73 /* libopencv_core.a */,
+				5FD626692CCCA5AE00412E73 /* libopencv_core.dylib */,
+				5FD6266A2CCCA5AE00412E73 /* libopencv_datasets.4.10.0.dylib */,
+				5FD6266B2CCCA5AE00412E73 /* libopencv_datasets.410.dylib */,
+				5FD6266C2CCCA5AE00412E73 /* libopencv_datasets.a */,
+				5FD6266D2CCCA5AE00412E73 /* libopencv_datasets.dylib */,
+				5FD6266E2CCCA5AE00412E73 /* libopencv_dnn_objdetect.4.10.0.dylib */,
+				5FD6266F2CCCA5AE00412E73 /* libopencv_dnn_objdetect.410.dylib */,
+				5FD626702CCCA5AE00412E73 /* libopencv_dnn_objdetect.a */,
+				5FD626712CCCA5AE00412E73 /* libopencv_dnn_objdetect.dylib */,
+				5FD626722CCCA5AE00412E73 /* libopencv_dnn_superres.4.10.0.dylib */,
+				5FD626732CCCA5AE00412E73 /* libopencv_dnn_superres.410.dylib */,
+				5FD626742CCCA5AE00412E73 /* libopencv_dnn_superres.a */,
+				5FD626752CCCA5AE00412E73 /* libopencv_dnn_superres.dylib */,
+				5FD626762CCCA5AE00412E73 /* libopencv_dnn.4.10.0.dylib */,
+				5FD626772CCCA5AE00412E73 /* libopencv_dnn.410.dylib */,
+				5FD626782CCCA5AE00412E73 /* libopencv_dnn.a */,
+				5FD626792CCCA5AE00412E73 /* libopencv_dnn.dylib */,
+				5FD6267A2CCCA5AE00412E73 /* libopencv_dpm.4.10.0.dylib */,
+				5FD6267B2CCCA5AE00412E73 /* libopencv_dpm.410.dylib */,
+				5FD6267C2CCCA5AE00412E73 /* libopencv_dpm.a */,
+				5FD6267D2CCCA5AE00412E73 /* libopencv_dpm.dylib */,
+				5FD6267E2CCCA5AE00412E73 /* libopencv_face.4.10.0.dylib */,
+				5FD6267F2CCCA5AE00412E73 /* libopencv_face.410.dylib */,
+				5FD626802CCCA5AE00412E73 /* libopencv_face.a */,
+				5FD626812CCCA5AE00412E73 /* libopencv_face.dylib */,
+				5FD626822CCCA5AE00412E73 /* libopencv_features2d.4.10.0.dylib */,
+				5FD626832CCCA5AE00412E73 /* libopencv_features2d.410.dylib */,
+				5FD626842CCCA5AE00412E73 /* libopencv_features2d.a */,
+				5FD626852CCCA5AE00412E73 /* libopencv_features2d.dylib */,
+				5FD626862CCCA5AE00412E73 /* libopencv_flann.4.10.0.dylib */,
+				5FD626872CCCA5AE00412E73 /* libopencv_flann.410.dylib */,
+				5FD626882CCCA5AE00412E73 /* libopencv_flann.a */,
+				5FD626892CCCA5AE00412E73 /* libopencv_flann.dylib */,
+				5FD6268A2CCCA5AE00412E73 /* libopencv_freetype.4.10.0.dylib */,
+				5FD6268B2CCCA5AE00412E73 /* libopencv_freetype.410.dylib */,
+				5FD6268C2CCCA5AE00412E73 /* libopencv_freetype.a */,
+				5FD6268D2CCCA5AE00412E73 /* libopencv_freetype.dylib */,
+				5FD6268E2CCCA5AE00412E73 /* libopencv_fuzzy.4.10.0.dylib */,
+				5FD6268F2CCCA5AE00412E73 /* libopencv_fuzzy.410.dylib */,
+				5FD626902CCCA5AE00412E73 /* libopencv_fuzzy.a */,
+				5FD626912CCCA5AE00412E73 /* libopencv_fuzzy.dylib */,
+				5FD626922CCCA5AE00412E73 /* libopencv_gapi.4.10.0.dylib */,
+				5FD626932CCCA5AE00412E73 /* libopencv_gapi.410.dylib */,
+				5FD626942CCCA5AE00412E73 /* libopencv_gapi.a */,
+				5FD626952CCCA5AE00412E73 /* libopencv_gapi.dylib */,
+				5FD626962CCCA5AE00412E73 /* libopencv_hfs.4.10.0.dylib */,
+				5FD626972CCCA5AE00412E73 /* libopencv_hfs.410.dylib */,
+				5FD626982CCCA5AE00412E73 /* libopencv_hfs.a */,
+				5FD626992CCCA5AE00412E73 /* libopencv_hfs.dylib */,
+				5FD6269A2CCCA5AE00412E73 /* libopencv_highgui.4.10.0.dylib */,
+				5FD6269B2CCCA5AE00412E73 /* libopencv_highgui.410.dylib */,
+				5FD6269C2CCCA5AE00412E73 /* libopencv_highgui.a */,
+				5FD6269D2CCCA5AE00412E73 /* libopencv_highgui.dylib */,
+				5FD6269E2CCCA5AE00412E73 /* libopencv_img_hash.4.10.0.dylib */,
+				5FD6269F2CCCA5AE00412E73 /* libopencv_img_hash.410.dylib */,
+				5FD626A02CCCA5AE00412E73 /* libopencv_img_hash.a */,
+				5FD626A12CCCA5AE00412E73 /* libopencv_img_hash.dylib */,
+				5FD626A22CCCA5AE00412E73 /* libopencv_imgcodecs.4.10.0.dylib */,
+				5FD626A32CCCA5AE00412E73 /* libopencv_imgcodecs.410.dylib */,
+				5FD626A42CCCA5AE00412E73 /* libopencv_imgcodecs.a */,
+				5FD626A52CCCA5AE00412E73 /* libopencv_imgcodecs.dylib */,
+				5FD626A62CCCA5AE00412E73 /* libopencv_imgproc.4.10.0.dylib */,
+				5FD626A72CCCA5AE00412E73 /* libopencv_imgproc.410.dylib */,
+				5FD626A82CCCA5AE00412E73 /* libopencv_imgproc.a */,
+				5FD626A92CCCA5AE00412E73 /* libopencv_imgproc.dylib */,
+				5FD626AA2CCCA5AE00412E73 /* libopencv_intensity_transform.4.10.0.dylib */,
+				5FD626AB2CCCA5AE00412E73 /* libopencv_intensity_transform.410.dylib */,
+				5FD626AC2CCCA5AE00412E73 /* libopencv_intensity_transform.a */,
+				5FD626AD2CCCA5AE00412E73 /* libopencv_intensity_transform.dylib */,
+				5FD626AE2CCCA5AE00412E73 /* libopencv_line_descriptor.4.10.0.dylib */,
+				5FD626AF2CCCA5AE00412E73 /* libopencv_line_descriptor.410.dylib */,
+				5FD626B02CCCA5AE00412E73 /* libopencv_line_descriptor.a */,
+				5FD626B12CCCA5AE00412E73 /* libopencv_line_descriptor.dylib */,
+				5FD626B22CCCA5AE00412E73 /* libopencv_mcc.4.10.0.dylib */,
+				5FD626B32CCCA5AE00412E73 /* libopencv_mcc.410.dylib */,
+				5FD626B42CCCA5AE00412E73 /* libopencv_mcc.a */,
+				5FD626B52CCCA5AE00412E73 /* libopencv_mcc.dylib */,
+				5FD626B62CCCA5AE00412E73 /* libopencv_ml.4.10.0.dylib */,
+				5FD626B72CCCA5AE00412E73 /* libopencv_ml.410.dylib */,
+				5FD626B82CCCA5AE00412E73 /* libopencv_ml.a */,
+				5FD626B92CCCA5AE00412E73 /* libopencv_ml.dylib */,
+				5FD626BA2CCCA5AE00412E73 /* libopencv_objdetect.4.10.0.dylib */,
+				5FD626BB2CCCA5AE00412E73 /* libopencv_objdetect.410.dylib */,
+				5FD626BC2CCCA5AE00412E73 /* libopencv_objdetect.a */,
+				5FD626BD2CCCA5AE00412E73 /* libopencv_objdetect.dylib */,
+				5FD626BE2CCCA5AE00412E73 /* libopencv_optflow.4.10.0.dylib */,
+				5FD626BF2CCCA5AE00412E73 /* libopencv_optflow.410.dylib */,
+				5FD626C02CCCA5AE00412E73 /* libopencv_optflow.a */,
+				5FD626C12CCCA5AE00412E73 /* libopencv_optflow.dylib */,
+				5FD626C22CCCA5AE00412E73 /* libopencv_phase_unwrapping.4.10.0.dylib */,
+				5FD626C32CCCA5AE00412E73 /* libopencv_phase_unwrapping.410.dylib */,
+				5FD626C42CCCA5AE00412E73 /* libopencv_phase_unwrapping.a */,
+				5FD626C52CCCA5AE00412E73 /* libopencv_phase_unwrapping.dylib */,
+				5FD626C62CCCA5AE00412E73 /* libopencv_photo.4.10.0.dylib */,
+				5FD626C72CCCA5AE00412E73 /* libopencv_photo.410.dylib */,
+				5FD626C82CCCA5AE00412E73 /* libopencv_photo.a */,
+				5FD626C92CCCA5AE00412E73 /* libopencv_photo.dylib */,
+				5FD626CA2CCCA5AE00412E73 /* libopencv_plot.4.10.0.dylib */,
+				5FD626CB2CCCA5AE00412E73 /* libopencv_plot.410.dylib */,
+				5FD626CC2CCCA5AE00412E73 /* libopencv_plot.a */,
+				5FD626CD2CCCA5AE00412E73 /* libopencv_plot.dylib */,
+				5FD626CE2CCCA5AE00412E73 /* libopencv_quality.4.10.0.dylib */,
+				5FD626CF2CCCA5AE00412E73 /* libopencv_quality.410.dylib */,
+				5FD626D02CCCA5AE00412E73 /* libopencv_quality.a */,
+				5FD626D12CCCA5AE00412E73 /* libopencv_quality.dylib */,
+				5FD626D22CCCA5AE00412E73 /* libopencv_rapid.4.10.0.dylib */,
+				5FD626D32CCCA5AE00412E73 /* libopencv_rapid.410.dylib */,
+				5FD626D42CCCA5AE00412E73 /* libopencv_rapid.a */,
+				5FD626D52CCCA5AE00412E73 /* libopencv_rapid.dylib */,
+				5FD626D62CCCA5AE00412E73 /* libopencv_reg.4.10.0.dylib */,
+				5FD626D72CCCA5AE00412E73 /* libopencv_reg.410.dylib */,
+				5FD626D82CCCA5AE00412E73 /* libopencv_reg.a */,
+				5FD626D92CCCA5AE00412E73 /* libopencv_reg.dylib */,
+				5FD626DA2CCCA5AE00412E73 /* libopencv_rgbd.4.10.0.dylib */,
+				5FD626DB2CCCA5AE00412E73 /* libopencv_rgbd.410.dylib */,
+				5FD626DC2CCCA5AE00412E73 /* libopencv_rgbd.a */,
+				5FD626DD2CCCA5AE00412E73 /* libopencv_rgbd.dylib */,
+				5FD626DE2CCCA5AE00412E73 /* libopencv_saliency.4.10.0.dylib */,
+				5FD626DF2CCCA5AE00412E73 /* libopencv_saliency.410.dylib */,
+				5FD626E02CCCA5AE00412E73 /* libopencv_saliency.a */,
+				5FD626E12CCCA5AE00412E73 /* libopencv_saliency.dylib */,
+				5FD626E22CCCA5AE00412E73 /* libopencv_sfm.4.10.0.dylib */,
+				5FD626E32CCCA5AE00412E73 /* libopencv_sfm.410.dylib */,
+				5FD626E42CCCA5AE00412E73 /* libopencv_sfm.a */,
+				5FD626E52CCCA5AE00412E73 /* libopencv_sfm.dylib */,
+				5FD626E62CCCA5AE00412E73 /* libopencv_shape.4.10.0.dylib */,
+				5FD626E72CCCA5AE00412E73 /* libopencv_shape.410.dylib */,
+				5FD626E82CCCA5AE00412E73 /* libopencv_shape.a */,
+				5FD626E92CCCA5AE00412E73 /* libopencv_shape.dylib */,
+				5FD626EA2CCCA5AE00412E73 /* libopencv_signal.4.10.0.dylib */,
+				5FD626EB2CCCA5AE00412E73 /* libopencv_signal.410.dylib */,
+				5FD626EC2CCCA5AE00412E73 /* libopencv_signal.a */,
+				5FD626ED2CCCA5AE00412E73 /* libopencv_signal.dylib */,
+				5FD626EE2CCCA5AE00412E73 /* libopencv_stereo.4.10.0.dylib */,
+				5FD626EF2CCCA5AE00412E73 /* libopencv_stereo.410.dylib */,
+				5FD626F02CCCA5AE00412E73 /* libopencv_stereo.a */,
+				5FD626F12CCCA5AE00412E73 /* libopencv_stereo.dylib */,
+				5FD626F22CCCA5AE00412E73 /* libopencv_stitching.4.10.0.dylib */,
+				5FD626F32CCCA5AE00412E73 /* libopencv_stitching.410.dylib */,
+				5FD626F42CCCA5AE00412E73 /* libopencv_stitching.a */,
+				5FD626F52CCCA5AE00412E73 /* libopencv_stitching.dylib */,
+				5FD626F62CCCA5AE00412E73 /* libopencv_structured_light.4.10.0.dylib */,
+				5FD626F72CCCA5AE00412E73 /* libopencv_structured_light.410.dylib */,
+				5FD626F82CCCA5AE00412E73 /* libopencv_structured_light.a */,
+				5FD626F92CCCA5AE00412E73 /* libopencv_structured_light.dylib */,
+				5FD626FA2CCCA5AE00412E73 /* libopencv_superres.4.10.0.dylib */,
+				5FD626FB2CCCA5AE00412E73 /* libopencv_superres.410.dylib */,
+				5FD626FC2CCCA5AE00412E73 /* libopencv_superres.a */,
+				5FD626FD2CCCA5AE00412E73 /* libopencv_superres.dylib */,
+				5FD626FE2CCCA5AE00412E73 /* libopencv_surface_matching.4.10.0.dylib */,
+				5FD626FF2CCCA5AE00412E73 /* libopencv_surface_matching.410.dylib */,
+				5FD627002CCCA5AE00412E73 /* libopencv_surface_matching.a */,
+				5FD627012CCCA5AE00412E73 /* libopencv_surface_matching.dylib */,
+				5FD627022CCCA5AE00412E73 /* libopencv_text.4.10.0.dylib */,
+				5FD627032CCCA5AE00412E73 /* libopencv_text.410.dylib */,
+				5FD627042CCCA5AE00412E73 /* libopencv_text.a */,
+				5FD627052CCCA5AE00412E73 /* libopencv_text.dylib */,
+				5FD627062CCCA5AE00412E73 /* libopencv_tracking.4.10.0.dylib */,
+				5FD627072CCCA5AE00412E73 /* libopencv_tracking.410.dylib */,
+				5FD627082CCCA5AE00412E73 /* libopencv_tracking.a */,
+				5FD627092CCCA5AE00412E73 /* libopencv_tracking.dylib */,
+				5FD6270A2CCCA5AE00412E73 /* libopencv_video.4.10.0.dylib */,
+				5FD6270B2CCCA5AE00412E73 /* libopencv_video.410.dylib */,
+				5FD6270C2CCCA5AE00412E73 /* libopencv_video.a */,
+				5FD6270D2CCCA5AE00412E73 /* libopencv_video.dylib */,
+				5FD6270E2CCCA5AE00412E73 /* libopencv_videoio.4.10.0.dylib */,
+				5FD6270F2CCCA5AE00412E73 /* libopencv_videoio.410.dylib */,
+				5FD627102CCCA5AE00412E73 /* libopencv_videoio.a */,
+				5FD627112CCCA5AE00412E73 /* libopencv_videoio.dylib */,
+				5FD627122CCCA5AE00412E73 /* libopencv_videostab.4.10.0.dylib */,
+				5FD627132CCCA5AE00412E73 /* libopencv_videostab.410.dylib */,
+				5FD627142CCCA5AE00412E73 /* libopencv_videostab.a */,
+				5FD627152CCCA5AE00412E73 /* libopencv_videostab.dylib */,
+				5FD627162CCCA5AE00412E73 /* libopencv_viz.4.10.0.dylib */,
+				5FD627172CCCA5AE00412E73 /* libopencv_viz.410.dylib */,
+				5FD627182CCCA5AE00412E73 /* libopencv_viz.a */,
+				5FD627192CCCA5AE00412E73 /* libopencv_viz.dylib */,
+				5FD6271A2CCCA5AE00412E73 /* libopencv_wechat_qrcode.4.10.0.dylib */,
+				5FD6271B2CCCA5AE00412E73 /* libopencv_wechat_qrcode.410.dylib */,
+				5FD6271C2CCCA5AE00412E73 /* libopencv_wechat_qrcode.a */,
+				5FD6271D2CCCA5AE00412E73 /* libopencv_wechat_qrcode.dylib */,
+				5FD6271E2CCCA5AE00412E73 /* libopencv_xfeatures2d.4.10.0.dylib */,
+				5FD6271F2CCCA5AE00412E73 /* libopencv_xfeatures2d.410.dylib */,
+				5FD627202CCCA5AE00412E73 /* libopencv_xfeatures2d.a */,
+				5FD627212CCCA5AE00412E73 /* libopencv_xfeatures2d.dylib */,
+				5FD627222CCCA5AE00412E73 /* libopencv_ximgproc.4.10.0.dylib */,
+				5FD627232CCCA5AE00412E73 /* libopencv_ximgproc.410.dylib */,
+				5FD627242CCCA5AE00412E73 /* libopencv_ximgproc.a */,
+				5FD627252CCCA5AE00412E73 /* libopencv_ximgproc.dylib */,
+				5FD627262CCCA5AE00412E73 /* libopencv_xobjdetect.4.10.0.dylib */,
+				5FD627272CCCA5AE00412E73 /* libopencv_xobjdetect.410.dylib */,
+				5FD627282CCCA5AE00412E73 /* libopencv_xobjdetect.a */,
+				5FD627292CCCA5AE00412E73 /* libopencv_xobjdetect.dylib */,
+				5FD6272A2CCCA5AE00412E73 /* libopencv_xphoto.4.10.0.dylib */,
+				5FD6272B2CCCA5AE00412E73 /* libopencv_xphoto.410.dylib */,
+				5FD6272C2CCCA5AE00412E73 /* libopencv_xphoto.a */,
+				5FD6272D2CCCA5AE00412E73 /* libopencv_xphoto.dylib */,
+				5FD6272E2CCCA5AE00412E73 /* libopencv.sfm.correspondence.a */,
+				5FD6272F2CCCA5AE00412E73 /* libopencv.sfm.multiview.a */,
+				5FD627302CCCA5AE00412E73 /* libopencv.sfm.numeric.a */,
+				5FD627312CCCA5AE00412E73 /* libopencv.sfm.simple_pipeline.a */,
+				5FD627322CCCA5AE00412E73 /* libOrbbecSDK.1.9.4.dylib */,
+				5FD627332CCCA5AE00412E73 /* libOrbbecSDK.1.9.dylib */,
+				5FD627342CCCA5AE00412E73 /* libOrbbecSDK.dylib */,
+				5FD627352CCCA5AE00412E73 /* libtegra_hal.a */,
+			);
+			name = lib;
+			path = ../../../../../opt/homebrew/Cellar/opencv/4.10.0_11/lib;
 			sourceTree = "<group>";
 		};
 		5FE62F232C843CEF00658155 /* EZMackerUtilLib */ = {
@@ -813,6 +2407,11 @@
 		5FE62F2E2C843DB000658155 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FD627362CCCA5AE00412E73 /* lib */,
+				5F39986B2CC7F99400F42344 /* libopencv_core.a */,
+				5F3998692CC7F95000F42344 /* libopencv_imgproc.a */,
+				5F3998662CC7F83500F42344 /* libopencv_core.a */,
+				5F3998652CC7F83500F42344 /* libopencv_imgproc.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -939,7 +2538,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				5F2890E12CA8102C00602B78 /* PBXTargetDependency */,
+				5F3998732CC8002600F42344 /* PBXTargetDependency */,
 				5F28905A2CA7F43400602B78 /* PBXTargetDependency */,
 				5F2890582CA7F43000602B78 /* PBXTargetDependency */,
 				5F2890532CA7F42900602B78 /* PBXTargetDependency */,
@@ -1136,7 +2735,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F2A824D2CDA47420096ED62 /* EZFlipPopupView.swift in Sources */,
 				5FE99EAD2C995F1E00233969 /* ProcessServiceKey.swift in Sources */,
+				5F309AC42CCE23540035BF60 /* EZPopupButtonStyle.swift in Sources */,
 				5F6D4E762BE8A2A4004B94F8 /* ToastType.swift in Sources */,
 				5F36041C2C3825B500C1B84B /* SmartFileSearchViewModel.swift in Sources */,
 				5FE99EA52C995E8D00233969 /* FileLocatorServiceKey.swift in Sources */,
@@ -1152,9 +2753,11 @@
 				5FDDCABD2C188189006A528A /* GifRepresentableView.swift in Sources */,
 				5F5E23462C6A2E2200CD329F /* EZTabbarButtonStyle.swift in Sources */,
 				5F3CB4582C7052C0007A479D /* BatterySetting.swift in Sources */,
+				5F2A824F2CDA47520096ED62 /* EZRotationPopupView.swift in Sources */,
 				5FA5E26B2CB58A500031F16D /* SizePreferenceKey.swift in Sources */,
 				5F5329BA2CBB9560000AE73F /* SmartWifiMoreInfoViewModel.swift in Sources */,
 				5F70D5ED2BE7D8F4004509BC /* FontSizeType.swift in Sources */,
+				5F2F485E2CD77B8400299E3C /* ResizeItem.swift in Sources */,
 				5FE99E6B2C993AB000233969 /* SmartBatteryDependency.swift in Sources */,
 				5F0DAC322C953C4C00BB3488 /* MacType.swift in Sources */,
 				5F0F96732C6B67B800A70564 /* EZTextFieldWrapperStyle.swift in Sources */,
@@ -1168,8 +2771,8 @@
 				5F1012B22BF39EBD00589C9B /* EZBatteryInfoView.swift in Sources */,
 				5FC1BDC82CB1699400D549BF /* CanvasRepresentableView.swift in Sources */,
 				5F485A012C69ABDF00B32585 /* EZListViewStyle.swift in Sources */,
-				5FC1BDBE2CB15FDF00D549BF /* NSImage + Extension.swift in Sources */,
 				5F69D2902C0DECE900F318ED /* AdapterConnect.swift in Sources */,
+				5F2F48602CD77BAA00299E3C /* EZResizeAnchorView.swift in Sources */,
 				5F3DBE132C04BC8800B5C0DE /* View + Extension.swift in Sources */,
 				5F6D4E6E2BE88CE1004B94F8 /* ColorSchemeModeType.swift in Sources */,
 				5F9DAB482C79AC5A000563A2 /* RadioChannelData.swift in Sources */,
@@ -1187,12 +2790,14 @@
 				5F3CB45C2C7052DE007A479D /* FileLocatorSetting.swift in Sources */,
 				5F97C3762BF9D25000B0DC56 /* SettingPreference.swift in Sources */,
 				5FEE27CF2BE901D900847761 /* AppToolbarView.swift in Sources */,
+				5F309AC02CCE22AD0035BF60 /* EZPopupButtonView.swift in Sources */,
 				5F97C3822BFA132E00B0DC56 /* SmartWifiView.swift in Sources */,
 				5F3FF03D2C03384100E3246C /* AppNotificationCenter.swift in Sources */,
 				5FCDCF842CA409DB00CF8D22 /* SystemTehemeService.swift in Sources */,
 				5F3A519A2C71C2D0000B2C2F /* FileManager + Extension.swift in Sources */,
 				5F36B2172BE7AB3000E08935 /* EZMackerApp.swift in Sources */,
 				5F5329ED2CBBC173000AE73F /* SmartWifi + Inject.swift in Sources */,
+				5F2A82512CDA47E00096ED62 /* FlipItem.swift in Sources */,
 				5F485A0D2C69AF7C00B32585 /* EZButtonStyle.swift in Sources */,
 				5FE99EB52C99605300233969 /* SmartGlobalDependency.swift in Sources */,
 				5F16A7DC2C358F07003EA0BE /* FileQueryData.swift in Sources */,
@@ -1203,11 +2808,15 @@
 				5F485A0B2C69AE8C00B32585 /* EZListRowStyle.swift in Sources */,
 				5F70D5E22BE7C586004509BC /* CategoryType.swift in Sources */,
 				5F36041A2C38259400C1B84B /* SmartFileSearchView.swift in Sources */,
+				5F0755B42CC39610000B915D /* PenToolSetting.swift in Sources */,
 				5FC2CB972CB2B4E20066438C /* EZButtonActionView.swift in Sources */,
 				5F2890422CA7E17900602B78 /* SmartImageTunerView.swift in Sources */,
 				5F28904B2CA7E96800602B78 /* SmartMockDependency.swift in Sources */,
+				5F0841F52CD5FD700016D9BF /* EZTextEditorView.swift in Sources */,
+				5F2A82532CDA4C040096ED62 /* RotationItem.swift in Sources */,
 				5F0DAC3A2C953DB000BB3488 /* AppEnviroment.swift in Sources */,
 				5F9DAB4C2C79C207000563A2 /* WifiConnectData.swift in Sources */,
+				5F0755B82CC39710000B915D /* ColorPickerCoordinatorPreferenceKey.swift in Sources */,
 				5F97C3842BFA133A00B0DC56 /* SmartWifiViewModel.swift in Sources */,
 				5F0DAC342C953CDB00BB3488 /* AppConfigType.swift in Sources */,
 				5FE99E7E2C993F0A00233969 /* SmartNotificationAlarmDependency.swift in Sources */,
@@ -1216,13 +2825,16 @@
 				5F7E0B6B2C70790F000C8C97 /* EZBatteryAdapterView.swift in Sources */,
 				5F027B262C82D55900DF929B /* BatteryConditionData.swift in Sources */,
 				5F6D4E7C2BE8A328004B94F8 /* ToastData.swift in Sources */,
+				5F0755B62CC39693000B915D /* ColorPickerRepresentableView.swift in Sources */,
 				5F027B2C2C82EC3900DF929B /* SmartBatteryView.swift in Sources */,
+				5F0755922CC3888D000B915D /* Color + Extension.swift in Sources */,
 				5FDDCABB2C188152006A528A /* TextFieldRepresentableView.swift in Sources */,
 				5FE99EA92C995EF800233969 /* SettingsKey.swift in Sources */,
 				5F0DAC4F2C954F3000BB3488 /* BestSSIDShowType.swift in Sources */,
 				5F2890492CA7E28A00602B78 /* SmartImageTunerDependency.swift in Sources */,
 				5F0DAC402C9544F500BB3488 /* AppSettingManager.swift in Sources */,
 				5FE99E6F2C993BA100233969 /* ViewModelFactory.swift in Sources */,
+				5F309ABE2CCE227A0035BF60 /* FilterItem.swift in Sources */,
 				5FC2CB952CB2B44D0066438C /* EZImageView.swift in Sources */,
 				5FE7B8CE2C1DA5E300AA841E /* AlertOKCancleView.swift in Sources */,
 				5F0DAC512C954F8100BB3488 /* CPUUsageExitType.swift in Sources */,
@@ -1230,20 +2842,23 @@
 				5F70D5DD2BE7BDE0004509BC /* SmartBatteryViewModel.swift in Sources */,
 				5F72B7C82C42357B0060DEA0 /* FileTabData.swift in Sources */,
 				5FC2CB932CB2B4350066438C /* EZTitleView.swift in Sources */,
-				5F6BA56E2CBA0F6A00205073 /* AddTextPopupView.swift in Sources */,
 				5F6D4E6C2BE88CC6004B94F8 /* ThemeColorType.swift in Sources */,
 				5F5E234A2C6A469600CD329F /* EZTabbarBackgroundStyle.swift in Sources */,
 				5FC1BDBC2CB15B3300D549BF /* ImageDisplayMode.swift in Sources */,
-				5F6BA56C2CBA0F6000205073 /* FilterPopupView.swift in Sources */,
+				5F6BA56C2CBA0F6000205073 /* EZFilterPopupView.swift in Sources */,
 				5F6D4E792BE8A2DA004B94F8 /* ToastView.swift in Sources */,
 				5FCA105D2CA966E30064A494 /* ImageTunerWrapperKey.swift in Sources */,
-				5F6BA56A2CBA0F5500205073 /* DrawToolPopupView.swift in Sources */,
+				5F6BA56A2CBA0F5500205073 /* EZPenPopupView.swift in Sources */,
+				5F6547FA2CC4A50C002CAEA9 /* CGContext + Extension.swift in Sources */,
 				5F6BA5642CBA0A0000205073 /* EZPopupStyle.swift in Sources */,
 				5FE99EA32C995E6B00233969 /* BatteryServiceKey.swift in Sources */,
 				5F7115D92CBA90AA00FBCD9D /* NavigationPathDestionation.swift in Sources */,
 				5F3FF0302C02BE9800E3246C /* ChargeData.swift in Sources */,
+				5F0841E92CD5FC310016D9BF /* TextItem.swift in Sources */,
+				5F0755762CC36643000B915D /* EZAddTextPopupView.swift in Sources */,
 				5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */,
 				5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */,
+				5F0755CA2CC3D453000B915D /* SaveImageResult.swift in Sources */,
 				5FE99EA12C995E5500233969 /* WifiServiceKey.swift in Sources */,
 				5FE99E7C2C993EF900233969 /* SmartFileSearchDependency.swift in Sources */,
 				5F0DAC3E2C9544A100BB3488 /* AppSettings.swift in Sources */,
@@ -1288,11 +2903,6 @@
 			name = EZMackerUtilLib;
 			targetProxy = 5F2890592CA7F43400602B78 /* PBXContainerItemProxy */;
 		};
-		5F2890E12CA8102C00602B78 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = EZMackerImageLib;
-			targetProxy = 5F2890E02CA8102C00602B78 /* PBXContainerItemProxy */;
-		};
 		5F36B2262BE7AB3100E08935 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F36B2122BE7AB3000E08935 /* EZMacker */;
@@ -1302,6 +2912,11 @@
 			isa = PBXTargetDependency;
 			target = 5F36B2122BE7AB3000E08935 /* EZMacker */;
 			targetProxy = 5F36B22F2BE7AB3100E08935 /* PBXContainerItemProxy */;
+		};
+		5F3998732CC8002600F42344 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EZMackerImageLib;
+			targetProxy = 5F3998722CC8002600F42344 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1359,14 +2974,21 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					/opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4,
+				);
+				OTHER_LDFLAGS = "-lstdc++";
 				OTHER_SWIFT_FLAGS = "-DUSE_PRIVATE_FUNC -DNO_NEED_MONITORING";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1418,13 +3040,20 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					/opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4,
+				);
+				OTHER_LDFLAGS = "-lstdc++";
 				OTHER_SWIFT_FLAGS = "-DUSE_PRIVATE_FUNC -DNO_NEED_MONITORING";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 			};
 			name = Release;
 		};
@@ -1433,6 +3062,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = EZMacker/EZMacker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
@@ -1446,6 +3076,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4,
+					"$(SRCROOT)/EZMackerImageLib/EZMackerImageLib/Enum",
+				);
 				INFOPLIST_FILE = EZMacker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EZMacker;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -1456,10 +3090,18 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/opencv/4.10.0_11/lib,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-lstdc++",
+				);
 				OTHER_LDFLAGS = "-lstdc++";
+				OTHER_SWIFT_FLAGS = "-DUSE_PRIVATE_FUNC -DNO_NEED_MONITORING -DIS_WORKING";
 				PRODUCT_BUNDLE_IDENTIFIER = ezmacker.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1475,6 +3117,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = EZMacker/EZMacker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
@@ -1488,6 +3131,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4,
+					"$(SRCROOT)/EZMackerImageLib/EZMackerImageLib/Enum",
+				);
 				INFOPLIST_FILE = EZMacker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EZMacker;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -1498,10 +3145,18 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/opencv/4.10.0_11/lib,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-lstdc++",
+				);
 				OTHER_LDFLAGS = "-lstdc++";
+				OTHER_SWIFT_FLAGS = "-DUSE_PRIVATE_FUNC -DNO_NEED_MONITORING -DIS_WORKING";
 				PRODUCT_BUNDLE_IDENTIFIER = ezmacker.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

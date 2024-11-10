@@ -1,13 +1,13 @@
 //
-//  AddTextPopupView.swift
+//  EraserPopupView.swift
 //  EZMacker
 //
-//  Created by 박유경 on 10/12/24.
+//  Created by 박유경 on 10/19/24.
 //
 
 import SwiftUI
 
-struct AddTextPopupView: View {
+struct EZAddTextPopupView: View {
     @Binding var isPresented: Bool
     let completion: (String) -> Void
     @State private var text = ""

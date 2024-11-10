@@ -33,7 +33,7 @@ struct EZBackgroundStyle: ViewModifier {
 }
 
 extension View {
-    func ezBackgroundColorStyle() -> some View {
+    func ezBackgroundStyle() -> some View {
         modifier(EZBackgroundStyle())
     }
 }

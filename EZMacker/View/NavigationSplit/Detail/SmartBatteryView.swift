@@ -120,12 +120,11 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 label: {}
             )
             .ezButtonImageStyle(
+                type: .clear,
                 imageName: "gearshape.fill",
-                imageSize: CGSize(width: 20, height: 20),
-                lightModeBackgroundColor: .clear,
-                darkModeBackgroundColor: .clear
+                imageSize: CGSize(width: 20, height: 20)
             )
-            .offset(x: 5, y: -15)
+            .offset(x: 20, y: -25)
         }
         .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.25)
     }
@@ -208,7 +207,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 EZBatteryAdapterView(title: "F/W Ver", content: adapterInfo.FwVersion ?? "Unknown")
                 Spacer()
             }
-            .ezBackgroundColorStyle()
+            .ezBackgroundStyle()
             .frame(width: geo.size.width * 0.33)
             
             Spacer(minLength: 5)
@@ -223,7 +222,7 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 Spacer()
             }
             .frame(width: geo.size.width * 0.33)
-            .ezBackgroundColorStyle()
+            .ezBackgroundStyle()
         }
     }
     // MARK: T타입의 경우 정보를 늦게줘서 정보는 미리 설정하고 이미지는 Retry 로직에 따라 특정시간내에 못받아오면 C타입, 받아오면 T타입으로 설정

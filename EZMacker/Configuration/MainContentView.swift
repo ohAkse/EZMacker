@@ -13,9 +13,9 @@ struct MainContentView: View {
     @EnvironmentObject private var systemThemeService: SystemThemeService
     @State private var selectionValue: CategoryType = {
         if AppEnvironment.shared.macBookType == .macMini {
-            return CategoryType.smartWifi
+            return CategoryType.smartWifi // TODO: MacMini 어댑터 충전 관련 상태 확인 필요
         } else {
-            return CategoryType.smartWifi
+            return CategoryType.smartBattery
         }
     }()
     private let factory: ViewModelFactory

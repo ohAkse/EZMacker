@@ -12,21 +12,33 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <opencv2/core.hpp>
+#include <opencv2/imgcodecs.hpp>
+#include <opencv2/imgproc.hpp>
+#include <future>
+#include "FlipType.h"
+#include "RotateType.h"
+#include "FilterType.h"
+#include "Transform/ImageFlipProcessor.hpp"
+#include "Transform/ImageRotateProcessor.hpp"
+#include "Transform/ImageFilterProcessor.hpp"
+
+using namespace std;
+using namespace cv;
 
 class ImageProcessor {
 private:
-    int64_t m_value;
-    int64_t* m_inoutValue;
-    std::function<void(int64_t)> m_int64callback;
-
+    ImageFlipProcessor * m_ImageFlipProcessor;
+    ImageRotateProcessor * m_ImageRotateProcessor;
+    ImageFilterProcessor * m_ImageFilterProcessor;
 public:
     ImageProcessor();
     ~ImageProcessor();
-    void setInt64Callback(std::function<void(int64_t)> callback);
-    void setValue(int value);
-    void updateNativeValue(int64_t* inoutValue);
-    void printValue() noexcept;
-    void printInoutValue() noexcept;
+    
+    vector<unsigned char> processImageRotateSync(const vector<unsigned char>& imageData, RotateType); // Test
+    future<vector<unsigned char>> processImageRotateAsync(const vector<unsigned char>& imageData, RotateType);
+    future<vector<unsigned char>> processImageFlipAsync(const vector<unsigned char>& imageData, FlipType flipType);
+    future<vector<unsigned char>> processImageFilterAsync(const vector<unsigned char>& imageData, FilterType filterType);
 };
 
 #endif /* ImageSenderProcessor_hpp */

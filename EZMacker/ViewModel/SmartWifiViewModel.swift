@@ -110,8 +110,8 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
 
         // 두 번째 비동기 작업 - Wi-Fi 리스트 조회
         appCoreWLanWifiService.getWifiLists(attempts: 4)
-            .subscribe(on: DispatchQueue.global(qos: .background))  // 백그라운드에서 실행
-            .receive(on: DispatchQueue.main)  // 메인 스레드에서 결과 수신 및 업데이트
+            .subscribe(on: DispatchQueue.global(qos: .background))
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.wifiRequestStatus = .scanningFailed

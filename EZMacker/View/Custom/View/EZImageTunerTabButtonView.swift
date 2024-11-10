@@ -9,21 +9,18 @@ import SwiftUI
 import EZMackerUtilLib
 
 enum TunerTabType: Int, CaseIterable {
-    case reset, rotate, crop, filter, flip, addText
-    case draw, highlight, erase, save
+    case reset, rotate, filter, flip, addText
+    case pen, save
     case undo, redo
 
     var icon: String {
         switch self {
         case .rotate: return "rotate.right"
         case .save: return "square.and.arrow.down"
-        case .draw: return "pencil"
-        case .crop: return "crop"
+        case .pen: return "highlighter"
         case .filter: return "wand.and.stars"
         case .reset: return "arrow.counterclockwise"
         case .addText: return "textbox"
-        case .highlight: return "highlighter"
-        case .erase: return "eraser"
         case .flip: return "arrow.left.and.right"
         case .undo: return "arrow.uturn.backward"
         case .redo: return "arrow.uturn.forward"
@@ -34,16 +31,13 @@ enum TunerTabType: Int, CaseIterable {
         switch self {
         case .rotate: return "회전"
         case .save: return "저장"
-        case .draw: return "그리기"
-        case .crop: return "자르기"
+        case .pen: return "펜"
         case .filter: return "필터"
         case .reset: return "초기화"
         case .addText: return "텍스트"
-        case .highlight: return "형광펜"
-        case .erase: return "지우개"
         case .flip: return "뒤집기"
-        case .undo: return "되돌리기"
-        case .redo: return "앞돌리기"
+        case .undo: return "획 되돌리기"
+        case .redo: return "획 앞돌리기"
         }
     }
 }
@@ -74,6 +68,7 @@ struct EZImageTunerTabButtonView: View {
             )
         }
         .buttonStyle(PlainButtonStyle())
+        .disabled(isDisabled)
     }
 
     private func backgroundColor() -> Color {
@@ -113,9 +108,8 @@ struct EZImageTunerTabButtonView: View {
         if isDisabled {
             return disabledColor()
         } else if isSelected {
-            if tab == .draw {
-                return ThemeColorType.orange.color  // 드로잉 탭이 선택되었을 때
-            }
+            if tab == .pen {
+                return ThemeColorType.orange.color }
             switch systemThemeService.getColorScheme() {
             case ColorSchemeModeType.Light.title:
                 return ThemeColorType.darkBrown.color
