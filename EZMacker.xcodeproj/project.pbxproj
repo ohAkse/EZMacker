@@ -127,7 +127,6 @@
 		5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */; };
 		5FCC8B9A2BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */; };
 		5FCDCF842CA409DB00CF8D22 /* SystemTehemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCDCF832CA409DB00CF8D22 /* SystemTehemeService.swift */; };
-		5FD627372CCCA63800412E73 /* libopencv_highgui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD6269C2CCCA5AE00412E73 /* libopencv_highgui.a */; };
 		5FD627382CCCA63800412E73 /* libopencv_imgcodecs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD626A42CCCA5AE00412E73 /* libopencv_imgcodecs.a */; };
 		5FD627392CCCA63800412E73 /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD626A82CCCA5AE00412E73 /* libopencv_imgproc.a */; };
 		5FDDCABB2C188152006A528A /* TextFieldRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDCABA2C188152006A528A /* TextFieldRepresentableView.swift */; };
@@ -734,7 +733,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FD627372CCCA63800412E73 /* libopencv_highgui.a in Frameworks */,
 				5FD627382CCCA63800412E73 /* libopencv_imgcodecs.a in Frameworks */,
 				5FD627392CCCA63800412E73 /* libopencv_imgproc.a in Frameworks */,
 				5F3998742CC8009600F42344 /* libopencv_core.a in Frameworks */,
@@ -2538,10 +2536,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				5F3998732CC8002600F42344 /* PBXTargetDependency */,
-				5F28905A2CA7F43400602B78 /* PBXTargetDependency */,
-				5F2890582CA7F43000602B78 /* PBXTargetDependency */,
 				5F2890532CA7F42900602B78 /* PBXTargetDependency */,
+				5F28905A2CA7F43400602B78 /* PBXTargetDependency */,
+				5F3998732CC8002600F42344 /* PBXTargetDependency */,
+				5F2890582CA7F43000602B78 /* PBXTargetDependency */,
 			);
 			name = EZMacker;
 			packageProductDependencies = (
