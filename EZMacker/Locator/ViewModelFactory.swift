@@ -7,7 +7,7 @@
 
 import Foundation
 import EZMackerServiceLib
-
+import EZMackerImageLib
 class ViewModelFactory {
     private let container: DependencyContainer
     
@@ -18,7 +18,6 @@ class ViewModelFactory {
     func createSmartWifiViewModel() -> SmartWifiViewModel<AppSmartWifiService> {
         return SmartWifiViewModel(
             appSmartWifiService: container.resolve(AppSmartWifiService.self, forKey: WifiServiceKey.appSmartWifiService.value),
-            systemPreferenceService: container.resolve(SystemPreferenceAccessible.self, forKey: SystemServiceKey.systemPreferenceService.value),
             appCoreWLanWifiService: container.resolve(AppCoreWLANWifiProvidable.self, forKey: WifiServiceKey.appCoreWLanWifiService.value),
             appSettingService: container.resolve(AppSettingProvidable.self, forKey: SettingsKey.appSettingsManager.value),
             appWifiMonitoringService: container.resolve(AppSmartWifiMonitorable.self, forKey: WifiServiceKey.appWifiMonitoringService.value)
@@ -54,5 +53,19 @@ class ViewModelFactory {
             wifiSetting: container.resolve(WifiSettingConfigurable.self, forKey: NotificationAlarmKey.wifiSetting.value),
             fileLocatorSetting: container.resolve(FileLocatorSettingConfigurable.self, forKey: NotificationAlarmKey.fileLocatorSetting.value)
         )
+    }
+    func createSmartImageTunerViewModel() -> SmartImageTunerViewModel {
+        return SmartImageTunerViewModel(
+            imageSenderWrapper: container.resolve(ImageProcessWrapperProvidable.self, forKey: ImageTunerWrapperKey.imageSender.value)
+        )
+    }
+}
+
+// MARK: UI용 Preview Factory 주입
+extension ViewModelFactory {
+    static var preview: ViewModelFactory {
+        let container = DependencyContainer.shared
+        SmartMockDependency().register(in: container)
+        return ViewModelFactory(container: container)
     }
 }

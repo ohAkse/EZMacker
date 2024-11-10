@@ -11,17 +11,17 @@ struct AdapterData: Decodable {
     var AdapterID: Int
     var AdapterVoltage: Int
     var Current: Int
-    var Description: String
-    var FamilyCode: Int
-    var FwVersion: String
-    var HwVersion: String
+    var Description: String?
+    var FamilyCode: Int?
+    var FwVersion: String?
+    var HwVersion: String?
     var IsWireless: Bool
-    var Manufacturer: String
-    var Model: String
-    var Name: String
+    var Manufacturer: String?
+    var Model: String?
+    var Name: String?
     var PMUConfiguration: Int
-    var SerialString: String
-    var UsbHvcHvcIndex: Int
+    var SerialString: String?
+    var UsbHvcHvcIndex: Int?
     var UsbHvcMenu: [UsbHvcMenuEntry]
     var Watts: Int
 
@@ -31,6 +31,10 @@ struct AdapterData: Decodable {
         var MaxVoltage: Int
     }
 
+    var isCType: Bool {
+        
+        return (Model?.isEmpty == nil) && (Manufacturer?.isEmpty == nil)
+      }
     init(AdapterID: Int =  0,
          AdapterVoltage: Int = 0,
          Current: Int = 0,

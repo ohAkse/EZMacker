@@ -29,7 +29,6 @@ public struct AppSmartFileService: AppSmartFileProvidable {
                 let fileSize = attributes[.size] as? Int64 ?? 0
                 var fileType = AppFileDescriptionType(type: attributes[.type] as? String ?? AppFileDescriptionType.unknown.rawValue).name
                 
-                // TODO: 파일 실행 구조가 윈도우와 달라서 확인후 나중에 따로 처리할것
                 if fileType == "폴더", fileUrl.pathExtension == "app" {
                     fileType = "응용 프로그램"
                 }

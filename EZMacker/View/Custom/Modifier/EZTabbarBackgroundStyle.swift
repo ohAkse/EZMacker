@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZTabbarBackgroundStyle: ViewModifier {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var systemThemeService: SystemThemeService
 
     func body(content: Content) -> some View {
         content
@@ -17,7 +17,7 @@ struct EZTabbarBackgroundStyle: ViewModifier {
     }
 
     private func backgroundColor() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.darkGray.color.opacity(0.8)
         case ColorSchemeModeType.Dark.title:

@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct SmartFileSearchView: View {
-    
     @StateObject var smartFileSearchViewModel: SmartFileSearchViewModel
-    @EnvironmentObject var appThemeManager: AppThemeManager
+
     init(factory: ViewModelFactory) {
         _smartFileSearchViewModel = StateObject(wrappedValue: factory.createSmartFileSearchViewModel())
     }
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 15) {
             fileSearchSectionView
             fileResultSectionView
         }

@@ -9,15 +9,14 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZBatteryInfoView: View {
-    
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var systemThemeService: SystemThemeService
     @State private var isAnimated = false
     let imageName: String
     let isSystem: Bool
     let title: String
     let info: String
-    let isBatterStatus: Bool 
-    
+
+    let isBatterStatus: Bool
     init(imageName: String, isSystem: Bool, title: String, info: String, isBatterStatus: Bool = false) {
         self.imageName = imageName
         self.isSystem = isSystem
@@ -95,7 +94,7 @@ struct EZBatteryInfoView: View {
     }
     
     private func titleTextColor() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.black.color
         case ColorSchemeModeType.Dark.title:
@@ -107,7 +106,7 @@ struct EZBatteryInfoView: View {
     }
     
     private func contentTextColor() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.black.color
         case ColorSchemeModeType.Dark.title:
@@ -119,7 +118,7 @@ struct EZBatteryInfoView: View {
     }
     
     private func foregroundColorForTheme() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color
         case ColorSchemeModeType.Dark.title:

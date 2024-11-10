@@ -8,53 +8,78 @@
 import SwiftUI
 import CoreWLAN
 import EZMackerServiceLib
+import EZMackerUtilLib
 
 struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiServiceProvidable {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var systemThemeService: SystemThemeService
     @StateObject private var smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>
     @State private var toast: ToastData?
-    
-    init(factory: ViewModelFactory) {
-        _smartWifiViewModel = StateObject(wrappedValue: factory.createSmartWifiViewModel())
-    }
+    @State private var isRefreshing = false
+    @State private var isFindingBestWifi = false
+    @State private var isMoreInfo = false
+    @State private var rotationDegrees: Double = 0
+    @State private var navigationPath: [NavigationPathDestination] = []
+    @Namespace private var animation
+     
+     init(factory: ViewModelFactory) {
+         _smartWifiViewModel = StateObject(wrappedValue: factory.createSmartWifiViewModel())
+     }
     
     var body: some View {
-        GeometryReader { geo in
-            VStack(spacing: 0) {
-                wifiDetailView(geo: geo)
-                wifiMainInfoView(geo: geo)
-                    .padding(.top, 20)
-            }
-            .onReceive(smartWifiViewModel.$wifiRequestStatus) { wifiStatus in
-                if wifiStatus != .none {
-                    if wifiStatus == .success {
-                        toast = ToastData(type: .info, title: "성공", message: wifiStatus.description, duration: 5)
-                    } else if wifiStatus == .disconnected {
-                        toast = ToastData(type: .warning, title: "정보", message: wifiStatus.description, duration: 5)
-                    } else {
-                        toast = ToastData(type: .error, title: "에러", message: wifiStatus.description, duration: 5)
+        NavigationStack(path: $navigationPath) {
+            GeometryReader { geo in
+                VStack(spacing: 0) {
+                    wifiDetailView(geo: geo)
+                    wifiMainInfoView(geo: geo)
+                        .padding(.top, 20)
+                }
+                .onReceive(smartWifiViewModel.$wifiRequestStatus) { wifiStatus in
+                    switch wifiStatus {
+                    case .none:
+                        break
+                    case .success:
+                        toast = ToastData(type: .info, message: wifiStatus.description)
+                    case .disconnected:
+                        toast = ToastData(type: .warning, message: wifiStatus.description)
+                    case .notFoundSSID:
+                        toast = ToastData(type: .error, message: wifiStatus.description)
+                    default:
+                        toast = ToastData(type: .error, message: wifiStatus.description)
                     }
                 }
+                .onAppear {
+                    smartWifiViewModel.startMonitoring()
+                    smartWifiViewModel.startWifiTimer()
+                }
+                .onDisappear {
+                    smartWifiViewModel.stopWifiTimer()
+                }
+                .onReceive(smartWifiViewModel.$isConnected) { isConnected in
+                    if !isConnected && !navigationPath.isEmpty {
+                        #if NO_NEED_MONITORING
+                        navigationPath.removeLast()
+                        #endif
+                    }
+                }
+                .toastView(toast: $toast)
             }
-            .onAppear {
-                smartWifiViewModel.startMonitoring()
-                smartWifiViewModel.startWifiTimer()
+            .sheet(isPresented: $smartWifiViewModel.showAlert) {
+                AlertOKCancleView(
+                    isPresented: $smartWifiViewModel.showAlert,
+                    title: "최적의 와이파이",
+                    subtitle: "결과",
+                    content: smartWifiViewModel.bestSSid
+                )
             }
-            .onDisappear {
-                smartWifiViewModel.stopWifiTimer()
+            .navigationTitle(CategoryType.smartWifi.title)
+            .padding(30)
+            .navigationDestination(for: NavigationPathDestination.self) { destination in
+                switch destination {
+                case .wifiMoreInfo:
+                    SmartWifiMoreInfoView(smartWifiMoreInfoViewModel: smartWifiViewModel.createMoreInfoViewModel())
+                }
             }
         }
-        .sheet(isPresented: $smartWifiViewModel.showAlert) {
-            AlertOKCancleView(
-                isPresented: $smartWifiViewModel.showAlert,
-                title: "최적의 와이파이",
-                subtitle: "결과",
-                content: smartWifiViewModel.bestSSid
-            )
-        }
-        .navigationTitle(CategoryType.smartWifi.title)
-        .padding(30)
-        .toastView(toast: $toast)
     }
     
     // Wi-Fi 세부 정보 뷰
@@ -67,58 +92,83 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             EZWifiChannelView(channelBandwidth: $smartWifiViewModel.radioChannelData.channelBandwidth, channelFrequency: $smartWifiViewModel.radioChannelData.channelFrequency, channel: $smartWifiViewModel.radioChannelData.channel)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
-                .environmentObject(appThemeManager)
             Spacer(minLength: 10)
             EZWifiDetailView(band: $smartWifiViewModel.radioChannelData.band, hardwareAddress: $smartWifiViewModel.radioChannelData.macAddress, locale: $smartWifiViewModel.radioChannelData.locale)
                 .frame(maxWidth: .infinity)
                 .frame(height: geo.size.height / 4)
         }
-        .frame(width: geo.size.width)  
+        .frame(width: geo.size.width)
     }
     
-    // Wi-Fi 메인 정보 뷰
     private func wifiMainInfoView(geo: GeometryProxy) -> some View {
         HStack(alignment: .center, spacing: 0) {
-            if smartWifiViewModel.isConnecting {
-                VStack {
-                    Spacer()
-                    EZLoadingView()
-                    Spacer()
-                }
-            } else {
-                AnyView(
-                    EZWifiMainView(
-                        appSmartAutoconnectWifiService: AppSmartAutoconnectWifiService(),
-                        ssid: $smartWifiViewModel.wificonnectData.connectedSSid,
-                        wifiLists: $smartWifiViewModel.wificonnectData.scanningWifiList,
-                        onRefresh: {
-                            Task {
-                                await smartWifiViewModel.fetchWifiListInfo()
-                                let status = smartWifiViewModel.getWifiRequestStatus()
-                                if status == .scanningFailed {
-                                    toast = ToastData(type: .error, title: "에러", message: status.description, duration: 5)
-                                }
-                            }
-                        },
-                        onWifiTap: { ssid, password in
-                            Task {
-                                smartWifiViewModel.isConnecting = true
-                                await smartWifiViewModel.connectWifi(ssid: ssid, password: password)
-                                smartWifiViewModel.isConnecting = false
-                            }
-                        },
-                        onFindBestWifi: {
-                            smartWifiViewModel.startSearchBestSSid()
-                        }
+            ZStack {
+                if !smartWifiViewModel.isConnected {
+                    VStack {
+                        EZLoadingView()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .ezBackgroundStyle()
+                            .clipped()
+                    }
+                    .rotation3DEffect(
+                        .degrees(rotationDegrees),
+                        axis: (x: 0, y: 1, z: 0)
                     )
-                )
+                } else {
+                    VStack {
+                        EZWifiMainView(
+                            appSmartAutoconnectWifiService: AppSmartAutoconnectWifiService(),
+                            ssid: $smartWifiViewModel.wificonnectData.connectedSSid,
+                            wifiLists: $smartWifiViewModel.wificonnectData.scanningWifiList,
+                            isRefreshing: $isRefreshing,
+                            isFindingBestWifi: $isFindingBestWifi,
+                            onRefresh: {
+                                Task {
+                                    isRefreshing = true
+                                    smartWifiViewModel.fetchWifiListInfo()
+                                    let status = smartWifiViewModel.getWifiRequestStatus()
+                                    if status == .scanningFailed {
+                                        toast = ToastData(type: .error, message: status.description)
+                                    }
+                                    isRefreshing = false
+                                }
+                            },
+                            onWifiTap: { ssid, password in
+                                Task {
+                                    smartWifiViewModel.connectWifi(ssid: ssid, password: password)
+                                }
+                            },
+                            onFindBestWifi: {
+                                isFindingBestWifi = true
+                                smartWifiViewModel.startSearchBestSSid {
+                                    isFindingBestWifi = false
+                                }
+                            },
+                            onMoreInfo: {
+                                navigationPath.append(.wifiMoreInfo)
+                            }
+                        )
+                    }
+                    .rotation3DEffect(
+                        .degrees(rotationDegrees),
+                        axis: (x: 0, y: 1, z: 0)
+                    )
+                }
+            }
+            .animation(.easeInOut(duration: 1), value: smartWifiViewModel.isConnected)
+        }
+        .onChange(of: smartWifiViewModel.isConnected) { _, _ in
+            withAnimation(.easeInOut(duration: 0.5)) {
+                rotationDegrees += 360
             }
         }
-        .task {
-            await smartWifiViewModel.fetchWifiListInfo()
-            let status = smartWifiViewModel.getWifiRequestStatus()
-            if status == .scanningFailed {
-                toast = ToastData(type: .error, title: "에러", message: status.description, duration: 5)
+        .onAppear {
+            DispatchQueue.global(qos: .userInitiated).async {
+                smartWifiViewModel.fetchWifiListInfo()
+                let status = smartWifiViewModel.getWifiRequestStatus()
+                if status == .scanningFailed {
+                    toast = ToastData(type: .error, message: status.description)
+                }
             }
         }
     }

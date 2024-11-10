@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CategoryView: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
     @Binding var selectionValue: CategoryType
     @State private var showAlert = false
     var body: some View {
@@ -25,6 +24,7 @@ struct CategoryView: View {
             Section(CategorySectionType.categoryUtilitySection.title) {
                 categoryRow(for: .smartFileLocator)
                 categoryRow(for: .smartFileSearch)
+                categoryRow(for: .smartImageTuner)
             }
             .ezNormalTextStyle(fontSize: FontSizeType.small.size, isBold: false)
             .frame(minHeight: 40)

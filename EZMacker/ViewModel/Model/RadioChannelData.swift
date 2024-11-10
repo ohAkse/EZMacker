@@ -14,13 +14,20 @@ struct RadioChannelData: Equatable {
     var band: String
     var locale: String
     var macAddress: String
-
-    init(channelBandwidth: Int = 0, channelFrequency: Int = 0, channel: Int = 0, band: String = "", locale: String = "", hardwareAddress: String = "") { 
+    init(channelBandwidth: Int = 0, channelFrequency: Int = 0, channel: Int = 0, band: String = "", locale: String = "", hardwareAddress: String = "") {
         self.channelBandwidth = channelBandwidth
         self.channelFrequency = channelFrequency
         self.channel = channel
         self.band = band
         self.locale = locale
         self.macAddress = hardwareAddress
+    }
+    mutating func clear() {
+        self.channelBandwidth = 0
+        self.channelFrequency = 0
+        self.channel = 0
+        self.band = ""
+        self.locale = ""
+        self.macAddress = ""
     }
 }

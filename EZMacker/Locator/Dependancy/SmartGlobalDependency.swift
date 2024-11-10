@@ -14,8 +14,8 @@ struct SmartGlobalDependency: DependencyRegisterable {
         container.register({ context in
             guard let context = context else { fatalError("ModelContext is nil") }
             return AppSettingsManager(context: context) as AppSettingProvidable
-        }, forKey: SettingsKey.appSettingsManager.value)
-        container.register({ _ in SystemPreferenceService() as SystemPreferenceAccessible }, forKey: SystemServiceKey.systemPreferenceService.value)
-        container.register({ _ in AppSmartProcessService() as AppSmartProcessProvidable }, forKey: ProcessServiceKey.appProcessService.value)
+        }, forKey: SettingsKey.appSettingsManager.value, lifetime: .singleton)
+        container.register({ _ in SystemPreferenceService() as SystemPreferenceAccessible }, forKey: SystemServiceKey.systemPreferenceService.value, lifetime: .singleton)
+        container.register({ _ in AppSmartProcessService() as AppSmartProcessProvidable }, forKey: ProcessServiceKey.appProcessService.value, lifetime: .singleton)
     }
 }

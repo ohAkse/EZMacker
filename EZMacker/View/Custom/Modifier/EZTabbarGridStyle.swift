@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct EZTabbarGridStyle: ViewModifier {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var systemThemeService: SystemThemeService
 
     func body(content: Content) -> some View {
         content
@@ -19,11 +19,11 @@ struct EZTabbarGridStyle: ViewModifier {
     }
 
     private func backgroundColor() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.white.color
         case ColorSchemeModeType.Dark.title:
-            return ThemeColorType.darkBlue.color 
+            return ThemeColorType.darkBlue.color
         default:
             Logger.fatalErrorMessage("colorScheme is Empty")
             return Color.primary
@@ -31,7 +31,7 @@ struct EZTabbarGridStyle: ViewModifier {
     }
     
     private func shadowColor() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return Color.black.opacity(0.1)
         case ColorSchemeModeType.Dark.title:

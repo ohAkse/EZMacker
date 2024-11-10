@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct EZWifiChannelView: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
     @Binding var channelBandwidth: Int
     @Binding var channelFrequency: Int
     @Binding var channel: Int
@@ -22,7 +21,7 @@ struct EZWifiChannelView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 24, height: 24)
-                        Text("라우터 정보")
+                        Text("Wi-Fi 채널 스펙트럼")
                             .font(.headline)
                             .fontWeight(.bold)
                         Spacer()
@@ -64,7 +63,7 @@ struct EZWifiChannelView: View {
                 
                 Spacer(minLength: 5)
             }
-            .ezBackgroundColorStyle()
+            .ezBackgroundStyle()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }

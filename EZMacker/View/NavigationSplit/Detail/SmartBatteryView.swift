@@ -10,13 +10,13 @@ import EZMackerUtilLib
 import EZMackerServiceLib
 
 struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatteryRegistryProvidable {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @StateObject private var smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>
     @State private(set) var toast: ToastData?
     @State private(set) var isAdapterAnimated = false
     @State private(set) var hasShownToast = false
     @State private(set) var errCount = 0
-    
-    @StateObject private var smartBatteryViewModel: SmartBatteryViewModel<AppSmartBatteryService>
+    @State private var adapterCheckCount: Int = 0
+    @State private var adapterImageType: AdapterType = .loading
     
     init(factory: ViewModelFactory) {
         _smartBatteryViewModel = StateObject(wrappedValue: factory.createSmartBatteryViewModel())
@@ -38,11 +38,8 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
             .onAppear {
                 smartBatteryViewModel.validateAdapterConnection()
                 smartBatteryViewModel.startAdapterConnectionTimer()
-                toast = ToastData(type: .info,
-                                  title: "정보",
-                                  message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 약 3분정도 시간이 소요됩니다.",
-                                  duration: 10)
             }
+            
             .onDisappear {
                 smartBatteryViewModel.stopAdapterConnectionTimer()
             }
@@ -123,12 +120,11 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
                 label: {}
             )
             .ezButtonImageStyle(
+                type: .clear,
                 imageName: "gearshape.fill",
-                imageSize: CGSize(width: 20, height: 20),
-                lightModeBackgroundColor: .clear,
-                darkModeBackgroundColor: .clear
+                imageSize: CGSize(width: 20, height: 20)
             )
-            .offset(x: 5, y: -15)
+            .offset(x: 20, y: -25)
         }
         .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.25)
     }
@@ -138,11 +134,14 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
         
         let chargeErrorType = BatteryChargeErrorType.from(hexString: lastChargeData.notChargingReason.toHexaString())
         
-        if chargeErrorType.isFullyCharged() && !hasShownToast {
-            toast = ToastData(type: .warning,
-                              title: "경고",
-                              message: "배터리가 충전 대기 중입니다. 충전을 원할 시 어댑터를 다시 꽂거나 상단 메뉴의 배터리 탭에서'지금 완전 충전'을 눌러 충전을 재개하세요.",
-                              duration: 600)
+        if !hasShownToast {
+            if chargeErrorType.isFullyCharged() {
+                toast = ToastData(type: .warning,
+                                  message: "배터리가 충전 대기 중입니다. 충전을 원할 시 어댑터를 다시 꽂거나 상단 메뉴의 배터리 탭에서'지금 완전 충전'을 눌러 충전을 재개하세요.")
+            } else {
+                toast = ToastData(type: .info,
+                                  message: "배터리 종료/충전 시간은 시스템 구성에 따라 최대 약 3분정도 시간이 소요됩니다.")
+            }
             hasShownToast = true
         }
     }
@@ -164,45 +163,86 @@ struct SmartBatteryView<ProvidableType>: View where ProvidableType: AppSmartBatt
     }
     
     private func connectedAdapterInfo(geo: GeometryProxy) -> some View {
-        HStack {
+        Group {
             if let adapterInfo = smartBatteryViewModel.adapterMetricsData.adapterData.first {
-                VStack {
-                    
-                    EZImage(systemName: "battery_adapter", isSystemName: false)
-                    EZContent(content: adapterInfo.Name)
-                }
-                .frame(width: geo.size.width * 0.3)
-                VStack(spacing: 0) {
-                    Spacer()
-                    EZBatteryAdapterView(title: "Adp ID", content: "\(adapterInfo.AdapterID)")
-                    Spacer()
-                    EZBatteryAdapterView(title: "Model ID", content: adapterInfo.Model)
-                    Spacer()
-                    EZBatteryAdapterView(title: "F/W Ver", content: adapterInfo.FwVersion)
-                    Spacer()
-                }
-                .ezBackgroundColorStyle()
-                .frame(width: geo.size.width * 0.33)
-                
-                Spacer(minLength: 5)
-                
-                VStack(spacing: 0) {
-                    Spacer()
-                    EZBatteryAdapterView(title: "Mfr.", content: adapterInfo.Manufacturer)
-                    Spacer()
-                    EZBatteryAdapterView(title: "Watts", content: "\(adapterInfo.Watts)W")
-                    Spacer()
-                    EZBatteryAdapterView(title: "H/W Ver", content: adapterInfo.HwVersion)
-                    Spacer()
-                }
-                .frame(width: geo.size.width * 0.33)
-                .ezBackgroundColorStyle()
+                AdapterTypeView(adapterInfo: adapterInfo, geo: geo)
             } else {
                 Text("No adapter connected")
                     .frame(maxWidth: .infinity)
             }
         }
+        .onAppear {
+            adapterCheckCount = 0
+            adapterImageType = .loading
+            checkAdapterType()
+        }
+        .onDisappear {
+            adapterCheckCount = 0
+            adapterImageType = .loading
+        }
     }
+
+    private func AdapterTypeView(adapterInfo: AdapterData, geo: GeometryProxy) -> some View {
+        HStack {
+            VStack {
+                switch adapterImageType {
+                case .loading:
+                    EZLoadingView(size: 180, text: "충전 타입 확인 중..")
+                    .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.3)
+                case .cType:
+                    EZImageView(systemName: "ChargerCType", isSystemName: false)
+                case .tType:
+                    EZImageView(systemName: "ChargerTType", isSystemName: false)
+                }
+            }
+            .frame(width: geo.size.width * 0.3)
+            .animation(.easeInOut, value: adapterImageType)
+            
+            VStack(spacing: 0) {
+                Spacer()
+                EZBatteryAdapterView(title: "제조사", content: adapterInfo.Manufacturer ?? "Unknown")
+                Spacer()
+                EZBatteryAdapterView(title: "H/W Ver", content: adapterInfo.HwVersion ?? "Unknown")
+                Spacer()
+                EZBatteryAdapterView(title: "F/W Ver", content: adapterInfo.FwVersion ?? "Unknown")
+                Spacer()
+            }
+            .ezBackgroundStyle()
+            .frame(width: geo.size.width * 0.33)
+            
+            Spacer(minLength: 5)
+            
+            VStack(spacing: 0) {
+                Spacer()
+                EZBatteryAdapterView(title: "전압", content: "\(adapterInfo.AdapterVoltage)mV")
+                Spacer()
+                EZBatteryAdapterView(title: "전류", content: "\(adapterInfo.Current)mA")
+                Spacer()
+                EZBatteryAdapterView(title: "전력", content: "\(adapterInfo.Watts)W")
+                Spacer()
+            }
+            .frame(width: geo.size.width * 0.33)
+            .ezBackgroundStyle()
+        }
+    }
+    // MARK: T타입의 경우 정보를 늦게줘서 정보는 미리 설정하고 이미지는 Retry 로직에 따라 특정시간내에 못받아오면 C타입, 받아오면 T타입으로 설정
+    private func checkAdapterType() {
+        guard adapterImageType == .loading else { return }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            adapterCheckCount += 1
+            if let adapterInfo = smartBatteryViewModel.adapterMetricsData.adapterData.first {
+                if adapterCheckCount >= 5 || (adapterInfo.Model != nil && adapterInfo.Manufacturer != nil) {
+                    adapterImageType = adapterInfo.isCType ? .cType : .tType
+                } else {
+                    checkAdapterType()
+                }
+            } else {
+                adapterImageType = .loading
+            }
+        }
+    }
+
     private func disconnectedAdapterInfo(geo: GeometryProxy) -> some View {
         Group {
             if smartBatteryViewModel.adapterMetricsData.adapterConnectionSuccess == .decodingFailed {

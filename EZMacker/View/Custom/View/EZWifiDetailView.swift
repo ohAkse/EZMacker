@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct EZWifiDetailView: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
     @Binding var band: String
     @Binding var hardwareAddress: String
     @Binding var locale: String
@@ -62,7 +61,7 @@ struct EZWifiDetailView: View {
                 
                 Spacer(minLength: 5)
             }
-            .ezBackgroundColorStyle()
+            .ezBackgroundStyle()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }

@@ -9,7 +9,6 @@ import Foundation
 
 struct ToastData: Equatable {
     var type: ToastType
-    var title: String
     var message: String
     var duration: Double = 3
 }

@@ -10,7 +10,6 @@ import EZMackerUtilLib
 
 struct SmartFileLocatorView: View {
     @StateObject var smartFileLocatorViewModel: SmartFileLocatorViewModel
-    @EnvironmentObject var appThemeManager: AppThemeManager
     @State private var showingAlert = false
     @State private var showingErrorAlert = false
     @State private var newTabName = ""
@@ -31,7 +30,7 @@ struct SmartFileLocatorView: View {
                 }
             }
             .scrollIndicators(.automatic)
-            .ezBackgroundColorStyle()
+            .ezBackgroundStyle()
             
             if let selectedTab = smartFileLocatorViewModel.savedData.selectedTab {
                 VStack {
@@ -59,7 +58,6 @@ struct SmartFileLocatorView: View {
         }
         .cornerRadius(12)
         .padding(30)
-        .environmentObject(appThemeManager)
     }
     
     private func fileGridContent(for selectedTab: String) -> some View {
@@ -70,7 +68,7 @@ struct SmartFileLocatorView: View {
                          onDelete: { smartFileLocatorViewModel.deleteFileView(id: id, from: selectedTab) },
                          onDrop: { url in smartFileLocatorViewModel.setFileInfo(fileURL: url, for: id, in: selectedTab) })
                 .id(id)
-                .ezBackgroundColorStyle()
+                .ezBackgroundStyle()
                 
             }
         }
@@ -135,14 +133,12 @@ struct SmartFileLocatorView: View {
         Button(action: { showingAlert = true },
                label: {})
         .ezButtonImageStyle(
+            type: .tabAdd,
             imageName: "plus.circle.fill",
             imageSize: CGSize(width: 30, height: 30),
-            lightModeForegroundColor: ThemeColorType.orange.color,
-            darkModeForegroundColor: ThemeColorType.orange.color,
-            lightModeBackgroundColor: .clear,
-            darkModeBackgroundColor: .clear,
             frameSize: CGSize(width: 30, height: 30)
         )
+
     }
     
     private func fileGridView(for selectedTab: String) -> some View {
@@ -168,14 +164,11 @@ struct SmartFileLocatorView: View {
     private func addFileButton(for selectedTab: String) -> some View {
         Button(action: { smartFileLocatorViewModel.addFileView(for: selectedTab) }, label: {})
             .ezButtonImageStyle(
+                type: .clear,
                 imageName: "plus.circle.fill",
                 imageSize: CGSize(width: 30, height: 30),
-                lightModeForegroundColor: ThemeColorType.cyan.color,
-                darkModeForegroundColor: ThemeColorType.cyan.color,
-                lightModeBackgroundColor: .clear,
-                darkModeBackgroundColor: .clear,
                 frameSize: CGSize(width: 30, height: 30)
-            )
+                )
     }
     
     private var emptyStateView: some View {
@@ -215,7 +208,7 @@ struct FileView: View {
     let fileInfo: FileQueryData
     let onDelete: () -> Void
     let onDrop: (URL) -> Void
-    @EnvironmentObject var appThemeManager: AppThemeManager
+
     @State private var isTargeted: Bool = false
     
     var body: some View {

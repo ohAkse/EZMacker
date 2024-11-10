@@ -81,8 +81,7 @@
 </br>
 </br>
 
-**그밖의 화면 및 기능은 [이곳](https://drive.google.com/file/d/18tFsGLOPasfhhg_pffNj8b8sx1UEfmAp/view)에서 확인 가능합니다.**
-
+**그밖의 화면 및 기능은 [이곳](https://drive.google.com/file/d/1D9WcLIsgsAXxFe73x3hv6VQtcd9zcOy_/view?usp=drive_link)에서 확인 가능합니다.**
 
 
 ## 6️⃣Trouble Shooting

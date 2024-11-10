@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 import EZMackerUtilLib
+
 protocol AppSettingProvidable {
     func saveConfig<T>(_ key: AppStorageKey, value: T)
     func loadConfig<T>(_ key: AppStorageKey) -> T?
@@ -35,21 +36,21 @@ class AppSettingsManager: AppSettingProvidable {
         
         switch key {
         case .isBatteryChargingErrorMode:
-            settings.isBatteryWarningMode = value as? Bool ?? false
+            settings.batteryConfiguration.isWarningMode = value as? Bool ?? false
         case .isBatteryCurrentMessageMode:
-            settings.isBatteryCurrentMessageMode = value as? Bool ?? false
+            settings.batteryConfiguration.isCurrentMessageMode = value as? Bool ?? false
         case .batteryPercentage:
-            settings.batteryPercentage = value as? String ?? "0"
+            settings.batteryConfiguration.percentage = value as? String ?? "0"
         case .cpuUsageExitType:
-            settings.cpuUsageExitType = value as? String ?? CPUUsageExitType.unused.typeName
+            settings.batteryConfiguration.cpuUsageExitType = value as? String ?? CPUUsageExitType.unused.typeName
         case .bestSSIDShowType:
-            settings.ssidShowType = value as? String ?? BestSSIDShowType.alert.typeName
+            settings.wifiConfiguration.ssidShowType = value as? String ?? BestSSIDShowType.alert.typeName
         case .fileLocatorData:
-            settings.smartFileLocatorData = value as? Data ?? Data()
+            settings.fileLocatorConfiguration.locatorData = value as? Data ?? Data()
         case .isFileChangeAlarmDisabled:
-            settings.isFileChangeAlarmDisabled = value as? Bool ?? false
+            settings.fileLocatorConfiguration.isChangeAlarmDisabled = value as? Bool ?? false
         case .colorSchemeType:
-            settings.colorScheme = value as? Int ?? 0
+            settings.systemPreferenceConfiguration.colorScheme = value as? Int ?? 0
         }
         
         do {
@@ -64,21 +65,21 @@ class AppSettingsManager: AppSettingProvidable {
         
         switch key {
         case .isBatteryChargingErrorMode:
-            return settings.isBatteryWarningMode as? T
+            return settings.batteryConfiguration.isWarningMode as? T
         case .isBatteryCurrentMessageMode:
-            return settings.isBatteryCurrentMessageMode as? T
+            return settings.batteryConfiguration.isCurrentMessageMode as? T
         case .batteryPercentage:
-            return settings.batteryPercentage as? T
+            return settings.batteryConfiguration.percentage as? T
         case .cpuUsageExitType:
-            return settings.cpuUsageExitType as? T
+            return settings.batteryConfiguration.cpuUsageExitType as? T
         case .bestSSIDShowType:
-            return settings.ssidShowType as? T
+            return settings.wifiConfiguration.ssidShowType as? T
         case .fileLocatorData:
-            return settings.smartFileLocatorData as? T
+            return settings.fileLocatorConfiguration.locatorData as? T
         case .isFileChangeAlarmDisabled:
-            return settings.isFileChangeAlarmDisabled as? T
+            return settings.fileLocatorConfiguration.isChangeAlarmDisabled as? T
         case .colorSchemeType:
-            return settings.colorScheme as? T
+            return settings.systemPreferenceConfiguration.colorScheme as? T
         }
     }
 }

@@ -8,38 +8,67 @@
 import Foundation
 import SwiftData
 
-// TODO: 모델링화하기
 @Model
 class AppSettings {
-    var isBatteryWarningMode: Bool
-    var isBatteryCurrentMessageMode: Bool
-    var batteryPercentage: String
-    var cpuUsageExitType: String
-    // BatterySetting
-    var ssidShowType: String
-    // WifiSetting
-    var smartFileLocatorData: Data
-    var isFileChangeAlarmDisabled: Bool
-    // FileLocatorSetting
-    var colorScheme: Int
+    var batteryConfiguration: BatteryConfiguration
+    var wifiConfiguration: WifiConfiguration
+    var fileLocatorConfiguration: FileLocatorConfiguration
+    var systemPreferenceConfiguration: SystemPreferenceConfiguration
     
     init(
-        isBatteryWarningMode: Bool = false,
-        isBatteryCurrentMessageMode: Bool = false,
-        batteryPercentage: String = "0",
-        cpuUsageExitType: String = CPUUsageExitType.unused.typeName,
-        ssidShowType: String = BestSSIDShowType.alert.typeName,
-        smartFileLocatorData: Data = Data(),
-        isFileChangeAlarmDisabled: Bool = false,
-        colorScheme: Int = 0
+        batteryConfiguration: BatteryConfiguration = BatteryConfiguration(),
+        wifiConfiguration: WifiConfiguration = WifiConfiguration(),
+        fileLocatorConfiguration: FileLocatorConfiguration = FileLocatorConfiguration(),
+        systemPreferenceConfiguration: SystemPreferenceConfiguration = SystemPreferenceConfiguration()
     ) {
-        self.isBatteryWarningMode = isBatteryWarningMode
-        self.isBatteryCurrentMessageMode = isBatteryCurrentMessageMode
-        self.batteryPercentage = batteryPercentage
+        self.batteryConfiguration = batteryConfiguration
+        self.wifiConfiguration = wifiConfiguration
+        self.fileLocatorConfiguration = fileLocatorConfiguration
+        self.systemPreferenceConfiguration = systemPreferenceConfiguration
+    }
+}
+
+struct BatteryConfiguration: Codable {
+    var isWarningMode: Bool
+    var isCurrentMessageMode: Bool
+    var percentage: String
+    var cpuUsageExitType: String
+    
+    init(
+        isWarningMode: Bool = false,
+        isCurrentMessageMode: Bool = false,
+        percentage: String = "0",
+        cpuUsageExitType: String = CPUUsageExitType.unused.typeName
+    ) {
+        self.isWarningMode = isWarningMode
+        self.isCurrentMessageMode = isCurrentMessageMode
+        self.percentage = percentage
         self.cpuUsageExitType = cpuUsageExitType
+    }
+}
+
+struct WifiConfiguration: Codable {
+    var ssidShowType: String
+    
+    init(ssidShowType: String = BestSSIDShowType.alert.typeName) {
         self.ssidShowType = ssidShowType
-        self.smartFileLocatorData = smartFileLocatorData
-        self.isFileChangeAlarmDisabled = isFileChangeAlarmDisabled
+    }
+}
+
+struct FileLocatorConfiguration: Codable {
+    var locatorData: Data
+    var isChangeAlarmDisabled: Bool
+    
+    init(locatorData: Data = Data(), isChangeAlarmDisabled: Bool = false) {
+        self.locatorData = locatorData
+        self.isChangeAlarmDisabled = isChangeAlarmDisabled
+    }
+}
+
+struct SystemPreferenceConfiguration: Codable {
+    var colorScheme: Int
+    
+    init(colorScheme: Int = 0) {
         self.colorScheme = colorScheme
     }
 }

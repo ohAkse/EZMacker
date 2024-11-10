@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F5329F82CBBD451000AE73F /* CWSecurity + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5329F72CBBD451000AE73F /* CWSecurity + Extension.swift */; };
+		5F5329FA2CBBD463000AE73F /* CWInterfaceMode + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5329F92CBBD463000AE73F /* CWInterfaceMode + Extension.swift */; };
+		5F5329FC2CBBD68F000AE73F /* CWPHYMode + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5329FB2CBBD68F000AE73F /* CWPHYMode + Extension.swift */; };
+		5F532A072CBBDDCF000AE73F /* AppWifiEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F532A062CBBDDCF000AE73F /* AppWifiEventType.swift */; };
 		5F5C79392C88761200C7BFD9 /* AppSmartWifiMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5C79382C88761200C7BFD9 /* AppSmartWifiMonitoringService.swift */; };
 		5F5C79472C888C1800C7BFD9 /* AppWifiClientProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5C79462C888C1800C7BFD9 /* AppWifiClientProvidable.swift */; };
 		5FB977942C89DF7500ACB194 /* AppSmartAutoconnectWifiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB977932C89DF7500ACB194 /* AppSmartAutoconnectWifiService.swift */; };
@@ -29,6 +33,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F5329F72CBBD451000AE73F /* CWSecurity + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CWSecurity + Extension.swift"; sourceTree = "<group>"; };
+		5F5329F92CBBD463000AE73F /* CWInterfaceMode + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CWInterfaceMode + Extension.swift"; sourceTree = "<group>"; };
+		5F5329FB2CBBD68F000AE73F /* CWPHYMode + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CWPHYMode + Extension.swift"; sourceTree = "<group>"; };
+		5F532A062CBBDDCF000AE73F /* AppWifiEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWifiEventType.swift; sourceTree = "<group>"; };
 		5F5C79382C88761200C7BFD9 /* AppSmartWifiMonitoringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartWifiMonitoringService.swift; sourceTree = "<group>"; };
 		5F5C79462C888C1800C7BFD9 /* AppWifiClientProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWifiClientProvidable.swift; sourceTree = "<group>"; };
 		5FB977932C89DF7500ACB194 /* AppSmartAutoconnectWifiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmartAutoconnectWifiService.swift; sourceTree = "<group>"; };
@@ -62,9 +70,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F5329F62CBBD43B000AE73F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5F5329F72CBBD451000AE73F /* CWSecurity + Extension.swift */,
+				5F5329F92CBBD463000AE73F /* CWInterfaceMode + Extension.swift */,
+				5F5329FB2CBBD68F000AE73F /* CWPHYMode + Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		5FE62F652C844ED300658155 = {
 			isa = PBXGroup;
 			children = (
+				5F5329F62CBBD43B000AE73F /* Extension */,
 				5FE62FAA2C8453A300658155 /* Model */,
 				5FE62FA62C8451FA00658155 /* AppSmartFileMonitoringService.swift */,
 				5FB977932C89DF7500ACB194 /* AppSmartAutoconnectWifiService.swift */,
@@ -107,6 +126,7 @@
 				5FE62F902C84508500658155 /* AppBCMWLanSkywalkInterfaceType.swift */,
 				5FE62F942C8450BB00658155 /* AppCoreWLanStatus.swift */,
 				5FE62FA82C84537F00658155 /* AppFileDescriptionType.swift */,
+				5F532A062CBBDDCF000AE73F /* AppWifiEventType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -201,12 +221,16 @@
 				5FE62F8A2C844FB400658155 /* AppSmartServiceProvidable.swift in Sources */,
 				5FE62FA32C8451DB00658155 /* AppCoreWLanWifiService.swift in Sources */,
 				5FE62F912C84508500658155 /* AppBCMWLanSkywalkInterfaceType.swift in Sources */,
+				5F5329F82CBBD451000AE73F /* CWSecurity + Extension.swift in Sources */,
 				5FE62FAE2C8457E900658155 /* ProcessMonitoringData.swift in Sources */,
 				5FE62F8D2C84500500658155 /* AppSmartBatteryKeyType.swift in Sources */,
 				5FE62F9B2C8451A600658155 /* AppSmartFileService.swift in Sources */,
 				5FB977942C89DF7500ACB194 /* AppSmartAutoconnectWifiService.swift in Sources */,
+				5F5329FC2CBBD68F000AE73F /* CWPHYMode + Extension.swift in Sources */,
 				5FE62F952C8450BB00658155 /* AppCoreWLanStatus.swift in Sources */,
+				5F5329FA2CBBD463000AE73F /* CWInterfaceMode + Extension.swift in Sources */,
 				5FE62F8F2C84502400658155 /* AppSmartBatteryPowerSourceType.swift in Sources */,
+				5F532A072CBBDDCF000AE73F /* AppWifiEventType.swift in Sources */,
 				5F5C79472C888C1800C7BFD9 /* AppWifiClientProvidable.swift in Sources */,
 				5FE62FAC2C8453B500658155 /* ScanningWifiData.swift in Sources */,
 				5FE62F9F2C8451C300658155 /* AppSmartProcessService.swift in Sources */,
@@ -373,7 +397,7 @@
 				5FE62F762C844ED300658155 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		5FE62F772C844ED300658155 /* Build configuration list for PBXNativeTarget "EZMackerServiceLib" */ = {
 			isa = XCConfigurationList;
@@ -382,7 +406,7 @@
 				5FE62F792C844ED300658155 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,7 +9,7 @@ import SwiftUI
 import EZMackerUtilLib
 
 struct AlertTextFieldView: View {
-    @EnvironmentObject var appThemeManager: AppThemeManager
+    @EnvironmentObject var systemThemeService: SystemThemeService
     @Binding var textFieldValue: String
     @Binding var isPresented: Bool
     var ssid: String
@@ -54,11 +54,11 @@ struct AlertTextFieldView: View {
         .background(backgroundColorForTheme())
         .cornerRadius(8)
         .shadow(radius: 10)
-        .frame(width: 300) 
+        .frame(width: 300)
     }
     
     private func backgroundColorForTheme() -> Color {
-        switch appThemeManager.getColorScheme() {
+        switch systemThemeService.getColorScheme() {
         case ColorSchemeModeType.Light.title:
             return ThemeColorType.lightGray.color
         case ColorSchemeModeType.Dark.title:

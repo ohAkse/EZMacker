@@ -30,4 +30,13 @@ enum ToastType {
         case .error: return "xmark.circle.fill"
         }
     }
+    
+    var title: String {
+        switch self {
+        case .error: return "에러"
+        case .warning: return "경고"
+        case .info: return "정보"
+        case .success: return "성공"
+        }
+    }
 }
