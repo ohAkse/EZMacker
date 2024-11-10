@@ -14,7 +14,7 @@ ImageFilterProcessor::~ImageFilterProcessor() {
 }
 
 future<vector<unsigned char>> ImageFilterProcessor::filterImageAsync(const vector<unsigned char>& imageData, FilterType filterType) {
-   return async(launch::async, [this, imageData, filterType]() -> vector<unsigned char> {
+   return async(launch::async, [imageData, filterType]() -> vector<unsigned char> {
        try {
            Mat image = imdecode(Mat(imageData), IMREAD_UNCHANGED);
            if (image.empty()) {

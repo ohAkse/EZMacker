@@ -13,23 +13,34 @@ class SmartImageTunerViewModel: ObservableObject {
     deinit {
         Logger.writeLog(.debug, message: "SmartImageTunerViewModel deinit Called")
     }
+    
     init(imageSenderWrapper: ImageProcessWrapperProvidable) {
         self.imageSenderWrapper = imageSenderWrapper
     }
+    
     @Published var originImage: NSImage?
+    @Published var currentImage: NSImage?
     @Published var displayMode: ImageDisplayMode = .keepAspectRatio
     @Published private(set) var isProcessing = false
+    @Published private(set) var hasChanges: Bool = false
+    @Published private(set) var currentFilter: FilterType?
+    
     private let imageSenderWrapper: ImageProcessWrapperProvidable
     private let textRenderingOffset: CGFloat = 5
+    
     func setUploadImage(_ newImage: NSImage) {
         self.originImage = newImage
+        self.currentImage = newImage
+        self.hasChanges = false
+        self.currentFilter = nil
     }
+    
     func setDisplayMode(_ mode: ImageDisplayMode) {
         displayMode = mode
     }
-  
+    
     private func captureImageSection(currentPenSetting: PenToolSetting, textOverlays: [TextItem], viewSize: CGSize) -> NSImage? {
-        guard let image = self.originImage,
+        guard let image = self.currentImage,
               viewSize.width > 0, viewSize.height > 0,
               image.size.width > 0, image.size.height > 0 else { return nil }
         
@@ -92,7 +103,7 @@ class SmartImageTunerViewModel: ObservableObject {
         newImage.unlockFocus()
         return newImage
     }
-
+    
     func saveImage(currentDrawing: PenToolSetting, textOverlays: [TextItem], viewSize: CGSize, completion: @escaping (SaveImageResult) -> Void) {
         let savePanel = NSSavePanel().then {
             $0.allowedContentTypes = [.png]
@@ -148,12 +159,31 @@ class SmartImageTunerViewModel: ObservableObject {
 }
 
 extension SmartImageTunerViewModel {
+    func updateEditState(image: NSImage) {
+        self.currentImage = image
+        self.hasChanges = true
+    }
+
+    func resetImage() {
+        if let originalImage = originImage {
+            self.currentImage = originalImage
+            self.hasChanges = false
+        }
+    }
+
+    func hasImageChanges() -> Bool {
+        return hasChanges
+    }
+    
     func rotateImage(rotateType: RotateType) {
+        guard let currentImage = self.currentImage else { return }
         isProcessing = true
-        imageSenderWrapper.rotateImageAsync(originImage!, rotateType: rotateType) { [weak self] rotatedImage, error in
+        
+        imageSenderWrapper.rotateImageAsync(currentImage, rotateType: rotateType) { [weak self] rotatedImage, error in
             guard let self = self else { return }
-            if let rotateImage = rotatedImage {
-                originImage = rotateImage
+            if let rotatedImage = rotatedImage {
+                self.currentImage = rotatedImage
+                self.hasChanges = true
             } else if let error = error {
                 switch error {
                 case .cgImageCreationFailed:
@@ -164,15 +194,19 @@ extension SmartImageTunerViewModel {
                     Logger.writeLog(.error, message: "Failed to process image")
                 }
             }
-            isProcessing = false
+            self.isProcessing = false
         }
     }
+    
     func flipImage(flipType: FlipType) {
+        guard let currentImage = self.currentImage else { return }
         isProcessing = true
-        imageSenderWrapper.flipImageAsync(originImage!, flipType: flipType) { [weak self] flipedImage, error in
+        
+        imageSenderWrapper.flipImageAsync(currentImage, flipType: flipType) { [weak self] flippedImage, error in
             guard let self = self else { return }
-            if let flippedImage = flipedImage {
-                originImage = flippedImage
+            if let flippedImage = flippedImage {
+                self.currentImage = flippedImage
+                self.hasChanges = true
             } else if let error = error {
                 switch error {
                 case .cgImageCreationFailed:
@@ -183,15 +217,25 @@ extension SmartImageTunerViewModel {
                     Logger.writeLog(.error, message: "Failed to process image")
                 }
             }
-            isProcessing = false
+            self.isProcessing = false
         }
     }
+    
     func filterImage(filterType: FilterType) {
+        guard let currentImage = self.currentImage else { return }
+        
+        if currentFilter == filterType {
+            return
+        }
+
         isProcessing = true
-        imageSenderWrapper.filterImageAsync(originImage!, filterType: filterType) { [weak self] flipedImage, error in
+        imageSenderWrapper.filterImageAsync(currentImage, filterType: filterType) { [weak self] filteredImage, error in
             guard let self = self else { return }
-            if let flippedImage = flipedImage {
-                originImage = flippedImage
+            
+            if let filteredImage = filteredImage {
+                self.currentImage = filteredImage
+                self.currentFilter = filterType
+                self.hasChanges = true
             } else if let error = error {
                 switch error {
                 case .cgImageCreationFailed:
@@ -202,8 +246,7 @@ extension SmartImageTunerViewModel {
                     Logger.writeLog(.error, message: "Failed to process image")
                 }
             }
-            isProcessing = false
+            self.isProcessing = false
         }
-        Logger.writeLog(.info, message: filterType.rawValue)
     }
 }

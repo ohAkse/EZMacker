@@ -36,8 +36,8 @@ enum TunerTabType: Int, CaseIterable {
         case .reset: return "초기화"
         case .addText: return "텍스트"
         case .flip: return "뒤집기"
-        case .undo: return "되돌리기"
-        case .redo: return "앞돌리기"
+        case .undo: return "획 되돌리기"
+        case .redo: return "획 앞돌리기"
         }
     }
 }

@@ -46,12 +46,12 @@ struct EZRotationPopupView: View {
                 Button {
                     isPresented = false
                 } label: {
-                    Text("취소")
+                    Text("닫기")
                     .fixedSize()
                     .frame(width: 10, height: 10)
                     .contentShape(Rectangle())
                 }
-                .ezButtonStyle(type: .type1)
+                .ezButtonStyle()
                 Spacer()
             }
             

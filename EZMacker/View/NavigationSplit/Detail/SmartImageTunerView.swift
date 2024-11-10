@@ -15,14 +15,13 @@ struct SmartImageTunerView: View {
     @StateObject var smartImageTunerViewModel: SmartImageTunerViewModel
     @State private var toast: ToastData?
     @State private var isPopupPresented = false
-    @State private var isPenToolActive = false
-    @State private var selectedTab: TunerTabType?
-    /**드로잉 **/
-    @State private (set) var penToolSetting: PenToolSetting = .init()
-    /**이미지 스케일링**/
-    @State private (set)var imageSectionSize: CGSize = .zero
-    // 이미지 텍스트
-    @State private (set)var textItemList: [TextItem] = []
+    @State private(set) var isPenToolActive = false
+    @State private(set) var selectedTab: TunerTabType?
+    @State private(set) var imageSectionSize: CGSize = .zero
+    
+    // 펜, 텍스트 UI요소
+    @State private(set) var penToolSetting: PenToolSetting = .init()
+    @State private(set) var textItemList: [TextItem] = []
     
     init(factory: ViewModelFactory) {
         _smartImageTunerViewModel = StateObject(wrappedValue: factory.createSmartImageTunerViewModel())
@@ -169,22 +168,24 @@ struct SmartImageTunerView: View {
     }
     
     private func imageView(for image: NSImage, in geometry: GeometryProxy) -> AnyView {
-        switch smartImageTunerViewModel.displayMode {
-        case .keepAspectRatio:
-            return AnyView(
-                    Image(nsImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
-            )
-        case .fillFrame:
-            return AnyView(
-                    Image(nsImage: image)
-                        .resizable()
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-            )
-        }
-    }
+           let displayImage = smartImageTunerViewModel.currentImage ?? image
+           
+           switch smartImageTunerViewModel.displayMode {
+           case .keepAspectRatio:
+               return AnyView(
+                   Image(nsImage: displayImage)
+                       .resizable()
+                       .aspectRatio(contentMode: .fit)
+                       .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
+               )
+           case .fillFrame:
+               return AnyView(
+                   Image(nsImage: displayImage)
+                       .resizable()
+                       .frame(width: geometry.size.width, height: geometry.size.height)
+               )
+           }
+       }
     
     private var emptyStateView: some View {
         VStack {
@@ -246,7 +247,8 @@ extension SmartImageTunerView {
     private func shouldDisableButton(for tab: TunerTabType) -> Bool {
         switch tab {
         case .reset:
-            return smartImageTunerViewModel.originImage == nil || (!penToolSetting.canUndo && !penToolSetting.canRedo)
+            return smartImageTunerViewModel.originImage == nil || (!penToolSetting.canUndo && !penToolSetting.canRedo &&
+                    textItemList.isEmpty && !smartImageTunerViewModel.hasChanges)
         case .undo:
             return smartImageTunerViewModel.originImage == nil || !penToolSetting.canUndo
         case .redo:
@@ -341,6 +343,8 @@ extension SmartImageTunerView {
     }
     private func resetImage() {
         penToolSetting = .init()
+        textItemList.removeAll()
+        smartImageTunerViewModel.resetImage()
         selectedTab = nil
     }
     private func undoImage() {
