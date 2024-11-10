@@ -22,7 +22,7 @@ struct SmartWifiMoreInfoView: View {
             }
             multicastInfoSection
             eventInfoSection
-            #if USE_PRIVATE_FUNC
+            #if !USE_PRIVATE_FUNC
             commandListSection
             #endif
         }
