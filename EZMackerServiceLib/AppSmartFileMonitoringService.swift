@@ -16,8 +16,8 @@ public class AppSmartFileMonitoringService: AppSmartFileMonitorable {
     
     public init() {}
     private let fileMonotringQueue = DispatchQueueFactory.createQueue(for: FileMonitoringQueueConfiguration(), withPov: false)
-    private (set) var fileMonitors: [UUID: DispatchSourceFileSystemObject] = [:]
-    private (set) var pendingUpdates: [UUID: DispatchWorkItem] = [:]
+    private(set) var fileMonitors: [UUID: DispatchSourceFileSystemObject] = [:]
+    private(set) var pendingUpdates: [UUID: DispatchWorkItem] = [:]
 
     public func startMonitoring(id: UUID, url: URL, changeHandler: @escaping (UUID, URL) -> Void) {
         let fileDescriptor = open(url.path, O_EVTONLY)

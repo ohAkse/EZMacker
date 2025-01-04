@@ -31,9 +31,9 @@ public protocol AppCoreWLANWifiProvidable: AppWiFiClientProvidable {
 }
 public class AppCoreWLanWifiService: AppCoreWLANWifiProvidable {
     public var wifiClient: CWWiFiClient
-    private (set) var interface: CWInterface?
-    private (set) var wifyKeyChainService: AppWifiKeyChainService
-    private (set) var autoConnectService: AppSmartAutoconnectWifiServiceProvidable
+    private(set) var interface: CWInterface?
+    private(set) var wifyKeyChainService: AppWifiKeyChainService
+    private(set) var autoConnectService: AppSmartAutoconnectWifiServiceProvidable
     private let wifiEventSubject = PassthroughSubject<AppWifiEventType, Never>()
     public var wifiEventPublisher: AnyPublisher<AppWifiEventType, Never> {
         return wifiEventSubject.eraseToAnyPublisher()

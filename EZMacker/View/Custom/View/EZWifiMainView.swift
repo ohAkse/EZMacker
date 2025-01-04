@@ -19,11 +19,11 @@ struct EZWifiMainView: View {
     @State private var isShowingPasswordModal = false
     @State private var toast: ToastData?
     @State private var selectedSSid: String = ""
-    private (set) var appSmartAutoconnectWifiService: AppSmartAutoconnectWifiServiceProvidable
-    private (set) var onRefresh: () -> Void
-    private (set) var onWifiTap: (String, String) -> Void
-    private (set) var onFindBestWifi: () -> Void
-    private (set) var onMoreInfo: () -> Void
+    private(set) var appSmartAutoconnectWifiService: AppSmartAutoconnectWifiServiceProvidable
+    private(set) var onRefresh: () -> Void
+    private(set) var onWifiTap: (String, String) -> Void
+    private(set) var onFindBestWifi: () -> Void
+    private(set) var onMoreInfo: () -> Void
     
     init(appSmartAutoconnectWifiService: AppSmartAutoconnectWifiServiceProvidable,
          ssid: Binding<String> = .constant(""),
