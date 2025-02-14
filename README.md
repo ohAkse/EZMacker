@@ -20,6 +20,9 @@ MacOS가 제공하는 강력한 기능들이 있음에도 불구하고, Windows 
 - 🔧 MacOS 기능의 확장 및 개선 </br>
 
 
+### ⚠️  시스템 요구사항
+>MacBook Sonoma OS(14) 이상
+
 ## 2️⃣ 개발 환경
 ### 📚 사용 라이브러리
 <div style="display: flex;">
@@ -39,17 +42,21 @@ MacOS가 제공하는 강력한 기능들이 있음에도 불구하고, Windows 
 - OpenCV 버전 확인 </br>
 >brew list opencv --versions</br>
 
-- 설치 된 Opencv 버전이 다를 경우 설정방법
-1) App 프로젝트 네비게이션 > Build Setting > Header Search Paths/Library Search Paths에 설정 된 경로중 버전 폴더 이름을 설치된 해당 버전으로 경로 변경
-2) 라이브러리 파일 재설정: 경로: App > Build Phase > 아래 파일 3가지를 다시 등록</br>
-**libopencv_imgcodes.a**</br>
-**libopencv_imgproc.a**</br>
-**libopencv_core.a**</br>
+- 설치된 OpenCV 경로 확인 </br>
+>brew --prefix opencv</br>
 
-⚠️ 위 파일들은 opencv 버전 폴더의 lib 폴더애서 찾을 수 있습니다.</br>
 
-- 시스템 요구사항
->MacBook Sonoma OS(14) 이상
+
+### OpenCV 프로젝트 설정 방법
+1) App
+   - Library Search Path: 설치된 Opencv Lib 폴더로 지정
+   - Link Binarary with link: 설치된 Opencv Lib 폴더의 **아래파일**들을 등록
+     - libopencv_imgcodes.a
+     - libopencv_imgproc.a
+     - libopencv_core.a
+
+2) EZMackerUtilLib: 설치된 Opencv include폴더 경로로 지정
+
 
 ## 3️⃣개발일정
 <p align="center">
