@@ -3086,10 +3086,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/opencv/4.10.0_19/include/opencv4,
-					"$(SRCROOT)/EZMackerImageLib/EZMackerImageLib/Enum",
-				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/EZMackerImageLib/EZMackerImageLib/Enum";
 				INFOPLIST_FILE = EZMacker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EZMacker;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -3141,10 +3138,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/opencv/4.10.0_19/include/opencv4,
-					"$(SRCROOT)/EZMackerImageLib/EZMackerImageLib/Enum",
-				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/EZMackerImageLib/EZMackerImageLib/Enum";
 				INFOPLIST_FILE = EZMacker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EZMacker;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
