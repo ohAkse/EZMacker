@@ -95,6 +95,9 @@
 		5FD6277D2CCCEBDB00412E73 /* ImageRotateProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageRotateProcessor.cpp; sourceTree = "<group>"; };
 		5FD6277E2CCCEBDB00412E73 /* ImageRotateProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ImageRotateProcessor.hpp; sourceTree = "<group>"; };
 		5FD627812CCCF5E400412E73 /* RotateType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotateType.h; sourceTree = "<group>"; };
+		5FEE95FE2D5F709B00BFB1BA /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = ../../../../../opt/homebrew/Cellar/opencv/4.10.0_19/lib/libopencv_imgproc.a; sourceTree = "<group>"; };
+		5FEE95FF2D5F709B00BFB1BA /* libopencv_imgcodecs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgcodecs.a; path = ../../../../../opt/homebrew/Cellar/opencv/4.10.0_19/lib/libopencv_imgcodecs.a; sourceTree = "<group>"; };
+		5FEE96002D5F709B00BFB1BA /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = ../../../../../opt/homebrew/Cellar/opencv/4.10.0_19/lib/libopencv_core.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,8 +152,11 @@
 		5F3997E52CC7E61300F42344 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FEE96002D5F709B00BFB1BA /* libopencv_core.a */,
+				5FEE95FF2D5F709B00BFB1BA /* libopencv_imgcodecs.a */,
 				5F39986F2CC7FB0600F42344 /* libopencv_imgproc.a */,
 				5F39986D2CC7FA3100F42344 /* libopencv_core.a */,
+				5FEE95FE2D5F709B00BFB1BA /* libopencv_imgproc.a */,
 				5F3998612CC7F7BF00F42344 /* libade.a */,
 				5F3998602CC7F7BF00F42344 /* libittnotify.a */,
 				5F39980A2CC7F1F900F42344 /* libopencv_alphamat.a */,
@@ -381,7 +387,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4;
+				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_19/include/opencv4;
 				LIBRARY_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_11/lib;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -389,14 +395,8 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-I/opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4",
-				);
-				OTHER_LDFLAGS = (
-					"-lstdc++",
-					"-lopencv_core",
-				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "-lstdc++";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = (
 					"-Wno-deprecated-declarations",
@@ -453,21 +453,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4;
+				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_19/include/opencv4;
 				LIBRARY_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_11/lib;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_CFLAGS = "";
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-I/opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4",
-				);
-				OTHER_LDFLAGS = (
-					"-lstdc++",
-					"-lopencv_core",
-				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "-lstdc++";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = (
 					"-Wno-deprecated-declarations",
@@ -487,14 +481,14 @@
 				DEVELOPMENT_TEAM = C9QJLU3JB2;
 				EXECUTABLE_PREFIX = lib;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4;
-				LIBRARY_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_11/lib;
+				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_19/include/opencv4;
+				LIBRARY_SEARCH_PATHS = (
+					/opt/homebrew/Cellar/opencv/4.10.0_11/lib,
+					/opt/homebrew/Cellar/opencv/4.10.0_19/lib,
+				);
 				LINKER_DISPLAYS_MANGLED_NAMES = NO;
 				MACH_O_TYPE = staticlib;
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-I/opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4",
-				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = "-lopencv_core";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -514,14 +508,14 @@
 				DEVELOPMENT_TEAM = C9QJLU3JB2;
 				EXECUTABLE_PREFIX = lib;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4;
-				LIBRARY_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_11/lib;
+				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_19/include/opencv4;
+				LIBRARY_SEARCH_PATHS = (
+					/opt/homebrew/Cellar/opencv/4.10.0_11/lib,
+					/opt/homebrew/Cellar/opencv/4.10.0_19/lib,
+				);
 				LINKER_DISPLAYS_MANGLED_NAMES = NO;
 				MACH_O_TYPE = staticlib;
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-I/opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4",
-				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = "-lopencv_core";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

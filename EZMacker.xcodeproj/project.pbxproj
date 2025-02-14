@@ -58,7 +58,6 @@
 		5F36B2442BE7ACC000E08935 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36B2432BE7ACC000E08935 /* MainContentView.swift */; };
 		5F36C0892C17ECE00031C0E3 /* AlertTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36C0882C17ECE00031C0E3 /* AlertTextFieldView.swift */; };
 		5F3998712CC7FFFB00F42344 /* libEZMackerImageLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F2890B32CA8031B00602B78 /* libEZMackerImageLib.a */; };
-		5F3998742CC8009600F42344 /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F39986B2CC7F99400F42344 /* libopencv_core.a */; };
 		5F3A519A2C71C2D0000B2C2F /* FileManager + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3A51992C71C2D0000B2C2F /* FileManager + Extension.swift */; };
 		5F3CB4582C7052C0007A479D /* BatterySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3CB4572C7052C0007A479D /* BatterySetting.swift */; };
 		5F3CB45A2C7052D3007A479D /* WifiSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3CB4592C7052D3007A479D /* WifiSetting.swift */; };
@@ -127,8 +126,6 @@
 		5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */; };
 		5FCC8B9A2BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */; };
 		5FCDCF842CA409DB00CF8D22 /* SystemTehemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCDCF832CA409DB00CF8D22 /* SystemTehemeService.swift */; };
-		5FD627382CCCA63800412E73 /* libopencv_imgcodecs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD626A42CCCA5AE00412E73 /* libopencv_imgcodecs.a */; };
-		5FD627392CCCA63800412E73 /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD626A82CCCA5AE00412E73 /* libopencv_imgproc.a */; };
 		5FDDCABB2C188152006A528A /* TextFieldRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDCABA2C188152006A528A /* TextFieldRepresentableView.swift */; };
 		5FDDCABD2C188189006A528A /* GifRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDCABC2C188189006A528A /* GifRepresentableView.swift */; };
 		5FDE1EE82C6B0A1E00E67FCE /* EZButtonImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */; };
@@ -152,6 +149,9 @@
 		5FE99EB52C99605300233969 /* SmartGlobalDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE99EB42C99605300233969 /* SmartGlobalDependency.swift */; };
 		5FEE27C82BE9015400847761 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27C72BE9015400847761 /* CategoryView.swift */; };
 		5FEE27CF2BE901D900847761 /* AppToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEE27CE2BE901D900847761 /* AppToolbarView.swift */; };
+		5FEE96172D5F70F300BFB1BA /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FEE96142D5F70F300BFB1BA /* libopencv_core.a */; };
+		5FEE96182D5F70F300BFB1BA /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FEE96152D5F70F300BFB1BA /* libopencv_imgproc.a */; };
+		5FEE96192D5F70F300BFB1BA /* libopencv_imgcodecs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FEE96162D5F70F300BFB1BA /* libopencv_imgcodecs.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,6 +288,9 @@
 		5F3998692CC7F95000F42344 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = ../../../Downloads/libopencv_imgproc.a; sourceTree = "<group>"; };
 		5F39986B2CC7F99400F42344 /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = ../../../Downloads/libopencv_core.a; sourceTree = "<group>"; };
 		5F3A51992C71C2D0000B2C2F /* FileManager + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager + Extension.swift"; sourceTree = "<group>"; };
+		5F3B89222D5CDC1C002CC103 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = ../../Downloads/libopencv_imgproc.a; sourceTree = "<group>"; };
+		5F3B89232D5CDC1C002CC103 /* libopencv_imgcodecs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgcodecs.a; path = ../../Downloads/libopencv_imgcodecs.a; sourceTree = "<group>"; };
+		5F3B89242D5CDC1C002CC103 /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = ../../Downloads/libopencv_core.a; sourceTree = "<group>"; };
 		5F3CB4572C7052C0007A479D /* BatterySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterySetting.swift; sourceTree = "<group>"; };
 		5F3CB4592C7052D3007A479D /* WifiSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiSetting.swift; sourceTree = "<group>"; };
 		5F3CB45B2C7052DE007A479D /* FileLocatorSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLocatorSetting.swift; sourceTree = "<group>"; };
@@ -726,6 +729,9 @@
 		5FE99EB42C99605300233969 /* SmartGlobalDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartGlobalDependency.swift; sourceTree = "<group>"; };
 		5FEE27C72BE9015400847761 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		5FEE27CE2BE901D900847761 /* AppToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppToolbarView.swift; sourceTree = "<group>"; };
+		5FEE96142D5F70F300BFB1BA /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = ../../../../opt/homebrew/Cellar/opencv/4.10.0_19/lib/libopencv_core.a; sourceTree = "<group>"; };
+		5FEE96152D5F70F300BFB1BA /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = ../../../../opt/homebrew/Cellar/opencv/4.10.0_19/lib/libopencv_imgproc.a; sourceTree = "<group>"; };
+		5FEE96162D5F70F300BFB1BA /* libopencv_imgcodecs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgcodecs.a; path = ../../../../opt/homebrew/Cellar/opencv/4.10.0_19/lib/libopencv_imgcodecs.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -733,9 +739,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FD627382CCCA63800412E73 /* libopencv_imgcodecs.a in Frameworks */,
-				5FD627392CCCA63800412E73 /* libopencv_imgproc.a in Frameworks */,
-				5F3998742CC8009600F42344 /* libopencv_core.a in Frameworks */,
+				5FEE96172D5F70F300BFB1BA /* libopencv_core.a in Frameworks */,
+				5FEE96182D5F70F300BFB1BA /* libopencv_imgproc.a in Frameworks */,
+				5FEE96192D5F70F300BFB1BA /* libopencv_imgcodecs.a in Frameworks */,
 				5F3998712CC7FFFB00F42344 /* libEZMackerImageLib.a in Frameworks */,
 				5FE62F2F2C843DB000658155 /* libEZMackerUtilLib.a in Frameworks */,
 				5FE62F852C844F1900658155 /* libEZMackerServiceLib.a in Frameworks */,
@@ -2405,6 +2411,12 @@
 		5FE62F2E2C843DB000658155 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F3B89242D5CDC1C002CC103 /* libopencv_core.a */,
+				5F3B89232D5CDC1C002CC103 /* libopencv_imgcodecs.a */,
+				5FEE96162D5F70F300BFB1BA /* libopencv_imgcodecs.a */,
+				5F3B89222D5CDC1C002CC103 /* libopencv_imgproc.a */,
+				5FEE96142D5F70F300BFB1BA /* libopencv_core.a */,
+				5FEE96152D5F70F300BFB1BA /* libopencv_imgproc.a */,
 				5FD627362CCCA5AE00412E73 /* lib */,
 				5F39986B2CC7F99400F42344 /* libopencv_core.a */,
 				5F3998692CC7F95000F42344 /* libopencv_imgproc.a */,
@@ -2972,7 +2984,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4;
+				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_19/include/opencv4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -3038,7 +3050,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4;
+				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/opencv/4.10.0_19/include/opencv4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -3075,7 +3087,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4,
+					/opt/homebrew/Cellar/opencv/4.10.0_19/include/opencv4,
 					"$(SRCROOT)/EZMackerImageLib/EZMackerImageLib/Enum",
 				);
 				INFOPLIST_FILE = EZMacker/Info.plist;
@@ -3090,7 +3102,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/opt/homebrew/Cellar/opencv/4.10.0_11/lib,
+					/opt/homebrew/Cellar/opencv/4.10.0_19/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
@@ -3130,7 +3142,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/opencv/4.10.0_11/include/opencv4,
+					/opt/homebrew/Cellar/opencv/4.10.0_19/include/opencv4,
 					"$(SRCROOT)/EZMackerImageLib/EZMackerImageLib/Enum",
 				);
 				INFOPLIST_FILE = EZMacker/Info.plist;
@@ -3145,7 +3157,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/opt/homebrew/Cellar/opencv/4.10.0_11/lib,
+					/opt/homebrew/Cellar/opencv/4.10.0_19/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
