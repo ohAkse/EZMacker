@@ -21,7 +21,7 @@ MacOS가 제공하는 강력한 기능들이 있음에도 불구하고, Windows 
 
 
 ### ⚠️  시스템 요구사항
->MacBook Sonoma OS(14) 이상
+>MacOS Sonoma OS(14) 이상
 
 ## 2️⃣ 개발 환경
 ### 📚 사용 라이브러리
