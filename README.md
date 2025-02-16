@@ -30,7 +30,7 @@ MacOS가 제공하는 강력한 기능들이 있음에도 불구하고, Windows 
     <img src="https://img.shields.io/badge/MacOS(14.0)-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
     <img src="https://img.shields.io/badge/SwiftLint-39477F?style=for-the-badge&logo=Realm&logoColor=white">
     <img src="https://img.shields.io/badge/SwiftUI-147EFB?style=for-the-badge&logo=Xcode&logoColor=white">
-    <img src="https://img.shields.io/badge/OpenCV(4.10.0__11)-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white">
+    <img src="https://img.shields.io/badge/OpenCV(4.10.0_19)-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white">
     <img src="https://img.shields.io/badge/Appkit-147EFB?style=for-the-badge&logo=Xcode&logoColor=white">
 </div>
   <br>
