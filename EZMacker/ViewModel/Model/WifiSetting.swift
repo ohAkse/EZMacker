@@ -6,9 +6,11 @@
 //
 
 protocol WifiSettingConfigurable {
-    var selectedBestSSIDOption: BestSSIDShowType { get set }
+    var selectedSSIDShowOption: SSIDShowType { get set }
+    var ssidFindTimer: String { get set }
 }
 
 struct WifiSetting: WifiSettingConfigurable {
-    var selectedBestSSIDOption: BestSSIDShowType = .alert
+    var selectedSSIDShowOption: SSIDShowType = .alert
+    var ssidFindTimer: String = "5"
 }

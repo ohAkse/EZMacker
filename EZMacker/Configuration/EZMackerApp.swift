@@ -10,6 +10,7 @@ import SwiftUI
 import UserNotifications
 import EZMackerUtilLib
 import SwiftData
+import Network
 
 @main
 struct EZMackerApp: App {
@@ -30,13 +31,16 @@ struct EZMackerApp: App {
         let container = configDependencyContainer(with: modelContainer)
         return (container, modelContainer)
     }
-    
     private static func configModelContainer() -> ModelContainer {
         let schema = Schema([AppSettings.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         do {
+            
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
+            // MARK: 현재는 SwiftData 마이그레이션 방법이 있는데 처리는 나중에 하기로하고 일단 스토리지지우고 리셋하는방식으로..
+            // print(URL.applicationSupportDirectory.appendingPathComponent("default.store"))
+            // try? FileManager.default.removeItem(at: URL.applicationSupportDirectory.appendingPathComponent("default.store"))
             Logger.fatalErrorMessage("Could not create ModelContainer: \(error)")
             fatalError("Could not create ModelContainer: \(error)")
         }

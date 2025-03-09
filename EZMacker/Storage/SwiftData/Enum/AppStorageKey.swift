@@ -10,9 +10,10 @@ import Foundation
 enum AppStorageKey: String, Hashable {
     case colorSchemeType
     case isBatteryChargingErrorMode
-    case isBatteryCurrentMessageMode
+    case isBatteryFullCapacityAlarmeMode
     case batteryPercentage
-    case bestSSIDShowType
+    case ssidShowType
+    case ssidFindTimer
     case cpuUsageExitType
     case fileLocatorData
     case isFileChangeAlarmDisabled
@@ -23,10 +24,12 @@ enum AppStorageKey: String, Hashable {
             return "colorSchemeType"
         case .isBatteryChargingErrorMode:
             return "isBatteryWarningMode"
-        case .isBatteryCurrentMessageMode:
-            return "isBattryCurrentMessageMode"
-        case .bestSSIDShowType:
-            return "bestSSIDShowType"
+        case .isBatteryFullCapacityAlarmeMode:
+            return "isBatteryFullCapacityAlarmeMode"
+        case .ssidShowType:
+            return "ssidShowType"
+        case .ssidFindTimer:
+            return "ssidFindTimer"
         case .batteryPercentage:
             return "batteryPercentage"
         case .cpuUsageExitType:
@@ -44,10 +47,12 @@ enum AppStorageKey: String, Hashable {
             return "Light"
         case .isBatteryChargingErrorMode:
             return false
-        case .isBatteryCurrentMessageMode:
+        case .isBatteryFullCapacityAlarmeMode:
             return false
-        case .bestSSIDShowType:
+        case .ssidShowType:
             return "alert"
+        case .ssidFindTimer:
+            return "0"
         case .batteryPercentage:
             return "0"
         case .cpuUsageExitType:

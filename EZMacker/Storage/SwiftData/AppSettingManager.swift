@@ -37,14 +37,16 @@ class AppSettingsManager: AppSettingProvidable {
         switch key {
         case .isBatteryChargingErrorMode:
             settings.batteryConfiguration.isWarningMode = value as? Bool ?? false
-        case .isBatteryCurrentMessageMode:
+        case .isBatteryFullCapacityAlarmeMode:
             settings.batteryConfiguration.isCurrentMessageMode = value as? Bool ?? false
         case .batteryPercentage:
             settings.batteryConfiguration.percentage = value as? String ?? "0"
         case .cpuUsageExitType:
             settings.batteryConfiguration.cpuUsageExitType = value as? String ?? CPUUsageExitType.unused.typeName
-        case .bestSSIDShowType:
-            settings.wifiConfiguration.ssidShowType = value as? String ?? BestSSIDShowType.alert.typeName
+        case .ssidShowType:
+            settings.wifiConfiguration.ssidShowType = value as? String ?? SSIDShowType.alert.typeName
+        case .ssidFindTimer:
+            settings.wifiConfiguration.ssidFindTimer = value as? String ?? "0"
         case .fileLocatorData:
             settings.fileLocatorConfiguration.locatorData = value as? Data ?? Data()
         case .isFileChangeAlarmDisabled:
@@ -56,6 +58,7 @@ class AppSettingsManager: AppSettingProvidable {
         do {
             try context.save()
         } catch {
+            context.rollback()
             Logger.writeLog(.fatal, message: "Failed to save settings: \(error)")
         }
     }
@@ -63,23 +66,45 @@ class AppSettingsManager: AppSettingProvidable {
     func loadConfig<T>(_ key: AppStorageKey) -> T? {
         let settings = getOrCreateSettings()
         
+        // 타입에 따른 적절한 기본값 처리
         switch key {
         case .isBatteryChargingErrorMode:
-            return settings.batteryConfiguration.isWarningMode as? T
-        case .isBatteryCurrentMessageMode:
-            return settings.batteryConfiguration.isCurrentMessageMode as? T
+            if T.self == Bool.self {
+                return settings.batteryConfiguration.isWarningMode as? T
+            }
+        case .isBatteryFullCapacityAlarmeMode:
+            if T.self == Bool.self {
+                return settings.batteryConfiguration.isCurrentMessageMode as? T
+            }
         case .batteryPercentage:
-            return settings.batteryConfiguration.percentage as? T
+            if T.self == String.self {
+                return settings.batteryConfiguration.percentage as? T
+            }
         case .cpuUsageExitType:
-            return settings.batteryConfiguration.cpuUsageExitType as? T
-        case .bestSSIDShowType:
-            return settings.wifiConfiguration.ssidShowType as? T
+            if T.self == String.self {
+                return settings.batteryConfiguration.cpuUsageExitType as? T
+            }
+        case .ssidShowType:
+            if T.self == String.self {
+                return settings.wifiConfiguration.ssidShowType as? T
+            }
+        case .ssidFindTimer:
+            if T.self == String.self {
+                return settings.wifiConfiguration.ssidFindTimer as? T
+            }
         case .fileLocatorData:
-            return settings.fileLocatorConfiguration.locatorData as? T
+            if T.self == Data.self {
+                return settings.fileLocatorConfiguration.locatorData as? T
+            }
         case .isFileChangeAlarmDisabled:
-            return settings.fileLocatorConfiguration.isChangeAlarmDisabled as? T
+            if T.self == Bool.self {
+                return settings.fileLocatorConfiguration.isChangeAlarmDisabled as? T
+            }
         case .colorSchemeType:
-            return settings.systemPreferenceConfiguration.colorScheme as? T
+            if T.self == Int.self {
+                return settings.systemPreferenceConfiguration.colorScheme as? T
+            }
         }
+        return nil
     }
 }

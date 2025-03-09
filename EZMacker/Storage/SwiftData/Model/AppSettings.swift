@@ -49,9 +49,13 @@ struct BatteryConfiguration: Codable {
 
 struct WifiConfiguration: Codable {
     var ssidShowType: String
+    var ssidFindTimer: String
     
-    init(ssidShowType: String = BestSSIDShowType.alert.typeName) {
+    init(ssidShowType: String = SSIDShowType.alert.typeName,
+         ssidFindTimer: String = "5"
+    ) {
         self.ssidShowType = ssidShowType
+        self.ssidFindTimer = ssidFindTimer
     }
 }
 

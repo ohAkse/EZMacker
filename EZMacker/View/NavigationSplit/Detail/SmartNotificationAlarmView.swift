@@ -41,6 +41,7 @@ struct SmartNotificationAlarmView: View {
             }
             .pickerStyle(MenuPickerStyle())
             .padding()
+            
             .ezInnerBackgroundStyle()
             
             VStack(alignment: .leading, spacing: baseSpacing) {
@@ -78,11 +79,19 @@ struct SmartNotificationAlarmView: View {
                 .ezNormalTextStyle(fontSize: FontSizeType.medium.size, isBold: true)
                 .padding(.top, 10)
             HStack {
-                Picker("최적의 와이파이 발견 시 알림으로 표시하기", selection: $smartNotificationAlarmViewModel.wifiSetting.selectedBestSSIDOption) {
-                    ForEach(BestSSIDShowType.allCases, id: \.self) { option in
+                Picker("최적의 와이파이 발견 시 알림으로 표시하기", selection: $smartNotificationAlarmViewModel.wifiSetting.selectedSSIDShowOption) {
+                    ForEach(SSIDShowType.allCases, id: \.self) { option in
                         Text(option.rawValue).tag(option)
                     }
                 }
+            }
+            .padding()
+            .ezInnerBackgroundStyle()
+            
+            HStack {
+                Text("최적/최악의 Wifi 시간 설정")
+                TextFieldRepresentableView(text: $smartNotificationAlarmViewModel.wifiSetting.ssidFindTimer)
+                    .ezTextFieldWrapperStyle() // 디폴트 스타일 비슷하게 따라함(통일성)
             }
             .padding()
             .ezInnerBackgroundStyle()

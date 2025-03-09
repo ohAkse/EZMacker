@@ -15,7 +15,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
     @StateObject private var smartWifiViewModel: SmartWifiViewModel<AppSmartWifiService>
     @State private var toast: ToastData?
     @State private var isRefreshing = false
-    @State private var isFindingBestWifi = false
+    @State private var isFindingWifi = false
     @State private var isMoreInfo = false
     @State private var rotationDegrees: Double = 0
     @State private var navigationPath: [NavigationPathDestination] = []
@@ -66,9 +66,9 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
             .sheet(isPresented: $smartWifiViewModel.showAlert) {
                 AlertOKCancleView(
                     isPresented: $smartWifiViewModel.showAlert,
-                    title: "최적의 와이파이",
+                    title: smartWifiViewModel.wifiSearchResult.titleText,
                     subtitle: "결과",
-                    content: smartWifiViewModel.bestSSid
+                    content: smartWifiViewModel.foundSSid
                 )
             }
             .navigationTitle(CategoryType.smartWifi.title)
@@ -121,7 +121,7 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                             ssid: $smartWifiViewModel.wificonnectData.connectedSSid,
                             wifiLists: $smartWifiViewModel.wificonnectData.scanningWifiList,
                             isRefreshing: $isRefreshing,
-                            isFindingBestWifi: $isFindingBestWifi,
+                            isFindingWifi: $isFindingWifi,
                             onRefresh: {
                                 Task {
                                     isRefreshing = true
@@ -139,9 +139,15 @@ struct SmartWifiView<ProvidableType>: View where ProvidableType: AppSmartWifiSer
                                 }
                             },
                             onFindBestWifi: {
-                                isFindingBestWifi = true
-                                smartWifiViewModel.startSearchBestSSid {
-                                    isFindingBestWifi = false
+                                isFindingWifi = true
+                                smartWifiViewModel.findSSIDByPerformance(isBestCase: true) {
+                                    isFindingWifi = false
+                                }
+                            },
+                            onFindWorstWifi: {
+                                isFindingWifi = true
+                                smartWifiViewModel.findSSIDByPerformance(isBestCase: false) {
+                                    isFindingWifi = false
                                 }
                             },
                             onMoreInfo: {
