@@ -27,7 +27,7 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
     private let appSettingService: AppSettingProvidable
     private let appProcessService: AppSmartProcessProvidable
     // MARK: - Flag Variables
-    private(set) var isBatteryCapacityAlarmMode = false
+    private(set) var isBatteryFullCapacityAlarmMode = false
     private(set) var isBatteryChargingErrorAlarmMode = false
     private(set) var isOverFullcpuUsageExitMode = false
     private(set) var isSentChargingErrorAlarm = false
@@ -45,7 +45,6 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
         self.appSettingService = appSettingService
         self.appProcessService = appProcessService
         self.systemPreferenceService = systemPreferenceService
-        
         checkSettingConfig()
         fetchBatteryBasicExtraSpec()
         fetchBatteryBasicSpec()
@@ -225,9 +224,9 @@ extension SmartBatteryViewModel {
                 isBatteryChargingErrorAlarmMode = true
             }
         }
-        if let isBattryCurrentMessageMode: Bool = appSettingService.loadConfig(.isBatteryCurrentMessageMode) {
+        if let isBattryCurrentMessageMode: Bool = appSettingService.loadConfig(.isBatteryFullCapacityAlarmeMode) {
             if isBattryCurrentMessageMode {
-                isBatteryCapacityAlarmMode = true
+                isBatteryFullCapacityAlarmMode = true
             }
         }
         
@@ -246,7 +245,7 @@ extension SmartBatteryViewModel {
         }
     }
     func needToBatteryCapacityAlarm() {
-        if isBatteryCapacityAlarmMode && !isSentCapacityAlarm {
+        if isBatteryFullCapacityAlarmMode && !isSentCapacityAlarm {
             if let batteryPercentage: String = appSettingService.loadConfig(.batteryPercentage) {
                 let batteryDobulePercentage = (Double(batteryPercentage) ?? 0) / 100
                 if batteryDobulePercentage <= batteryMatricsData.currentBatteryCapacity {

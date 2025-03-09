@@ -292,7 +292,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					5F28909D2CA8030F00602B78 = {
 						CreatedOnToolsVersion = 15.4;
@@ -369,6 +369,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -441,6 +442,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -463,6 +465,7 @@
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = "-lstdc++";
 				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				WARNING_CFLAGS = (
 					"-Wno-deprecated-declarations",
 					"-Wno-deprecated-enum-enum-conversion",
@@ -478,6 +481,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = C9QJLU3JB2;
 				EXECUTABLE_PREFIX = lib;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -505,6 +509,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = C9QJLU3JB2;
 				EXECUTABLE_PREFIX = lib;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;

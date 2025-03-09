@@ -25,7 +25,7 @@
 		5F0DAC3E2C9544A100BB3488 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC3D2C9544A100BB3488 /* AppSettings.swift */; };
 		5F0DAC402C9544F500BB3488 /* AppSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC3F2C9544F500BB3488 /* AppSettingManager.swift */; };
 		5F0DAC432C95453800BB3488 /* AppStorageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC422C95453800BB3488 /* AppStorageKey.swift */; };
-		5F0DAC4F2C954F3000BB3488 /* BestSSIDShowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC4E2C954F3000BB3488 /* BestSSIDShowType.swift */; };
+		5F0DAC4F2C954F3000BB3488 /* SSIDShowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC4E2C954F3000BB3488 /* SSIDShowType.swift */; };
 		5F0DAC512C954F8100BB3488 /* CPUUsageExitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DAC502C954F8100BB3488 /* CPUUsageExitType.swift */; };
 		5F0DAC992C957B0E00BB3488 /* libEZMackerThreadLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0DAC962C957AE800BB3488 /* libEZMackerThreadLib.a */; };
 		5F0F96732C6B67B800A70564 /* EZTextFieldWrapperStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0F96722C6B67B800A70564 /* EZTextFieldWrapperStyle.swift */; };
@@ -126,6 +126,7 @@
 		5FCC8B982BF2344400BCCFF3 /* SmartNotificationAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */; };
 		5FCC8B9A2BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */; };
 		5FCDCF842CA409DB00CF8D22 /* SystemTehemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCDCF832CA409DB00CF8D22 /* SystemTehemeService.swift */; };
+		5FD230482D7D3917001CBE46 /* WifiSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD230472D7D3913001CBE46 /* WifiSearchResult.swift */; };
 		5FDDCABB2C188152006A528A /* TextFieldRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDCABA2C188152006A528A /* TextFieldRepresentableView.swift */; };
 		5FDDCABD2C188189006A528A /* GifRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDCABC2C188189006A528A /* GifRepresentableView.swift */; };
 		5FDE1EE82C6B0A1E00E67FCE /* EZButtonImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE1EE72C6B0A1E00E67FCE /* EZButtonImageStyle.swift */; };
@@ -246,7 +247,7 @@
 		5F0DAC3D2C9544A100BB3488 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		5F0DAC3F2C9544F500BB3488 /* AppSettingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingManager.swift; sourceTree = "<group>"; };
 		5F0DAC422C95453800BB3488 /* AppStorageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageKey.swift; sourceTree = "<group>"; };
-		5F0DAC4E2C954F3000BB3488 /* BestSSIDShowType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSSIDShowType.swift; sourceTree = "<group>"; };
+		5F0DAC4E2C954F3000BB3488 /* SSIDShowType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSIDShowType.swift; sourceTree = "<group>"; };
 		5F0DAC502C954F8100BB3488 /* CPUUsageExitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUUsageExitType.swift; sourceTree = "<group>"; };
 		5F0DAC8F2C957AE800BB3488 /* EZMackerThreadLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = EZMackerThreadLib.xcodeproj; sourceTree = "<group>"; };
 		5F0F96722C6B67B800A70564 /* EZTextFieldWrapperStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZTextFieldWrapperStyle.swift; sourceTree = "<group>"; };
@@ -359,6 +360,7 @@
 		5FCC8B972BF2344400BCCFF3 /* SmartNotificationAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartNotificationAlarmView.swift; sourceTree = "<group>"; };
 		5FCC8B992BF2345300BCCFF3 /* SmartNotificationAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartNotificationAlarmViewModel.swift; sourceTree = "<group>"; };
 		5FCDCF832CA409DB00CF8D22 /* SystemTehemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemTehemeService.swift; sourceTree = "<group>"; };
+		5FD230472D7D3913001CBE46 /* WifiSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiSearchResult.swift; sourceTree = "<group>"; };
 		5FD625752CCCA5AE00412E73 /* OpenCVConfig-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "OpenCVConfig-version.cmake"; sourceTree = "<group>"; };
 		5FD625762CCCA5AE00412E73 /* OpenCVConfig.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = OpenCVConfig.cmake; sourceTree = "<group>"; };
 		5FD625772CCCA5AE00412E73 /* OpenCVModules-release.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "OpenCVModules-release.cmake"; sourceTree = "<group>"; };
@@ -806,7 +808,7 @@
 			isa = PBXGroup;
 			children = (
 				5F0DAC422C95453800BB3488 /* AppStorageKey.swift */,
-				5F0DAC4E2C954F3000BB3488 /* BestSSIDShowType.swift */,
+				5F0DAC4E2C954F3000BB3488 /* SSIDShowType.swift */,
 				5F0DAC502C954F8100BB3488 /* CPUUsageExitType.swift */,
 			);
 			path = Enum;
@@ -1085,6 +1087,7 @@
 		5F69D28C2C0DECA300F318ED /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				5FD230472D7D3913001CBE46 /* WifiSearchResult.swift */,
 				5F69D28F2C0DECE900F318ED /* AdapterConnect.swift */,
 				5FC1BDBB2CB15B3300D549BF /* ImageDisplayMode.swift */,
 				5F0755C92CC3D453000B915D /* SaveImageResult.swift */,
@@ -2604,7 +2607,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					5F36B2122BE7AB3000E08935 = {
 						CreatedOnToolsVersion = 15.2;
@@ -2794,6 +2797,7 @@
 				5F3FF03F2C03392000E3246C /* AppAlertManager.swift in Sources */,
 				5FE99EAB2C995F0C00233969 /* SystemServiceKey.swift in Sources */,
 				5F3604162C38214A00C1B84B /* SmartFileLocatorViewModel.swift in Sources */,
+				5FD230482D7D3917001CBE46 /* WifiSearchResult.swift in Sources */,
 				5F4589992C0C56FA008FCD41 /* EZWifiChannelView.swift in Sources */,
 				5F3FF0322C02C6AE00E3246C /* EZBatteryBarView.swift in Sources */,
 				5FE99E772C993EE100233969 /* SmartFileLocatorDependency.swift in Sources */,
@@ -2840,7 +2844,7 @@
 				5F0755922CC3888D000B915D /* Color + Extension.swift in Sources */,
 				5FDDCABB2C188152006A528A /* TextFieldRepresentableView.swift in Sources */,
 				5FE99EA92C995EF800233969 /* SettingsKey.swift in Sources */,
-				5F0DAC4F2C954F3000BB3488 /* BestSSIDShowType.swift in Sources */,
+				5F0DAC4F2C954F3000BB3488 /* SSIDShowType.swift in Sources */,
 				5F2890492CA7E28A00602B78 /* SmartImageTunerDependency.swift in Sources */,
 				5F0DAC402C9544F500BB3488 /* AppSettingManager.swift in Sources */,
 				5FE99E6F2C993BA100233969 /* ViewModelFactory.swift in Sources */,
@@ -3174,7 +3178,6 @@
 		5F36B23C2BE7AB3100E08935 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -3193,7 +3196,6 @@
 		5F36B23D2BE7AB3100E08935 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -3212,7 +3214,6 @@
 		5F36B23F2BE7AB3100E08935 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -3230,7 +3231,6 @@
 		5F36B2402BE7AB3100E08935 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
