@@ -31,7 +31,6 @@ class SmartNotificationAlarmViewModel: ObservableObject {
         self.batterySetting = batterySetting
         self.wifiSetting = wifiSetting
         self.fileLocatorSetting = fileLocatorSetting
-        Logger.writeLog(.debug, message: "ee")
     }
     
     // MARK: - Configuration

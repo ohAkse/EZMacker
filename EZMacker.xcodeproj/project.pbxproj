@@ -3094,9 +3094,12 @@
 				INFOPLIST_FILE = EZMacker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EZMacker;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSDesktopFolderUsageDescription = "권한이 필요합니다";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "권한이 필요합니다";
+				INFOPLIST_KEY_NSDownloadsFolderUsageDescription = "권한이 필요합니다";
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "권한이 필요합니다";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSLocationUsageDescription = "와이파이 접근권한이 필요합니다.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "와이파이 접근권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "와이파이 목록을 얻기 위해선 권한이 핑요합니다";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -3146,9 +3149,12 @@
 				INFOPLIST_FILE = EZMacker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EZMacker;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSDesktopFolderUsageDescription = "권한이 필요합니다";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "권한이 필요합니다";
+				INFOPLIST_KEY_NSDownloadsFolderUsageDescription = "권한이 필요합니다";
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "권한이 필요합니다";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSLocationUsageDescription = "와이파이 접근권한이 필요합니다.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "와이파이 접근권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "와이파이 목록을 얻기 위해선 권한이 핑요합니다";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

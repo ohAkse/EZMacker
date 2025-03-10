@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>NSDesktopFolderUsageDescription</key>
-	<string>권한이 필요합니다</string>
-	<key>NSDocumentsFolderUsageDescription</key>
-	<string>권한이 필요합니다</string>
-	<key>NSDownloadsFolderUsageDescription</key>
-	<string>권한이 필요합니다</string>
-	<key>NSFileProviderDomainUsageDescription</key>
-	<string>권한이 필요합니다</string>
-</dict>
+<dict/>
 </plist>
