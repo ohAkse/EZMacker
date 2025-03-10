@@ -10,19 +10,18 @@ import SwiftUI
 import UserNotifications
 import EZMackerUtilLib
 import SwiftData
-
+import Network
+import CoreLocation
 @main
 struct EZMackerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var systemThemeService: SystemThemeService
-    let modelContainer: ModelContainer
-    let viewModelFactory: ViewModelFactory
-    
+    private let modelContainer: ModelContainer
+    private let viewModelFactory: ViewModelFactory
     init() {
         let (container, modelContainer) = Self.configEnvironment()
         self.modelContainer = modelContainer
         self.viewModelFactory = ViewModelFactory(container: container)
-        
          _systemThemeService = StateObject(wrappedValue: SystemThemeService())
     }
     private static func configEnvironment() -> (DependencyContainer, ModelContainer) {
@@ -30,13 +29,16 @@ struct EZMackerApp: App {
         let container = configDependencyContainer(with: modelContainer)
         return (container, modelContainer)
     }
-    
     private static func configModelContainer() -> ModelContainer {
         let schema = Schema([AppSettings.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         do {
+            
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
+            // MARK: 현재는 SwiftData 마이그레이션 방법이 있는데 처리는 나중에 하기로하고 일단 스토리지지우고 리셋하는방식으로..
+            // print(URL.applicationSupportDirectory.appendingPathComponent("default.store"))
+            // try? FileManager.default.removeItem(at: URL.applicationSupportDirectory.appendingPathComponent("default.store"))
             Logger.fatalErrorMessage("Could not create ModelContainer: \(error)")
             fatalError("Could not create ModelContainer: \(error)")
         }
@@ -77,11 +79,12 @@ struct EZMackerApp: App {
         .windowResizability(.contentSize)
     }
 }
-class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, UNUserNotificationCenterDelegate, CLLocationManagerDelegate {
     private(set) weak var window: NSWindow?
     private(set) var originalFrame: NSRect?
-    var alertManager = AppAlertManager.shared
-    let systemConfigService = SystemPreferenceService()
+    private var alertManager = AppAlertManager.shared
+    private let systemConfigService = SystemPreferenceService()
+    private var locationManager: CLLocationManager?
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.regular)
@@ -89,6 +92,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDe
         window = NSApp.windows.first
         window?.delegate = self
         requestNotificationAuthorization()
+        requestLocationServices()
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
             guard let _ = self else {
                 return nil
@@ -99,7 +103,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject, NSWindowDe
             return event
         }
     }
-    
+    private func requestLocationServices() {
+        if #available(macOS 15.0, *) {
+            locationManager = CLLocationManager()
+            locationManager?.delegate = self
+            locationManager?.requestWhenInUseAuthorization()
+        }
+    }
     private func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.banner, .list, .sound])
     }

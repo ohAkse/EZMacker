@@ -8,7 +8,7 @@
 import Foundation
 import EZMackerUtilLib
 
-enum BestSSIDShowType: String, CaseIterable, Reflectable {
+enum SSIDShowType: String, CaseIterable, Reflectable {
     case alert = "메세지 박스 형태로 보이기"
     case notification = "알림메시지 형태로 보이기"
     

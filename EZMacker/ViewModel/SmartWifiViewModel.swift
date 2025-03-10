@@ -35,13 +35,14 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
     @Published var radioChannelData: RadioChannelData = .init() // ioreg
     @Published var wificonnectData: WifiConnectData = .init() // CoreWLan
     @Published var wifiRequestStatus: AppCoreWLanStatus = .none
-    @Published var bestSSid = ""
+    @Published var wifiSearchResult: WiFiSearchResult = .init(isBestCase: false)
+    @Published var foundSSid = ""
     @Published var showAlert = false
     @Published var isConnected = false
     
     // MARK: - Service Variable
     private let scanQueue = DispatchQueueFactory.createQueue(for: WifiScanQueueConfiguration(), withPov: false)
-    private let timerMax = 10
+    // private let timerMax = 10
     private(set) var cancellables = Set<AnyCancellable>()
     private(set) var rrsiTimerCancellable: AnyCancellable?
     private(set) var searchTimerCancellable: AnyCancellable?
@@ -95,8 +96,8 @@ class SmartWifiViewModel<ProvidableType: AppSmartWifiServiceProvidable>: Observa
   
     func fetchWifiListInfo() {
         appCoreWLanWifiService.getMbpsRate()
-            .subscribe(on: DispatchQueue.global(qos: .background))  // 백그라운드에서 실행
-            .receive(on: DispatchQueue.main)  // 메인 스레드에서 결과 수신 및 업데이트
+            .subscribe(on: DispatchQueue.global(qos: .background))
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.isConnected = false
@@ -219,17 +220,25 @@ extension SmartWifiViewModel {
             .store(in: &cancellables)
     }
     
-    func startSearchBestSSid(completion: @escaping () -> Void) {
-         guard let bestSSidMode: String = appStorageSettingService.loadConfig(.bestSSIDShowType) else {
-             completion()
-             return
-         }
-         let resultShowMode = BestSSIDShowType(rawValue: bestSSidMode)
+    func findSSIDByPerformance(isBestCase: DarwinBoolean, completion: @escaping () -> Void) {
+        
+        guard let ssidShowType: String = appStorageSettingService.loadConfig(.ssidShowType) else {
+            completion()
+            Logger.fatalErrorMessage("can't ssidShowType")
+            return
+        }
+        let ssidResultType = SSIDShowType(rawValue: ssidShowType) ?? .alert
+        
+        guard let findSSidTime: String = appStorageSettingService.loadConfig(.ssidFindTimer) else {
+            completion()
+            Logger.fatalErrorMessage("can't find findSSidTime")
+            return
+        }
          var wifirssiList: [String: Set<Int>] = [:]
          
          let searchTimerPublisher = Timer.publish(every: 1, on: RunLoop.main, in: .common)
              .autoconnect()
-             .prefix(timerMax)
+             .prefix(Int(findSSidTime)!)
          
          searchTimerCancellable = searchTimerPublisher
              .flatMap { [weak self] _ -> AnyPublisher<[ScaningWifiData], Never> in
@@ -237,7 +246,7 @@ extension SmartWifiViewModel {
                  
                  return Future<[ScaningWifiData], Never> { [weak self] promise in
                      guard let self = self else { return }
-                     self.scanQueue.async {
+                     scanQueue.async {
                          self.appCoreWLanWifiService.getWifiLists(attempts: 1)
                              .catch { error -> AnyPublisher<[ScaningWifiData], Never> in
                                  Logger.writeLog(.error, message: "\(error.localizedDescription)")
@@ -253,28 +262,39 @@ extension SmartWifiViewModel {
                      }
                  }.eraseToAnyPublisher()
              }
+             .receive(on: DispatchQueue.main)
              .sink(
                  receiveCompletion: { [weak self] _ in
                      guard let self = self else { return }
-                     DispatchQueue.main.async {
-                         let bestSSid = wifirssiList
+                         let comparator: (Dictionary<String, Int>.Element, Dictionary<String, Int>.Element) -> Bool = isBestCase.boolValue
+                             ? { $0.value < $1.value } // isBestCase
+                             : { $0.value > $1.value }
+
+                         let ssid = wifirssiList
                              .mapValues { rssiSet in
                                  rssiSet.reduce(0, +) / rssiSet.count
                              }
-                             .max(by: { $0.value < $1.value })?
+                             .max(by: comparator)?
                              .key ?? "와이파이를 찾을 수 없습니다."
-                         
-                         self.bestSSid = bestSSid
-                         if resultShowMode == .alert {
-                             self.showAlert = true
+                         wifiSearchResult.isBestCase = isBestCase.boolValue
+                         foundSSid = ssid
+                         if ssidResultType == .alert {
+                             showAlert = true
                          } else {
-                             AppNotificationManager.shared.sendNotification(
-                                 title: "알림",
-                                 subtitle: "최적의 Wifi : \(bestSSid)"
-                             )
+                             if isBestCase.boolValue {
+                                 AppNotificationManager.shared.sendNotification(
+                                     title: "알림",
+                                     subtitle: wifiSearchResult.getResult(ssid)
+                                 )
+                             } else {
+                                 AppNotificationManager.shared.sendNotification(
+                                     title: "알림",
+                                     subtitle: wifiSearchResult.getResult(ssid)
+                                 )
+                             }
                          }
                          completion()
-                     }
+                     
                  },
                  receiveValue: { wifiList in
                      for wifi in wifiList {

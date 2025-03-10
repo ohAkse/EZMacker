@@ -7,7 +7,7 @@
 
 import SwiftUI
 import EZMackerUtilLib
-
+// MARK: Geometry 형태로 그리는데 화면이 큰 맥북(MacbookPro)는 친구걸로 확인결과 그래프가 넘쳐서 그려짐..따라서 수정필요
 struct EZBatteryMonitoringView: View {
     @Binding var chargeData: [ChargeData]
     @Binding var isAdapterConnect: Bool

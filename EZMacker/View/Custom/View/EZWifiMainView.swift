@@ -14,7 +14,7 @@ struct EZWifiMainView: View {
     @Binding var ssid: String
     @Binding var wifiLists: [ScaningWifiData]
     @Binding var isRefreshing: Bool
-    @Binding var isFindingBestWifi: Bool
+    @Binding var isFindingWifi: Bool
     @State private var password: String = ""
     @State private var isShowingPasswordModal = false
     @State private var toast: ToastData?
@@ -23,25 +23,28 @@ struct EZWifiMainView: View {
     private(set) var onRefresh: () -> Void
     private(set) var onWifiTap: (String, String) -> Void
     private(set) var onFindBestWifi: () -> Void
+    private(set) var onFindWorstWifi: () -> Void
     private(set) var onMoreInfo: () -> Void
     
     init(appSmartAutoconnectWifiService: AppSmartAutoconnectWifiServiceProvidable,
          ssid: Binding<String> = .constant(""),
          wifiLists: Binding<[ScaningWifiData]> = .constant([]),
          isRefreshing: Binding<Bool> = .constant(false),
-         isFindingBestWifi: Binding<Bool> = .constant(false),
+         isFindingWifi: Binding<Bool> = .constant(false),
          onRefresh: @escaping () -> Void = {},
          onWifiTap: @escaping (String, String) -> Void = { _, _ in },
          onFindBestWifi: @escaping () -> Void = {},
+         onFindWorstWifi: @escaping () -> Void = {},
          onMoreInfo: @escaping () -> Void = {}) {
         self.appSmartAutoconnectWifiService = appSmartAutoconnectWifiService
         self._ssid = ssid
         self._wifiLists = wifiLists
         self._isRefreshing = isRefreshing
-        self._isFindingBestWifi = isFindingBestWifi
+        self._isFindingWifi = isFindingWifi
         self.onRefresh = onRefresh
         self.onWifiTap = onWifiTap
         self.onFindBestWifi = onFindBestWifi
+        self.onFindWorstWifi = onFindWorstWifi
         self.onMoreInfo = onMoreInfo
     }
     // MARK: Refresh의 경우 Disabled 처리가 빨리 처리가 되어 깜빡이는것처럼 보여서 일단 처리 안함
@@ -104,20 +107,26 @@ struct EZWifiMainView: View {
                             EZButtonActionView(
                                 action: {
                                     onRefresh()
-                                    Logger.writeLog(.info, message: "isRefreshing: \(isRefreshing)")
                                 },
                                 imageName: "rays",
-                                isDisabled: isRefreshing || isFindingBestWifi
+                                isDisabled: isRefreshing || isFindingWifi
                             )
                             .padding(.trailing, 5)
                             
                             EZButtonActionView(
                                 action: {
+                                    onFindWorstWifi()
+                                    toast = ToastData(type: .info, message: "최악의 와이파이를 찾고 있습니다.")
+                                },
+                                imageName: "wifi.slash",
+                                isDisabled: isRefreshing || isFindingWifi)
+                            EZButtonActionView(
+                                action: {
                                     onFindBestWifi()
                                     toast = ToastData(type: .info, message: "최적의 와이파이를 찾고 있습니다.")
                                 },
-                                imageName: "arrow.clockwise.circle",
-                                isDisabled: isRefreshing || isFindingBestWifi)
+                                imageName: "wifi.exclamationmark",
+                                isDisabled: isRefreshing || isFindingWifi)
                         }
                         .padding([.trailing], 10)
                         List {

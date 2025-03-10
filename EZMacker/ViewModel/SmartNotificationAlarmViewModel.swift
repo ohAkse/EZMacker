@@ -37,12 +37,13 @@ class SmartNotificationAlarmViewModel: ObservableObject {
     func loadConfig() {
         batterySetting = BatterySetting(
             isBatteryWarningMode: loadSetting(.isBatteryChargingErrorMode) ?? false,
-            isBatteryCurrentMessageMode: loadSetting(.isBatteryCurrentMessageMode) ?? false,
-            batteryPercentage: loadSetting(.batteryPercentage) ?? "",
+            isBatteryCurrentMessageMode: loadSetting(.isBatteryFullCapacityAlarmeMode) ?? false,
+            batteryPercentage: loadSetting(.batteryPercentage) ?? "1",
             cpuUsageExitType: loadSetting(.cpuUsageExitType).flatMap { CPUUsageExitType(rawValue: $0) } ?? .unused
         )
         wifiSetting = WifiSetting(
-            selectedBestSSIDOption: loadSetting(.bestSSIDShowType).flatMap { BestSSIDShowType(rawValue: $0) } ?? .alert
+            selectedSSIDShowOption: loadSetting(.ssidShowType).flatMap { SSIDShowType(rawValue: $0) } ?? .alert,
+            ssidFindTimer: loadSetting(.ssidFindTimer) ?? "1"
         )
         fileLocatorSetting = FileLocatorSetting(
             isFileChangeAlarmDisabled: loadSetting(.isFileChangeAlarmDisabled) ?? false
@@ -50,11 +51,15 @@ class SmartNotificationAlarmViewModel: ObservableObject {
     }
         
     func saveConfig() {
+        // MARK: Battery
         saveSetting(.isBatteryChargingErrorMode, value: batterySetting.isBatteryWarningMode)
-        saveSetting(.isBatteryCurrentMessageMode, value: batterySetting.isBatteryCurrentMessageMode)
+        saveSetting(.isBatteryFullCapacityAlarmeMode, value: batterySetting.isBatteryCurrentMessageMode)
         saveSetting(.batteryPercentage, value: batterySetting.batteryPercentage)
         saveSetting(.cpuUsageExitType, value: batterySetting.cpuUsageExitType.rawValue)
-        saveSetting(.bestSSIDShowType, value: wifiSetting.selectedBestSSIDOption.rawValue)
+        // MARK: WIFI Setting
+        saveSetting(.ssidShowType, value: wifiSetting.selectedSSIDShowOption.rawValue)
+        saveSetting(.ssidFindTimer, value: wifiSetting.ssidFindTimer)
+        // MARK: File Locator Setting
         saveSetting(.isFileChangeAlarmDisabled, value: fileLocatorSetting.isFileChangeAlarmDisabled)
     }
     
