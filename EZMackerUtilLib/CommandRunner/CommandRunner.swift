@@ -9,7 +9,7 @@ import AppKit
 import EZMackerThreadLib
 
 public struct CommandToolRunner {
-    public static func runCommand<T: CoomandExecutable>(command: T, completion: @escaping (String?) -> Void) {
+    public static func runCommand<T: CommandExecutable>(command: T, completion: @escaping (String?) -> Void) {
         let group = DispatchGroup()
         let commandRunQueue = DispatchQueueFactory.createQueue(for: CommandRunQueueConfiguration(), withPov: false)
         let lock = NSLock()

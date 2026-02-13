@@ -193,27 +193,24 @@ extension SmartWifiViewModel {
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
+                guard let self = self else { return }
                 if case .failure(let error) = completion {
-                    self?.wifiRequestStatus = error
-                    if let isWifiConnected = self?.appCoreWLanWifiService.checkIsConnected(), isWifiConnected {
-                         self?.isConnected = true
-                     } else {
-                         self?.isConnected = false
-                     }
+                    self.wifiRequestStatus = error
+                    self.isConnected = self.appCoreWLanWifiService.checkIsConnected()
                     Logger.writeLog(.error, message: error.localizedDescription)
-                    
                 }
             }, receiveValue: { [weak self] result in
+                guard let self = self else { return }
                 let (connectedSSID, isSwitchWifiSuccess) = result
                 if isSwitchWifiSuccess {
-                    self?.wifiRequestStatus = .success
-                    self?.wificonnectData.connectedSSid = connectedSSID
-                    self?.fetchWifiInfo()
-                    self?.isConnected = true
+                    self.wifiRequestStatus = .success
+                    self.wificonnectData.connectedSSid = connectedSSID
+                    self.fetchWifiInfo()
+                    self.isConnected = true
                     Logger.writeLog(.info, message: "Successfully connected to \(connectedSSID)")
                 } else {
-                    self?.wifiRequestStatus = .disconnected
-                    self?.isConnected = false
+                    self.wifiRequestStatus = .disconnected
+                    self.isConnected = false
                     Logger.writeLog(.error, message: "Failed to connect to \(ssid)")
                 }
             })
@@ -221,17 +218,16 @@ extension SmartWifiViewModel {
     }
     
     func findSSIDByPerformance(isBestCase: DarwinBoolean, completion: @escaping () -> Void) {
-        
         guard let ssidShowType: String = appStorageSettingService.loadConfig(.ssidShowType) else {
+            Logger.writeLog(.error, message: "Failed to load ssidShowType config")
             completion()
-            Logger.fatalErrorMessage("can't ssidShowType")
             return
         }
         let ssidResultType = SSIDShowType(rawValue: ssidShowType) ?? .alert
-        
+
         guard let findSSidTime: String = appStorageSettingService.loadConfig(.ssidFindTimer) else {
+            Logger.writeLog(.error, message: "Failed to load findSSidTime config")
             completion()
-            Logger.fatalErrorMessage("can't find findSSidTime")
             return
         }
          var wifirssiList: [String: Set<Int>] = [:]
@@ -281,17 +277,10 @@ extension SmartWifiViewModel {
                          if ssidResultType == .alert {
                              showAlert = true
                          } else {
-                             if isBestCase.boolValue {
-                                 AppNotificationManager.shared.sendNotification(
-                                     title: "알림",
-                                     subtitle: wifiSearchResult.getResult(ssid)
-                                 )
-                             } else {
-                                 AppNotificationManager.shared.sendNotification(
-                                     title: "알림",
-                                     subtitle: wifiSearchResult.getResult(ssid)
-                                 )
-                             }
+                             AppNotificationManager.shared.sendNotification(
+                                 title: "알림",
+                                 subtitle: wifiSearchResult.getResult(ssid)
+                             )
                          }
                          completion()
                      

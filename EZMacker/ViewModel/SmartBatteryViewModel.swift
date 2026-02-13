@@ -10,6 +10,17 @@ import SwiftUI
 import EZMackerUtilLib
 import EZMackerServiceLib
 import SwiftData
+
+private enum BatteryErrorThreshold {
+    static let chargingErrorTrigger = 6
+    static let decodingFailedMin = 1
+    static let decodingFailedMax = 5
+    static let dataNotFoundMin = 6
+    static let dataNotFoundMax = 10
+    static let processingThreshold = 11
+    static let maxErrorCount = 100
+}
+
 class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: ObservableObject {
     deinit {
         Logger.writeLog(.debug, message: "SmartBatteryViewModel deinit Called")
@@ -52,22 +63,33 @@ class SmartBatteryViewModel<ProvidableType: AppSmartBatteryRegistryProvidable>: 
 }
 extension SmartBatteryViewModel {
     func startAdapterConnectionTimer() {
-        timer = Timer.publish(every: 1.5, on: RunLoop.main, in: .default)
+        timer = Timer.publish(every: 1.5, on: .main, in: .default)
             .autoconnect()
             .prepend(Date())
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.fetchBatteryCommonMetrics()
-                if self!.isOverFullcpuUsageExitMode {
-                    self?.appProcessService.checkProcessUpdateInfo()
-                    self?.needToAppExit()
+                guard let self = self else { return }
+                self.fetchBatteryCommonMetrics()
+                if self.isOverFullcpuUsageExitMode {
+                    self.appProcessService.checkProcessUpdateInfo()
+                    self.needToAppExit()
                 }
             }
         timer?.store(in: &cancellables)
     }
     func stopAdapterConnectionTimer() {
-        timer?.cancel()
-        timer = nil
-        cancellables.removeAll()
+        // Ensure cancellation and mutation of cancellables happen on main
+        if Thread.isMainThread {
+            timer?.cancel()
+            timer = nil
+            cancellables.removeAll()
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                self?.timer?.cancel()
+                self?.timer = nil
+                self?.cancellables.removeAll()
+            }
+        }
     }
     // 배터리 충전과 상관없이 연결정보(충전 데이터, 남은시간/예상완충시간 등)
     func fetchBatteryCommonMetrics() {
@@ -98,13 +120,18 @@ extension SmartBatteryViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] charge in
                 guard let self = self else { return }
-                if batteryMatricsData.chargeData.count > 5 {
-                    batteryMatricsData.chargeData.removeAll()
+                if self.batteryMatricsData.chargeData.count > 5 {
+                    self.batteryMatricsData.chargeData.removeAll()
                 }
-                batteryMatricsData.chargeData.append(charge)
+                self.batteryMatricsData.chargeData.append(charge)
                 if charge.notChargingReason != 0 {
-                    appChargingErrorCount += 1
-                    needToChargingErrorAlarm(errorCode: charge.notChargingReason)
+                    if self.appChargingErrorCount < BatteryErrorThreshold.maxErrorCount {
+                        self.appChargingErrorCount += 1
+                    }
+                    self.needToChargingErrorAlarm(errorCode: charge.notChargingReason)
+                } else {
+                    self.appChargingErrorCount = 0
+                    self.isSentChargingErrorAlarm = false
                 }
             }
             .store(in: &cancellables)
@@ -112,6 +139,7 @@ extension SmartBatteryViewModel {
             appSmartBatteryService.getRegistry(forKey: .TimeRemaining).compactMap { $0 as? Int },
             appSmartBatteryService.getPowerSourceValue(for: .chargingTime, defaultValue: 0)
         )
+        .receive(on: DispatchQueue.main)
         .sink { [weak self] remainingTime, chargingTime in
             guard let self = self else { return }
             batteryMatricsData.remainingTime = remainingTime
@@ -126,8 +154,8 @@ extension SmartBatteryViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] currentCapacity in
                 guard let self = self else { return }
-                batteryMatricsData.currentBatteryCapacity = currentCapacity
-                needToBatteryCapacityAlarm()
+                self.batteryMatricsData.currentBatteryCapacity = currentCapacity
+                self.needToBatteryCapacityAlarm()
             }
             .store(in: &cancellables)
     }
@@ -142,10 +170,10 @@ extension SmartBatteryViewModel {
         .receive(on: DispatchQueue.main)
         .sink { [weak self] cycleCount, temperature, designedCapacity, batteryMaxCapacity in
             guard let self = self else { return }
-            batteryConditionData.cycleCount = cycleCount
-            batteryConditionData.temperature = temperature
-            batteryConditionData.designedCapacity = designedCapacity
-            batteryConditionData.batteryMaxCapacity = batteryMaxCapacity
+            self.batteryConditionData.cycleCount = cycleCount
+            self.batteryConditionData.temperature = temperature
+            self.batteryConditionData.designedCapacity = designedCapacity
+            self.batteryConditionData.batteryMaxCapacity = batteryMaxCapacity
         }
         .store(in: &cancellables)
     }
@@ -162,44 +190,50 @@ extension SmartBatteryViewModel {
                 receiveCompletion: { [weak self] result in
                     guard let self = self else { return }
                     if case .failure = result {
-                        adapterDecodingErrorCount += 1
-                        switch adapterDecodingErrorCount {
-                        case 1...5:
-                            adapterMetricsData.adapterConnectionSuccess = .decodingFailed
-                        case 6...10:
-                            adapterMetricsData.adapterConnectionSuccess = .dataNotFound
-                            if !hasShownAlert {
-                                showAlert = true
-                                hasShownAlert = true
-                                subtitle = "에러"
-                                alertMessage = adapterMetricsData.adapterConnectionSuccess.localizedDescription
+                        if self.adapterDecodingErrorCount < BatteryErrorThreshold.maxErrorCount {
+                            self.adapterDecodingErrorCount += 1
+                        }
+                        switch self.adapterDecodingErrorCount {
+                        case BatteryErrorThreshold.decodingFailedMin...BatteryErrorThreshold.decodingFailedMax:
+                            self.adapterMetricsData.adapterConnectionSuccess = .decodingFailed
+                        case BatteryErrorThreshold.dataNotFoundMin...BatteryErrorThreshold.dataNotFoundMax:
+                            self.adapterMetricsData.adapterConnectionSuccess = .dataNotFound
+                            if !self.hasShownAlert {
+                                self.showAlert = true
+                                self.hasShownAlert = true
+                                self.subtitle = "에러"
+                                self.alertMessage = self.adapterMetricsData.adapterConnectionSuccess.localizedDescription
                             }
-                        case 11...:
-                            adapterMetricsData.adapterConnectionSuccess = .processing // 한번 에러 띄우면 그냥 종료까지 계산으로 넘기기위해 프로세싱으로
+                        case BatteryErrorThreshold.processingThreshold...:
+                            self.adapterMetricsData.adapterConnectionSuccess = .processing
                         default:
-                            break // 이 경우는 발생하지 않지만, switch 문의 완전성을 위해 포함
+                            break
                         }
                     }
                 },
                 receiveValue: { [weak self] adapterDetails in
-                    self?.validateAdapterData(adapterDetails)
-                    self?.hasShownAlert = false // 충전기를 다시 꽃으면 초기화
-                    self?.adapterDecodingErrorCount = 0
+                    guard let self = self else { return }
+                    self.validateAdapterData(adapterDetails)
+                    self.hasShownAlert = false
+                    self.adapterDecodingErrorCount = 0
                 }
             )
             .store(in: &cancellables)
     }
     
     private func validateAdapterData(_ adapterDetails: [AdapterData]) {
-        let adapterConnected = !adapterDetails.isEmpty
-        if adapterConnected {
-            adapterMetricsData.adapterData = adapterDetails
-            adapterMetricsData.adapterConnectionSuccess = .processing
-        } else {
-            fetchBatteryBasicExtraSpec()
-        }
-        if adapterMetricsData.isAdapterConnected != adapterConnected {
-            adapterMetricsData.isAdapterConnected.toggle()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let adapterConnected = !adapterDetails.isEmpty
+            if adapterConnected {
+                self.adapterMetricsData.adapterData = adapterDetails
+                self.adapterMetricsData.adapterConnectionSuccess = .processing
+            } else {
+                self.fetchBatteryBasicExtraSpec()
+            }
+            if self.adapterMetricsData.isAdapterConnected != adapterConnected {
+                self.adapterMetricsData.isAdapterConnected.toggle()
+            }
         }
     }
     
@@ -238,7 +272,7 @@ extension SmartBatteryViewModel {
     }
     func needToChargingErrorAlarm(errorCode: Int) {
         if isBatteryChargingErrorAlarmMode && !isSentChargingErrorAlarm {
-            if appChargingErrorCount >= 6 {
+            if appChargingErrorCount >= BatteryErrorThreshold.chargingErrorTrigger {
                 AppNotificationManager.shared.sendNotification(title: "배터리 오류 발생", subtitle: "errorCode: \(errorCode)")
                 isSentChargingErrorAlarm = true
             }

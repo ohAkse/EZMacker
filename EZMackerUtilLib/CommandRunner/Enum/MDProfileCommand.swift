@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum MDProfileCommand: CoomandExecutable {
+public enum MDProfileCommand: CommandExecutable {
     case hardware
     case software
 

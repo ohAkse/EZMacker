@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum MDInterfaceInfoCommand: CoomandExecutable {
+public enum MDInterfaceInfoCommand: CommandExecutable {
     case ifconfig(interface: String)
 
     public var executableURL: URL {

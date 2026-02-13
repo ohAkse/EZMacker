@@ -24,21 +24,45 @@ struct SmartFileSearchView: View {
     }
     // MARK: 검색 입력 섹션
     private var fileSearchSectionView: some View {
-        HStack {
-            TextField("찾고자 하는 파일/폴더 이름을 검색 해보세요.", text: $smartFileSearchViewModel.searchText)
-                .padding(.leading, 10)
-                .frame(height: 45)
-                .foregroundColor(.secondary)
-                .ezTextFieldStyle()
-                .onSubmit {
-                    smartFileSearchViewModel.searchFileList()
+        VStack(spacing: 10) {
+            HStack {
+                TextField("찾고자 하는 파일/폴더 이름을 검색 해보세요.", text: $smartFileSearchViewModel.searchText)
+                    .padding(.leading, 10)
+                    .frame(height: 45)
+                    .foregroundColor(.secondary)
+                    .ezTextFieldStyle()
+                    .onSubmit {
+                        smartFileSearchViewModel.searchFileList()
+                    }
+                    .submitLabel(.search)
+                Button("검색") { [weak smartFileSearchViewModel] in
+                    smartFileSearchViewModel?.searchFileList()
                 }
-                .submitLabel(.search)
-            Button("검색") { [weak smartFileSearchViewModel] in
-                smartFileSearchViewModel?.searchFileList()
+                .frame(width: 55, height: 45)
+                .ezButtonStyle()
             }
-            .frame(width: 55, height: 45)
-            .ezButtonStyle()
+
+            // 전체 시스템 검색 토글
+            HStack {
+                Toggle(isOn: $smartFileSearchViewModel.isGlobalSearch) {
+                    HStack(spacing: 5) {
+                        Image(systemName: smartFileSearchViewModel.isGlobalSearch ? "globe" : "folder")
+                            .foregroundColor(smartFileSearchViewModel.isGlobalSearch ? .blue : .orange)
+                        Text(smartFileSearchViewModel.isGlobalSearch ? "전체 시스템 검색" : "특정 폴더 검색")
+                            .font(.subheadline)
+                    }
+                }
+                .toggleStyle(.switch)
+                .disabled(AppEnvironment.shared.isSandboxed)
+
+                if AppEnvironment.shared.isSandboxed {
+                    Text("(샌드박스 모드에서는 전체 검색 불가)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 10)
         }
     }
     

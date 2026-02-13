@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol CoomandExecutable {
+public protocol CommandExecutable {
     var executableURL: URL { get }
     var argumentsList: [[String]] { get }
 }

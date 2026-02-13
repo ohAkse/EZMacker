@@ -6,7 +6,7 @@
 //
 
 import Foundation
-public enum MDMulticastCommand: CoomandExecutable {
+public enum MDMulticastCommand: CommandExecutable {
     case getGroups
     case getRoutes
     case checkInterface(interface: String)

@@ -14,18 +14,21 @@ class SmartFileSearchViewModel: ObservableObject {
     // MARK: - Publish Variable
     @Published var searchText: String = ""
     @Published var searchResults: [FileQueryData] = .init()
+    @Published var isGlobalSearch: Bool = true
     
     deinit {
         Logger.writeLog(.debug, message: "SmartFileSearchViewModel deinit Called")
     }
     
     // MARK: - Component Event Handle
+    @MainActor
     func sortByName(isAscending: Bool) {
         searchResults.sort {
             isAscending ? $0.fileName < $1.fileName : $0.fileName > $1.fileName
         }
     }
-    
+
+    @MainActor
     func sortByCreationDate(isAscending: Bool) {
         searchResults.sort { (file1, file2) -> Bool in
             guard let date1 = file1.creationDate, let date2 = file2.creationDate else {
@@ -34,15 +37,17 @@ class SmartFileSearchViewModel: ObservableObject {
             return isAscending ? date1 < date2 : date1 > date2
         }
     }
+
     func openInFinder(_ fileURL: URL) {
         NSWorkspace.shared.activateFileViewerSelecting([fileURL])
     }
-    
+
+    @MainActor
     func sortByType(folderFirst: Bool) {
         searchResults.sort { (file1, file2) -> Bool in
             let isFolder1 = isFolder(file1)
             let isFolder2 = isFolder(file2)
-            
+
             if isFolder1 != isFolder2 {
                 return folderFirst ? isFolder1 : !isFolder1
             }
@@ -51,22 +56,32 @@ class SmartFileSearchViewModel: ObservableObject {
     }
     
     func searchFileList() {
-        var folderURLs: [URL] = []
-        
-        if AppEnvironment.shared.isSandboxed {
-            folderURLs = getSandboxFolderURLs()
+        let command: MDFindCommand
+
+        if isGlobalSearch && !AppEnvironment.shared.isSandboxed {
+            command = MDFindCommand.findGlobal(.name(searchText))
+            Logger.writeLog(.info, message: "Performing global system search")
         } else {
-            folderURLs = getNonSandboxFolderURLs()
+            var folderURLs: [URL] = []
+
+            if AppEnvironment.shared.isSandboxed {
+                folderURLs = getSandboxFolderURLs()
+            } else {
+                folderURLs = getNonSandboxFolderURLs()
+            }
+
+            command = MDFindCommand.find(.name(searchText), folderURLs: folderURLs)
+            Logger.writeLog(.info, message: "Performing folder-restricted search: \(folderURLs.count) folders")
         }
-        
-        let command = MDFindCommand.find(.name(searchText), folderURLs: folderURLs)
+
         CommandToolRunner.runCommand(command: command) { [weak self] result in
+            guard let self = self else { return }
             if let result = result {
                 Logger.writeLog(.info, message: "mdfind output: \(result)")
-                self?.processSearchResults(result)
+                self.processSearchResults(result)
             } else {
                 Logger.writeLog(.info, message: "mdfind not found")
-                self?.searchResults = []
+                self.searchResults = []
             }
         }
     }
@@ -106,27 +121,34 @@ class SmartFileSearchViewModel: ObservableObject {
     }
     
     private func processSearchResults(_ output: String) {
-        let fileManager = FileManager.default
-        let paths = Set(output.components(separatedBy: .newlines).filter { !$0.isEmpty })
-        
-        searchResults = paths.compactMap { path -> FileQueryData? in
-            let normalizedPath = path.precomposedStringWithCanonicalMapping
-            let fileURL = URL(fileURLWithPath: normalizedPath)
-            
-            guard let attributes = try? fileManager.attributesOfItem(atPath: normalizedPath) else { return nil }
-            
-            let fileName = fileManager.displayName(atPath: normalizedPath)
-            let fileSize = (attributes[.size] as? NSNumber)?.int64Value ?? 0
-            let fileType = (attributes[.type] as? String) ?? ""
-            let modificationDate = attributes[.modificationDate] as? Date
-            let creationDate = attributes[.creationDate] as? Date
-            
-            return FileQueryData(fileName: fileName,
-                            fileSize: fileSize,
-                            fileType: fileType,
-                            fileURL: fileURL,
-                            modificationDate: modificationDate,
-                            creationDate: creationDate)
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            let fileManager = FileManager.default
+            let paths = Set(output.components(separatedBy: .newlines).filter { !$0.isEmpty })
+
+            let results = paths.compactMap { path -> FileQueryData? in
+                let normalizedPath = path.precomposedStringWithCanonicalMapping
+                let fileURL = URL(fileURLWithPath: normalizedPath)
+
+                guard let attributes = try? fileManager.attributesOfItem(atPath: normalizedPath) else { return nil }
+
+                let fileName = fileManager.displayName(atPath: normalizedPath)
+                let fileSize = (attributes[.size] as? NSNumber)?.int64Value ?? 0
+                let fileType = (attributes[.type] as? String) ?? ""
+                let modificationDate = attributes[.modificationDate] as? Date
+                let creationDate = attributes[.creationDate] as? Date
+
+                return FileQueryData(fileName: fileName,
+                                fileSize: fileSize,
+                                fileType: fileType,
+                                fileURL: fileURL,
+                                modificationDate: modificationDate,
+                                creationDate: creationDate)
+            }
+
+            DispatchQueue.main.async {
+                self.searchResults = results
+            }
         }
     }
     private func isFolder(_ file: FileQueryData) -> Bool {
